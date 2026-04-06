@@ -15,6 +15,9 @@ interface ContactDao {
     @Query("SELECT * FROM contact WHERE deviceId = :deviceId")
     suspend fun getByDevice(deviceId: String): List<ContactEntity>
 
+    @Query("SELECT COUNT(*) FROM contact WHERE deviceId = :deviceId")
+    fun countByDevice(deviceId: String): Flow<Int>
+
     @Upsert
     suspend fun upsertAll(contacts: List<ContactEntity>)
 
