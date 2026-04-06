@@ -63,8 +63,23 @@ the reasoning behind many of these items.
 - [ ] Add accessibility descriptions to icon-only UI elements
 - [ ] Investigate message delivery confirmation UX
 
+## Wear OS companion
+
+- [x] Add Horologist (data layer only) + Wear Compose M3 + wear-compose-remote dependencies
+- [x] Create `wear` module skeleton with manifest and build config
+- [x] Implement `MeshcoreWearDataService` (phone-side gRPC over Data Layer)
+- [x] Implement `MeshcoreWearClient` (watch-side gRPC consumer via Horologist channel)
+- [x] Build `MeshcoreWearTheme` (dark-only, teal, Wear Compose M3 — no Horologist Compose)
+- [x] Build `StatusScreen` with connection, battery, radio info (`TransformingLazyColumn`)
+- [x] Build `ContactsScreen` and `QuickReplyScreen` for messaging
+- [x] Build Wear widget with `wear-compose-remote` (Remote Material 3 components)
+- [ ] Add `MeshMessageNotifier` for MessagingStyle notifications with inline reply
+- [x] Add Wear OS section to STYLEGUIDE.md
+- [ ] Test on Wear OS emulator and physical device
+
 ## Widgets and background
 
 - [ ] Make periodic refresh interval configurable
 - [ ] Add error indicator to widget when device is unreachable
 - [ ] Test widget rendering across different sizes and themes
+- [ ] Consider `wear-compose-remote` for watch widget (matches phone's Remote Compose pattern)
