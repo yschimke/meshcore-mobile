@@ -7,6 +7,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.ble.DeviceProximityCheck
 import ee.schimke.meshcore.core.manager.ManagerState
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
@@ -26,6 +27,11 @@ class WidgetRefreshWorker(
         val app = MeshcoreApp.get()
         val favorite = app.repository.observeFavorite().first()
             ?: return Result.failure()
+
+        // Check if device is nearby before connecting
+        if (!DeviceProximityCheck.isNearby(applicationContext, favorite)) {
+            return Result.success() // Not nearby, skip silently
+        }
 
         app.connectionController.requestReconnect(favorite)
 

@@ -8,7 +8,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import androidx.annotation.RequiresApi
 import androidx.compose.remote.creation.compose.capture.captureSingleRemoteDocument
 import androidx.compose.remote.creation.profile.RcPlatformProfiles
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +15,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
-// --- Shared helpers ---------------------------------------------------------
 
 private fun drawInstructions(bytes: ByteArray): RemoteViews.DrawInstructions =
     RemoteViews.DrawInstructions.Builder(listOf(bytes)).build()
@@ -33,42 +30,46 @@ private fun staleLabel(snap: WidgetSnapshot): String? {
     return if (hours < 24) "Updated ${hours}h ago" else "Updated ${hours / 24}d ago"
 }
 
-// --- Battery + SNR ----------------------------------------------------------
+/**
+ * Get the current widget snapshot, seeding from Room if the in-memory
+ * bridge hasn't been populated yet.
+ */
+private suspend fun currentSnapshot(): WidgetSnapshot {
+    val snap = WidgetStateBridge.snapshot.value
+    if (snap.batteryMv != null || snap.deviceName != null) return snap
 
-class BatteryWidgetReceiver : AppWidgetProvider() {
-    override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
-        goAsync {
-            val snap = WidgetStateBridge.snapshot.first()
-            coroutineScope {
-                widgetIds.forEach { id ->
-                    launch {
-                        val bytes = withContext(Dispatchers.Main) {
-                            captureSingleRemoteDocument(
-                                context = context,
-                                profile = RcPlatformProfiles.WIDGETS_V6,
-                            ) {
-                                BatteryWidgetContent(
-                                    batteryPercent = snap.batteryPercent?.let { "$it%" } ?: "—",
-                                    batteryMv = snap.batteryMv?.let { "$it mV" },
-                                    snr = snap.lastSnr?.let { "SNR $it" },
-                                    staleLabel = staleLabel(snap),
-                                )
-                            }
-                        }
-                        wm.updateAppWidget(id, RemoteViews(drawInstructions(bytes.bytes)))
-                    }
-                }
-            }
-        }
-    }
+    val app = try { ee.schimke.meshcore.app.MeshcoreApp.get() } catch (_: Throwable) { return snap }
+    val fav = app.repository.observeFavorite().first() ?: return snap
+    val state = app.repository.getDeviceState(fav.id) ?: return snap
+
+    return snap.copy(
+        deviceName = state.selfName,
+        pubkeyPrefix = state.selfPublicKey?.let { bytes ->
+            bytes.joinToString("") { "%02x".format(it) }.take(16)
+        },
+        batteryMv = state.batteryMillivolts,
+        batteryPercent = state.batteryMillivolts?.let {
+            ee.schimke.meshcore.core.model.BatteryInfo(
+                it, state.storageUsedKb ?: 0, state.storageTotalKb ?: 0,
+            ).estimatePercent()
+        },
+        storageUsedKb = state.storageUsedKb,
+        storageTotalKb = state.storageTotalKb,
+        frequencyMhz = state.radioFrequencyHz?.let { it / 1_000_000.0 },
+        lastUpdatedMs = maxOf(
+            state.selfInfoFetchedAtMs,
+            state.batteryFetchedAtMs,
+            state.radioFetchedAtMs,
+        ).takeIf { it > 0 },
+    )
 }
 
-// --- Mesh status (name + contact count + freq) ------------------------------
+// --- Device Info Widget -----------------------------------------------------
 
-class MeshStatusWidgetReceiver : AppWidgetProvider() {
+class DeviceInfoWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
         goAsync {
-            val snap = WidgetStateBridge.snapshot.first()
+            val snap = currentSnapshot()
             coroutineScope {
                 widgetIds.forEach { id ->
                     launch {
@@ -77,69 +78,16 @@ class MeshStatusWidgetReceiver : AppWidgetProvider() {
                                 context = context,
                                 profile = RcPlatformProfiles.WIDGETS_V6,
                             ) {
-                                MeshStatusWidgetContent(
-                                    deviceName = snap.deviceName ?: "Not connected",
-                                    contactCount = "${snap.contactCount} contacts",
-                                    frequencyMhz = snap.frequencyMhz?.let { "%.3f MHz".format(it) },
-                                    staleLabel = staleLabel(snap),
-                                )
-                            }
-                        }
-                        wm.updateAppWidget(id, RemoteViews(drawInstructions(bytes.bytes)))
-                    }
-                }
-            }
-        }
-    }
-}
-
-// --- Last received message --------------------------------------------------
-
-class LastMessageWidgetReceiver : AppWidgetProvider() {
-    override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
-        goAsync {
-            val snap = WidgetStateBridge.snapshot.first()
-            coroutineScope {
-                widgetIds.forEach { id ->
-                    launch {
-                        val bytes = withContext(Dispatchers.Main) {
-                            captureSingleRemoteDocument(
-                                context = context,
-                                profile = RcPlatformProfiles.WIDGETS_V6,
-                            ) {
-                                LastMessageWidgetContent(
-                                    message = snap.lastMessage ?: "(none yet)",
-                                )
-                            }
-                        }
-                        wm.updateAppWidget(id, RemoteViews(drawInstructions(bytes.bytes)))
-                    }
-                }
-            }
-        }
-    }
-}
-
-// --- Connection status ------------------------------------------------------
-
-class ConnectionStatusWidgetReceiver : AppWidgetProvider() {
-    override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
-        goAsync {
-            val snap = WidgetStateBridge.snapshot.first()
-            coroutineScope {
-                widgetIds.forEach { id ->
-                    launch {
-                        val bytes = withContext(Dispatchers.Main) {
-                            captureSingleRemoteDocument(
-                                context = context,
-                                profile = RcPlatformProfiles.WIDGETS_V6,
-                            ) {
-                                ConnectionStatusWidgetContent(
-                                    status = if (snap.connected) "Connected" else "Disconnected",
-                                    deviceName = snap.deviceName,
-                                    lastSeen = if (!snap.connected) {
-                                        snap.lastConnectedMs?.let { formatElapsed(it) }
-                                    } else null,
+                                DeviceInfoWidgetContent(
+                                    deviceName = snap.deviceName ?: "No device",
+                                    pubkeyPrefix = snap.pubkeyPrefix,
+                                    radioInfo = snap.frequencyMhz?.let { "%.3f MHz".format(it) },
+                                    batteryLine = snap.batteryPercent?.let { pct ->
+                                        val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
+                                        "$pct%$mv"
+                                    },
+                                    batteryProgress = snap.batteryPercent?.let { it / 100f },
+                                    storageLine = snap.storageLine,
                                     staleLabel = staleLabel(snap),
                                 )
                             }
@@ -160,16 +108,5 @@ class ConnectionStatusWidgetReceiver : AppWidgetProvider() {
 
     companion object {
         const val REFRESH_ACTION = "ee.schimke.meshcore.app.WIDGET_REFRESH"
-    }
-}
-
-private fun formatElapsed(timestampMs: Long): String {
-    val elapsed = System.currentTimeMillis() - timestampMs
-    val minutes = elapsed / 60_000
-    return when {
-        minutes < 1 -> "Last seen just now"
-        minutes < 60 -> "Last seen ${minutes}m ago"
-        minutes < 1440 -> "Last seen ${minutes / 60}h ago"
-        else -> "Last seen ${minutes / 1440}d ago"
     }
 }

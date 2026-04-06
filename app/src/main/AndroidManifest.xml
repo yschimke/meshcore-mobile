@@ -40,42 +40,9 @@
             </intent-filter>
         </receiver>
 
-        <!-- Remote Compose widgets — require API 37+ -->
+        <!-- Device Info widget — requires API 37+ (Remote Compose) -->
         <receiver
-            android:name=".widget.BatteryWidgetReceiver"
-            android:exported="false"
-            android:enabled="@bool/widget_enabled">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_battery_info" />
-        </receiver>
-        <receiver
-            android:name=".widget.MeshStatusWidgetReceiver"
-            android:exported="false"
-            android:enabled="@bool/widget_enabled">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_status_info" />
-        </receiver>
-        <receiver
-            android:name=".widget.LastMessageWidgetReceiver"
-            android:exported="false"
-            android:enabled="@bool/widget_enabled">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_last_message_info" />
-        </receiver>
-        <receiver
-            android:name=".widget.ConnectionStatusWidgetReceiver"
+            android:name=".widget.DeviceInfoWidgetReceiver"
             android:exported="false"
             android:enabled="@bool/widget_enabled">
             <intent-filter>
@@ -84,7 +51,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_connection_status_info" />
+                android:resource="@xml/widget_battery_info" />
         </receiver>
     </application>
 </manifest>
