@@ -141,11 +141,16 @@ class MeshCoreClient(
             runCatching { transport.send(Frames.getBatteryAndStorage()) }
             runCatching { transport.send(Frames.getRadioSettings()) }
             log("start: all queries sent, waiting for SelfInfo (${timeoutMs}ms timeout)")
-            val result = runCatching { selfInfoDeferred.await() }
-            if (result.isSuccess) {
+            try {
+                selfInfoDeferred.await()
                 log("start: SelfInfo received — name='${_selfInfo.value?.name}'")
-            } else {
-                log("start: SelfInfo timeout/error — ${result.exceptionOrNull()?.message}")
+            } catch (e: kotlinx.coroutines.TimeoutCancellationException) {
+                log("start: SelfInfo timeout — device may not be running MeshCore")
+                throw IllegalStateException(
+                    "No response from device. It may not be running MeshCore firmware, " +
+                        "or the connection is not working.",
+                    e,
+                )
             }
         }
     }

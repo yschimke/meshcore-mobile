@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.components.ui
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -7,7 +8,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
-import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -145,16 +145,26 @@ fun UsbPortsPanel(
         val device: UsbDevice? = usbManager.deviceList.values.firstOrNull { d ->
             d.vendorId == info.vendorId && d.productId == info.productId
         }
+        android.util.Log.d("UsbConnect", "connectWithPermission: device=$device hasPermission=${device?.let { usbManager.hasPermission(it) }}")
         if (device != null && !usbManager.hasPermission(device)) {
             pendingPort = info.port
+            // FLAG_MUTABLE is required so the system can attach EXTRA_PERMISSION_GRANTED.
+            // FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT is needed on API 34+ because the
+            // broadcast goes to a dynamically registered receiver (no component).
             val intent = Intent(ACTION_USB_PERMISSION).apply {
                 setPackage(context.packageName)
             }
-            val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            @SuppressLint("UnspecifiedImmutableFlag")
+            val flags = PendingIntent.FLAG_UPDATE_CURRENT or
+                PendingIntent.FLAG_MUTABLE or
+                PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT
             val pi = PendingIntent.getBroadcast(context, 0, intent, flags)
             usbManager.requestPermission(device, pi)
-        } else {
+        } else if (device != null) {
+            android.util.Log.d("UsbConnect", "Permission granted, calling onConnect")
             onConnect(info.port)
+        } else {
+            android.util.Log.w("UsbConnect", "Device not found in system list for vid=${info.vendorId} pid=${info.productId}")
         }
     }
 
@@ -205,10 +215,10 @@ fun UsbPortsPanel(
 @Composable
 fun UsbPortCard(
     label: String,
-    subtitle: String? = null,
     busy: Boolean,
-    onConnect: () -> Unit,
+    subtitle: String? = null,
     modifier: Modifier = Modifier,
+    onConnect: () -> Unit,
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),

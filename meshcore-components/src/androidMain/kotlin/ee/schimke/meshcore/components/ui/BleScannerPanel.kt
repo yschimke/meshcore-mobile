@@ -111,13 +111,17 @@ fun BleScannerPanel(
                     if (devices.none { it.identifier == adv.identifier }) devices.add(adv)
                 }
             } catch (c: kotlinx.coroutines.CancellationException) {
-                // Tab switch or navigation tears down this effect — the
-                // scope is SUPPOSED to leave composition, that's not a
-                // scan failure. Re-throw so structured concurrency
-                // cancels upward.
+                // Tab switch, navigation, or user-initiated cancel —
+                // not a scan failure. Suppress and re-throw for
+                // structured concurrency.
                 throw c
             } catch (t: Throwable) {
-                scanError = t.message
+                // Only show errors that aren't routine scan interruptions
+                val msg = t.message?.lowercase() ?: ""
+                val suppress = msg.contains("bluetooth") && (msg.contains("disabled") || msg.contains("off"))
+                if (!suppress) {
+                    scanError = t.message
+                }
                 granted = checkGranted()
             }
         }
