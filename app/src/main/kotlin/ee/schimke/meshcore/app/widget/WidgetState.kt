@@ -197,16 +197,18 @@ object WidgetStateBridge {
             )
         }
 
+        val pct = snap.batteryPercent ?: 94
         setPreview(DeviceInfoWidgetReceiver::class.java) {
             DeviceInfoWidgetContent(
                 deviceName = snap.deviceName ?: "node-peak",
                 pubkeyPrefix = snap.pubkeyPrefix ?: "ab1234567890cdef",
                 radioInfo = snap.frequencyMhz?.let { "%.3f MHz".format(it) } ?: "869.525 MHz",
-                batteryLine = snap.batteryPercent?.let { pct ->
+                batteryLine = snap.batteryPercent?.let { p ->
                     val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
-                    "$pct%$mv"
+                    "$p%$mv"
                 } ?: "94% · 4135 mV",
-                batteryProgress = (snap.batteryPercent ?: 94) / 100f,
+                batteryProgress = pct / 100f,
+                batteryWarn = pct < 30,
                 storageLine = snap.storageLine ?: "512 / 4096 kB",
             )
         }
