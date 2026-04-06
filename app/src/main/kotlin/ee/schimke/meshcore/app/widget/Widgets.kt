@@ -78,15 +78,17 @@ class DeviceInfoWidgetReceiver : AppWidgetProvider() {
                                 context = context,
                                 profile = RcPlatformProfiles.WIDGETS_V6,
                             ) {
+                                val pct = snap.batteryPercent
                                 DeviceInfoWidgetContent(
                                     deviceName = snap.deviceName ?: "No device",
                                     pubkeyPrefix = snap.pubkeyPrefix,
                                     radioInfo = snap.frequencyMhz?.let { "%.3f MHz".format(it) },
-                                    batteryLine = snap.batteryPercent?.let { pct ->
+                                    batteryLine = pct?.let {
                                         val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
-                                        "$pct%$mv"
+                                        "$it%$mv"
                                     },
-                                    batteryProgress = snap.batteryPercent?.let { it / 100f },
+                                    batteryProgress = pct?.let { it / 100f },
+                                    batteryWarn = pct != null && pct < 30,
                                     storageLine = snap.storageLine,
                                     staleLabel = staleLabel(snap),
                                 )
