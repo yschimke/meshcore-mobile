@@ -71,10 +71,10 @@ import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
 import kotlin.time.Instant
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.flow.sample
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.io.bytestring.ByteString
 
 @Composable
@@ -193,8 +193,9 @@ private fun ConnectedDevice(
         }
     }
 
-    // Throttle last-message banner updates to at most once per second
-    // so rapid sync drains don't cause the banner to flash.
+    // Debounce last-message banner: waits for messages to settle,
+    // then shows the most recent one. During rapid sync drains the
+    // banner stays still; once the burst ends it updates after 500ms.
     LaunchedEffect(client) {
         client.events
             .mapNotNull { ev ->
@@ -224,7 +225,7 @@ private fun ConnectedDevice(
                     else -> null
                 }
             }
-            .sample(1.seconds)
+            .debounce(500.milliseconds)
             .collect { lastMessage = it }
     }
 
