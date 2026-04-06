@@ -167,7 +167,10 @@ fun ChatInput(
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            placeholder = { Text(placeholder) },
+            enabled = enabled,
+            placeholder = {
+                Text(if (enabled) placeholder else "Not connected")
+            },
             singleLine = true,
             modifier = Modifier.weight(1f),
             shape = RoundedCornerShape(24.dp),

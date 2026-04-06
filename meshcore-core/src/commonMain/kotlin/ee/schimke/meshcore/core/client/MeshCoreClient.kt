@@ -44,6 +44,7 @@ class MeshCoreClient(
     private val transport: Transport,
     private val scope: CoroutineScope,
 ) {
+    private fun log(msg: String) = println("[MeshCoreClient] $msg")
     private val _events = MutableSharedFlow<MeshEvent>(
         replay = 0, extraBufferCapacity = 64,
     )
@@ -103,25 +104,50 @@ class MeshCoreClient(
     private var pumpJob: Job? = null
     private val contactsAccumulator = mutableListOf<Contact>()
 
+    /** Timestamp of the last successful contacts fetch, for delta queries. */
+    @Volatile var lastContactsFetchedAt: Instant? = null
+        private set
+
+    /**
+     * Start the protocol session. Sends AppStart + device queries and
+     * waits for the SelfInfo response (up to [timeoutMs]) so the caller
+     * knows the handshake completed. Battery, radio, and device-info
+     * responses may still arrive after this returns — they populate
+     * their StateFlows asynchronously.
+     */
     suspend fun start(
         appName: String = "meshcore-kmp",
         appVersion: Int = MeshCoreConstants.APP_PROTOCOL_VERSION,
+        timeoutMs: Long = 5_000,
     ) {
         if (pumpJob == null) {
-            // UNDISPATCHED so the pump subscribes to transport.incoming
-            // *before* we send any frames — a dispatched launch could
-            // miss the AppStart response on a fast BLE round-trip
-            // because the SharedFlow has replay=0.
             pumpJob = scope.launch(start = CoroutineStart.UNDISPATCHED) {
                 transport.incoming.collect { frame ->
                     handleEvent(Parsers.parse(frame))
                 }
             }
         }
-        transport.send(Frames.appStart(appName, appVersion))
-        runCatching { transport.send(Frames.deviceQuery()) }
-        runCatching { transport.send(Frames.getBatteryAndStorage()) }
-        runCatching { transport.send(Frames.getRadioSettings()) }
+        log("start: sending AppStart + queries")
+        // Subscribe for SelfInfo before sending, then send all queries
+        coroutineScope {
+            val selfInfoDeferred = async(start = CoroutineStart.UNDISPATCHED) {
+                withTimeout(timeoutMs) {
+                    events.filter { it is MeshEvent.SelfInfoEvent }.first()
+                }
+            }
+            transport.send(Frames.appStart(appName, appVersion))
+            log("start: AppStart sent")
+            runCatching { transport.send(Frames.deviceQuery()) }
+            runCatching { transport.send(Frames.getBatteryAndStorage()) }
+            runCatching { transport.send(Frames.getRadioSettings()) }
+            log("start: all queries sent, waiting for SelfInfo (${timeoutMs}ms timeout)")
+            val result = runCatching { selfInfoDeferred.await() }
+            if (result.isSuccess) {
+                log("start: SelfInfo received — name='${_selfInfo.value?.name}'")
+            } else {
+                log("start: SelfInfo timeout/error — ${result.exceptionOrNull()?.message}")
+            }
+        }
     }
 
     /**
@@ -153,15 +179,26 @@ class MeshCoreClient(
     private suspend fun handleEvent(event: MeshEvent) {
         when (event) {
             is MeshEvent.SelfInfoEvent -> {
+                log("event: SelfInfo name='${event.info.name}'")
                 _selfInfo.value = event.info
                 _radio.value = event.info.radio
             }
-            is MeshEvent.Radio -> _radio.value = event.settings
-            is MeshEvent.Battery -> _battery.value = event.info
-            is MeshEvent.Device -> _device.value = event.info
+            is MeshEvent.Radio -> {
+                log("event: Radio ${event.settings.frequencyHz}Hz")
+                _radio.value = event.settings
+            }
+            is MeshEvent.Battery -> {
+                log("event: Battery ${event.info.millivolts}mV")
+                _battery.value = event.info
+            }
+            is MeshEvent.Device -> {
+                log("event: DeviceInfo proto=${event.info.protocolVersion} contacts=${event.info.maxContacts} channels=${event.info.maxChannels}")
+                _device.value = event.info
+            }
             MeshEvent.ContactsStart -> contactsAccumulator.clear()
             is MeshEvent.ContactEvent -> contactsAccumulator += event.contact
             MeshEvent.EndOfContacts -> {
+                log("event: EndOfContacts count=${contactsAccumulator.size}")
                 _contacts.value = contactsAccumulator.toList()
                 contactsAccumulator.clear()
             }
@@ -171,49 +208,58 @@ class MeshCoreClient(
             }
             is MeshEvent.DirectMessage -> {
                 val msg = event.message
-                // Resolve the full pubkey hex from contacts by matching the 6-byte prefix
                 val prefix = msg.senderPrefix.toHex()
                 val contactKey = _contacts.value
                     .firstOrNull { it.publicKey.toHex().startsWith(prefix) }
                     ?.publicKey?.toHex() ?: prefix
+                log("event: DirectMessage from=${prefix.take(12)} text='${msg.text.take(30)}'")
                 val current = _directMessages.value
                 _directMessages.value = current + (contactKey to (current[contactKey].orEmpty() + msg))
             }
             is MeshEvent.ChannelMessage -> {
                 val msg = event.message
+                log("event: ChannelMessage ch=${msg.channelIndex} body='${msg.body.take(30)}'")
                 val idx = msg.channelIndex
                 val current = _channelMessages.value
                 _channelMessages.value = current + (idx to (current[idx].orEmpty() + msg))
             }
+            MeshEvent.MessagesWaiting -> log("event: MessagesWaiting")
+            MeshEvent.NoMoreMessages -> log("event: NoMoreMessages")
+            is MeshEvent.Raw -> log("event: Raw code=0x${event.code.toString(16)} size=${event.body.size}")
             else -> Unit
         }
         _events.emit(event)
     }
 
-    suspend fun getContacts(timeoutMs: Long = 5_000): List<Contact> = sendMutex.withLock {
+    /**
+     * Fetch contacts from the device. If [delta] is true and a previous
+     * fetch timestamp exists, only requests contacts modified since then.
+     */
+    suspend fun getContacts(
+        delta: Boolean = false,
+        timeoutMs: Long = 5_000,
+    ): List<Contact> = sendMutex.withLock {
+        val since = if (delta) lastContactsFetchedAt else null
+        log("getContacts: requesting (delta=$delta, since=$since)")
         coroutineScope {
             val deferred = async(start = CoroutineStart.UNDISPATCHED) {
                 withTimeout(timeoutMs) { events.filter { it is MeshEvent.EndOfContacts }.first() }
             }
-            transport.send(Frames.getContacts())
+            transport.send(Frames.getContacts(since))
             deferred.await()
         }
+        lastContactsFetchedAt = kotlin.time.Clock.System.now()
+        log("getContacts: done, ${_contacts.value.size} contacts")
         _contacts.value
     }
 
     /**
      * Enumerate all configured channels by requesting each index
-     * from 0 until [DeviceInfo.maxChannels]. Empty channels (name
-     * blank + PSK all zeros) are filtered out.
-     */
-    /**
-     * Enumerate all configured channels by requesting each index
-     * from 0 until [DeviceInfo.maxChannels]. Empty channels (name
-     * blank + PSK all zeros) are filtered out. Uses a short per-channel
-     * timeout since responses are local to the companion device.
+     * from 0 until [DeviceInfo.maxChannels]. Empty channels are filtered out.
      */
     suspend fun getChannels(perChannelTimeoutMs: Long = 1_000): List<ChannelInfo> {
         val maxCh = _device.value?.maxChannels ?: 8
+        log("getChannels: requesting 0..$maxCh")
         val result = mutableListOf<ChannelInfo>()
         for (i in 0 until maxCh) {
             val ev = runCatching {
@@ -226,6 +272,7 @@ class MeshCoreClient(
             if (!isEmpty) result += ch
         }
         _channels.value = result
+        log("getChannels: done, ${result.size} non-empty channels")
         return result
     }
 
@@ -236,6 +283,8 @@ class MeshCoreClient(
      * through the [events] SharedFlow as usual.
      */
     suspend fun syncMessages(perMessageTimeoutMs: Long = 5_000) {
+        log("syncMessages: draining pending queue")
+        var count = 0
         while (true) {
             val ev = runCatching {
                 requestOne(Frames.syncNextMessage(), perMessageTimeoutMs) {
@@ -245,7 +294,9 @@ class MeshCoreClient(
                 }
             }.getOrNull() ?: break
             if (ev is MeshEvent.NoMoreMessages) break
+            count++
         }
+        log("syncMessages: done, $count messages received")
     }
 
     suspend fun getBatteryAndStorage(timeoutMs: Long = 3_000): BatteryInfo =

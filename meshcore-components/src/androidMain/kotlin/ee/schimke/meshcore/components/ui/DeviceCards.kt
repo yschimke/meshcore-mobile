@@ -317,7 +317,7 @@ fun ContactListEmpty(modifier: Modifier = Modifier) {
             color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
-            text = "Pull to refresh after the radio receives adverts.",
+            text = "Tap Refresh once the radio has received adverts.",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

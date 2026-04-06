@@ -2,8 +2,10 @@ package ee.schimke.meshcore.app
 
 import android.app.Application
 import dev.zacsweers.metro.createGraphFactory
+import ee.schimke.meshcore.app.ble.DevicePresenceManager
 import ee.schimke.meshcore.app.connection.AppConnectionController
 import ee.schimke.meshcore.app.ui.theme.ThemePreferences
+import ee.schimke.meshcore.app.widget.PeriodicRefreshWorker
 import ee.schimke.meshcore.app.widget.WidgetStateBridge
 import ee.schimke.meshcore.core.manager.MeshCoreManager
 import ee.schimke.meshcore.data.MeshcoreDatabase
@@ -25,7 +27,7 @@ class MeshcoreApp : Application() {
     val database: MeshcoreDatabase by lazy { createMeshcoreDatabase(this) }
     val repository: MeshcoreRepository by lazy { MeshcoreRepository(database) }
     val connectionController: AppConnectionController by lazy {
-        AppConnectionController(manager = manager, repository = repository)
+        AppConnectionController(manager = manager, repository = repository, appContext = this)
     }
 
     override fun onCreate() {
@@ -36,7 +38,11 @@ class MeshcoreApp : Application() {
         @Suppress("OPT_IN_USAGE")
         kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.Default) {
             val favorite = repository.observeFavorite().first()
-            if (favorite != null) connectionController.requestReconnect(favorite)
+            if (favorite != null) {
+                connectionController.requestReconnect(favorite)
+                PeriodicRefreshWorker.scheduleIfFavoriteExists(this@MeshcoreApp)
+                DevicePresenceManager.startObserving(this@MeshcoreApp, favorite)
+            }
         }
     }
 

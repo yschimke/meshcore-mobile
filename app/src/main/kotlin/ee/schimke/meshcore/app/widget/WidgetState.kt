@@ -79,7 +79,35 @@ object WidgetStateBridge {
     }
 
     private suspend fun observeClient(context: Context, client: MeshCoreClient) {
-        val updater = bridgeScope.launch {
+        // Seed snapshot from current client state (data may have arrived
+        // before the bridge started observing events).
+        val self = client.selfInfo.value
+        val bat = client.battery.value
+        val radio = client.radio.value
+        val contacts = client.contacts.value
+        var seeded = _snapshot.value.copy(connected = true)
+        if (self != null) seeded = seeded.copy(
+            deviceName = self.name,
+            frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
+            lastConnectedMs = System.currentTimeMillis(),
+        )
+        if (bat != null) seeded = seeded.copy(
+            batteryMv = bat.millivolts,
+            batteryPercent = bat.estimatePercent(),
+        )
+        if (radio != null) seeded = seeded.copy(
+            frequencyMhz = radio.frequencyHz / 1_000_000.0,
+        )
+        if (contacts.isNotEmpty()) seeded = seeded.copy(
+            contactCount = contacts.size,
+        )
+        if (seeded != _snapshot.value) {
+            _snapshot.value = seeded.copy(lastUpdatedMs = System.currentTimeMillis())
+            notifyWidgets(context)
+        }
+
+        // Observe events for messages and live pushes
+        val eventsJob = bridgeScope.launch {
             client.events.collect { ev ->
                 val next = when (ev) {
                     is MeshEvent.DirectMessage -> _snapshot.value.copy(
@@ -90,21 +118,6 @@ object WidgetStateBridge {
                         lastMessage = "#${ev.message.channelIndex} ${ev.message.body}",
                         lastSnr = ev.message.snr,
                     )
-                    is MeshEvent.Battery -> _snapshot.value.copy(
-                        batteryMv = ev.info.millivolts,
-                        batteryPercent = ev.info.estimatePercent(),
-                    )
-                    is MeshEvent.SelfInfoEvent -> _snapshot.value.copy(
-                        deviceName = ev.info.name,
-                        frequencyMhz = ev.info.radio.frequencyHz / 1_000_000.0,
-                        lastConnectedMs = System.currentTimeMillis(),
-                    )
-                    is MeshEvent.Radio -> _snapshot.value.copy(
-                        frequencyMhz = ev.settings.frequencyHz / 1_000_000.0,
-                    )
-                    MeshEvent.EndOfContacts -> _snapshot.value.copy(
-                        contactCount = client.contacts.value.size,
-                    )
                     else -> _snapshot.value
                 }
                 if (next != _snapshot.value) {
@@ -113,7 +126,38 @@ object WidgetStateBridge {
                 }
             }
         }
-        updater.join()
+        // Observe StateFlows for data that arrives via fetchAndPersist
+        val stateJob = bridgeScope.launch {
+            kotlinx.coroutines.flow.combine(
+                client.selfInfo,
+                client.battery,
+                client.radio,
+                client.contacts,
+            ) { self, bat, radio, contacts ->
+                var s = _snapshot.value.copy(connected = true)
+                if (self != null) s = s.copy(
+                    deviceName = self.name,
+                    frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
+                    lastConnectedMs = System.currentTimeMillis(),
+                )
+                if (bat != null) s = s.copy(
+                    batteryMv = bat.millivolts,
+                    batteryPercent = bat.estimatePercent(),
+                )
+                if (radio != null) s = s.copy(
+                    frequencyMhz = radio.frequencyHz / 1_000_000.0,
+                )
+                s = s.copy(contactCount = contacts.size)
+                s
+            }.collect { next ->
+                if (next != _snapshot.value) {
+                    _snapshot.value = next.copy(lastUpdatedMs = System.currentTimeMillis())
+                    notifyWidgets(context)
+                }
+            }
+        }
+        eventsJob.join()
+        stateJob.cancel()
     }
 
     /**
