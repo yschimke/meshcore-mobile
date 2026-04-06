@@ -29,6 +29,14 @@ sealed class ConnectionUiState {
     data class Connected(val client: MeshCoreClient) : ConnectionUiState()
 
     data class Failed(val cause: Throwable, val deviceLabel: String?) : ConnectionUiState()
+
+    /** Pausing before the next automatic reconnect attempt. */
+    data class Retrying(
+        val attempt: Int,
+        val maxAttempts: Int,
+        val nextRetryAtMs: Long,
+        val deviceLabel: String,
+    ) : ConnectionUiState()
 }
 
 /** Description of a connect request, independent of whether it's been dispatched. */
