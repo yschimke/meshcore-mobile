@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <permission
+        android:name="ee.schimke.meshcore.permission.MESH_SERVICE"
+        android:protectionLevel="signature"
+        android:label="MeshCore Service Access"
+        android:description="@string/mesh_service_permission_description" />
+
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
     <uses-feature android:name="android.hardware.usb.host" android:required="false" />
 
@@ -29,6 +35,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- gRPC binder service for inter-app mesh access -->
+        <service
+            android:name=".service.MeshcoreBinderService"
+            android:exported="true"
+            android:permission="ee.schimke.meshcore.permission.MESH_SERVICE">
+            <intent-filter>
+                <action android:name="ee.schimke.meshcore.MESH_SERVICE" />
+            </intent-filter>
+        </service>
 
         <!-- BLE device presence detection via CompanionDeviceManager -->
         <receiver

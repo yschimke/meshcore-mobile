@@ -9,4 +9,5 @@ plugins {
     alias(libs.plugins.androidKotlinMultiplatformLibrary) apply false
     alias(libs.plugins.metro) apply false
     alias(libs.plugins.graalvmNative) apply false
+    alias(libs.plugins.protobuf) apply false
 }
