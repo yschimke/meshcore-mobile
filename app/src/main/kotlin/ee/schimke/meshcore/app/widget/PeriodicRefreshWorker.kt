@@ -18,6 +18,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 import java.util.concurrent.TimeUnit
 
 private const val TAG = "MeshRefresh"
+private const val CONNECT_TIMEOUT_MS = 30_000L
+private const val DATA_WAIT_TIMEOUT_MS = 15_000L
 
 /**
  * Periodic background worker that connects to the favorite device every
@@ -54,7 +56,7 @@ class PeriodicRefreshWorker(
         }
 
         // Wait for connection + data
-        val connected = withTimeoutOrNull(30_000) {
+        val connected = withTimeoutOrNull(CONNECT_TIMEOUT_MS) {
             app.manager.state.filter { it is ManagerState.Connected }.first()
         }
 
@@ -64,7 +66,7 @@ class PeriodicRefreshWorker(
         }
 
         // Give time for fetchAndPersist to complete (it runs on the controller's scope)
-        withTimeoutOrNull(15_000) {
+        withTimeoutOrNull(DATA_WAIT_TIMEOUT_MS) {
             WidgetStateBridge.snapshot.filter { it.lastUpdatedMs != null }.first()
         }
 

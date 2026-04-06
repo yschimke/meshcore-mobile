@@ -20,19 +20,17 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.automirrored.rounded.Message
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Contrast
-import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.Logout
+import androidx.compose.material.icons.rounded.WarningAmber
 import androidx.compose.material.icons.rounded.Refresh
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -47,13 +45,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
-import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import androidx.compose.material3.CircularProgressIndicator
 import ee.schimke.meshcore.components.ui.verticalScrollbar
 import ee.schimke.meshcore.core.model.BatteryInfo
@@ -61,21 +56,17 @@ import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.MeshEvent
-import ee.schimke.meshcore.core.model.PublicKey
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
 import ee.schimke.meshcore.components.ui.ChannelRow
-import ee.schimke.meshcore.components.ui.ContactList
 import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
-import kotlin.time.Instant
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
-import kotlinx.io.bytestring.ByteString
 
 @Composable
 fun DeviceScreen(
@@ -110,6 +101,15 @@ fun DeviceScreen(
             status = DeviceConnectStatus.Connecting(
                 startedAtMs = s.startedAtMs,
                 timeoutMs = s.timeoutMs,
+            ),
+        )
+        is ConnectionUiState.Retrying -> DeviceStatusView(
+            title = "Retrying (${s.attempt}/${s.maxAttempts})",
+            onCancel = { controller.cancel() },
+            onOpenThemePicker = onOpenThemePicker,
+            status = DeviceConnectStatus.Connecting(
+                startedAtMs = System.currentTimeMillis(),
+                timeoutMs = s.nextRetryAtMs - System.currentTimeMillis(),
             ),
         )
         is ConnectionUiState.Failed -> DeviceStatusView(
@@ -165,11 +165,13 @@ private fun ConnectedDevice(
     onNavigateToContact: (Contact) -> Unit,
     onNavigateToChannel: (ChannelInfo) -> Unit,
 ) {
+    val controller = MeshcoreApp.get().connectionController
     val self by client.selfInfo.collectAsState()
     val battery by client.battery.collectAsState()
     val radio by client.radio.collectAsState()
     val contacts by client.contacts.collectAsState()
     val channels by client.channels.collectAsState()
+    val warnings by controller.warnings.collectAsState()
     val scope = rememberCoroutineScope()
     var lastMessage by remember { mutableStateOf<LastMessageInfo?>(null) }
     // If the client was seeded with cached data, contacts won't be empty
@@ -261,6 +263,8 @@ private fun ConnectedDevice(
         onChannelClick = onNavigateToChannel,
         onDisconnect = onDisconnect,
         onOpenThemePicker = onOpenThemePicker,
+        warnings = warnings,
+        onDismissWarning = { controller.dismissWarning(it) },
     )
 }
 
@@ -286,6 +290,8 @@ fun DeviceBody(
     onChannelClick: (ChannelInfo) -> Unit = {},
     onDisconnect: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
+    warnings: List<String> = emptyList(),
+    onDismissWarning: (String) -> Unit = {},
 ) {
     val scroll = rememberScrollState()
 
@@ -346,6 +352,10 @@ fun DeviceBody(
             verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
         ) {
             DeviceSummaryCard(self = self, radio = radio, battery = battery)
+
+            warnings.forEach { warning ->
+                WarningBanner(warning, onDismiss = { onDismissWarning(warning) })
+            }
 
             AnimatedVisibility(
                 visible = lastMessage != null,
@@ -501,7 +511,7 @@ private fun LastMessageBanner(info: LastMessageInfo, onClick: () -> Unit) {
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Rounded.Message,
-                contentDescription = null,
+                contentDescription = "New message",
                 tint = MaterialTheme.colorScheme.primary,
             )
             Spacer(Modifier.size(Dimens.S))
@@ -523,453 +533,38 @@ private fun LastMessageBanner(info: LastMessageInfo, onClick: () -> Unit) {
     }
 }
 
-// --- Connecting / Failed status view -------------------------------------
-
-sealed class DeviceConnectStatus {
-    /**
-     * [startedAtMs] is a wall-clock timestamp (System.currentTimeMillis).
-     * The connecting card animates its own progress against the current
-     * time — it does NOT need periodic elapsed updates from the caller.
-     */
-    data class Connecting(val startedAtMs: Long, val timeoutMs: Long) : DeviceConnectStatus()
-    data class Failed(val cause: Throwable) : DeviceConnectStatus()
-}
-
-/**
- * Full-screen status view shown when the device screen is visible but
- * we don't yet have a live client — either because the transport is
- * still connecting or because it failed. The failure variant surfaces
- * the exception message *and* a scrollable stack trace so the user can
- * diagnose why their radio didn't respond.
- */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DeviceStatusView(
-    title: String,
-    status: DeviceConnectStatus,
-    onCancel: () -> Unit,
-    onOpenThemePicker: () -> Unit = {},
-) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(title, style = MaterialTheme.typography.titleLarge) },
-                actions = {
-                    IconButton(onClick = onOpenThemePicker) {
-                        Icon(Icons.Rounded.Contrast, contentDescription = "Theme")
-                    }
-                    IconButton(onClick = onCancel) {
-                        Icon(Icons.AutoMirrored.Rounded.Logout, contentDescription = "Back")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    titleContentColor = MaterialTheme.colorScheme.onSurface,
-                    actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                ),
-            )
-        },
-        containerColor = MaterialTheme.colorScheme.surface,
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .padding(Dimens.ScreenPadding),
-            verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
+private fun WarningBanner(text: String, onDismiss: () -> Unit) {
+    androidx.compose.material3.Surface(
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
+        color = MaterialTheme.colorScheme.tertiaryContainer,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            when (status) {
-                is DeviceConnectStatus.Connecting -> ConnectingCard(
-                    startedAtMs = status.startedAtMs,
-                    timeoutMs = status.timeoutMs,
-                    onCancel = onCancel,
-                )
-                is DeviceConnectStatus.Failed -> FailureCard(cause = status.cause, onRetry = onCancel)
-            }
-        }
-    }
-}
-
-@Composable
-private fun ConnectingCard(
-    startedAtMs: Long,
-    timeoutMs: Long,
-    onCancel: () -> Unit,
-) {
-    // Drive the progress bar from inside the composable itself using
-    // withFrameMillis — the caller only has to provide the wall-clock
-    // start time. In preview mode the produceState coroutine returns
-    // immediately so the bar freezes at its initial value and the
-    // renderer can settle.
-    val inPreview = androidx.compose.ui.platform.LocalInspectionMode.current
-    val elapsedMs by androidx.compose.runtime.produceState(
-        initialValue = (System.currentTimeMillis() - startedAtMs).coerceAtLeast(0L),
-        startedAtMs,
-    ) {
-        if (inPreview) return@produceState
-        while (true) {
-            androidx.compose.runtime.withFrameMillis {
-                value = (System.currentTimeMillis() - startedAtMs).coerceAtLeast(0L)
-            }
-        }
-    }
-    val progress = (elapsedMs.toFloat() / timeoutMs.toFloat()).coerceIn(0f, 1f)
-    val remainingS = ((timeoutMs - elapsedMs).coerceAtLeast(0) / 1000).toInt()
-    androidx.compose.material3.Surface(
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.primaryContainer,
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = Icons.Rounded.WarningAmber,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                modifier = Modifier.size(18.dp),
+            )
+            Spacer(Modifier.size(Dimens.S))
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                modifier = Modifier.weight(1f),
+            )
+            IconButton(onClick = onDismiss, modifier = Modifier.size(24.dp)) {
                 Icon(
-                    imageVector = Icons.Rounded.Contrast,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.size(22.dp),
-                )
-                Spacer(Modifier.size(Dimens.M))
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = "Connecting…",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                    Text(
-                        text = "Waiting for the radio to respond — ${remainingS}s",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            }
-            androidx.compose.material3.LinearProgressIndicator(
-                progress = { progress },
-                modifier = Modifier.fillMaxWidth(),
-                color = MaterialTheme.colorScheme.primary,
-                trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
-            )
-            OutlinedButton(
-                onClick = onCancel,
-                modifier = Modifier.fillMaxWidth(),
-            ) { Text("Cancel") }
-        }
-    }
-}
-
-@Composable
-private fun FailureCard(cause: Throwable, onRetry: () -> Unit) {
-    val scroll = rememberScrollState()
-    val stack = remember(cause) {
-        buildString {
-            val messages = generateSequence<Throwable>(cause) { it.cause }.toList()
-            messages.forEachIndexed { i, t ->
-                if (i > 0) append("Caused by: ")
-                append(t::class.simpleName ?: "Throwable")
-                append(": ")
-                append(t.message ?: "(no message)")
-                append('\n')
-            }
-            append('\n')
-            append(cause.stackTraceToString())
-        }
-    }
-    androidx.compose.material3.Surface(
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.errorContainer,
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Rounded.ErrorOutline,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onErrorContainer,
-                )
-                Spacer(Modifier.size(Dimens.S))
-                Text(
-                    text = "Connection failed",
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onErrorContainer,
+                    imageVector = Icons.Rounded.Close,
+                    contentDescription = "Dismiss",
+                    tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                    modifier = Modifier.size(16.dp),
                 )
             }
-            Text(
-                text = cause.message ?: "Unknown error",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onErrorContainer,
-            )
-            OutlinedButton(onClick = onRetry) { Text("Back to scanner") }
         }
-    }
-    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(
-                text = "Details",
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Spacer(Modifier.size(Dimens.XS))
-            Text(
-                text = stack,
-                style = MaterialTheme.typography.bodySmall.copy(fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace),
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(280.dp)
-                    .verticalScroll(scroll),
-            )
-        }
-    }
-}
-
-// --- Previews -------------------------------------------------------------
-
-private fun previewPubKey(fill: Byte): PublicKey =
-    PublicKey.fromBytes(ByteString(*ByteArray(32) { fill }))
-
-private fun previewContact(name: String, pathLen: Int, fill: Byte, type: ContactType = ContactType.CHAT): Contact =
-    Contact(
-        publicKey = previewPubKey(fill),
-        type = type,
-        flags = 0,
-        pathLength = pathLen,
-        path = ByteString(),
-        name = name,
-        advertTimestamp = Instant.fromEpochSeconds(1_700_000_000),
-        latitude = 0.0,
-        longitude = 0.0,
-        lastModified = Instant.fromEpochSeconds(1_700_000_000),
-    )
-
-private fun previewSelf(name: String = "node-peak") = SelfInfo(
-    advertType = 1,
-    txPowerDbm = 14,
-    maxPowerDbm = 22,
-    publicKey = previewPubKey(0xAB.toByte()),
-    latitude = 53.0,
-    longitude = -1.5,
-    multiAcks = 0,
-    advertLocationPolicy = 0,
-    telemetryFlags = 0,
-    manualAddContacts = 0,
-    radio = RadioSettings(869_525_000, 125_000, 10, 5),
-    name = name,
-)
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — populated",
-)
-@Composable
-fun DeviceBodyPreview() {
-    MeshcoreTheme {
-        DeviceBody(
-            self = previewSelf(),
-            battery = BatteryInfo(3980, 512, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = listOf(
-                previewContact("alice", -1, 0x11),
-                previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
-                previewContact("common-room", 0, 0x33, ContactType.ROOM),
-                previewContact("soil-sensor-1", 3, 0x44, ContactType.SENSOR),
-            ),
-            lastMessage = LastMessageInfo.Dm(
-                contactKeyHex = "112233445566778899aabbcc",
-                contactName = "alice",
-                text = "hey — are you on tonight?",
-                snr = 6,
-            ),
-            onRefreshContacts = {},
-
-            onDisconnect = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — loading",
-)
-@Composable
-fun DeviceBodyLoadingPreview() {
-    MeshcoreTheme {
-        DeviceBody(
-            self = null,
-            battery = null,
-            radio = null,
-            contacts = emptyList(),
-            contactsLoading = true,
-            onRefreshContacts = {},
-
-            onDisconnect = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — contacts loading",
-)
-@Composable
-fun DeviceBodyNoContactsPreview() {
-    MeshcoreTheme {
-        DeviceBody(
-            self = previewSelf(),
-            battery = BatteryInfo(3980, 512, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = emptyList(),
-            contactsLoading = true,
-            onRefreshContacts = {},
-
-            onDisconnect = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — low battery",
-)
-@Composable
-fun DeviceBodyLowBatteryPreview() {
-    MeshcoreTheme {
-        DeviceBody(
-            self = previewSelf(),
-            battery = BatteryInfo(3210, 3800, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = listOf(
-                previewContact("alice", -1, 0x11),
-                previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
-            ),
-            onRefreshContacts = {},
-
-            onDisconnect = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — many contacts (scrolls)",
-)
-@Composable
-fun DeviceBodyManyContactsPreview() {
-    val types = listOf(
-        ContactType.CHAT,
-        ContactType.REPEATER,
-        ContactType.ROOM,
-        ContactType.SENSOR,
-    )
-    val contacts = (0 until 12).map { i ->
-        previewContact(
-            name = listOf(
-                "alice", "bob-repeater", "charlie", "dana",
-                "eve-hq", "frank", "common-room", "garden-sensor",
-                "hiker-ian", "julia-summit", "kappa-repeater", "lighthouse",
-            )[i],
-            pathLen = i % 4,
-            fill = (0x11 + i).toByte(),
-            type = types[i % types.size],
-        )
-    }
-    MeshcoreTheme {
-        DeviceBody(
-            self = previewSelf("base-station"),
-            battery = BatteryInfo(4050, 900, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = contacts,
-            lastMessage = LastMessageInfo.Channel(
-                channelIndex = 0,
-                channelName = "test",
-                sender = "eve-hq",
-                text = "weather check in 5",
-                snr = 8,
-            ),
-            onRefreshContacts = {},
-
-            onDisconnect = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — status connecting",
-)
-@Composable
-fun DeviceStatusConnectingPreview() {
-    MeshcoreTheme {
-        DeviceStatusView(
-            title = "Connecting",
-            status = DeviceConnectStatus.Connecting(
-                startedAtMs = System.currentTimeMillis() - 7_000L,
-                timeoutMs = 20_000L,
-            ),
-            onCancel = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — status failed",
-)
-@Composable
-fun DeviceStatusFailedPreview() {
-    MeshcoreTheme {
-        val cause = IllegalStateException(
-            "BLE GATT timed out after 20s (device XX:XX:XX:XX:5F:78)",
-            java.util.concurrent.TimeoutException("no LoginSuccess within 5000ms"),
-        )
-        DeviceStatusView(
-            title = "Connection failed",
-            status = DeviceConnectStatus.Failed(cause),
-            onCancel = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
-    name = "Device — dark",
-)
-@Composable
-fun DeviceBodyDarkPreview() {
-    MeshcoreTheme(darkTheme = true) {
-        DeviceBody(
-            self = previewSelf(),
-            battery = BatteryInfo(3980, 512, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = listOf(
-                previewContact("alice", -1, 0x11),
-                previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
-                previewContact("common-room", 0, 0x33, ContactType.ROOM),
-            ),
-            lastMessage = LastMessageInfo.Dm(
-                contactKeyHex = "112233445566778899aabbcc",
-                contactName = "alice",
-                text = "hey — are you on tonight?",
-                snr = 6,
-            ),
-            onRefreshContacts = {},
-
-            onDisconnect = {},
-        )
     }
 }
