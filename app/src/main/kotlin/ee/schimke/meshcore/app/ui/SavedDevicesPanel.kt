@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Lan
+import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarBorder
 import androidx.compose.material.icons.rounded.Usb
@@ -44,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.data.repository.SavedDevice
+import ee.schimke.meshcore.data.repository.SavedDeviceWithState
 import ee.schimke.meshcore.data.repository.SavedTransport
 
 /**
@@ -55,12 +57,13 @@ import ee.schimke.meshcore.data.repository.SavedTransport
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedDevicesPanel(
-    devices: List<SavedDevice>,
+    devices: List<SavedDeviceWithState>,
     busy: Boolean,
     connectedDeviceId: String? = null,
     onConnect: (SavedDevice) -> Unit,
     onForget: (SavedDevice) -> Unit,
     onToggleFavorite: (SavedDevice) -> Unit,
+    onViewCached: (SavedDevice) -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     if (devices.isEmpty()) {
@@ -71,7 +74,8 @@ fun SavedDevicesPanel(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(devices, key = { it.id }) { device ->
+        items(devices, key = { it.device.id }) { item ->
+            val device = item.device
             val itemModifier = Modifier.animateItem()
             val dismissState = rememberSwipeToDismissBoxState()
             LaunchedEffect(dismissState.currentValue) {
@@ -102,10 +106,13 @@ fun SavedDevicesPanel(
             ) {
                 SavedDeviceRow(
                     device = device,
+                    batteryMillivolts = item.batteryMillivolts,
+                    contactsCount = item.contactsCount,
                     busy = busy,
                     isConnected = device.id == connectedDeviceId,
                     onConnect = { onConnect(device) },
                     onToggleFavorite = { onToggleFavorite(device) },
+                    onViewCached = { onViewCached(device) },
                 )
             }
         }
@@ -115,20 +122,33 @@ fun SavedDevicesPanel(
 @Composable
 private fun SavedDeviceRow(
     device: SavedDevice,
+    batteryMillivolts: Int?,
+    contactsCount: Int,
     busy: Boolean,
     isConnected: Boolean,
     onConnect: () -> Unit,
     onToggleFavorite: () -> Unit,
+    onViewCached: () -> Unit,
 ) {
     val icon: ImageVector = when (device.transport) {
         is SavedTransport.Ble -> Icons.Rounded.Bluetooth
         is SavedTransport.Tcp -> Icons.Rounded.Lan
         is SavedTransport.Usb -> Icons.Rounded.Usb
     }
-    val subtitle: String = when (val t = device.transport) {
-        is SavedTransport.Ble -> t.identifier
-        is SavedTransport.Tcp -> "${t.host}:${t.port}"
-        is SavedTransport.Usb -> t.className
+    val subtitle: String = buildString {
+        if (isConnected) append("Connected · ")
+        val batteryStr = batteryMillivolts?.let { "%.2fV".format(it / 1000.0) }
+        val contactsStr = if (contactsCount > 0) "$contactsCount contacts" else null
+        val parts = listOfNotNull(batteryStr, contactsStr)
+        if (parts.isNotEmpty()) {
+            append(parts.joinToString(" · "))
+        } else {
+            when (val t = device.transport) {
+                is SavedTransport.Ble -> append(t.identifier)
+                is SavedTransport.Tcp -> append("${t.host}:${t.port}")
+                is SavedTransport.Usb -> append(t.className)
+            }
+        }
     }
     val containerColor = when {
         isConnected -> MaterialTheme.colorScheme.tertiaryContainer
@@ -170,7 +190,7 @@ private fun SavedDeviceRow(
                     color = contentColor,
                 )
                 Text(
-                    text = if (isConnected) "Connected · $subtitle" else subtitle,
+                    text = subtitle,
                     style = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace),
                     color = subtleColor,
                 )
@@ -185,6 +205,16 @@ private fun SavedDeviceRow(
             if (isConnected) {
                 Button(onClick = onConnect) { Text("View") }
             } else {
+                if (contactsCount > 0) {
+                    IconButton(onClick = onViewCached) {
+                        Icon(
+                            imageVector = Icons.Rounded.Info,
+                            contentDescription = "View cached",
+                            tint = subtleColor,
+                            modifier = Modifier.size(20.dp),
+                        )
+                    }
+                }
                 FilledTonalButton(enabled = !busy, onClick = onConnect) { Text("Connect") }
             }
         }
@@ -221,27 +251,37 @@ private fun SavedDevicesEmpty(modifier: Modifier = Modifier) {
 
 // --- Previews -------------------------------------------------------------
 
-private fun sampleDevices(): List<SavedDevice> = listOf(
-    SavedDevice(
-        id = "ble:C7:8D:8C:45:5F:78",
-        label = "node-peak",
-        transport = SavedTransport.Ble("C7:8D:8C:45:5F:78", "MeshCore-ABCD"),
-        favorite = true,
-        lastConnectedAtMs = 1_700_100_000_000,
+private fun sampleDevices(): List<SavedDeviceWithState> = listOf(
+    SavedDeviceWithState(
+        device = SavedDevice(
+            id = "ble:C7:8D:8C:45:5F:78",
+            label = "node-peak",
+            transport = SavedTransport.Ble("C7:8D:8C:45:5F:78", "MeshCore-ABCD"),
+            favorite = true,
+            lastConnectedAtMs = 1_700_100_000_000,
+        ),
+        batteryMillivolts = 3980,
+        contactsCount = 5,
     ),
-    SavedDevice(
-        id = "ble:A1:B2:C3:D4:E5:F6",
-        label = "base-station",
-        transport = SavedTransport.Ble("A1:B2:C3:D4:E5:F6", "MeshCore-1234"),
-        favorite = false,
-        lastConnectedAtMs = 1_700_050_000_000,
+    SavedDeviceWithState(
+        device = SavedDevice(
+            id = "ble:A1:B2:C3:D4:E5:F6",
+            label = "base-station",
+            transport = SavedTransport.Ble("A1:B2:C3:D4:E5:F6", "MeshCore-1234"),
+            favorite = false,
+            lastConnectedAtMs = 1_700_050_000_000,
+        ),
+        batteryMillivolts = 3210,
+        contactsCount = 2,
     ),
-    SavedDevice(
-        id = "tcp:192.168.1.10:5000",
-        label = "192.168.1.10:5000",
-        transport = SavedTransport.Tcp("192.168.1.10", 5000),
-        favorite = false,
-        lastConnectedAtMs = 1_700_000_000_000,
+    SavedDeviceWithState(
+        device = SavedDevice(
+            id = "tcp:192.168.1.10:5000",
+            label = "192.168.1.10:5000",
+            transport = SavedTransport.Tcp("192.168.1.10", 5000),
+            favorite = false,
+            lastConnectedAtMs = 1_700_000_000_000,
+        ),
     ),
 )
 

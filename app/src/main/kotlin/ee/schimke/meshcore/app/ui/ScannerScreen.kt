@@ -63,11 +63,12 @@ import ee.schimke.meshcore.components.ui.UsbPortsPanel
 fun ScannerScreen(
     onConnect: () -> Unit,
     onOpenThemePicker: () -> Unit,
+    onViewCachedDevice: (String) -> Unit = {},
 ) {
     val app = MeshcoreApp.get()
     val controller = app.connectionController
     val uiState by controller.state.collectAsState()
-    val savedDevices by app.repository.observeDevices().collectAsState(initial = emptyList())
+    val savedDevices by app.repository.observeDevicesWithState().collectAsState(initial = emptyList())
     val connectedDeviceId by controller.connectedDeviceId.collectAsState()
     val busy = uiState is ConnectionUiState.Connecting
 
@@ -93,6 +94,7 @@ fun ScannerScreen(
                 },
                 onForget = { device -> controller.forgetSavedDevice(device.id) },
                 onToggleFavorite = { device -> controller.toggleFavorite(device.id) },
+                onViewCached = { device -> onViewCachedDevice(device.id) },
             )
         },
         bleContent = {
@@ -302,21 +304,27 @@ private fun previewSavedEmpty() {
 private fun previewSavedPopulated() {
     SavedDevicesPanel(
         devices = listOf(
-            ee.schimke.meshcore.data.repository.SavedDevice(
-                id = "ble:C7:8D:8C:45:5F:78",
-                label = "MeshCore-ABCD",
-                transport = ee.schimke.meshcore.data.repository.SavedTransport.Ble(
-                    "C7:8D:8C:45:5F:78", "MeshCore-ABCD",
+            ee.schimke.meshcore.data.repository.SavedDeviceWithState(
+                device = ee.schimke.meshcore.data.repository.SavedDevice(
+                    id = "ble:C7:8D:8C:45:5F:78",
+                    label = "MeshCore-ABCD",
+                    transport = ee.schimke.meshcore.data.repository.SavedTransport.Ble(
+                        "C7:8D:8C:45:5F:78", "MeshCore-ABCD",
+                    ),
+                    favorite = true,
+                    lastConnectedAtMs = 1_700_100_000_000,
                 ),
-                favorite = true,
-                lastConnectedAtMs = 1_700_100_000_000,
+                batteryMillivolts = 3980,
+                contactsCount = 5,
             ),
-            ee.schimke.meshcore.data.repository.SavedDevice(
-                id = "tcp:192.168.1.10:5000",
-                label = "192.168.1.10:5000",
-                transport = ee.schimke.meshcore.data.repository.SavedTransport.Tcp("192.168.1.10", 5000),
-                favorite = false,
-                lastConnectedAtMs = 1_700_050_000_000,
+            ee.schimke.meshcore.data.repository.SavedDeviceWithState(
+                device = ee.schimke.meshcore.data.repository.SavedDevice(
+                    id = "tcp:192.168.1.10:5000",
+                    label = "192.168.1.10:5000",
+                    transport = ee.schimke.meshcore.data.repository.SavedTransport.Tcp("192.168.1.10", 5000),
+                    favorite = false,
+                    lastConnectedAtMs = 1_700_050_000_000,
+                ),
             ),
         ),
         busy = false,
