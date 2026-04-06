@@ -33,6 +33,7 @@ private val WidgetSecondary = Color(0xFFB0CCC6).rc         // SlateSecondaryDark
 private val WidgetOnSurfaceVariant = Color(0xFFBEC9C5).rc  // OnSurfaceVariantDark
 private val WidgetPrimaryContainer = Color(0xFF005048).rc  // TealPrimaryContainerDark
 private val WidgetOnPrimaryContainer = Color(0xFF74F8E5).rc // TealOnPrimaryContainerDark
+private val WidgetWarning = Color(0xFFFFB74D).rc            // Amber warning
 
 private fun widgetModifier() = RemoteModifier
     .fillMaxSize()
@@ -47,6 +48,7 @@ fun BatteryWidgetContent(
     batteryPercent: String,
     batteryMv: String?,
     snr: String?,
+    staleLabel: String? = null,
 ) {
     RemoteColumn(
         modifier = widgetModifier(),
@@ -60,6 +62,9 @@ fun BatteryWidgetContent(
         if (snr != null) {
             RemoteText(snr.rs, color = WidgetSecondary)
         }
+        if (staleLabel != null) {
+            RemoteText(staleLabel.rs, color = WidgetWarning)
+        }
     }
 }
 
@@ -71,12 +76,16 @@ fun MeshStatusWidgetContent(
     deviceName: String,
     contactCount: String,
     frequencyMhz: String?,
+    staleLabel: String? = null,
 ) {
     RemoteColumn(modifier = widgetModifier()) {
         RemoteText(deviceName.rs, color = WidgetPrimary)
         RemoteText(contactCount.rs, color = WidgetOnSurface)
         if (frequencyMhz != null) {
             RemoteText(frequencyMhz.rs, color = WidgetSecondary)
+        }
+        if (staleLabel != null) {
+            RemoteText(staleLabel.rs, color = WidgetWarning)
         }
     }
 }
@@ -95,18 +104,28 @@ fun LastMessageWidgetContent(
     }
 }
 
-// --- Quick send -------------------------------------------------------------
+// --- Connection status ------------------------------------------------------
 
 @Composable
 @RemoteComposable
-fun QuickSendWidgetContent() {
-    RemoteBox(
-        modifier = RemoteModifier
-            .fillMaxSize()
-            .background(WidgetPrimaryContainer)
-            .padding(12.rdp),
-        contentAlignment = RemoteAlignment.Center,
-    ) {
-        RemoteText("Quick send".rs, color = WidgetOnPrimaryContainer)
+fun ConnectionStatusWidgetContent(
+    status: String,
+    deviceName: String?,
+    lastSeen: String?,
+    staleLabel: String? = null,
+) {
+    RemoteColumn(modifier = widgetModifier()) {
+        RemoteText("Connection".rs, color = WidgetOnSurfaceVariant)
+        RemoteText(status.rs, color = WidgetPrimary)
+        if (deviceName != null) {
+            RemoteText(deviceName.rs, color = WidgetOnSurface)
+        }
+        if (lastSeen != null) {
+            RemoteText(lastSeen.rs, color = WidgetSecondary)
+        }
+        if (staleLabel != null) {
+            RemoteSpacer(modifier = RemoteModifier.height(4.rdp))
+            RemoteText(staleLabel.rs, color = WidgetWarning)
+        }
     }
 }
