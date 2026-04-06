@@ -16,6 +16,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import ee.schimke.meshcore.app.ui.CachedDeviceScreen
 import ee.schimke.meshcore.app.ui.ChannelChatScreen
 import ee.schimke.meshcore.app.ui.ContactChatScreen
 import ee.schimke.meshcore.app.ui.DeviceScreen
@@ -33,6 +34,7 @@ import kotlinx.serialization.Serializable
 @Serializable private data object DeviceRoute : NavKey
 @Serializable private data class ContactRoute(val publicKeyHex: String) : NavKey
 @Serializable private data class ChannelRoute(val channelIndex: Int) : NavKey
+@Serializable private data class CachedDeviceRoute(val deviceId: String) : NavKey
 
 class MainActivity : ComponentActivity() {
     // Runtime BLE permissions are requested from the BLE tab on demand, not here;
@@ -62,6 +64,7 @@ private fun MeshcoreAppUi() {
                         ScannerScreen(
                             onConnect = { if (backStack.lastOrNull() !is DeviceRoute) backStack.add(DeviceRoute) },
                             onOpenThemePicker = { pickerVisible = true },
+                            onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
                         )
                     }
                     entry<DeviceRoute> {
@@ -89,6 +92,13 @@ private fun MeshcoreAppUi() {
                         ChannelChatScreen(
                             channelIndex = route.channelIndex,
                             onBack = { backStack.removeLastOrNull() },
+                        )
+                    }
+                    entry<CachedDeviceRoute> { route ->
+                        CachedDeviceScreen(
+                            deviceId = route.deviceId,
+                            onBack = { backStack.removeLastOrNull() },
+                            onOpenThemePicker = { pickerVisible = true },
                         )
                     }
                 },
