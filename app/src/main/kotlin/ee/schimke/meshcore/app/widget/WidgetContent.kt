@@ -3,129 +3,111 @@
 package ee.schimke.meshcore.app.widget
 
 import android.annotation.SuppressLint
-import androidx.compose.remote.creation.compose.layout.RemoteAlignment
-import androidx.compose.remote.creation.compose.layout.RemoteArrangement
 import androidx.compose.remote.creation.compose.layout.RemoteBox
 import androidx.compose.remote.creation.compose.layout.RemoteColumn
 import androidx.compose.remote.creation.compose.layout.RemoteComposable
+import androidx.compose.remote.creation.compose.layout.RemoteRow
 import androidx.compose.remote.creation.compose.layout.RemoteSpacer
 import androidx.compose.remote.creation.compose.layout.RemoteText
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
 import androidx.compose.remote.creation.compose.modifier.background
 import androidx.compose.remote.creation.compose.modifier.fillMaxSize
+import androidx.compose.remote.creation.compose.modifier.fillMaxWidth
 import androidx.compose.remote.creation.compose.modifier.height
 import androidx.compose.remote.creation.compose.modifier.padding
 import androidx.compose.remote.creation.compose.state.rc
 import androidx.compose.remote.creation.compose.state.rdp
 import androidx.compose.remote.creation.compose.state.rs
+import androidx.compose.remote.creation.compose.state.rsp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// --- MeshCore dark-theme palette (teal seed #00695C) ------------------------
-// These mirror the dark scheme in MeshcoreTheme.kt, which is the typical
-// context for home-screen widgets.
+// --- MeshCore dark-theme palette --------------------------------------------
 
-private val WidgetSurface = Color(0xFF0E1513).rc           // SurfaceDark
-private val WidgetSurfaceContainer = Color(0xFF1A211F).rc  // SurfaceContainerDark
-private val WidgetOnSurface = Color(0xFFDDE4E1).rc         // OnSurfaceDark
-private val WidgetPrimary = Color(0xFF53DBC9).rc           // TealPrimaryDark
-private val WidgetSecondary = Color(0xFFB0CCC6).rc         // SlateSecondaryDark
-private val WidgetOnSurfaceVariant = Color(0xFFBEC9C5).rc  // OnSurfaceVariantDark
-private val WidgetPrimaryContainer = Color(0xFF005048).rc  // TealPrimaryContainerDark
-private val WidgetOnPrimaryContainer = Color(0xFF74F8E5).rc // TealOnPrimaryContainerDark
-private val WidgetWarning = Color(0xFFFFB74D).rc            // Amber warning
+private val WidgetSurfaceContainer = Color(0xFF1A211F).rc
+private val WidgetOnSurface = Color(0xFFDDE4E1).rc
+private val WidgetPrimary = Color(0xFF53DBC9).rc
+private val WidgetOnSurfaceVariant = Color(0xFFBEC9C5).rc
+private val WidgetTertiary = Color(0xFFFFB74D).rc
+private val WidgetTrack = Color(0xFF2A3230).rc
+private val WidgetWarning = Color(0xFFFFB74D).rc
 
 private fun widgetModifier() = RemoteModifier
     .fillMaxSize()
     .background(WidgetSurfaceContainer)
-    .padding(12.rdp)
+    .padding(16.rdp)
 
-// --- Battery + SNR ----------------------------------------------------------
-
-@Composable
-@RemoteComposable
-fun BatteryWidgetContent(
-    batteryPercent: String,
-    batteryMv: String?,
-    snr: String?,
-    staleLabel: String? = null,
-) {
-    RemoteColumn(
-        modifier = widgetModifier(),
-        verticalArrangement = RemoteArrangement.Center,
-    ) {
-        RemoteText("Battery".rs, color = WidgetOnSurfaceVariant)
-        RemoteText(batteryPercent.rs, color = WidgetPrimary)
-        if (batteryMv != null) {
-            RemoteText(batteryMv.rs, color = WidgetOnSurface)
-        }
-        if (snr != null) {
-            RemoteText(snr.rs, color = WidgetSecondary)
-        }
-        if (staleLabel != null) {
-            RemoteText(staleLabel.rs, color = WidgetWarning)
-        }
-    }
-}
-
-// --- Mesh status (name + contact count + freq) ------------------------------
+// --- Device Info Widget (mirrors DeviceSummaryCard) -------------------------
 
 @Composable
 @RemoteComposable
-fun MeshStatusWidgetContent(
+fun DeviceInfoWidgetContent(
     deviceName: String,
-    contactCount: String,
-    frequencyMhz: String?,
+    pubkeyPrefix: String?,
+    radioInfo: String?,
+    batteryLine: String?,
+    batteryProgress: Float? = null,
+    storageLine: String?,
     staleLabel: String? = null,
 ) {
     RemoteColumn(modifier = widgetModifier()) {
-        RemoteText(deviceName.rs, color = WidgetPrimary)
-        RemoteText(contactCount.rs, color = WidgetOnSurface)
-        if (frequencyMhz != null) {
-            RemoteText(frequencyMhz.rs, color = WidgetSecondary)
-        }
-        if (staleLabel != null) {
-            RemoteText(staleLabel.rs, color = WidgetWarning)
-        }
-    }
-}
+        // Device name — bold, primary
+        RemoteText(deviceName.rs, color = WidgetOnSurface, fontSize = 18.rsp)
 
-// --- Last received message --------------------------------------------------
+        RemoteSpacer(modifier = RemoteModifier.height(8.rdp))
 
-@Composable
-@RemoteComposable
-fun LastMessageWidgetContent(
-    message: String,
-) {
-    RemoteColumn(modifier = widgetModifier()) {
-        RemoteText("Last message".rs, color = WidgetOnSurfaceVariant)
-        RemoteSpacer(modifier = RemoteModifier.height(4.rdp))
-        RemoteText(message.rs, color = WidgetOnSurface)
-    }
-}
-
-// --- Connection status ------------------------------------------------------
-
-@Composable
-@RemoteComposable
-fun ConnectionStatusWidgetContent(
-    status: String,
-    deviceName: String?,
-    lastSeen: String?,
-    staleLabel: String? = null,
-) {
-    RemoteColumn(modifier = widgetModifier()) {
-        RemoteText("Connection".rs, color = WidgetOnSurfaceVariant)
-        RemoteText(status.rs, color = WidgetPrimary)
-        if (deviceName != null) {
-            RemoteText(deviceName.rs, color = WidgetOnSurface)
+        // Pubkey prefix — monospace-style, small
+        if (pubkeyPrefix != null) {
+            RemoteRow {
+                RemoteText("\uD83D\uDD11 ".rs, fontSize = 12.rsp, color = WidgetOnSurfaceVariant)
+                RemoteText(pubkeyPrefix.rs, color = WidgetOnSurfaceVariant, fontSize = 12.rsp)
+            }
+            RemoteSpacer(modifier = RemoteModifier.height(4.rdp))
         }
-        if (lastSeen != null) {
-            RemoteText(lastSeen.rs, color = WidgetSecondary)
+
+        // Radio info
+        if (radioInfo != null) {
+            RemoteRow {
+                RemoteText("\uD83D\uDCE1 ".rs, fontSize = 12.rsp, color = WidgetOnSurfaceVariant)
+                RemoteText(radioInfo.rs, color = WidgetOnSurfaceVariant, fontSize = 12.rsp)
+            }
+            RemoteSpacer(modifier = RemoteModifier.height(8.rdp))
         }
+
+        // Battery line
+        if (batteryLine != null) {
+            RemoteRow {
+                RemoteText("\uD83D\uDD0B ".rs, fontSize = 13.rsp, color = WidgetOnSurface)
+                RemoteText(batteryLine.rs, color = WidgetOnSurface, fontSize = 13.rsp)
+            }
+            // Progress bar — simulated with nested boxes
+            if (batteryProgress != null) {
+                RemoteSpacer(modifier = RemoteModifier.height(4.rdp))
+                RemoteBox(
+                    modifier = RemoteModifier.fillMaxWidth().height(4.rdp).background(WidgetTrack),
+                ) {
+                    RemoteBox(
+                        modifier = RemoteModifier
+                            .fillMaxWidth(batteryProgress)
+                            .height(4.rdp)
+                            .background(WidgetPrimary),
+                    ) {}
+                }
+            }
+            RemoteSpacer(modifier = RemoteModifier.height(4.rdp))
+        }
+
+        // Storage line
+        if (storageLine != null) {
+            RemoteRow {
+                RemoteText("\uD83D\uDCBE ".rs, fontSize = 11.rsp, color = WidgetOnSurfaceVariant)
+                RemoteText(storageLine.rs, color = WidgetOnSurfaceVariant, fontSize = 11.rsp)
+            }
+        }
+
         if (staleLabel != null) {
             RemoteSpacer(modifier = RemoteModifier.height(4.rdp))
-            RemoteText(staleLabel.rs, color = WidgetWarning)
+            RemoteText(staleLabel.rs, color = WidgetWarning, fontSize = 11.rsp)
         }
     }
 }

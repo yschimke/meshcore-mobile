@@ -33,15 +33,22 @@ import kotlinx.coroutines.withContext
 data class WidgetSnapshot(
     val connected: Boolean = false,
     val deviceName: String? = null,
+    val pubkeyPrefix: String? = null,
     val batteryMv: Int? = null,
     val batteryPercent: Int? = null,
+    val storageUsedKb: Long? = null,
+    val storageTotalKb: Long? = null,
     val lastSnr: Int? = null,
     val frequencyMhz: Double? = null,
     val contactCount: Int = 0,
     val lastMessage: String? = null,
     val lastConnectedMs: Long? = null,
     val lastUpdatedMs: Long? = null,
-)
+) {
+    val storageLine: String?
+        get() = if (storageUsedKb != null && storageTotalKb != null)
+            "$storageUsedKb / $storageTotalKb kB" else null
+}
 
 object WidgetStateBridge {
     private val _snapshot = MutableStateFlow(WidgetSnapshot())
@@ -88,12 +95,15 @@ object WidgetStateBridge {
         var seeded = _snapshot.value.copy(connected = true)
         if (self != null) seeded = seeded.copy(
             deviceName = self.name,
+            pubkeyPrefix = self.publicKey.toHex().take(16),
             frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
             lastConnectedMs = System.currentTimeMillis(),
         )
         if (bat != null) seeded = seeded.copy(
             batteryMv = bat.millivolts,
             batteryPercent = bat.estimatePercent(),
+            storageUsedKb = bat.storageUsedKb,
+            storageTotalKb = bat.storageTotalKb,
         )
         if (radio != null) seeded = seeded.copy(
             frequencyMhz = radio.frequencyHz / 1_000_000.0,
@@ -137,12 +147,15 @@ object WidgetStateBridge {
                 var s = _snapshot.value.copy(connected = true)
                 if (self != null) s = s.copy(
                     deviceName = self.name,
+                    pubkeyPrefix = self.publicKey.toHex().take(16),
                     frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
                     lastConnectedMs = System.currentTimeMillis(),
                 )
                 if (bat != null) s = s.copy(
                     batteryMv = bat.millivolts,
                     batteryPercent = bat.estimatePercent(),
+                    storageUsedKb = bat.storageUsedKb,
+                    storageTotalKb = bat.storageTotalKb,
                 )
                 if (radio != null) s = s.copy(
                     frequencyMhz = radio.frequencyHz / 1_000_000.0,
@@ -184,30 +197,17 @@ object WidgetStateBridge {
             )
         }
 
-        setPreview(BatteryWidgetReceiver::class.java) {
-            BatteryWidgetContent(
-                batteryPercent = snap.batteryPercent?.let { "$it%" } ?: "42%",
-                batteryMv = snap.batteryMv?.let { "$it mV" } ?: "3650 mV",
-                snr = snap.lastSnr?.let { "SNR $it" } ?: "SNR 8",
-            )
-        }
-        setPreview(MeshStatusWidgetReceiver::class.java) {
-            MeshStatusWidgetContent(
-                deviceName = snap.deviceName ?: "base-camp",
-                contactCount = "${snap.contactCount.takeIf { it > 0 } ?: 3} contacts",
-                frequencyMhz = snap.frequencyMhz?.let { "%.3f MHz".format(it) } ?: "868.000 MHz",
-            )
-        }
-        setPreview(LastMessageWidgetReceiver::class.java) {
-            LastMessageWidgetContent(
-                message = snap.lastMessage ?: "#1 Weather clear, proceeding to summit",
-            )
-        }
-        setPreview(ConnectionStatusWidgetReceiver::class.java) {
-            ConnectionStatusWidgetContent(
-                status = if (snap.connected) "Connected" else "Disconnected",
-                deviceName = snap.deviceName ?: "base-camp",
-                lastSeen = if (!snap.connected) "Last seen 2h ago" else null,
+        setPreview(DeviceInfoWidgetReceiver::class.java) {
+            DeviceInfoWidgetContent(
+                deviceName = snap.deviceName ?: "node-peak",
+                pubkeyPrefix = snap.pubkeyPrefix ?: "ab1234567890cdef",
+                radioInfo = snap.frequencyMhz?.let { "%.3f MHz".format(it) } ?: "869.525 MHz",
+                batteryLine = snap.batteryPercent?.let { pct ->
+                    val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
+                    "$pct%$mv"
+                } ?: "94% · 4135 mV",
+                batteryProgress = (snap.batteryPercent ?: 94) / 100f,
+                storageLine = snap.storageLine ?: "512 / 4096 kB",
             )
         }
     }
@@ -219,10 +219,7 @@ object WidgetStateBridge {
     private fun notifyWidgets(context: Context) {
         val wm = AppWidgetManager.getInstance(context)
         val receivers = listOf(
-            BatteryWidgetReceiver::class.java,
-            MeshStatusWidgetReceiver::class.java,
-            LastMessageWidgetReceiver::class.java,
-            ConnectionStatusWidgetReceiver::class.java,
+            DeviceInfoWidgetReceiver::class.java,
         )
         for (cls in receivers) {
             val ids = wm.getAppWidgetIds(ComponentName(context, cls))

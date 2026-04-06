@@ -10,6 +10,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.ble.DeviceProximityCheck
 import ee.schimke.meshcore.core.manager.ManagerState
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
@@ -39,11 +40,16 @@ class PeriodicRefreshWorker(
             return Result.success()
         }
 
-        Log.d(TAG, "Periodic refresh: connecting to ${favorite.label}")
-
         // Don't reconnect if already connected to this device
         val alreadyConnected = app.connectionController.connectedDeviceId.value == favorite.id
+
         if (!alreadyConnected) {
+            // Check if device is nearby before attempting connection
+            if (!DeviceProximityCheck.isNearby(applicationContext, favorite)) {
+                Log.d(TAG, "Periodic refresh: device not nearby, skipping")
+                return Result.success()
+            }
+            Log.d(TAG, "Periodic refresh: connecting to ${favorite.label}")
             app.connectionController.requestReconnect(favorite)
         }
 
