@@ -261,6 +261,9 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
     fun observeChannelMessages(deviceId: String, channelIndex: Int): Flow<List<MessageEntity>> =
         db.messageDao().observeChannelMessages(deviceId, channelIndex)
 
+    fun observeLatestMessage(deviceId: String): Flow<MessageEntity?> =
+        db.messageDao().observeLatestMessage(deviceId)
+
     suspend fun insertReceivedDm(
         deviceId: String,
         msg: ReceivedDirectMessage,

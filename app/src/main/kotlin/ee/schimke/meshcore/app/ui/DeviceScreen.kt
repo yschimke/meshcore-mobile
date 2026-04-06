@@ -24,7 +24,6 @@ import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.WarningAmber
-import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Icon
@@ -62,11 +61,7 @@ import ee.schimke.meshcore.components.ui.ChannelRow
 import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun DeviceScreen(
@@ -156,7 +151,6 @@ sealed class LastMessageInfo {
     ) : LastMessageInfo()
 }
 
-@OptIn(FlowPreview::class)
 @Composable
 private fun ConnectedDevice(
     client: ee.schimke.meshcore.core.client.MeshCoreClient,
@@ -165,7 +159,9 @@ private fun ConnectedDevice(
     onNavigateToContact: (Contact) -> Unit,
     onNavigateToChannel: (ChannelInfo) -> Unit,
 ) {
-    val controller = MeshcoreApp.get().connectionController
+    val app = MeshcoreApp.get()
+    val controller = app.connectionController
+    val repository = app.repository
     val self by client.selfInfo.collectAsState()
     val battery by client.battery.collectAsState()
     val radio by client.radio.collectAsState()
@@ -173,11 +169,44 @@ private fun ConnectedDevice(
     val channels by client.channels.collectAsState()
     val warnings by controller.warnings.collectAsState()
     val scope = rememberCoroutineScope()
-    var lastMessage by remember { mutableStateOf<LastMessageInfo?>(null) }
+    val deviceId by controller.connectedDeviceId.collectAsState()
     // If the client was seeded with cached data, contacts won't be empty
     // even before the fresh fetch — show a "refreshing" indicator instead
     // of a full loading spinner in that case.
     var contactsRefreshing by remember { mutableStateOf(true) }
+
+    // Observe the latest message from the DB. This is populated immediately
+    // (surviving navigation) and updates whenever the persister inserts a
+    // new message, so no debounce or event-mapping needed.
+    val latestEntity by remember(deviceId) {
+        deviceId?.let { repository.observeLatestMessage(it) }
+            ?: kotlinx.coroutines.flow.flowOf(null)
+    }.collectAsState(initial = null)
+
+    val lastMessage = latestEntity?.let { entity ->
+        when (entity.kind) {
+            ee.schimke.meshcore.data.entity.MessageKind.DM -> {
+                val keyHex = entity.contactPublicKeyHex ?: ""
+                val contact = contacts.firstOrNull { it.publicKey.toHex() == keyHex }
+                LastMessageInfo.Dm(
+                    contactKeyHex = keyHex,
+                    contactName = contact?.name,
+                    text = entity.text,
+                    snr = entity.snr ?: 0,
+                )
+            }
+            ee.schimke.meshcore.data.entity.MessageKind.CHANNEL -> {
+                val ch = channels.firstOrNull { it.index == entity.channelIndex }
+                LastMessageInfo.Channel(
+                    channelIndex = entity.channelIndex ?: 0,
+                    channelName = ch?.name?.ifBlank { null },
+                    sender = entity.senderName,
+                    text = entity.text,
+                    snr = entity.snr ?: 0,
+                )
+            }
+        }
+    }
 
     LaunchedEffect(client) {
         contactsRefreshing = true
@@ -193,42 +222,6 @@ private fun ConnectedDevice(
                 scope.launch { runCatching { client.syncMessages() } }
             }
         }
-    }
-
-    // Debounce last-message banner: waits for messages to settle,
-    // then shows the most recent one. During rapid sync drains the
-    // banner stays still; once the burst ends it updates after 500ms.
-    LaunchedEffect(client) {
-        client.events
-            .mapNotNull { ev ->
-                when (ev) {
-                    is MeshEvent.DirectMessage -> {
-                        val msg = ev.message
-                        val prefix = msg.senderPrefix.toHex()
-                        val contact = contacts.firstOrNull { it.publicKey.toHex().startsWith(prefix) }
-                        LastMessageInfo.Dm(
-                            contactKeyHex = contact?.publicKey?.toHex() ?: prefix,
-                            contactName = contact?.name,
-                            text = msg.text,
-                            snr = msg.snr,
-                        )
-                    }
-                    is MeshEvent.ChannelMessage -> {
-                        val msg = ev.message
-                        val ch = channels.firstOrNull { it.index == msg.channelIndex }
-                        LastMessageInfo.Channel(
-                            channelIndex = msg.channelIndex,
-                            channelName = ch?.name?.ifBlank { null },
-                            sender = msg.sender,
-                            text = msg.text,
-                            snr = msg.snr,
-                        )
-                    }
-                    else -> null
-                }
-            }
-            .debounce(500.milliseconds)
-            .collect { lastMessage = it }
     }
 
     DeviceBody(
@@ -250,13 +243,6 @@ private fun ConnectedDevice(
                     val ch = channels.firstOrNull { it.index == info.channelIndex }
                     if (ch != null) onNavigateToChannel(ch)
                 }
-            }
-        },
-        onRefreshContacts = {
-            scope.launch {
-                contactsRefreshing = true
-                runCatching { client.getContacts(delta = true) }
-                contactsRefreshing = false
             }
         },
         onContactClick = onNavigateToContact,
@@ -285,7 +271,6 @@ fun DeviceBody(
     channels: List<ChannelInfo> = emptyList(),
     lastMessage: LastMessageInfo? = null,
     onLastMessageClick: (LastMessageInfo) -> Unit = {},
-    onRefreshContacts: () -> Unit,
     onContactClick: (Contact) -> Unit = {},
     onChannelClick: (ChannelInfo) -> Unit = {},
     onDisconnect: () -> Unit,
@@ -357,21 +342,13 @@ fun DeviceBody(
                 WarningBanner(warning, onDismiss = { onDismissWarning(warning) })
             }
 
-            AnimatedVisibility(
-                visible = lastMessage != null,
-                enter = expandVertically() + fadeIn(),
-                exit = shrinkVertically() + fadeOut(),
-            ) {
-                lastMessage?.let { LastMessageBanner(it, onClick = { onLastMessageClick(it) }) }
-            }
+            lastMessage?.let { LastMessageBanner(it, onClick = { onLastMessageClick(it) }) }
 
             // Split contacts by type
             val chatContacts = contacts.filter { it.type == ContactType.CHAT }
             val rooms = contacts.filter { it.type == ContactType.ROOM }
             val repeaters = contacts.filter { it.type == ContactType.REPEATER }
             val sensors = contacts.filter { it.type == ContactType.SENSOR }
-
-            val isRefreshing = contactsLoading || contactsRefreshing
 
             // Subtle progress bar while refreshing with cached data visible
             AnimatedVisibility(
@@ -389,17 +366,6 @@ fun DeviceBody(
             // --- Contacts (DM-able peers) ---
             SectionHeader(
                 text = if (contactsLoading) "Contacts" else "Contacts (${chatContacts.size})",
-                action = {
-                    if (!isRefreshing) {
-                        IconButton(onClick = onRefreshContacts) {
-                            Icon(
-                                imageVector = Icons.Rounded.Refresh,
-                                contentDescription = "Refresh",
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                },
             )
             if (contactsLoading) {
                 LoadingPlaceholder("Fetching contacts\u2026")

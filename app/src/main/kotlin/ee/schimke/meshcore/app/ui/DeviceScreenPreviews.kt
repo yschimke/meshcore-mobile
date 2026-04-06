@@ -74,7 +74,6 @@ fun DeviceBodyPreview() {
                 text = "hey — are you on tonight?",
                 snr = 6,
             ),
-            onRefreshContacts = {},
 
             onDisconnect = {},
         )
@@ -96,7 +95,6 @@ fun DeviceBodyLoadingPreview() {
             radio = null,
             contacts = emptyList(),
             contactsLoading = true,
-            onRefreshContacts = {},
 
             onDisconnect = {},
         )
@@ -118,7 +116,6 @@ fun DeviceBodyNoContactsPreview() {
             radio = RadioSettings(869_525_000, 125_000, 10, 5),
             contacts = emptyList(),
             contactsLoading = true,
-            onRefreshContacts = {},
 
             onDisconnect = {},
         )
@@ -142,7 +139,6 @@ fun DeviceBodyLowBatteryPreview() {
                 previewContact("alice", -1, 0x11),
                 previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
             ),
-            onRefreshContacts = {},
 
             onDisconnect = {},
         )
@@ -188,7 +184,6 @@ fun DeviceBodyManyContactsPreview() {
                 text = "weather check in 5",
                 snr = 8,
             ),
-            onRefreshContacts = {},
 
             onDisconnect = {},
         )
@@ -261,7 +256,6 @@ fun DeviceBodyDarkPreview() {
                 text = "hey — are you on tonight?",
                 snr = 6,
             ),
-            onRefreshContacts = {},
 
             onDisconnect = {},
         )
