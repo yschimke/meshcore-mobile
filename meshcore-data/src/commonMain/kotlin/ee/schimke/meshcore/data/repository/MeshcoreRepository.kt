@@ -222,6 +222,9 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
 
     // --- Messages ---
 
+    suspend fun getRecentMessages(deviceId: String, limit: Int = 20): List<MessageEntity> =
+        db.messageDao().getRecentMessages(deviceId, limit)
+
     fun observeDms(deviceId: String, contactKeyHex: String): Flow<List<MessageEntity>> =
         db.messageDao().observeDms(deviceId, contactKeyHex)
 

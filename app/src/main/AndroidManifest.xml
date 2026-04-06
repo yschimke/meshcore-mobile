@@ -40,6 +40,16 @@
             </intent-filter>
         </receiver>
 
+        <!-- App Functions — exposes device status, contacts, messages to system assistant -->
+        <service
+            android:name="androidx.appfunctions.service.PlatformAppFunctionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            <intent-filter>
+                <action android:name="android.app.appfunctions.AppFunctionService" />
+            </intent-filter>
+        </service>
+
         <!-- Device Info widget — requires API 37+ (Remote Compose) -->
         <receiver
             android:name=".widget.DeviceInfoWidgetReceiver"
