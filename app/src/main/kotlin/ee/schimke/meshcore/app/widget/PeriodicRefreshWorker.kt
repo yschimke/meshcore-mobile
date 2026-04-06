@@ -16,6 +16,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import java.util.concurrent.TimeUnit
 
 private const val TAG = "MeshRefresh"
+private const val DATA_WAIT_TIMEOUT_MS = 15_000L
 
 /**
  * Periodic background worker that connects to the favorite device every
@@ -46,7 +47,7 @@ class PeriodicRefreshWorker(
         }
 
         // Wait for fresh data to arrive
-        withTimeoutOrNull(15_000) {
+        withTimeoutOrNull(DATA_WAIT_TIMEOUT_MS) {
             WidgetStateBridge.snapshot.filter { it.lastUpdatedMs != null }.first()
         }
 

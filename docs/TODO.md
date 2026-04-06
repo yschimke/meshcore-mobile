@@ -9,10 +9,10 @@ the reasoning behind many of these items.
   - Eliminate `MeshcoreApp.get()` calls scattered through UI code
   - Make controllers injectable for testing
   - Replace `GlobalScope.launch()` with scoped coroutines
-- [ ] Break `DeviceScreen.kt` (865 lines) into focused files
-  - Extract `ConnectedDevice` section to its own file
-  - Extract `FailureCard`, `ConnectingCard` to shared components
-  - Move preview functions to a separate preview file
+- [x] Break `DeviceScreen.kt` (975 → 515 lines) into focused files
+  - [x] Extract status views (`DeviceConnectStatus`, `DeviceStatusView`,
+    `ConnectingCard`, `FailureCard`) to `DeviceStatusViews.kt` (231 lines)
+  - [x] Move preview functions to `DeviceScreenPreviews.kt` (269 lines)
 - [ ] Enforce client lifecycle at compile time
   - Builder or state-machine API so `start()` must precede commands
   - Prevent calling `getContacts()` on an unstarted client
@@ -32,19 +32,21 @@ the reasoning behind many of these items.
 
 ## Testing
 
-- [ ] Core: unit tests for `MeshCoreClient` state machine (fake transport)
+- [x] Core: unit tests for `MeshCoreClient` state machine (fake transport)
+  - `FakeTransport`, `MeshCoreClientTest` (start, timeout, parse, seedFromCache)
 - [ ] Core: integration test for client handshake + event parsing
 - [ ] Core: test `MeshCoreManager` lifecycle (connect, disconnect, reconnect)
 - [ ] Data: test `MeshcoreRepository` device merging and deduplication
-- [ ] Transport: test `StreamFrameCodec` edge cases (partial frames, junk recovery)
+- [x] Transport: test `StreamFrameCodec` edge cases (partial frames, junk recovery, oversized, reset)
 - [ ] App: unit tests for `AppConnectionController`
 - [ ] App: Compose screenshot tests for key UI states (empty, loaded, error)
 
 ## Error handling
 
-- [ ] Add logging to silent `runCatching` blocks in `AppConnectionController`
-- [ ] Surface stale-cache warnings to the user when Room queries fail
-- [ ] Add BLE reconnect with exponential backoff in `MeshCoreManager`
+- [x] Add logging to silent `runCatching` blocks in `AppConnectionController`
+- [x] Surface stale-cache warnings to the user when Room queries fail
+- [x] Add BLE reconnect with exponential backoff in `AppConnectionController`
+  - Up to 5 retries, 2s–60s backoff + jitter, `Retrying` UI state
 - [ ] Log or warn on protocol mismatches (unexpected frame types)
 
 ## Protocol
@@ -54,7 +56,9 @@ the reasoning behind many of these items.
   - Currently scattered across `Codes.kt`, `CommandCode`, and parser comments
 - [ ] Consider adding request/response correlation IDs
   - Currently matched by type only; misordering possible
-- [ ] Extract hardcoded timeouts (5s command, 20s BLE) into named constants
+- [x] Extract hardcoded timeouts into named constants
+  - `PeriodicRefreshWorker`: `CONNECT_TIMEOUT_MS`, `DATA_WAIT_TIMEOUT_MS`
+  - `AppConnectionController`: `connectTimeoutMs` already named; backoff constants added
 
 ## Mobile app
 
