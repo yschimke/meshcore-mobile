@@ -72,6 +72,7 @@ fun SavedDevicesPanel(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(devices, key = { it.id }) { device ->
+            val itemModifier = Modifier.animateItem()
             val dismissState = rememberSwipeToDismissBoxState()
             LaunchedEffect(dismissState.currentValue) {
                 if (dismissState.currentValue == SwipeToDismissBoxValue.EndToStart) {
@@ -79,6 +80,7 @@ fun SavedDevicesPanel(
                 }
             }
             SwipeToDismissBox(
+                modifier = itemModifier,
                 state = dismissState,
                 enableDismissFromStartToEnd = false,
                 backgroundContent = {

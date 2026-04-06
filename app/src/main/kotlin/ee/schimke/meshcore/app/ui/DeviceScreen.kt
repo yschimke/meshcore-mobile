@@ -1,5 +1,10 @@
 package ee.schimke.meshcore.app.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -341,7 +346,13 @@ fun DeviceBody(
         ) {
             DeviceSummaryCard(self = self, radio = radio, battery = battery)
 
-            lastMessage?.let { LastMessageBanner(it, onClick = { onLastMessageClick(it) }) }
+            AnimatedVisibility(
+                visible = lastMessage != null,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut(),
+            ) {
+                lastMessage?.let { LastMessageBanner(it, onClick = { onLastMessageClick(it) }) }
+            }
 
             // Split contacts by type
             val chatContacts = contacts.filter { it.type == ContactType.CHAT }
@@ -352,7 +363,11 @@ fun DeviceBody(
             val isRefreshing = contactsLoading || contactsRefreshing
 
             // Subtle progress bar while refreshing with cached data visible
-            if (contactsRefreshing) {
+            AnimatedVisibility(
+                visible = contactsRefreshing,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut(),
+            ) {
                 LinearProgressIndicator(
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
