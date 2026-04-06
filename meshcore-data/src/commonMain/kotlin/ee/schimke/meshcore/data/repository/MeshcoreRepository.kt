@@ -21,6 +21,9 @@ import ee.schimke.meshcore.data.entity.MessageKind
 import ee.schimke.meshcore.data.entity.MessageStatus
 import ee.schimke.meshcore.data.entity.TransportType
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.io.bytestring.ByteString
 import kotlin.time.Instant
@@ -41,6 +44,13 @@ data class SavedDevice(
     val lastConnectedAtMs: Long,
 )
 
+/** Saved device enriched with cached state from Room. */
+data class SavedDeviceWithState(
+    val device: SavedDevice,
+    val batteryMillivolts: Int? = null,
+    val contactsCount: Int = 0,
+)
+
 fun bleDeviceId(identifier: String): String = "ble:$identifier"
 fun tcpDeviceId(host: String, port: Int): String = "tcp:$host:$port"
 fun usbDeviceId(className: String, vid: Int, pid: Int): String = "usb:$className:$vid:$pid"
@@ -51,6 +61,26 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
 
     fun observeDevices(): Flow<List<SavedDevice>> =
         db.deviceDao().observeAll().map { list -> list.map { it.toDomain() } }
+
+    /** Saved devices enriched with cached battery + contact count from Room. */
+    @Suppress("OPT_IN_USAGE")
+    fun observeDevicesWithState(): Flow<List<SavedDeviceWithState>> =
+        db.deviceDao().observeAll().flatMapLatest { devices ->
+            if (devices.isEmpty()) return@flatMapLatest flowOf(emptyList())
+            val flows = devices.map { entity ->
+                combine(
+                    db.deviceStateDao().observeByDeviceId(entity.id),
+                    db.contactDao().countByDevice(entity.id),
+                ) { state, count ->
+                    SavedDeviceWithState(
+                        device = entity.toDomain(),
+                        batteryMillivolts = state?.batteryMillivolts,
+                        contactsCount = count,
+                    )
+                }
+            }
+            combine(flows) { it.toList() }
+        }
 
     fun observeFavorite(): Flow<SavedDevice?> =
         db.deviceDao().observeFavorite().map { it?.toDomain() }
