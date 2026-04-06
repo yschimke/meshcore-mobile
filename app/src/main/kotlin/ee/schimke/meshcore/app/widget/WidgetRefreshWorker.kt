@@ -7,8 +7,6 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import ee.schimke.meshcore.app.MeshcoreApp
-import ee.schimke.meshcore.app.ble.DeviceProximityCheck
-import ee.schimke.meshcore.core.manager.ManagerState
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
@@ -28,17 +26,14 @@ class WidgetRefreshWorker(
         val favorite = app.repository.observeFavorite().first()
             ?: return Result.failure()
 
-        // Check if device is nearby before connecting
-        if (!DeviceProximityCheck.isNearby(applicationContext, favorite)) {
-            return Result.success() // Not nearby, skip silently
+        // Only refresh if already connected — never initiate BLE connections
+        // from background work (it triggers pairing prompts).
+        if (app.connectionController.connectedDeviceId.value != favorite.id) {
+            return Result.success()
         }
 
-        app.connectionController.requestReconnect(favorite)
-
-        // Wait up to 30s for a connected state + first data
-        withTimeoutOrNull(30_000) {
-            app.manager.state.filter { it is ManagerState.Connected }.first()
-            // Give widgets time to receive at least one event
+        // Wait for fresh data to arrive
+        withTimeoutOrNull(15_000) {
             WidgetStateBridge.snapshot.filter { it.lastUpdatedMs != null }.first()
         }
 
