@@ -193,3 +193,89 @@ screen-level composable. All previews wrap in `MeshcoreTheme {}`.
 
 Previews are verified by the `compose-preview` skill — see
 `.agents/skills/compose-previews/SKILL.md`.
+
+## Wear OS
+
+The Wear OS companion app follows the same design language as the phone
+app but adapted for a round, always-dark, glance-first surface. Wear OS
+design principles: design for critical tasks, optimize for the wrist
+(5-second interactions), work offline, and complement — not replace — the
+phone.
+
+### Always dark
+
+Wear OS is dark-only. The watch theme uses `MeshcoreDarkColors` applied
+through `androidx.wear.compose.material3.MaterialTheme`. No light theme
+variant exists. The same teal seed (`#00695C`) drives the palette.
+
+### No Horologist Compose
+
+All watch UI uses **Wear Compose Material 3** directly
+(`androidx.wear.compose:compose-material3`). Horologist is used **only**
+for the gRPC-over-Data-Layer transport — never for UI components.
+
+### Typography scale-down
+
+| Phone style | Phone size | Watch style | Watch size |
+|---|---|---|---|
+| `headlineSmall` | 22sp | `titleLarge` | 18sp |
+| `bodyMedium` | 14sp | `bodyMedium` | 12sp |
+| `bodySmall` | 12sp | `bodySmall` | 10sp |
+| `labelMedium` | 12sp | `labelMedium` | 11sp |
+
+Orbitron (device names), Space Grotesk (body), and JetBrains Mono (data
+values) carry over from the phone. Monospace is preserved for pubkeys,
+frequencies, and RSSI — data is content on every surface.
+
+### Tighter spacing
+
+`WearDimens` values are approximately 75% of phone `Dimens`:
+
+| Token | Phone | Watch |
+|---|---|---|
+| `ScreenPadding` | 16dp | 12dp |
+| `CardGap` | 12dp | 8dp |
+| `RowGap` | 8dp | 4dp |
+| Icon size | 24dp | 20dp |
+
+### Round-aware layout
+
+Use `TransformingLazyColumn` (Wear M3), not `LazyColumn`. It handles
+the round screen, chin, and bezels. Use `EdgeButton` for the primary
+action at the bottom of the screen.
+
+### Widget via Remote Compose
+
+Wear widgets use `wear-compose-remote` (Remote Material 3 components:
+`RemoteText`, `RemoteIcon`, `RemoteButton`) — the same Remote Compose
+approach as the phone's home-screen widget. Widgets are non-scrollable,
+single-page, and tap to open the full app.
+
+### Warning and error colors
+
+Same semantics as the phone:
+
+- `tertiary` / `tertiaryContainer` for warnings (battery < 30%, weak
+  signal, stale data)
+- `error` / `errorContainer` for failures (phone disconnected, send
+  failed)
+
+### Stateless / stateful split
+
+The same pattern applies: `StatusScreen(viewModel)` (stateful) wraps
+`StatusBody(state, onSend, …)` (stateless, previewable). Every
+data-driven composable has empty, loading, connected, disconnected, and
+error previews.
+
+### What belongs on the watch
+
+| Watch | Phone |
+|---|---|
+| Connection status at a glance | Full device scanning and pairing |
+| Battery and radio info | Configuration and admin |
+| Quick reply (pre-canned, voice) | Full chat history |
+| Message notifications | Network topology |
+| Contacts list (tap to reply) | Multi-device management |
+
+Design for seconds. If it takes more than two taps, it belongs on the
+phone.

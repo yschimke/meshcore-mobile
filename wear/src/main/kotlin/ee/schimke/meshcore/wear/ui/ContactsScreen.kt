@@ -1,0 +1,95 @@
+package ee.schimke.meshcore.wear.ui
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Person
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
+import androidx.wear.compose.foundation.lazy.items
+import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
+import androidx.wear.compose.material3.Button
+import androidx.wear.compose.material3.ButtonDefaults
+import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.Text
+import ee.schimke.meshcore.grpc.ContactMsg
+import ee.schimke.meshcore.grpc.ContactType
+import ee.schimke.meshcore.wear.ui.theme.WearDimens
+
+// --- Stateful entry point ---------------------------------------------------
+
+@Composable
+fun ContactsScreen(
+    viewModel: WearViewModel = viewModel(),
+    onContactSelected: (ContactMsg) -> Unit = {},
+) {
+    val state by viewModel.state.collectAsState()
+    val contacts = (state as? WearUiState.Connected)?.contacts
+        ?.filter { it.type == ContactType.CHAT }
+        ?: emptyList()
+
+    ContactsBody(contacts = contacts, onContactSelected = onContactSelected)
+}
+
+// --- Stateless body (previewable) -------------------------------------------
+
+@Composable
+fun ContactsBody(
+    contacts: List<ContactMsg>,
+    onContactSelected: (ContactMsg) -> Unit = {},
+) {
+    val columnState = rememberTransformingLazyColumnState()
+
+    TransformingLazyColumn(
+        state = columnState,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = WearDimens.ScreenPadding),
+    ) {
+        if (contacts.isEmpty()) {
+            item {
+                Text(
+                    text = "No chat contacts",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        } else {
+            items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
+                Button(
+                    onClick = { onContactSelected(contact) },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.filledTonalButtonColors(),
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Person,
+                            contentDescription = null,
+                            modifier = Modifier.size(WearDimens.IconSize),
+                        )
+                        Text(
+                            text = contact.name.ifEmpty { "Unknown" },
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

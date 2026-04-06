@@ -21,8 +21,10 @@ meshcore-data          Room database + repository. Offline cache layer.
 meshcore-components    Reusable Compose UI (cards, chat bubbles, lists).
 meshcore-transport-*   One module per physical link (BLE, TCP, USB).
 meshcore-devices-proto Proto3 definitions for DataStore serialization.
+meshcore-grpc-service  gRPC service layer wrapping client API.
 ───────────────────────────────────────────────────────────────────────
-app                    Android sample app — consumes all of the above.
+app                    Android phone app — consumes all of the above.
+wear                   Wear OS companion — gRPC consumer via Data Layer.
 meshcore-cli           JVM CLI client (Clikt) — consumes core + TCP.
 meshcore-tui           JVM terminal dashboard (Mordant) — same.
 ```
