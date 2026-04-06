@@ -41,14 +41,14 @@ import ee.schimke.meshcore.app.connection.ConnectionRequest
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
-import ee.schimke.meshcore.mobile.ui.BleDeviceList
-import ee.schimke.meshcore.mobile.ui.BleDeviceRow
-import ee.schimke.meshcore.mobile.ui.BlePermissionPanel
-import ee.schimke.meshcore.mobile.ui.BleScannerPanel
-import ee.schimke.meshcore.mobile.ui.ScanStatusBar
-import ee.schimke.meshcore.mobile.ui.TcpConnectPanel
-import ee.schimke.meshcore.mobile.ui.UsbPortCard
-import ee.schimke.meshcore.mobile.ui.UsbPortsPanel
+import ee.schimke.meshcore.components.ui.BleDeviceList
+import ee.schimke.meshcore.components.ui.BleDeviceRow
+import ee.schimke.meshcore.components.ui.BlePermissionPanel
+import ee.schimke.meshcore.components.ui.BleScannerPanel
+import ee.schimke.meshcore.components.ui.ScanStatusBar
+import ee.schimke.meshcore.components.ui.TcpConnectPanel
+import ee.schimke.meshcore.components.ui.UsbPortCard
+import ee.schimke.meshcore.components.ui.UsbPortsPanel
 
 // Stateful entry point. All network side effects live in
 // [AppConnectionController]; this composable only forwards user

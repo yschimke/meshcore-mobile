@@ -1,4 +1,4 @@
-package ee.schimke.meshcore.mobile.ui
+package ee.schimke.meshcore.components.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

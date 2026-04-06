@@ -1,4 +1,4 @@
-package ee.schimke.meshcore.mobile.ui
+package ee.schimke.meshcore.components.ui
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.lazy.LazyListState

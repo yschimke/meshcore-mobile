@@ -1,7 +1,12 @@
+@file:SuppressLint("RestrictedApi")
+
 package ee.schimke.meshcore.app.widget
 
+import android.annotation.SuppressLint
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
-import androidx.glance.appwidget.updateAll
+import android.content.Intent
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState
 import ee.schimke.meshcore.core.manager.MeshCoreManager
@@ -14,11 +19,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
- * Snapshot of everything the sample widgets want to render. Lives in a
- * single observable so Glance widgets can pull it without talking to the
- * manager directly.
+ * Snapshot of everything the sample widgets want to render.
  */
 data class WidgetSnapshot(
     val deviceName: String? = null,
@@ -48,7 +52,7 @@ object WidgetStateBridge {
                     clientJob = bridgeScope.launch { observeClient(appContext, state.client) }
                 } else if (state is ManagerState.Idle) {
                     _snapshot.value = WidgetSnapshot()
-                    updateAllWidgets(appContext)
+                    notifyWidgets(appContext)
                 }
             }
         }
@@ -84,17 +88,34 @@ object WidgetStateBridge {
                 }
                 if (next != _snapshot.value) {
                     _snapshot.value = next
-                    updateAllWidgets(context)
+                    notifyWidgets(context)
                 }
             }
         }
         updater.join()
     }
 
-    private suspend fun updateAllWidgets(context: Context) {
-        runCatching { BatteryWidget().updateAll(context) }
-        runCatching { MeshStatusWidget().updateAll(context) }
-        runCatching { LastMessageWidget().updateAll(context) }
-        runCatching { QuickSendWidget().updateAll(context) }
+    /**
+     * Trigger an APPWIDGET_UPDATE broadcast for all four widget receivers
+     * so they re-capture their Remote Compose documents.
+     */
+    private fun notifyWidgets(context: Context) {
+        val wm = AppWidgetManager.getInstance(context)
+        val receivers = listOf(
+            BatteryWidgetReceiver::class.java,
+            MeshStatusWidgetReceiver::class.java,
+            LastMessageWidgetReceiver::class.java,
+            QuickSendWidgetReceiver::class.java,
+        )
+        for (cls in receivers) {
+            val ids = wm.getAppWidgetIds(ComponentName(context, cls))
+            if (ids.isNotEmpty()) {
+                val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE).apply {
+                    component = ComponentName(context, cls)
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+                }
+                context.sendBroadcast(intent)
+            }
+        }
     }
 }

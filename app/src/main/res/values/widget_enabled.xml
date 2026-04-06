@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Remote Compose widgets require API 37+; disabled by default. -->
+    <bool name="widget_enabled">false</bool>
+</resources>

@@ -50,6 +50,7 @@ import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import androidx.compose.material3.CircularProgressIndicator
+import ee.schimke.meshcore.components.ui.verticalScrollbar
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
@@ -58,14 +59,14 @@ import ee.schimke.meshcore.core.model.MeshEvent
 import ee.schimke.meshcore.core.model.PublicKey
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
-import ee.schimke.meshcore.mobile.ui.ChannelRow
-import ee.schimke.meshcore.mobile.ui.ContactListEmpty
-import ee.schimke.meshcore.mobile.ui.ContactRow
-import ee.schimke.meshcore.mobile.ui.DeviceSummaryCard
-import ee.schimke.meshcore.mobile.ui.verticalScrollbar
+import ee.schimke.meshcore.components.ui.ChannelRow
+import ee.schimke.meshcore.components.ui.ContactList
+import ee.schimke.meshcore.components.ui.ContactListEmpty
+import ee.schimke.meshcore.components.ui.ContactRow
+import ee.schimke.meshcore.components.ui.DeviceSummaryCard
+import kotlin.time.Instant
 import kotlinx.coroutines.launch
 import kotlinx.io.bytestring.ByteString
-import kotlin.time.Instant
 
 @Composable
 fun DeviceScreen(
