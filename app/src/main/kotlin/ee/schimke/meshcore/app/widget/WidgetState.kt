@@ -40,6 +40,9 @@ data class WidgetSnapshot(
     val storageTotalKb: Long? = null,
     val lastSnr: Int? = null,
     val frequencyMhz: Double? = null,
+    val bandwidthKhz: Int? = null,
+    val spreadingFactor: Int? = null,
+    val codingRate: Int? = null,
     val contactCount: Int = 0,
     val lastMessage: String? = null,
     val lastConnectedMs: Long? = null,
@@ -48,6 +51,17 @@ data class WidgetSnapshot(
     val storageLine: String?
         get() = if (storageUsedKb != null && storageTotalKb != null)
             "$storageUsedKb / $storageTotalKb kB" else null
+
+    val radioLine: String?
+        get() {
+            val freq = frequencyMhz ?: return null
+            return buildString {
+                append("%.3f MHz".format(freq))
+                if (bandwidthKhz != null) append(" · BW $bandwidthKhz kHz")
+                if (spreadingFactor != null) append(" · SF $spreadingFactor")
+                if (codingRate != null) append(" · CR $codingRate")
+            }
+        }
 }
 
 object WidgetStateBridge {
@@ -97,6 +111,9 @@ object WidgetStateBridge {
             deviceName = self.name,
             pubkeyPrefix = self.publicKey.toHex().take(16),
             frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
+            bandwidthKhz = self.radio.bandwidthHz / 1000,
+            spreadingFactor = self.radio.spreadingFactor,
+            codingRate = self.radio.codingRate,
             lastConnectedMs = System.currentTimeMillis(),
         )
         if (bat != null) seeded = seeded.copy(
@@ -159,6 +176,9 @@ object WidgetStateBridge {
                 )
                 if (radio != null) s = s.copy(
                     frequencyMhz = radio.frequencyHz / 1_000_000.0,
+                    bandwidthKhz = radio.bandwidthHz / 1000,
+                    spreadingFactor = radio.spreadingFactor,
+                    codingRate = radio.codingRate,
                 )
                 s = s.copy(contactCount = contacts.size)
                 s
@@ -202,7 +222,7 @@ object WidgetStateBridge {
             DeviceInfoWidgetContent(
                 deviceName = snap.deviceName ?: "node-peak",
                 pubkeyPrefix = snap.pubkeyPrefix ?: "ab1234567890cdef",
-                radioInfo = snap.frequencyMhz?.let { "%.3f MHz".format(it) } ?: "869.525 MHz",
+                radioInfo = snap.radioLine ?: "869.525 MHz · BW 125 kHz · SF 10 · CR 5",
                 batteryLine = snap.batteryPercent?.let { p ->
                     val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
                     "$p%$mv"

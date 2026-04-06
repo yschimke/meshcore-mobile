@@ -188,7 +188,7 @@ class MeshCoreClient(
                 _radio.value = event.settings
             }
             is MeshEvent.Battery -> {
-                log("event: Battery ${event.info.millivolts}mV")
+                log("event: Battery ${event.info.millivolts}mV storage=${event.info.storageUsedKb}/${event.info.storageTotalKb}kB")
                 _battery.value = event.info
             }
             is MeshEvent.Device -> {

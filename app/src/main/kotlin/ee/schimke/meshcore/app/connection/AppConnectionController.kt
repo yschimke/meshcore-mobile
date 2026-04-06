@@ -61,12 +61,33 @@ class AppConnectionController(
                         val attempt = currentAttempt
                         if (attempt != null) {
                             Log.d(TAG, "Connected to ${attempt.id}")
-                            _connectedDeviceId.value = attempt.id
+
+                            // Resolve canonical device ID by public key.
+                            // If this device was previously seen via a different
+                            // transport (e.g. BLE vs USB), reuse the existing ID
+                            // so contacts/messages/channels are shared.
+                            var deviceId = attempt.id
+                            val selfInfo = ms.client.selfInfo.value
+                            if (selfInfo != null) {
+                                val existingId = runCatching {
+                                    repository.findDeviceIdByPublicKey(selfInfo.publicKey)
+                                }.getOrNull()
+                                if (existingId != null && existingId != attempt.id) {
+                                    Log.d(TAG, "Merging ${attempt.id} into existing $existingId")
+                                    runCatching {
+                                        repository.mergeDevice(attempt.id, existingId, attempt.savedTransport)
+                                    }
+                                    deviceId = existingId
+                                }
+                            }
+
+                            _connectedDeviceId.value = deviceId
+
                             // Seed client with cached data from Room
                             runCatching {
-                                val state = repository.getDeviceState(attempt.id)
-                                val contacts = repository.getContacts(attempt.id)
-                                val channels = repository.getChannels(attempt.id)
+                                val state = repository.getDeviceState(deviceId)
+                                val contacts = repository.getContacts(deviceId)
+                                val channels = repository.getChannels(deviceId)
                                 ms.client.seedFromCache(
                                     selfInfo = state?.toSelfInfo(),
                                     contacts = contacts,
@@ -78,20 +99,21 @@ class AppConnectionController(
                             }
                             runCatching {
                                 repository.upsertDevice(
-                                    id = attempt.id,
-                                    label = attempt.label,
+                                    id = deviceId,
+                                    label = selfInfo?.name ?: attempt.label,
                                     transport = attempt.savedTransport,
                                 )
                             }
                         }
                         _state.value = ConnectionUiState.Connected(ms.client)
                         if (attempt != null) {
+                            val deviceId = _connectedDeviceId.value ?: attempt.id
                             // Persist messages in background
                             persisterJob?.cancel()
                             persisterJob = scope.launch {
                                 val persister = MessagePersister(
                                     repository = repository,
-                                    deviceId = attempt.id,
+                                    deviceId = deviceId,
                                     contactResolver = { prefix ->
                                         val hex = prefix.toHex()
                                         ms.client.contacts.value
@@ -102,7 +124,7 @@ class AppConnectionController(
                                 persister.collect(ms.client.events)
                             }
                             // Fetch fresh data and persist to Room
-                            scope.launch { fetchAndPersist(attempt.id, ms.client) }
+                            scope.launch { fetchAndPersist(deviceId, ms.client) }
                         }
                     }
                     is ManagerState.Failed -> {

@@ -113,20 +113,31 @@ fun UsbPortsPanel(
 
     LaunchedEffect(Unit) { refreshPorts() }
 
-    // Listen for the USB permission result
+    // Listen for USB permission results AND device attach/detach
     DisposableEffect(Unit) {
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(ctx: Context, intent: Intent) {
-                if (intent.action != ACTION_USB_PERMISSION) return
-                val granted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
-                if (granted) {
-                    pendingPort?.let(onConnect)
+                when (intent.action) {
+                    ACTION_USB_PERMISSION -> {
+                        val granted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
+                        if (granted) {
+                            pendingPort?.let(onConnect)
+                        }
+                        pendingPort = null
+                    }
+                    UsbManager.ACTION_USB_DEVICE_ATTACHED,
+                    UsbManager.ACTION_USB_DEVICE_DETACHED -> {
+                        refreshPorts()
+                    }
                 }
-                pendingPort = null
             }
         }
-        val filter = IntentFilter(ACTION_USB_PERMISSION)
-        context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        val filter = IntentFilter().apply {
+            addAction(ACTION_USB_PERMISSION)
+            addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED)
+            addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
+        }
+        context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED)
         onDispose { context.unregisterReceiver(receiver) }
     }
 
@@ -136,8 +147,11 @@ fun UsbPortsPanel(
         }
         if (device != null && !usbManager.hasPermission(device)) {
             pendingPort = info.port
-            val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
-            val pi = PendingIntent.getBroadcast(context, 0, Intent(ACTION_USB_PERMISSION), flags)
+            val intent = Intent(ACTION_USB_PERMISSION).apply {
+                setPackage(context.packageName)
+            }
+            val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            val pi = PendingIntent.getBroadcast(context, 0, intent, flags)
             usbManager.requestPermission(device, pi)
         } else {
             onConnect(info.port)
@@ -254,7 +268,7 @@ private fun UsbEmptyState() {
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = "Plug in a MeshCore device and tap Refresh.",
+                text = "Plug in a MeshCore device to get started.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
