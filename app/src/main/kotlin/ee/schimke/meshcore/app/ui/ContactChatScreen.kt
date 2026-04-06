@@ -30,9 +30,12 @@ import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
 import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
+import android.util.Log
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 import kotlin.time.Instant
+
+private const val TAG = "MeshSend"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -116,9 +119,13 @@ fun ContactChatScreen(
                 enabled = client != null && contact != null,
                 onSend = {
                     val text = draft.trim()
-                    if (text.isBlank() || client == null || contact == null || deviceId == null) return@ChatInput
+                    if (text.isBlank() || client == null || contact == null || deviceId == null) {
+                        Log.w(TAG, "DM send guard: blank=${text.isBlank()} client=${client != null} contact=${contact != null} deviceId=$deviceId")
+                        return@ChatInput
+                    }
                     draft = ""
                     val now = Clock.System.now()
+                    Log.d(TAG, "DM sending to ${publicKeyHex.take(12)}: '$text'")
                     scope.launch {
                         val result = runCatching {
                             client.sendText(
@@ -128,6 +135,11 @@ fun ContactChatScreen(
                             )
                         }
                         val ack = result.getOrNull()
+                        if (result.isFailure) {
+                            Log.e(TAG, "DM send failed: ${result.exceptionOrNull()?.message}", result.exceptionOrNull())
+                        } else {
+                            Log.d(TAG, "DM send ok: ackHash=${ack?.ackHash} flood=${ack?.isFlood}")
+                        }
                         repository.insertSentDm(
                             deviceId = deviceId,
                             contactKeyHex = publicKeyHex,
@@ -136,6 +148,7 @@ fun ContactChatScreen(
                             ackHash = ack?.ackHash,
                             status = if (result.isSuccess) DbMessageStatus.SENT else DbMessageStatus.FAILED,
                         )
+                        Log.d(TAG, "DM persisted to Room")
                     }
                 },
             )
