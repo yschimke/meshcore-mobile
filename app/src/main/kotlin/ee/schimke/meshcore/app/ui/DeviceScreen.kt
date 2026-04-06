@@ -21,7 +21,7 @@ import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -174,12 +174,13 @@ private fun ConnectedDevice(
         radio = radio,
         contacts = contacts,
         contactsLoading = contactsRefreshing && contacts.isEmpty(),
+        contactsRefreshing = contactsRefreshing && contacts.isNotEmpty(),
         channels = channels,
         lastMessage = lastMessage,
         onRefreshContacts = {
             scope.launch {
                 contactsRefreshing = true
-                runCatching { client.getContacts() }
+                runCatching { client.getContacts(delta = true) }
                 contactsRefreshing = false
             }
         },
@@ -203,6 +204,7 @@ fun DeviceBody(
     radio: RadioSettings?,
     contacts: List<Contact>,
     contactsLoading: Boolean = false,
+    contactsRefreshing: Boolean = false,
     channels: List<ChannelInfo> = emptyList(),
     lastMessage: String?,
     onRefreshContacts: () -> Unit,
@@ -279,28 +281,29 @@ fun DeviceBody(
             val repeaters = contacts.filter { it.type == ContactType.REPEATER }
             val sensors = contacts.filter { it.type == ContactType.SENSOR }
 
+            val isRefreshing = contactsLoading || contactsRefreshing
+
+            // Subtle progress bar while refreshing with cached data visible
+            if (contactsRefreshing) {
+                LinearProgressIndicator(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
+                    trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                )
+            }
+
             // --- Contacts (DM-able peers) ---
             SectionHeader(
                 text = if (contactsLoading) "Contacts" else "Contacts (${chatContacts.size})",
                 action = {
-                    FilledTonalButton(
-                        onClick = onRefreshContacts,
-                        enabled = !contactsLoading,
-                    ) {
-                        if (contactsLoading) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(18.dp),
-                                strokeWidth = 2.dp,
-                            )
-                        } else {
+                    if (!isRefreshing) {
+                        IconButton(onClick = onRefreshContacts) {
                             Icon(
                                 imageVector = Icons.Rounded.Refresh,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp),
+                                contentDescription = "Refresh",
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
-                        Spacer(Modifier.size(Dimens.XS))
-                        Text("Refresh")
                     }
                 },
             )

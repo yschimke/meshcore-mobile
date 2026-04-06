@@ -35,7 +35,6 @@ private fun staleLabel(snap: WidgetSnapshot): String? {
 
 // --- Battery + SNR ----------------------------------------------------------
 
-@RequiresApi(37)
 class BatteryWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
         goAsync {
@@ -66,7 +65,6 @@ class BatteryWidgetReceiver : AppWidgetProvider() {
 
 // --- Mesh status (name + contact count + freq) ------------------------------
 
-@RequiresApi(37)
 class MeshStatusWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
         goAsync {
@@ -97,7 +95,6 @@ class MeshStatusWidgetReceiver : AppWidgetProvider() {
 
 // --- Last received message --------------------------------------------------
 
-@RequiresApi(37)
 class LastMessageWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
         goAsync {
@@ -125,7 +122,6 @@ class LastMessageWidgetReceiver : AppWidgetProvider() {
 
 // --- Connection status ------------------------------------------------------
 
-@RequiresApi(37)
 class ConnectionStatusWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
         goAsync {

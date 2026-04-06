@@ -130,11 +130,31 @@ fun BleScannerPanel(
             onMeshOnlyChange = { meshOnly = it },
         )
         scanError?.let {
-            Text(
-                text = "Scan error: $it",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.error,
-            )
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.errorContainer,
+                ),
+            ) {
+                Row(
+                    modifier = Modifier.padding(12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.BluetoothSearching,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onErrorContainer,
+                        modifier = Modifier.size(20.dp),
+                    )
+                    Spacer(Modifier.size(8.dp))
+                    Text(
+                        text = "Scan error: $it",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onErrorContainer,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+            }
         }
 
         BleDeviceList(

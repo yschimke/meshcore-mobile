@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
         android:usesPermissionFlags="neverForLocation" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND" />
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND" />
 
     <application
         android:name=".MeshcoreApp"
@@ -27,6 +29,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- BLE device presence detection via CompanionDeviceManager -->
+        <receiver
+            android:name=".ble.DevicePresenceReceiver"
+            android:exported="true"
+            android:permission="android.permission.BIND_COMPANION_DEVICE_SERVICE">
+            <intent-filter>
+                <action android:name="android.companion.CompanionDeviceManager.COMPANION_DEVICE_APPEARING" />
+            </intent-filter>
+        </receiver>
 
         <!-- Remote Compose widgets — require API 37+ -->
         <receiver

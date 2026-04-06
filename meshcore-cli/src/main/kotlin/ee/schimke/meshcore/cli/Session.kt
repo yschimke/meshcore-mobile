@@ -106,13 +106,13 @@ abstract class SessionCommand(
 
     protected fun <T> withClient(block: suspend (MeshCoreClient) -> T): T = runBlocking {
         val transport = createTransport()
-        val warmup = warmupMs ?: 400
+        val warmup = warmupMs
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
         transport.connect()
         val client = MeshCoreClient(transport, scope)
         try {
-            client.start()
-            if (warmup > 0) delay(warmup.toLong())
+            client.start() // waits for SelfInfo response
+            if (warmup != null && warmup > 0) delay(warmup.toLong())
             val result = block(client)
             // Persist device to Room on success (TCP only for now)
             if (transport is TcpTransport) {

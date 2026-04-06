@@ -22,15 +22,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import android.content.Context
+import android.util.Log
+import ee.schimke.meshcore.app.ble.DevicePresenceManager
+import ee.schimke.meshcore.app.widget.PeriodicRefreshWorker
 import java.util.concurrent.TimeoutException
+
+private const val TAG = "MeshConnect"
 
 class AppConnectionController(
     private val manager: MeshCoreManager,
     private val repository: MeshcoreRepository,
+    private val appContext: Context? = null,
     private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
 ) {
     private val _state = MutableStateFlow<ConnectionUiState>(ConnectionUiState.Idle)
@@ -52,6 +60,7 @@ class AppConnectionController(
                     is ManagerState.Connected -> {
                         val attempt = currentAttempt
                         if (attempt != null) {
+                            Log.d(TAG, "Connected to ${attempt.id}")
                             _connectedDeviceId.value = attempt.id
                             // Seed client with cached data from Room
                             runCatching {
@@ -196,7 +205,26 @@ class AppConnectionController(
     }
 
     fun toggleFavorite(id: String) {
-        scope.launch { repository.toggleFavorite(id) }
+        scope.launch {
+            // Stop observing old favorite if any
+            val oldFavorite = repository.observeFavorite().first()
+            if (oldFavorite != null && appContext != null) {
+                DevicePresenceManager.stopObserving(appContext, oldFavorite)
+            }
+
+            repository.toggleFavorite(id)
+
+            // Schedule/cancel background refresh + presence observation
+            appContext?.let { ctx ->
+                val newFavorite = repository.observeFavorite().first()
+                if (newFavorite != null) {
+                    PeriodicRefreshWorker.scheduleIfFavoriteExists(ctx)
+                    DevicePresenceManager.startObserving(ctx, newFavorite)
+                } else {
+                    PeriodicRefreshWorker.cancel(ctx)
+                }
+            }
+        }
     }
 
     private suspend fun doConnect(attempt: Attempt) {
@@ -232,17 +260,37 @@ class AppConnectionController(
         deviceId: String,
         client: ee.schimke.meshcore.core.client.MeshCoreClient,
     ) {
-        runCatching {
-            runCatching { client.getContacts() }
-            runCatching { client.getChannels() }
-            val now = System.currentTimeMillis()
-            client.selfInfo.value?.let { repository.updateSelfInfo(deviceId, it, now) }
-            client.battery.value?.let { repository.updateBattery(deviceId, it, now) }
-            client.radio.value?.let { repository.updateRadio(deviceId, it, now) }
-            client.device.value?.let { repository.updateDeviceInfo(deviceId, it, now) }
-            repository.replaceContacts(deviceId, client.contacts.value, now)
-            repository.replaceChannels(deviceId, client.channels.value, now)
+        val now = System.currentTimeMillis()
+        Log.d(TAG, "fetchAndPersist: starting for $deviceId")
+
+        // 1. Device state first
+        client.selfInfo.value?.let {
+            Log.d(TAG, "fetchAndPersist: persisting selfInfo name='${it.name}'")
+            repository.updateSelfInfo(deviceId, it, now)
         }
+        runCatching {
+            val bat = client.getBatteryAndStorage()
+            Log.d(TAG, "fetchAndPersist: battery ${bat.millivolts}mV")
+            repository.updateBattery(deviceId, bat, now)
+        }
+        runCatching {
+            val radio = client.getRadioSettings()
+            Log.d(TAG, "fetchAndPersist: radio ${radio.frequencyHz}Hz")
+            repository.updateRadio(deviceId, radio, now)
+        }
+        client.device.value?.let { repository.updateDeviceInfo(deviceId, it, now) }
+
+        // 2. Contacts
+        Log.d(TAG, "fetchAndPersist: fetching contacts")
+        runCatching { client.getContacts() }
+        repository.replaceContacts(deviceId, client.contacts.value, now)
+        Log.d(TAG, "fetchAndPersist: ${client.contacts.value.size} contacts persisted")
+
+        // 3. Channels
+        Log.d(TAG, "fetchAndPersist: fetching channels")
+        runCatching { client.getChannels() }
+        repository.replaceChannels(deviceId, client.channels.value, now)
+        Log.d(TAG, "fetchAndPersist: ${client.channels.value.size} channels persisted, done")
     }
 
     private data class Attempt(
