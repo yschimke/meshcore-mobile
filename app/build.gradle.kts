@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.metro)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinSerialization)
     id("ee.schimke.composepreview.plugin") version "0.1.0"
 }
@@ -68,6 +69,9 @@ dependencies {
     implementation(libs.androidx.remote.creation.compose)
     implementation(libs.androidx.remote.tooling.preview)
     implementation(libs.androidx.work.runtime)
+    implementation(libs.androidx.appfunctions)
+    implementation(libs.androidx.appfunctions.service)
+    ksp(libs.androidx.appfunctions.compiler)
     debugImplementation(libs.compose.uiTooling)
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.core)

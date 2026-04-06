@@ -31,6 +31,14 @@ interface MessageDao {
     suspend fun updateStatusByAckHash(ackHash: Int, status: MessageStatus)
 
     @Query("""
+        SELECT * FROM message
+        WHERE deviceId = :deviceId
+        ORDER BY timestampEpochMs DESC
+        LIMIT :limit
+    """)
+    suspend fun getRecentMessages(deviceId: String, limit: Int): List<MessageEntity>
+
+    @Query("""
         SELECT COUNT(*) FROM message
         WHERE deviceId = :deviceId AND kind = :kind
           AND timestampEpochMs = :timestampMs AND text = :text AND direction = 'RECEIVED'
