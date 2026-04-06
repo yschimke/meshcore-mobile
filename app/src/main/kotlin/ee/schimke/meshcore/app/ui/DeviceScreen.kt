@@ -65,8 +65,11 @@ import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
 import kotlin.time.Instant
-import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.sample
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.io.bytestring.ByteString
 
 @Composable
@@ -148,6 +151,7 @@ sealed class LastMessageInfo {
     ) : LastMessageInfo()
 }
 
+@OptIn(FlowPreview::class)
 @Composable
 private fun ConnectedDevice(
     client: ee.schimke.meshcore.core.client.MeshCoreClient,
@@ -175,19 +179,26 @@ private fun ConnectedDevice(
         runCatching { client.syncMessages() }
     }
 
-    // Listen for incoming messages + re-sync on MessagesWaiting push.
-    // conflate() drops intermediate emissions during rapid sync drains
-    // so the banner only shows the latest message without flashing.
+    // Handle MessagesWaiting immediately to trigger sync.
+    LaunchedEffect(client) {
+        client.events.collect { ev ->
+            if (ev is MeshEvent.MessagesWaiting) {
+                scope.launch { runCatching { client.syncMessages() } }
+            }
+        }
+    }
+
+    // Throttle last-message banner updates to at most once per second
+    // so rapid sync drains don't cause the banner to flash.
     LaunchedEffect(client) {
         client.events
-            .conflate()
-            .collect { ev ->
+            .mapNotNull { ev ->
                 when (ev) {
                     is MeshEvent.DirectMessage -> {
                         val msg = ev.message
                         val prefix = msg.senderPrefix.toHex()
                         val contact = contacts.firstOrNull { it.publicKey.toHex().startsWith(prefix) }
-                        lastMessage = LastMessageInfo.Dm(
+                        LastMessageInfo.Dm(
                             contactKeyHex = contact?.publicKey?.toHex() ?: prefix,
                             contactName = contact?.name,
                             text = msg.text,
@@ -197,7 +208,7 @@ private fun ConnectedDevice(
                     is MeshEvent.ChannelMessage -> {
                         val msg = ev.message
                         val ch = channels.firstOrNull { it.index == msg.channelIndex }
-                        lastMessage = LastMessageInfo.Channel(
+                        LastMessageInfo.Channel(
                             channelIndex = msg.channelIndex,
                             channelName = ch?.name?.ifBlank { null },
                             sender = msg.sender,
@@ -205,11 +216,11 @@ private fun ConnectedDevice(
                             snr = msg.snr,
                         )
                     }
-                    MeshEvent.MessagesWaiting ->
-                        scope.launch { runCatching { client.syncMessages() } }
-                    else -> Unit
+                    else -> null
                 }
             }
+            .sample(1.seconds)
+            .collect { lastMessage = it }
     }
 
     DeviceBody(

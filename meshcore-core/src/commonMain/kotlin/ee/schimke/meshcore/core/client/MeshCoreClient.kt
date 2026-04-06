@@ -208,8 +208,10 @@ class MeshCoreClient(
                 contactsAccumulator.clear()
             }
             is MeshEvent.ChannelInfoEvent -> {
-                val ch = event.info
-                _channels.value = _channels.value.filter { it.index != ch.index } + ch
+                // Don't accumulate individual channel responses here —
+                // getChannels() sets _channels atomically after filtering
+                // empty entries. Accumulating here causes transient ghost
+                // channels (e.g. "Channel 4", "Channel 5") in the UI.
             }
             is MeshEvent.DirectMessage -> {
                 val msg = event.message
