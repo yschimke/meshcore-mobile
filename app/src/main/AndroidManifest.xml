@@ -28,9 +28,11 @@
             </intent-filter>
         </activity>
 
+        <!-- Remote Compose widgets — require API 37+ -->
         <receiver
             android:name=".widget.BatteryWidgetReceiver"
-            android:exported="false">
+            android:exported="false"
+            android:enabled="@bool/widget_enabled">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -40,7 +42,8 @@
         </receiver>
         <receiver
             android:name=".widget.MeshStatusWidgetReceiver"
-            android:exported="false">
+            android:exported="false"
+            android:enabled="@bool/widget_enabled">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -50,7 +53,8 @@
         </receiver>
         <receiver
             android:name=".widget.LastMessageWidgetReceiver"
-            android:exported="false">
+            android:exported="false"
+            android:enabled="@bool/widget_enabled">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -60,9 +64,11 @@
         </receiver>
         <receiver
             android:name=".widget.QuickSendWidgetReceiver"
-            android:exported="false">
+            android:exported="false"
+            android:enabled="@bool/widget_enabled">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ee.schimke.meshcore.app.QUICKSEND" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

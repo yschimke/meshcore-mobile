@@ -17,15 +17,15 @@ import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.PublicKey
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
-import ee.schimke.meshcore.mobile.ui.BleDeviceList
-import ee.schimke.meshcore.mobile.ui.BleDeviceRow
-import ee.schimke.meshcore.mobile.ui.BlePermissionPanel
-import ee.schimke.meshcore.mobile.ui.ContactList
-import ee.schimke.meshcore.mobile.ui.ContactRow
-import ee.schimke.meshcore.mobile.ui.DeviceSummaryCard
-import ee.schimke.meshcore.mobile.ui.TcpConnectPanel
-import kotlinx.io.bytestring.ByteString
+import ee.schimke.meshcore.components.ui.BleDeviceRow
+import ee.schimke.meshcore.components.ui.BleDeviceList
+import ee.schimke.meshcore.components.ui.BlePermissionPanel
+import ee.schimke.meshcore.components.ui.ContactList
+import ee.schimke.meshcore.components.ui.ContactRow
+import ee.schimke.meshcore.components.ui.DeviceSummaryCard
+import ee.schimke.meshcore.components.ui.TcpConnectPanel
 import kotlin.time.Instant
+import kotlinx.io.bytestring.ByteString
 
 // --- Shared fixtures ------------------------------------------------------
 

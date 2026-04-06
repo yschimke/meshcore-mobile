@@ -1,4 +1,4 @@
-package ee.schimke.meshcore.mobile.ui
+package ee.schimke.meshcore.components.ui
 
 import android.app.PendingIntent
 import android.content.BroadcastReceiver

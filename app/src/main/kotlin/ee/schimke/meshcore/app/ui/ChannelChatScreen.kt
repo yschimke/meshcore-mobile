@@ -26,10 +26,10 @@ import androidx.compose.ui.Modifier
 import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.core.model.MeshEvent
-import ee.schimke.meshcore.mobile.ui.ChatInput
-import ee.schimke.meshcore.mobile.ui.ChatMessage
-import ee.schimke.meshcore.mobile.ui.ChatMessageList
-import ee.schimke.meshcore.mobile.ui.MessageStatus
+import ee.schimke.meshcore.components.ui.ChatInput
+import ee.schimke.meshcore.components.ui.ChatMessage
+import ee.schimke.meshcore.components.ui.ChatMessageList
+import ee.schimke.meshcore.components.ui.MessageStatus
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 
