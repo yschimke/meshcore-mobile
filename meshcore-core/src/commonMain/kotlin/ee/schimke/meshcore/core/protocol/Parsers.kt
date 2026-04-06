@@ -2,6 +2,7 @@ package ee.schimke.meshcore.core.protocol
 
 import ee.schimke.meshcore.core.model.AdvertPushInfo
 import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.DeviceInfo
@@ -59,6 +60,7 @@ object Parsers {
             ResponseCode.Sent -> parseSent(buf)
             ResponseCode.ContactMessageV3 -> parseContactMsgV3(buf)
             ResponseCode.ChannelMessageV3 -> parseChannelMsgV3(buf)
+            ResponseCode.ChannelInfo -> parseChannelInfo(buf)
             else -> MeshEvent.Raw(code.raw, frame.substring(1))
         }
 
@@ -165,6 +167,14 @@ object Parsers {
         val ackHash = src.readIntLe()
         val trip = src.readIntLe().toLong() and 0xFFFFFFFFL
         return MeshEvent.SendConfirmedEvent(SendConfirmed(ackHash, trip))
+    }
+
+    /** `[idx][name×32][psk×16]` */
+    private fun parseChannelInfo(src: Source): MeshEvent.ChannelInfoEvent {
+        val idx = src.readByte().toInt() and 0xFF
+        val name = src.readCStringFixed(32)
+        val psk = src.readByteString(16)
+        return MeshEvent.ChannelInfoEvent(ChannelInfo(idx, name, psk))
     }
 
     private fun parseContactMsgV3(src: Source): MeshEvent.DirectMessage {

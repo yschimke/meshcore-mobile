@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.rounded.Battery1Bar
 import androidx.compose.material.icons.rounded.Battery3Bar
 import androidx.compose.material.icons.rounded.Battery6Bar
@@ -25,6 +26,7 @@ import androidx.compose.material.icons.rounded.Storage
 import androidx.compose.material.icons.rounded.Wifi
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +39,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.RadioSettings
@@ -66,14 +69,29 @@ fun DeviceSummaryCard(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            Text(
-                text = self?.name ?: "Unknown device",
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            PubkeyLine(self?.publicKey?.toHex())
-            radio?.let { RadioLine(it) }
-            battery?.let { BatterySection(it) }
+            if (self == null && battery == null && radio == null) {
+                // All data still loading
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(20.dp),
+                        strokeWidth = 2.dp,
+                    )
+                    Text(
+                        text = "  Loading device info\u2026",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            } else {
+                Text(
+                    text = self?.name ?: "Device",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+                PubkeyLine(self?.publicKey?.toHex())
+                radio?.let { RadioLine(it) }
+                battery?.let { BatterySection(it) }
+            }
         }
     }
 }
@@ -193,9 +211,15 @@ private fun Contact.typeLabel(): String = when (type) {
  * distinguishable at a glance.
  */
 @Composable
-fun ContactRow(contact: Contact, modifier: Modifier = Modifier) {
+fun ContactRow(
+    contact: Contact,
+    onClick: (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
+) {
     Card(
         modifier = modifier.fillMaxWidth(),
+        onClick = onClick ?: {},
+        enabled = onClick != null,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
         ),
@@ -252,6 +276,7 @@ fun ContactRow(contact: Contact, modifier: Modifier = Modifier) {
 @Composable
 fun ContactList(
     contacts: List<Contact>,
+    onContactClick: ((Contact) -> Unit)? = null,
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
 ) {
@@ -260,7 +285,12 @@ fun ContactList(
         state = state,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(contacts, key = { it.publicKey.hashCode() }) { ContactRow(it) }
+        items(contacts, key = { it.publicKey.hashCode() }) { contact ->
+            ContactRow(
+                contact = contact,
+                onClick = onContactClick?.let { { it(contact) } },
+            )
+        }
     }
 }
 
@@ -291,5 +321,82 @@ fun ContactListEmpty(modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+    }
+}
+
+// --- Channels ----------------------------------------------------------------
+
+@Composable
+fun ChannelRow(
+    channel: ChannelInfo,
+    onClick: (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        onClick = onClick ?: {},
+        enabled = onClick != null,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        ),
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Surface(
+                shape = RoundedCornerShape(50),
+                color = MaterialTheme.colorScheme.tertiaryContainer,
+                modifier = Modifier.size(36.dp),
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Groups,
+                        contentDescription = "Channel",
+                        tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                        modifier = Modifier.size(20.dp).align(Alignment.CenterVertically),
+                    )
+                }
+            }
+            Column(
+                modifier = Modifier.padding(start = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(2.dp),
+            ) {
+                Text(
+                    text = channel.name.ifBlank { "Channel ${channel.index}" },
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+                Text(
+                    text = "Channel ${channel.index}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ChannelList(
+    channels: List<ChannelInfo>,
+    onChannelClick: ((ChannelInfo) -> Unit)? = null,
+    modifier: Modifier = Modifier,
+    state: LazyListState = rememberLazyListState(),
+) {
+    LazyColumn(
+        modifier = modifier.verticalScrollbar(state),
+        state = state,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        items(channels, key = { it.index }) { channel ->
+            ChannelRow(
+                channel = channel,
+                onClick = onChannelClick?.let { { it(channel) } },
+            )
+        }
     }
 }

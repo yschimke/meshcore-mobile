@@ -18,7 +18,9 @@ import ee.schimke.meshcore.app.data.proto.SavedDevicesPb
 import ee.schimke.meshcore.app.data.proto.SelfInfoPb
 import ee.schimke.meshcore.app.data.proto.TcpTransportPb
 import ee.schimke.meshcore.app.data.proto.UsbTransportPb
+import ee.schimke.meshcore.app.data.proto.ChannelInfoPb
 import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.DeviceInfo
@@ -102,9 +104,11 @@ data class DeviceSnapshot(
     val battery: Timestamped<BatteryInfo>? = null,
     val radio: Timestamped<RadioSettings>? = null,
     val deviceInfo: Timestamped<DeviceInfo>? = null,
+    val channels: Timestamped<List<ChannelInfo>>? = null,
 ) {
     val deviceName: String? get() = selfInfo?.value?.name
     val contactCount: Int get() = contacts?.value?.size ?: 0
+    val channelCount: Int get() = channels?.value?.size ?: 0
 }
 
 fun bleDeviceId(identifier: String): String = "ble:$identifier"
@@ -245,6 +249,7 @@ private fun DeviceSnapshotPb.toDomain(): DeviceSnapshot = DeviceSnapshot(
     battery = battery?.toDomain()?.let { Timestamped(it, battery_at_ms) },
     radio = radio?.toDomain()?.let { Timestamped(it, radio_at_ms) },
     deviceInfo = device_info?.toDomain()?.let { Timestamped(it, device_info_at_ms) },
+    channels = if (channels_at_ms > 0) Timestamped(channels.map { it.toDomain() }, channels_at_ms) else null,
 )
 
 private fun DeviceSnapshot.toPb(): DeviceSnapshotPb = DeviceSnapshotPb(
@@ -258,6 +263,8 @@ private fun DeviceSnapshot.toPb(): DeviceSnapshotPb = DeviceSnapshotPb(
     radio_at_ms = radio?.fetchedAtMs ?: 0L,
     device_info = deviceInfo?.value?.toPb(),
     device_info_at_ms = deviceInfo?.fetchedAtMs ?: 0L,
+    channels = channels?.value?.map { it.toPb() } ?: emptyList(),
+    channels_at_ms = channels?.fetchedAtMs ?: 0L,
 )
 
 // SelfInfo
@@ -355,4 +362,17 @@ private fun DeviceInfo.toPb(): DeviceInfoPb = DeviceInfoPb(
     protocol_version = protocolVersion,
     max_contacts = maxContacts,
     max_channels = maxChannels,
+)
+
+// ChannelInfo
+private fun ChannelInfoPb.toDomain(): ChannelInfo = ChannelInfo(
+    index = index,
+    name = name,
+    psk = kotlinx.io.bytestring.ByteString(psk.toByteArray()),
+)
+
+private fun ChannelInfo.toPb(): ChannelInfoPb = ChannelInfoPb(
+    index = index,
+    name = name,
+    psk = okio.ByteString.of(*psk.toByteArray()),
 )

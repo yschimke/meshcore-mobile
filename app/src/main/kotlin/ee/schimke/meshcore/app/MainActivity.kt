@@ -16,6 +16,8 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import ee.schimke.meshcore.app.ui.ChannelChatScreen
+import ee.schimke.meshcore.app.ui.ContactChatScreen
 import ee.schimke.meshcore.app.ui.DeviceScreen
 import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
@@ -29,6 +31,8 @@ import kotlinx.serialization.Serializable
 // death via rememberNavBackStack's saveable bundling.
 @Serializable private data object ScannerRoute : NavKey
 @Serializable private data object DeviceRoute : NavKey
+@Serializable private data class ContactRoute(val publicKeyHex: String) : NavKey
+@Serializable private data class ChannelRoute(val channelIndex: Int) : NavKey
 
 class MainActivity : ComponentActivity() {
     // Runtime BLE permissions are requested from the BLE tab on demand, not here;
@@ -63,9 +67,28 @@ private fun MeshcoreAppUi() {
                     entry<DeviceRoute> {
                         DeviceScreen(
                             onDisconnected = {
-                                if (backStack.lastOrNull() is DeviceRoute) backStack.removeLastOrNull()
+                                // Pop back to scanner, removing any chat screens too
+                                while (backStack.size > 1) backStack.removeLastOrNull()
                             },
                             onOpenThemePicker = { pickerVisible = true },
+                            onNavigateToContact = { contact ->
+                                backStack.add(ContactRoute(contact.publicKey.toHex()))
+                            },
+                            onNavigateToChannel = { channel ->
+                                backStack.add(ChannelRoute(channel.index))
+                            },
+                        )
+                    }
+                    entry<ContactRoute> { route ->
+                        ContactChatScreen(
+                            publicKeyHex = route.publicKeyHex,
+                            onBack = { backStack.removeLastOrNull() },
+                        )
+                    }
+                    entry<ChannelRoute> { route ->
+                        ChannelChatScreen(
+                            channelIndex = route.channelIndex,
+                            onBack = { backStack.removeLastOrNull() },
                         )
                     }
                 },

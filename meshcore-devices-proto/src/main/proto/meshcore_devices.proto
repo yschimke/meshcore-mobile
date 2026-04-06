@@ -49,6 +49,15 @@ message DeviceSnapshotPb {
 
   DeviceInfoPb device_info = 9;
   int64 device_info_at_ms = 10;
+
+  repeated ChannelInfoPb channels = 11;
+  int64 channels_at_ms = 12;
+}
+
+message ChannelInfoPb {
+  int32 index = 1;
+  string name = 2;
+  bytes psk = 3;
 }
 
 message SelfInfoPb {

@@ -1,6 +1,7 @@
 package ee.schimke.meshcore.core.client
 
 import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.DeviceInfo
 import ee.schimke.meshcore.core.model.MeshEvent
@@ -60,6 +61,9 @@ class MeshCoreClient(
 
     private val _device = MutableStateFlow<DeviceInfo?>(null)
     val device: StateFlow<DeviceInfo?> = _device.asStateFlow()
+
+    private val _channels = MutableStateFlow<List<ChannelInfo>>(emptyList())
+    val channels: StateFlow<List<ChannelInfo>> = _channels.asStateFlow()
 
     val connection: StateFlow<TransportState> get() = transport.state
 
@@ -129,6 +133,10 @@ class MeshCoreClient(
                 _contacts.value = contactsAccumulator.toList()
                 contactsAccumulator.clear()
             }
+            is MeshEvent.ChannelInfoEvent -> {
+                val ch = event.info
+                _channels.value = _channels.value.filter { it.index != ch.index } + ch
+            }
             else -> Unit
         }
         _events.emit(event)
@@ -143,6 +151,29 @@ class MeshCoreClient(
             deferred.await()
         }
         _contacts.value
+    }
+
+    /**
+     * Enumerate all configured channels by requesting each index
+     * from 0 until [DeviceInfo.maxChannels]. Empty channels (name
+     * blank + PSK all zeros) are filtered out.
+     */
+    suspend fun getChannels(timeoutMs: Long = 5_000): List<ChannelInfo> {
+        val maxCh = _device.value?.maxChannels ?: 8
+        val result = mutableListOf<ChannelInfo>()
+        for (i in 0 until maxCh) {
+            val ev = runCatching {
+                requestOne(Frames.getChannel(i), timeoutMs) {
+                    it is MeshEvent.ChannelInfoEvent
+                }
+            }.getOrNull() as? MeshEvent.ChannelInfoEvent ?: continue
+            val ch = ev.info
+            // Skip empty channels (no name and all-zero PSK)
+            val isEmpty = ch.name.isBlank() && ch.psk.toByteArray().all { it == 0.toByte() }
+            if (!isEmpty) result += ch
+        }
+        _channels.value = result
+        return result
     }
 
     suspend fun getBatteryAndStorage(timeoutMs: Long = 3_000): BatteryInfo =

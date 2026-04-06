@@ -100,6 +100,12 @@ object Frames {
         writeByte(dbm.toByte())
     }
 
+    /** `[0x1F][channel_idx]` — request info for a single channel. */
+    fun getChannel(index: Int): ByteString = buildByteString {
+        writeByte(CommandCode.GetChannel.raw)
+        writeByte(index.toByte())
+    }
+
     fun reboot(): ByteString = single(CommandCode.Reboot)
 
     fun syncNextMessage(): ByteString = single(CommandCode.SyncNextMessage)

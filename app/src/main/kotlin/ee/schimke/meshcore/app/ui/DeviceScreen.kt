@@ -1,6 +1,7 @@
 package ee.schimke.meshcore.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,7 +15,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.automirrored.rounded.Message
-import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.Logout
@@ -49,15 +49,18 @@ import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
+import androidx.compose.material3.CircularProgressIndicator
 import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.MeshEvent
 import ee.schimke.meshcore.core.model.PublicKey
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
-import ee.schimke.meshcore.mobile.ui.ContactList
+import ee.schimke.meshcore.mobile.ui.ChannelRow
 import ee.schimke.meshcore.mobile.ui.ContactListEmpty
+import ee.schimke.meshcore.mobile.ui.ContactRow
 import ee.schimke.meshcore.mobile.ui.DeviceSummaryCard
 import ee.schimke.meshcore.mobile.ui.verticalScrollbar
 import kotlinx.coroutines.launch
@@ -68,6 +71,8 @@ import kotlin.time.Instant
 fun DeviceScreen(
     onDisconnected: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
+    onNavigateToContact: (Contact) -> Unit = {},
+    onNavigateToChannel: (ChannelInfo) -> Unit = {},
 ) {
     val controller = MeshcoreApp.get().connectionController
     val uiState by controller.state.collectAsState()
@@ -85,6 +90,8 @@ fun DeviceScreen(
             client = s.client,
             onDisconnect = { controller.cancel() },
             onOpenThemePicker = onOpenThemePicker,
+            onNavigateToContact = onNavigateToContact,
+            onNavigateToChannel = onNavigateToChannel,
         )
         is ConnectionUiState.Connecting -> DeviceStatusView(
             title = "Connecting",
@@ -123,14 +130,30 @@ private fun ConnectedDevice(
     client: ee.schimke.meshcore.core.client.MeshCoreClient,
     onDisconnect: () -> Unit,
     onOpenThemePicker: () -> Unit,
+    onNavigateToContact: (Contact) -> Unit,
+    onNavigateToChannel: (ChannelInfo) -> Unit,
 ) {
     val self by client.selfInfo.collectAsState()
     val battery by client.battery.collectAsState()
     val radio by client.radio.collectAsState()
     val contacts by client.contacts.collectAsState()
+    val channels by client.channels.collectAsState()
     val scope = rememberCoroutineScope()
     var lastMessage by remember { mutableStateOf<String?>(null) }
+    var contactsLoading by remember { mutableStateOf(true) }
+    var channelsLoading by remember { mutableStateOf(true) }
 
+    // Auto-fetch contacts then channels on connect
+    LaunchedEffect(client) {
+        contactsLoading = true
+        channelsLoading = true
+        runCatching { client.getContacts() }
+        contactsLoading = false
+        runCatching { client.getChannels() }
+        channelsLoading = false
+    }
+
+    // Listen for incoming messages
     LaunchedEffect(client) {
         client.events.collect { ev ->
             when (ev) {
@@ -148,19 +171,19 @@ private fun ConnectedDevice(
         battery = battery,
         radio = radio,
         contacts = contacts,
+        contactsLoading = contactsLoading,
+        channels = channels,
+        channelsLoading = channelsLoading,
         lastMessage = lastMessage,
-        onRefreshContacts = { scope.launch { runCatching { client.getContacts() } } },
-        onSend = { text, target ->
+        onRefreshContacts = {
             scope.launch {
-                runCatching {
-                    client.sendText(
-                        recipient = target.publicKey,
-                        text = text,
-                        timestamp = kotlin.time.Clock.System.now(),
-                    )
-                }
+                contactsLoading = true
+                runCatching { client.getContacts() }
+                contactsLoading = false
             }
         },
+        onContactClick = onNavigateToContact,
+        onChannelClick = onNavigateToChannel,
         onDisconnect = onDisconnect,
         onOpenThemePicker = onOpenThemePicker,
     )
@@ -178,23 +201,41 @@ fun DeviceBody(
     battery: BatteryInfo?,
     radio: RadioSettings?,
     contacts: List<Contact>,
+    contactsLoading: Boolean = false,
+    channels: List<ChannelInfo> = emptyList(),
+    channelsLoading: Boolean = false,
     lastMessage: String?,
     onRefreshContacts: () -> Unit,
-    onSend: (text: String, target: Contact) -> Unit,
+    onContactClick: (Contact) -> Unit = {},
+    onChannelClick: (ChannelInfo) -> Unit = {},
     onDisconnect: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
 ) {
-    var message by remember { mutableStateOf("Hello from KMP") }
     val scroll = rememberScrollState()
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = self?.name ?: "Connected device",
-                        style = MaterialTheme.typography.titleLarge,
-                    )
+                    if (self != null) {
+                        Text(
+                            text = self.name,
+                            style = MaterialTheme.typography.titleLarge,
+                        )
+                    } else {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(18.dp),
+                                strokeWidth = 2.dp,
+                            )
+                            Spacer(Modifier.size(Dimens.S))
+                            Text(
+                                text = "Loading\u2026",
+                                style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
                 },
                 actions = {
                     IconButton(onClick = onOpenThemePicker) {
@@ -232,55 +273,111 @@ fun DeviceBody(
 
             lastMessage?.let { LastMessageBanner(it) }
 
+            // Split contacts by type
+            val chatContacts = contacts.filter { it.type == ContactType.CHAT }
+            val rooms = contacts.filter { it.type == ContactType.ROOM }
+            val repeaters = contacts.filter { it.type == ContactType.REPEATER }
+            val sensors = contacts.filter { it.type == ContactType.SENSOR }
+
+            // --- Contacts (DM-able peers) ---
             SectionHeader(
-                text = "Contacts (${contacts.size})",
+                text = if (contactsLoading) "Contacts" else "Contacts (${chatContacts.size})",
                 action = {
-                    FilledTonalButton(onClick = onRefreshContacts) {
-                        Icon(
-                            imageVector = Icons.Rounded.Refresh,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp),
-                        )
+                    FilledTonalButton(
+                        onClick = onRefreshContacts,
+                        enabled = !contactsLoading,
+                    ) {
+                        if (contactsLoading) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(18.dp),
+                                strokeWidth = 2.dp,
+                            )
+                        } else {
+                            Icon(
+                                imageVector = Icons.Rounded.Refresh,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                            )
+                        }
                         Spacer(Modifier.size(Dimens.XS))
                         Text("Refresh")
                     }
                 },
             )
-            if (contacts.isEmpty()) {
+            if (contactsLoading) {
+                LoadingPlaceholder("Fetching contacts\u2026")
+            } else if (chatContacts.isEmpty()) {
                 ContactListEmpty()
             } else {
-                ContactList(
-                    contacts = contacts,
-                    modifier = Modifier.fillMaxWidth().height(260.dp),
-                )
+                chatContacts.forEach { contact ->
+                    ContactRow(contact, onClick = { onContactClick(contact) })
+                }
             }
 
-            SectionHeader(text = "Send message")
-            OutlinedTextField(
-                value = message,
-                onValueChange = { message = it },
-                label = { Text("Message") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
+            // --- Rooms ---
+            if (contactsLoading || rooms.isNotEmpty()) {
+                SectionHeader(text = if (contactsLoading) "Rooms" else "Rooms (${rooms.size})")
+                if (!contactsLoading) {
+                    rooms.forEach { contact ->
+                        ContactRow(contact, onClick = { onContactClick(contact) })
+                    }
+                }
+            }
+
+            // --- Repeaters (not tappable for chat) ---
+            if (!contactsLoading && repeaters.isNotEmpty()) {
+                SectionHeader(text = "Repeaters (${repeaters.size})")
+                repeaters.forEach { contact ->
+                    ContactRow(contact)
+                }
+            }
+
+            // --- Sensors ---
+            if (!contactsLoading && sensors.isNotEmpty()) {
+                SectionHeader(text = "Sensors (${sensors.size})")
+                sensors.forEach { contact ->
+                    ContactRow(contact)
+                }
+            }
+
+            // --- Channels ---
+            SectionHeader(
+                text = if (channelsLoading) "Channels" else "Channels (${channels.size})",
             )
-            Button(
-                enabled = contacts.isNotEmpty(),
-                onClick = { contacts.firstOrNull()?.let { onSend(message, it) } },
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Rounded.Send,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp),
-                )
-                Spacer(Modifier.size(Dimens.S))
+            if (channelsLoading) {
+                LoadingPlaceholder("Fetching channels\u2026")
+            } else if (channels.isEmpty()) {
                 Text(
-                    text = contacts.firstOrNull()?.let { "Send to ${it.name}" }
-                        ?: "No contact to send to",
+                    text = "No channels configured",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 8.dp),
                 )
+            } else {
+                channels.forEach { channel ->
+                    ChannelRow(channel, onClick = { onChannelClick(channel) })
+                }
             }
 
             Spacer(Modifier.size(Dimens.L))
+        }
+    }
+}
+
+@Composable
+private fun LoadingPlaceholder(text: String) {
+    Box(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            CircularProgressIndicator(modifier = Modifier.size(28.dp))
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
@@ -583,7 +680,7 @@ fun DeviceBodyPreview() {
             ),
             lastMessage = "hey — are you on tonight? (SNR 6)",
             onRefreshContacts = {},
-            onSend = { _, _ -> },
+
             onDisconnect = {},
         )
     }
@@ -593,19 +690,20 @@ fun DeviceBodyPreview() {
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — empty",
+    name = "Device — loading",
 )
 @Composable
-fun DeviceBodyEmptyPreview() {
+fun DeviceBodyLoadingPreview() {
     MeshcoreTheme {
         DeviceBody(
             self = null,
             battery = null,
             radio = null,
             contacts = emptyList(),
+            contactsLoading = true,
             lastMessage = null,
             onRefreshContacts = {},
-            onSend = { _, _ -> },
+
             onDisconnect = {},
         )
     }
@@ -615,7 +713,7 @@ fun DeviceBodyEmptyPreview() {
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — connected, no contacts yet",
+    name = "Device — contacts loading",
 )
 @Composable
 fun DeviceBodyNoContactsPreview() {
@@ -625,9 +723,10 @@ fun DeviceBodyNoContactsPreview() {
             battery = BatteryInfo(3980, 512, 4096),
             radio = RadioSettings(869_525_000, 125_000, 10, 5),
             contacts = emptyList(),
+            contactsLoading = true,
             lastMessage = null,
             onRefreshContacts = {},
-            onSend = { _, _ -> },
+
             onDisconnect = {},
         )
     }
@@ -652,7 +751,7 @@ fun DeviceBodyLowBatteryPreview() {
             ),
             lastMessage = null,
             onRefreshContacts = {},
-            onSend = { _, _ -> },
+
             onDisconnect = {},
         )
     }
@@ -692,7 +791,7 @@ fun DeviceBodyManyContactsPreview() {
             contacts = contacts,
             lastMessage = "eve-hq: weather check in 5 (SNR 8)",
             onRefreshContacts = {},
-            onSend = { _, _ -> },
+
             onDisconnect = {},
         )
     }
@@ -760,7 +859,7 @@ fun DeviceBodyDarkPreview() {
             ),
             lastMessage = "hey — are you on tonight? (SNR 6)",
             onRefreshContacts = {},
-            onSend = { _, _ -> },
+
             onDisconnect = {},
         )
     }

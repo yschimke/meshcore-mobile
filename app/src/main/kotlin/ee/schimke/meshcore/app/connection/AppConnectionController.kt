@@ -272,8 +272,9 @@ class AppConnectionController(
         client: ee.schimke.meshcore.core.client.MeshCoreClient,
     ) {
         runCatching {
-            // Fetch contacts (selfInfo, battery, radio already fetched by start())
+            // Fetch contacts + channels (selfInfo, battery, radio already fetched by start())
             runCatching { client.getContacts() }
+            runCatching { client.getChannels() }
             val now = System.currentTimeMillis()
             val snapshot = DeviceSnapshot(
                 selfInfo = client.selfInfo.value?.let { Timestamped(it, now) },
@@ -281,6 +282,7 @@ class AppConnectionController(
                 battery = client.battery.value?.let { Timestamped(it, now) },
                 radio = client.radio.value?.let { Timestamped(it, now) },
                 deviceInfo = client.device.value?.let { Timestamped(it, now) },
+                channels = Timestamped(client.channels.value, now),
             )
             savedDevices.updateSnapshot(deviceId, snapshot)
         }

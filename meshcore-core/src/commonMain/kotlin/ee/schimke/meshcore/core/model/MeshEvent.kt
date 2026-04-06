@@ -14,6 +14,7 @@ sealed class MeshEvent {
     data class Battery(val info: BatteryInfo) : MeshEvent()
     data class Device(val info: DeviceInfo) : MeshEvent()
     data class Radio(val settings: RadioSettings) : MeshEvent()
+    data class ChannelInfoEvent(val info: ChannelInfo) : MeshEvent()
     data class CurrentTime(val time: kotlin.time.Instant) : MeshEvent()
     object NoMoreMessages : MeshEvent()
     object Ok : MeshEvent()
