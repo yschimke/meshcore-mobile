@@ -10,8 +10,6 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import ee.schimke.meshcore.app.MeshcoreApp
-import ee.schimke.meshcore.app.ble.DeviceProximityCheck
-import ee.schimke.meshcore.core.manager.ManagerState
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
@@ -40,38 +38,16 @@ class PeriodicRefreshWorker(
             return Result.success()
         }
 
-        // Don't reconnect if already connected to this device
-        val alreadyConnected = app.connectionController.connectedDeviceId.value == favorite.id
-
-        if (!alreadyConnected) {
-            // Check if device is nearby before attempting connection
-            if (!DeviceProximityCheck.isNearby(applicationContext, favorite)) {
-                Log.d(TAG, "Periodic refresh: device not nearby, skipping")
-                return Result.success()
-            }
-            Log.d(TAG, "Periodic refresh: connecting to ${favorite.label}")
-            app.connectionController.requestReconnect(favorite)
+        // Only refresh if already connected — never initiate BLE connections
+        // from background work (it triggers pairing prompts).
+        if (app.connectionController.connectedDeviceId.value != favorite.id) {
+            Log.d(TAG, "Periodic refresh: not connected to ${favorite.label}, skipping")
+            return Result.success()
         }
 
-        // Wait for connection + data
-        val connected = withTimeoutOrNull(30_000) {
-            app.manager.state.filter { it is ManagerState.Connected }.first()
-        }
-
-        if (connected == null) {
-            Log.d(TAG, "Periodic refresh: connection timeout")
-            return Result.retry()
-        }
-
-        // Give time for fetchAndPersist to complete (it runs on the controller's scope)
+        // Wait for fresh data to arrive
         withTimeoutOrNull(15_000) {
             WidgetStateBridge.snapshot.filter { it.lastUpdatedMs != null }.first()
-        }
-
-        // Disconnect only if WE initiated the connection (not if user was already connected)
-        if (!alreadyConnected) {
-            Log.d(TAG, "Periodic refresh: disconnecting")
-            app.connectionController.cancel()
         }
 
         Log.d(TAG, "Periodic refresh: done")
