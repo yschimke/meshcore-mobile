@@ -141,20 +141,19 @@ private fun ConnectedDevice(
     val channels by client.channels.collectAsState()
     val scope = rememberCoroutineScope()
     var lastMessage by remember { mutableStateOf<String?>(null) }
-    var contactsLoading by remember { mutableStateOf(true) }
-    var channelsLoading by remember { mutableStateOf(true) }
+    // If the client was seeded with cached data, contacts won't be empty
+    // even before the fresh fetch — show a "refreshing" indicator instead
+    // of a full loading spinner in that case.
+    var contactsRefreshing by remember { mutableStateOf(true) }
 
-    // Auto-fetch contacts then channels on connect
     LaunchedEffect(client) {
-        contactsLoading = true
-        channelsLoading = true
+        contactsRefreshing = true
         runCatching { client.getContacts() }
-        contactsLoading = false
-        runCatching { client.getChannels() }
-        channelsLoading = false
+        contactsRefreshing = false
+        runCatching { client.syncMessages() }
     }
 
-    // Listen for incoming messages
+    // Listen for incoming messages + re-sync on MessagesWaiting push
     LaunchedEffect(client) {
         client.events.collect { ev ->
             when (ev) {
@@ -162,6 +161,8 @@ private fun ConnectedDevice(
                     lastMessage = "${ev.message.text} (SNR ${ev.message.snr})"
                 is MeshEvent.ChannelMessage ->
                     lastMessage = "#${ev.message.channelIndex} ${ev.message.body}"
+                MeshEvent.MessagesWaiting ->
+                    scope.launch { runCatching { client.syncMessages() } }
                 else -> Unit
             }
         }
@@ -172,15 +173,14 @@ private fun ConnectedDevice(
         battery = battery,
         radio = radio,
         contacts = contacts,
-        contactsLoading = contactsLoading,
+        contactsLoading = contactsRefreshing && contacts.isEmpty(),
         channels = channels,
-        channelsLoading = channelsLoading,
         lastMessage = lastMessage,
         onRefreshContacts = {
             scope.launch {
-                contactsLoading = true
+                contactsRefreshing = true
                 runCatching { client.getContacts() }
-                contactsLoading = false
+                contactsRefreshing = false
             }
         },
         onContactClick = onNavigateToContact,
@@ -204,7 +204,6 @@ fun DeviceBody(
     contacts: List<Contact>,
     contactsLoading: Boolean = false,
     channels: List<ChannelInfo> = emptyList(),
-    channelsLoading: Boolean = false,
     lastMessage: String?,
     onRefreshContacts: () -> Unit,
     onContactClick: (Contact) -> Unit = {},
@@ -342,12 +341,8 @@ fun DeviceBody(
             }
 
             // --- Channels ---
-            SectionHeader(
-                text = if (channelsLoading) "Channels" else "Channels (${channels.size})",
-            )
-            if (channelsLoading) {
-                LoadingPlaceholder("Fetching channels\u2026")
-            } else if (channels.isEmpty()) {
+            SectionHeader(text = "Channels (${channels.size})")
+            if (channels.isEmpty()) {
                 Text(
                     text = "No channels configured",
                     style = MaterialTheme.typography.bodySmall,

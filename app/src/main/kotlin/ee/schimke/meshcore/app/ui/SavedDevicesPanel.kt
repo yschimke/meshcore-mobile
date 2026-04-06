@@ -1,16 +1,19 @@
 package ee.schimke.meshcore.app.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
 import androidx.compose.material.icons.rounded.Delete
@@ -21,14 +24,20 @@ import androidx.compose.material.icons.rounded.Usb
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,6 +61,7 @@ import kotlin.time.Instant
  * [ee.schimke.meshcore.app.connection.AppConnectionController] so all
  * network operations stay off the UI scope.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedDevicesPanel(
     devices: List<SavedDevice>,
@@ -71,14 +81,40 @@ fun SavedDevicesPanel(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(devices, key = { it.id }) { device ->
-            SavedDeviceRow(
-                device = device,
-                busy = busy,
-                isConnected = device.id == connectedDeviceId,
-                onConnect = { onConnect(device) },
-                onForget = { onForget(device) },
-                onToggleFavorite = { onToggleFavorite(device) },
-            )
+            val dismissState = rememberSwipeToDismissBoxState()
+            LaunchedEffect(dismissState.currentValue) {
+                if (dismissState.currentValue == SwipeToDismissBoxValue.EndToStart) {
+                    onForget(device)
+                }
+            }
+            SwipeToDismissBox(
+                state = dismissState,
+                enableDismissFromStartToEnd = false,
+                backgroundContent = {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(MaterialTheme.colorScheme.errorContainer)
+                            .padding(horizontal = 20.dp),
+                        contentAlignment = Alignment.CenterEnd,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Delete,
+                            contentDescription = "Delete",
+                            tint = MaterialTheme.colorScheme.onErrorContainer,
+                        )
+                    }
+                },
+            ) {
+                SavedDeviceRow(
+                    device = device,
+                    busy = busy,
+                    isConnected = device.id == connectedDeviceId,
+                    onConnect = { onConnect(device) },
+                    onToggleFavorite = { onToggleFavorite(device) },
+                )
+            }
         }
     }
 }
@@ -89,7 +125,6 @@ private fun SavedDeviceRow(
     busy: Boolean,
     isConnected: Boolean,
     onConnect: () -> Unit,
-    onForget: () -> Unit,
     onToggleFavorite: () -> Unit,
 ) {
     val icon: ImageVector = when (device.transport) {
@@ -160,13 +195,6 @@ private fun SavedDeviceRow(
                 Icon(
                     imageVector = if (device.favorite) Icons.Rounded.Star else Icons.Rounded.StarBorder,
                     contentDescription = if (device.favorite) "Unfavorite" else "Favorite",
-                    tint = subtleColor,
-                )
-            }
-            IconButton(onClick = onForget) {
-                Icon(
-                    imageVector = Icons.Rounded.Delete,
-                    contentDescription = "Forget",
                     tint = subtleColor,
                 )
             }
