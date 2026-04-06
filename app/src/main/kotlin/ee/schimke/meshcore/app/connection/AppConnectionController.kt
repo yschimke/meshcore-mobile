@@ -156,6 +156,7 @@ class AppConnectionController(
     }
 
     fun requestConnect(request: ConnectionRequest) {
+        Log.d(TAG, "requestConnect: ${request.label} (current state: ${_state.value::class.simpleName})")
         inFlight?.cancel()
         inFlight = scope.launch {
             when (request) {
