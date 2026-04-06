@@ -72,6 +72,22 @@ class AppConnectionController(
                         val attempt = currentAttempt
                         if (attempt != null) {
                             _connectedDeviceId.value = attempt.id
+                            // Seed the client with cached snapshot data so
+                            // the UI shows previous session's contacts/channels
+                            // immediately while fresh data loads.
+                            runCatching {
+                                val saved = savedDevices.get(attempt.id)
+                                saved?.snapshot?.let { snap ->
+                                    ms.client.seedFromCache(
+                                        selfInfo = snap.selfInfo?.value,
+                                        contacts = snap.contacts?.value,
+                                        battery = snap.battery?.value,
+                                        radio = snap.radio?.value,
+                                        deviceInfo = snap.deviceInfo?.value,
+                                        channels = snap.channels?.value,
+                                    )
+                                }
+                            }
                             runCatching {
                                 savedDevices.upsert(
                                     id = attempt.id,
@@ -201,12 +217,12 @@ class AppConnectionController(
 
     fun cancel() {
         inFlight?.cancel()
-        inFlight = scope.launch {
-            runCatching { manager.disconnect() }
-            if (_state.value !is ConnectionUiState.Failed) {
-                _state.value = ConnectionUiState.Idle
-            }
-        }
+        // Set Idle immediately so the UI navigates back without waiting
+        // for the async transport teardown to complete.
+        _connectedDeviceId.value = null
+        _state.value = ConnectionUiState.Idle
+        currentAttempt = null
+        scope.launch { runCatching { manager.disconnect() } }
     }
 
     fun dismissError() {

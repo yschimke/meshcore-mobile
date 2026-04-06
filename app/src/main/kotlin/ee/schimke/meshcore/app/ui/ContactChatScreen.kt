@@ -16,6 +16,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
-import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.MeshEvent
 import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ChatMessage
@@ -49,39 +49,46 @@ fun ContactChatScreen(
     val contact = contacts.firstOrNull { it.publicKey.toHex() == publicKeyHex }
     val contactName = contact?.name ?: publicKeyHex.take(12)
 
-    val messages = remember { mutableStateListOf<ChatMessage>() }
+    // Read accumulated DMs from the client's message store
+    val allDms by client.directMessages.collectAsState()
+    val receivedMessages by remember(allDms) {
+        derivedStateOf {
+            (allDms[publicKeyHex] ?: emptyList()).map { msg ->
+                ChatMessage(
+                    id = "rx-${msg.timestamp.epochSeconds}-${msg.text.hashCode()}",
+                    senderName = contactName,
+                    text = msg.text,
+                    timestamp = msg.timestamp,
+                    snr = msg.snr,
+                    isMine = false,
+                )
+            }
+        }
+    }
+
+    // Locally-tracked sent messages
+    val sentMessages = remember { mutableStateListOf<ChatMessage>() }
     val scope = rememberCoroutineScope()
     var draft by remember { mutableStateOf("") }
 
-    // Listen for incoming DMs from this contact
+    // All messages sorted by timestamp
+    val messages by remember(receivedMessages, sentMessages.size) {
+        derivedStateOf {
+            (receivedMessages + sentMessages).sortedBy { it.timestamp }
+        }
+    }
+
+    // Listen for delivery confirmations
     LaunchedEffect(client) {
         client?.events?.collect { ev ->
-            when (ev) {
-                is MeshEvent.DirectMessage -> {
-                    val prefix = ev.message.senderPrefix.toHex()
-                    if (publicKeyHex.startsWith(prefix)) {
-                        messages.add(
-                            ChatMessage(
-                                id = "rx-${messages.size}-${ev.message.timestamp.epochSeconds}",
-                                senderName = contactName,
-                                text = ev.message.text,
-                                timestamp = ev.message.timestamp,
-                                snr = ev.message.snr,
-                                isMine = false,
-                            ),
-                        )
-                    }
+            if (ev is MeshEvent.SendConfirmedEvent) {
+                val hash = ev.confirmed.ackHash
+                val idx = sentMessages.indexOfFirst {
+                    it.id.startsWith("tx-$hash-") && it.status == MessageStatus.Sent
                 }
-                is MeshEvent.SendConfirmedEvent -> {
-                    val hash = ev.confirmed.ackHash
-                    val idx = messages.indexOfFirst {
-                        it.id.startsWith("tx-$hash-") && it.status == MessageStatus.Sent
-                    }
-                    if (idx >= 0) {
-                        messages[idx] = messages[idx].copy(status = MessageStatus.Confirmed)
-                    }
+                if (idx >= 0) {
+                    sentMessages[idx] = sentMessages[idx].copy(status = MessageStatus.Confirmed)
                 }
-                else -> Unit
             }
         }
     }
@@ -137,9 +144,9 @@ fun ContactChatScreen(
                             )
                         }
                         val ack = result.getOrNull()
-                        messages.add(
+                        sentMessages.add(
                             ChatMessage(
-                                id = "tx-${ack?.ackHash ?: messages.size}-${now.epochSeconds}",
+                                id = "tx-${ack?.ackHash ?: sentMessages.size}-${now.epochSeconds}",
                                 senderName = null,
                                 text = text,
                                 timestamp = now,

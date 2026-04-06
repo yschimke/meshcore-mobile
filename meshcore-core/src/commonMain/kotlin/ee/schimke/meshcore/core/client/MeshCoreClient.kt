@@ -5,6 +5,8 @@ import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.DeviceInfo
 import ee.schimke.meshcore.core.model.MeshEvent
+import ee.schimke.meshcore.core.model.ReceivedChannelMessage
+import ee.schimke.meshcore.core.model.ReceivedDirectMessage
 import ee.schimke.meshcore.core.model.PublicKey
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
@@ -65,7 +67,37 @@ class MeshCoreClient(
     private val _channels = MutableStateFlow<List<ChannelInfo>>(emptyList())
     val channels: StateFlow<List<ChannelInfo>> = _channels.asStateFlow()
 
+    /** Accumulated DMs keyed by the contact's full public key hex. */
+    private val _directMessages = MutableStateFlow<Map<String, List<ReceivedDirectMessage>>>(emptyMap())
+    val directMessages: StateFlow<Map<String, List<ReceivedDirectMessage>>> = _directMessages.asStateFlow()
+
+    /** Accumulated channel messages keyed by channel index. */
+    private val _channelMessages = MutableStateFlow<Map<Int, List<ReceivedChannelMessage>>>(emptyMap())
+    val channelMessages: StateFlow<Map<Int, List<ReceivedChannelMessage>>> = _channelMessages.asStateFlow()
+
     val connection: StateFlow<TransportState> get() = transport.state
+
+    /**
+     * Pre-populate StateFlows with cached data from a previous session
+     * so the UI has something to show immediately while fresh data loads.
+     * Only sets values that are still null/empty — live data from the
+     * device takes priority.
+     */
+    fun seedFromCache(
+        selfInfo: SelfInfo? = null,
+        contacts: List<Contact>? = null,
+        battery: BatteryInfo? = null,
+        radio: RadioSettings? = null,
+        deviceInfo: DeviceInfo? = null,
+        channels: List<ChannelInfo>? = null,
+    ) {
+        if (_selfInfo.value == null && selfInfo != null) _selfInfo.value = selfInfo
+        if (_contacts.value.isEmpty() && contacts != null) _contacts.value = contacts
+        if (_battery.value == null && battery != null) _battery.value = battery
+        if (_radio.value == null && radio != null) _radio.value = radio
+        if (_device.value == null && deviceInfo != null) _device.value = deviceInfo
+        if (_channels.value.isEmpty() && channels != null) _channels.value = channels
+    }
 
     private val sendMutex = Mutex()
     private var pumpJob: Job? = null
@@ -137,6 +169,22 @@ class MeshCoreClient(
                 val ch = event.info
                 _channels.value = _channels.value.filter { it.index != ch.index } + ch
             }
+            is MeshEvent.DirectMessage -> {
+                val msg = event.message
+                // Resolve the full pubkey hex from contacts by matching the 6-byte prefix
+                val prefix = msg.senderPrefix.toHex()
+                val contactKey = _contacts.value
+                    .firstOrNull { it.publicKey.toHex().startsWith(prefix) }
+                    ?.publicKey?.toHex() ?: prefix
+                val current = _directMessages.value
+                _directMessages.value = current + (contactKey to (current[contactKey].orEmpty() + msg))
+            }
+            is MeshEvent.ChannelMessage -> {
+                val msg = event.message
+                val idx = msg.channelIndex
+                val current = _channelMessages.value
+                _channelMessages.value = current + (idx to (current[idx].orEmpty() + msg))
+            }
             else -> Unit
         }
         _events.emit(event)
@@ -158,22 +206,46 @@ class MeshCoreClient(
      * from 0 until [DeviceInfo.maxChannels]. Empty channels (name
      * blank + PSK all zeros) are filtered out.
      */
-    suspend fun getChannels(timeoutMs: Long = 5_000): List<ChannelInfo> {
+    /**
+     * Enumerate all configured channels by requesting each index
+     * from 0 until [DeviceInfo.maxChannels]. Empty channels (name
+     * blank + PSK all zeros) are filtered out. Uses a short per-channel
+     * timeout since responses are local to the companion device.
+     */
+    suspend fun getChannels(perChannelTimeoutMs: Long = 1_000): List<ChannelInfo> {
         val maxCh = _device.value?.maxChannels ?: 8
         val result = mutableListOf<ChannelInfo>()
         for (i in 0 until maxCh) {
             val ev = runCatching {
-                requestOne(Frames.getChannel(i), timeoutMs) {
+                requestOne(Frames.getChannel(i), perChannelTimeoutMs) {
                     it is MeshEvent.ChannelInfoEvent
                 }
             }.getOrNull() as? MeshEvent.ChannelInfoEvent ?: continue
             val ch = ev.info
-            // Skip empty channels (no name and all-zero PSK)
             val isEmpty = ch.name.isBlank() && ch.psk.toByteArray().all { it == 0.toByte() }
             if (!isEmpty) result += ch
         }
         _channels.value = result
         return result
+    }
+
+    /**
+     * Drain the device's pending message queue by repeatedly sending
+     * `SyncNextMessage` until the device replies with `NoMoreMessages`.
+     * Each iteration yields a `DirectMessage` or `ChannelMessage` event
+     * through the [events] SharedFlow as usual.
+     */
+    suspend fun syncMessages(perMessageTimeoutMs: Long = 5_000) {
+        while (true) {
+            val ev = runCatching {
+                requestOne(Frames.syncNextMessage(), perMessageTimeoutMs) {
+                    it is MeshEvent.DirectMessage ||
+                        it is MeshEvent.ChannelMessage ||
+                        it is MeshEvent.NoMoreMessages
+                }
+            }.getOrNull() ?: break
+            if (ev is MeshEvent.NoMoreMessages) break
+        }
     }
 
     suspend fun getBatteryAndStorage(timeoutMs: Long = 3_000): BatteryInfo =
