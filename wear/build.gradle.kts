@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
+    id("ee.schimke.composepreview.plugin") version "0.1.0"
 }
 
 kotlin {
@@ -27,6 +28,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+    }
+    testOptions.unitTests {
+        isIncludeAndroidResources = true
     }
 }
 
@@ -67,4 +71,8 @@ dependencies {
 
     implementation("androidx.wear.compose:compose-ui-tooling:1.6.0")
     debugImplementation(libs.compose.uiTooling)
+
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.androidx.testExt.junit)
 }

@@ -1,6 +1,7 @@
 package ee.schimke.meshcore.wear.ui
 
 import androidx.compose.runtime.Composable
+import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import ee.schimke.meshcore.grpc.ContactMsg
 import ee.schimke.meshcore.grpc.ContactType
@@ -12,7 +13,9 @@ import ee.schimke.meshcore.wear.ui.theme.MeshcoreWearTheme
 @Composable
 fun StatusBodyLoadingPreview() {
     MeshcoreWearTheme {
-        StatusBody(state = WearUiState.Loading)
+        AppScaffold {
+            StatusBody(state = WearUiState.Loading)
+        }
     }
 }
 
@@ -20,7 +23,9 @@ fun StatusBodyLoadingPreview() {
 @Composable
 fun StatusBodyPhoneDisconnectedPreview() {
     MeshcoreWearTheme {
-        StatusBody(state = WearUiState.PhoneDisconnected)
+        AppScaffold {
+            StatusBody(state = WearUiState.PhoneDisconnected)
+        }
     }
 }
 
@@ -28,7 +33,9 @@ fun StatusBodyPhoneDisconnectedPreview() {
 @Composable
 fun StatusBodyRadioDisconnectedPreview() {
     MeshcoreWearTheme {
-        StatusBody(state = WearUiState.RadioDisconnected)
+        AppScaffold {
+            StatusBody(state = WearUiState.RadioDisconnected)
+        }
     }
 }
 
@@ -36,14 +43,16 @@ fun StatusBodyRadioDisconnectedPreview() {
 @Composable
 fun StatusBodyConnectedPreview() {
     MeshcoreWearTheme {
-        StatusBody(
-            state = WearUiState.Connected(
-                deviceName = "MeshNode-A",
-                batteryPercent = 72,
-                contactCount = 5,
-                radioInfo = "915.000 MHz · SF11 · BW250k",
-            ),
-        )
+        AppScaffold {
+            StatusBody(
+                state = WearUiState.Connected(
+                    deviceName = "MeshNode-A",
+                    batteryPercent = 72,
+                    contactCount = 5,
+                    radioInfo = "915.000 MHz · SF11 · BW250k",
+                ),
+            )
+        }
     }
 }
 
@@ -51,14 +60,16 @@ fun StatusBodyConnectedPreview() {
 @Composable
 fun StatusBodyConnectedLowBatteryPreview() {
     MeshcoreWearTheme {
-        StatusBody(
-            state = WearUiState.Connected(
-                deviceName = "MeshNode-B",
-                batteryPercent = 18,
-                contactCount = 12,
-                radioInfo = "868.300 MHz · SF12 · BW125k",
-            ),
-        )
+        AppScaffold {
+            StatusBody(
+                state = WearUiState.Connected(
+                    deviceName = "MeshNode-B",
+                    batteryPercent = 18,
+                    contactCount = 12,
+                    radioInfo = "868.300 MHz · SF12 · BW125k",
+                ),
+            )
+        }
     }
 }
 
@@ -66,7 +77,9 @@ fun StatusBodyConnectedLowBatteryPreview() {
 @Composable
 fun StatusBodyErrorPreview() {
     MeshcoreWearTheme {
-        StatusBody(state = WearUiState.Error("Connection timeout"))
+        AppScaffold {
+            StatusBody(state = WearUiState.Error("Connection timeout"))
+        }
     }
 }
 
@@ -76,7 +89,9 @@ fun StatusBodyErrorPreview() {
 @Composable
 fun ContactsBodyEmptyPreview() {
     MeshcoreWearTheme {
-        ContactsBody(contacts = emptyList())
+        AppScaffold {
+            ContactsBody(contacts = emptyList())
+        }
     }
 }
 
@@ -84,13 +99,15 @@ fun ContactsBodyEmptyPreview() {
 @Composable
 fun ContactsBodyFewPreview() {
     MeshcoreWearTheme {
-        ContactsBody(
-            contacts = listOf(
-                fakeContact("Alice"),
-                fakeContact("Bob"),
-                fakeContact("Charlie"),
-            ),
-        )
+        AppScaffold {
+            ContactsBody(
+                contacts = listOf(
+                    fakeContact("Alice"),
+                    fakeContact("Bob"),
+                    fakeContact("Charlie"),
+                ),
+            )
+        }
     }
 }
 
@@ -100,7 +117,9 @@ fun ContactsBodyFewPreview() {
 @Composable
 fun QuickReplyBodyPreview() {
     MeshcoreWearTheme {
-        QuickReplyBody()
+        AppScaffold {
+            QuickReplyBody()
+        }
     }
 }
 
