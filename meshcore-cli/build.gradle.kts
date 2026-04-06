@@ -19,10 +19,10 @@ java {
 
 dependencies {
     implementation(projects.meshcoreCore)
+    implementation(projects.meshcoreData)
     implementation(projects.meshcoreTransportTcp)
     implementation(projects.meshcoreTransportBle)
     implementation(projects.meshcoreTransportUsb)
-    implementation(projects.meshcoreDevicesProto)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.clikt)
     implementation(libs.mordant)

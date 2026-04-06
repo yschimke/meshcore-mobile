@@ -14,11 +14,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -26,13 +24,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
-import ee.schimke.meshcore.core.model.MeshEvent
 import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
+import ee.schimke.meshcore.data.entity.MessageDirection
+import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
+import kotlin.time.Instant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,58 +40,44 @@ fun ContactChatScreen(
     publicKeyHex: String,
     onBack: () -> Unit,
 ) {
-    val controller = MeshcoreApp.get().connectionController
+    val app = MeshcoreApp.get()
+    val controller = app.connectionController
+    val repository = app.repository
     val uiState by controller.state.collectAsState()
+    val deviceId = controller.connectedDeviceId.collectAsState().value
     val client = (uiState as? ConnectionUiState.Connected)?.client
 
-    // Resolve the contact from the client's contact list
-    val contacts by client?.contacts?.collectAsState() ?: return
+    val contacts by client?.contacts?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
     val contact = contacts.firstOrNull { it.publicKey.toHex() == publicKeyHex }
     val contactName = contact?.name ?: publicKeyHex.take(12)
 
-    // Read accumulated DMs from the client's message store
-    val allDms by client.directMessages.collectAsState()
-    val receivedMessages by remember(allDms) {
+    // Read messages from Room (includes both sent and received, persisted across restarts)
+    val dbMessages by (deviceId?.let { repository.observeDms(it, publicKeyHex) }
+        ?: kotlinx.coroutines.flow.flowOf(emptyList())).collectAsState(initial = emptyList())
+
+    val messages by remember(dbMessages) {
         derivedStateOf {
-            (allDms[publicKeyHex] ?: emptyList()).map { msg ->
+            dbMessages.map { entity ->
                 ChatMessage(
-                    id = "rx-${msg.timestamp.epochSeconds}-${msg.text.hashCode()}",
-                    senderName = contactName,
-                    text = msg.text,
-                    timestamp = msg.timestamp,
-                    snr = msg.snr,
-                    isMine = false,
+                    id = "msg-${entity.rowId}",
+                    senderName = if (entity.direction == MessageDirection.RECEIVED) contactName else null,
+                    text = entity.text,
+                    timestamp = Instant.fromEpochMilliseconds(entity.timestampEpochMs),
+                    snr = entity.snr,
+                    isMine = entity.direction == MessageDirection.SENT,
+                    status = when (entity.status) {
+                        DbMessageStatus.SENDING -> MessageStatus.Sending
+                        DbMessageStatus.SENT -> MessageStatus.Sent
+                        DbMessageStatus.CONFIRMED -> MessageStatus.Confirmed
+                        DbMessageStatus.FAILED -> MessageStatus.Failed
+                    },
                 )
             }
         }
     }
 
-    // Locally-tracked sent messages
-    val sentMessages = remember { mutableStateListOf<ChatMessage>() }
     val scope = rememberCoroutineScope()
     var draft by remember { mutableStateOf("") }
-
-    // All messages sorted by timestamp
-    val messages by remember(receivedMessages, sentMessages.size) {
-        derivedStateOf {
-            (receivedMessages + sentMessages).sortedBy { it.timestamp }
-        }
-    }
-
-    // Listen for delivery confirmations
-    LaunchedEffect(client) {
-        client?.events?.collect { ev ->
-            if (ev is MeshEvent.SendConfirmedEvent) {
-                val hash = ev.confirmed.ackHash
-                val idx = sentMessages.indexOfFirst {
-                    it.id.startsWith("tx-$hash-") && it.status == MessageStatus.Sent
-                }
-                if (idx >= 0) {
-                    sentMessages[idx] = sentMessages[idx].copy(status = MessageStatus.Confirmed)
-                }
-            }
-        }
-    }
 
     Scaffold(
         topBar = {
@@ -119,9 +105,7 @@ fun ContactChatScreen(
             )
         },
     ) { padding ->
-        Column(
-            modifier = Modifier.fillMaxSize().padding(padding),
-        ) {
+        Column(modifier = Modifier.fillMaxSize().padding(padding)) {
             ChatMessageList(
                 messages = messages,
                 modifier = Modifier.weight(1f),
@@ -132,7 +116,7 @@ fun ContactChatScreen(
                 enabled = client != null && contact != null,
                 onSend = {
                     val text = draft.trim()
-                    if (text.isBlank() || client == null || contact == null) return@ChatInput
+                    if (text.isBlank() || client == null || contact == null || deviceId == null) return@ChatInput
                     draft = ""
                     val now = Clock.System.now()
                     scope.launch {
@@ -144,15 +128,13 @@ fun ContactChatScreen(
                             )
                         }
                         val ack = result.getOrNull()
-                        sentMessages.add(
-                            ChatMessage(
-                                id = "tx-${ack?.ackHash ?: sentMessages.size}-${now.epochSeconds}",
-                                senderName = null,
-                                text = text,
-                                timestamp = now,
-                                isMine = true,
-                                status = if (result.isSuccess) MessageStatus.Sent else MessageStatus.Failed,
-                            ),
+                        repository.insertSentDm(
+                            deviceId = deviceId,
+                            contactKeyHex = publicKeyHex,
+                            text = text,
+                            timestamp = now,
+                            ackHash = ack?.ackHash,
+                            status = if (result.isSuccess) DbMessageStatus.SENT else DbMessageStatus.FAILED,
                         )
                     }
                 },

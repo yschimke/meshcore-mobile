@@ -24,8 +24,7 @@ class WidgetRefreshWorker(
 
     override suspend fun doWork(): Result {
         val app = MeshcoreApp.get()
-        val savedDevices = app.savedDevices
-        val favorite = savedDevices.snapshot().firstOrNull { it.favorite }
+        val favorite = app.repository.observeFavorite().first()
             ?: return Result.failure()
 
         app.connectionController.requestReconnect(favorite)

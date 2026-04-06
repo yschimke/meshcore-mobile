@@ -1,63 +1,24 @@
 package ee.schimke.meshcore.cli
 
-import ee.schimke.meshcore.app.data.proto.DeviceSnapshotPb
-import ee.schimke.meshcore.app.data.proto.SavedDevicePb
-import ee.schimke.meshcore.app.data.proto.SavedDevicesPb
-import ee.schimke.meshcore.app.data.proto.TcpTransportPb
-import java.io.File
+import ee.schimke.meshcore.data.createMeshcoreDatabase
+import ee.schimke.meshcore.data.repository.MeshcoreRepository
+import ee.schimke.meshcore.data.repository.SavedTransport
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 /**
- * File-based device store backed by [SavedDevicesPb] proto.
- * Persists at `~/.meshcore/devices.pb` so the CLI can remember
- * the last-used device across invocations.
+ * CLI device store backed by Room (same DB as the Android app on JVM).
+ * Stored at `~/.meshcore/meshcore.db`.
  */
-class DeviceStore(
-    private val file: File = File(System.getProperty("user.home"), ".meshcore/devices.pb"),
-) {
-    fun load(): SavedDevicesPb {
-        if (!file.exists()) return SavedDevicesPb()
-        return file.inputStream().use { SavedDevicesPb.ADAPTER.decode(it) }
-    }
-
-    fun save(data: SavedDevicesPb) {
-        file.parentFile?.mkdirs()
-        file.outputStream().use { SavedDevicesPb.ADAPTER.encode(it, data) }
+class DeviceStore {
+    val repository: MeshcoreRepository by lazy {
+        MeshcoreRepository(createMeshcoreDatabase())
     }
 
     /** Returns the favorite device's TCP host and port, or null. */
-    fun getFavorite(): Pair<String, Int>? {
-        val data = load()
-        if (data.favorite_id.isBlank()) return null
-        val dev = data.devices.firstOrNull { it.id == data.favorite_id } ?: return null
-        val tcp = dev.tcp ?: return null
-        return tcp.host to tcp.port
-    }
-
-    /**
-     * Record a successful TCP connection. Upserts the device entry,
-     * sets it as favorite, and optionally attaches a snapshot.
-     */
-    fun recordConnect(
-        host: String,
-        port: Int,
-        label: String,
-        snapshot: DeviceSnapshotPb? = null,
-    ) {
-        val id = "tcp:$host:$port"
-        val now = System.currentTimeMillis()
-        val data = load()
-        val existing = data.devices.firstOrNull { it.id == id }
-        val device = (existing ?: SavedDevicePb(id = id)).copy(
-            label = label,
-            last_connected_at_ms = now,
-            tcp = TcpTransportPb(host = host, port = port),
-            snapshot = snapshot ?: existing?.snapshot,
-        )
-        val devices = if (existing != null) {
-            data.devices.map { if (it.id == id) device else it }
-        } else {
-            data.devices + device
-        }
-        save(data.copy(devices = devices, favorite_id = id))
+    fun getFavorite(): Pair<String, Int>? = runBlocking {
+        val fav = repository.observeFavorite().first() ?: return@runBlocking null
+        val tcp = fav.transport as? SavedTransport.Tcp ?: return@runBlocking null
+        tcp.host to tcp.port
     }
 }

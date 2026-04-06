@@ -67,7 +67,7 @@ fun ScannerScreen(
     val app = MeshcoreApp.get()
     val controller = app.connectionController
     val uiState by controller.state.collectAsState()
-    val savedDevices by app.savedDevices.devices.collectAsState(initial = emptyList())
+    val savedDevices by app.repository.observeDevices().collectAsState(initial = emptyList())
     val connectedDeviceId by controller.connectedDeviceId.collectAsState()
     val busy = uiState is ConnectionUiState.Connecting
 
@@ -302,19 +302,19 @@ private fun previewSavedEmpty() {
 private fun previewSavedPopulated() {
     SavedDevicesPanel(
         devices = listOf(
-            ee.schimke.meshcore.app.data.SavedDevice(
+            ee.schimke.meshcore.data.repository.SavedDevice(
                 id = "ble:C7:8D:8C:45:5F:78",
                 label = "MeshCore-ABCD",
-                transport = ee.schimke.meshcore.app.data.SavedTransport.Ble(
+                transport = ee.schimke.meshcore.data.repository.SavedTransport.Ble(
                     "C7:8D:8C:45:5F:78", "MeshCore-ABCD",
                 ),
                 favorite = true,
                 lastConnectedAtMs = 1_700_100_000_000,
             ),
-            ee.schimke.meshcore.app.data.SavedDevice(
+            ee.schimke.meshcore.data.repository.SavedDevice(
                 id = "tcp:192.168.1.10:5000",
                 label = "192.168.1.10:5000",
-                transport = ee.schimke.meshcore.app.data.SavedTransport.Tcp("192.168.1.10", 5000),
+                transport = ee.schimke.meshcore.data.repository.SavedTransport.Tcp("192.168.1.10", 5000),
                 favorite = false,
                 lastConnectedAtMs = 1_700_050_000_000,
             ),
