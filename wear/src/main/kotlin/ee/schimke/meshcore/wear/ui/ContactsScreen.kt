@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Person
@@ -22,7 +21,10 @@ import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.ScreenScaffold
+import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
+import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import ee.schimke.meshcore.grpc.ContactMsg
 import ee.schimke.meshcore.grpc.ContactType
 import ee.schimke.meshcore.wear.ui.theme.WearDimens
@@ -50,43 +52,48 @@ fun ContactsBody(
     onContactSelected: (ContactMsg) -> Unit = {},
 ) {
     val columnState = rememberTransformingLazyColumnState()
+    val transformationSpec = rememberTransformationSpec()
 
-    TransformingLazyColumn(
-        state = columnState,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = WearDimens.ScreenPadding),
-    ) {
-        if (contacts.isEmpty()) {
-            item {
-                Text(
-                    text = "No chat contacts",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-            }
-        } else {
-            items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
-                Button(
-                    onClick = { onContactSelected(contact) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.filledTonalButtonColors(),
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+    ScreenScaffold(
+        scrollState = columnState,
+    ) { contentPadding ->
+        TransformingLazyColumn(
+            state = columnState,
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = contentPadding,
+        ) {
+            if (contacts.isEmpty()) {
+                item {
+                    Text(
+                        text = "No chat contacts",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            } else {
+                items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
+                    Button(
+                        onClick = { onContactSelected(contact) },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.filledTonalButtonColors(),
+                        transformation = SurfaceTransformation(transformationSpec),
                     ) {
-                        Icon(
-                            imageVector = Icons.Rounded.Person,
-                            contentDescription = null,
-                            modifier = Modifier.size(WearDimens.IconSize),
-                        )
-                        Text(
-                            text = contact.name.ifEmpty { "Unknown" },
-                            style = MaterialTheme.typography.labelLarge,
-                        )
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.Person,
+                                contentDescription = null,
+                                modifier = Modifier.size(WearDimens.IconSize),
+                            )
+                            Text(
+                                text = contact.name.ifEmpty { "Unknown" },
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
                     }
                 }
             }
