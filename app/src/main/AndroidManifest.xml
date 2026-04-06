@@ -63,16 +63,16 @@
                 android:resource="@xml/widget_last_message_info" />
         </receiver>
         <receiver
-            android:name=".widget.QuickSendWidgetReceiver"
+            android:name=".widget.ConnectionStatusWidgetReceiver"
             android:exported="false"
             android:enabled="@bool/widget_enabled">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="ee.schimke.meshcore.app.QUICKSEND" />
+                <action android:name="ee.schimke.meshcore.app.WIDGET_REFRESH" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_quicksend_info" />
+                android:resource="@xml/widget_connection_status_info" />
         </receiver>
     </application>
 </manifest>

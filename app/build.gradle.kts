@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.remote.creation)
     implementation(libs.androidx.remote.creation.compose)
     implementation(libs.androidx.remote.tooling.preview)
+    implementation(libs.androidx.work.runtime)
     debugImplementation(libs.compose.uiTooling)
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.core)

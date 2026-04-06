@@ -13,9 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun BatteryWidgetPopulatedPreview() = RemotePreview {
     BatteryWidgetContent(
-        batteryPercent = "78%",
-        batteryMv = "3980 mV",
-        snr = "SNR 12",
+        batteryPercent = "42%",
+        batteryMv = "3650 mV",
+        snr = "SNR 8",
     )
 }
 
@@ -35,9 +35,9 @@ fun BatteryWidgetEmptyPreview() = RemotePreview {
 @Composable
 fun MeshStatusWidgetConnectedPreview() = RemotePreview {
     MeshStatusWidgetContent(
-        deviceName = "node-peak",
-        contactCount = "5 contacts",
-        frequencyMhz = "869.525 MHz",
+        deviceName = "base-camp",
+        contactCount = "3 contacts",
+        frequencyMhz = "868.000 MHz",
     )
 }
 
@@ -45,9 +45,9 @@ fun MeshStatusWidgetConnectedPreview() = RemotePreview {
 @Composable
 fun MeshStatusWidgetDisconnectedPreview() = RemotePreview {
     MeshStatusWidgetContent(
-        deviceName = "Not connected",
-        contactCount = "0 contacts",
-        frequencyMhz = null,
+        deviceName = "base-camp",
+        contactCount = "3 contacts",
+        frequencyMhz = "868.000 MHz",
     )
 }
 
@@ -56,7 +56,7 @@ fun MeshStatusWidgetDisconnectedPreview() = RemotePreview {
 @Preview(name = "LastMessageWidget — with message", widthDp = 250, heightDp = 80)
 @Composable
 fun LastMessageWidgetPopulatedPreview() = RemotePreview {
-    LastMessageWidgetContent(message = "Hello from the summit!")
+    LastMessageWidgetContent(message = "#1 Weather clear, proceeding to summit")
 }
 
 @Preview(name = "LastMessageWidget — no messages", widthDp = 250, heightDp = 80)
@@ -65,10 +65,35 @@ fun LastMessageWidgetEmptyPreview() = RemotePreview {
     LastMessageWidgetContent(message = "(none yet)")
 }
 
-// --- Quick send widget previews ---------------------------------------------
+// --- Connection status widget previews --------------------------------------
 
-@Preview(name = "QuickSendWidget", widthDp = 140, heightDp = 60)
+@Preview(name = "ConnectionStatus — connected", widthDp = 220, heightDp = 100)
 @Composable
-fun QuickSendWidgetPreview() = RemotePreview {
-    QuickSendWidgetContent()
+fun ConnectionStatusConnectedPreview() = RemotePreview {
+    ConnectionStatusWidgetContent(
+        status = "Connected",
+        deviceName = "base-camp",
+        lastSeen = null,
+    )
+}
+
+@Preview(name = "ConnectionStatus — disconnected", widthDp = 220, heightDp = 100)
+@Composable
+fun ConnectionStatusDisconnectedPreview() = RemotePreview {
+    ConnectionStatusWidgetContent(
+        status = "Disconnected",
+        deviceName = "base-camp",
+        lastSeen = "Last seen 2h ago",
+    )
+}
+
+@Preview(name = "ConnectionStatus — stale", widthDp = 220, heightDp = 120)
+@Composable
+fun ConnectionStatusStalePreview() = RemotePreview {
+    ConnectionStatusWidgetContent(
+        status = "Disconnected",
+        deviceName = "base-camp",
+        lastSeen = "Last seen 6h ago",
+        staleLabel = "Updated 6h ago",
+    )
 }
