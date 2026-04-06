@@ -25,3 +25,6 @@ node_modules/
 /meshcore-cli/bin/
 /meshcore-transport-tcp/bin/
 /meshcore-tui/bin/
+/output.png
+app/project.info
+/meshcore-grpc-service/bin/
