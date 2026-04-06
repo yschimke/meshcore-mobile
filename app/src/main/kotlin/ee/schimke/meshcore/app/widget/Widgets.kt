@@ -56,6 +56,9 @@ private suspend fun currentSnapshot(): WidgetSnapshot {
         storageUsedKb = state.storageUsedKb,
         storageTotalKb = state.storageTotalKb,
         frequencyMhz = state.radioFrequencyHz?.let { it / 1_000_000.0 },
+        bandwidthKhz = state.radioBandwidthHz?.let { it / 1000 },
+        spreadingFactor = state.radioSpreadingFactor,
+        codingRate = state.radioCodingRate,
         lastUpdatedMs = maxOf(
             state.selfInfoFetchedAtMs,
             state.batteryFetchedAtMs,
@@ -82,7 +85,7 @@ class DeviceInfoWidgetReceiver : AppWidgetProvider() {
                                 DeviceInfoWidgetContent(
                                     deviceName = snap.deviceName ?: "No device",
                                     pubkeyPrefix = snap.pubkeyPrefix,
-                                    radioInfo = snap.frequencyMhz?.let { "%.3f MHz".format(it) },
+                                    radioInfo = snap.radioLine,
                                     batteryLine = pct?.let {
                                         val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
                                         "$it%$mv"

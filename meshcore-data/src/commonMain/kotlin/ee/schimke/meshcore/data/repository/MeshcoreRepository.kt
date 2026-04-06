@@ -58,6 +58,40 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
     suspend fun getDevice(id: String): SavedDevice? =
         db.deviceDao().getById(id)?.toDomain()
 
+    /**
+     * Find an existing device by its public key (from SelfInfo).
+     * Returns the device ID if found, null otherwise.
+     * Used to merge devices connected via different transports (BLE vs USB).
+     */
+    suspend fun findDeviceIdByPublicKey(publicKey: ee.schimke.meshcore.core.model.PublicKey): String? =
+        db.deviceStateDao().findDeviceIdByPublicKey(publicKey.bytes.toByteArray())
+
+    /**
+     * Merge a transport-specific device entry into an existing canonical entry.
+     * Moves the transport details and deletes the old entry.
+     */
+    suspend fun mergeDevice(fromId: String, intoId: String, transport: SavedTransport) {
+        val into = db.deviceDao().getById(intoId) ?: return
+        // Update the canonical entry with the new transport details
+        db.deviceDao().upsert(
+            into.copy(
+                transportType = transport.toType(),
+                bleIdentifier = (transport as? SavedTransport.Ble)?.identifier ?: into.bleIdentifier,
+                bleAdvertName = (transport as? SavedTransport.Ble)?.advertName ?: into.bleAdvertName,
+                tcpHost = (transport as? SavedTransport.Tcp)?.host ?: into.tcpHost,
+                tcpPort = (transport as? SavedTransport.Tcp)?.port ?: into.tcpPort,
+                usbClassName = (transport as? SavedTransport.Usb)?.className ?: into.usbClassName,
+                usbVendorId = (transport as? SavedTransport.Usb)?.vendorId ?: into.usbVendorId,
+                usbProductId = (transport as? SavedTransport.Usb)?.productId ?: into.usbProductId,
+                lastConnectedAtMs = System.currentTimeMillis(),
+            ),
+        )
+        // Delete the transport-specific entry (CASCADE removes its state/contacts/etc)
+        if (fromId != intoId) {
+            db.deviceDao().delete(fromId)
+        }
+    }
+
     suspend fun upsertDevice(
         id: String,
         label: String,
