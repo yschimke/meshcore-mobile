@@ -22,6 +22,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -74,7 +78,7 @@ fun ChatMessageList(
             contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = 8.dp),
         ) {
             items(reversed, key = { it.id }) { msg ->
-                ChatBubble(msg)
+                ChatBubble(msg, modifier = Modifier.animateItem())
             }
         }
     }
@@ -162,19 +166,25 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier) {
                             style = MaterialTheme.typography.labelSmall,
                             color = subtleColor,
                         )
-                        val statusText = when (message.status) {
-                            MessageStatus.Sending -> "Sending\u2026"
-                            MessageStatus.Sent -> "Sent"
-                            MessageStatus.Confirmed -> "Delivered"
-                            MessageStatus.Failed -> "Failed"
+                        AnimatedContent(
+                            targetState = message.status,
+                            transitionSpec = { fadeIn() togetherWith fadeOut() },
+                            label = "status",
+                        ) { status ->
+                            val statusText = when (status) {
+                                MessageStatus.Sending -> "Sending\u2026"
+                                MessageStatus.Sent -> "Sent"
+                                MessageStatus.Confirmed -> "Delivered"
+                                MessageStatus.Failed -> "Failed"
+                            }
+                            Text(
+                                text = statusText,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (status == MessageStatus.Failed)
+                                    MaterialTheme.colorScheme.error
+                                else subtleColor,
+                            )
                         }
-                        Text(
-                            text = statusText,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = if (message.status == MessageStatus.Failed)
-                                MaterialTheme.colorScheme.error
-                            else subtleColor,
-                        )
                     }
                     // SNR for own messages (received messages show it in header)
                     if (message.isMine && message.snr != null) {

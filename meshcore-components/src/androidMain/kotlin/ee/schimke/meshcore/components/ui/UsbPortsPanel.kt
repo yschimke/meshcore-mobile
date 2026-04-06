@@ -199,12 +199,13 @@ fun UsbPortsPanel(
             UsbEmptyState()
         } else {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(portInfos) { info ->
+                items(portInfos, key = { "${it.vendorId}:${it.productId}" }) { info ->
                     UsbPortCard(
                         label = info.displayLabel,
                         subtitle = info.subtitle,
                         busy = busy || pendingPort == info.port,
                         onConnect = { connectWithPermission(info) },
+                        modifier = Modifier.animateItem(),
                     )
                 }
             }

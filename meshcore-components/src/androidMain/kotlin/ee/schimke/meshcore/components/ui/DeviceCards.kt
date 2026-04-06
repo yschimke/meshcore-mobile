@@ -33,7 +33,10 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -67,7 +70,7 @@ fun DeviceSummaryCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(16.dp).animateContentSize(),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             if (self == null && battery == null && radio == null) {
@@ -153,8 +156,12 @@ fun BatterySection(battery: BatteryInfo) {
                 color = if (warn) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurface,
             )
         }
+        val animatedProgress by animateFloatAsState(
+            targetValue = percent / 100f,
+            label = "battery",
+        )
         LinearProgressIndicator(
-            progress = { percent / 100f },
+            progress = { animatedProgress },
             modifier = Modifier.fillMaxWidth(),
             color = if (warn) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.primary,
             trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -290,6 +297,7 @@ fun ContactList(
             ContactRow(
                 contact = contact,
                 onClick = onContactClick?.let { { it(contact) } },
+                modifier = Modifier.animateItem(),
             )
         }
     }
@@ -393,6 +401,7 @@ fun ChannelList(
             ChannelRow(
                 channel = channel,
                 onClick = onChannelClick?.let { { it(channel) } },
+                modifier = Modifier.animateItem(),
             )
         }
     }

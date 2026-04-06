@@ -4,6 +4,11 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -133,30 +138,36 @@ fun BleScannerPanel(
             meshOnly = meshOnly,
             onMeshOnlyChange = { meshOnly = it },
         )
-        scanError?.let {
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.errorContainer,
-                ),
-            ) {
-                Row(
-                    modifier = Modifier.padding(12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+        AnimatedVisibility(
+            visible = scanError != null,
+            enter = expandVertically() + fadeIn(),
+            exit = shrinkVertically() + fadeOut(),
+        ) {
+            scanError?.let {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                    ),
                 ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.BluetoothSearching,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onErrorContainer,
-                        modifier = Modifier.size(20.dp),
-                    )
-                    Spacer(Modifier.size(8.dp))
-                    Text(
-                        text = "Scan error: $it",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onErrorContainer,
-                        modifier = Modifier.weight(1f),
-                    )
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Rounded.BluetoothSearching,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onErrorContainer,
+                            modifier = Modifier.size(20.dp),
+                        )
+                        Spacer(Modifier.size(8.dp))
+                        Text(
+                            text = "Scan error: $it",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
                 }
             }
         }
@@ -286,14 +297,14 @@ fun BleDeviceList(
         state = state,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(rows, key = { it.identifier }) { d -> BleDeviceRowCard(d, busy, onPick) }
+        items(rows, key = { it.identifier }) { d -> BleDeviceRowCard(d, busy, onPick, Modifier.animateItem()) }
     }
 }
 
 @Composable
-private fun BleDeviceRowCard(row: BleDeviceRow, busy: Boolean, onPick: (BleDeviceRow) -> Unit) {
+private fun BleDeviceRowCard(row: BleDeviceRow, busy: Boolean, onPick: (BleDeviceRow) -> Unit, modifier: Modifier = Modifier) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
         ),
@@ -350,7 +361,11 @@ private fun BleDeviceRowCard(row: BleDeviceRow, busy: Boolean, onPick: (BleDevic
 @Composable
 fun BlePairingTipBanner(modifier: Modifier = Modifier) {
     var dismissed by remember { mutableStateOf(false) }
-    if (dismissed) return
+    AnimatedVisibility(
+        visible = !dismissed,
+        enter = expandVertically() + fadeIn(),
+        exit = shrinkVertically() + fadeOut(),
+    ) {
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -383,6 +398,7 @@ fun BlePairingTipBanner(modifier: Modifier = Modifier) {
                 )
             }
         }
+    }
     }
 }
 
