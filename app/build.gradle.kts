@@ -42,6 +42,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.meshcoreGrpcService)
+    implementation(libs.grpc.binder)
+    implementation(libs.androidx.lifecycle.service)
     implementation(projects.meshcoreCore)
     implementation(projects.meshcoreTransportTcp)
     implementation(projects.meshcoreTransportBle)

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mesh_service_permission_description">Allows an app to access MeshCore mesh network services including sending and receiving messages.</string>
+</resources>

@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+package ee.schimke.meshcore.grpc;
+
+option java_package = "ee.schimke.meshcore.grpc";
+option java_multiple_files = true;
+
+// Service exposed via Android Binder transport to allow other apps
+// on the device to query and interact with the MeshCore network.
+service MeshcoreService {
+  // Query the current connection state (Idle, Connecting, Connected, Failed).
+  rpc GetConnectionStatus (Empty) returns (ConnectionStatus);
+
+  // Stream connection state changes as they happen.
+  rpc SubscribeConnectionStatus (Empty) returns (stream ConnectionStatus);
+
+  // Get device identity and radio configuration.
+  rpc GetSelfInfo (Empty) returns (SelfInfoResponse);
+
+  // Get the list of known mesh contacts.
+  rpc GetContacts (GetContactsRequest) returns (ContactList);
+
+  // Get the list of configured channels.
+  rpc GetChannels (Empty) returns (ChannelList);
+
+  // Get battery voltage and storage usage.
+  rpc GetBatteryInfo (Empty) returns (BatteryInfoResponse);
+
+  // Send a direct message to a contact.
+  rpc SendDirectMessage (SendDirectMessageRequest) returns (SendAckResponse);
+
+  // Send a message to a channel.
+  rpc SendChannelMessage (SendChannelMessageRequest) returns (SendAckResponse);
+
+  // Stream incoming messages (both direct and channel) as they arrive.
+  rpc SubscribeMessages (Empty) returns (stream MeshMessage);
+}
+
+message Empty {}
+
+// --- Connection ---
+
+enum ConnectionState {
+  UNKNOWN = 0;
+  DISCONNECTED = 1;
+  CONNECTING = 2;
+  CONNECTED = 3;
+  FAILED = 4;
+}
+
+message ConnectionStatus {
+  ConnectionState state = 1;
+  // Human-readable error message when state is FAILED.
+  string error_message = 2;
+}
+
+// --- Device identity ---
+
+message SelfInfoResponse {
+  bool available = 1;
+  string name = 2;
+  bytes public_key = 3;
+  double latitude = 4;
+  double longitude = 5;
+  int32 tx_power_dbm = 6;
+  int32 max_power_dbm = 7;
+  RadioSettingsMsg radio = 8;
+}
+
+message RadioSettingsMsg {
+  int32 frequency_hz = 1;
+  int32 bandwidth_hz = 2;
+  int32 spreading_factor = 3;
+  int32 coding_rate = 4;
+}
+
+// --- Contacts ---
+
+message GetContactsRequest {
+  // If true, fetch fresh contacts from the device (may be slow).
+  // If false, return the cached contact list.
+  bool refresh = 1;
+}
+
+enum ContactType {
+  CONTACT_TYPE_UNKNOWN = 0;
+  CHAT = 1;
+  REPEATER = 2;
+  ROOM = 3;
+  SENSOR = 4;
+}
+
+message ContactMsg {
+  bytes public_key = 1;
+  ContactType type = 2;
+  string name = 3;
+  double latitude = 4;
+  double longitude = 5;
+  int64 advert_timestamp_epoch_seconds = 6;
+  int64 last_modified_epoch_seconds = 7;
+  int32 path_length = 8;
+  bool is_flood = 9;
+}
+
+message ContactList {
+  repeated ContactMsg contacts = 1;
+}
+
+// --- Channels ---
+
+message ChannelMsg {
+  int32 index = 1;
+  string name = 2;
+}
+
+message ChannelList {
+  repeated ChannelMsg channels = 1;
+}
+
+// --- Battery ---
+
+message BatteryInfoResponse {
+  bool available = 1;
+  int32 millivolts = 2;
+  int64 storage_used_kb = 3;
+  int64 storage_total_kb = 4;
+  int32 estimated_percent = 5;
+}
+
+// --- Messaging ---
+
+message SendDirectMessageRequest {
+  // Recipient's full public key (32 bytes).
+  bytes recipient_public_key = 1;
+  string text = 2;
+}
+
+message SendChannelMessageRequest {
+  int32 channel_index = 1;
+  string text = 2;
+}
+
+message SendAckResponse {
+  bool success = 1;
+  string error_message = 2;
+  int32 ack_hash = 3;
+  bool is_flood = 4;
+}
+
+// --- Incoming message stream ---
+
+message DirectMessageMsg {
+  bytes sender_prefix = 1;
+  string text = 2;
+  int64 timestamp_epoch_seconds = 3;
+  int32 snr = 4;
+  int32 path_length = 5;
+}
+
+message ChannelMessageMsg {
+  int32 channel_index = 1;
+  string sender = 2;
+  string text = 3;
+  int64 timestamp_epoch_seconds = 4;
+  int32 snr = 5;
+  int32 path_length = 6;
+}
+
+message MeshMessage {
+  oneof message {
+    DirectMessageMsg direct_message = 1;
+    ChannelMessageMsg channel_message = 2;
+  }
+}
