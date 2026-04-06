@@ -19,9 +19,16 @@ the reasoning behind many of these items.
 
 ## gRPC service layer
 
-- [ ] Define gRPC service wrapping `MeshCoreClient` API
+- [x] Define gRPC binder service wrapping `MeshCoreClient` API
+  - `meshcore-grpc-service` JVM module with proto + gRPC-Kotlin stubs
+  - `MeshcoreBinderService` in app module, signature-permission protected
+  - 9 RPCs: connection status, self info, contacts, channels, battery,
+    send DM, send channel msg, subscribe connection status, subscribe messages
 - [ ] Build companion daemon that bridges serial/BLE to gRPC
 - [ ] Enable non-Kotlin consumers (Python, Go, web) via generated stubs
+- [ ] Add client SDK module with `BinderChannelBuilder` helper for third-party apps
+- [ ] Promote `MeshcoreBinderService` to foreground service for persistent background access
+- [ ] Migrate to protobuf-gradle-plugin when AGP 9 support lands (google/protobuf-gradle-plugin#787)
 
 ## Testing
 
