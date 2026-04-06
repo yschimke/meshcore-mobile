@@ -42,18 +42,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ee.schimke.meshcore.app.data.DeviceSnapshot
-import ee.schimke.meshcore.app.data.SavedDevice
-import ee.schimke.meshcore.app.data.SavedTransport
-import ee.schimke.meshcore.app.data.Timestamped
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
-import ee.schimke.meshcore.core.model.Contact
-import ee.schimke.meshcore.core.model.ContactType
-import ee.schimke.meshcore.core.model.PublicKey
-import ee.schimke.meshcore.core.model.RadioSettings
-import ee.schimke.meshcore.core.model.SelfInfo
-import kotlinx.io.bytestring.ByteString
-import kotlin.time.Instant
+import ee.schimke.meshcore.data.repository.SavedDevice
+import ee.schimke.meshcore.data.repository.SavedTransport
 
 /**
  * Stateless saved-devices list: shown as the first tab on the scanner
@@ -132,19 +123,10 @@ private fun SavedDeviceRow(
         is SavedTransport.Tcp -> Icons.Rounded.Lan
         is SavedTransport.Usb -> Icons.Rounded.Usb
     }
-    val deviceName = device.snapshot?.deviceName
-    val contactCount = device.snapshot?.contactCount ?: 0
-    val subtitle: String = buildString {
-        append(
-            when (val t = device.transport) {
-                is SavedTransport.Ble -> t.identifier
-                is SavedTransport.Tcp -> "${t.host}:${t.port}"
-                is SavedTransport.Usb -> t.className
-            },
-        )
-        if (contactCount > 0) {
-            append(" · $contactCount contacts")
-        }
+    val subtitle: String = when (val t = device.transport) {
+        is SavedTransport.Ble -> t.identifier
+        is SavedTransport.Tcp -> "${t.host}:${t.port}"
+        is SavedTransport.Usb -> t.className
     }
     val containerColor = when {
         isConnected -> MaterialTheme.colorScheme.tertiaryContainer
@@ -181,7 +163,7 @@ private fun SavedDeviceRow(
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
                 Text(
-                    text = deviceName ?: device.label,
+                    text = device.label,
                     style = MaterialTheme.typography.titleMedium,
                     color = contentColor,
                 )
@@ -237,49 +219,20 @@ private fun SavedDevicesEmpty(modifier: Modifier = Modifier) {
 
 // --- Previews -------------------------------------------------------------
 
-private fun sampleSnapshot(name: String, contactCount: Int) = DeviceSnapshot(
-    selfInfo = Timestamped(
-        SelfInfo(
-            advertType = 1, txPowerDbm = 14, maxPowerDbm = 22,
-            publicKey = PublicKey.fromBytes(ByteString(ByteArray(32))),
-            latitude = 0.0, longitude = 0.0, multiAcks = 0,
-            advertLocationPolicy = 0, telemetryFlags = 0, manualAddContacts = 0,
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            name = name,
-        ),
-        fetchedAtMs = 1_700_100_000_000,
-    ),
-    contacts = Timestamped(
-        (0 until contactCount).map { i ->
-            Contact(
-                publicKey = PublicKey.fromBytes(ByteString(ByteArray(32) { i.toByte() })),
-                type = ContactType.CHAT, flags = 0, pathLength = 2,
-                path = ByteString(), name = "contact-$i",
-                advertTimestamp = Instant.fromEpochSeconds(1_700_000_000),
-                latitude = 0.0, longitude = 0.0,
-                lastModified = Instant.fromEpochSeconds(1_700_000_000),
-            )
-        },
-        fetchedAtMs = 1_700_100_000_000,
-    ),
-)
-
 private fun sampleDevices(): List<SavedDevice> = listOf(
     SavedDevice(
         id = "ble:C7:8D:8C:45:5F:78",
-        label = "MeshCore-ABCD",
+        label = "node-peak",
         transport = SavedTransport.Ble("C7:8D:8C:45:5F:78", "MeshCore-ABCD"),
         favorite = true,
         lastConnectedAtMs = 1_700_100_000_000,
-        snapshot = sampleSnapshot("node-peak", 5),
     ),
     SavedDevice(
         id = "ble:A1:B2:C3:D4:E5:F6",
-        label = "MeshCore-1234",
+        label = "base-station",
         transport = SavedTransport.Ble("A1:B2:C3:D4:E5:F6", "MeshCore-1234"),
         favorite = false,
         lastConnectedAtMs = 1_700_050_000_000,
-        snapshot = sampleSnapshot("base-station", 12),
     ),
     SavedDevice(
         id = "tcp:192.168.1.10:5000",
@@ -287,13 +240,6 @@ private fun sampleDevices(): List<SavedDevice> = listOf(
         transport = SavedTransport.Tcp("192.168.1.10", 5000),
         favorite = false,
         lastConnectedAtMs = 1_700_000_000_000,
-    ),
-    SavedDevice(
-        id = "usb:CdcAcmSerialPortWrapper:4292:60000",
-        label = "CdcAcmSerialPortWrapper",
-        transport = SavedTransport.Usb("CdcAcmSerialPortWrapper", 4292, 60000),
-        favorite = false,
-        lastConnectedAtMs = 1_699_900_000_000,
     ),
 )
 

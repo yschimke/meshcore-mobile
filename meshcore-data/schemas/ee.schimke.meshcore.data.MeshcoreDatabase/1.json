@@ -1,0 +1,541 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "eee217fe35f96b04005f60c530f5f876",
+    "entities": [
+      {
+        "tableName": "device",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `label` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL, `lastConnectedAtMs` INTEGER NOT NULL, `transportType` TEXT NOT NULL, `bleIdentifier` TEXT, `bleAdvertName` TEXT, `tcpHost` TEXT, `tcpPort` INTEGER, `usbClassName` TEXT, `usbVendorId` INTEGER, `usbProductId` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastConnectedAtMs",
+            "columnName": "lastConnectedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transportType",
+            "columnName": "transportType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bleIdentifier",
+            "columnName": "bleIdentifier",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "bleAdvertName",
+            "columnName": "bleAdvertName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "tcpHost",
+            "columnName": "tcpHost",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "tcpPort",
+            "columnName": "tcpPort",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "usbClassName",
+            "columnName": "usbClassName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "usbVendorId",
+            "columnName": "usbVendorId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "usbProductId",
+            "columnName": "usbProductId",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "device_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`deviceId` TEXT NOT NULL, `selfName` TEXT, `selfAdvertType` INTEGER, `selfTxPowerDbm` INTEGER, `selfMaxPowerDbm` INTEGER, `selfPublicKey` BLOB, `selfLatitude` REAL, `selfLongitude` REAL, `selfInfoFetchedAtMs` INTEGER NOT NULL, `batteryMillivolts` INTEGER, `storageUsedKb` INTEGER, `storageTotalKb` INTEGER, `batteryFetchedAtMs` INTEGER NOT NULL, `radioFrequencyHz` INTEGER, `radioBandwidthHz` INTEGER, `radioSpreadingFactor` INTEGER, `radioCodingRate` INTEGER, `radioFetchedAtMs` INTEGER NOT NULL, `protocolVersion` INTEGER, `maxContacts` INTEGER, `maxChannels` INTEGER, `deviceInfoFetchedAtMs` INTEGER NOT NULL, PRIMARY KEY(`deviceId`), FOREIGN KEY(`deviceId`) REFERENCES `device`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "deviceId",
+            "columnName": "deviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selfName",
+            "columnName": "selfName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "selfAdvertType",
+            "columnName": "selfAdvertType",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "selfTxPowerDbm",
+            "columnName": "selfTxPowerDbm",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "selfMaxPowerDbm",
+            "columnName": "selfMaxPowerDbm",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "selfPublicKey",
+            "columnName": "selfPublicKey",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "selfLatitude",
+            "columnName": "selfLatitude",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "selfLongitude",
+            "columnName": "selfLongitude",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "selfInfoFetchedAtMs",
+            "columnName": "selfInfoFetchedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "batteryMillivolts",
+            "columnName": "batteryMillivolts",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "storageUsedKb",
+            "columnName": "storageUsedKb",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "storageTotalKb",
+            "columnName": "storageTotalKb",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "batteryFetchedAtMs",
+            "columnName": "batteryFetchedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "radioFrequencyHz",
+            "columnName": "radioFrequencyHz",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "radioBandwidthHz",
+            "columnName": "radioBandwidthHz",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "radioSpreadingFactor",
+            "columnName": "radioSpreadingFactor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "radioCodingRate",
+            "columnName": "radioCodingRate",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "radioFetchedAtMs",
+            "columnName": "radioFetchedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "protocolVersion",
+            "columnName": "protocolVersion",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "maxContacts",
+            "columnName": "maxContacts",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "maxChannels",
+            "columnName": "maxChannels",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "deviceInfoFetchedAtMs",
+            "columnName": "deviceInfoFetchedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "deviceId"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "device",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "deviceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "contact",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`deviceId` TEXT NOT NULL, `publicKeyHex` TEXT NOT NULL, `publicKeyBytes` BLOB NOT NULL, `type` INTEGER NOT NULL, `flags` INTEGER NOT NULL, `pathLength` INTEGER NOT NULL, `name` TEXT NOT NULL, `advertTimestampEpochS` INTEGER NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `lastModifiedEpochS` INTEGER NOT NULL, `fetchedAtMs` INTEGER NOT NULL, PRIMARY KEY(`deviceId`, `publicKeyHex`), FOREIGN KEY(`deviceId`) REFERENCES `device`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "deviceId",
+            "columnName": "deviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "publicKeyHex",
+            "columnName": "publicKeyHex",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "publicKeyBytes",
+            "columnName": "publicKeyBytes",
+            "affinity": "BLOB",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flags",
+            "columnName": "flags",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathLength",
+            "columnName": "pathLength",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "advertTimestampEpochS",
+            "columnName": "advertTimestampEpochS",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastModifiedEpochS",
+            "columnName": "lastModifiedEpochS",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fetchedAtMs",
+            "columnName": "fetchedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "deviceId",
+            "publicKeyHex"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_contact_deviceId",
+            "unique": false,
+            "columnNames": [
+              "deviceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_contact_deviceId` ON `${TABLE_NAME}` (`deviceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "device",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "deviceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "channel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`deviceId` TEXT NOT NULL, `channelIndex` INTEGER NOT NULL, `name` TEXT NOT NULL, `psk` BLOB NOT NULL, `fetchedAtMs` INTEGER NOT NULL, PRIMARY KEY(`deviceId`, `channelIndex`), FOREIGN KEY(`deviceId`) REFERENCES `device`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "deviceId",
+            "columnName": "deviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "channelIndex",
+            "columnName": "channelIndex",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "psk",
+            "columnName": "psk",
+            "affinity": "BLOB",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fetchedAtMs",
+            "columnName": "fetchedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "deviceId",
+            "channelIndex"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_channel_deviceId",
+            "unique": false,
+            "columnNames": [
+              "deviceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_channel_deviceId` ON `${TABLE_NAME}` (`deviceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "device",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "deviceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "message",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`rowId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deviceId` TEXT NOT NULL, `kind` TEXT NOT NULL, `direction` TEXT NOT NULL, `contactPublicKeyHex` TEXT, `channelIndex` INTEGER, `senderName` TEXT, `text` TEXT NOT NULL, `timestampEpochMs` INTEGER NOT NULL, `textType` INTEGER NOT NULL, `snr` INTEGER, `pathLength` INTEGER, `ackHash` INTEGER, `status` TEXT NOT NULL, FOREIGN KEY(`deviceId`) REFERENCES `device`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "rowId",
+            "columnName": "rowId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceId",
+            "columnName": "deviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "direction",
+            "columnName": "direction",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contactPublicKeyHex",
+            "columnName": "contactPublicKeyHex",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "channelIndex",
+            "columnName": "channelIndex",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "senderName",
+            "columnName": "senderName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestampEpochMs",
+            "columnName": "timestampEpochMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "textType",
+            "columnName": "textType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "snr",
+            "columnName": "snr",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "pathLength",
+            "columnName": "pathLength",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "ackHash",
+            "columnName": "ackHash",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "rowId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_message_deviceId_contactPublicKeyHex",
+            "unique": false,
+            "columnNames": [
+              "deviceId",
+              "contactPublicKeyHex"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_message_deviceId_contactPublicKeyHex` ON `${TABLE_NAME}` (`deviceId`, `contactPublicKeyHex`)"
+          },
+          {
+            "name": "index_message_deviceId_channelIndex",
+            "unique": false,
+            "columnNames": [
+              "deviceId",
+              "channelIndex"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_message_deviceId_channelIndex` ON `${TABLE_NAME}` (`deviceId`, `channelIndex`)"
+          },
+          {
+            "name": "index_message_deviceId_timestampEpochMs",
+            "unique": false,
+            "columnNames": [
+              "deviceId",
+              "timestampEpochMs"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_message_deviceId_timestampEpochMs` ON `${TABLE_NAME}` (`deviceId`, `timestampEpochMs`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "device",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "deviceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eee217fe35f96b04005f60c530f5f876')"
+    ]
+  }
+}
