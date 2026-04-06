@@ -52,11 +52,9 @@ fun ChatMessageList(
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
 ) {
-    LaunchedEffect(messages.size) {
-        if (messages.isNotEmpty()) {
-            state.animateScrollToItem(messages.lastIndex)
-        }
-    }
+    // reverseLayout anchors the list to the bottom so the keyboard
+    // pushes the latest messages up instead of scrolling them off-screen.
+    val reversed = messages.asReversed()
     if (messages.isEmpty()) {
         Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
@@ -71,10 +69,11 @@ fun ChatMessageList(
                 .fillMaxSize()
                 .padding(horizontal = 12.dp),
             state = state,
+            reverseLayout = true,
             verticalArrangement = Arrangement.spacedBy(4.dp),
             contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = 8.dp),
         ) {
-            items(messages, key = { it.id }) { msg ->
+            items(reversed, key = { it.id }) { msg ->
                 ChatBubble(msg)
             }
         }

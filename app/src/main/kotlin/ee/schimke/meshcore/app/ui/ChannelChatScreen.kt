@@ -30,9 +30,12 @@ import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
 import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
+import android.util.Log
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 import kotlin.time.Instant
+
+private const val TAG = "MeshSend"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -114,9 +117,13 @@ fun ChannelChatScreen(
                 enabled = client != null,
                 onSend = {
                     val text = draft.trim()
-                    if (text.isBlank() || client == null || deviceId == null) return@ChatInput
+                    if (text.isBlank() || client == null || deviceId == null) {
+                        Log.w(TAG, "Channel send guard: blank=${text.isBlank()} client=${client != null} deviceId=$deviceId")
+                        return@ChatInput
+                    }
                     draft = ""
                     val now = Clock.System.now()
+                    Log.d(TAG, "Channel[$channelIndex] sending: '$text'")
                     scope.launch {
                         val result = runCatching {
                             client.sendChannelText(
@@ -126,6 +133,11 @@ fun ChannelChatScreen(
                             )
                         }
                         val ack = result.getOrNull()
+                        if (result.isFailure) {
+                            Log.e(TAG, "Channel send failed: ${result.exceptionOrNull()?.message}", result.exceptionOrNull())
+                        } else {
+                            Log.d(TAG, "Channel send ok: ackHash=${ack?.ackHash} flood=${ack?.isFlood}")
+                        }
                         repository.insertSentChannelMessage(
                             deviceId = deviceId,
                             channelIndex = channelIndex,
@@ -134,6 +146,7 @@ fun ChannelChatScreen(
                             ackHash = ack?.ackHash,
                             status = if (result.isSuccess) DbMessageStatus.SENT else DbMessageStatus.FAILED,
                         )
+                        Log.d(TAG, "Channel msg persisted to Room")
                     }
                 },
             )

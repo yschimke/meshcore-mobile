@@ -65,6 +65,7 @@ import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
 import kotlin.time.Instant
+import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import kotlinx.io.bytestring.ByteString
 
@@ -126,6 +127,27 @@ fun DeviceScreen(
     }
 }
 
+/** Info about the most recent message, for the banner on the device screen. */
+sealed class LastMessageInfo {
+    abstract val text: String
+    abstract val snr: Int
+
+    data class Dm(
+        val contactKeyHex: String,
+        val contactName: String?,
+        override val text: String,
+        override val snr: Int,
+    ) : LastMessageInfo()
+
+    data class Channel(
+        val channelIndex: Int,
+        val channelName: String?,
+        val sender: String?,
+        override val text: String,
+        override val snr: Int,
+    ) : LastMessageInfo()
+}
+
 @Composable
 private fun ConnectedDevice(
     client: ee.schimke.meshcore.core.client.MeshCoreClient,
@@ -140,7 +162,7 @@ private fun ConnectedDevice(
     val contacts by client.contacts.collectAsState()
     val channels by client.channels.collectAsState()
     val scope = rememberCoroutineScope()
-    var lastMessage by remember { mutableStateOf<String?>(null) }
+    var lastMessage by remember { mutableStateOf<LastMessageInfo?>(null) }
     // If the client was seeded with cached data, contacts won't be empty
     // even before the fresh fetch — show a "refreshing" indicator instead
     // of a full loading spinner in that case.
@@ -153,19 +175,41 @@ private fun ConnectedDevice(
         runCatching { client.syncMessages() }
     }
 
-    // Listen for incoming messages + re-sync on MessagesWaiting push
+    // Listen for incoming messages + re-sync on MessagesWaiting push.
+    // conflate() drops intermediate emissions during rapid sync drains
+    // so the banner only shows the latest message without flashing.
     LaunchedEffect(client) {
-        client.events.collect { ev ->
-            when (ev) {
-                is MeshEvent.DirectMessage ->
-                    lastMessage = "${ev.message.text} (SNR ${ev.message.snr})"
-                is MeshEvent.ChannelMessage ->
-                    lastMessage = "#${ev.message.channelIndex} ${ev.message.body}"
-                MeshEvent.MessagesWaiting ->
-                    scope.launch { runCatching { client.syncMessages() } }
-                else -> Unit
+        client.events
+            .conflate()
+            .collect { ev ->
+                when (ev) {
+                    is MeshEvent.DirectMessage -> {
+                        val msg = ev.message
+                        val prefix = msg.senderPrefix.toHex()
+                        val contact = contacts.firstOrNull { it.publicKey.toHex().startsWith(prefix) }
+                        lastMessage = LastMessageInfo.Dm(
+                            contactKeyHex = contact?.publicKey?.toHex() ?: prefix,
+                            contactName = contact?.name,
+                            text = msg.text,
+                            snr = msg.snr,
+                        )
+                    }
+                    is MeshEvent.ChannelMessage -> {
+                        val msg = ev.message
+                        val ch = channels.firstOrNull { it.index == msg.channelIndex }
+                        lastMessage = LastMessageInfo.Channel(
+                            channelIndex = msg.channelIndex,
+                            channelName = ch?.name?.ifBlank { null },
+                            sender = msg.sender,
+                            text = msg.text,
+                            snr = msg.snr,
+                        )
+                    }
+                    MeshEvent.MessagesWaiting ->
+                        scope.launch { runCatching { client.syncMessages() } }
+                    else -> Unit
+                }
             }
-        }
     }
 
     DeviceBody(
@@ -177,6 +221,18 @@ private fun ConnectedDevice(
         contactsRefreshing = contactsRefreshing && contacts.isNotEmpty(),
         channels = channels,
         lastMessage = lastMessage,
+        onLastMessageClick = { info ->
+            when (info) {
+                is LastMessageInfo.Dm -> {
+                    val contact = contacts.firstOrNull { it.publicKey.toHex() == info.contactKeyHex }
+                    if (contact != null) onNavigateToContact(contact)
+                }
+                is LastMessageInfo.Channel -> {
+                    val ch = channels.firstOrNull { it.index == info.channelIndex }
+                    if (ch != null) onNavigateToChannel(ch)
+                }
+            }
+        },
         onRefreshContacts = {
             scope.launch {
                 contactsRefreshing = true
@@ -206,7 +262,8 @@ fun DeviceBody(
     contactsLoading: Boolean = false,
     contactsRefreshing: Boolean = false,
     channels: List<ChannelInfo> = emptyList(),
-    lastMessage: String?,
+    lastMessage: LastMessageInfo? = null,
+    onLastMessageClick: (LastMessageInfo) -> Unit = {},
     onRefreshContacts: () -> Unit,
     onContactClick: (Contact) -> Unit = {},
     onChannelClick: (ChannelInfo) -> Unit = {},
@@ -273,7 +330,7 @@ fun DeviceBody(
         ) {
             DeviceSummaryCard(self = self, radio = radio, battery = battery)
 
-            lastMessage?.let { LastMessageBanner(it) }
+            lastMessage?.let { LastMessageBanner(it, onClick = { onLastMessageClick(it) }) }
 
             // Split contacts by type
             val chatContacts = contacts.filter { it.type == ContactType.CHAT }
@@ -398,8 +455,19 @@ private fun SectionHeader(text: String, action: @Composable (() -> Unit)? = null
 }
 
 @Composable
-private fun LastMessageBanner(text: String) {
-    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+private fun LastMessageBanner(info: LastMessageInfo, onClick: () -> Unit) {
+    val origin = when (info) {
+        is LastMessageInfo.Dm -> info.contactName ?: info.contactKeyHex.take(12)
+        is LastMessageInfo.Channel -> buildString {
+            append("#")
+            append(info.channelName ?: info.channelIndex.toString())
+            info.sender?.let { append(" · $it") }
+        }
+    }
+    OutlinedCard(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick,
+    ) {
         Row(
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -412,14 +480,16 @@ private fun LastMessageBanner(text: String) {
             Spacer(Modifier.size(Dimens.S))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Last message",
+                    text = origin,
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.primary,
                 )
                 Text(
-                    text = text,
+                    text = info.text,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 2,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                 )
             }
         }
@@ -677,7 +747,12 @@ fun DeviceBodyPreview() {
                 previewContact("common-room", 0, 0x33, ContactType.ROOM),
                 previewContact("soil-sensor-1", 3, 0x44, ContactType.SENSOR),
             ),
-            lastMessage = "hey — are you on tonight? (SNR 6)",
+            lastMessage = LastMessageInfo.Dm(
+                contactKeyHex = "112233445566778899aabbcc",
+                contactName = "alice",
+                text = "hey — are you on tonight?",
+                snr = 6,
+            ),
             onRefreshContacts = {},
 
             onDisconnect = {},
@@ -700,7 +775,6 @@ fun DeviceBodyLoadingPreview() {
             radio = null,
             contacts = emptyList(),
             contactsLoading = true,
-            lastMessage = null,
             onRefreshContacts = {},
 
             onDisconnect = {},
@@ -723,7 +797,6 @@ fun DeviceBodyNoContactsPreview() {
             radio = RadioSettings(869_525_000, 125_000, 10, 5),
             contacts = emptyList(),
             contactsLoading = true,
-            lastMessage = null,
             onRefreshContacts = {},
 
             onDisconnect = {},
@@ -748,7 +821,6 @@ fun DeviceBodyLowBatteryPreview() {
                 previewContact("alice", -1, 0x11),
                 previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
             ),
-            lastMessage = null,
             onRefreshContacts = {},
 
             onDisconnect = {},
@@ -788,7 +860,13 @@ fun DeviceBodyManyContactsPreview() {
             battery = BatteryInfo(4050, 900, 4096),
             radio = RadioSettings(869_525_000, 125_000, 10, 5),
             contacts = contacts,
-            lastMessage = "eve-hq: weather check in 5 (SNR 8)",
+            lastMessage = LastMessageInfo.Channel(
+                channelIndex = 0,
+                channelName = "test",
+                sender = "eve-hq",
+                text = "weather check in 5",
+                snr = 8,
+            ),
             onRefreshContacts = {},
 
             onDisconnect = {},
@@ -856,7 +934,12 @@ fun DeviceBodyDarkPreview() {
                 previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
                 previewContact("common-room", 0, 0x33, ContactType.ROOM),
             ),
-            lastMessage = "hey — are you on tonight? (SNR 6)",
+            lastMessage = LastMessageInfo.Dm(
+                contactKeyHex = "112233445566778899aabbcc",
+                contactName = "alice",
+                text = "hey — are you on tonight?",
+                snr = 6,
+            ),
             onRefreshContacts = {},
 
             onDisconnect = {},
