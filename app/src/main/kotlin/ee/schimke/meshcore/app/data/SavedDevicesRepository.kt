@@ -7,17 +7,31 @@ import androidx.datastore.core.Serializer
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.dataStore
 import com.squareup.wire.ProtoAdapter
+import ee.schimke.meshcore.app.data.proto.BatteryInfoPb
 import ee.schimke.meshcore.app.data.proto.BleTransportPb
+import ee.schimke.meshcore.app.data.proto.ContactPb
+import ee.schimke.meshcore.app.data.proto.DeviceInfoPb
+import ee.schimke.meshcore.app.data.proto.DeviceSnapshotPb
+import ee.schimke.meshcore.app.data.proto.RadioSettingsPb
 import ee.schimke.meshcore.app.data.proto.SavedDevicePb
 import ee.schimke.meshcore.app.data.proto.SavedDevicesPb
+import ee.schimke.meshcore.app.data.proto.SelfInfoPb
 import ee.schimke.meshcore.app.data.proto.TcpTransportPb
 import ee.schimke.meshcore.app.data.proto.UsbTransportPb
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
+import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.Contact
+import ee.schimke.meshcore.core.model.ContactType
+import ee.schimke.meshcore.core.model.DeviceInfo
+import ee.schimke.meshcore.core.model.PublicKey
+import ee.schimke.meshcore.core.model.RadioSettings
+import ee.schimke.meshcore.core.model.SelfInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
+import kotlin.time.Instant
 
 // ---------------------------------------------------------------------------
 // Saved-devices repository backed by a proto DataStore.
@@ -66,16 +80,31 @@ private val Context.savedDevicesStore: DataStore<SavedDevicesPb> by dataStore(
 data class SavedDevice(
     val id: String,
     val label: String,
-    val pin: String?,
     val transport: SavedTransport,
     val favorite: Boolean,
     val lastConnectedAtMs: Long,
+    val snapshot: DeviceSnapshot? = null,
 )
 
 sealed class SavedTransport {
     data class Ble(val identifier: String, val advertName: String?) : SavedTransport()
     data class Tcp(val host: String, val port: Int) : SavedTransport()
     data class Usb(val className: String, val vendorId: Int, val productId: Int) : SavedTransport()
+}
+
+/** Wraps a value with the wall-clock time it was fetched from the device. */
+data class Timestamped<T>(val value: T, val fetchedAtMs: Long)
+
+/** Cached snapshot of device state from the last successful connection. */
+data class DeviceSnapshot(
+    val selfInfo: Timestamped<SelfInfo>? = null,
+    val contacts: Timestamped<List<Contact>>? = null,
+    val battery: Timestamped<BatteryInfo>? = null,
+    val radio: Timestamped<RadioSettings>? = null,
+    val deviceInfo: Timestamped<DeviceInfo>? = null,
+) {
+    val deviceName: String? get() = selfInfo?.value?.name
+    val contactCount: Int get() = contacts?.value?.size ?: 0
 }
 
 fun bleDeviceId(identifier: String): String = "ble:$identifier"
@@ -104,7 +133,7 @@ class SavedDevicesRepository(context: Context) {
 
     val favorite: Flow<SavedDevice?> = devices.map { list -> list.firstOrNull { it.favorite } }
 
-    /** Snapshot lookup used during connect to resolve a PIN. */
+    /** Snapshot lookup for a specific device. */
     suspend fun get(id: String): SavedDevice? =
         store.data.first().devices.firstOrNull { it.id == id }?.toDomain(
             store.data.first().favorite_id,
@@ -112,16 +141,11 @@ class SavedDevicesRepository(context: Context) {
 
     suspend fun snapshot(): List<SavedDevice> = devices.first()
 
-    /**
-     * Insert-or-update a device entry. If [pin] is null the previous
-     * PIN (if any) is preserved — callers who want to clear a PIN
-     * should pass an empty string.
-     */
+    /** Insert-or-update a device entry. */
     suspend fun upsert(
         id: String,
         label: String,
         transport: SavedTransport,
-        pin: String? = null,
         markConnectedNow: Boolean = true,
     ) {
         store.updateData { current ->
@@ -131,7 +155,6 @@ class SavedDevicesRepository(context: Context) {
                 id = id,
                 label = label,
                 last_connected_at_ms = if (markConnectedNow) now else (existing?.last_connected_at_ms ?: 0L),
-                pin = pin ?: existing?.pin.orEmpty(),
                 ble = (transport as? SavedTransport.Ble)?.toPb(),
                 tcp = (transport as? SavedTransport.Tcp)?.toPb(),
                 usb = (transport as? SavedTransport.Usb)?.toPb(),
@@ -158,6 +181,21 @@ class SavedDevicesRepository(context: Context) {
             current.copy(favorite_id = id ?: "")
         }
     }
+
+    /** Persist a device snapshot (selfInfo, contacts, battery, etc.) for [id]. */
+    suspend fun updateSnapshot(id: String, snapshot: DeviceSnapshot) {
+        store.updateData { current ->
+            val devices = current.devices.map { dev ->
+                if (dev.id == id) {
+                    val updatedLabel = snapshot.deviceName ?: dev.label
+                    dev.copy(label = updatedLabel, snapshot = snapshot.toPb())
+                } else {
+                    dev
+                }
+            }
+            current.copy(devices = devices)
+        }
+    }
 }
 
 // --- Conversions ----------------------------------------------------------
@@ -179,10 +217,10 @@ private fun SavedDevicePb.toDomain(favoriteId: String): SavedDevice {
     return SavedDevice(
         id = id,
         label = label,
-        pin = pin.ifBlank { null },
         transport = transport,
         favorite = favoriteId.isNotEmpty() && favoriteId == id,
         lastConnectedAtMs = last_connected_at_ms,
+        snapshot = snapshot?.toDomain(),
     )
 }
 
@@ -197,4 +235,124 @@ private fun SavedTransport.Usb.toPb() = UsbTransportPb(
     class_name = className,
     vendor_id = vendorId,
     product_id = productId,
+)
+
+// --- Snapshot conversions ---------------------------------------------------
+
+private fun DeviceSnapshotPb.toDomain(): DeviceSnapshot = DeviceSnapshot(
+    selfInfo = self_info?.toDomain()?.let { Timestamped(it, self_info_at_ms) },
+    contacts = if (contacts_at_ms > 0) Timestamped(contacts.map { it.toDomain() }, contacts_at_ms) else null,
+    battery = battery?.toDomain()?.let { Timestamped(it, battery_at_ms) },
+    radio = radio?.toDomain()?.let { Timestamped(it, radio_at_ms) },
+    deviceInfo = device_info?.toDomain()?.let { Timestamped(it, device_info_at_ms) },
+)
+
+private fun DeviceSnapshot.toPb(): DeviceSnapshotPb = DeviceSnapshotPb(
+    self_info = selfInfo?.value?.toPb(),
+    self_info_at_ms = selfInfo?.fetchedAtMs ?: 0L,
+    contacts = contacts?.value?.map { it.toPb() } ?: emptyList(),
+    contacts_at_ms = contacts?.fetchedAtMs ?: 0L,
+    battery = battery?.value?.toPb(),
+    battery_at_ms = battery?.fetchedAtMs ?: 0L,
+    radio = radio?.value?.toPb(),
+    radio_at_ms = radio?.fetchedAtMs ?: 0L,
+    device_info = deviceInfo?.value?.toPb(),
+    device_info_at_ms = deviceInfo?.fetchedAtMs ?: 0L,
+)
+
+// SelfInfo
+private fun SelfInfoPb.toDomain(): SelfInfo = SelfInfo(
+    advertType = advert_type,
+    txPowerDbm = tx_power_dbm,
+    maxPowerDbm = max_power_dbm,
+    publicKey = PublicKey.fromBytes(
+        kotlinx.io.bytestring.ByteString(public_key.toByteArray()),
+    ),
+    latitude = latitude,
+    longitude = longitude,
+    multiAcks = 0,
+    advertLocationPolicy = 0,
+    telemetryFlags = 0,
+    manualAddContacts = 0,
+    radio = RadioSettings(0, 0, 0, 0), // stored separately
+    name = name,
+)
+
+private fun SelfInfo.toPb(): SelfInfoPb = SelfInfoPb(
+    advert_type = advertType,
+    tx_power_dbm = txPowerDbm,
+    max_power_dbm = maxPowerDbm,
+    public_key = okio.ByteString.of(*publicKey.bytes.toByteArray()),
+    latitude = latitude,
+    longitude = longitude,
+    name = name,
+)
+
+// Contact
+private fun ContactPb.toDomain(): Contact = Contact(
+    publicKey = PublicKey.fromBytes(
+        kotlinx.io.bytestring.ByteString(public_key.toByteArray()),
+    ),
+    type = ContactType.fromRaw(type),
+    flags = flags,
+    pathLength = path_length,
+    path = kotlinx.io.bytestring.ByteString(),
+    name = name,
+    advertTimestamp = Instant.fromEpochSeconds(advert_timestamp_epoch_s),
+    latitude = latitude,
+    longitude = longitude,
+    lastModified = Instant.fromEpochSeconds(last_modified_epoch_s),
+)
+
+private fun Contact.toPb(): ContactPb = ContactPb(
+    public_key = okio.ByteString.of(*publicKey.bytes.toByteArray()),
+    type = type.raw,
+    flags = flags,
+    path_length = pathLength,
+    name = name,
+    advert_timestamp_epoch_s = advertTimestamp.epochSeconds,
+    latitude = latitude,
+    longitude = longitude,
+    last_modified_epoch_s = lastModified.epochSeconds,
+)
+
+// BatteryInfo
+private fun BatteryInfoPb.toDomain(): BatteryInfo = BatteryInfo(
+    millivolts = millivolts,
+    storageUsedKb = storage_used_kb,
+    storageTotalKb = storage_total_kb,
+)
+
+private fun BatteryInfo.toPb(): BatteryInfoPb = BatteryInfoPb(
+    millivolts = millivolts,
+    storage_used_kb = storageUsedKb,
+    storage_total_kb = storageTotalKb,
+)
+
+// RadioSettings
+private fun RadioSettingsPb.toDomain(): RadioSettings = RadioSettings(
+    frequencyHz = frequency_hz,
+    bandwidthHz = bandwidth_hz,
+    spreadingFactor = spreading_factor,
+    codingRate = coding_rate,
+)
+
+private fun RadioSettings.toPb(): RadioSettingsPb = RadioSettingsPb(
+    frequency_hz = frequencyHz,
+    bandwidth_hz = bandwidthHz,
+    spreading_factor = spreadingFactor,
+    coding_rate = codingRate,
+)
+
+// DeviceInfo
+private fun DeviceInfoPb.toDomain(): DeviceInfo = DeviceInfo(
+    protocolVersion = protocol_version,
+    maxContacts = max_contacts,
+    maxChannels = max_channels,
+)
+
+private fun DeviceInfo.toPb(): DeviceInfoPb = DeviceInfoPb(
+    protocol_version = protocolVersion,
+    max_contacts = maxContacts,
+    max_channels = maxChannels,
 )

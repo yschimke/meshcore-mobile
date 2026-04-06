@@ -1,10 +1,10 @@
 package ee.schimke.meshcore.core.protocol
 
 import ee.schimke.meshcore.core.model.MeshEvent
+import kotlinx.io.bytestring.ByteString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlinx.io.bytestring.ByteString
 
 class ParsersTest {
 

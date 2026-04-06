@@ -6,26 +6,26 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.PublicKey
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
-import ee.schimke.meshcore.mobile.ui.BleDeviceRow
 import ee.schimke.meshcore.mobile.ui.BleDeviceList
+import ee.schimke.meshcore.mobile.ui.BleDeviceRow
 import ee.schimke.meshcore.mobile.ui.BlePermissionPanel
 import ee.schimke.meshcore.mobile.ui.ContactList
 import ee.schimke.meshcore.mobile.ui.ContactRow
 import ee.schimke.meshcore.mobile.ui.DeviceSummaryCard
 import ee.schimke.meshcore.mobile.ui.TcpConnectPanel
-import kotlin.time.Instant
 import kotlinx.io.bytestring.ByteString
+import kotlin.time.Instant
 
 // --- Shared fixtures ------------------------------------------------------
 

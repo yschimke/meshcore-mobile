@@ -23,7 +23,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.android)
-                implementation(libs.mcarr.usb.android)
+                api(projects.meshcoreTransportBle)
+                api(projects.meshcoreTransportUsb)
                 // Reusable Compose UI primitives for mobile apps to
                 // drop in; these are public API of this module.
                 api(libs.compose.runtime)

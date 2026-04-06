@@ -1,12 +1,12 @@
 package ee.schimke.meshcore.cli
 
-import com.github.ajalt.mordant.rendering.TextColors.gray
 import com.github.ajalt.mordant.rendering.TextColors.brightBlue
 import com.github.ajalt.mordant.rendering.TextColors.cyan
+import com.github.ajalt.mordant.rendering.TextColors.gray
 import com.github.ajalt.mordant.rendering.TextStyles.bold
 import com.github.ajalt.mordant.table.table
 
-class InfoCommand : TcpSessionCommand("info", "Show device self info, radio and battery") {
+class InfoCommand : SessionCommand("info", "Show device self info, radio and battery") {
     override fun run() = withClient { client ->
         val self = client.selfInfo.value
         val radio = client.radio.value

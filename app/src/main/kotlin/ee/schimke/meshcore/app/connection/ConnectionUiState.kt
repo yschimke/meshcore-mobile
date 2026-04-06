@@ -1,29 +1,18 @@
 package ee.schimke.meshcore.app.connection
 
-import ee.schimke.meshcore.core.client.MeshCoreClient
-import ee.schimke.meshcore.core.transport.BleAdvertisement
 import dev.mcarr.usb.interfaces.ISerialPortWrapper
+import ee.schimke.meshcore.core.client.MeshCoreClient
+import ee.schimke.meshcore.transport.ble.BleAdvertisement
 
 /**
  * Everything the UI needs to know about the current connection
  * attempt / active session. Owned by [AppConnectionController] and
  * exposed as a `StateFlow<ConnectionUiState>`; the UI never talks to
- * the lower-level [ee.schimke.meshcore.core.manager.MeshCoreManager]
- * directly.
+ * the lower-level [ee.schimke.meshcore.core.manager.MeshCoreManager] directly.
  */
 sealed class ConnectionUiState {
     /** No active connection and no pending attempt. */
     data object Idle : ConnectionUiState()
-
-    /**
-     * A BLE advert was selected but no saved PIN exists for it. The
-     * UI should prompt the user; on submit the controller continues
-     * via [AppConnectionController.providePin].
-     */
-    data class NeedsPin(
-        val request: ConnectionRequest.Ble,
-        val deviceLabel: String,
-    ) : ConnectionUiState()
 
     /**
      * A connect attempt is in progress. [startedAtMs] is stable for
@@ -54,7 +43,8 @@ sealed class ConnectionRequest {
         override val label: String get() = "$host:$port"
     }
 
-    data class Usb(val port: ISerialPortWrapper) : ConnectionRequest() {
-        override val label: String get() = port::class.simpleName ?: "USB serial"
-    }
+    data class Usb(
+        val port: ISerialPortWrapper,
+        override val label: String = "USB %04X:%04X".format(port.vendorId, port.productId),
+    ) : ConnectionRequest()
 }

@@ -13,9 +13,11 @@ import ee.schimke.meshcore.core.protocol.MeshCoreConstants
 import ee.schimke.meshcore.core.protocol.Parsers
 import ee.schimke.meshcore.core.transport.Transport
 import ee.schimke.meshcore.core.transport.TransportState
-import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -29,6 +31,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withTimeout
 import kotlinx.io.bytestring.ByteString
+import kotlin.time.Instant
 
 /**
  * High-level coroutine API over a [Transport]. Construct one per active
@@ -67,35 +70,43 @@ class MeshCoreClient(
     suspend fun start(
         appName: String = "meshcore-kmp",
         appVersion: Int = MeshCoreConstants.APP_PROTOCOL_VERSION,
-        pin: String? = null,
     ) {
         if (pumpJob == null) {
-            pumpJob = scope.launch {
+            // UNDISPATCHED so the pump subscribes to transport.incoming
+            // *before* we send any frames — a dispatched launch could
+            // miss the AppStart response on a fast BLE round-trip
+            // because the SharedFlow has replay=0.
+            pumpJob = scope.launch(start = CoroutineStart.UNDISPATCHED) {
                 transport.incoming.collect { frame ->
                     handleEvent(Parsers.parse(frame))
                 }
             }
         }
         transport.send(Frames.appStart(appName, appVersion))
-        if (!pin.isNullOrEmpty()) {
-            login(pin)
-        }
         runCatching { transport.send(Frames.deviceQuery()) }
         runCatching { transport.send(Frames.getBatteryAndStorage()) }
         runCatching { transport.send(Frames.getRadioSettings()) }
     }
 
     /**
-     * Send the [pin] to the device and wait for `LoginSuccess` /
-     * `LoginFail`. Throws [IllegalStateException] on failure or after
-     * [timeoutMs] with no response. The exact wire format of the login
-     * frame is best-effort — see [Frames.sendLogin].
+     * Authenticate to [recipient] (a repeater or room contact) using
+     * [password]. Awaits a `LoginSuccess` / `LoginFail` push from the
+     * device; throws on failure or after [timeoutMs]. This is a
+     * runtime operation on an established connection — it has nothing
+     * to do with the device handshake.
+     *
+     * Wire format verified against the MeshCore Flutter client's
+     * `buildSendLoginFrame` in `connector/meshcore_protocol.dart`.
      */
-    suspend fun login(pin: String, timeoutMs: Long = 5_000) {
-        val ev = requestOne(Frames.sendLogin(pin), timeoutMs) {
+    suspend fun login(
+        recipient: PublicKey,
+        password: String,
+        timeoutMs: Long = 5_000,
+    ) {
+        val ev = requestOne(Frames.sendLogin(recipient, password), timeoutMs) {
             it is MeshEvent.LoginSuccess || it is MeshEvent.LoginFail
         }
-        if (ev is MeshEvent.LoginFail) error("device rejected login")
+        if (ev is MeshEvent.LoginFail) error("device rejected login for ${recipient.toHex().take(12)}")
     }
 
     fun stop() {
@@ -124,8 +135,13 @@ class MeshCoreClient(
     }
 
     suspend fun getContacts(timeoutMs: Long = 5_000): List<Contact> = sendMutex.withLock {
-        transport.send(Frames.getContacts())
-        withTimeout(timeoutMs) { events.filter { it is MeshEvent.EndOfContacts }.first() }
+        coroutineScope {
+            val deferred = async(start = CoroutineStart.UNDISPATCHED) {
+                withTimeout(timeoutMs) { events.filter { it is MeshEvent.EndOfContacts }.first() }
+            }
+            transport.send(Frames.getContacts())
+            deferred.await()
+        }
         _contacts.value
     }
 
@@ -185,12 +201,26 @@ class MeshCoreClient(
         return (ev as MeshEvent.Sent).ack
     }
 
+    /**
+     * Send a frame and await the first matching reply.
+     *
+     * The collector is attached **before** `transport.send` so a very
+     * fast reply (BLE round-trips can be <10 ms) can't slip past an
+     * unattached `SharedFlow` — prior versions of this method had a
+     * race where the pump emitted the reply and dropped it because
+     * `events` is replay=0 and the collector wasn't subscribed yet.
+     */
     private suspend fun requestOne(
         frame: ByteString,
         timeoutMs: Long,
         predicate: (MeshEvent) -> Boolean,
     ): MeshEvent = sendMutex.withLock {
-        transport.send(frame)
-        withTimeout(timeoutMs) { events.filter(predicate).first() }
+        coroutineScope {
+            val deferred = async(start = CoroutineStart.UNDISPATCHED) {
+                withTimeout(timeoutMs) { events.filter(predicate).first() }
+            }
+            transport.send(frame)
+            deferred.await()
+        }
     }
 }

@@ -1,7 +1,6 @@
 package ee.schimke.meshcore.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,18 +12,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Logout
+import androidx.compose.material.icons.automirrored.rounded.Message
+import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.Logout
-import androidx.compose.material.icons.rounded.Message
 import androidx.compose.material.icons.rounded.Refresh
-import androidx.compose.material.icons.rounded.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -38,7 +39,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,7 +49,6 @@ import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
-import ee.schimke.meshcore.mobile.ui.verticalScrollbar
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
@@ -60,9 +59,10 @@ import ee.schimke.meshcore.core.model.SelfInfo
 import ee.schimke.meshcore.mobile.ui.ContactList
 import ee.schimke.meshcore.mobile.ui.ContactListEmpty
 import ee.schimke.meshcore.mobile.ui.DeviceSummaryCard
-import kotlin.time.Instant
+import ee.schimke.meshcore.mobile.ui.verticalScrollbar
 import kotlinx.coroutines.launch
 import kotlinx.io.bytestring.ByteString
+import kotlin.time.Instant
 
 @Composable
 fun DeviceScreen(
@@ -101,20 +101,6 @@ fun DeviceScreen(
             onOpenThemePicker = onOpenThemePicker,
             status = DeviceConnectStatus.Failed(s.cause),
         )
-        is ConnectionUiState.NeedsPin -> {
-            // The PIN prompt is owned by ScannerScreen; if we somehow
-            // land here while waiting for a PIN, return to the scanner.
-            LaunchedEffect(Unit) { onDisconnected() }
-            DeviceStatusView(
-                title = "Waiting for PIN",
-                onCancel = { controller.cancelPinPrompt() },
-                onOpenThemePicker = onOpenThemePicker,
-                status = DeviceConnectStatus.Connecting(
-                    startedAtMs = System.currentTimeMillis(),
-                    timeoutMs = 20_000L,
-                ),
-            )
-        }
         ConnectionUiState.Idle -> {
             // Render the connecting shell transiently while we're
             // about to be popped by the LaunchedEffect above, so the
@@ -219,7 +205,7 @@ fun DeviceBody(
                     }
                     IconButton(onClick = onDisconnect) {
                         Icon(
-                            imageVector = Icons.Rounded.Logout,
+                            imageVector = Icons.AutoMirrored.Rounded.Logout,
                             contentDescription = "Disconnect",
                         )
                     }
@@ -283,7 +269,7 @@ fun DeviceBody(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Icon(
-                    imageVector = Icons.Rounded.Send,
+                    imageVector = Icons.AutoMirrored.Rounded.Send,
                     contentDescription = null,
                     modifier = Modifier.size(18.dp),
                 )
@@ -323,7 +309,7 @@ private fun LastMessageBanner(text: String) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = Icons.Rounded.Message,
+                imageVector = Icons.AutoMirrored.Rounded.Message,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
             )
@@ -380,7 +366,7 @@ fun DeviceStatusView(
                         Icon(Icons.Rounded.Contrast, contentDescription = "Theme")
                     }
                     IconButton(onClick = onCancel) {
-                        Icon(Icons.Rounded.Logout, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Rounded.Logout, contentDescription = "Back")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -469,7 +455,7 @@ private fun ConnectingCard(
                 color = MaterialTheme.colorScheme.primary,
                 trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
             )
-            androidx.compose.material3.OutlinedButton(
+            OutlinedButton(
                 onClick = onCancel,
                 modifier = Modifier.fillMaxWidth(),
             ) { Text("Cancel") }
@@ -518,10 +504,10 @@ private fun FailureCard(cause: Throwable, onRetry: () -> Unit) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onErrorContainer,
             )
-            androidx.compose.material3.OutlinedButton(onClick = onRetry) { Text("Back to scanner") }
+            OutlinedButton(onClick = onRetry) { Text("Back to scanner") }
         }
     }
-    androidx.compose.material3.OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(12.dp)) {
             Text(
                 text = "Details",

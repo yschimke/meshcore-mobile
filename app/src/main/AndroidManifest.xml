@@ -13,8 +13,9 @@
 
     <application
         android:name=".MeshcoreApp"
-        android:allowBackup="true"
-        android:label="MeshCore Sample"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="MeshCore"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity

@@ -19,6 +19,7 @@ java {
 
 dependencies {
     implementation(projects.meshcoreCore)
+    implementation(projects.meshcoreTransportTcp)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.clikt)
     implementation(libs.mordant)

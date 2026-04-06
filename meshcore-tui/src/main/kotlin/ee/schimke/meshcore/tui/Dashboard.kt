@@ -12,7 +12,7 @@ import com.github.ajalt.mordant.table.table
 import com.github.ajalt.mordant.terminal.Terminal
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.model.MeshEvent
-import ee.schimke.meshcore.core.transport.TcpTransport
+import ee.schimke.meshcore.transport.tcp.TcpTransport
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

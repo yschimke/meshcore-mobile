@@ -4,7 +4,7 @@ import com.github.ajalt.mordant.rendering.TextColors.green
 import com.github.ajalt.mordant.rendering.TextColors.red
 import com.github.ajalt.mordant.rendering.TextColors.yellow
 
-class BatteryCommand : TcpSessionCommand("battery", "Show battery and storage status") {
+class BatteryCommand : SessionCommand("battery", "Show battery and storage status") {
     override fun run() = withClient { client ->
         val b = client.getBatteryAndStorage()
         val pct = b.estimatePercent()

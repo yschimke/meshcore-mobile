@@ -21,12 +21,75 @@ message SavedDevicePb {
   string label = 2;
   // Unix epoch milliseconds of the last successful connect.
   int64 last_connected_at_ms = 3;
-  // Optional credential. Empty = no PIN saved.
-  string pin = 4;
+  // Reserved: was pin (field 4).
+  reserved 4;
   // Per-transport details.
   BleTransportPb ble = 5;
   TcpTransportPb tcp = 6;
   UsbTransportPb usb = 7;
+  // Cached device snapshot from last successful connect.
+  DeviceSnapshotPb snapshot = 8;
+}
+
+// Cached snapshot of device state, fetched on each connection.
+// Every field carries a fetched_at_ms timestamp so consumers can
+// judge staleness.
+message DeviceSnapshotPb {
+  SelfInfoPb self_info = 1;
+  int64 self_info_at_ms = 2;
+
+  repeated ContactPb contacts = 3;
+  int64 contacts_at_ms = 4;
+
+  BatteryInfoPb battery = 5;
+  int64 battery_at_ms = 6;
+
+  RadioSettingsPb radio = 7;
+  int64 radio_at_ms = 8;
+
+  DeviceInfoPb device_info = 9;
+  int64 device_info_at_ms = 10;
+}
+
+message SelfInfoPb {
+  int32 advert_type = 1;
+  int32 tx_power_dbm = 2;
+  int32 max_power_dbm = 3;
+  bytes public_key = 4;
+  double latitude = 5;
+  double longitude = 6;
+  string name = 7;
+}
+
+message ContactPb {
+  bytes public_key = 1;
+  int32 type = 2;
+  int32 flags = 3;
+  int32 path_length = 4;
+  string name = 5;
+  int64 advert_timestamp_epoch_s = 6;
+  double latitude = 7;
+  double longitude = 8;
+  int64 last_modified_epoch_s = 9;
+}
+
+message BatteryInfoPb {
+  int32 millivolts = 1;
+  int64 storage_used_kb = 2;
+  int64 storage_total_kb = 3;
+}
+
+message RadioSettingsPb {
+  int32 frequency_hz = 1;
+  int32 bandwidth_hz = 2;
+  int32 spreading_factor = 3;
+  int32 coding_rate = 4;
+}
+
+message DeviceInfoPb {
+  int32 protocol_version = 1;
+  int32 max_contacts = 2;
+  int32 max_channels = 3;
 }
 
 message BleTransportPb {

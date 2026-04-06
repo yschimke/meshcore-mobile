@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 rootProject.name = "Meshcore"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -41,6 +43,9 @@ plugins {
 }
 
 include(":meshcore-core")
+include(":meshcore-transport-tcp")
+include(":meshcore-transport-ble")
+include(":meshcore-transport-usb")
 include(":meshcore-devices-proto")
 include(":meshcore-mobile")
 include(":meshcore-cli")

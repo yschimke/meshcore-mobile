@@ -5,7 +5,7 @@ import com.github.ajalt.mordant.rendering.TextColors.yellow
 import com.github.ajalt.mordant.rendering.TextStyles.bold
 import com.github.ajalt.mordant.table.table
 
-class ContactsCommand : TcpSessionCommand("contacts", "List contacts known to the device") {
+class ContactsCommand : SessionCommand("contacts", "List contacts known to the device") {
     override fun run() = withClient { client ->
         val contacts = client.getContacts()
         terminal.println(bold("${contacts.size} contacts"))

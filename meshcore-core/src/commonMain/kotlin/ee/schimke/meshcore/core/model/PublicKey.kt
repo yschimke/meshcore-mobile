@@ -1,8 +1,10 @@
 package ee.schimke.meshcore.core.model
 
+import ee.schimke.meshcore.core.model.PublicKey.Companion.fromBytes
+import ee.schimke.meshcore.core.model.PublicKey.Companion.fromHex
+import ee.schimke.meshcore.core.model.PublicKey.Companion.ofPrefix
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants.PUB_KEY_PREFIX_SIZE
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants.PUB_KEY_SIZE
-import kotlin.jvm.JvmInline
 import kotlinx.io.bytestring.ByteString
 
 /**

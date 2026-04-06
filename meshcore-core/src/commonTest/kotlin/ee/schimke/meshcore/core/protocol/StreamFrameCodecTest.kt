@@ -1,9 +1,9 @@
 package ee.schimke.meshcore.core.protocol
 
+import kotlinx.io.bytestring.ByteString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlinx.io.bytestring.ByteString
 
 class StreamFrameCodecTest {
 

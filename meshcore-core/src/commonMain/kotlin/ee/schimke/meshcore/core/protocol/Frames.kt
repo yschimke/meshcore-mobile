@@ -5,15 +5,15 @@ import ee.schimke.meshcore.core.protocol.BufferExt.buildByteString
 import ee.schimke.meshcore.core.protocol.BufferExt.writeCString
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants.MAX_NAME_SIZE
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants.MAX_TEXT_PAYLOAD_BYTES
-import kotlin.math.roundToInt
-import kotlin.time.Instant
 import kotlinx.io.bytestring.ByteString
 import kotlinx.io.bytestring.ByteStringBuilder
 import kotlinx.io.writeIntLe
+import kotlin.math.roundToInt
+import kotlin.time.Instant
 
 /**
  * Pure frame builders. They return the raw MeshCore frame payload
- * `[code][body...]` ready to hand to a [ee.schimke.meshcore.core.transport.Transport].
+ * `[code][body]` ready to hand to a [ee.schimke.meshcore.core.transport.Transport].
  * Stream transports will wrap this further via [StreamFrameCodec.encodeTx].
  */
 object Frames {
@@ -29,14 +29,20 @@ object Frames {
     }
 
     /**
-     * `[0x1A][pin as C string]` — ask the device to unlock using [pin].
-     * NB: the exact wire format is best-effort against the MeshCore
-     * reference firmware and may need adjustment once verified against
-     * a device that requires login.
+     * `[0x1A][recipient pub_key × 32][password]\0` — authenticate to a
+     * specific contact (repeater or room) so subsequent admin commands
+     * addressed to that contact are honored. This is **not** a
+     * device-level bootstrap step — connecting to a companion radio
+     * over BLE/USB/TCP requires no login. Only call this when the
+     * user wants to unlock a password-protected contact.
+     *
+     * Verified against the MeshCore Flutter client's
+     * `buildSendLoginFrame` in `connector/meshcore_protocol.dart`.
      */
-    fun sendLogin(pin: String): ByteString = buildByteString {
+    fun sendLogin(recipient: PublicKey, password: String): ByteString = buildByteString {
         writeByte(CommandCode.SendLogin.raw)
-        writeCString(pin)
+        write(recipient.bytes.toByteArray())
+        writeCString(password)
     }
 
     fun deviceQuery(): ByteString = single(CommandCode.DeviceQuery)

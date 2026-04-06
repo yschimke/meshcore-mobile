@@ -19,19 +19,11 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.ktor.network)
-            api(libs.kable.core)
-            api(libs.mcarr.usb)
             api(libs.kotlinx.io.core)
             api(libs.kotlinx.io.bytestring)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.mcarr.usb.android)
-            }
         }
     }
 }

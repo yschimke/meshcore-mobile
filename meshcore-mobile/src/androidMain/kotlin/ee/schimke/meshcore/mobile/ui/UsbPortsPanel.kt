@@ -1,5 +1,13 @@
 package ee.schimke.meshcore.mobile.ui
 
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.hardware.usb.UsbDevice
+import android.hardware.usb.UsbManager
+import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,16 +31,50 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.mcarr.usb.interfaces.ISerialPortWrapper
 
+private const val ACTION_USB_PERMISSION = "ee.schimke.meshcore.USB_PERMISSION"
+
+/** Display-friendly wrapper pairing a port with its USB device metadata. */
+data class UsbPortInfo(
+    val port: ISerialPortWrapper,
+    val deviceName: String?,
+    val manufacturerName: String?,
+    val productName: String?,
+    val deviceAddress: String,
+    val vendorId: Int,
+    val productId: Int,
+) {
+    val displayLabel: String
+        get() = productName
+            ?: deviceName?.takeIf { !it.startsWith("/dev/") }
+            ?: "USB ${vendorId.vid()}:${productId.pid()}"
+
+    val subtitle: String
+        get() = buildString {
+            manufacturerName?.let { append(it); append(" · ") }
+            append(deviceAddress)
+            append(" · ${vendorId.vid()}:${productId.pid()}")
+        }
+}
+
+private fun Int.vid() = "%04X".format(this)
+private fun Int.pid() = "%04X".format(this)
+
 /**
  * Lists USB serial ports and connects to the one picked by the user.
+ * Automatically requests Android USB permission when needed.
  * The enumeration function is injected so the caller can route it
  * through Metro DI ([ee.schimke.meshcore.mobile.AndroidUsbPortLister]).
  */
@@ -43,8 +85,65 @@ fun UsbPortsPanel(
     onConnect: (ISerialPortWrapper) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val ports = remember { mutableStateListOf<ISerialPortWrapper>() }
-    LaunchedEffect(Unit) { ports.clear(); ports.addAll(listPorts()) }
+    val context = LocalContext.current
+    val usbManager = remember { context.getSystemService(Context.USB_SERVICE) as UsbManager }
+    val portInfos = remember { mutableStateListOf<UsbPortInfo>() }
+    // Port waiting for permission grant
+    var pendingPort by remember { mutableStateOf<ISerialPortWrapper?>(null) }
+
+    fun refreshPorts() {
+        val rawPorts = listPorts()
+        val sysDevices = usbManager.deviceList.values
+        portInfos.clear()
+        portInfos.addAll(rawPorts.map { port ->
+            val dev = sysDevices.firstOrNull { d ->
+                d.vendorId == port.vendorId && d.productId == port.productId
+            }
+            UsbPortInfo(
+                port = port,
+                deviceName = dev?.deviceName,
+                manufacturerName = dev?.manufacturerName,
+                productName = dev?.productName,
+                deviceAddress = dev?.deviceName ?: "unknown",
+                vendorId = port.vendorId,
+                productId = port.productId,
+            )
+        })
+    }
+
+    LaunchedEffect(Unit) { refreshPorts() }
+
+    // Listen for the USB permission result
+    DisposableEffect(Unit) {
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(ctx: Context, intent: Intent) {
+                if (intent.action != ACTION_USB_PERMISSION) return
+                val granted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
+                if (granted) {
+                    pendingPort?.let(onConnect)
+                }
+                pendingPort = null
+            }
+        }
+        val filter = IntentFilter(ACTION_USB_PERMISSION)
+        context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        onDispose { context.unregisterReceiver(receiver) }
+    }
+
+    fun connectWithPermission(info: UsbPortInfo) {
+        val device: UsbDevice? = usbManager.deviceList.values.firstOrNull { d ->
+            d.vendorId == info.vendorId && d.productId == info.productId
+        }
+        if (device != null && !usbManager.hasPermission(device)) {
+            pendingPort = info.port
+            val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            val pi = PendingIntent.getBroadcast(context, 0, Intent(ACTION_USB_PERMISSION), flags)
+            usbManager.requestPermission(device, pi)
+        } else {
+            onConnect(info.port)
+        }
+    }
+
     Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
@@ -61,7 +160,7 @@ fun UsbPortsPanel(
             )
             OutlinedButton(
                 enabled = !busy,
-                onClick = { ports.clear(); ports.addAll(listPorts()) },
+                onClick = { refreshPorts() },
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Refresh,
@@ -72,15 +171,16 @@ fun UsbPortsPanel(
                 Text("Refresh")
             }
         }
-        if (ports.isEmpty()) {
+        if (portInfos.isEmpty()) {
             UsbEmptyState()
         } else {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(ports) { p ->
+                items(portInfos) { info ->
                     UsbPortCard(
-                        label = p::class.simpleName ?: "device",
-                        busy = busy,
-                        onConnect = { onConnect(p) },
+                        label = info.displayLabel,
+                        subtitle = info.subtitle,
+                        busy = busy || pendingPort == info.port,
+                        onConnect = { connectWithPermission(info) },
                     )
                 }
             }
@@ -89,7 +189,13 @@ fun UsbPortsPanel(
 }
 
 @Composable
-fun UsbPortCard(label: String, busy: Boolean, onConnect: () -> Unit, modifier: Modifier = Modifier) {
+fun UsbPortCard(
+    label: String,
+    subtitle: String? = null,
+    busy: Boolean,
+    onConnect: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -111,15 +217,17 @@ fun UsbPortCard(label: String, busy: Boolean, onConnect: () -> Unit, modifier: M
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
                 Text(
-                    text = "Serial port",
+                    text = label,
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
-                Text(
-                    text = label,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                if (subtitle != null) {
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
             FilledTonalButton(enabled = !busy, onClick = onConnect) { Text("Connect") }
         }

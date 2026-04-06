@@ -1,7 +1,6 @@
 package ee.schimke.meshcore.app.widget
 
 import android.content.Context
-import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.updateAll
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState

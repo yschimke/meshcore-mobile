@@ -1,8 +1,8 @@
 package ee.schimke.meshcore.app.widget
 
 import android.content.Context
-import ee.schimke.meshcore.core.manager.ManagerState
 import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.core.manager.ManagerState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

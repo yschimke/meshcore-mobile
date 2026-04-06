@@ -1,8 +1,8 @@
 package ee.schimke.meshcore.core.model
 
 import ee.schimke.meshcore.core.protocol.TextType
-import kotlin.time.Instant
 import kotlinx.io.bytestring.ByteString
+import kotlin.time.Instant
 
 /** Device identity + radio config returned by `CMD_APP_START`. */
 data class SelfInfo(

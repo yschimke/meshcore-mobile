@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlin.coroutines.coroutineContext
 
 /**
  * Thin, transport-agnostic orchestrator: given any [Transport] instance
@@ -53,11 +54,11 @@ class MeshCoreManager(
      * in-flight connect attempt) is cancelled first. On success [state]
      * transitions to [ManagerState.Connected].
      */
-    suspend fun connect(transport: Transport, pin: String? = null) {
+    suspend fun connect(transport: Transport) {
         // Cancel any in-flight connect first so the new call doesn't queue
         // up behind a 20-second BLE timeout.
         inflightConnectJob?.cancel(CancellationException("superseded by new connect()"))
-        val callerJob = kotlin.coroutines.coroutineContext[Job]
+        val callerJob = coroutineContext[Job]
         inflightConnectJob = callerJob
         try {
             lifecycleMutex.withLock {
@@ -86,7 +87,7 @@ class MeshCoreManager(
                 }
                 val client = MeshCoreClient(transport, scope)
                 try {
-                    client.start(pin = pin)
+                    client.start()
                 } catch (t: Throwable) {
                     try { client.stop() } catch (_: Throwable) {}
                     _state.value = ManagerState.Failed(t)

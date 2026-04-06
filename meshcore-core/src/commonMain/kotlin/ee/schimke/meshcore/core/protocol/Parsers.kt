@@ -17,7 +17,6 @@ import ee.schimke.meshcore.core.protocol.BufferExt.readCStringFixed
 import ee.schimke.meshcore.core.protocol.BufferExt.readCStringRemaining
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants.PUB_KEY_PREFIX_SIZE
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants.PUB_KEY_SIZE
-import kotlin.time.Instant
 import kotlinx.io.Buffer
 import kotlinx.io.Source
 import kotlinx.io.bytestring.ByteString
@@ -25,6 +24,7 @@ import kotlinx.io.bytestring.isEmpty
 import kotlinx.io.readByteString
 import kotlinx.io.readIntLe
 import kotlinx.io.readShortLe
+import kotlin.time.Instant
 
 /** Parse a raw frame payload `[code][body...]` into a [MeshEvent]. */
 object Parsers {

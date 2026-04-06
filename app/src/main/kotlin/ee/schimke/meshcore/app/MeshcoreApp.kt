@@ -2,13 +2,13 @@ package ee.schimke.meshcore.app
 
 import android.app.Application
 import dev.zacsweers.metro.createGraphFactory
-import ee.schimke.meshcore.core.manager.MeshCoreManager
-import ee.schimke.meshcore.mobile.AndroidUsbPortLister
-import ee.schimke.meshcore.mobile.MobileGraph
 import ee.schimke.meshcore.app.connection.AppConnectionController
 import ee.schimke.meshcore.app.data.SavedDevicesRepository
 import ee.schimke.meshcore.app.ui.theme.ThemePreferences
 import ee.schimke.meshcore.app.widget.WidgetStateBridge
+import ee.schimke.meshcore.core.manager.MeshCoreManager
+import ee.schimke.meshcore.mobile.AndroidUsbPortLister
+import ee.schimke.meshcore.mobile.MobileGraph
 import kotlinx.coroutines.launch
 
 class MeshcoreApp : Application() {

@@ -21,3 +21,7 @@ node_modules/
 /.agents/
 /.claude/
 /.vscode/
+/meshcore-devices-proto/bin/
+/meshcore-cli/bin/
+/meshcore-transport-tcp/bin/
+/meshcore-tui/bin/

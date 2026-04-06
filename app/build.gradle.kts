@@ -42,6 +42,9 @@ android {
 
 dependencies {
     implementation(projects.meshcoreCore)
+    implementation(projects.meshcoreTransportTcp)
+    implementation(projects.meshcoreTransportBle)
+    implementation(projects.meshcoreTransportUsb)
     implementation(projects.meshcoreMobile)
     implementation(projects.meshcoreDevicesProto)
     implementation(libs.metro.runtime)
@@ -65,6 +68,6 @@ dependencies {
     implementation(libs.androidx.glance.material3)
     debugImplementation(libs.compose.uiTooling)
     testImplementation(libs.robolectric)
-    testImplementation("androidx.test:core:1.7.0")
+    testImplementation(libs.androidx.core)
     testImplementation(libs.androidx.testExt.junit)
 }

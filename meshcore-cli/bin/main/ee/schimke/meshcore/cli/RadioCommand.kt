@@ -4,7 +4,7 @@ import com.github.ajalt.clikt.parameters.options.help
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.int
 
-class RadioCommand : TcpSessionCommand("radio", "Read (or update) LoRa radio parameters") {
+class RadioCommand : SessionCommand("radio", "Read (or update) LoRa radio parameters") {
 
     private val setFreq by option("--freq").int().help("Set frequency in Hz (optional)")
     private val setBw by option("--bw").int().help("Set bandwidth in Hz (optional)")

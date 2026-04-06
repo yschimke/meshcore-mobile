@@ -6,7 +6,6 @@ import kotlinx.io.bytestring.ByteString
 import kotlinx.io.bytestring.isEmpty
 import kotlinx.io.readByteString
 import kotlinx.io.readShortLe
-import kotlinx.io.write
 
 /**
  * Shared [kotlinx.io][kotlinx.io.Buffer] helpers used by frame builders

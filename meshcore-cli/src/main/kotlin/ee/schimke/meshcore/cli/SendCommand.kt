@@ -9,7 +9,7 @@ import com.github.ajalt.mordant.rendering.TextColors.green
 import ee.schimke.meshcore.core.model.PublicKey
 import kotlin.time.Clock
 
-class SendCommand : TcpSessionCommand("send", "Send a direct text message to a contact") {
+class SendCommand : SessionCommand("send", "Send a direct text message to a contact") {
 
     private val targetHex by option("--to")
         .help("Recipient hex pubkey (full or 6-byte prefix). If omitted, pick by --name.")

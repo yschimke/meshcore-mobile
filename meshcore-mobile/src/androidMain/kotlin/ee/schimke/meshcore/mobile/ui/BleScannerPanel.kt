@@ -18,20 +18,22 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material.icons.rounded.BluetoothSearching
-import androidx.compose.material.icons.rounded.DeviceUnknown
+import androidx.compose.material.icons.automirrored.rounded.BluetoothSearching
 import androidx.compose.material.icons.filled.SignalCellular0Bar
 import androidx.compose.material.icons.filled.SignalCellular4Bar
 import androidx.compose.material.icons.filled.SignalCellularAlt
+import androidx.compose.material.icons.rounded.Bluetooth
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.DeviceUnknown
+import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,8 +51,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants
-import ee.schimke.meshcore.core.transport.BleAdvertisement
-import ee.schimke.meshcore.core.transport.BleScanner
+import ee.schimke.meshcore.transport.ble.BleAdvertisement
+import ee.schimke.meshcore.transport.ble.BleScanner
 
 /** Display-only row so [BleDeviceList] can be previewed without Kable types. */
 data class BleDeviceRow(val identifier: String, val name: String?, val rssi: Int)
@@ -120,6 +122,8 @@ fun BleScannerPanel(
             }
         }
 
+        BlePairingTipBanner()
+
         ScanStatusBar(
             shown = devices.size,
             meshOnly = meshOnly,
@@ -156,7 +160,7 @@ fun ScanStatusBar(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = Icons.Rounded.BluetoothSearching,
+            imageVector = Icons.AutoMirrored.Rounded.BluetoothSearching,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(20.dp),
@@ -320,6 +324,45 @@ private fun BleDeviceRowCard(row: BleDeviceRow, busy: Boolean, onPick: (BleDevic
 }
 
 @Composable
+fun BlePairingTipBanner(modifier: Modifier = Modifier) {
+    var dismissed by remember { mutableStateOf(false) }
+    if (dismissed) return
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+        ),
+    ) {
+        Row(
+            modifier = Modifier.padding(start = 12.dp, top = 8.dp, bottom = 8.dp, end = 4.dp),
+            verticalAlignment = Alignment.Top,
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Info,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                modifier = Modifier.size(20.dp).padding(top = 2.dp),
+            )
+            Spacer(Modifier.size(8.dp))
+            Text(
+                text = "The default pin for devices without a screen is 123456. Trouble pairing? Forget the bluetooth device in system settings.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                modifier = Modifier.weight(1f),
+            )
+            IconButton(onClick = { dismissed = true }, modifier = Modifier.size(32.dp)) {
+                Icon(
+                    imageVector = Icons.Rounded.Close,
+                    contentDescription = "Dismiss",
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.size(16.dp),
+                )
+            }
+        }
+    }
+}
+
+@Composable
 private fun BleScanEmptyState(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxWidth().padding(vertical = 24.dp),
@@ -327,7 +370,7 @@ private fun BleScanEmptyState(modifier: Modifier = Modifier) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
-                imageVector = Icons.Rounded.BluetoothSearching,
+                imageVector = Icons.AutoMirrored.Rounded.BluetoothSearching,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(36.dp),

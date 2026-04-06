@@ -55,11 +55,10 @@ import ee.schimke.meshcore.mobile.ui.UsbPortsPanel
 // intent and renders what the controller publishes. That means:
 //   - no rememberCoroutineScope for network ops
 //   - no direct MeshCoreManager / ManagerState references
-//   - no ad-hoc PIN state held in composition
 //
-// [onConnect] is invoked as soon as the controller leaves Idle for
-// a non-PIN-prompt state, so the navigation to DeviceScreen is
-// driven by connection intent, not by screen click-handlers.
+// [onConnect] is invoked as soon as the controller transitions to
+// Connecting or Connected, so navigation to DeviceScreen is driven
+// by connection intent, not by screen click-handlers.
 @Composable
 fun ScannerScreen(
     onConnect: () -> Unit,
@@ -69,6 +68,7 @@ fun ScannerScreen(
     val controller = app.connectionController
     val uiState by controller.state.collectAsState()
     val savedDevices by app.savedDevices.devices.collectAsState(initial = emptyList())
+    val connectedDeviceId by controller.connectedDeviceId.collectAsState()
     val busy = uiState is ConnectionUiState.Connecting
 
     LaunchedEffect(uiState) {
@@ -83,7 +83,14 @@ fun ScannerScreen(
             SavedDevicesPanel(
                 devices = savedDevices,
                 busy = busy,
-                onConnect = { device -> if (!busy) controller.requestReconnect(device) },
+                connectedDeviceId = connectedDeviceId,
+                onConnect = { device ->
+                    if (device.id == connectedDeviceId) {
+                        onConnect() // navigate to device screen
+                    } else if (!busy) {
+                        controller.requestReconnect(device)
+                    }
+                },
                 onForget = { device -> controller.forgetSavedDevice(device.id) },
                 onToggleFavorite = { device -> controller.toggleFavorite(device.id) },
             )
@@ -115,13 +122,6 @@ fun ScannerScreen(
         },
     )
 
-    (uiState as? ConnectionUiState.NeedsPin)?.let { needs ->
-        PinDialog(
-            deviceLabel = needs.deviceLabel,
-            onConfirm = { pin -> controller.providePin(pin) },
-            onDismiss = { controller.cancelPinPrompt() },
-        )
-    }
 }
 
 /**
@@ -305,7 +305,6 @@ private fun previewSavedPopulated() {
             ee.schimke.meshcore.app.data.SavedDevice(
                 id = "ble:C7:8D:8C:45:5F:78",
                 label = "MeshCore-ABCD",
-                pin = "1234",
                 transport = ee.schimke.meshcore.app.data.SavedTransport.Ble(
                     "C7:8D:8C:45:5F:78", "MeshCore-ABCD",
                 ),
@@ -315,7 +314,6 @@ private fun previewSavedPopulated() {
             ee.schimke.meshcore.app.data.SavedDevice(
                 id = "tcp:192.168.1.10:5000",
                 label = "192.168.1.10:5000",
-                pin = null,
                 transport = ee.schimke.meshcore.app.data.SavedTransport.Tcp("192.168.1.10", 5000),
                 favorite = false,
                 lastConnectedAtMs = 1_700_050_000_000,
