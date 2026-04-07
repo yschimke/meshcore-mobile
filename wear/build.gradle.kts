@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.aboutlibraries)
     id("ee.schimke.composepreview.plugin") version "0.1.0"
 }
 
@@ -67,6 +68,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewmodelCompose)
+    implementation(libs.aboutlibraries.compose.wear.m3)
     implementation(libs.kotlinx.coroutines.android)
 
     implementation("androidx.wear.compose:compose-ui-tooling:1.6.0")

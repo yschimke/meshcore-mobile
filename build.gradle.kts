@@ -10,4 +10,5 @@ plugins {
     alias(libs.plugins.metro) apply false
     alias(libs.plugins.graalvmNative) apply false
     alias(libs.plugins.protobuf) apply false
+    alias(libs.plugins.aboutlibraries) apply false
 }

@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.metro)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.aboutlibraries)
 }
 
 kotlin {
@@ -76,6 +77,7 @@ dependencies {
     implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.appfunctions)
     implementation(libs.androidx.appfunctions.service)
+    implementation(libs.aboutlibraries.compose.m3)
     ksp(libs.androidx.appfunctions.compiler)
     debugImplementation(libs.compose.uiTooling)
     testImplementation(libs.robolectric)

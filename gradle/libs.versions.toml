@@ -47,6 +47,7 @@ wear-compose = "1.6.0"
 wear-compose-material3 = "1.6.0"
 wear-compose-remote = "1.0.0-alpha01"
 playservices-wearable = "19.0.0"
+aboutlibraries = "14.0.0"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
@@ -125,6 +126,8 @@ wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation",
 wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wear-compose" }
 wear-compose-navigation3 = { module = "androidx.wear.compose:compose-navigation3", version.ref = "wear-compose" }
 wear-compose-remote-material3 = { module = "androidx.wear.compose.remote:remote-material3", version.ref = "wear-compose-remote" }
+aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutlibraries" }
+aboutlibraries-compose-wear-m3 = { module = "com.mikepenz:aboutlibraries-compose-wear-m3", version.ref = "aboutlibraries" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -142,3 +145,4 @@ graalvmNative = { id = "org.graalvm.buildtools.native", version.ref = "graalvmNa
 room = { id = "androidx.room", version.ref = "room" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
