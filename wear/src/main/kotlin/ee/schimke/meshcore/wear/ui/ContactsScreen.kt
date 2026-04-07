@@ -20,11 +20,15 @@ import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.ListHeader
+import androidx.wear.compose.material3.ListHeaderDefaults
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
+import androidx.wear.compose.material3.TextDefaults
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
+import androidx.wear.compose.material3.lazy.transformedHeight
 import ee.schimke.meshcore.grpc.ContactMsg
 import ee.schimke.meshcore.grpc.ContactType
 import ee.schimke.meshcore.wear.ui.theme.WearDimens
@@ -69,14 +73,33 @@ fun ContactsBody(
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .minimumVerticalContentPadding(
+                                TextDefaults.minimumTopListContentPadding
+                            ),
                     )
                 }
             } else {
+                item {
+                    ListHeader(
+                        modifier = Modifier.minimumVerticalContentPadding(
+                            top = ListHeaderDefaults.minimumTopListContentPadding,
+                            bottom = ListHeaderDefaults.minimumBottomListContentPadding,
+                        ),
+                    ) {
+                        Text("Contacts")
+                    }
+                }
                 items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
                     Button(
                         onClick = { onContactSelected(contact) },
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .minimumVerticalContentPadding(
+                                ButtonDefaults.minimumVerticalListContentPadding
+                            )
+                            .transformedHeight(this, transformationSpec),
                         colors = ButtonDefaults.filledTonalButtonColors(),
                         transformation = SurfaceTransformation(transformationSpec),
                     ) {

@@ -6,18 +6,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.ButtonDefaults
+import androidx.wear.compose.material3.ListHeader
+import androidx.wear.compose.material3.ListHeaderDefaults
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
+import androidx.wear.compose.material3.lazy.transformedHeight
 import com.google.protobuf.ByteString
 import ee.schimke.meshcore.wear.ui.theme.WearDimens
 import kotlinx.coroutines.launch
@@ -72,19 +74,25 @@ fun QuickReplyBody(
             verticalArrangement = Arrangement.spacedBy(WearDimens.CardGap),
         ) {
             item {
-                Text(
-                    text = "Quick Reply",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(),
-                )
+                ListHeader(
+                    modifier = Modifier.minimumVerticalContentPadding(
+                        top = ListHeaderDefaults.minimumTopListContentPadding,
+                        bottom = ListHeaderDefaults.minimumBottomListContentPadding,
+                    ),
+                ) {
+                    Text("Quick Reply")
+                }
             }
 
             items(replies) { reply ->
                 Button(
                     onClick = { onReply(reply) },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .minimumVerticalContentPadding(
+                            ButtonDefaults.minimumVerticalListContentPadding
+                        )
+                        .transformedHeight(this, transformationSpec),
                     colors = ButtonDefaults.filledTonalButtonColors(),
                     transformation = SurfaceTransformation(transformationSpec),
                 ) {
