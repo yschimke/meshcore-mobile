@@ -1,6 +1,5 @@
 package ee.schimke.meshcore.wear.ui
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
@@ -71,7 +70,6 @@ fun QuickReplyBody(
             state = columnState,
             modifier = Modifier.fillMaxSize(),
             contentPadding = contentPadding,
-            verticalArrangement = Arrangement.spacedBy(WearDimens.CardGap),
         ) {
             item {
                 ListHeader(

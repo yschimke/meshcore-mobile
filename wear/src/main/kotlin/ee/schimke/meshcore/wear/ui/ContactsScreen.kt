@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.GroupOff
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.items
@@ -68,16 +70,30 @@ fun ContactsBody(
         ) {
             if (contacts.isEmpty()) {
                 item {
+                    Icon(
+                        imageVector = Icons.Rounded.GroupOff,
+                        contentDescription = "No contacts",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier
+                            .size(36.dp)
+                            .minimumVerticalContentPadding(
+                                TextDefaults.minimumTopListContentPadding
+                            )
+                            .transformedHeight(this, transformationSpec),
+                    )
+                }
+                item {
                     Text(
                         text = "No chat contacts",
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()
                             .minimumVerticalContentPadding(
-                                TextDefaults.minimumTopListContentPadding
-                            ),
+                                TextDefaults.minimumBottomListContentPadding
+                            )
+                            .transformedHeight(this, transformationSpec),
                     )
                 }
             } else {

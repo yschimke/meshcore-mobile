@@ -1,18 +1,17 @@
 package ee.schimke.meshcore.wear.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.BatteryFull
 import androidx.compose.material.icons.rounded.Bluetooth
 import androidx.compose.material.icons.rounded.BluetoothDisabled
 import androidx.compose.material.icons.rounded.Groups
 import androidx.compose.material.icons.rounded.PhoneAndroid
-import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.Sensors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
@@ -38,6 +38,8 @@ import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import androidx.wear.compose.material3.lazy.transformedHeight
 import ee.schimke.meshcore.wear.ui.theme.WearDimens
 import ee.schimke.meshcore.wear.ui.theme.WearMonoBody
+
+private val StatusIconSize = 36.dp
 
 // --- Stateful entry point ---------------------------------------------------
 
@@ -88,9 +90,11 @@ fun StatusBody(
                 is WearUiState.Loading -> {
                     item {
                         CircularProgressIndicator(
-                            modifier = Modifier.minimumVerticalContentPadding(
-                                TextDefaults.minimumTopListContentPadding
-                            ),
+                            modifier = Modifier
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumTopListContentPadding
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                     item {
@@ -103,7 +107,8 @@ fun StatusBody(
                                 .fillMaxWidth()
                                 .minimumVerticalContentPadding(
                                     TextDefaults.minimumBottomListContentPadding
-                                ),
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                 }
@@ -115,23 +120,25 @@ fun StatusBody(
                             contentDescription = "Phone disconnected",
                             tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier
-                                .size(WearDimens.IconSize)
+                                .size(StatusIconSize)
                                 .minimumVerticalContentPadding(
                                     TextDefaults.minimumTopListContentPadding
-                                ),
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                     item {
                         Text(
                             text = "Phone not reachable",
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.error,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .minimumVerticalContentPadding(
                                     TextDefaults.minimumBottomListContentPadding
-                                ),
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                 }
@@ -143,23 +150,25 @@ fun StatusBody(
                             contentDescription = "Radio disconnected",
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier
-                                .size(WearDimens.IconSize)
+                                .size(StatusIconSize)
                                 .minimumVerticalContentPadding(
                                     TextDefaults.minimumTopListContentPadding
-                                ),
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                     item {
                         Text(
                             text = "Radio not connected",
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .minimumVerticalContentPadding(
                                     TextDefaults.minimumBottomListContentPadding
-                                ),
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                 }
@@ -170,9 +179,11 @@ fun StatusBody(
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
-                            modifier = Modifier.minimumVerticalContentPadding(
-                                TextDefaults.minimumTopListContentPadding
-                            ),
+                            modifier = Modifier
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumTopListContentPadding
+                                )
+                                .transformedHeight(this, transformationSpec),
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.Bluetooth,
@@ -199,6 +210,11 @@ fun StatusBody(
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                                modifier = Modifier
+                                    .minimumVerticalContentPadding(
+                                        ButtonDefaults.minimumVerticalListContentPadding
+                                    )
+                                    .transformedHeight(this, transformationSpec),
                             ) {
                                 Icon(
                                     imageVector = Icons.Rounded.BatteryFull,
@@ -221,6 +237,11 @@ fun StatusBody(
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                                modifier = Modifier
+                                    .minimumVerticalContentPadding(
+                                        ButtonDefaults.minimumVerticalListContentPadding
+                                    )
+                                    .transformedHeight(this, transformationSpec),
                             ) {
                                 Icon(
                                     imageVector = Icons.Rounded.Sensors,
@@ -270,16 +291,30 @@ fun StatusBody(
 
                 is WearUiState.Error -> {
                     item {
+                        Icon(
+                            imageVector = Icons.Rounded.BluetoothDisabled,
+                            contentDescription = "Error",
+                            tint = MaterialTheme.colorScheme.error,
+                            modifier = Modifier
+                                .size(StatusIconSize)
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumTopListContentPadding
+                                )
+                                .transformedHeight(this, transformationSpec),
+                        )
+                    }
+                    item {
                         Text(
                             text = state.message,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.error,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .minimumVerticalContentPadding(
-                                    TextDefaults.minimumTopListContentPadding
-                                ),
+                                    TextDefaults.minimumBottomListContentPadding
+                                )
+                                .transformedHeight(this, transformationSpec),
                         )
                     }
                 }
