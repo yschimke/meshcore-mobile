@@ -24,6 +24,7 @@ import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
 import ee.schimke.meshcore.app.ui.theme.ThemeSettings
+import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
@@ -35,6 +36,7 @@ import kotlinx.serialization.Serializable
 @Serializable private data class ContactRoute(val publicKeyHex: String) : NavKey
 @Serializable private data class ChannelRoute(val channelIndex: Int) : NavKey
 @Serializable private data class CachedDeviceRoute(val deviceId: String) : NavKey
+@Serializable private data object LicensesRoute : NavKey
 
 class MainActivity : ComponentActivity() {
     // Runtime BLE permissions are requested from the BLE tab on demand, not here;
@@ -65,6 +67,7 @@ private fun MeshcoreAppUi() {
                             onConnect = { if (backStack.lastOrNull() !is DeviceRoute) backStack.add(DeviceRoute) },
                             onOpenThemePicker = { pickerVisible = true },
                             onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
+                            onOpenLicenses = { backStack.add(LicensesRoute) },
                         )
                     }
                     entry<DeviceRoute> {
@@ -100,6 +103,9 @@ private fun MeshcoreAppUi() {
                             onBack = { backStack.removeLastOrNull() },
                             onOpenThemePicker = { pickerVisible = true },
                         )
+                    }
+                    entry<LicensesRoute> {
+                        LibrariesContainer()
                     }
                 },
             )

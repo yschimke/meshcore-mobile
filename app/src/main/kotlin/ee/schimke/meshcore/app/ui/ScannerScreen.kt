@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
+import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.Lan
 import androidx.compose.material.icons.rounded.Star
@@ -64,6 +65,7 @@ fun ScannerScreen(
     onConnect: () -> Unit,
     onOpenThemePicker: () -> Unit,
     onViewCachedDevice: (String) -> Unit = {},
+    onOpenLicenses: () -> Unit = {},
 ) {
     val app = MeshcoreApp.get()
     val controller = app.connectionController
@@ -80,6 +82,7 @@ fun ScannerScreen(
 
     ScannerBody(
         onOpenThemePicker = onOpenThemePicker,
+        onOpenLicenses = onOpenLicenses,
         savedContent = {
             SavedDevicesPanel(
                 devices = savedDevices,
@@ -138,6 +141,7 @@ fun ScannerBody(
     usbContent: @Composable () -> Unit,
     tcpContent: @Composable () -> Unit,
     onOpenThemePicker: () -> Unit = {},
+    onOpenLicenses: () -> Unit = {},
     modifier: Modifier = Modifier,
     initialTab: Int = 0,
 ) {
@@ -152,6 +156,12 @@ fun ScannerBody(
                     )
                 },
                 actions = {
+                    IconButton(onClick = onOpenLicenses) {
+                        Icon(
+                            imageVector = Icons.Rounded.Policy,
+                            contentDescription = "Licenses",
+                        )
+                    }
                     IconButton(onClick = onOpenThemePicker) {
                         Icon(
                             imageVector = Icons.Rounded.Contrast,
