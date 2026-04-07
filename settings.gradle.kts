@@ -5,13 +5,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
-        maven {
-            url = uri("https://maven.pkg.github.com/yschimke/precognition")
-            credentials {
-                username = "yschimke"
-                password = "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"
-            }
-        }
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")
