@@ -33,7 +33,9 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
+import androidx.wear.compose.material3.TextDefaults
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
+import androidx.wear.compose.material3.lazy.transformedHeight
 import ee.schimke.meshcore.wear.ui.theme.WearDimens
 import ee.schimke.meshcore.wear.ui.theme.WearMonoBody
 
@@ -85,7 +87,11 @@ fun StatusBody(
             when (state) {
                 is WearUiState.Loading -> {
                     item {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(
+                            modifier = Modifier.minimumVerticalContentPadding(
+                                TextDefaults.minimumTopListContentPadding
+                            ),
+                        )
                     }
                     item {
                         Text(
@@ -93,7 +99,11 @@ fun StatusBody(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumBottomListContentPadding
+                                ),
                         )
                     }
                 }
@@ -104,7 +114,11 @@ fun StatusBody(
                             imageVector = Icons.Rounded.PhoneAndroid,
                             contentDescription = "Phone disconnected",
                             tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier.size(WearDimens.IconSize),
+                            modifier = Modifier
+                                .size(WearDimens.IconSize)
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumTopListContentPadding
+                                ),
                         )
                     }
                     item {
@@ -113,7 +127,11 @@ fun StatusBody(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.error,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumBottomListContentPadding
+                                ),
                         )
                     }
                 }
@@ -124,7 +142,11 @@ fun StatusBody(
                             imageVector = Icons.Rounded.BluetoothDisabled,
                             contentDescription = "Radio disconnected",
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.size(WearDimens.IconSize),
+                            modifier = Modifier
+                                .size(WearDimens.IconSize)
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumTopListContentPadding
+                                ),
                         )
                     }
                     item {
@@ -133,7 +155,11 @@ fun StatusBody(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumBottomListContentPadding
+                                ),
                         )
                     }
                 }
@@ -144,6 +170,9 @@ fun StatusBody(
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                            modifier = Modifier.minimumVerticalContentPadding(
+                                TextDefaults.minimumTopListContentPadding
+                            ),
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.Bluetooth,
@@ -212,7 +241,12 @@ fun StatusBody(
                     item {
                         Button(
                             onClick = onViewContacts,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .minimumVerticalContentPadding(
+                                    ButtonDefaults.minimumVerticalListContentPadding
+                                )
+                                .transformedHeight(this, transformationSpec),
                             colors = ButtonDefaults.filledTonalButtonColors(),
                             transformation = SurfaceTransformation(transformationSpec),
                         ) {
@@ -241,7 +275,11 @@ fun StatusBody(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.error,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .minimumVerticalContentPadding(
+                                    TextDefaults.minimumTopListContentPadding
+                                ),
                         )
                     }
                 }
