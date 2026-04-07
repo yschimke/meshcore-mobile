@@ -129,5 +129,5 @@ private fun fakeContact(name: String): ContactMsg =
     ContactMsg.newBuilder()
         .setName(name)
         .setType(ContactType.CHAT)
-        .setPublicKey(com.google.protobuf.ByteString.copyFrom(ByteArray(32)))
+        .setPublicKey(com.google.protobuf.ByteString.copyFrom(ByteArray(32) { name.hashCode().ushr(it % 4 * 8).toByte() }))
         .build()
