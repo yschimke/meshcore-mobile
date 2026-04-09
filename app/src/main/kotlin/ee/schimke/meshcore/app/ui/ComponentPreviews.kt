@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.app.ui
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -9,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Wallpapers
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.core.model.BatteryInfo
@@ -69,10 +71,10 @@ private fun tenContacts(): List<Contact> {
 
 // --- DeviceSummaryCard ----------------------------------------------------
 
-@Preview(showBackground = true, name = "DeviceSummaryCard — populated")
+@Preview(showBackground = true, name = "DeviceSummaryCard — populated", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun DeviceSummaryCardPopulatedPreview() {
-    MeshcoreTheme {
+    MeshcoreTheme(darkTheme = true) {
         Column(Modifier.padding(16.dp)) {
             DeviceSummaryCard(
                 self = SelfInfo(

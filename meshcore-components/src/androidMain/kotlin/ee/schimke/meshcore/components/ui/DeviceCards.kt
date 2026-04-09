@@ -73,29 +73,14 @@ fun DeviceSummaryCard(
             modifier = Modifier.padding(16.dp).animateContentSize(),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            if (self == null && battery == null && radio == null) {
-                // All data still loading
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(20.dp),
-                        strokeWidth = 2.dp,
-                    )
-                    Text(
-                        text = "  Loading device info\u2026",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            } else {
-                Text(
-                    text = self?.name ?: "Device",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                PubkeyLine(self?.publicKey?.toHex())
-                radio?.let { RadioLine(it) }
-                battery?.let { BatterySection(it) }
-            }
+            Text(
+                text = self?.name ?: "Device",
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            PubkeyLine(self?.publicKey?.toHex())
+            radio?.let { RadioLine(it) }
+            battery?.let { BatterySection(it) }
         }
     }
 }

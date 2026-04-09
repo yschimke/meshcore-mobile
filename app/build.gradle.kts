@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.metro)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.aboutlibraries)
 }
 
 kotlin {

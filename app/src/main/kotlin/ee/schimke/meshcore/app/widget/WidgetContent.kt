@@ -12,10 +12,12 @@ import androidx.compose.remote.creation.compose.layout.RemoteSpacer
 import androidx.compose.remote.creation.compose.layout.RemoteText
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
 import androidx.compose.remote.creation.compose.modifier.background
+import androidx.compose.remote.creation.compose.modifier.clip
 import androidx.compose.remote.creation.compose.modifier.fillMaxSize
 import androidx.compose.remote.creation.compose.modifier.fillMaxWidth
 import androidx.compose.remote.creation.compose.modifier.height
 import androidx.compose.remote.creation.compose.modifier.padding
+import androidx.compose.remote.creation.compose.shapes.RemoteRoundedCornerShape
 import androidx.compose.remote.creation.compose.state.rc
 import androidx.compose.remote.creation.compose.state.rdp
 import androidx.compose.remote.creation.compose.state.rs
@@ -54,66 +56,69 @@ fun DeviceInfoWidgetContent(
     staleLabel: String? = null,
 ) {
     // Column with spacedBy(10dp) — matches Compose Arrangement.spacedBy(10.dp)
-    RemoteColumn(
-        modifier = cardModifier(),
-        verticalArrangement = RemoteArrangement.spacedBy(10.rdp),
-    ) {
-        // Device name — titleLarge ~22sp
-        RemoteText(deviceName.rs, color = OnSurface, fontSize = 20.rsp)
+    RemoteBox(modifier = RemoteModifier.background(Color.White).padding(10.rdp)) {
+        RemoteColumn(
+            modifier = cardModifier().clip(RemoteRoundedCornerShape(5.rdp)),
+            verticalArrangement = RemoteArrangement.spacedBy(10.rdp),
+        ) {
+            // Device name — titleLarge ~22sp
+            RemoteText(deviceName.rs, color = OnSurface, fontSize = 20.rsp)
 
-        // Pubkey — icon + bodyMedium ~14sp
-        if (pubkeyPrefix != null) {
-            RemoteRow {
-                RemoteText("\uD83D\uDD11 ".rs, fontSize = 14.rsp, color = OnSurfaceVariant)
-                RemoteText(pubkeyPrefix.rs, color = OnSurfaceVariant, fontSize = 14.rsp)
-            }
-        }
-
-        // Radio — icon + bodyMedium ~14sp
-        if (radioInfo != null) {
-            RemoteRow {
-                RemoteText("\uD83D\uDCE1 ".rs, fontSize = 14.rsp, color = OnSurfaceVariant)
-                RemoteText(radioInfo.rs, color = OnSurfaceVariant, fontSize = 14.rsp)
-            }
-        }
-
-        // Battery section — icon + text + progress bar (inner spacedBy 4dp)
-        if (batteryLine != null) {
-            val batteryColor = if (batteryWarn) Tertiary else OnSurface
-            val barColor = if (batteryWarn) Tertiary else Primary
-
-            RemoteColumn(verticalArrangement = RemoteArrangement.spacedBy(4.rdp)) {
+            // Pubkey — icon + bodyMedium ~14sp
+            if (pubkeyPrefix != null) {
                 RemoteRow {
-                    RemoteText("\uD83D\uDD0B ".rs, fontSize = 14.rsp, color = batteryColor)
-                    RemoteText(batteryLine.rs, color = batteryColor, fontSize = 14.rsp)
+                    RemoteText("\uD83D\uDD11 ".rs, fontSize = 14.rsp, color = OnSurfaceVariant)
+                    RemoteText(pubkeyPrefix.rs, color = OnSurfaceVariant, fontSize = 14.rsp)
                 }
-                // Progress bar
-                if (batteryProgress != null) {
-                    RemoteBox(
-                        modifier = RemoteModifier.fillMaxWidth().height(4.rdp).background(SurfaceContainerHighest),
-                    ) {
+            }
+
+            // Radio — icon + bodyMedium ~14sp
+            if (radioInfo != null) {
+                RemoteRow {
+                    RemoteText("\uD83D\uDCE1 ".rs, fontSize = 14.rsp, color = OnSurfaceVariant)
+                    RemoteText(radioInfo.rs, color = OnSurfaceVariant, fontSize = 14.rsp)
+                }
+            }
+
+            // Battery section — icon + text + progress bar (inner spacedBy 4dp)
+            if (batteryLine != null) {
+                val batteryColor = if (batteryWarn) Tertiary else OnSurface
+                val barColor = if (batteryWarn) Tertiary else Primary
+
+                RemoteColumn(verticalArrangement = RemoteArrangement.spacedBy(4.rdp)) {
+                    RemoteRow {
+                        RemoteText("\uD83D\uDD0B ".rs, fontSize = 14.rsp, color = batteryColor)
+                        RemoteText(batteryLine.rs, color = batteryColor, fontSize = 14.rsp)
+                    }
+                    // Progress bar
+                    if (batteryProgress != null) {
                         RemoteBox(
-                            modifier = RemoteModifier
-                                .fillMaxWidth(batteryProgress)
-                                .height(4.rdp)
-                                .background(barColor),
-                        ) {}
+                            modifier = RemoteModifier.fillMaxWidth().height(4.rdp)
+                                .background(SurfaceContainerHighest),
+                        ) {
+                            RemoteBox(
+                                modifier = RemoteModifier
+                                    .fillMaxWidth(batteryProgress)
+                                    .height(4.rdp)
+                                    .background(barColor),
+                            ) {}
+                        }
                     }
                 }
             }
-        }
 
-        // Storage — icon + bodySmall ~12sp
-        if (storageLine != null) {
-            RemoteRow {
-                RemoteText("\uD83D\uDCBE ".rs, fontSize = 12.rsp, color = OnSurfaceVariant)
-                RemoteText(storageLine.rs, color = OnSurfaceVariant, fontSize = 12.rsp)
+            // Storage — icon + bodySmall ~12sp
+            if (storageLine != null) {
+                RemoteRow {
+                    RemoteText("\uD83D\uDCBE ".rs, fontSize = 12.rsp, color = OnSurfaceVariant)
+                    RemoteText(storageLine.rs, color = OnSurfaceVariant, fontSize = 12.rsp)
+                }
             }
-        }
 
-        // Stale indicator
-        if (staleLabel != null) {
-            RemoteText(staleLabel.rs, color = Warning, fontSize = 12.rsp)
+            // Stale indicator
+            if (staleLabel != null) {
+                RemoteText(staleLabel.rs, color = Warning, fontSize = 12.rsp)
+            }
         }
     }
 }
