@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.androidx.remote.creation.compose)
     implementation(libs.androidx.remote.tooling.preview)
     implementation(libs.androidx.work.runtime)
+    implementation(libs.wear.compose.remote.material3)
     implementation(libs.androidx.appfunctions)
     implementation(libs.androidx.appfunctions.service)
     implementation(libs.aboutlibraries.compose.m3)

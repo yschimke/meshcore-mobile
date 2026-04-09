@@ -71,11 +71,10 @@ private fun tenContacts(): List<Contact> {
 
 // --- DeviceSummaryCard ----------------------------------------------------
 
-@Preview(showBackground = true, name = "DeviceSummaryCard — populated", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "DeviceSummaryCard — populated", widthDp = 310, heightDp = 170)
 @Composable
 fun DeviceSummaryCardPopulatedPreview() {
     MeshcoreTheme(darkTheme = true) {
-        Column(Modifier.padding(16.dp)) {
             DeviceSummaryCard(
                 self = SelfInfo(
                     advertType = 1,
@@ -95,7 +94,6 @@ fun DeviceSummaryCardPopulatedPreview() {
                 battery = BatteryInfo(3980, 512, 4096),
             )
         }
-    }
 }
 
 @Preview(showBackground = true, name = "DeviceSummaryCard — loading")
