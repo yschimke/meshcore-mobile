@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.aboutlibraries)
-    id("ee.schimke.composepreview.plugin") version "0.1.0"
 }
 
 kotlin {
