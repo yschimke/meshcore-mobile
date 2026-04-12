@@ -15,6 +15,7 @@ import io.grpc.binder.BinderServerBuilder
 import io.grpc.binder.IBinderReceiver
 import io.grpc.binder.SecurityPolicies
 import io.grpc.binder.ServerSecurityPolicy
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -37,6 +38,17 @@ class MeshcoreBinderService : LifecycleService() {
                 get() = app.manager.state
             override val client: MeshCoreClient?
                 get() = app.manager.client
+
+            override suspend fun persistSentDm(
+                contactKeyHex: String,
+                text: String,
+                timestamp: Instant,
+                ackHash: Int?,
+            ) {
+                val deviceId = app.connectionController.connectedDeviceId.value ?: return
+                app.repository.insertSentDm(deviceId, contactKeyHex, text, timestamp, ackHash)
+            }
+
         }
 
         val address = AndroidComponentAddress.forContext(this)
