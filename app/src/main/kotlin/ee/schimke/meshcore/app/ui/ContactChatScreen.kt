@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -29,6 +30,7 @@ import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
+import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
 import android.util.Log
@@ -54,6 +56,58 @@ fun ContactChatScreen(
     val contacts by client?.contacts?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
     val contact = contacts.firstOrNull { it.publicKey.toHex() == publicKeyHex }
     val contactName = contact?.name ?: publicKeyHex.take(12)
+    val requiresLogin = contact?.type == ContactType.ROOM || contact?.type == ContactType.REPEATER
+
+    // Login state for rooms/repeaters
+    var loggedIn by remember { mutableStateOf(false) }
+    var loginDialogState by remember { mutableStateOf<LoginDialogState?>(null) }
+    val scope = rememberCoroutineScope()
+
+    // Show login dialog on first visit for rooms/repeaters
+    LaunchedEffect(requiresLogin) {
+        if (requiresLogin && !loggedIn && loginDialogState == null) {
+            loginDialogState = LoginDialogState.Prompting()
+        }
+    }
+
+    // Sync messages after successful login
+    LaunchedEffect(loggedIn) {
+        if (loggedIn && client != null) {
+            runCatching { client.syncMessages() }
+        }
+    }
+
+    // Login dialog
+    if (loginDialogState != null && contact != null) {
+        LoginDialog(
+            contactName = contactName,
+            contactType = if (contact.type == ContactType.ROOM) "room" else "repeater",
+            state = loginDialogState!!,
+            onLogin = { password ->
+                loginDialogState = LoginDialogState.Authenticating
+                scope.launch {
+                    val result = runCatching {
+                        client?.login(contact.publicKey, password)
+                            ?: error("Not connected")
+                    }
+                    if (result.isSuccess) {
+                        loggedIn = true
+                        loginDialogState = null
+                        Log.d(TAG, "Login success for ${publicKeyHex.take(12)}")
+                    } else {
+                        Log.w(TAG, "Login failed for ${publicKeyHex.take(12)}: ${result.exceptionOrNull()?.message}")
+                        loginDialogState = LoginDialogState.Prompting(
+                            errorMessage = "Login failed. Check the password and try again.",
+                        )
+                    }
+                }
+            },
+            onDismiss = {
+                loginDialogState = null
+                onBack()
+            },
+        )
+    }
 
     // Read messages from Room (includes both sent and received, persisted across restarts)
     val dbMessages by (deviceId?.let { repository.observeDms(it, publicKeyHex) }
@@ -80,8 +134,8 @@ fun ContactChatScreen(
         }
     }
 
-    val scope = rememberCoroutineScope()
     var draft by remember { mutableStateOf("") }
+    val chatEnabled = client != null && contact != null && (!requiresLogin || loggedIn)
 
     Scaffold(
         topBar = {
@@ -91,7 +145,15 @@ fun ContactChatScreen(
                         Text(contactName, style = MaterialTheme.typography.titleMedium)
                         contact?.let {
                             Text(
-                                text = "${it.type.name} · ${if (it.isFlood) "flood" else "${it.pathLength} hops"}",
+                                text = buildString {
+                                    append(it.type.name)
+                                    append(" \u00b7 ")
+                                    append(if (it.isFlood) "flood" else "${it.pathLength} hops")
+                                    if (requiresLogin) {
+                                        append(" \u00b7 ")
+                                        append(if (loggedIn) "joined" else "not joined")
+                                    }
+                                },
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -117,7 +179,7 @@ fun ContactChatScreen(
             ChatInput(
                 value = draft,
                 onValueChange = { draft = it },
-                enabled = client != null && contact != null,
+                enabled = chatEnabled,
                 onSend = {
                     val text = draft.trim()
                     if (text.isBlank() || client == null || contact == null || deviceId == null) {

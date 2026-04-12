@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package ee.schimke.meshcore.app.data.proto;
+
+option java_package = "ee.schimke.meshcore.app.data.proto";
+
+// Top-level DataStore record for app-wide UI preferences.
+// Theme settings are global; section states are per-device.
+message AppPreferencesPb {
+  string theme_mode = 1;     // ThemeMode enum name: "System", "Light", "Dark"
+  string theme_palette = 2;  // ThemePalette enum name: "Meshcore", "Dynamic"
+
+  // Per-device section collapse/filter states, keyed by device ID.
+  map<string, DeviceSectionStatesPb> device_sections = 3;
+}
+
+// Collapse and filter states for the device-screen sections.
+message DeviceSectionStatesPb {
+  bool channels_expanded = 1;
+  bool contacts_expanded = 2;
+  bool contacts_show_all = 3;
+  bool rooms_expanded = 4;
+  bool rooms_show_all = 5;
+  bool repeaters_expanded = 6;
+  bool repeaters_show_all = 7;
+  bool sensors_expanded = 8;
+}

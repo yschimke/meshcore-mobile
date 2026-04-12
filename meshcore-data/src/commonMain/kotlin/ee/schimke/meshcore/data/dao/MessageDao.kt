@@ -47,6 +47,12 @@ interface MessageDao {
     fun observeLatestMessage(deviceId: String): Flow<MessageEntity?>
 
     @Query("""
+        SELECT DISTINCT contactPublicKeyHex FROM message
+        WHERE deviceId = :deviceId AND kind = 'DM' AND contactPublicKeyHex IS NOT NULL
+    """)
+    fun observeContactedKeys(deviceId: String): Flow<List<String>>
+
+    @Query("""
         SELECT COUNT(*) FROM message
         WHERE deviceId = :deviceId AND kind = :kind
           AND timestampEpochMs = :timestampMs AND text = :text AND direction = 'RECEIVED'
