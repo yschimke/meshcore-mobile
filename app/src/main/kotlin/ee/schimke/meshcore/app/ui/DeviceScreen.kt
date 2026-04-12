@@ -73,12 +73,19 @@ fun DeviceScreen(
     val controller = MeshcoreApp.get().connectionController
     val uiState by controller.state.collectAsState()
 
-    // Navigate back to the scanner on Idle. The controller is the
-    // one holding Failed states now, so we don't need a "hasEngaged"
-    // latch — the controller never flashes Idle during a connect
-    // attempt, it drives Connecting→Failed→Idle in order.
+    // Track whether we've seen an active connection attempt so we
+    // don't navigate to the scanner on the brief initial Idle before
+    // auto-reconnect kicks in.
+    var hasEngaged by remember { mutableStateOf(false) }
+
     LaunchedEffect(uiState) {
-        if (uiState is ConnectionUiState.Idle) onDisconnected()
+        when (uiState) {
+            is ConnectionUiState.Connecting,
+            is ConnectionUiState.Retrying,
+            is ConnectionUiState.Connected -> hasEngaged = true
+            is ConnectionUiState.Idle -> if (hasEngaged) onDisconnected()
+            else -> {}
+        }
     }
 
     when (val s = uiState) {
