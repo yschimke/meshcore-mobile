@@ -106,6 +106,22 @@ object Frames {
         writeByte(index.toByte())
     }
 
+    /** `[0x20][channel_idx][name×32][psk×16]` — create or update a channel. */
+    fun setChannel(index: Int, name: String, psk: ByteString): ByteString = buildByteString {
+        writeByte(CommandCode.SetChannel.raw)
+        writeByte(index.toByte())
+        // Fixed 32-byte name field, null-padded
+        val nameBytes = name.encodeToByteArray()
+        val nameField = ByteArray(32)
+        nameBytes.copyInto(nameField, endIndex = minOf(nameBytes.size, 31))
+        write(nameField)
+        // 16-byte PSK
+        val pskBytes = psk.toByteArray()
+        val pskField = ByteArray(16)
+        pskBytes.copyInto(pskField, endIndex = minOf(pskBytes.size, 16))
+        write(pskField)
+    }
+
     fun reboot(): ByteString = single(CommandCode.Reboot)
 
     fun syncNextMessage(): ByteString = single(CommandCode.SyncNextMessage)
