@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +26,7 @@ import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
 import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
@@ -57,24 +59,25 @@ private fun MeshcoreAppUi() {
 
     MeshcoreTheme(settings = themeSettings) {
         Surface {
-            val backStack = rememberNavBackStack(ScannerRoute)
+            val backStack = rememberNavBackStack(DeviceRoute)
+
+            // If no favourite device on launch, show the scanner immediately
+            LaunchedEffect(Unit) {
+                val fav = app.repository.observeFavorite().first()
+                if (fav == null) {
+                    backStack.add(ScannerRoute)
+                }
+            }
+
             NavDisplay(
                 backStack = backStack,
                 onBack = { if (backStack.size > 1) backStack.removeLastOrNull() },
                 entryProvider = entryProvider {
-                    entry<ScannerRoute> {
-                        ScannerScreen(
-                            onConnect = { if (backStack.lastOrNull() !is DeviceRoute) backStack.add(DeviceRoute) },
-                            onOpenThemePicker = { pickerVisible = true },
-                            onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
-                            onOpenLicenses = { backStack.add(LicensesRoute) },
-                        )
-                    }
                     entry<DeviceRoute> {
                         DeviceScreen(
                             onDisconnected = {
-                                // Pop back to scanner, removing any chat screens too
-                                while (backStack.size > 1) backStack.removeLastOrNull()
+                                // Push scanner on top so user can reconnect
+                                if (backStack.lastOrNull() !is ScannerRoute) backStack.add(ScannerRoute)
                             },
                             onOpenThemePicker = { pickerVisible = true },
                             onNavigateToContact = { contact ->
@@ -83,6 +86,17 @@ private fun MeshcoreAppUi() {
                             onNavigateToChannel = { channel ->
                                 backStack.add(ChannelRoute(channel.index))
                             },
+                        )
+                    }
+                    entry<ScannerRoute> {
+                        ScannerScreen(
+                            onConnect = {
+                                // Pop back to device screen
+                                while (backStack.lastOrNull() is ScannerRoute) backStack.removeLastOrNull()
+                            },
+                            onOpenThemePicker = { pickerVisible = true },
+                            onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
+                            onOpenLicenses = { backStack.add(LicensesRoute) },
                         )
                     }
                     entry<ContactRoute> { route ->
