@@ -24,4 +24,5 @@ message DeviceSectionStatesPb {
   bool repeaters_expanded = 6;
   bool repeaters_show_all = 7;
   bool sensors_expanded = 8;
+  bool channels_show_all = 9;
 }

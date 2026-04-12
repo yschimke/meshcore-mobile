@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.components.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,6 +56,7 @@ fun ChatMessageList(
     messages: List<ChatMessage>,
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
+    onRetry: ((ChatMessage) -> Unit)? = null,
 ) {
     // reverseLayout anchors the list to the bottom so the keyboard
     // pushes the latest messages up instead of scrolling them off-screen.
@@ -78,14 +80,20 @@ fun ChatMessageList(
             contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = 8.dp),
         ) {
             items(reversed, key = { it.id }) { msg ->
-                ChatBubble(msg, modifier = Modifier.animateItem())
+                ChatBubble(
+                    msg,
+                    modifier = Modifier.animateItem(),
+                    onRetry = if (msg.status == MessageStatus.Failed && onRetry != null) {
+                        { onRetry(msg) }
+                    } else null,
+                )
             }
         }
     }
 }
 
 @Composable
-fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier) {
+fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier, onRetry: (() -> Unit)? = null) {
     val alignment = if (message.isMine) Alignment.CenterEnd else Alignment.CenterStart
     val bubbleColor = if (message.isMine)
         MaterialTheme.colorScheme.primaryContainer
@@ -175,7 +183,7 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier) {
                                 MessageStatus.Sending -> "Sending\u2026"
                                 MessageStatus.Sent -> "Sent"
                                 MessageStatus.Confirmed -> "Delivered"
-                                MessageStatus.Failed -> "Failed"
+                                MessageStatus.Failed -> if (onRetry != null) "Failed \u2014 tap to retry" else "Failed"
                             }
                             Text(
                                 text = statusText,
@@ -183,6 +191,9 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier) {
                                 color = if (status == MessageStatus.Failed)
                                     MaterialTheme.colorScheme.error
                                 else subtleColor,
+                                modifier = if (status == MessageStatus.Failed && onRetry != null)
+                                    Modifier.clickable(onClick = onRetry)
+                                else Modifier,
                             )
                         }
                     }

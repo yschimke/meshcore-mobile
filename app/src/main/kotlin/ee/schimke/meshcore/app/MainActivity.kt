@@ -19,7 +19,9 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import ee.schimke.meshcore.app.ui.CachedDeviceScreen
 import ee.schimke.meshcore.app.ui.ChannelChatScreen
+import ee.schimke.meshcore.app.ui.CommandsScreen
 import ee.schimke.meshcore.app.ui.ContactChatScreen
+import ee.schimke.meshcore.app.ui.DeviceSettingsScreen
 import ee.schimke.meshcore.app.ui.DeviceScreen
 import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
@@ -37,6 +39,8 @@ import kotlinx.serialization.Serializable
 @Serializable private data object DeviceRoute : NavKey
 @Serializable private data class ContactRoute(val publicKeyHex: String) : NavKey
 @Serializable private data class ChannelRoute(val channelIndex: Int) : NavKey
+@Serializable private data class CommandsRoute(val channelIndex: Int) : NavKey
+@Serializable private data class DeviceSettingsRoute(val channelIndex: Int) : NavKey
 @Serializable private data class CachedDeviceRoute(val deviceId: String) : NavKey
 @Serializable private data object LicensesRoute : NavKey
 
@@ -86,6 +90,12 @@ private fun MeshcoreAppUi() {
                             onNavigateToChannel = { channel ->
                                 backStack.add(ChannelRoute(channel.index))
                             },
+                            onNavigateToCommands = { channel ->
+                                backStack.add(CommandsRoute(channel.index))
+                            },
+                            onNavigateToSettings = { channel ->
+                                backStack.add(DeviceSettingsRoute(channel.index))
+                            },
                         )
                     }
                     entry<ScannerRoute> {
@@ -107,6 +117,18 @@ private fun MeshcoreAppUi() {
                     }
                     entry<ChannelRoute> { route ->
                         ChannelChatScreen(
+                            channelIndex = route.channelIndex,
+                            onBack = { backStack.removeLastOrNull() },
+                        )
+                    }
+                    entry<CommandsRoute> { route ->
+                        CommandsScreen(
+                            channelIndex = route.channelIndex,
+                            onBack = { backStack.removeLastOrNull() },
+                        )
+                    }
+                    entry<DeviceSettingsRoute> { route ->
+                        DeviceSettingsScreen(
                             channelIndex = route.channelIndex,
                             onBack = { backStack.removeLastOrNull() },
                         )

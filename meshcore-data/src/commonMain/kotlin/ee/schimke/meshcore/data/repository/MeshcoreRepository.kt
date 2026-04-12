@@ -267,6 +267,9 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
     fun observeContactedKeys(deviceId: String): Flow<List<String>> =
         db.messageDao().observeContactedKeys(deviceId)
 
+    fun observeContactedChannelIndices(deviceId: String): Flow<List<Int>> =
+        db.messageDao().observeContactedChannelIndices(deviceId)
+
     suspend fun insertReceivedDm(
         deviceId: String,
         msg: ReceivedDirectMessage,
@@ -328,6 +331,36 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
                 status = status,
             ),
         )
+    }
+
+    suspend fun insertSentChannelMessage(
+        deviceId: String,
+        channelIndex: Int,
+        senderName: String?,
+        text: String,
+        timestamp: Instant,
+        ackHash: Int?,
+        status: MessageStatus = MessageStatus.SENT,
+    ): Long = db.messageDao().insert(
+        MessageEntity(
+            deviceId = deviceId,
+            kind = MessageKind.CHANNEL,
+            direction = MessageDirection.SENT,
+            channelIndex = channelIndex,
+            senderName = senderName,
+            text = text,
+            timestampEpochMs = timestamp.toEpochMilliseconds(),
+            ackHash = ackHash,
+            status = status,
+        ),
+    )
+
+    suspend fun updateMessageStatus(rowId: Long, status: MessageStatus) {
+        db.messageDao().updateStatusByRowId(rowId, status)
+    }
+
+    suspend fun updateMessageStatusAndAck(rowId: Long, status: MessageStatus, ackHash: Int?) {
+        db.messageDao().updateStatusAndAckByRowId(rowId, status, ackHash)
     }
 
     suspend fun markConfirmed(ackHash: Int) {
