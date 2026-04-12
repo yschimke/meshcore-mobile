@@ -5,6 +5,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.core.model.BatteryInfo
+import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.PublicKey
@@ -57,17 +58,24 @@ private fun previewSelf(name: String = "node-peak") = SelfInfo(
 )
 @Composable
 fun DeviceBodyPreview() {
+    val alice = previewContact("alice", -1, 0x11)
+    val room = previewContact("common-room", 0, 0x33, ContactType.ROOM)
     MeshcoreTheme {
         DeviceBody(
             self = previewSelf(),
             battery = BatteryInfo(3980, 512, 4096),
             radio = RadioSettings(869_525_000, 125_000, 10, 5),
             contacts = listOf(
-                previewContact("alice", -1, 0x11),
+                alice,
                 previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
-                previewContact("common-room", 0, 0x33, ContactType.ROOM),
+                room,
                 previewContact("soil-sensor-1", 3, 0x44, ContactType.SENSOR),
             ),
+            channels = listOf(
+                ChannelInfo(0, "General", ByteString()),
+                ChannelInfo(1, "Emergency", ByteString()),
+            ),
+            contactedKeys = setOf(alice.publicKey.toHex(), room.publicKey.toHex()),
             lastMessage = LastMessageInfo.Dm(
                 contactKeyHex = "112233445566778899aabbcc",
                 contactName = "alice",
