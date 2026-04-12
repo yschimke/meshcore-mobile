@@ -5,6 +5,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,9 +23,12 @@ import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.automirrored.rounded.Message
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Contrast
+import androidx.compose.material.icons.rounded.ExpandLess
+import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.WarningAmber
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,6 +54,8 @@ import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import androidx.compose.material3.CircularProgressIndicator
 import ee.schimke.meshcore.components.ui.verticalScrollbar
+import ee.schimke.meshcore.app.ui.theme.Section
+import ee.schimke.meshcore.app.ui.theme.SectionStates
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
@@ -162,6 +168,7 @@ private fun ConnectedDevice(
     val app = MeshcoreApp.get()
     val controller = app.connectionController
     val repository = app.repository
+    val prefs = app.themePreferences
     val self by client.selfInfo.collectAsState()
     val battery by client.battery.collectAsState()
     val radio by client.radio.collectAsState()
@@ -170,6 +177,16 @@ private fun ConnectedDevice(
     val warnings by controller.warnings.collectAsState()
     val scope = rememberCoroutineScope()
     val deviceId by controller.connectedDeviceId.collectAsState()
+    val sectionStates by remember(deviceId) {
+        deviceId?.let { prefs.sectionStates(it) }
+            ?: kotlinx.coroutines.flow.flowOf(SectionStates())
+    }.collectAsState(initial = SectionStates())
+    // Track which contacts we've exchanged messages with
+    val contactedKeys by remember(deviceId) {
+        deviceId?.let { repository.observeContactedKeys(it) }
+            ?: kotlinx.coroutines.flow.flowOf(emptyList())
+    }.collectAsState(initial = emptyList())
+
     // If the client was seeded with cached data, contacts won't be empty
     // even before the fresh fetch — show a "refreshing" indicator instead
     // of a full loading spinner in that case.
@@ -232,6 +249,16 @@ private fun ConnectedDevice(
         contactsLoading = contactsRefreshing && contacts.isEmpty(),
         contactsRefreshing = contactsRefreshing && contacts.isNotEmpty(),
         channels = channels,
+        contactedKeys = contactedKeys.toSet(),
+        sectionStates = sectionStates,
+        onSectionExpandedChange = { section, expanded ->
+            val id = deviceId ?: return@DeviceBody
+            scope.launch { prefs.setSectionExpanded(id, section, expanded) }
+        },
+        onSectionShowAllChange = { section, showAll ->
+            val id = deviceId ?: return@DeviceBody
+            scope.launch { prefs.setSectionShowAll(id, section, showAll) }
+        },
         lastMessage = lastMessage,
         onLastMessageClick = { info ->
             when (info) {
@@ -269,6 +296,10 @@ fun DeviceBody(
     contactsLoading: Boolean = false,
     contactsRefreshing: Boolean = false,
     channels: List<ChannelInfo> = emptyList(),
+    contactedKeys: Set<String> = emptySet(),
+    sectionStates: SectionStates = SectionStates(),
+    onSectionExpandedChange: (Section, Boolean) -> Unit = { _, _ -> },
+    onSectionShowAllChange: (Section, Boolean) -> Unit = { _, _ -> },
     lastMessage: LastMessageInfo? = null,
     onLastMessageClick: (LastMessageInfo) -> Unit = {},
     onContactClick: (Contact) -> Unit = {},
@@ -363,58 +394,162 @@ fun DeviceBody(
                 )
             }
 
-            // --- Contacts (DM-able peers) ---
-            SectionHeader(
-                text = if (contactsLoading) "Contacts" else "Contacts (${chatContacts.size})",
+            // --- Channels ---
+            CollapsibleSectionHeader(
+                text = "Channels (${channels.size})",
+                expanded = sectionStates.channelsExpanded,
+                onToggle = { onSectionExpandedChange(Section.CHANNELS, !sectionStates.channelsExpanded) },
             )
-            if (contactsLoading) {
-                LoadingPlaceholder("Fetching contacts\u2026")
-            } else if (chatContacts.isEmpty()) {
-                ContactListEmpty()
-            } else {
-                chatContacts.forEach { contact ->
-                    ContactRow(contact, onClick = { onContactClick(contact) })
+            AnimatedVisibility(
+                visible = sectionStates.channelsExpanded,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut(),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
+                    if (channels.isEmpty()) {
+                        Text(
+                            text = "No channels configured",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(vertical = 8.dp),
+                        )
+                    } else {
+                        channels.forEach { channel ->
+                            ChannelRow(channel, onClick = { onChannelClick(channel) })
+                        }
+                    }
+                }
+            }
+
+            // --- Contacts (DM-able peers) ---
+            val messagedContacts = if (sectionStates.contactsShowAll) chatContacts
+                else chatContacts.filter { it.publicKey.toHex() in contactedKeys }
+            CollapsibleSectionHeader(
+                text = if (contactsLoading) "Contacts" else "Contacts (${messagedContacts.size})",
+                expanded = sectionStates.contactsExpanded,
+                onToggle = { onSectionExpandedChange(Section.CONTACTS, !sectionStates.contactsExpanded) },
+            ) {
+                if (!contactsLoading && chatContacts.isNotEmpty()) {
+                    FilterChip(
+                        selected = !sectionStates.contactsShowAll,
+                        onClick = { onSectionShowAllChange(Section.CONTACTS, !sectionStates.contactsShowAll) },
+                        label = { Text(if (sectionStates.contactsShowAll) "All" else "Messaged") },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                visible = sectionStates.contactsExpanded,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut(),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
+                    if (contactsLoading) {
+                        LoadingPlaceholder("Fetching contacts\u2026")
+                    } else if (messagedContacts.isEmpty()) {
+                        ContactListEmpty()
+                    } else {
+                        messagedContacts.forEach { contact ->
+                            ContactRow(contact, onClick = { onContactClick(contact) })
+                        }
+                    }
                 }
             }
 
             // --- Rooms ---
             if (contactsLoading || rooms.isNotEmpty()) {
-                SectionHeader(text = if (contactsLoading) "Rooms" else "Rooms (${rooms.size})")
-                if (!contactsLoading) {
-                    rooms.forEach { contact ->
-                        ContactRow(contact, onClick = { onContactClick(contact) })
+                val visibleRooms = if (sectionStates.roomsShowAll) rooms
+                    else rooms.filter { it.publicKey.toHex() in contactedKeys }
+                CollapsibleSectionHeader(
+                    text = if (contactsLoading) "Rooms" else "Rooms (${visibleRooms.size})",
+                    expanded = sectionStates.roomsExpanded,
+                    onToggle = { onSectionExpandedChange(Section.ROOMS, !sectionStates.roomsExpanded) },
+                ) {
+                    if (!contactsLoading && rooms.isNotEmpty()) {
+                        FilterChip(
+                            selected = !sectionStates.roomsShowAll,
+                            onClick = { onSectionShowAllChange(Section.ROOMS, !sectionStates.roomsShowAll) },
+                            label = { Text(if (sectionStates.roomsShowAll) "All" else "Joined") },
+                        )
+                    }
+                }
+                AnimatedVisibility(
+                    visible = sectionStates.roomsExpanded,
+                    enter = expandVertically() + fadeIn(),
+                    exit = shrinkVertically() + fadeOut(),
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
+                        if (!contactsLoading) {
+                            if (visibleRooms.isEmpty()) {
+                                Text(
+                                    text = "No rooms joined yet",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(vertical = 8.dp),
+                                )
+                            } else {
+                                visibleRooms.forEach { contact ->
+                                    ContactRow(contact, onClick = { onContactClick(contact) })
+                                }
+                            }
+                        }
                     }
                 }
             }
 
-            // --- Repeaters (not tappable for chat) ---
+            // --- Repeaters ---
             if (!contactsLoading && repeaters.isNotEmpty()) {
-                SectionHeader(text = "Repeaters (${repeaters.size})")
-                repeaters.forEach { contact ->
-                    ContactRow(contact)
+                val visibleRepeaters = if (sectionStates.repeatersShowAll) repeaters
+                    else repeaters.filter { it.publicKey.toHex() in contactedKeys }
+                CollapsibleSectionHeader(
+                    text = "Repeaters (${visibleRepeaters.size})",
+                    expanded = sectionStates.repeatersExpanded,
+                    onToggle = { onSectionExpandedChange(Section.REPEATERS, !sectionStates.repeatersExpanded) },
+                ) {
+                    FilterChip(
+                        selected = !sectionStates.repeatersShowAll,
+                        onClick = { onSectionShowAllChange(Section.REPEATERS, !sectionStates.repeatersShowAll) },
+                        label = { Text(if (sectionStates.repeatersShowAll) "All" else "Joined") },
+                    )
+                }
+                AnimatedVisibility(
+                    visible = sectionStates.repeatersExpanded,
+                    enter = expandVertically() + fadeIn(),
+                    exit = shrinkVertically() + fadeOut(),
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
+                        if (visibleRepeaters.isEmpty()) {
+                            Text(
+                                text = "No repeaters joined yet",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(vertical = 8.dp),
+                            )
+                        } else {
+                            visibleRepeaters.forEach { contact ->
+                                ContactRow(contact)
+                            }
+                        }
+                    }
                 }
             }
 
             // --- Sensors ---
             if (!contactsLoading && sensors.isNotEmpty()) {
-                SectionHeader(text = "Sensors (${sensors.size})")
-                sensors.forEach { contact ->
-                    ContactRow(contact)
-                }
-            }
-
-            // --- Channels ---
-            SectionHeader(text = "Channels (${channels.size})")
-            if (channels.isEmpty()) {
-                Text(
-                    text = "No channels configured",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(vertical = 8.dp),
+                CollapsibleSectionHeader(
+                    text = "Sensors (${sensors.size})",
+                    expanded = sectionStates.sensorsExpanded,
+                    onToggle = { onSectionExpandedChange(Section.SENSORS, !sectionStates.sensorsExpanded) },
                 )
-            } else {
-                channels.forEach { channel ->
-                    ChannelRow(channel, onClick = { onChannelClick(channel) })
+                AnimatedVisibility(
+                    visible = sectionStates.sensorsExpanded,
+                    enter = expandVertically() + fadeIn(),
+                    exit = shrinkVertically() + fadeOut(),
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
+                        sensors.forEach { contact ->
+                            ContactRow(contact)
+                        }
+                    }
                 }
             }
 
@@ -442,10 +577,18 @@ private fun LoadingPlaceholder(text: String) {
 }
 
 @Composable
-private fun SectionHeader(text: String, action: @Composable (() -> Unit)? = null) {
+private fun CollapsibleSectionHeader(
+    text: String,
+    expanded: Boolean,
+    onToggle: () -> Unit,
+    trailing: @Composable (() -> Unit)? = null,
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onToggle)
+            .padding(vertical = Dimens.XS),
     ) {
         Text(
             text = text,
@@ -453,7 +596,13 @@ private fun SectionHeader(text: String, action: @Composable (() -> Unit)? = null
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f),
         )
-        action?.invoke()
+        trailing?.invoke()
+        Icon(
+            imageVector = if (expanded) Icons.Rounded.ExpandLess else Icons.Rounded.ExpandMore,
+            contentDescription = if (expanded) "Collapse" else "Expand",
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(20.dp),
+        )
     }
 }
 
