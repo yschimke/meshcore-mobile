@@ -63,4 +63,5 @@ interface MessageDao {
         timestampMs: Long,
         text: String,
     ): Int
+
 }

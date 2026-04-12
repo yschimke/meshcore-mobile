@@ -56,10 +56,17 @@ class MeshcoreGrpcServiceImpl(
                 .build()
         return try {
             val recipient = PublicKey.fromBytes(request.recipientPublicKey.toByteArray())
+            val now = Clock.System.now()
             val ack = client.sendText(
                 recipient = recipient,
                 text = request.text,
-                timestamp = Clock.System.now(),
+                timestamp = now,
+            )
+            bridge.persistSentDm(
+                contactKeyHex = recipient.toHex(),
+                text = request.text,
+                timestamp = now,
+                ackHash = ack.ackHash,
             )
             SendAckResponse.newBuilder()
                 .setSuccess(true)
@@ -81,11 +88,13 @@ class MeshcoreGrpcServiceImpl(
                 .setErrorMessage("Not connected")
                 .build()
         return try {
+            val now = Clock.System.now()
             val ack = client.sendChannelText(
                 channelIdx = request.channelIndex,
                 text = request.text,
-                timestamp = Clock.System.now(),
+                timestamp = now,
             )
+            // Message appears in history when the device echoes it back
             SendAckResponse.newBuilder()
                 .setSuccess(true)
                 .setAckHash(ack.ackHash)

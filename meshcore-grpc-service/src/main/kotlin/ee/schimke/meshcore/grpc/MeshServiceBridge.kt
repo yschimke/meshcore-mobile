@@ -3,6 +3,7 @@ package ee.schimke.meshcore.grpc
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState
 import kotlinx.coroutines.flow.StateFlow
+import kotlin.time.Instant
 
 /**
  * Bridge interface that decouples the gRPC service implementation from
@@ -12,4 +13,12 @@ import kotlinx.coroutines.flow.StateFlow
 interface MeshServiceBridge {
     val managerState: StateFlow<ManagerState>
     val client: MeshCoreClient?
+
+    /** Persist a sent DM to the local message store. */
+    suspend fun persistSentDm(
+        contactKeyHex: String,
+        text: String,
+        timestamp: Instant,
+        ackHash: Int?,
+    ) {}
 }

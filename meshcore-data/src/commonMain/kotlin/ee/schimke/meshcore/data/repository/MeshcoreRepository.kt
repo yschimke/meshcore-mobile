@@ -330,28 +330,6 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
         )
     }
 
-    suspend fun insertSentChannelMessage(
-        deviceId: String,
-        channelIndex: Int,
-        text: String,
-        timestamp: Instant,
-        ackHash: Int?,
-        status: MessageStatus = MessageStatus.SENT,
-    ) {
-        db.messageDao().insert(
-            MessageEntity(
-                deviceId = deviceId,
-                kind = MessageKind.CHANNEL,
-                direction = MessageDirection.SENT,
-                channelIndex = channelIndex,
-                text = text,
-                timestampEpochMs = timestamp.toEpochMilliseconds(),
-                ackHash = ackHash,
-                status = status,
-            ),
-        )
-    }
-
     suspend fun markConfirmed(ackHash: Int) {
         db.messageDao().updateStatusByAckHash(ackHash, MessageStatus.CONFIRMED)
     }
