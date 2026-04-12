@@ -75,6 +75,36 @@ import kotlinx.coroutines.launch
 /** Channel name used for the device commands interface. */
 const val COMMANDS_CHANNEL_NAME = "meshcore-commands"
 
+/**
+ * Returns the existing commands channel, or creates one on the first
+ * empty slot. Returns the [ChannelInfo] on success, null if no empty
+ * slot is available or the device rejects the command.
+ */
+private suspend fun ensureCommandsChannel(
+    client: ee.schimke.meshcore.core.client.MeshCoreClient,
+    currentChannels: List<ChannelInfo>,
+): ChannelInfo? {
+    // Already exists?
+    currentChannels.firstOrNull { it.name == COMMANDS_CHANNEL_NAME }
+        ?.let { return it }
+
+    // Find the first unused slot (channels are indexed 0..maxChannels-1;
+    // non-empty ones are in currentChannels).
+    val usedIndices = currentChannels.map { it.index }.toSet()
+    val maxCh = 8 // safe default; device will reject if out of range
+    val freeSlot = (0 until maxCh).firstOrNull { it !in usedIndices } ?: return null
+
+    return runCatching {
+        client.setChannel(
+            index = freeSlot,
+            name = COMMANDS_CHANNEL_NAME,
+            psk = kotlinx.io.bytestring.ByteString(), // empty PSK (private channel)
+        )
+        // After setChannel refreshes the client cache, find it
+        client.channels.value.firstOrNull { it.name == COMMANDS_CHANNEL_NAME }
+    }.getOrNull()
+}
+
 @Composable
 fun DeviceScreen(
     onDisconnected: () -> Unit,
@@ -299,8 +329,18 @@ private fun ConnectedDevice(
         },
         onContactClick = onNavigateToContact,
         onChannelClick = onNavigateToChannel,
-        onCommandsClick = { ch -> onNavigateToCommands(ch) },
-        onSettingsClick = { ch -> onNavigateToSettings(ch) },
+        onCommandsClick = {
+            scope.launch {
+                val ch = ensureCommandsChannel(client, channels)
+                if (ch != null) onNavigateToCommands(ch)
+            }
+        },
+        onSettingsClick = {
+            scope.launch {
+                val ch = ensureCommandsChannel(client, channels)
+                if (ch != null) onNavigateToSettings(ch)
+            }
+        },
         onDisconnect = onDisconnect,
         onOpenThemePicker = onOpenThemePicker,
         warnings = warnings,
@@ -332,8 +372,8 @@ fun DeviceBody(
     onLastMessageClick: (LastMessageInfo) -> Unit = {},
     onContactClick: (Contact) -> Unit = {},
     onChannelClick: (ChannelInfo) -> Unit = {},
-    onCommandsClick: (ChannelInfo) -> Unit = {},
-    onSettingsClick: (ChannelInfo) -> Unit = {},
+    onCommandsClick: () -> Unit = {},
+    onSettingsClick: () -> Unit = {},
     onDisconnect: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
     warnings: List<String> = emptyList(),
@@ -425,13 +465,10 @@ fun DeviceBody(
             }
 
             // --- Commands channel (hidden from regular channels list) ---
-            val commandsChannel = channels.firstOrNull { it.name == COMMANDS_CHANNEL_NAME }
             val regularChannels = channels.filter { it.name != COMMANDS_CHANNEL_NAME }
 
-            if (commandsChannel != null) {
-                CommandsRow(onClick = { onCommandsClick(commandsChannel) })
-                DeviceSettingsRow(onClick = { onSettingsClick(commandsChannel) })
-            }
+            CommandsRow(onClick = onCommandsClick)
+            DeviceSettingsRow(onClick = onSettingsClick)
 
             // --- Channels ---
             val visibleChannels = if (sectionStates.channelsShowAll) regularChannels

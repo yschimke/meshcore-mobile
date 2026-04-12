@@ -284,6 +284,23 @@ class MeshCoreClient(
     }
 
     /**
+     * Create or update a channel on the device. After a successful call
+     * the local channel list is refreshed.
+     */
+    suspend fun setChannel(
+        index: Int,
+        name: String,
+        psk: kotlinx.io.bytestring.ByteString,
+        timeoutMs: Long = 2_000,
+    ) {
+        val frame = Frames.setChannel(index, name, psk)
+        val ev = requestOne(frame, timeoutMs) { it is MeshEvent.Ok || it is MeshEvent.Err }
+        if (ev is MeshEvent.Err) error("setChannel failed: error code ${ev.code}")
+        log("setChannel($index, '$name') ok")
+        getChannels()  // refresh local cache
+    }
+
+    /**
      * Drain the device's pending message queue by repeatedly sending
      * `SyncNextMessage` until the device replies with `NoMoreMessages`.
      * Each iteration yields a `DirectMessage` or `ChannelMessage` event
