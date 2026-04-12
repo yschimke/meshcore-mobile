@@ -23,8 +23,11 @@ import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.automirrored.rounded.Message
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Contrast
+import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.ExpandLess
 import androidx.compose.material.icons.rounded.ExpandMore
+import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.Terminal
 import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.WarningAmber
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -69,12 +72,17 @@ import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
 import kotlinx.coroutines.launch
 
+/** Channel name used for the device commands interface. */
+const val COMMANDS_CHANNEL_NAME = "meshcore-commands"
+
 @Composable
 fun DeviceScreen(
     onDisconnected: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
     onNavigateToContact: (Contact) -> Unit = {},
     onNavigateToChannel: (ChannelInfo) -> Unit = {},
+    onNavigateToCommands: (ChannelInfo) -> Unit = {},
+    onNavigateToSettings: (ChannelInfo) -> Unit = {},
 ) {
     val controller = MeshcoreApp.get().connectionController
     val uiState by controller.state.collectAsState()
@@ -101,6 +109,8 @@ fun DeviceScreen(
             onOpenThemePicker = onOpenThemePicker,
             onNavigateToContact = onNavigateToContact,
             onNavigateToChannel = onNavigateToChannel,
+            onNavigateToCommands = onNavigateToCommands,
+            onNavigateToSettings = onNavigateToSettings,
         )
         is ConnectionUiState.Connecting -> DeviceStatusView(
             title = "Connecting",
@@ -171,6 +181,8 @@ private fun ConnectedDevice(
     onOpenThemePicker: () -> Unit,
     onNavigateToContact: (Contact) -> Unit,
     onNavigateToChannel: (ChannelInfo) -> Unit,
+    onNavigateToCommands: (ChannelInfo) -> Unit,
+    onNavigateToSettings: (ChannelInfo) -> Unit,
 ) {
     val app = MeshcoreApp.get()
     val controller = app.connectionController
@@ -191,6 +203,11 @@ private fun ConnectedDevice(
     // Track which contacts we've exchanged messages with
     val contactedKeys by remember(deviceId) {
         deviceId?.let { repository.observeContactedKeys(it) }
+            ?: kotlinx.coroutines.flow.flowOf(emptyList())
+    }.collectAsState(initial = emptyList())
+    // Track which channels have messages
+    val contactedChannelIndices by remember(deviceId) {
+        deviceId?.let { repository.observeContactedChannelIndices(it) }
             ?: kotlinx.coroutines.flow.flowOf(emptyList())
     }.collectAsState(initial = emptyList())
 
@@ -257,6 +274,7 @@ private fun ConnectedDevice(
         contactsRefreshing = contactsRefreshing && contacts.isNotEmpty(),
         channels = channels,
         contactedKeys = contactedKeys.toSet(),
+        contactedChannelIndices = contactedChannelIndices.toSet(),
         sectionStates = sectionStates,
         onSectionExpandedChange = { section, expanded ->
             val id = deviceId ?: return@DeviceBody
@@ -281,6 +299,8 @@ private fun ConnectedDevice(
         },
         onContactClick = onNavigateToContact,
         onChannelClick = onNavigateToChannel,
+        onCommandsClick = { ch -> onNavigateToCommands(ch) },
+        onSettingsClick = { ch -> onNavigateToSettings(ch) },
         onDisconnect = onDisconnect,
         onOpenThemePicker = onOpenThemePicker,
         warnings = warnings,
@@ -304,6 +324,7 @@ fun DeviceBody(
     contactsRefreshing: Boolean = false,
     channels: List<ChannelInfo> = emptyList(),
     contactedKeys: Set<String> = emptySet(),
+    contactedChannelIndices: Set<Int> = emptySet(),
     sectionStates: SectionStates = SectionStates(),
     onSectionExpandedChange: (Section, Boolean) -> Unit = { _, _ -> },
     onSectionShowAllChange: (Section, Boolean) -> Unit = { _, _ -> },
@@ -311,6 +332,8 @@ fun DeviceBody(
     onLastMessageClick: (LastMessageInfo) -> Unit = {},
     onContactClick: (Contact) -> Unit = {},
     onChannelClick: (ChannelInfo) -> Unit = {},
+    onCommandsClick: (ChannelInfo) -> Unit = {},
+    onSettingsClick: (ChannelInfo) -> Unit = {},
     onDisconnect: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
     warnings: List<String> = emptyList(),
@@ -401,27 +424,46 @@ fun DeviceBody(
                 )
             }
 
+            // --- Commands channel (hidden from regular channels list) ---
+            val commandsChannel = channels.firstOrNull { it.name == COMMANDS_CHANNEL_NAME }
+            val regularChannels = channels.filter { it.name != COMMANDS_CHANNEL_NAME }
+
+            if (commandsChannel != null) {
+                CommandsRow(onClick = { onCommandsClick(commandsChannel) })
+                DeviceSettingsRow(onClick = { onSettingsClick(commandsChannel) })
+            }
+
             // --- Channels ---
+            val visibleChannels = if (sectionStates.channelsShowAll) regularChannels
+                else regularChannels.filter { it.index in contactedChannelIndices }
             CollapsibleSectionHeader(
-                text = "Channels (${channels.size})",
+                text = "Channels (${visibleChannels.size})",
                 expanded = sectionStates.channelsExpanded,
                 onToggle = { onSectionExpandedChange(Section.CHANNELS, !sectionStates.channelsExpanded) },
-            )
+            ) {
+                if (regularChannels.isNotEmpty()) {
+                    FilterChip(
+                        selected = !sectionStates.channelsShowAll,
+                        onClick = { onSectionShowAllChange(Section.CHANNELS, !sectionStates.channelsShowAll) },
+                        label = { Text(if (sectionStates.channelsShowAll) "All" else "Favourited") },
+                    )
+                }
+            }
             AnimatedVisibility(
                 visible = sectionStates.channelsExpanded,
                 enter = expandVertically() + fadeIn(),
                 exit = shrinkVertically() + fadeOut(),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
-                    if (channels.isEmpty()) {
+                    if (visibleChannels.isEmpty()) {
                         Text(
-                            text = "No channels configured",
+                            text = if (regularChannels.isEmpty()) "No channels configured" else "No favourited channels",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(vertical = 8.dp),
                         )
                     } else {
-                        channels.forEach { channel ->
+                        visibleChannels.forEach { channel ->
                             ChannelRow(channel, onClick = { onChannelClick(channel) })
                         }
                     }
@@ -440,7 +482,7 @@ fun DeviceBody(
                     FilterChip(
                         selected = !sectionStates.contactsShowAll,
                         onClick = { onSectionShowAllChange(Section.CONTACTS, !sectionStates.contactsShowAll) },
-                        label = { Text(if (sectionStates.contactsShowAll) "All" else "Messaged") },
+                        label = { Text(if (sectionStates.contactsShowAll) "All" else "Favourited") },
                     )
                 }
             }
@@ -687,6 +729,94 @@ private fun WarningBanner(text: String, onDismiss: () -> Unit) {
                     modifier = Modifier.size(16.dp),
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun CommandsRow(onClick: () -> Unit) {
+    OutlinedCard(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick,
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            androidx.compose.material3.Surface(
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(50),
+                color = MaterialTheme.colorScheme.primaryContainer,
+                modifier = Modifier.size(36.dp),
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Terminal,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
+            Spacer(Modifier.size(12.dp))
+            Text(
+                text = "Commands",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.weight(1f),
+            )
+            Icon(
+                imageVector = Icons.Rounded.ChevronRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun DeviceSettingsRow(onClick: () -> Unit) {
+    OutlinedCard(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick,
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            androidx.compose.material3.Surface(
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(50),
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                modifier = Modifier.size(36.dp),
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Settings,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
+            Spacer(Modifier.size(12.dp))
+            Text(
+                text = "Device Settings",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.weight(1f),
+            )
+            Icon(
+                imageVector = Icons.Rounded.ChevronRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(20.dp),
+            )
         }
     }
 }

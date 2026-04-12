@@ -33,25 +33,27 @@ enum class Section { CHANNELS, CONTACTS, ROOMS, REPEATERS, SENSORS }
 
 data class SectionStates(
     val channelsExpanded: Boolean = true,
+    val channelsShowAll: Boolean = false,
     val contactsExpanded: Boolean = true,
-    val contactsShowAll: Boolean = true,
+    val contactsShowAll: Boolean = false,
     val roomsExpanded: Boolean = true,
-    val roomsShowAll: Boolean = true,
+    val roomsShowAll: Boolean = false,
     val repeatersExpanded: Boolean = true,
-    val repeatersShowAll: Boolean = true,
+    val repeatersShowAll: Boolean = false,
     val sensorsExpanded: Boolean = true,
 )
 
 // --- Wire proto ↔ domain mapping ---
 //
 // Proto3 defaults bools to false, but we want "true" as the UI
-// default (sections start expanded, filters start on "all").
-// The proto stores the *inverted* sense: a field being true means
-// the section is collapsed / filtered. When no entry exists for a
-// device, all defaults are "expanded + show-all".
+// default for expansion (sections start expanded). The proto stores
+// the *inverted* sense: a field being true means the section is
+// collapsed / filtered. When no entry exists for a device, expansion
+// defaults to true; showAll defaults to false (filtered view).
 
 private fun DeviceSectionStatesPb.toDomain(): SectionStates = SectionStates(
     channelsExpanded = !channels_expanded,
+    channelsShowAll = !channels_show_all,
     contactsExpanded = !contacts_expanded,
     contactsShowAll = !contacts_show_all,
     roomsExpanded = !rooms_expanded,
@@ -63,6 +65,7 @@ private fun DeviceSectionStatesPb.toDomain(): SectionStates = SectionStates(
 
 private fun SectionStates.toProto(): DeviceSectionStatesPb = DeviceSectionStatesPb(
     channels_expanded = !channelsExpanded,
+    channels_show_all = !channelsShowAll,
     contacts_expanded = !contactsExpanded,
     contacts_show_all = !contactsShowAll,
     rooms_expanded = !roomsExpanded,
@@ -141,6 +144,7 @@ class ThemePreferences(context: Context) {
         store.updateData { prefs ->
             val current = prefs.device_sections[deviceId]?.toDomain() ?: SectionStates()
             val updated = when (section) {
+                Section.CHANNELS -> current.copy(channelsShowAll = showAll)
                 Section.CONTACTS -> current.copy(contactsShowAll = showAll)
                 Section.ROOMS -> current.copy(roomsShowAll = showAll)
                 Section.REPEATERS -> current.copy(repeatersShowAll = showAll)

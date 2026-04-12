@@ -74,8 +74,10 @@ fun DeviceBodyPreview() {
             channels = listOf(
                 ChannelInfo(0, "General", ByteString()),
                 ChannelInfo(1, "Emergency", ByteString()),
+                ChannelInfo(2, COMMANDS_CHANNEL_NAME, ByteString()),
             ),
             contactedKeys = setOf(alice.publicKey.toHex(), room.publicKey.toHex()),
+            contactedChannelIndices = setOf(0),
             lastMessage = LastMessageInfo.Dm(
                 contactKeyHex = "112233445566778899aabbcc",
                 contactName = "alice",

@@ -1,11 +1,13 @@
 package ee.schimke.meshcore.app.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Terminal
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.components.ui.ChatInput
@@ -31,7 +34,6 @@ import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
 import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
-import android.util.Log
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 import kotlin.time.Instant
@@ -40,7 +42,7 @@ private const val TAG = "MeshSend"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChannelChatScreen(
+fun CommandsScreen(
     channelIndex: Int,
     onBack: () -> Unit,
 ) {
@@ -51,9 +53,6 @@ fun ChannelChatScreen(
     val deviceId = controller.connectedDeviceId.collectAsState().value
     val client = (uiState as? ConnectionUiState.Connected)?.client
 
-    val channels by client?.channels?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
-    val channel = channels.firstOrNull { it.index == channelIndex }
-    val channelName = channel?.name?.ifBlank { null } ?: "Channel $channelIndex"
     val selfName = client?.selfInfo?.collectAsState()?.value?.name
 
     // Read messages from Room
@@ -86,12 +85,11 @@ fun ChannelChatScreen(
     val scope = rememberCoroutineScope()
     var draft by remember { mutableStateOf("") }
 
-    /** Send (or re-send) a channel message. Returns the DB row ID. */
+    /** Send (or re-send) a command. */
     fun doSend(text: String, timestamp: Instant, existingRowId: Long? = null) {
         val c = client ?: return
         val did = deviceId ?: return
         scope.launch {
-            // Insert placeholder immediately (or mark existing row as sending)
             val rowId = if (existingRowId != null) {
                 repository.updateMessageStatus(existingRowId, DbMessageStatus.SENDING)
                 existingRowId
@@ -115,11 +113,11 @@ fun ChannelChatScreen(
                 )
             }
             if (result.isFailure) {
-                Log.e(TAG, "Channel send failed: ${result.exceptionOrNull()?.message}", result.exceptionOrNull())
+                Log.e(TAG, "Command send failed: ${result.exceptionOrNull()?.message}", result.exceptionOrNull())
                 repository.updateMessageStatus(rowId, DbMessageStatus.FAILED)
             } else {
                 val ack = result.getOrNull()
-                Log.d(TAG, "Channel send ok: ackHash=${ack?.ackHash} flood=${ack?.isFlood}")
+                Log.d(TAG, "Command send ok: ackHash=${ack?.ackHash} flood=${ack?.isFlood}")
                 repository.updateMessageStatusAndAck(rowId, DbMessageStatus.SENT, ack?.ackHash)
             }
         }
@@ -130,18 +128,21 @@ fun ChannelChatScreen(
             TopAppBar(
                 title = {
                     Column {
-                        Text(channelName, style = MaterialTheme.typography.titleMedium)
-                        Text(
-                            text = "Channel $channelIndex",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
+                        Text("Commands", style = MaterialTheme.typography.titleMedium)
                     }
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Rounded.ArrowBack, "Back")
                     }
+                },
+                actions = {
+                    Icon(
+                        Icons.Rounded.Terminal,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(end = 12.dp),
+                    )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface,
@@ -154,7 +155,6 @@ fun ChannelChatScreen(
                 messages = messages,
                 modifier = Modifier.weight(1f),
                 onRetry = { msg ->
-                    // Extract the DB row ID from the ChatMessage id ("msg-123" → 123)
                     val rowId = msg.id.removePrefix("msg-").toLongOrNull() ?: return@ChatMessageList
                     doSend(msg.text, msg.timestamp, existingRowId = rowId)
                 },
@@ -163,15 +163,16 @@ fun ChannelChatScreen(
                 value = draft,
                 onValueChange = { draft = it },
                 enabled = client != null,
+                placeholder = "Enter command\u2026",
                 onSend = {
                     val text = draft.trim()
                     if (text.isBlank() || client == null || deviceId == null) {
-                        Log.w(TAG, "Channel send guard: blank=${text.isBlank()} client=${client != null} deviceId=$deviceId")
+                        Log.w(TAG, "Command send guard: blank=${text.isBlank()} client=${client != null} deviceId=$deviceId")
                         return@ChatInput
                     }
                     draft = ""
                     val now = Clock.System.now()
-                    Log.d(TAG, "Channel[$channelIndex] sending: '$text'")
+                    Log.d(TAG, "Commands[$channelIndex] sending: '$text'")
                     doSend(text, now)
                 },
             )
