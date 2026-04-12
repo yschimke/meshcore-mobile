@@ -175,19 +175,10 @@ class MeshcoreFunctions {
         val client = (connectionState as? ConnectionUiState.Connected)?.client
             ?: return SendResult(success = false, error = "Not connected to a mesh device")
 
-        val deviceId = app.connectionController.connectedDeviceId.value
-            ?: return SendResult(success = false, error = "No device ID available")
-
         return try {
             val now = Clock.System.now()
-            val ack = client.sendChannelText(channelIdx = channelIndex, text = message, timestamp = now)
-            repository.insertSentChannelMessage(
-                deviceId = deviceId,
-                channelIndex = channelIndex,
-                text = message,
-                timestamp = now,
-                ackHash = ack.ackHash,
-            )
+            client.sendChannelText(channelIdx = channelIndex, text = message, timestamp = now)
+            // Message appears in history when the device echoes it back
             SendResult(success = true, error = null)
         } catch (e: Exception) {
             SendResult(success = false, error = e.message ?: "Failed to send message")

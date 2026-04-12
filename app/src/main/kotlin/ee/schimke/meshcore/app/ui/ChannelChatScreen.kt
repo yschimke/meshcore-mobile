@@ -29,7 +29,6 @@ import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
-import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
 import android.util.Log
 import kotlinx.coroutines.launch
@@ -54,21 +53,23 @@ fun ChannelChatScreen(
     val channels by client?.channels?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
     val channel = channels.firstOrNull { it.index == channelIndex }
     val channelName = channel?.name?.ifBlank { null } ?: "Channel $channelIndex"
+    val selfName = client?.selfInfo?.collectAsState()?.value?.name
 
     // Read messages from Room
     val dbMessages by (deviceId?.let { repository.observeChannelMessages(it, channelIndex) }
         ?: kotlinx.coroutines.flow.flowOf(emptyList())).collectAsState(initial = emptyList())
 
-    val messages by remember(dbMessages) {
+    val messages by remember(dbMessages, selfName) {
         derivedStateOf {
             dbMessages.map { entity ->
+                val isMine = selfName != null && entity.senderName == selfName
                 ChatMessage(
                     id = "msg-${entity.rowId}",
-                    senderName = if (entity.direction == MessageDirection.RECEIVED) entity.senderName else null,
+                    senderName = if (!isMine) entity.senderName else null,
                     text = entity.text,
                     timestamp = Instant.fromEpochMilliseconds(entity.timestampEpochMs),
                     snr = entity.snr,
-                    isMine = entity.direction == MessageDirection.SENT,
+                    isMine = isMine,
                     status = when (entity.status) {
                         DbMessageStatus.SENDING -> MessageStatus.Sending
                         DbMessageStatus.SENT -> MessageStatus.Sent
@@ -133,21 +134,14 @@ fun ChannelChatScreen(
                                 timestamp = now,
                             )
                         }
-                        val ack = result.getOrNull()
                         if (result.isFailure) {
                             Log.e(TAG, "Channel send failed: ${result.exceptionOrNull()?.message}", result.exceptionOrNull())
                         } else {
+                            val ack = result.getOrNull()
                             Log.d(TAG, "Channel send ok: ackHash=${ack?.ackHash} flood=${ack?.isFlood}")
                         }
-                        repository.insertSentChannelMessage(
-                            deviceId = deviceId,
-                            channelIndex = channelIndex,
-                            text = text,
-                            timestamp = now,
-                            ackHash = ack?.ackHash,
-                            status = if (result.isSuccess) DbMessageStatus.SENT else DbMessageStatus.FAILED,
-                        )
-                        Log.d(TAG, "Channel msg persisted to Room")
+                        // Message appears in history when the device echoes it back
+                        // as a ChannelMessage event, picked up by MessagePersister.
                     }
                 },
             )
