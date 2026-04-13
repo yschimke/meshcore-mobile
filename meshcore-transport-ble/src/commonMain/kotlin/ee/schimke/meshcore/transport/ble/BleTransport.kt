@@ -16,8 +16,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -156,10 +158,23 @@ class BleTransport private constructor(
         _state.value = TransportState.Disconnected
     }
 
-    private fun closeQuietly() {
+    private suspend fun closeQuietly() {
         observerJob?.cancel(); observerJob = null
         stateJob?.cancel(); stateJob = null
+        val p = peripheral
         peripheral = null
+        // Kable only releases the BluetoothGatt when the Peripheral itself is
+        // torn down — cancelling sessionScope (our observer scope) is not
+        // enough. disconnect() suspends until State.Disconnected, close()
+        // cancels Peripheral's internal scope to free the GATT handle.
+        // NonCancellable so teardown completes even when close() is called
+        // from a cancelled coroutine (e.g. cancel() path after timeout).
+        if (p != null) {
+            withContext(NonCancellable) {
+                try { p.disconnect() } catch (_: Throwable) {}
+                try { p.close() } catch (_: Throwable) {}
+            }
+        }
         sessionScope?.cancel()
         sessionScope = null
     }
