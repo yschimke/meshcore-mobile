@@ -71,8 +71,8 @@ object Parsers {
             PushCode.PathUpdated -> MeshEvent.PathUpdated(readPubKey(buf))
             PushCode.SendConfirmed -> parseSendConfirmed(buf)
             PushCode.MessagesWaiting -> MeshEvent.MessagesWaiting
-            PushCode.LoginSuccess -> MeshEvent.LoginSuccess(readPubKey(buf))
-            PushCode.LoginFail -> MeshEvent.LoginFail(readPubKey(buf))
+            PushCode.LoginSuccess -> MeshEvent.LoginSuccess(readPubKeyPrefix(buf))
+            PushCode.LoginFail -> MeshEvent.LoginFail(readPubKeyPrefix(buf))
             else -> MeshEvent.Raw(code.raw, ByteString())
         }
 
@@ -81,6 +81,14 @@ object Parsers {
 
     private fun readPubKey(src: Source): PublicKey =
         PublicKey.fromBytes(src.readByteString(PUB_KEY_SIZE))
+
+    /**
+     * LoginSuccess / LoginFail pushes carry the 6-byte recipient prefix,
+     * not a full 32-byte key (observed payload size = 13 bytes: 6-byte
+     * prefix + 7 bytes of auxiliary data the client currently discards).
+     */
+    private fun readPubKeyPrefix(src: Source): PublicKey =
+        PublicKey.ofPrefix(src.readByteString(PUB_KEY_PREFIX_SIZE))
 
     private fun parseSelfInfo(src: Source): MeshEvent.SelfInfoEvent {
         val advType = src.readByte().toInt() and 0xFF
