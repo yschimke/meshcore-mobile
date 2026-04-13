@@ -2,6 +2,7 @@ package ee.schimke.meshcore.components.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
@@ -74,10 +75,22 @@ fun BleScannerPanel(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val requiredPerms = remember {
+    // BLE perms gate the scanner UI. POST_NOTIFICATIONS (Android 13+) is
+    // requested alongside but not gating — a denied notification permission
+    // shouldn't block connecting, it just means the foreground-service
+    // notification won't appear.
+    val blePerms = remember {
         arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT)
     }
-    fun checkGranted(): Boolean = requiredPerms.all {
+    val requestedPerms = remember {
+        buildList {
+            addAll(blePerms)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                add(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }.toTypedArray()
+    }
+    fun checkGranted(): Boolean = blePerms.all {
         ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
     }
     var granted by remember { mutableStateOf(checkGranted()) }
@@ -86,13 +99,24 @@ fun BleScannerPanel(
         ActivityResultContracts.RequestMultiplePermissions(),
     ) { result ->
         lastResult = result
-        granted = result.values.all { it }
+        granted = blePerms.all { result[it] == true }
     }
-    LaunchedEffect(Unit) { granted = checkGranted() }
+    LaunchedEffect(Unit) {
+        granted = checkGranted()
+        // Existing users already granted BLE but never saw a POST_NOTIFICATIONS
+        // prompt (that permission was added later). Ask for anything still
+        // missing on first entry; system dialog is a no-op for granted perms
+        // and won't re-show after the user has denied twice.
+        if (granted && requestedPerms.any {
+                ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
+            }) {
+            launcher.launch(requestedPerms)
+        }
+    }
 
     Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         if (!granted) {
-            BlePermissionPanel(lastResult, onRequest = { launcher.launch(requiredPerms) })
+            BlePermissionPanel(lastResult, onRequest = { launcher.launch(requestedPerms) })
             return@Column
         }
 
