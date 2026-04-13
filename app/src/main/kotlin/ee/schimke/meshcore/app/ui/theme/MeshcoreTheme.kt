@@ -1,5 +1,9 @@
 package ee.schimke.meshcore.app.ui.theme
 
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.compose.LocalActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
@@ -9,9 +13,11 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import android.graphics.Color as AndroidColor
 
 // ---------------------------------------------------------------------------
 // MeshCore Material 3 theme.
@@ -192,6 +198,25 @@ fun MeshcoreTheme(
     val typography = when (palette) {
         ThemePalette.Meshcore -> MeshcoreBrandedTypography
         ThemePalette.Dynamic -> DefaultTypography
+    }
+    // Keep system bar icons legible regardless of the user's chosen theme:
+    // enableEdgeToEdge in MainActivity only samples the system setting once,
+    // so re-apply it here against the app's effective darkTheme.
+    val activity = LocalActivity.current as? ComponentActivity
+    if (activity != null) {
+        DisposableEffect(activity, darkTheme) {
+            activity.enableEdgeToEdge(
+                statusBarStyle = SystemBarStyle.auto(
+                    AndroidColor.TRANSPARENT,
+                    AndroidColor.TRANSPARENT,
+                ) { darkTheme },
+                navigationBarStyle = SystemBarStyle.auto(
+                    AndroidColor.WHITE,
+                    AndroidColor.BLACK,
+                ) { darkTheme },
+            )
+            onDispose {}
+        }
     }
     MaterialTheme(
         colorScheme = scheme,
