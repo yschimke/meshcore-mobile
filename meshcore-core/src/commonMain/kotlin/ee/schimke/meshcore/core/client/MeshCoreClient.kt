@@ -168,10 +168,16 @@ class MeshCoreClient(
     suspend fun login(
         recipient: PublicKey,
         password: String,
-        timeoutMs: Long = 5_000,
+        timeoutMs: Long = 15_000,
     ) {
-        val ev = requestOne(Frames.sendLogin(recipient, password), timeoutMs) {
-            it is MeshEvent.LoginSuccess || it is MeshEvent.LoginFail
+        val recipientPrefixHex = recipient.toHex().take(MeshCoreConstants.PUB_KEY_PREFIX_SIZE * 2)
+        val ev = requestOne(Frames.sendLogin(recipient, password), timeoutMs) { event ->
+            val evKey = when (event) {
+                is MeshEvent.LoginSuccess -> event.publicKey
+                is MeshEvent.LoginFail -> event.publicKey
+                else -> return@requestOne false
+            }
+            evKey.toHex().startsWith(recipientPrefixHex)
         }
         if (ev is MeshEvent.LoginFail) error("device rejected login for ${recipient.toHex().take(12)}")
     }

@@ -30,7 +30,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import android.content.Context
 import android.util.Log
 import ee.schimke.meshcore.app.ble.DevicePresenceManager
-import ee.schimke.meshcore.app.service.ConnectionForegroundService
+import ee.schimke.meshcore.app.service.MeshcoreConnectionService
 import ee.schimke.meshcore.app.widget.PeriodicRefreshWorker
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
@@ -124,7 +124,7 @@ class AppConnectionController(
                         }
                         _state.value = ConnectionUiState.Connected(ms.client)
                         appContext?.let { ctx ->
-                            ConnectionForegroundService.start(ctx, attempt?.label ?: "MeshCore device")
+                            MeshcoreConnectionService.start(ctx, attempt?.label ?: "MeshCore device")
                         }
                         if (attempt != null) {
                             val deviceId = _connectedDeviceId.value ?: attempt.id
@@ -150,7 +150,7 @@ class AppConnectionController(
                     is ManagerState.Failed -> {
                         _connectedDeviceId.value = null
                         persisterJob?.cancel()
-                        appContext?.let { ConnectionForegroundService.stop(it) }
+                        appContext?.let { MeshcoreConnectionService.stop(it) }
                         if (_state.value !is ConnectionUiState.Failed) {
                             _state.value = ConnectionUiState.Failed(
                                 cause = ms.cause,
@@ -162,7 +162,7 @@ class AppConnectionController(
                         if (_state.value is ConnectionUiState.Connected) {
                             _connectedDeviceId.value = null
                             persisterJob?.cancel()
-                            appContext?.let { ConnectionForegroundService.stop(it) }
+                            appContext?.let { MeshcoreConnectionService.stop(it) }
                             _state.value = ConnectionUiState.Idle
                         }
                     }
@@ -243,7 +243,7 @@ class AppConnectionController(
         _warnings.value = emptyList()
         _state.value = ConnectionUiState.Idle
         currentAttempt = null
-        appContext?.let { ConnectionForegroundService.stop(it) }
+        appContext?.let { MeshcoreConnectionService.stop(it) }
         scope.launch { runCatching { manager.disconnect() }.onFailure { Log.d(TAG, "disconnect during cancel failed", it) } }
     }
 

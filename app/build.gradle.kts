@@ -20,9 +20,7 @@ android {
     namespace = "ee.schimke.meshcore.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        // Keep the original applicationId so existing installs upgrade
-        // in place instead of landing side-by-side as a second icon.
-        applicationId = "ee.schimke.meshcore.sample"
+        applicationId = "ee.schimke.meshcore"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
