@@ -23,13 +23,14 @@ import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.automirrored.rounded.Message
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Contrast
-import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.ExpandLess
 import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Terminal
 import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.WarningAmber
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
@@ -406,6 +407,40 @@ fun DeviceBody(
                     }
                 },
                 actions = {
+                    var toolsMenuOpen by remember { mutableStateOf(false) }
+                    Box {
+                        IconButton(onClick = { toolsMenuOpen = true }) {
+                            Icon(
+                                imageVector = Icons.Rounded.Terminal,
+                                contentDescription = "Tools",
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = toolsMenuOpen,
+                            onDismissRequest = { toolsMenuOpen = false },
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text("Commands") },
+                                leadingIcon = {
+                                    Icon(Icons.Rounded.Terminal, contentDescription = null)
+                                },
+                                onClick = {
+                                    toolsMenuOpen = false
+                                    onCommandsClick()
+                                },
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Device Settings") },
+                                leadingIcon = {
+                                    Icon(Icons.Rounded.Settings, contentDescription = null)
+                                },
+                                onClick = {
+                                    toolsMenuOpen = false
+                                    onSettingsClick()
+                                },
+                            )
+                        }
+                    }
                     IconButton(onClick = onOpenThemePicker) {
                         Icon(
                             imageVector = Icons.Rounded.Contrast,
@@ -466,9 +501,6 @@ fun DeviceBody(
 
             // --- Commands channel (hidden from regular channels list) ---
             val regularChannels = channels.filter { it.name != COMMANDS_CHANNEL_NAME }
-
-            CommandsRow(onClick = onCommandsClick)
-            DeviceSettingsRow(onClick = onSettingsClick)
 
             // --- Channels ---
             val visibleChannels = if (sectionStates.channelsShowAll) regularChannels
@@ -770,90 +802,3 @@ private fun WarningBanner(text: String, onDismiss: () -> Unit) {
     }
 }
 
-@Composable
-private fun CommandsRow(onClick: () -> Unit) {
-    OutlinedCard(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = onClick,
-    ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            androidx.compose.material3.Surface(
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(50),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier.size(36.dp),
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.Terminal,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.size(20.dp),
-                    )
-                }
-            }
-            Spacer(Modifier.size(12.dp))
-            Text(
-                text = "Commands",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.weight(1f),
-            )
-            Icon(
-                imageVector = Icons.Rounded.ChevronRight,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.size(20.dp),
-            )
-        }
-    }
-}
-
-@Composable
-private fun DeviceSettingsRow(onClick: () -> Unit) {
-    OutlinedCard(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = onClick,
-    ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            androidx.compose.material3.Surface(
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(50),
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                modifier = Modifier.size(36.dp),
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.Settings,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                        modifier = Modifier.size(20.dp),
-                    )
-                }
-            }
-            Spacer(Modifier.size(12.dp))
-            Text(
-                text = "Device Settings",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.weight(1f),
-            )
-            Icon(
-                imageVector = Icons.Rounded.ChevronRight,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.size(20.dp),
-            )
-        }
-    }
-}

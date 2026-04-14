@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+
+        <!-- Runs before Application.onCreate; installs DebugBridge.instance. -->
+        <provider
+            android:name=".debug.DebugInit"
+            android:authorities="${applicationId}.debuginit"
+            android:exported="false" />
+
+        <!-- adb-driven connect entry point.
+             Exported without a permission because adb shell (uid 2000) can't
+             hold signature permissions; safety comes from the in-code
+             ALLOWED_BLE_IDENTIFIERS / ALLOWED_TCP_TARGETS allowlists. -->
+        <receiver
+            android:name=".debug.DebugConnectReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ee.schimke.meshcore.DEBUG_CONNECT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Disconnect / forget / other single-shot debug actions. -->
+        <receiver
+            android:name=".debug.DebugActionReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ee.schimke.meshcore.DEBUG_DISCONNECT" />
+                <action android:name="ee.schimke.meshcore.DEBUG_FORGET" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>

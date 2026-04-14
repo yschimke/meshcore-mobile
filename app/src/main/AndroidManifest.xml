@@ -68,18 +68,6 @@
             </intent-filter>
         </service>
 
-        <!-- adb-driven connect entry point. Exported without a permission
-             because adb shell (uid 2000) can't hold signature permissions;
-             safety comes from the in-code ALLOWED_DEBUG_CONNECTS allowlist,
-             which ships empty. -->
-        <receiver
-            android:name=".service.DebugConnectReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="ee.schimke.meshcore.DEBUG_CONNECT" />
-            </intent-filter>
-        </receiver>
-
         <!-- BLE device presence detection via CompanionDeviceManager -->
         <receiver
             android:name=".ble.DevicePresenceReceiver"
