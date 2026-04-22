@@ -71,8 +71,16 @@ object Parsers {
             PushCode.PathUpdated -> MeshEvent.PathUpdated(readPubKey(buf))
             PushCode.SendConfirmed -> parseSendConfirmed(buf)
             PushCode.MessagesWaiting -> MeshEvent.MessagesWaiting
-            PushCode.LoginSuccess -> MeshEvent.LoginSuccess(readPubKeyPrefix(buf))
-            PushCode.LoginFail -> MeshEvent.LoginFail(readPubKeyPrefix(buf))
+            PushCode.LoginSuccess -> {
+                // Permissions byte precedes the prefix (bit 0 = is_admin).
+                buf.readByte()
+                MeshEvent.LoginSuccess(readPubKeyPrefix(buf))
+            }
+            PushCode.LoginFail -> {
+                // Reserved byte precedes the prefix.
+                buf.readByte()
+                MeshEvent.LoginFail(readPubKeyPrefix(buf))
+            }
             else -> MeshEvent.Raw(code.raw, ByteString())
         }
 
@@ -82,11 +90,6 @@ object Parsers {
     private fun readPubKey(src: Source): PublicKey =
         PublicKey.fromBytes(src.readByteString(PUB_KEY_SIZE))
 
-    /**
-     * LoginSuccess / LoginFail pushes carry the 6-byte recipient prefix,
-     * not a full 32-byte key (observed payload size = 13 bytes: 6-byte
-     * prefix + 7 bytes of auxiliary data the client currently discards).
-     */
     private fun readPubKeyPrefix(src: Source): PublicKey =
         PublicKey.ofPrefix(src.readByteString(PUB_KEY_PREFIX_SIZE))
 
