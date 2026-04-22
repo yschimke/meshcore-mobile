@@ -25,5 +25,6 @@ fun main(args: Array<String>) = MeshcoreCli()
         BatteryCommand(),
         RadioCommand(),
         SendCommand(),
+        ReplCommand(),
     )
     .main(args)

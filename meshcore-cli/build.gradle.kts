@@ -24,6 +24,7 @@ dependencies {
     implementation(projects.meshcoreTransportBle)
     implementation(projects.meshcoreTransportUsb)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.clikt)
     implementation(libs.mordant)
     implementation(libs.mordant.coroutines)

@@ -29,3 +29,4 @@ node_modules/
 /output.png
 app/project.info
 /meshcore-grpc-service/bin/
+/traces/
