@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.metro)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinSerialization)
+    id("ee.schimke.composeai.preview") version "0.7.5"
 }
 
 kotlin {
