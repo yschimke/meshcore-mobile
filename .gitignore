@@ -30,3 +30,4 @@ node_modules/
 app/project.info
 /meshcore-grpc-service/bin/
 /traces/
+*/bin
