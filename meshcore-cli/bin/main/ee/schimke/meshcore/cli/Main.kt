@@ -18,12 +18,13 @@ class MeshcoreCli : NoOpCliktCommand(name = "meshcore") {
 
 val terminal: Terminal = Terminal()
 
-fun main(args: Array<String>) = MeshcoreCli()
+suspend fun main(args: Array<String>): Unit = MeshcoreCli()
     .subcommands(
         InfoCommand(),
         ContactsCommand(),
         BatteryCommand(),
         RadioCommand(),
         SendCommand(),
+        ReplCommand(),
     )
     .main(args)
