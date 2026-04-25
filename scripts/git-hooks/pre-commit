@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Pre-commit hook: verify staged Kotlin files are formatted with ktfmt.
+# Bypass with: git commit --no-verify
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+mapfile -t staged_kt < <(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(kt|kts)$' || true)
+if [ "${#staged_kt[@]}" -eq 0 ]; then
+  exit 0
+fi
+
+echo "ktfmt: checking ${#staged_kt[@]} staged Kotlin file(s)..."
+if ! ./gradlew --quiet --no-configuration-cache ktfmtCheck; then
+  cat <<'EOF'
+
+ktfmt found formatting issues. Run:
+
+  ./gradlew ktfmtFormat
+
+then re-stage your changes and commit again. To bypass once: git commit --no-verify
+EOF
+  exit 1
+fi
