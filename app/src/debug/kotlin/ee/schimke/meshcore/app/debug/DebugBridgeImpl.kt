@@ -11,7 +11,11 @@ import java.io.PrintWriter
  */
 internal class DebugBridgeImpl(private val app: MeshcoreApp) : DebugBridge {
 
-    private val events = DebugEventBuffer().also { it.attach(app) }
+    private val events = DebugEventBuffer()
+
+    override fun onAppReady() {
+        events.attach(app)
+    }
 
     override fun dumpService(service: Service, writer: PrintWriter, args: Array<String>?) {
         DebugDump.dispatch(app, writer, args, events)
