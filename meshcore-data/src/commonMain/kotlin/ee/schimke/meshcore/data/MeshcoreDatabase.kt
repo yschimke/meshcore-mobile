@@ -16,21 +16,26 @@ import ee.schimke.meshcore.data.entity.DeviceStateEntity
 import ee.schimke.meshcore.data.entity.MessageEntity
 
 @Database(
-    entities = [
-        DeviceEntity::class,
-        DeviceStateEntity::class,
-        ContactEntity::class,
-        ChannelEntity::class,
-        MessageEntity::class,
+  entities =
+    [
+      DeviceEntity::class,
+      DeviceStateEntity::class,
+      ContactEntity::class,
+      ChannelEntity::class,
+      MessageEntity::class,
     ],
-    version = 1,
-    exportSchema = true,
+  version = 1,
+  exportSchema = true,
 )
 @TypeConverters(MeshConverters::class)
 abstract class MeshcoreDatabase : RoomDatabase() {
-    abstract fun deviceDao(): DeviceDao
-    abstract fun deviceStateDao(): DeviceStateDao
-    abstract fun contactDao(): ContactDao
-    abstract fun channelDao(): ChannelDao
-    abstract fun messageDao(): MessageDao
+  abstract fun deviceDao(): DeviceDao
+
+  abstract fun deviceStateDao(): DeviceStateDao
+
+  abstract fun contactDao(): ContactDao
+
+  abstract fun channelDao(): ChannelDao
+
+  abstract fun messageDao(): MessageDao
 }
