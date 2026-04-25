@@ -5,23 +5,22 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.io.bytestring.ByteString
 
 /**
- * Abstract I/O link to a MeshCore device. Concrete implementations wrap
- * BLE (Nordic UART), USB CDC-ACM, or TCP. Each [incoming] emission is one
- * complete MeshCore frame payload `[code][body...]` – stream-transport
- * framing has already been stripped.
+ * Abstract I/O link to a MeshCore device. Concrete implementations wrap BLE (Nordic UART), USB
+ * CDC-ACM, or TCP. Each [incoming] emission is one complete MeshCore frame payload (one `code` byte
+ * followed by body bytes) – stream-transport framing has already been stripped.
  */
 interface Transport {
-    val state: StateFlow<TransportState>
+  val state: StateFlow<TransportState>
 
-    /** Hot flow of decoded frame payloads. */
-    val incoming: SharedFlow<ByteString>
+  /** Hot flow of decoded frame payloads. */
+  val incoming: SharedFlow<ByteString>
 
-    /** Open the underlying link. Suspends until connected or throws. */
-    suspend fun connect()
+  /** Open the underlying link. Suspends until connected or throws. */
+  suspend fun connect()
 
-    /** Send a raw MeshCore frame `[code][body...]`. */
-    suspend fun send(frame: ByteString)
+  /** Send a raw MeshCore frame (one `code` byte followed by body bytes). */
+  suspend fun send(frame: ByteString)
 
-    /** Close the link and release resources. */
-    suspend fun close()
+  /** Close the link and release resources. */
+  suspend fun close()
 }

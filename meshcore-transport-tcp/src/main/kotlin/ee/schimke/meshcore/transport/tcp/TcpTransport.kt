@@ -29,90 +29,89 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.io.bytestring.ByteString
 
 /**
- * TCP transport built on ktor-network. Frames are wrapped with the
- * 0x3C/0x3E length-prefixed codec shared with the USB serial transport.
+ * TCP transport built on ktor-network. Frames are wrapped with the 0x3C/0x3E length-prefixed codec
+ * shared with the USB serial transport.
  */
-class TcpTransport(
-    private val host: String,
-    private val port: Int,
-) : Transport {
+class TcpTransport(private val host: String, private val port: Int) : Transport {
 
-    private val _state = MutableStateFlow<TransportState>(TransportState.Disconnected)
-    override val state: StateFlow<TransportState> = _state.asStateFlow()
+  private val _state = MutableStateFlow<TransportState>(TransportState.Disconnected)
+  override val state: StateFlow<TransportState> = _state.asStateFlow()
 
-    private val _incoming = MutableSharedFlow<ByteString>(extraBufferCapacity = 64)
-    override val incoming: SharedFlow<ByteString> = _incoming.asSharedFlow()
+  private val _incoming = MutableSharedFlow<ByteString>(extraBufferCapacity = 64)
+  override val incoming: SharedFlow<ByteString> = _incoming.asSharedFlow()
 
-    private val decoder = StreamFrameCodec.Decoder()
-    private val writeMutex = Mutex()
-    private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  private val decoder = StreamFrameCodec.Decoder()
+  private val writeMutex = Mutex()
+  private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
-    private var selector: SelectorManager? = null
-    private var socket: Socket? = null
-    private var readChannel: ByteReadChannel? = null
-    private var writeChannel: ByteWriteChannel? = null
-    private var readerJob: Job? = null
+  private var selector: SelectorManager? = null
+  private var socket: Socket? = null
+  private var readChannel: ByteReadChannel? = null
+  private var writeChannel: ByteWriteChannel? = null
+  private var readerJob: Job? = null
 
-    override suspend fun connect() {
-        if (_state.value is TransportState.Connected) return
-        _state.value = TransportState.Connecting
+  override suspend fun connect() {
+    if (_state.value is TransportState.Connected) return
+    _state.value = TransportState.Connecting
+    try {
+      val sel = SelectorManager(Dispatchers.Default)
+      val s = aSocket(sel).tcp().connect(host, port) { noDelay = true }
+      selector = sel
+      socket = s
+      readChannel = s.openReadChannel()
+      writeChannel = s.openWriteChannel(autoFlush = true)
+      decoder.reset()
+      readerJob = ioScope.launch {
+        val rc = readChannel ?: return@launch
+        val buf = ByteArray(1024)
         try {
-            val sel = SelectorManager(Dispatchers.Default)
-            val s = aSocket(sel).tcp().connect(host, port) { noDelay = true }
-            selector = sel
-            socket = s
-            readChannel = s.openReadChannel()
-            writeChannel = s.openWriteChannel(autoFlush = true)
-            decoder.reset()
-            readerJob = ioScope.launch {
-                val rc = readChannel ?: return@launch
-                val buf = ByteArray(1024)
-                try {
-                    while (isActive && !rc.isClosedForRead) {
-                        val n = rc.readAvailable(buf, 0, buf.size)
-                        if (n <= 0) break
-                        val chunk = buf.copyOf(n)
-                        for (pkt in decoder.ingest(chunk)) {
-                            if (pkt.isRx) _incoming.emit(pkt.payload)
-                        }
-                    }
-                } catch (t: Throwable) {
-                    _state.value = TransportState.Error(t)
-                } finally {
-                    if (_state.value !is TransportState.Error) {
-                        _state.value = TransportState.Disconnected
-                    }
-                }
+          while (isActive && !rc.isClosedForRead) {
+            val n = rc.readAvailable(buf, 0, buf.size)
+            if (n <= 0) break
+            val chunk = buf.copyOf(n)
+            for (pkt in decoder.ingest(chunk)) {
+              if (pkt.isRx) _incoming.emit(pkt.payload)
             }
-            _state.value = TransportState.Connected
+          }
         } catch (t: Throwable) {
-            closeQuietly()
-            _state.value = TransportState.Error(t)
-            throw t
+          _state.value = TransportState.Error(t)
+        } finally {
+          if (_state.value !is TransportState.Error) {
+            _state.value = TransportState.Disconnected
+          }
         }
+      }
+      _state.value = TransportState.Connected
+    } catch (t: Throwable) {
+      closeQuietly()
+      _state.value = TransportState.Error(t)
+      throw t
     }
+  }
 
-    override suspend fun send(frame: ByteString) {
-        val wc = writeChannel ?: error("TCP transport not connected")
-        val packet = StreamFrameCodec.encodeTx(frame).toByteArray()
-        writeMutex.withLock {
-            wc.writeFully(packet)
-        }
-    }
+  override suspend fun send(frame: ByteString) {
+    val wc = writeChannel ?: error("TCP transport not connected")
+    val packet = StreamFrameCodec.encodeTx(frame).toByteArray()
+    writeMutex.withLock { wc.writeFully(packet) }
+  }
 
-    override suspend fun close() {
-        closeQuietly()
-        _state.value = TransportState.Disconnected
-    }
+  override suspend fun close() {
+    closeQuietly()
+    _state.value = TransportState.Disconnected
+  }
 
-    private fun closeQuietly() {
-        try { socket?.close() } catch (_: Throwable) {}
-        try { selector?.close() } catch (_: Throwable) {}
-        socket = null
-        selector = null
-        readChannel = null
-        writeChannel = null
-        readerJob?.cancel()
-        readerJob = null
-    }
+  private fun closeQuietly() {
+    try {
+      socket?.close()
+    } catch (_: Throwable) {}
+    try {
+      selector?.close()
+    } catch (_: Throwable) {}
+    socket = null
+    selector = null
+    readChannel = null
+    writeChannel = null
+    readerJob?.cancel()
+    readerJob = null
+  }
 }

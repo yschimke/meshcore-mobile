@@ -11,32 +11,32 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.io.bytestring.ByteString
 
 /**
- * In-memory [Transport] for tests. Records outbound frames in [sentFrames]
- * and lets the test inject inbound frames via [receive].
+ * In-memory [Transport] for tests. Records outbound frames in [sentFrames] and lets the test inject
+ * inbound frames via [receive].
  */
 class FakeTransport : Transport {
-    private val _state = MutableStateFlow<TransportState>(TransportState.Disconnected)
-    override val state: StateFlow<TransportState> = _state.asStateFlow()
+  private val _state = MutableStateFlow<TransportState>(TransportState.Disconnected)
+  override val state: StateFlow<TransportState> = _state.asStateFlow()
 
-    private val _incoming = MutableSharedFlow<ByteString>(extraBufferCapacity = 64)
-    override val incoming: SharedFlow<ByteString> = _incoming.asSharedFlow()
+  private val _incoming = MutableSharedFlow<ByteString>(extraBufferCapacity = 64)
+  override val incoming: SharedFlow<ByteString> = _incoming.asSharedFlow()
 
-    val sentFrames = mutableListOf<ByteString>()
+  val sentFrames = mutableListOf<ByteString>()
 
-    override suspend fun connect() {
-        _state.value = TransportState.Connected
-    }
+  override suspend fun connect() {
+    _state.value = TransportState.Connected
+  }
 
-    override suspend fun send(frame: ByteString) {
-        sentFrames += frame
-    }
+  override suspend fun send(frame: ByteString) {
+    sentFrames += frame
+  }
 
-    override suspend fun close() {
-        _state.value = TransportState.Disconnected
-    }
+  override suspend fun close() {
+    _state.value = TransportState.Disconnected
+  }
 
-    /** Simulate a frame arriving from the device side. */
-    suspend fun receive(frame: ByteString) {
-        _incoming.emit(frame)
-    }
+  /** Simulate a frame arriving from the device side. */
+  suspend fun receive(frame: ByteString) {
+    _incoming.emit(frame)
+  }
 }

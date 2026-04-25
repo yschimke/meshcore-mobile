@@ -9,31 +9,26 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DeviceDao {
-    @Query("SELECT * FROM device ORDER BY isFavorite DESC, lastConnectedAtMs DESC")
-    fun observeAll(): Flow<List<DeviceEntity>>
+  @Query("SELECT * FROM device ORDER BY isFavorite DESC, lastConnectedAtMs DESC")
+  fun observeAll(): Flow<List<DeviceEntity>>
 
-    @Query("SELECT * FROM device WHERE isFavorite = 1 LIMIT 1")
-    fun observeFavorite(): Flow<DeviceEntity?>
+  @Query("SELECT * FROM device WHERE isFavorite = 1 LIMIT 1")
+  fun observeFavorite(): Flow<DeviceEntity?>
 
-    @Query("SELECT * FROM device WHERE id = :id")
-    suspend fun getById(id: String): DeviceEntity?
+  @Query("SELECT * FROM device WHERE id = :id") suspend fun getById(id: String): DeviceEntity?
 
-    @Upsert
-    suspend fun upsert(device: DeviceEntity)
+  @Upsert suspend fun upsert(device: DeviceEntity)
 
-    @Query("DELETE FROM device WHERE id = :id")
-    suspend fun delete(id: String)
+  @Query("DELETE FROM device WHERE id = :id") suspend fun delete(id: String)
 
-    @Query("UPDATE device SET isFavorite = 0")
-    suspend fun clearAllFavorites()
+  @Query("UPDATE device SET isFavorite = 0") suspend fun clearAllFavorites()
 
-    @Query("UPDATE device SET isFavorite = 1 WHERE id = :id")
-    suspend fun setFavorite(id: String)
+  @Query("UPDATE device SET isFavorite = 1 WHERE id = :id") suspend fun setFavorite(id: String)
 
-    @Transaction
-    suspend fun toggleFavorite(id: String) {
-        val current = getById(id) ?: return
-        clearAllFavorites()
-        if (!current.isFavorite) setFavorite(id)
-    }
+  @Transaction
+  suspend fun toggleFavorite(id: String) {
+    val current = getById(id) ?: return
+    clearAllFavorites()
+    if (!current.isFavorite) setFavorite(id)
+  }
 }

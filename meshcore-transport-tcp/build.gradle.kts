@@ -1,19 +1,11 @@
-plugins {
-    alias(libs.plugins.kotlinJvm)
-}
+plugins { alias(libs.plugins.kotlinJvm) }
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
-    }
-}
+kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) } }
 
-java {
-    toolchain { languageVersion.set(JavaLanguageVersion.of(21)) }
-}
+java { toolchain { languageVersion.set(JavaLanguageVersion.of(21)) } }
 
 dependencies {
-    api(projects.meshcoreCore)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.ktor.network)
+  api(projects.meshcoreCore)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.ktor.network)
 }
