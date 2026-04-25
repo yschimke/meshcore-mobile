@@ -4,6 +4,7 @@ import android.app.Application
 import dev.zacsweers.metro.createGraphFactory
 import ee.schimke.meshcore.app.ble.DevicePresenceManager
 import ee.schimke.meshcore.app.connection.AppConnectionController
+import ee.schimke.meshcore.app.debug.DebugBridge
 import ee.schimke.meshcore.app.ui.theme.ThemePreferences
 import ee.schimke.meshcore.app.widget.PeriodicRefreshWorker
 import ee.schimke.meshcore.app.widget.WidgetStateBridge
@@ -34,6 +35,7 @@ class MeshcoreApp : Application() {
         super.onCreate()
         instance = this
         graph = createGraphFactory<MobileGraph.Factory>().create(this)
+        DebugBridge.instance?.onAppReady()
         WidgetStateBridge.start(this, manager)
         @Suppress("OPT_IN_USAGE")
         kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.Default) {
