@@ -136,7 +136,7 @@
     "captureLabel": "",
     "functionName": "DeviceStatusConnectingPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceStatusConnectingPreview_Device_status_connecting.png",
-    "sha256": "19d9a13eb508b09adabc7b47feec619e712a86483bf488eb26a86255f5987649",
+    "sha256": "ccc9d842f0ace1549cb5bf902ca40aa539516cb7c5b7174297fa37802fde597d",
     "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Device \u2014 status failed": {
@@ -269,126 +269,126 @@
     "captureLabel": "",
     "functionName": "ContactsBodyEmptyPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices_-_Large_Round.png",
-    "sha256": "9ba63a8337d9d65a39b905396bc6feadfcbc035540efe16c57ceed93995a6c41",
+    "sha256": "8f2abcd86781c1b34abc2ab7b75931f53208945d00d07c9c685e44d65165cd40",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyEmptyPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices_-_Small_Round.png",
-    "sha256": "a3efb3dbe503c38079224dc00a563343b662addda6b7af0d9d45dbd6ae45b4fc",
+    "sha256": "9419c9f3e59952a09bf37cbd161c8db62d7b3432c5127075d5d1e14d50734818",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyFewPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyFewPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyFewPreview_Devices_-_Large_Round.png",
-    "sha256": "5c94610fcaae6e51ef82abf583c8fdeb9c86c620cb9e05cf8d36c876388d441f",
+    "sha256": "bb45adc9178857f0ebb3b20b0140597db866b28f96ca0ce56957020597558d06",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyFewPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyFewPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyFewPreview_Devices_-_Small_Round.png",
-    "sha256": "33c9db45b643cbabfe482f5ffd21a8321ce277bafc3457f0a65872d46723b784",
+    "sha256": "da88715b240389912ddb79249f4c413bf1c50e262bf0308ef34078784ab29aa5",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.QuickReplyBodyPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "QuickReplyBodyPreview",
     "renderBasename": "ui.WearPreviewsKt.QuickReplyBodyPreview_Devices_-_Large_Round.png",
-    "sha256": "9a8d66a5b0139f277886f1bb6931c9891c92b1502392204cd1b813e79a76ae7a",
+    "sha256": "15ae3ee939d6cff99a56a8031e228d2c28008f6e49cbb4094a3136fe052c6235",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.QuickReplyBodyPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "QuickReplyBodyPreview",
     "renderBasename": "ui.WearPreviewsKt.QuickReplyBodyPreview_Devices_-_Small_Round.png",
-    "sha256": "d2d4b08cae96e115d2e449ab5df1ff9f99206cf3f052f2247b8edfffc416cee2",
+    "sha256": "eda4d320ec2c3ca33522b7cfb2784023f9aa8b0bb26846054e10cc4d0b393b82",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedLowBatteryPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices_-_Large_Round.png",
-    "sha256": "c682db0669cc28bb6edd49104aa5689bd30a34484d2cfa99ee116de56e67d246",
+    "sha256": "521ccbb58a12898b9d79c261ac4a4f7ea3938371e7f79c4d20eccd8c7ea0521a",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedLowBatteryPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices_-_Small_Round.png",
-    "sha256": "81a51d7dee90f2ebf43ef197a2ec52d283975c22916a60e9908d36cdc19dd049",
+    "sha256": "4113b122a00ce18be0ae1744067c95d788b543f8076f8ddffc51a5f6905b0b44",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices_-_Large_Round.png",
-    "sha256": "4088db8f79a294e79de0b32cb79d7e54703fd9ba9818a27a44f898e4ed0e2172",
+    "sha256": "6abdded929c636ed10ced1bd6ad59bef5ea2140db8086b22eaf0e831a5b38c43",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices_-_Small_Round.png",
-    "sha256": "103a405c5f62aabfdac1dfaeff48631aed97995de7c657fe3efc7a7d6b607aee",
+    "sha256": "a4b59627bf3f42af12d38032df69becfa3cc1333591c40f2af8aea18860af6eb",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyErrorPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyErrorPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyErrorPreview_Devices_-_Large_Round.png",
-    "sha256": "9c2129e174c41d9bb0535ab547e81ee7a60e4e2ce152b13808271b1d366dfb1c",
+    "sha256": "bd470b092476407149c6a7e48d1d127cb2ca9861f06f277e23e2279b180b7e73",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyErrorPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyErrorPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyErrorPreview_Devices_-_Small_Round.png",
-    "sha256": "dfa2f918c21f01f108f93080407df72cf41334b9e21211d537ea59afe078fb9d",
+    "sha256": "3f0e4a5f76e7966572c4e91e1c2e7f65a0fdc5c415c591f6f5666b30abd189ac",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyLoadingPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices_-_Large_Round.png",
-    "sha256": "ad2e46af256d2213a6612e1c2b9bdc29e0157e8be4864900f982469a079b929e",
+    "sha256": "34fd51828faded9d53768722c740fe67a2d3deb9965e7bbd00081321b7ff8f50",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyLoadingPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices_-_Small_Round.png",
-    "sha256": "b895329fffc45f72eaa7027a3005cb99bf48c1bf6b5721990e7676311e31f908",
+    "sha256": "49b2a4d33fbff1cc353d68a62bb6908e3d88e786fc3ca0dd9210968e5937ddaa",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyPhoneDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices_-_Large_Round.png",
-    "sha256": "11c050eeab1e35c6c629ca5d2ad4d4a1c3a02f043a72aaf61d9c816b8d48d376",
+    "sha256": "154ea7fec2ba206de3da4575b59c288dae7471c29291c66a259941fc08f4cd1c",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyPhoneDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices_-_Small_Round.png",
-    "sha256": "afe7d341c6fcdc23a1470af4023a5abfa889b4007c994467415db13f023081db",
+    "sha256": "c6c68755db9352f95e109aee59528b0e2911c98b401044a716e02d61676527ae",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyRadioDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices_-_Large_Round.png",
-    "sha256": "fe744d76568f97d963a9071295a375b9b0519dc715a25d1d7338565e3aec84ae",
+    "sha256": "5a9527d6c7e3749c0faf04b49d8fc8dc116fc92459ddb128db5bcbbb1aa2abf1",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyRadioDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices_-_Small_Round.png",
-    "sha256": "2fb8e48f7279b99a655571885536ca5d6c8693f66747ce2c0414024819447143",
+    "sha256": "5411c36e09460caa4809ad3f8ae10a2166469e03a0a09dcaa8e80373cdd7fe90",
     "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status \u2014 connected": {
