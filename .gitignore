@@ -21,6 +21,7 @@ node_modules/
 **/.compose-preview-history/
 /.agents/
 /.claude/*
+!/.claude/CLAUDE.md
 !/.claude/settings.json
 !/.claude/hooks/
 /.claude/settings.local.json
