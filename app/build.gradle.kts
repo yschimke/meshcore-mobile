@@ -8,7 +8,7 @@ plugins {
   alias(libs.plugins.metro)
   alias(libs.plugins.ksp)
   alias(libs.plugins.kotlinSerialization)
-  id("ee.schimke.composeai.preview") version "0.7.5"
+  alias(libs.plugins.composePreview)
 }
 
 kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) } }
