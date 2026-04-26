@@ -29,7 +29,8 @@
 
         <activity
             android:name=".LicenseActivity"
-            android:exported="true">
+            android:exported="true"
+            android:taskAffinity="">
             <intent-filter>
                 <action android:name="com.google.wear.ACTION_SHOW_LICENSE" />
                 <category android:name="android.intent.category.DEFAULT" />
