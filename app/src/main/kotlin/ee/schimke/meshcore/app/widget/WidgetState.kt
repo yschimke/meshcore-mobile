@@ -8,6 +8,7 @@ import android.appwidget.AppWidgetProviderInfo
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.compose.remote.creation.compose.capture.captureSingleRemoteDocument
@@ -76,8 +77,10 @@ object WidgetStateBridge {
         val appContext = context.applicationContext
 
         // Set initial widget picker previews
-        bridgeScope.launch {
-            runCatching { updateWidgetPreviews(appContext) }
+        if (Build.VERSION.SDK_INT >= 37) {
+            bridgeScope.launch {
+                runCatching { updateWidgetPreviews(appContext) }
+            }
         }
 
         bridgeScope.launch {
@@ -94,7 +97,9 @@ object WidgetStateBridge {
                     notifyWidgets(appContext)
                 }
                 // Update widget picker previews with latest data
-                runCatching { updateWidgetPreviews(appContext) }
+                if (Build.VERSION.SDK_INT >= 37) {
+                    runCatching { updateWidgetPreviews(appContext) }
+                }
             }
         }
     }
