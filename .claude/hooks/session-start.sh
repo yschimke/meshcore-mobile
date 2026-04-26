@@ -44,3 +44,10 @@ if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
     echo "export PATH=\"$CMDLINE_TOOLS_DIR/bin:$ANDROID_SDK_ROOT/platform-tools:\$PATH\""
   } >> "$CLAUDE_ENV_FILE"
 fi
+
+# Install repo-managed git hooks (ktfmt pre-commit) so agent commits are
+# formatted before they land. Idempotent — overwrites .git/hooks/pre-commit.
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -n "$repo_root" ] && [ -x "$repo_root/scripts/install-git-hooks.sh" ]; then
+  "$repo_root/scripts/install-git-hooks.sh" >/dev/null
+fi
