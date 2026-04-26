@@ -59,6 +59,7 @@ fun DeviceStatusView(
     status: DeviceConnectStatus,
     onCancel: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
+    nowMs: () -> Long = { System.currentTimeMillis() },
 ) {
     Scaffold(
         topBar = {
@@ -93,6 +94,7 @@ fun DeviceStatusView(
                     startedAtMs = status.startedAtMs,
                     timeoutMs = status.timeoutMs,
                     onCancel = onCancel,
+                    nowMs = nowMs,
                 )
                 is DeviceConnectStatus.Failed -> FailureCard(cause = status.cause, onRetry = onCancel)
             }
@@ -105,21 +107,23 @@ private fun ConnectingCard(
     startedAtMs: Long,
     timeoutMs: Long,
     onCancel: () -> Unit,
+    nowMs: () -> Long,
 ) {
     // Drive the progress bar from inside the composable itself using
     // withFrameMillis — the caller only has to provide the wall-clock
     // start time. In preview mode the produceState coroutine returns
     // immediately so the bar freezes at its initial value and the
-    // renderer can settle.
+    // renderer can settle. The caller-supplied [nowMs] also lets
+    // previews pin the clock so the rendered PNG is deterministic.
     val inPreview = androidx.compose.ui.platform.LocalInspectionMode.current
     val elapsedMs by androidx.compose.runtime.produceState(
-        initialValue = (System.currentTimeMillis() - startedAtMs).coerceAtLeast(0L),
+        initialValue = (nowMs() - startedAtMs).coerceAtLeast(0L),
         startedAtMs,
     ) {
         if (inPreview) return@produceState
         while (true) {
             androidx.compose.runtime.withFrameMillis {
-                value = (System.currentTimeMillis() - startedAtMs).coerceAtLeast(0L)
+                value = (nowMs() - startedAtMs).coerceAtLeast(0L)
             }
         }
     }
