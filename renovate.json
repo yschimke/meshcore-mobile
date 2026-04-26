@@ -1,0 +1,81 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":timezone(Europe/London)"
+  ],
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 0,
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "matchManagers": ["gradle", "gradle-wrapper"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": false
+    },
+    {
+      "groupName": "Kotlin",
+      "matchPackageNames": [
+        "/^org\\.jetbrains\\.kotlin($|[.:])/",
+        "/^org\\.jetbrains\\.kotlinx($|[.:])/"
+      ]
+    },
+    {
+      "groupName": "Compose Multiplatform",
+      "matchPackageNames": [
+        "/^org\\.jetbrains\\.compose($|[.:])/",
+        "/^org\\.jetbrains\\.androidx\\.lifecycle($|[.:])/",
+        "/^org\\.jetbrains\\.androidx\\.navigation($|[.:])/"
+      ]
+    },
+    {
+      "groupName": "AndroidX",
+      "matchPackageNames": ["/^androidx\\./"]
+    },
+    {
+      "groupName": "Wear Compose",
+      "matchPackageNames": [
+        "/^androidx\\.wear($|[.:])/",
+        "/^com\\.google\\.android\\.horologist($|[.:])/"
+      ]
+    },
+    {
+      "groupName": "Room / SQLite",
+      "matchPackageNames": [
+        "/^androidx\\.room($|[.:])/",
+        "/^androidx\\.sqlite($|[.:])/"
+      ]
+    },
+    {
+      "groupName": "gRPC",
+      "matchPackageNames": [
+        "/^io\\.grpc($|[.:])/",
+        "/^com\\.google\\.protobuf($|[.:])/"
+      ]
+    },
+    {
+      "groupName": "Ktor",
+      "matchPackageNames": ["/^io\\.ktor($|[.:])/"]
+    },
+    {
+      "groupName": "Wire",
+      "matchPackageNames": ["/^com\\.squareup\\.wire($|[.:])/"]
+    },
+    {
+      "groupName": "Android Gradle Plugin",
+      "matchPackageNames": [
+        "com.android.application",
+        "com.android.library",
+        "com.android.tools.build:gradle"
+      ]
+    },
+    {
+      "groupName": "GitHub Actions",
+      "matchManagers": ["github-actions"]
+    }
+  ]
+}
