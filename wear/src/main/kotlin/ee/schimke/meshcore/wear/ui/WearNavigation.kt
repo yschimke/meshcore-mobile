@@ -23,7 +23,7 @@ fun WearNavigation() {
         NavDisplay(
             backStack = backStack,
             onBack = { backStack.removeLastOrNull() },
-            sceneStrategy = SwipeDismissableSceneStrategy(),
+            sceneStrategies = listOf(SwipeDismissableSceneStrategy()),
             entryProvider = entryProvider {
                 entry<StatusRoute> {
                     StatusScreen(
