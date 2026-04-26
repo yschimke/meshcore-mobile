@@ -29,7 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -140,12 +140,12 @@ fun ScannerBody(
     bleContent: @Composable () -> Unit,
     usbContent: @Composable () -> Unit,
     tcpContent: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
     onOpenThemePicker: () -> Unit = {},
     onOpenLicenses: () -> Unit = {},
-    modifier: Modifier = Modifier,
     initialTab: Int = 0,
 ) {
-    var tab by rememberSaveable { mutableStateOf(initialTab) }
+    var tab by rememberSaveable { mutableIntStateOf(initialTab) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -228,13 +228,13 @@ private fun TransportTab(
 // --- Preview fixtures -----------------------------------------------------
 
 @Composable
-private fun previewBleEmpty() {
+private fun PreviewBleEmpty() {
     ScanStatusBar(shown = 0, meshOnly = true, onMeshOnlyChange = {})
     BleDeviceList(rows = emptyList(), busy = false, onPick = {}, modifier = Modifier.fillMaxWidth())
 }
 
 @Composable
-private fun previewBleFew() {
+private fun PreviewBleFew() {
     ScanStatusBar(shown = 2, meshOnly = true, onMeshOnlyChange = {})
     BleDeviceList(
         rows = listOf(
@@ -248,7 +248,7 @@ private fun previewBleFew() {
 }
 
 @Composable
-private fun previewBleMany() {
+private fun PreviewBleMany() {
     ScanStatusBar(shown = 10, meshOnly = true, onMeshOnlyChange = {})
     BleDeviceList(
         rows = (0 until 10).map { i ->
@@ -265,17 +265,17 @@ private fun previewBleMany() {
 }
 
 @Composable
-private fun previewBlePermission() {
+private fun PreviewBlePermission() {
     BlePermissionPanel(lastResult = null, onRequest = {})
 }
 
 @Composable
-private fun previewUsbEmpty() {
+private fun PreviewUsbEmpty() {
     UsbPortsPanel(busy = false, listPorts = { emptyList() }, onConnect = {})
 }
 
 @Composable
-private fun previewUsbFew() {
+private fun PreviewUsbFew() {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row {
             Text(
@@ -290,17 +290,17 @@ private fun previewUsbFew() {
 }
 
 @Composable
-private fun previewTcpIdle() {
+private fun PreviewTcpIdle() {
     TcpConnectPanel(busy = false, onConnect = { _, _ -> })
 }
 
 @Composable
-private fun previewEmpty() {
+private fun PreviewEmpty() {
     Text("(preview slot)")
 }
 
 @Composable
-private fun previewSavedEmpty() {
+private fun PreviewSavedEmpty() {
     SavedDevicesPanel(
         devices = emptyList(),
         busy = false,
@@ -311,7 +311,7 @@ private fun previewSavedEmpty() {
 }
 
 @Composable
-private fun previewSavedPopulated() {
+private fun PreviewSavedPopulated() {
     SavedDevicesPanel(
         devices = listOf(
             ee.schimke.meshcore.data.repository.SavedDeviceWithState(
@@ -351,10 +351,10 @@ private fun previewSavedPopulated() {
 fun ScannerSavedEmptyPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewSavedEmpty() },
-            bleContent = { previewEmpty() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewSavedEmpty() },
+            bleContent = { PreviewEmpty() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 0,
         )
     }
@@ -365,10 +365,10 @@ fun ScannerSavedEmptyPreview() {
 fun ScannerSavedPopulatedPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewSavedPopulated() },
-            bleContent = { previewEmpty() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewSavedPopulated() },
+            bleContent = { PreviewEmpty() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 0,
         )
     }
@@ -381,10 +381,10 @@ fun ScannerSavedPopulatedPreview() {
 fun ScannerBlePermissionPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewBlePermission() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewBlePermission() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 1,
         )
     }
@@ -395,10 +395,10 @@ fun ScannerBlePermissionPreview() {
 fun ScannerBleEmptyPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewBleEmpty() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewBleEmpty() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 1,
         )
     }
@@ -409,10 +409,10 @@ fun ScannerBleEmptyPreview() {
 fun ScannerBleFewPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewBleFew() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewBleFew() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 1,
         )
     }
@@ -423,10 +423,10 @@ fun ScannerBleFewPreview() {
 fun ScannerBleManyPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewBleMany() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewBleMany() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 1,
         )
     }
@@ -439,10 +439,10 @@ fun ScannerBleManyPreview() {
 fun ScannerUsbEmptyPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewEmpty() },
-            usbContent = { previewUsbEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewEmpty() },
+            usbContent = { PreviewUsbEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 2,
         )
     }
@@ -453,10 +453,10 @@ fun ScannerUsbEmptyPreview() {
 fun ScannerUsbFewPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewEmpty() },
-            usbContent = { previewUsbFew() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewEmpty() },
+            usbContent = { PreviewUsbFew() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 2,
         )
     }
@@ -469,10 +469,10 @@ fun ScannerUsbFewPreview() {
 fun ScannerTcpPreview() {
     MeshcoreTheme {
         ScannerBody(
-            savedContent = { previewEmpty() },
-            bleContent = { previewEmpty() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewTcpIdle() },
+            savedContent = { PreviewEmpty() },
+            bleContent = { PreviewEmpty() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewTcpIdle() },
             initialTab = 3,
         )
     }
@@ -489,10 +489,10 @@ fun ScannerTcpPreview() {
 fun ScannerBleDarkPreview() {
     MeshcoreTheme(darkTheme = true) {
         ScannerBody(
-            savedContent = { previewSavedPopulated() },
-            bleContent = { previewEmpty() },
-            usbContent = { previewEmpty() },
-            tcpContent = { previewEmpty() },
+            savedContent = { PreviewSavedPopulated() },
+            bleContent = { PreviewEmpty() },
+            usbContent = { PreviewEmpty() },
+            tcpContent = { PreviewEmpty() },
             initialTab = 0,
         )
     }

@@ -59,12 +59,12 @@ import ee.schimke.meshcore.data.repository.SavedTransport
 fun SavedDevicesPanel(
     devices: List<SavedDeviceWithState>,
     busy: Boolean,
-    connectedDeviceId: String? = null,
     onConnect: (SavedDevice) -> Unit,
     onForget: (SavedDevice) -> Unit,
     onToggleFavorite: (SavedDevice) -> Unit,
-    onViewCached: (SavedDevice) -> Unit = {},
     modifier: Modifier = Modifier,
+    connectedDeviceId: String? = null,
+    onViewCached: (SavedDevice) -> Unit = {},
 ) {
     if (devices.isEmpty()) {
         SavedDevicesEmpty(modifier)
