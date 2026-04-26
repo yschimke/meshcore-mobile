@@ -208,14 +208,20 @@ fun DeviceBodyManyContactsPreview() {
 )
 @Composable
 fun DeviceStatusConnectingPreview() {
+    // Pin both the start time and the "now" clock so the rendered PNG
+    // doesn't drift between runs (the elapsed/remaining label and the
+    // progress bar both depend on wall-clock time otherwise).
+    val previewStartedAtMs = 0L
+    val previewNowMs = 7_000L
     MeshcoreTheme {
         DeviceStatusView(
             title = "Connecting",
             status = DeviceConnectStatus.Connecting(
-                startedAtMs = System.currentTimeMillis() - 7_000L,
+                startedAtMs = previewStartedAtMs,
                 timeoutMs = 20_000L,
             ),
             onCancel = {},
+            nowMs = { previewNowMs },
         )
     }
 }

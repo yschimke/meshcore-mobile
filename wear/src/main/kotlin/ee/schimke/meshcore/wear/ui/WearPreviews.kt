@@ -2,10 +2,26 @@ package ee.schimke.meshcore.wear.ui
 
 import androidx.compose.runtime.Composable
 import androidx.wear.compose.material3.AppScaffold
+import androidx.wear.compose.material3.TimeSource
+import androidx.wear.compose.material3.TimeText
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import ee.schimke.meshcore.grpc.ContactMsg
 import ee.schimke.meshcore.grpc.ContactType
 import ee.schimke.meshcore.wear.ui.theme.MeshcoreWearTheme
+
+// AppScaffold's default TimeText reads the wall clock, so each render
+// shows a different "HH:MM" string and every wear preview ends up with
+// a false diff. Pin the displayed time so PNGs stay byte-stable.
+private object FixedTimeSource : TimeSource {
+    @Composable override fun currentTime(): String = "10:10"
+}
+
+@Composable
+private fun PreviewAppScaffold(content: @Composable () -> Unit) {
+    AppScaffold(timeText = { TimeText(timeSource = FixedTimeSource) }) {
+        content()
+    }
+}
 
 // --- StatusScreen previews ---------------------------------------------------
 
@@ -13,7 +29,7 @@ import ee.schimke.meshcore.wear.ui.theme.MeshcoreWearTheme
 @Composable
 fun StatusBodyLoadingPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             StatusBody(state = WearUiState.Loading)
         }
     }
@@ -23,7 +39,7 @@ fun StatusBodyLoadingPreview() {
 @Composable
 fun StatusBodyPhoneDisconnectedPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             StatusBody(state = WearUiState.PhoneDisconnected)
         }
     }
@@ -33,7 +49,7 @@ fun StatusBodyPhoneDisconnectedPreview() {
 @Composable
 fun StatusBodyRadioDisconnectedPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             StatusBody(state = WearUiState.RadioDisconnected)
         }
     }
@@ -43,7 +59,7 @@ fun StatusBodyRadioDisconnectedPreview() {
 @Composable
 fun StatusBodyConnectedPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             StatusBody(
                 state = WearUiState.Connected(
                     deviceName = "MeshNode-A",
@@ -60,7 +76,7 @@ fun StatusBodyConnectedPreview() {
 @Composable
 fun StatusBodyConnectedLowBatteryPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             StatusBody(
                 state = WearUiState.Connected(
                     deviceName = "MeshNode-B",
@@ -77,7 +93,7 @@ fun StatusBodyConnectedLowBatteryPreview() {
 @Composable
 fun StatusBodyErrorPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             StatusBody(state = WearUiState.Error("Connection timeout"))
         }
     }
@@ -89,7 +105,7 @@ fun StatusBodyErrorPreview() {
 @Composable
 fun ContactsBodyEmptyPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             ContactsBody(contacts = emptyList())
         }
     }
@@ -99,7 +115,7 @@ fun ContactsBodyEmptyPreview() {
 @Composable
 fun ContactsBodyFewPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             ContactsBody(
                 contacts = listOf(
                     fakeContact("Alice"),
@@ -117,7 +133,7 @@ fun ContactsBodyFewPreview() {
 @Composable
 fun QuickReplyBodyPreview() {
     MeshcoreWearTheme {
-        AppScaffold {
+        PreviewAppScaffold {
             QuickReplyBody()
         }
     }
