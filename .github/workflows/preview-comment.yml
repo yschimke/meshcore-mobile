@@ -22,4 +22,4 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: 'true'
-      - uses: yschimke/compose-ai-tools/.github/actions/preview-comment@v0.8.4
+      - uses: yschimke/compose-ai-tools/.github/actions/preview-comment@v0.8.5
