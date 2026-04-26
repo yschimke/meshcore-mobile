@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <permission
         android:name="ee.schimke.meshcore.permission.MESH_SERVICE"
         android:protectionLevel="signature"
@@ -79,11 +80,14 @@
             </intent-filter>
         </receiver>
 
-        <!-- App Functions — exposes device status, contacts, messages to system assistant -->
+        <!-- App Functions — exposes device status, contacts, messages to system assistant.
+             The AppFunctionService action is API 36+; on older devices the service
+             is harmlessly never bound. -->
         <service
             android:name="androidx.appfunctions.service.PlatformAppFunctionService"
             android:exported="true"
-            android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            android:permission="android.permission.BIND_APP_FUNCTION_SERVICE"
+            tools:targetApi="36">
             <intent-filter>
                 <action android:name="android.app.appfunctions.AppFunctionService" />
             </intent-filter>
