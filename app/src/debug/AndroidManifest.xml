@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <application>
 
         <!-- Runs before Application.onCreate; installs DebugBridge.instance. -->
@@ -14,7 +15,8 @@
              ALLOWED_BLE_IDENTIFIERS / ALLOWED_TCP_TARGETS allowlists. -->
         <receiver
             android:name=".debug.DebugConnectReceiver"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="ee.schimke.meshcore.DEBUG_CONNECT" />
             </intent-filter>
@@ -23,7 +25,8 @@
         <!-- Disconnect / forget / other single-shot debug actions. -->
         <receiver
             android:name=".debug.DebugActionReceiver"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="ee.schimke.meshcore.DEBUG_DISCONNECT" />
                 <action android:name="ee.schimke.meshcore.DEBUG_FORGET" />

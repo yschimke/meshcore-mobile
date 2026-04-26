@@ -6,7 +6,7 @@
   the downloaded font bundles. Do NOT edit — they are not secrets but
   they must match Google Play Services exactly.
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Typos">
     <array name="com_google_android_gms_fonts_certs">
         <item>@array/com_google_android_gms_fonts_certs_dev</item>
         <item>@array/com_google_android_gms_fonts_certs_prod</item>

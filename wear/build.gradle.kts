@@ -64,7 +64,7 @@ dependencies {
   implementation(libs.aboutlibraries.compose.wear.m3)
   implementation(libs.kotlinx.coroutines.android)
 
-  implementation("androidx.wear.compose:compose-ui-tooling:1.6.0")
+  implementation(libs.wear.compose.ui.tooling)
   debugImplementation(libs.compose.uiTooling)
 
   testImplementation(libs.robolectric)
