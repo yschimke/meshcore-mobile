@@ -20,7 +20,10 @@ node_modules/
 /.preview-shots/
 **/.compose-preview-history/
 /.agents/
-/.claude/
+/.claude/*
+!/.claude/settings.json
+!/.claude/hooks/
+/.claude/settings.local.json
 /.vscode/
 /meshcore-devices-proto/bin/
 /meshcore-cli/bin/
