@@ -2,11 +2,12 @@
 <!--
   MeshCore adaptive icon foreground.
   A stylised mesh network: a central hexagonal node with six radiating
-  connection lines terminating in smaller nodes. The geometry echoes
-  Orbitron's angular letterforms and the concept of a radio mesh.
-  Teal (#489FB5) primary with lighter accents.
-  Safe zone for adaptive icons: 66 dp centered in the 108 dp canvas,
-  so all content sits within 21–87 on each axis.
+  connection lines terminating in smaller nodes. Bolder strokes than the
+  earlier draft so the mesh survives launcher-size rendering, with the
+  outer ring of nodes pushed to r=29 from center so the layout fills the
+  adaptive-icon safe zone (66 dp / 108 dp viewport) without crowding the
+  circle mask. Teal (#489FB5) primary; cyan core (#82DBD8) with white
+  highlight.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
@@ -14,123 +15,68 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Connection lines radiating from center (thin, slightly transparent) -->
+    <!-- Spokes from the center to each outer node (r=29) -->
     <group>
-        <!-- Top -->
         <path
-            android:pathData="M54,54 L54,28"
+            android:pathData="M54,54 L54,25"
             android:strokeColor="#489FB5"
-            android:strokeWidth="1.5"
-            android:strokeAlpha="0.6" />
-        <!-- Top-right -->
+            android:strokeWidth="2.8"
+            android:strokeAlpha="0.9" />
         <path
-            android:pathData="M54,54 L76.5,41"
+            android:pathData="M54,54 L79.1,39.5"
             android:strokeColor="#489FB5"
-            android:strokeWidth="1.5"
-            android:strokeAlpha="0.6" />
-        <!-- Bottom-right -->
+            android:strokeWidth="2.8"
+            android:strokeAlpha="0.9" />
         <path
-            android:pathData="M54,54 L76.5,67"
+            android:pathData="M54,54 L79.1,68.5"
             android:strokeColor="#489FB5"
-            android:strokeWidth="1.5"
-            android:strokeAlpha="0.6" />
-        <!-- Bottom -->
+            android:strokeWidth="2.8"
+            android:strokeAlpha="0.9" />
         <path
-            android:pathData="M54,54 L54,80"
+            android:pathData="M54,54 L54,83"
             android:strokeColor="#489FB5"
-            android:strokeWidth="1.5"
-            android:strokeAlpha="0.6" />
-        <!-- Bottom-left -->
+            android:strokeWidth="2.8"
+            android:strokeAlpha="0.9" />
         <path
-            android:pathData="M54,54 L31.5,67"
+            android:pathData="M54,54 L28.9,68.5"
             android:strokeColor="#489FB5"
-            android:strokeWidth="1.5"
-            android:strokeAlpha="0.6" />
-        <!-- Top-left -->
+            android:strokeWidth="2.8"
+            android:strokeAlpha="0.9" />
         <path
-            android:pathData="M54,54 L31.5,41"
+            android:pathData="M54,54 L28.9,39.5"
             android:strokeColor="#489FB5"
-            android:strokeWidth="1.5"
-            android:strokeAlpha="0.6" />
-
-        <!-- Secondary ring connections (node-to-node around perimeter) -->
-        <path
-            android:pathData="M54,28 L76.5,41"
-            android:strokeColor="#489FB5"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3" />
-        <path
-            android:pathData="M76.5,41 L76.5,67"
-            android:strokeColor="#489FB5"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3" />
-        <path
-            android:pathData="M76.5,67 L54,80"
-            android:strokeColor="#489FB5"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3" />
-        <path
-            android:pathData="M54,80 L31.5,67"
-            android:strokeColor="#489FB5"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3" />
-        <path
-            android:pathData="M31.5,67 L31.5,41"
-            android:strokeColor="#489FB5"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3" />
-        <path
-            android:pathData="M31.5,41 L54,28"
-            android:strokeColor="#489FB5"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3" />
+            android:strokeWidth="2.8"
+            android:strokeAlpha="0.9" />
     </group>
 
-    <!-- Outer nodes (small circles at each spoke end) -->
+    <!-- Outer nodes (r=3.5 at r=29 from center, comfortably inside the circle mask) -->
     <group>
         <path
-            android:pathData="M54,28m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
+            android:pathData="M54,25m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
             android:fillColor="#489FB5" />
         <path
-            android:pathData="M76.5,41m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
+            android:pathData="M79.1,39.5m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
             android:fillColor="#489FB5" />
         <path
-            android:pathData="M76.5,67m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
+            android:pathData="M79.1,68.5m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
             android:fillColor="#489FB5" />
         <path
-            android:pathData="M54,80m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
+            android:pathData="M54,83m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
             android:fillColor="#489FB5" />
         <path
-            android:pathData="M31.5,67m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
+            android:pathData="M28.9,68.5m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
             android:fillColor="#489FB5" />
         <path
-            android:pathData="M31.5,41m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
+            android:pathData="M28.9,39.5m-3.5,0a3.5,3.5 0,1,1 7,0a3.5,3.5 0,1,1 -7,0"
             android:fillColor="#489FB5" />
     </group>
 
-    <!-- Radio wave arcs emanating from the top node -->
-    <group>
-        <path
-            android:pathData="M48,22 A8,8 0,0,1 60,22"
-            android:strokeColor="#82DBD8"
-            android:strokeWidth="1.2"
-            android:strokeAlpha="0.5"
-            android:fillColor="@android:color/transparent" />
-        <path
-            android:pathData="M45,18 A12,12 0,0,1 63,18"
-            android:strokeColor="#82DBD8"
-            android:strokeWidth="1"
-            android:strokeAlpha="0.3"
-            android:fillColor="@android:color/transparent" />
-    </group>
-
-    <!-- Central node: hexagonal shape for a techy/futuristic feel -->
+    <!-- Central hexagon (~1.15x the original core) -->
     <path
-        android:pathData="M54,46 L61.5,50 L61.5,58 L54,62 L46.5,58 L46.5,50 Z"
+        android:pathData="M54,44.8 L62.6,49.4 L62.6,58.6 L54,63.2 L45.4,58.6 L45.4,49.4 Z"
         android:fillColor="#82DBD8" />
-    <!-- Inner glow dot -->
+    <!-- Inner highlight -->
     <path
-        android:pathData="M54,54m-2.5,0a2.5,2.5 0,1,1 5,0a2.5,2.5 0,1,1 -5,0"
-        android:fillColor="#FFFFFF"
-        android:fillAlpha="0.9" />
+        android:pathData="M54,54m-4,0a4,4 0,1,1 8,0a4,4 0,1,1 -8,0"
+        android:fillColor="#FFFFFF" />
 </vector>
