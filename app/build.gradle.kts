@@ -23,7 +23,25 @@ android {
     versionCode = 1
     versionName = "0.1"
   }
-  buildTypes { getByName("release") { isMinifyEnabled = false } }
+  val releaseKeystorePath = System.getenv("MESHCORE_KEYSTORE_PATH")
+  signingConfigs {
+    if (releaseKeystorePath != null) {
+      create("release") {
+        storeFile = file(releaseKeystorePath)
+        storePassword = System.getenv("MESHCORE_KEYSTORE_PASSWORD")
+        keyAlias = System.getenv("MESHCORE_KEY_ALIAS")
+        keyPassword = System.getenv("MESHCORE_KEY_PASSWORD")
+      }
+    }
+  }
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = false
+      if (releaseKeystorePath != null) {
+        signingConfig = signingConfigs.getByName("release")
+      }
+    }
+  }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
