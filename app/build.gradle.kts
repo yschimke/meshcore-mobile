@@ -1,5 +1,18 @@
 import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 
+val appVersionName = "0.1.0" // x-release-please-version
+
+// Pack MAJOR.MINOR.PATCH into a monotonic int. Caps at major < 22.
+val appVersionCode: Int =
+  run {
+      val parts = appVersionName.split(".", "-").mapNotNull { it.toIntOrNull() }
+      val major = parts.getOrNull(0) ?: 0
+      val minor = parts.getOrNull(1) ?: 0
+      val patch = parts.getOrNull(2) ?: 0
+      major * 10_000 + minor * 100 + patch
+    }
+    .coerceAtLeast(1)
+
 plugins {
   // AGP 9 has built-in Kotlin support, so `com.android.application`
   // alone covers both Android and Kotlin compilation — don't add
@@ -17,7 +30,7 @@ plugins {
 play {
   track.set("internal")
   defaultToAppBundles.set(true)
-  releaseStatus.set(ReleaseStatus.DRAFT)
+  releaseStatus.set(ReleaseStatus.COMPLETED)
   // Skip API calls in CI runs that build but don't publish (e.g. PRs).
   enabled.set(System.getenv("ANDROID_PUBLISHER_CREDENTIALS") != null)
 }
@@ -31,8 +44,8 @@ android {
     applicationId = "ee.schimke.meshcore"
     minSdk = libs.versions.android.minSdk.get().toInt()
     targetSdk = libs.versions.android.targetSdk.get().toInt()
-    versionCode = 1
-    versionName = "0.1"
+    versionCode = appVersionCode
+    versionName = appVersionName
   }
   val releaseKeystorePath = System.getenv("MESHCORE_KEYSTORE_PATH")
   signingConfigs {
