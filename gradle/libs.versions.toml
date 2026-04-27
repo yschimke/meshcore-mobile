@@ -1,5 +1,6 @@
 [versions]
 agp = "9.2.0"
+playPublisher = "4.0.0"
 android-compileSdk = "37"
 android-minSdk = "35"
 android-targetSdk = "37"
@@ -133,3 +134,4 @@ protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
 ktfmt = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt" }
 composePreview = { id = "ee.schimke.composeai.preview", version.ref = "composePreview" }
+playPublisher = { id = "com.github.triplet.play", version.ref = "playPublisher" }
