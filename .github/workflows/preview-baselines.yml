@@ -20,4 +20,4 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
-      - uses: yschimke/compose-ai-tools/.github/actions/preview-baselines@v0.8.5
+      - uses: yschimke/compose-ai-tools/.github/actions/preview-baselines@v0.8.10
