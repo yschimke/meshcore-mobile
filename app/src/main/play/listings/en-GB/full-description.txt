@@ -1,0 +1,17 @@
+MeshCore is a companion app for MeshCore mesh-networking radios.
+Pair a node over Bluetooth, USB, or TCP and exchange messages with
+other nodes on the mesh. An optional Wear OS companion mirrors
+recent activity to a paired watch.
+
+This is a single-developer hobby project; you can read all the source
+code at https://github.com/yschimke/meshcore-mobile.
+
+Notes:
+- The developer collects nothing. Communication happens directly with
+  the mesh nodes you connect to.
+- No analytics, no advertising, no crash-reporting SDKs.
+- Bluetooth scanning requires the standard Android location runtime
+  permission; location is never sent off-device.
+
+Privacy policy: https://yschimke.github.io/meshcore-mobile/privacy/
+Issues / feedback: https://github.com/yschimke/meshcore-mobile/issues
