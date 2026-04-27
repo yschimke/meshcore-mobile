@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Deep teal-to-navy gradient evoking the MeshCore brand palette -->
+<!--
+  MeshCore adaptive icon background.
+  Deep navy base with a visible radial glow so the foreground reads as
+  lit from behind rather than floating on a flat void.
+-->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
@@ -9,14 +13,13 @@
         <path
             android:pathData="M0,0h108v108H0z"
             android:fillColor="#0D1B2A" />
-        <!-- Subtle radial glow from center -->
         <path
             android:pathData="M54,54m-40,0a40,40 0,1,1 80,0a40,40 0,1,1 -80,0"
             android:fillColor="#0F3460"
-            android:fillAlpha="0.5" />
+            android:fillAlpha="0.8" />
         <path
             android:pathData="M54,54m-24,0a24,24 0,1,1 48,0a24,24 0,1,1 -48,0"
             android:fillColor="#16697A"
-            android:fillAlpha="0.3" />
+            android:fillAlpha="0.55" />
     </group>
 </vector>
