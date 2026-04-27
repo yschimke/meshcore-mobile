@@ -43,7 +43,7 @@ wear-compose-remote = "1.0.0-alpha02"
 playservices-wearable = "19.0.0"
 aboutlibraries = "14.0.1"
 ktfmt = "0.26.0"
-composePreview = "0.8.5"
+composePreview = "0.8.10"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
