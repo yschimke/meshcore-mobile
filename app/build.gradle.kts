@@ -1,3 +1,5 @@
+import com.github.triplet.gradle.androidpublisher.ReleaseStatus
+
 plugins {
   // AGP 9 has built-in Kotlin support, so `com.android.application`
   // alone covers both Android and Kotlin compilation — don't add
@@ -9,6 +11,15 @@ plugins {
   alias(libs.plugins.ksp)
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.composePreview)
+  alias(libs.plugins.playPublisher)
+}
+
+play {
+  track.set("internal")
+  defaultToAppBundles.set(true)
+  releaseStatus.set(ReleaseStatus.DRAFT)
+  // Skip API calls in CI runs that build but don't publish (e.g. PRs).
+  enabled.set(System.getenv("ANDROID_PUBLISHER_CREDENTIALS") != null)
 }
 
 kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) } }
@@ -23,7 +34,25 @@ android {
     versionCode = 1
     versionName = "0.1"
   }
-  buildTypes { getByName("release") { isMinifyEnabled = false } }
+  val releaseKeystorePath = System.getenv("MESHCORE_KEYSTORE_PATH")
+  signingConfigs {
+    if (releaseKeystorePath != null) {
+      create("release") {
+        storeFile = file(releaseKeystorePath)
+        storePassword = System.getenv("MESHCORE_KEYSTORE_PASSWORD")
+        keyAlias = System.getenv("MESHCORE_KEY_ALIAS")
+        keyPassword = System.getenv("MESHCORE_KEY_PASSWORD")
+      }
+    }
+  }
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = false
+      if (releaseKeystorePath != null) {
+        signingConfig = signingConfigs.getByName("release")
+      }
+    }
+  }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
