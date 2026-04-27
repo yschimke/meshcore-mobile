@@ -1,0 +1,155 @@
+{
+  "app::drawable/ic_bluetooth_connected::renders/resources/drawable/ic_bluetooth_connected_xhdpi.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/drawable/ic_bluetooth_connected_xhdpi.png",
+    "resourceId": "drawable/ic_bluetooth_connected",
+    "resourceType": "VECTOR",
+    "sha256": "ece3a985c68492dd7d964c27edfdb8f55d65a038a1d15d2995b8e1f63e413596",
+    "shape": null
+  },
+  "app::drawable/ic_launcher_background::renders/resources/drawable/ic_launcher_background_xhdpi.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/drawable/ic_launcher_background_xhdpi.png",
+    "resourceId": "drawable/ic_launcher_background",
+    "resourceType": "VECTOR",
+    "sha256": "6e360cc3c9595b6a8513a731c06ba11ee488325f22eb0e126e8eebcc158fc6d1",
+    "shape": null
+  },
+  "app::drawable/ic_launcher_foreground::renders/resources/drawable/ic_launcher_foreground_xhdpi.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/drawable/ic_launcher_foreground_xhdpi.png",
+    "resourceId": "drawable/ic_launcher_foreground",
+    "resourceType": "VECTOR",
+    "sha256": "36ba96a48b6206388d4c55a7dff93824b47f9498c645195d8b8fb1ef0c5466ad",
+    "shape": null
+  },
+  "app::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_LEGACY.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_LEGACY.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "48920504032ffd2e485f508c1782fe5e25e58530925e75643e8d50cac48250bf",
+    "shape": "LEGACY"
+  },
+  "app::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_circle.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_circle.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "8135d2a33878494f96c37e9e8409090280fd3c14db1bf49884a146ea4acd0426",
+    "shape": "CIRCLE"
+  },
+  "app::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_rounded_square.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_rounded_square.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "7ee273d5e6a4efb9bf7786fc28d36e9af0a2be3ca7eb0e8e8dab8b4f23572997",
+    "shape": "ROUNDED_SQUARE"
+  },
+  "app::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_square.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_square.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "9492c96a35a661f18f01555b4d4fe7e3f5e7b8e28a264ebd4f2671a3afc8b53c",
+    "shape": "SQUARE"
+  },
+  "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_LEGACY.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_LEGACY.png",
+    "resourceId": "mipmap/ic_launcher_round",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "48920504032ffd2e485f508c1782fe5e25e58530925e75643e8d50cac48250bf",
+    "shape": "LEGACY"
+  },
+  "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_circle.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_circle.png",
+    "resourceId": "mipmap/ic_launcher_round",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "8135d2a33878494f96c37e9e8409090280fd3c14db1bf49884a146ea4acd0426",
+    "shape": "CIRCLE"
+  },
+  "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_rounded_square.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_rounded_square.png",
+    "resourceId": "mipmap/ic_launcher_round",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "7ee273d5e6a4efb9bf7786fc28d36e9af0a2be3ca7eb0e8e8dab8b4f23572997",
+    "shape": "ROUNDED_SQUARE"
+  },
+  "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_square.png": {
+    "module": "app",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_square.png",
+    "resourceId": "mipmap/ic_launcher_round",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "9492c96a35a661f18f01555b4d4fe7e3f5e7b8e28a264ebd4f2671a3afc8b53c",
+    "shape": "SQUARE"
+  },
+  "wear::drawable/ic_launcher_background::renders/resources/drawable/ic_launcher_background_xhdpi.png": {
+    "module": "wear",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/drawable/ic_launcher_background_xhdpi.png",
+    "resourceId": "drawable/ic_launcher_background",
+    "resourceType": "VECTOR",
+    "sha256": "6e360cc3c9595b6a8513a731c06ba11ee488325f22eb0e126e8eebcc158fc6d1",
+    "shape": null
+  },
+  "wear::drawable/ic_launcher_foreground::renders/resources/drawable/ic_launcher_foreground_xhdpi.png": {
+    "module": "wear",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/drawable/ic_launcher_foreground_xhdpi.png",
+    "resourceId": "drawable/ic_launcher_foreground",
+    "resourceType": "VECTOR",
+    "sha256": "36ba96a48b6206388d4c55a7dff93824b47f9498c645195d8b8fb1ef0c5466ad",
+    "shape": null
+  },
+  "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_LEGACY.png": {
+    "module": "wear",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_LEGACY.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "48920504032ffd2e485f508c1782fe5e25e58530925e75643e8d50cac48250bf",
+    "shape": "LEGACY"
+  },
+  "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_circle.png": {
+    "module": "wear",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_circle.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "8135d2a33878494f96c37e9e8409090280fd3c14db1bf49884a146ea4acd0426",
+    "shape": "CIRCLE"
+  },
+  "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_rounded_square.png": {
+    "module": "wear",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_rounded_square.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "7ee273d5e6a4efb9bf7786fc28d36e9af0a2be3ca7eb0e8e8dab8b4f23572997",
+    "shape": "ROUNDED_SQUARE"
+  },
+  "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_square.png": {
+    "module": "wear",
+    "qualifiers": "xhdpi",
+    "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_square.png",
+    "resourceId": "mipmap/ic_launcher",
+    "resourceType": "ADAPTIVE_ICON",
+    "sha256": "9492c96a35a661f18f01555b4d4fe7e3f5e7b8e28a264ebd4f2671a3afc8b53c",
+    "shape": "SQUARE"
+  }
+}
