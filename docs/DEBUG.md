@@ -21,8 +21,8 @@ Defaults are conservative — broaden locally, don't commit broadening.
 
 ```sh
 # Launch + connect (no UI interaction)
-adb shell am start -n ee.schimke.meshcore/ee.schimke.meshcore.app.MainActivity
-adb shell am broadcast -p ee.schimke.meshcore \
+adb shell am start -n ee.schimke.meshed/ee.schimke.meshcore.app.MainActivity
+adb shell am broadcast -p ee.schimke.meshed \
     -a ee.schimke.meshcore.DEBUG_CONNECT \
     --es ble C7:8D:8C:45:5F:78 --es label Kodu
 
@@ -33,7 +33,7 @@ adb shell "dumpsys -t 15 activity service MeshcoreConnectionService --help"
 
 Throughout this doc the service component is referenced by its short
 name `MeshcoreConnectionService`; the full component is
-`ee.schimke.meshcore/ee.schimke.meshcore.app.service.MeshcoreConnectionService`.
+`ee.schimke.meshed/ee.schimke.meshcore.app.service.MeshcoreConnectionService`.
 
 Use `dumpsys -t <seconds>` to lift the default 10 s dumpsys watchdog
 when running mesh operations. Internal per-verb timeouts stay under
@@ -100,12 +100,12 @@ Gated by `DebugAllowlists.bleIdentifiers` or `DebugAllowlists.tcpTargets`
 
 ```sh
 # BLE
-adb shell am broadcast -p ee.schimke.meshcore \
+adb shell am broadcast -p ee.schimke.meshed \
     -a ee.schimke.meshcore.DEBUG_CONNECT \
     --es ble C7:8D:8C:45:5F:78 --es label "Kodu"
 
 # TCP
-adb shell am broadcast -p ee.schimke.meshcore \
+adb shell am broadcast -p ee.schimke.meshed \
     -a ee.schimke.meshcore.DEBUG_CONNECT \
     --es tcp 192.168.1.42 --ei port 5000
 ```
@@ -115,7 +115,7 @@ Progress shows up under logcat tags `DebugConnect` and `MeshConnect`.
 ### `DEBUG_DISCONNECT` — cancel the active connection
 
 ```sh
-adb shell am broadcast -p ee.schimke.meshcore \
+adb shell am broadcast -p ee.schimke.meshed \
     -a ee.schimke.meshcore.DEBUG_DISCONNECT
 ```
 
@@ -124,7 +124,7 @@ Equivalent to tapping the notification's Disconnect action.
 ### `DEBUG_FORGET` — remove a saved device
 
 ```sh
-adb shell am broadcast -p ee.schimke.meshcore \
+adb shell am broadcast -p ee.schimke.meshed \
     -a ee.schimke.meshcore.DEBUG_FORGET \
     --es id "ble:C7:8D:8C:45:5F:78"
 ```
