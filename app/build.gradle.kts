@@ -41,7 +41,7 @@ android {
   namespace = "ee.schimke.meshcore.app"
   compileSdk = libs.versions.android.compileSdk.get().toInt()
   defaultConfig {
-    applicationId = "ee.schimke.meshcore"
+    applicationId = "ee.schimke.meshed"
     minSdk = libs.versions.android.minSdk.get().toInt()
     targetSdk = libs.versions.android.targetSdk.get().toInt()
     versionCode = appVersionCode
