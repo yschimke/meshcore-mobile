@@ -5,9 +5,9 @@ permalink: /privacy/
 
 # MeshCore — Privacy Policy
 
-_Last updated: 2026-04-27_
+_Last updated: 2026-04-28_
 
-MeshCore for Android (`ee.schimke.meshcore`) is built and maintained by
+MeshCore for Android (`ee.schimke.meshed`) is built and maintained by
 Yuri Schimke (`yuri@schimke.ee`). Source code:
 <https://github.com/yschimke/meshcore-mobile>.
 
