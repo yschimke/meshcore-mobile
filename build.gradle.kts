@@ -20,17 +20,11 @@ subprojects {
     }
 }
 
-tasks.register("installGitHooks") {
+// Wires .githooks/ as the repository's hooks directory. One-time bootstrap:
+// `./gradlew installGitHooks`.
+tasks.register<Exec>("installGitHooks") {
     group = "git hooks"
-    description = "Installs the project's git hooks into .git/hooks"
-    val source = file("scripts/git-hooks/pre-commit")
-    val target = file(".git/hooks/pre-commit")
-    inputs.file(source)
-    outputs.file(target)
-    doLast {
-        target.parentFile.mkdirs()
-        source.copyTo(target, overwrite = true)
-        target.setExecutable(true)
-        println("Installed git pre-commit hook -> ${target.relativeTo(rootDir)}")
-    }
+    description = "Configure git to use the .githooks directory in this repo."
+    workingDir = rootDir
+    commandLine("git", "config", "core.hooksPath", ".githooks")
 }

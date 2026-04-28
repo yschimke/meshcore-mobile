@@ -45,9 +45,9 @@ if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
   } >> "$CLAUDE_ENV_FILE"
 fi
 
-# Install repo-managed git hooks (ktfmt pre-commit) so agent commits are
-# formatted before they land. Idempotent — overwrites .git/hooks/pre-commit.
+# Wire up repo-managed git hooks (ktfmt pre-commit, conventional-commits
+# commit-msg) so agent commits are checked before they land. Idempotent.
 repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-if [ -n "$repo_root" ] && [ -x "$repo_root/scripts/install-git-hooks.sh" ]; then
-  "$repo_root/scripts/install-git-hooks.sh" >/dev/null
+if [ -n "$repo_root" ] && [ -d "$repo_root/.githooks" ]; then
+  git -C "$repo_root" config core.hooksPath .githooks
 fi

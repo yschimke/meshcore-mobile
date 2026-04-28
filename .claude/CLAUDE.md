@@ -11,9 +11,10 @@ A `SessionStart` hook at `.claude/hooks/session-start.sh` installs JDK 21 (if
 missing) and downloads the Android SDK into `$HOME/.android-sdk` with the
 `platform-tools`, `platforms;android-36`, and `build-tools;36.0.0` packages,
 then exports `ANDROID_HOME` / `ANDROID_SDK_ROOT` / `PATH` via
-`$CLAUDE_ENV_FILE`. It also runs `scripts/install-git-hooks.sh` so the
-ktfmt pre-commit hook is in place before any agent commit. It's gated on
-`CLAUDE_CODE_REMOTE=true` so it's a no-op on developer machines.
+`$CLAUDE_ENV_FILE`. It also points `core.hooksPath` at `.githooks/` so the
+ktfmt pre-commit and conventional-commits commit-msg hooks are in place
+before any agent commit. It's gated on `CLAUDE_CODE_REMOTE=true` so it's a
+no-op on developer machines.
 
 If you're running outside the hook (e.g. validating manually) and the SDK is
 missing, run the hook directly:
