@@ -100,7 +100,7 @@ fun DeviceSummaryCardPopulatedPreview() {
 @Composable
 fun DeviceSummaryCardLoadingPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             DeviceSummaryCard(self = null, radio = null, battery = null)
         }
     }
@@ -108,11 +108,11 @@ fun DeviceSummaryCardLoadingPreview() {
 
 // --- ContactRow / ContactList --------------------------------------------
 
-@Preview(showBackground = true, name = "ContactRow — variants")
+@Preview(showBackground = true, name = "ContactRow — variants", widthDp = 340)
 @Composable
 fun ContactRowVariantsPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             ContactRow(contact("alice", pathLen = -1, fill = 0x11, type = ContactType.CHAT))
             ContactRow(contact("bob-repeater", pathLen = 2, fill = 0x22, type = ContactType.REPEATER))
             ContactRow(contact("common-room", pathLen = 0, fill = 0x33, type = ContactType.ROOM))
@@ -121,11 +121,11 @@ fun ContactRowVariantsPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "ContactList — empty")
+@Preview(showBackground = true, name = "ContactList — empty", widthDp = 340)
 @Composable
 fun ContactListEmptyPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             Text("Contacts (0)", style = MaterialTheme.typography.titleSmall)
             ContactList(
                 contacts = emptyList(),
@@ -135,11 +135,11 @@ fun ContactListEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "ContactList — 2 items")
+@Preview(showBackground = true, name = "ContactList — 2 items", widthDp = 340)
 @Composable
 fun ContactListFewPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             Text("Contacts (2)", style = MaterialTheme.typography.titleSmall)
             ContactList(
                 contacts = listOf(
@@ -152,11 +152,11 @@ fun ContactListFewPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "ContactList — 10 items (scrolls)")
+@Preview(showBackground = true, name = "ContactList — 10 items (scrolls)", widthDp = 340)
 @Composable
 fun ContactListManyPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             Text("Contacts (10)", style = MaterialTheme.typography.titleSmall)
             ContactList(
                 contacts = tenContacts(),
@@ -168,11 +168,11 @@ fun ContactListManyPreview() {
 
 // --- BleDeviceList --------------------------------------------------------
 
-@Preview(showBackground = true, name = "BleDeviceList — empty")
+@Preview(showBackground = true, name = "BleDeviceList — empty", widthDp = 340)
 @Composable
 fun BleDeviceListEmptyPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             Text("Scanning… 0 devices", style = MaterialTheme.typography.titleSmall)
             BleDeviceList(
                 rows = emptyList(),
@@ -184,11 +184,11 @@ fun BleDeviceListEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "BleDeviceList — 2 devices")
+@Preview(showBackground = true, name = "BleDeviceList — 2 devices", widthDp = 340)
 @Composable
 fun BleDeviceListFewPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             BleDeviceList(
                 rows = listOf(
                     bleRow("MeshCore-ABCD", "C7:8D:8C:45:5F:78", -52),
@@ -202,11 +202,11 @@ fun BleDeviceListFewPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "BleDeviceList — 10 devices (scrolls)")
+@Preview(showBackground = true, name = "BleDeviceList — 10 devices (scrolls)", widthDp = 340)
 @Composable
 fun BleDeviceListManyPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             BleDeviceList(
                 rows = (0 until 10).map { i ->
                     bleRow(
@@ -225,21 +225,21 @@ fun BleDeviceListManyPreview() {
 
 // --- TcpConnectPanel ------------------------------------------------------
 
-@Preview(showBackground = true, name = "TcpConnectPanel — idle")
+@Preview(showBackground = true, name = "TcpConnectPanel — idle", widthDp = 340)
 @Composable
 fun TcpConnectPanelIdlePreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             TcpConnectPanel(busy = false, onConnect = { _, _ -> })
         }
     }
 }
 
-@Preview(showBackground = true, name = "TcpConnectPanel — busy")
+@Preview(showBackground = true, name = "TcpConnectPanel — busy", widthDp = 340)
 @Composable
 fun TcpConnectPanelBusyPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             TcpConnectPanel(busy = true, onConnect = { _, _ -> })
         }
     }
@@ -247,21 +247,21 @@ fun TcpConnectPanelBusyPreview() {
 
 // --- BlePermissionPanel ---------------------------------------------------
 
-@Preview(showBackground = true, name = "BlePermissionPanel — first request")
+@Preview(showBackground = true, name = "BlePermissionPanel — first request", widthDp = 340)
 @Composable
 fun BlePermissionPanelFirstPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
-            BlePermissionPanel(lastResult = null, onRequest = {})
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
+            BlePermissionPanel(lastResult = null, onOpenSettings = {})
         }
     }
 }
 
-@Preview(showBackground = true, name = "BlePermissionPanel — denied")
+@Preview(showBackground = true, name = "BlePermissionPanel — denied", widthDp = 340)
 @Composable
 fun BlePermissionPanelDeniedPreview() {
     MeshcoreTheme {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             BlePermissionPanel(
                 lastResult = mapOf(
                     "android.permission.BLUETOOTH_SCAN" to false,
