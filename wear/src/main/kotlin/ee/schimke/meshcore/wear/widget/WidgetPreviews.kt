@@ -45,7 +45,7 @@ import androidx.wear.compose.remote.material3.RemoteTitleCard
 @Composable
 fun StatusWidgetConnectedPreview() = RemotePreview {
     StatusWidgetContent(
-        deviceName = "node-peak",
+        deviceName = "node-ridge",
         connected = true,
         batteryPercent = 81,
         contactCount = 3,
