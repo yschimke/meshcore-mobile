@@ -1,10 +1,25 @@
 package ee.schimke.meshcore.wear.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.compose.material3.AppScaffold
+import androidx.wear.compose.material3.Button
+import androidx.wear.compose.material3.ButtonDefaults
+import androidx.wear.compose.material3.CircularProgressIndicator
+import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.TimeSource
 import androidx.wear.compose.material3.TimeText
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
+import ee.schimke.composeai.preview.AnimatedPreview
 import ee.schimke.meshcore.grpc.ContactMsg
 import ee.schimke.meshcore.grpc.ContactType
 import ee.schimke.meshcore.wear.ui.theme.MeshcoreWearTheme
@@ -62,10 +77,10 @@ fun StatusBodyConnectedPreview() {
         PreviewAppScaffold {
             StatusBody(
                 state = WearUiState.Connected(
-                    deviceName = "MeshNode-A",
+                    deviceName = "MeshNode-Alpha-Ridge-Relay-East-Gate",
                     batteryPercent = 72,
                     contactCount = 5,
-                    radioInfo = "915.000 MHz · SF11 · BW250k",
+                    radioInfo = "915.000 MHz · SF11 · BW250k · CR4/8 · telemetry uplink active",
                 ),
             )
         }
@@ -135,6 +150,56 @@ fun QuickReplyBodyPreview() {
     MeshcoreWearTheme {
         PreviewAppScaffold {
             QuickReplyBody()
+        }
+    }
+}
+
+@Preview(
+    name = "Interactive Toggle Chip",
+    device = "id:wearos_large_round",
+    showSystemUi = true,
+    showBackground = true,
+)
+@Composable
+fun InteractiveToggleChipPreview() {
+    var telemetryEnabled by remember { mutableStateOf(false) }
+
+    MeshcoreWearTheme {
+        PreviewAppScaffold {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Button(
+                    onClick = { telemetryEnabled = !telemetryEnabled },
+                    colors = ButtonDefaults.filledTonalButtonColors(),
+                ) {
+                    Text(if (telemetryEnabled) "Telemetry ON" else "Telemetry OFF")
+                }
+            }
+        }
+    }
+}
+
+@Preview(
+    name = "Animated Circular Progress",
+    device = "id:wearos_large_round",
+    showSystemUi = true,
+    showBackground = true,
+)
+@AnimatedPreview(durationMs = 1200, frameIntervalMs = 100, showCurves = false)
+@Composable
+fun AnimatedCircularProgressPreview() {
+    MeshcoreWearTheme {
+        PreviewAppScaffold {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                CircularProgressIndicator()
+            }
         }
     }
 }

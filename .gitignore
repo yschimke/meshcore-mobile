@@ -35,3 +35,5 @@ app/project.info
 /meshcore-grpc-service/bin/
 /traces/
 */bin/*
+
+/.compose-preview-cli/

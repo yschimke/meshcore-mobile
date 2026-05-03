@@ -54,6 +54,7 @@ dependencies {
 
   // Standard Compose + lifecycle
   implementation(libs.compose.runtime)
+  implementation(libs.compose.preview.annotations)
   implementation(libs.compose.ui)
   implementation(libs.compose.uiToolingPreview)
   implementation(libs.compose.material.icons.extended)
