@@ -3,483 +3,497 @@
     "captureLabel": "",
     "functionName": "BleDeviceListEmptyPreview",
     "renderBasename": "ui.ComponentPreviewsKt.BleDeviceListEmptyPreview_BleDeviceList_empty.png",
-    "sha256": "913dce9108d8a3936a1825912bfb6a7fde8a282fc6ff86199718a78639d50093",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "b070229fd04060fa47631336de04aa4e6d11294a43a41b6e2a7c66407073fc92",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListFewPreview_BleDeviceList \u2014 2 devices": {
     "captureLabel": "",
     "functionName": "BleDeviceListFewPreview",
     "renderBasename": "ui.ComponentPreviewsKt.BleDeviceListFewPreview_BleDeviceList_2_devices.png",
-    "sha256": "33aebc3e615812010107167609ffbfb612e1d9fde81005ac4cd11a59147c3f6b",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "e5db3143875e70d78276276b06ccb463ed9f2367c6625c7b4455555713ea225f",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListManyPreview_BleDeviceList \u2014 10 devices (scrolls)": {
     "captureLabel": "",
     "functionName": "BleDeviceListManyPreview",
     "renderBasename": "ui.ComponentPreviewsKt.BleDeviceListManyPreview_BleDeviceList_10_devices_scrolls.png",
-    "sha256": "7bea1282884fc1ab628c59fee583de596df623bc29b75072412f0531161cd223",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "dcd94d4ad56cbc2ac3d1fedf87134691aab1ce5573226aeef9b1781d2f2df8bd",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BlePermissionPanelDeniedPreview_BlePermissionPanel \u2014 denied": {
     "captureLabel": "",
     "functionName": "BlePermissionPanelDeniedPreview",
     "renderBasename": "ui.ComponentPreviewsKt.BlePermissionPanelDeniedPreview_BlePermissionPanel_denied.png",
-    "sha256": "7635b0de29d8332acae671918a890ea7f2e45574a33e8ec5fa86224ac770072b",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "1ea9f943168657745b35badd905eeb2bc52211f0fe82f5a83a925dff103493e8",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BlePermissionPanelFirstPreview_BlePermissionPanel \u2014 first request": {
     "captureLabel": "",
     "functionName": "BlePermissionPanelFirstPreview",
     "renderBasename": "ui.ComponentPreviewsKt.BlePermissionPanelFirstPreview_BlePermissionPanel_first_request.png",
-    "sha256": "8585f72dd2a4c3409f30296c4a43ccb8b9c2a6688aad26345f793718db85e45d",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "c22f31f0c4aa38ffb9c13856dd0afbdb72a5058408979c4f6d28b401330f2831",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactListEmptyPreview_ContactList \u2014 empty": {
     "captureLabel": "",
     "functionName": "ContactListEmptyPreview",
     "renderBasename": "ui.ComponentPreviewsKt.ContactListEmptyPreview_ContactList_empty.png",
-    "sha256": "809505de5b62eecaa1c35cde7814d01825b0e02a836c9abd09a176fe3314d443",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "5508bc7ae65dafbef640fb9d1358d4f31bb105ea46049e69f8ff159b0aeba181",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactListFewPreview_ContactList \u2014 2 items": {
     "captureLabel": "",
     "functionName": "ContactListFewPreview",
     "renderBasename": "ui.ComponentPreviewsKt.ContactListFewPreview_ContactList_2_items.png",
-    "sha256": "d5f70ecf3703c199b62ae3fe9f52a29d4c459aece0b97591066564553a68db6a",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "d11f9a972e6695b3f14d248a24d1018ddd9347cf3c75ed244d5a4f689c1acc6e",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactListManyPreview_ContactList \u2014 10 items (scrolls)": {
     "captureLabel": "",
     "functionName": "ContactListManyPreview",
     "renderBasename": "ui.ComponentPreviewsKt.ContactListManyPreview_ContactList_10_items_scrolls.png",
-    "sha256": "0ec6cd815a7587828b790f06703d002231c28679749426cf49e969c461167351",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "422bcbf5343e11f379c80d9d9c04bc11d5bcee8d916395698a29702df0cfa958",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactRowVariantsPreview_ContactRow \u2014 variants": {
     "captureLabel": "",
     "functionName": "ContactRowVariantsPreview",
     "renderBasename": "ui.ComponentPreviewsKt.ContactRowVariantsPreview_ContactRow_variants.png",
-    "sha256": "3cbcca272ef2748ccd7693f2e2b2c5b8aa9e6d1ea286bdf4ba017b1e4b7eeb0f",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "0ff7b7d2867bdbea97b9eecee5f1ac5b3e9f20389eb46a9c9c8d2bee74086204",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardLoadingPreview_DeviceSummaryCard \u2014 loading": {
     "captureLabel": "",
     "functionName": "DeviceSummaryCardLoadingPreview",
     "renderBasename": "ui.ComponentPreviewsKt.DeviceSummaryCardLoadingPreview_DeviceSummaryCard_loading.png",
     "sha256": "9d3b0ca4a8fa2677b7a9c42df53aba2a53008e3d4e472be7fb92bde3f6920cb2",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardPopulatedPreview_DeviceSummaryCard \u2014 populated": {
     "captureLabel": "",
     "functionName": "DeviceSummaryCardPopulatedPreview",
     "renderBasename": "ui.ComponentPreviewsKt.DeviceSummaryCardPopulatedPreview_DeviceSummaryCard_populated.png",
     "sha256": "9b1ec46436d10549f5cd11179965cb18b488788bcb4411609102a3bdd2e3fe20",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.TcpConnectPanelBusyPreview_TcpConnectPanel \u2014 busy": {
     "captureLabel": "",
     "functionName": "TcpConnectPanelBusyPreview",
     "renderBasename": "ui.ComponentPreviewsKt.TcpConnectPanelBusyPreview_TcpConnectPanel_busy.png",
-    "sha256": "592823273a1d258a60d4dfdd66c8499c79a475a5e43130838e96bcf6f193bbee",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "f62252dde3cd34de88d979b36a7657646e3fb36dbccd1343f8718e3e7f867156",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.TcpConnectPanelIdlePreview_TcpConnectPanel \u2014 idle": {
     "captureLabel": "",
     "functionName": "TcpConnectPanelIdlePreview",
     "renderBasename": "ui.ComponentPreviewsKt.TcpConnectPanelIdlePreview_TcpConnectPanel_idle.png",
-    "sha256": "9bcb99520bce8989527abb4115065c567ffc7a6bbda79658e671c45a18793aa0",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
+    "sha256": "871034c607d8629b401b78320fa768174a2956fd198a608ea99a884b70285b4a",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyDarkPreview_Device \u2014 dark": {
     "captureLabel": "",
     "functionName": "DeviceBodyDarkPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceBodyDarkPreview_Device_dark.png",
     "sha256": "083dd3c073465ee30022a682f5ac51e8f8796ce8b3dc814739487443d01bacac",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLoadingPreview_Device \u2014 loading": {
     "captureLabel": "",
     "functionName": "DeviceBodyLoadingPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceBodyLoadingPreview_Device_loading.png",
     "sha256": "d6f867fa6c11bc83c654fc7c0ef20e3d264f5f45991d9af008668496b30d81f0",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLowBatteryPreview_Device \u2014 low battery": {
     "captureLabel": "",
     "functionName": "DeviceBodyLowBatteryPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceBodyLowBatteryPreview_Device_low_battery.png",
     "sha256": "5b65ec3b8cf9d0855ba12db2bc5008d464e6aff93e096fd2045c7c140f295a56",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyManyContactsPreview_Device \u2014 many contacts (scrolls)": {
     "captureLabel": "",
     "functionName": "DeviceBodyManyContactsPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceBodyManyContactsPreview_Device_many_contacts_scrolls.png",
     "sha256": "696ff813285c10a9105969b55abaf32de57f17da11b642deb6f75bc4b4870884",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyNoContactsPreview_Device \u2014 contacts loading": {
     "captureLabel": "",
     "functionName": "DeviceBodyNoContactsPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceBodyNoContactsPreview_Device_contacts_loading.png",
     "sha256": "6f61b8eaff904438b4ff589321b587ace6a6cc9d8de32f59ec5d7d2ce3a19069",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyPreview_Device \u2014 populated": {
     "captureLabel": "",
     "functionName": "DeviceBodyPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceBodyPreview_Device_populated.png",
     "sha256": "854f5e51a76636911f6282b826cf8e6d5fc39a5c26b5a4462f47b766af0899e5",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusConnectingPreview_Device \u2014 status connecting": {
     "captureLabel": "",
     "functionName": "DeviceStatusConnectingPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceStatusConnectingPreview_Device_status_connecting.png",
     "sha256": "70b40d9ab6d151617b876b7a362505f983cbda3fe8f72022d5391a758487965b",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Device \u2014 status failed": {
     "captureLabel": "",
     "functionName": "DeviceStatusFailedPreview",
     "renderBasename": "ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Device_status_failed.png",
     "sha256": "3526c7fba5376f2b8aa44485909de0f9c91b7db7eb42bcc06624d8a76cf622c4",
-    "sourceFile": "ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStoreBrandPreviewsKt.PlayStoreFeature_Play Store \u2014 feature graphic (1024x500)": {
     "captureLabel": "",
     "functionName": "PlayStoreFeature",
     "renderBasename": "ui.PlayStoreBrandPreviewsKt.PlayStoreFeature_Play_Store_feature_graphic_1024x500.png",
     "sha256": "dd146744b63344a7aba1dfd8b229ab1ec95a6558a671ba6ed317cdce6418a128",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStoreBrandPreviewsKt.PlayStoreIcon_Play Store \u2014 icon (512x512)": {
     "captureLabel": "",
     "functionName": "PlayStoreIcon",
     "renderBasename": "ui.PlayStoreBrandPreviewsKt.PlayStoreIcon_Play_Store_icon_512x512.png",
     "sha256": "22870d73bb9a042b2b8c5f4ac40c6931e95a8df94f3285b99d63a79268b5afc7",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneHomeDark_Play Store \u2014 phone home (dark)": {
     "captureLabel": "",
     "functionName": "PlayStorePhoneHomeDark",
     "renderBasename": "ui.PlayStorePreviewsKt.PlayStorePhoneHomeDark_Play_Store_phone_home_dark.png",
     "sha256": "b3292cd2b20c75cd6ce0c9788f880d7aabf6ab497eb8a35d4c8d823921deb680",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneHomeLight_Play Store \u2014 phone home (light)": {
     "captureLabel": "",
     "functionName": "PlayStorePhoneHomeLight",
     "renderBasename": "ui.PlayStorePreviewsKt.PlayStorePhoneHomeLight_Play_Store_phone_home_light.png",
     "sha256": "edffa0e744a32c42ffc7cc5b9cf7f08e64d61ca5ede854a8b3bdf1502680f3c3",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneScannerBle_Play Store \u2014 phone scanner (BLE)": {
     "captureLabel": "",
     "functionName": "PlayStorePhoneScannerBle",
     "renderBasename": "ui.PlayStorePreviewsKt.PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.png",
     "sha256": "db03adf8bdb88033c8d7a2e14b4343a18e1b165703eaa30b7c87ad3c45bda386",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneScannerSaved_Play Store \u2014 phone scanner (saved)": {
     "captureLabel": "",
     "functionName": "PlayStorePhoneScannerSaved",
     "renderBasename": "ui.PlayStorePreviewsKt.PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.png",
     "sha256": "ed7ea5f6b429ec18042d266a1ba6d85f030f47fda084711e00763581ca2a623f",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletSevenHome_Play Store \u2014 7-inch tablet home": {
     "captureLabel": "",
     "functionName": "PlayStoreTabletSevenHome",
     "renderBasename": "ui.PlayStorePreviewsKt.PlayStoreTabletSevenHome_Play_Store_7-inch_tablet_home.png",
     "sha256": "b9d74df1ccbf604b2dda965937ceb7c9c0335be639845f55afb00837afc86c16",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletTenHome_Play Store \u2014 10-inch tablet home": {
     "captureLabel": "",
     "functionName": "PlayStoreTabletTenHome",
     "renderBasename": "ui.PlayStorePreviewsKt.PlayStoreTabletTenHome_Play_Store_10-inch_tablet_home.png",
     "sha256": "e205fcd7f0da9140813dd649a1d7a42077f37e29486693c43985c253045bbd9f",
-    "sourceFile": "ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesEmptyPreview_Saved devices \u2014 empty": {
     "captureLabel": "",
     "functionName": "SavedDevicesEmptyPreview",
     "renderBasename": "ui.SavedDevicesPanelKt.SavedDevicesEmptyPreview_Saved_devices_empty.png",
     "sha256": "e4f26370d8d7226baa05e181a0524cde55904f997c8e97c07dc95db1db169761",
-    "sourceFile": "ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt"
   },
   "app/ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesPopulatedPreview_Saved devices \u2014 populated": {
     "captureLabel": "",
     "functionName": "SavedDevicesPopulatedPreview",
     "renderBasename": "ui.SavedDevicesPanelKt.SavedDevicesPopulatedPreview_Saved_devices_populated.png",
     "sha256": "21b836e22a9d126fb172e83fd3e78a864aafe3039f019cca8285f7d2c8b69717",
-    "sourceFile": "ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleDarkPreview_Scanner \u2014 Saved populated, dark": {
     "captureLabel": "",
     "functionName": "ScannerBleDarkPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerBleDarkPreview_Scanner_Saved_populated_dark.png",
     "sha256": "e4dd28df70b679edbc1bc9b6593327de9721f822ada030f3e961b66466e7a919",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleEmptyPreview_Scanner \u2014 BLE scanning, 0 devices": {
     "captureLabel": "",
     "functionName": "ScannerBleEmptyPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerBleEmptyPreview_Scanner_BLE_scanning_0_devices.png",
     "sha256": "f85d735853ed6f47453787a836291faf8cc1af0fc0eec283f229b0db434f3b62",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleFewPreview_Scanner \u2014 BLE scanning, 2 devices": {
     "captureLabel": "",
     "functionName": "ScannerBleFewPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerBleFewPreview_Scanner_BLE_scanning_2_devices.png",
     "sha256": "1a8c84bb47fa91f7ba036666e99f9d95bb5f5074a0614c745de9a7f99cce0724",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleManyPreview_Scanner \u2014 BLE scanning, 10 devices (scrolls)": {
     "captureLabel": "",
     "functionName": "ScannerBleManyPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerBleManyPreview_Scanner_BLE_scanning_10_devices_scrolls.png",
     "sha256": "50a547864d9cc1f81f29deb502db969a4d5901e1cb9fedda2c1e34f27dc7be62",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBlePermissionPreview_Scanner \u2014 BLE permission needed": {
     "captureLabel": "",
     "functionName": "ScannerBlePermissionPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerBlePermissionPreview_Scanner_BLE_permission_needed.png",
     "sha256": "a343af7a113eedc07c180ef4ef7526be2833c3d09f9ea41c4d1dd268565a46a3",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedEmptyPreview_Scanner \u2014 Saved empty": {
     "captureLabel": "",
     "functionName": "ScannerSavedEmptyPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerSavedEmptyPreview_Scanner_Saved_empty.png",
     "sha256": "3b8fd613d6f2a459cca42eeb7f41aa7ce604f70fe424d477531a62da35c0c13f",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedPopulatedPreview_Scanner \u2014 Saved populated": {
     "captureLabel": "",
     "functionName": "ScannerSavedPopulatedPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerSavedPopulatedPreview_Scanner_Saved_populated.png",
     "sha256": "a46e9b3553da89895c76a5bff21f7e724c6a1f056ab2022e2910a75dd8582302",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerTcpPreview_Scanner \u2014 TCP idle": {
     "captureLabel": "",
     "functionName": "ScannerTcpPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerTcpPreview_Scanner_TCP_idle.png",
     "sha256": "5ea614c76c7c61105974266ed34bdea5957c8f72fddfe9c071b597a230684597",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbEmptyPreview_Scanner \u2014 USB, no ports": {
     "captureLabel": "",
     "functionName": "ScannerUsbEmptyPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerUsbEmptyPreview_Scanner_USB_no_ports.png",
     "sha256": "1d122c19fd79a5d2c7b1e97fa93924658cd390969bcfe8ab15fc8a816af89eb4",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbFewPreview_Scanner \u2014 USB, 2 ports": {
     "captureLabel": "",
     "functionName": "ScannerUsbFewPreview",
     "renderBasename": "ui.ScannerScreenKt.ScannerUsbFewPreview_Scanner_USB_2_ports.png",
     "sha256": "3ef01dd1f2de9a1d2ed00d0cb83072d69df7c5de657d7398dafdc3f6f7cf28b4",
-    "sourceFile": "ee/schimke/meshcore/app/ui/ScannerScreen.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
   "app/ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker \u2014 Dynamic + Dark": {
     "captureLabel": "",
     "functionName": "ThemePickerDynamicDarkPreview",
     "renderBasename": "ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png",
     "sha256": "9f34f448ca888f03e017b5dc60615255733c8c68432263d91a0887e8f2a1993c",
-    "sourceFile": "ee/schimke/meshcore/app/ui/theme/ThemePicker.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt"
   },
   "app/ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker \u2014 MeshCore + System": {
     "captureLabel": "",
     "functionName": "ThemePickerMeshcoreSystemPreview",
     "renderBasename": "ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png",
     "sha256": "9f34f448ca888f03e017b5dc60615255733c8c68432263d91a0887e8f2a1993c",
-    "sourceFile": "ee/schimke/meshcore/app/ui/theme/ThemePicker.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt"
   },
   "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo \u2014 no data": {
     "captureLabel": "",
     "functionName": "DeviceInfoWidgetEmptyPreview",
     "renderBasename": "widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png",
     "sha256": "4dfd117fd27320b60511eaccf5d6d39e25e1d724ede8dac91a4e3fc060a1dc0c",
-    "sourceFile": "ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo \u2014 populated": {
     "captureLabel": "",
     "functionName": "DeviceInfoWidgetPopulatedPreview",
     "renderBasename": "widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png",
     "sha256": "9185f1ce8af8a00e19f6d8ed83b62657e63d571d97bf25cf81588246c1bf5d04",
-    "sourceFile": "ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo \u2014 stale": {
     "captureLabel": "",
     "functionName": "DeviceInfoWidgetStalePreview",
     "renderBasename": "widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo_stale.png",
     "sha256": "a138808de878a1fc33517d4227bad62141b5d12ba0d0d00e89df4408e8adac43",
-    "sourceFile": "ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
+  },
+  "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
+    "captureLabel": "",
+    "functionName": "AnimatedCircularProgressPreview",
+    "renderBasename": "ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated_Circular_Progress.gif",
+    "sha256": "1e6a5cfe3188ec00a135559fabd0a6b361a23099571787bc95dee91453ee8311",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyEmptyPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices_-_Large_Round.png",
     "sha256": "fd5e299ddc7e27961d397b65e88c7bb8c66365c8c6f31f8461b64da2700b4a0e",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyEmptyPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices_-_Small_Round.png",
     "sha256": "c33688e2aafb63bfd162ddd2c4413c0dc6318ea5161457b14f94842ac8242f56",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyFewPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyFewPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyFewPreview_Devices_-_Large_Round.png",
     "sha256": "3aa0b98bdfb276bd7fff7d66451de3b2b31f29f00dd19307b39d543a031263a9",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyFewPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "ContactsBodyFewPreview",
     "renderBasename": "ui.WearPreviewsKt.ContactsBodyFewPreview_Devices_-_Small_Round.png",
     "sha256": "a5613db0052ebb2e1f3c6fd91c6bdfa594fcd23a2a2e50d7569b359949fca04a",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+  },
+  "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.InteractiveToggleChipPreview_Interactive Toggle Chip": {
+    "captureLabel": "",
+    "functionName": "InteractiveToggleChipPreview",
+    "renderBasename": "ui.WearPreviewsKt.InteractiveToggleChipPreview_Interactive_Toggle_Chip.png",
+    "sha256": "fdb8a5d8e32317c23211fb0a517b612aea755e462201334efe746803509829ac",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.QuickReplyBodyPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "QuickReplyBodyPreview",
     "renderBasename": "ui.WearPreviewsKt.QuickReplyBodyPreview_Devices_-_Large_Round.png",
     "sha256": "7f38e8aacc215f87ff3a8790329974570b9e75a736179a12bbd61333c336c393",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.QuickReplyBodyPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "QuickReplyBodyPreview",
     "renderBasename": "ui.WearPreviewsKt.QuickReplyBodyPreview_Devices_-_Small_Round.png",
     "sha256": "815e262d7f6c7db19f41de9da130d38ff408bb96a7a898fd3047d132f5e01cf9",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedLowBatteryPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices_-_Large_Round.png",
     "sha256": "59920ca870196ed323cfcc88f3fc8cbd2c55b9859f3712992a5bc5f4acca5ee0",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedLowBatteryPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices_-_Small_Round.png",
     "sha256": "b7284e27e82f871b1ea5f01f8d7c7cfc153611c7c06bf3ce5cfa7beab46c135f",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices_-_Large_Round.png",
-    "sha256": "03f4205c1325beb73c32ffa1122649e56135ff41192e448f62c2aa41a7ab3855",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sha256": "bc3d6121da4033459162d53721b2dd92310cc5e89474f73ca03f0a2ac9f635a8",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices_-_Small_Round.png",
-    "sha256": "0719867e15ffcdfe7e6e98c2a66db05622debe2478f830117cd236c24428a1d2",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sha256": "a30a28c6258a081a4a27ffc8556fb8c5666e336c9140878c6a0a621b151cd873",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyErrorPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyErrorPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyErrorPreview_Devices_-_Large_Round.png",
     "sha256": "797e01e168603b7a6ff89d720f01148741ae588725df4f672fac2ec1d9a63266",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyErrorPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyErrorPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyErrorPreview_Devices_-_Small_Round.png",
     "sha256": "a9d2a168b22db236609d1160c4930a1067a8e18f82abb36ef4abcc5a86024545",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyLoadingPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices_-_Large_Round.png",
     "sha256": "181c0ea225969e1df8b0b565329f4b6be0cc99c531a59d6725d3a86a166b03c0",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyLoadingPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyLoadingPreview_Devices_-_Small_Round.png",
     "sha256": "124a0e68fd0a6caa09f00019b6e8bbc6ff0dbd6ed48413b59899063c0a4408b1",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyPhoneDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices_-_Large_Round.png",
     "sha256": "8691c55d1c35d3253486908c62b237b64772fc8e4ab9ec3d5630d44e2a22fe16",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyPhoneDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyPhoneDisconnectedPreview_Devices_-_Small_Round.png",
     "sha256": "d8d9828c5eddae3a8a71fad6158780d621d8e84cffa869052cfb88da29ec8242",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyRadioDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices_-_Large_Round.png",
     "sha256": "2cb172f2e1669d197dd87dfd0155f9b7b6ce731133cdca3f47ae5b4ba463de03",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices - Small Round": {
     "captureLabel": "",
     "functionName": "StatusBodyRadioDisconnectedPreview",
     "renderBasename": "ui.WearPreviewsKt.StatusBodyRadioDisconnectedPreview_Devices_-_Small_Round.png",
     "sha256": "19f6b07eba436c013578d5dc1909da06485cee46ed59295f893e6307fef3dd30",
-    "sourceFile": "ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status \u2014 connected": {
     "captureLabel": "",
     "functionName": "StatusWidgetConnectedPreview",
     "renderBasename": "widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status_connected.png",
-    "sha256": "bbda92d8991a0bb8fd89d7b8e34112f891e7a8c0acda8bb33fdde1158d9b5a84",
-    "sourceFile": "ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
+    "sha256": "fb9b8fd4acc924522a064825198378074dfc5357bd67c28dbc29a027da2fab25",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status \u2014 disconnected": {
     "captureLabel": "",
     "functionName": "StatusWidgetDisconnectedPreview",
     "renderBasename": "widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status_disconnected.png",
     "sha256": "8dcd09513bdce117bb72c48fe1680f209f7417fc121dfe8396b321829ae165ef",
-    "sourceFile": "ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status \u2014 low battery": {
     "captureLabel": "",
     "functionName": "StatusWidgetLowBatteryPreview",
     "renderBasename": "widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status_low_battery.png",
     "sha256": "a0265521c4099eaa5c98b0aaa1efa51649e6fb8ab177394907e2af0beb082fbf",
-    "sourceFile": "ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component Catalog": {
     "captureLabel": "",
     "functionName": "WearComponentCatalogPreview",
     "renderBasename": "widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component_Catalog.png",
     "sha256": "431aa99f5d9090907e8f5e56a04e0a4291a5603dae6a1480f0ee6dd2e319d37c",
-    "sourceFile": "ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid": {
     "captureLabel": "",
     "functionName": "WearComponentGridPreview",
     "renderBasename": "widget.WidgetPreviewsKt.WearComponentGridPreview_Component_Grid.png",
     "sha256": "f40e1e92d0dee8f64091d82831b631916251b4232714c35641a797a7f2e73328",
-    "sourceFile": "ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   }
 }

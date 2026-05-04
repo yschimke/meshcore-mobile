@@ -57,10 +57,12 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 
 | Preview | Image |
 |---------|-------|
+| `AnimatedCircularProgressPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated_Circular_Progress.gif" width="150" /> |
 | `ContactsBodyEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices_-_Large_Round.png" width="150" /> |
 | `ContactsBodyEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices_-_Small_Round.png" width="150" /> |
 | `ContactsBodyFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.ContactsBodyFewPreview_Devices_-_Large_Round.png" width="150" /> |
 | `ContactsBodyFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.ContactsBodyFewPreview_Devices_-_Small_Round.png" width="150" /> |
+| `InteractiveToggleChipPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.InteractiveToggleChipPreview_Interactive_Toggle_Chip.png" width="150" /> |
 | `QuickReplyBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.QuickReplyBodyPreview_Devices_-_Large_Round.png" width="150" /> |
 | `QuickReplyBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.QuickReplyBodyPreview_Devices_-_Small_Round.png" width="150" /> |
 | `StatusBodyConnectedLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ui.WearPreviewsKt.StatusBodyConnectedLowBatteryPreview_Devices_-_Large_Round.png" width="150" /> |
