@@ -252,7 +252,7 @@ fun TcpConnectPanelBusyPreview() {
 fun BlePermissionPanelFirstPreview() {
     MeshcoreTheme {
         Column(Modifier.fillMaxWidth().padding(16.dp)) {
-            BlePermissionPanel(lastResult = null, onOpenSettings = {})
+            BlePermissionPanel(lastResult = null, onRequest = {})
         }
     }
 }
