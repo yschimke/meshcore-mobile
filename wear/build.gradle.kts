@@ -5,9 +5,15 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.aboutlibraries)
   alias(libs.plugins.composePreview)
+  alias(libs.plugins.tapmoc)
 }
 
-kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) } }
+kotlin { jvmToolchain(21) }
+
+tapmoc {
+  java(21)
+  kotlin(libs.versions.kotlin.get())
+}
 
 android {
   namespace = "ee.schimke.meshcore.wear"
@@ -20,10 +26,6 @@ android {
     versionName = "0.1"
   }
   buildTypes { getByName("release") { isMinifyEnabled = false } }
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-  }
   testOptions.unitTests { isIncludeAndroidResources = true }
 }
 
