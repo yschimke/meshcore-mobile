@@ -46,6 +46,7 @@ playservices-wearable = "19.0.0"
 aboutlibraries = "14.0.1"
 ktfmt = "0.26.0"
 composePreview = "0.9.1"
+tapmoc = "0.4.0"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
@@ -137,3 +138,4 @@ aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "abo
 ktfmt = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt" }
 composePreview = { id = "ee.schimke.composeai.preview", version.ref = "composePreview" }
 playPublisher = { id = "com.github.triplet.play", version.ref = "playPublisher" }
+tapmoc = { id = "com.gradleup.tapmoc", version.ref = "tapmoc" }

@@ -25,6 +25,7 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.composePreview)
   alias(libs.plugins.playPublisher)
+  alias(libs.plugins.tapmoc)
 }
 
 play {
@@ -35,7 +36,12 @@ play {
   enabled.set(System.getenv("ANDROID_PUBLISHER_CREDENTIALS") != null)
 }
 
-kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) } }
+kotlin { jvmToolchain(21) }
+
+tapmoc {
+  java(21)
+  kotlin(libs.versions.kotlin.get())
+}
 
 android {
   namespace = "ee.schimke.meshcore.app"
@@ -65,10 +71,6 @@ android {
         signingConfig = signingConfigs.getByName("release")
       }
     }
-  }
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
   }
   testOptions.unitTests { isIncludeAndroidResources = true }
 }
