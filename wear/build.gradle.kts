@@ -4,7 +4,6 @@ plugins {
   alias(libs.plugins.composeCompiler)
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.aboutlibraries)
-  alias(libs.plugins.composePreview)
   alias(libs.plugins.tapmoc)
 }
 

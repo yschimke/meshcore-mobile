@@ -23,7 +23,6 @@ plugins {
   alias(libs.plugins.metro)
   alias(libs.plugins.ksp)
   alias(libs.plugins.kotlinSerialization)
-  alias(libs.plugins.composePreview)
   alias(libs.plugins.playPublisher)
   alias(libs.plugins.tapmoc)
 }
