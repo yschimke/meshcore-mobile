@@ -25,10 +25,11 @@ import androidx.compose.remote.creation.compose.state.rdp
 import androidx.compose.remote.creation.compose.state.rf
 import androidx.compose.remote.creation.compose.state.rs
 import androidx.compose.remote.creation.compose.state.rsp
-import androidx.compose.remote.tooling.preview.RemotePreview
+import androidx.compose.remote.tooling.preview.RemotePreviewWrapper
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.wear.compose.remote.material3.RemoteAppCard
 import androidx.wear.compose.remote.material3.RemoteButton
 import androidx.wear.compose.remote.material3.RemoteButtonGroup
@@ -42,8 +43,9 @@ import androidx.wear.compose.remote.material3.RemoteTextButtonDefaults
 import androidx.wear.compose.remote.material3.RemoteTitleCard
 
 @Preview(name = "Status — connected", widthDp = 192, heightDp = 192)
+@PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
-fun StatusWidgetConnectedPreview() = RemotePreview {
+fun StatusWidgetConnectedPreview() {
     StatusWidgetContent(
         deviceName = "node-ridge",
         connected = true,
@@ -53,8 +55,9 @@ fun StatusWidgetConnectedPreview() = RemotePreview {
 }
 
 @Preview(name = "Status — disconnected", widthDp = 192, heightDp = 192)
+@PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
-fun StatusWidgetDisconnectedPreview() = RemotePreview {
+fun StatusWidgetDisconnectedPreview() {
     StatusWidgetContent(
         deviceName = "node-peak",
         connected = false,
@@ -64,8 +67,9 @@ fun StatusWidgetDisconnectedPreview() = RemotePreview {
 }
 
 @Preview(name = "Status — low battery", widthDp = 192, heightDp = 192)
+@PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
-fun StatusWidgetLowBatteryPreview() = RemotePreview {
+fun StatusWidgetLowBatteryPreview() {
     StatusWidgetContent(
         deviceName = "node-peak",
         connected = true,
@@ -75,8 +79,9 @@ fun StatusWidgetLowBatteryPreview() = RemotePreview {
 }
 
 @Preview(name = "Component Catalog", widthDp = 192, heightDp = 192)
+@PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
-fun WearComponentCatalogPreview() = RemotePreview {
+fun WearComponentCatalogPreview() {
     val surfaceContainer = Color(0xFF1A211F).rc
     val onSurface = Color(0xFFDDE4E1).rc
     val onSurfaceVariant = Color(0xFFBEC9C5).rc
@@ -167,8 +172,9 @@ private fun CatalogComponentPreview(
 }
 
 @Preview(name = "Component Grid", widthDp = 500, heightDp = 500)
+@PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
-fun WearComponentGridPreview() = RemotePreview {
+fun WearComponentGridPreview() {
     val action = Action.Empty
 
     RemoteColumn(
