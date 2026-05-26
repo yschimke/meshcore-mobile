@@ -1,0 +1,28 @@
+name: Compose Preview
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: compose-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  apply:
+    name: Render previews (baseline or PR comment, auto-selected)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.11.10
