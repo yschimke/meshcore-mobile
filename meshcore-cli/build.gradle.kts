@@ -52,21 +52,28 @@ graalvmNative {
 // provisioning ends up with empty files where links should be. Recreate
 // them before nativeCompile runs. Fix via square/okhttp#9393.
 tasks.named<BuildNativeImageTask>("nativeCompile") {
-  val toolchainDir =
-    options.get().javaLauncher.get().executablePath.asFile.parentFile.run {
-      if (name == "bin") parentFile else this
+  // Resolve the toolchain and recreate the symlinks at execution time, not at
+  // configuration time. In the `named { }` body this ran whenever the task was
+  // merely realized — including when a tool queries the Gradle project model
+  // (`compose-preview show`) — forcing the GraalVM toolchain to be provisioned
+  // and failing on environments that can't fetch it.
+  doFirst {
+    val toolchainDir =
+      options.get().javaLauncher.get().executablePath.asFile.parentFile.run {
+        if (name == "bin") parentFile else this
+      }
+    val toolchainFiles = toolchainDir.walkTopDown().filter { it.isFile }
+    val emptyFiles = toolchainFiles.filter { it.length() == 0L }
+    val links = toolchainFiles.mapNotNull { file ->
+      emptyFiles.singleOrNull { it != file && it.name == file.name }?.let { file to it }
     }
-  val toolchainFiles = toolchainDir.walkTopDown().filter { it.isFile }
-  val emptyFiles = toolchainFiles.filter { it.length() == 0L }
-  val links = toolchainFiles.mapNotNull { file ->
-    emptyFiles.singleOrNull { it != file && it.name == file.name }?.let { file to it }
-  }
-  links.forEach { (target, link) ->
-    logger.quiet("Fixing up '$link' to link to '$target'.")
-    if (link.delete()) {
-      Files.createSymbolicLink(link.toPath(), target.toPath())
-    } else {
-      logger.warn("Unable to delete '$link'.")
+    links.forEach { (target, link) ->
+      logger.quiet("Fixing up '$link' to link to '$target'.")
+      if (link.delete()) {
+        Files.createSymbolicLink(link.toPath(), target.toPath())
+      } else {
+        logger.warn("Unable to delete '$link'.")
+      }
     }
   }
 }
