@@ -18,6 +18,11 @@
       "automerge": false
     },
     {
+      "description": "Ignore the legacy-API -compat artifacts (e.g. kotlinx-datetime 0.8.0-0.6.x-compat)",
+      "matchPackageNames": ["/^org\\.jetbrains\\.kotlinx($|[.:])/"],
+      "allowedVersions": "!/-compat$/"
+    },
+    {
       "groupName": "Kotlin",
       "matchPackageNames": [
         "/^org\\.jetbrains\\.kotlin($|[.:])/",
