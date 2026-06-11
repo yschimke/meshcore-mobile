@@ -25,4 +25,11 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.12.0
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.14.0
+        with:
+          # The renderer can't rasterise our adaptive launcher icons
+          # (mipmap/ic_launcher[_round]) to PNG, so those resource captures
+          # produce no output. Downgrade missing renders from a hard error to a
+          # warning (still surfaced in the PR comment) so the check isn't red on
+          # a renderer limitation unrelated to the Compose previews themselves.
+          missing-renders: warn
