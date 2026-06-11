@@ -1,6 +1,6 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/pr`. 61 preview(s) across 2 module(s) · 44 error(s) · 17 warning(s) · 13 info._
+_Auto-generated from `compose-preview/a11y/pr`. 61 preview(s) across 2 module(s) · 43 error(s) · 17 warning(s) · 13 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
 
@@ -472,8 +472,4 @@ _No findings._
 
 ### `WearComponentGridPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/WearComponentGridPreview_Component_Grid.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._

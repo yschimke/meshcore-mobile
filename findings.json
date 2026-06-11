@@ -1141,17 +1141,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "WearComponentGridPreview_Component_Grid.a11y.png",
-      "cleanBasename": "WearComponentGridPreview_Component_Grid.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,1309,1309",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "WearComponentGridPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid",
