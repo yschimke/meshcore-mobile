@@ -26,19 +26,6 @@ dependencyResolutionManagement {
                 includeGroupAndSubgroups("com.google")
             }
         }
-        // androidx.dev snapshots for Remote Compose / Wear remote-material3.
-        // Stable releases (alpha11 / alpha04) ship a remote-creation-compose
-        // whose Action.Companion.getEmpty() the compose-ai-tools renderer calls
-        // at runtime, so previews fail with NoSuchMethodError. The tip-of-tree
-        // snapshot has it; scoped to the two remote groups + snapshots only so
-        // nothing else resolves from here.
-        maven("https://androidx.dev/snapshots/latest/artifacts/repository") {
-            mavenContent {
-                includeGroupAndSubgroups("androidx.compose.remote")
-                includeGroupAndSubgroups("androidx.wear.compose.remote")
-                snapshotsOnly()
-            }
-        }
         mavenCentral()
         maven("https://jitpack.io")
     }
