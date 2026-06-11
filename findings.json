@@ -361,9 +361,17 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.a11y.png",
       "cleanBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,758,420",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "DeviceInfoWidgetEmptyPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo \u2014 no data",
@@ -371,9 +379,17 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.a11y.png",
       "cleanBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,758,420",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "DeviceInfoWidgetPopulatedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo \u2014 populated",
@@ -381,9 +397,17 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale.a11y.png",
       "cleanBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,758,420",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "DeviceInfoWidgetStalePreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo \u2014 stale",
@@ -1045,9 +1069,17 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "StatusWidgetConnectedPreview_Status_connected.a11y.png",
       "cleanBasename": "StatusWidgetConnectedPreview_Status_connected.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,504,504",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "StatusWidgetConnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status \u2014 connected",
@@ -1055,9 +1087,17 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "StatusWidgetDisconnectedPreview_Status_disconnected.a11y.png",
       "cleanBasename": "StatusWidgetDisconnectedPreview_Status_disconnected.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,504,504",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "StatusWidgetDisconnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status \u2014 disconnected",
@@ -1065,9 +1105,17 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "StatusWidgetLowBatteryPreview_Status_low_battery.a11y.png",
       "cleanBasename": "StatusWidgetLowBatteryPreview_Status_low_battery.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,504,504",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "StatusWidgetLowBatteryPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status \u2014 low battery",
@@ -1075,9 +1123,17 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "WearComponentCatalogPreview_Component_Catalog.a11y.png",
       "cleanBasename": "WearComponentCatalogPreview_Component_Catalog.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,504,504",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "WearComponentCatalogPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component Catalog",
@@ -1085,9 +1141,17 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "WearComponentGridPreview_Component_Grid.a11y.png",
       "cleanBasename": "WearComponentGridPreview_Component_Grid.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "0,0,1309,1309",
+          "level": "ERROR",
+          "message": "This item may not have a label readable by screen readers.",
+          "type": "SpeakableTextPresentCheck",
+          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
+        }
+      ],
       "functionName": "WearComponentGridPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid",
