@@ -69,6 +69,24 @@ Latest run: visual diff **~10%** (light) / **~6.6%** (dark) of pixels over the
 overlap — mostly typography (the branded Orbitron / Space Grotesk faces vs the
 web fallback) and minor vertical drift.
 
+## Continuous artifacts (`design-parity/main` branch)
+
+`.github/workflows/design-parity.yml` regenerates the artifacts on every push to
+`main` and force-pushes them to the long-lived **`design-parity/main`** branch
+(the candidate bundle, the `report.html` triptychs, and a `SOURCE_COMMIT`
+stamp). That branch always reflects the current parity state of `main` without
+committing generated PNGs/HTML onto `main` itself — browse it to see the latest
+reference | candidate | diff without re-rendering locally.
+
+The workflow drives the render from `design-map.json` (so it can't drift from
+it): it installs the released `compose-preview` CLI, packs the candidate bundle,
+runs `design-parity run`, and publishes the output. It is the interim,
+hand-rolled version of a pattern design-parity's Action should own —
+[design-parity#56](https://github.com/yschimke/design-parity/issues/56) (modeled
+on compose-ai-tools' `apply` baseline branch). Until that lands, design-parity is
+built from a pinned checkout because it isn't published and its `dist/` isn't
+committed.
+
 ## Known gaps (first adoption)
 
 - **Bundle carries no semantics blob.** `compose-preview bundle pack` emits the

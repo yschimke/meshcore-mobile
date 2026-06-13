@@ -1,0 +1,107 @@
+name: Design parity artifacts
+
+# Regenerate the design-parity artifacts (candidate bundle + report.html
+# triptychs + verdict) on every push to main and publish them to the long-lived
+# `design-parity/main` branch, force-updated each run so it always reflects the
+# current state of main. This is the interim, hand-rolled version of the
+# permanent-artifact-branch pattern that the design-parity Action should own —
+# see https://github.com/yschimke/design-parity/issues/56. It mirrors the
+# baseline mechanism of compose-ai-tools' `apply` action (its `development-branch`
+# input), which already does this for compose-preview baselines.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write # push the regenerated artifacts to design-parity/main
+
+concurrency:
+  # Serialize on the artifact branch; the newest main commit wins.
+  group: design-parity-artifacts
+  cancel-in-progress: true
+
+jobs:
+  artifacts:
+    name: Render + publish design-parity artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest, which the
+      # Robolectric render path uses (same assumption as compose-preview.yml).
+      - uses: ./.github/actions/setup
+
+      # The consumer-facing CLI install (downloads a release, doesn't build from
+      # source). Used here to run `bundle pack` ourselves rather than the `apply`
+      # action, which renders preview baselines, not design-parity candidates.
+      - name: Install compose-preview CLI
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.14.0
+        with:
+          version: latest
+
+      - name: Render candidate bundle
+        env:
+          # The preview ids contain an em-dash; force a UTF-8 locale.
+          LANG: C.UTF-8
+          LC_ALL: C.UTF-8
+        run: |
+          set -euo pipefail
+          mkdir -p build/design-parity
+          # Drive the render from design-map.json so this never drifts from it.
+          mapfile -t IDS < <(jq -r '.components[].previewId' design-map.json)
+          args=()
+          for id in "${IDS[@]}"; do args+=(--id "$id"); done
+          compose-preview bundle pack --module app "${args[@]}" \
+            -o build/design-parity/candidates.bundle.png --timeout 600
+
+      # design-parity isn't published yet and its dist/ isn't committed, so build
+      # it from a pinned checkout. Replace with a pinned `uses:` once the action
+      # ships its bundled dist (design-parity#56 / #8).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/checkout@v6
+        with:
+          repository: yschimke/design-parity
+          ref: 3071a89 # pin; track a release tag once one exists
+          path: .design-parity-tool
+      - name: Build design-parity
+        run: |
+          set -euo pipefail
+          cd .design-parity-tool
+          npm ci
+          npm run build
+
+      - name: Run design-parity
+        run: |
+          set -euo pipefail
+          components="$(jq -r '[.components[].code] | join(",")' design-map.json)"
+          node .design-parity-tool/packages/action/dist/cli/run.js run \
+            --repo . \
+            --components "$components" \
+            --candidate-bundles build/design-parity/candidates.bundle.png \
+            --out build/design-parity/out
+
+      - name: Publish artifacts to design-parity/main
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          art="$(mktemp -d)"
+          cp -a build/design-parity/out/. "$art/"
+          cp build/design-parity/candidates.bundle.png "$art/" || true
+          printf '%s\n' "$GITHUB_SHA" > "$art/SOURCE_COMMIT"
+          cd "$art"
+          git init -q
+          git checkout -q -b design-parity/main
+          git add -A
+          git \
+            -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -q -m "design-parity artifacts for ${GITHUB_SHA}"
+          git push -f \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            design-parity/main
