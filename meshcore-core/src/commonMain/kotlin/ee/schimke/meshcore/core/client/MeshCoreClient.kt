@@ -37,11 +37,102 @@ import kotlinx.coroutines.withTimeout
 import kotlinx.io.bytestring.ByteString
 
 /**
+ * The full set of device commands a [MeshCoreClient] can issue. [MeshCoreClient] implements this
+ * directly, so existing `client.getContacts()` call sites keep working — but those calls are
+ * guarded at runtime (see [MeshCoreClient.enforceLifecycle]) and a raw client is *not* a
+ * [StartedMeshCoreClient].
+ */
+interface MeshCoreCommands {
+  suspend fun login(recipient: PublicKey, password: String, timeoutMs: Long = 15_000)
+
+  suspend fun getContacts(delta: Boolean = false, timeoutMs: Long = 5_000): List<Contact>
+
+  suspend fun getChannels(perChannelTimeoutMs: Long = 1_000): List<ChannelInfo>
+
+  suspend fun setChannel(index: Int, name: String, psk: ByteString, timeoutMs: Long = 2_000)
+
+  suspend fun syncMessages(perMessageTimeoutMs: Long = 5_000)
+
+  suspend fun getBatteryAndStorage(timeoutMs: Long = 3_000): BatteryInfo
+
+  suspend fun getRadioSettings(timeoutMs: Long = 3_000): RadioSettings
+
+  suspend fun getDeviceTime(timeoutMs: Long = 3_000): Instant
+
+  suspend fun setDeviceTime(time: Instant)
+
+  suspend fun setAdvertName(name: String)
+
+  suspend fun setAdvertLatLon(lat: Double, lon: Double)
+
+  suspend fun setRadioParams(freqHz: Int, bwHz: Int, sf: Int, cr: Int)
+
+  suspend fun setRadioTxPower(dbm: Int)
+
+  suspend fun sendSelfAdvert(floodMode: Boolean = false)
+
+  suspend fun reboot()
+
+  suspend fun syncNextMessage()
+
+  suspend fun sendText(
+    recipient: PublicKey,
+    text: String,
+    timestamp: Instant,
+    attempt: Int = 0,
+    timeoutMs: Long = 5_000,
+  ): SendAck
+
+  suspend fun sendChannelText(
+    channelIdx: Int,
+    text: String,
+    timestamp: Instant,
+    timeoutMs: Long = 5_000,
+  ): SendAck
+}
+
+/**
+ * A [MeshCoreCommands] surface that is also a *type-level proof the handshake ran*. The only way to
+ * obtain one is [MeshCoreClient.start], so a function that issues device commands can accept a
+ * [StartedMeshCoreClient] and the compiler then guarantees the caller went through `start()`. A
+ * fresh, unstarted [MeshCoreClient] deliberately does **not** satisfy this type.
+ */
+interface StartedMeshCoreClient : MeshCoreCommands
+
+/** [StartedMeshCoreClient] returned by [MeshCoreClient.start], delegating to the started client. */
+private class StartedHandle(commands: MeshCoreCommands) :
+  StartedMeshCoreClient, MeshCoreCommands by commands
+
+/**
  * High-level coroutine API over a [Transport]. Construct one per active device connection; call
  * [start] after the transport is connected.
+ *
+ * Lifecycle is enforced: command methods (`getContacts`, `sendText`, …) throw
+ * [IllegalStateException] until [start] has completed the handshake. Prefer the typed
+ * [StartedMeshCoreClient] handle that [start] returns for new code. The explicit escape hatch for
+ * callers that must issue commands without a handshake (frame replay, tests against a canned
+ * transport) is to construct with `enforceLifecycle = false`.
+ *
+ * @param logger sink for diagnostic output. Defaults to [Logger.None]; pass [Logger.Println] (or a
+ *   platform logger) to see the protocol trace.
+ * @param enforceLifecycle when true (the default), command methods require a prior [start].
  */
-class MeshCoreClient(private val transport: Transport, private val scope: CoroutineScope) {
-  private fun log(msg: String) = println("[MeshCoreClient] $msg")
+class MeshCoreClient(
+  private val transport: Transport,
+  private val scope: CoroutineScope,
+  private val logger: Logger = Logger.None,
+  private val enforceLifecycle: Boolean = true,
+) : MeshCoreCommands {
+  private fun log(msg: String) = logger.debug("[MeshCoreClient] $msg")
+
+  @Volatile private var started = false
+
+  private fun ensureStarted() {
+    check(!enforceLifecycle || started) {
+      "MeshCoreClient.start() must complete before issuing device commands. To bypass this " +
+        "(e.g. replaying captured frames or testing), construct with enforceLifecycle = false."
+    }
+  }
 
   private val _events = MutableSharedFlow<MeshEvent>(replay = 0, extraBufferCapacity = 64)
   val events: SharedFlow<MeshEvent> = _events.asSharedFlow()
@@ -119,7 +210,7 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
     appName: String = "meshcore-kmp",
     appVersion: Int = MeshCoreConstants.APP_PROTOCOL_VERSION,
     timeoutMs: Long = 5_000,
-  ) {
+  ): StartedMeshCoreClient {
     if (pumpJob == null) {
       pumpJob =
         scope.launch(start = CoroutineStart.UNDISPATCHED) {
@@ -151,6 +242,8 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
         )
       }
     }
+    started = true
+    return StartedHandle(this)
   }
 
   /**
@@ -162,7 +255,8 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
    * Wire format verified against the MeshCore Flutter client's `buildSendLoginFrame` in
    * `connector/meshcore_protocol.dart`.
    */
-  suspend fun login(recipient: PublicKey, password: String, timeoutMs: Long = 15_000) {
+  override suspend fun login(recipient: PublicKey, password: String, timeoutMs: Long) {
+    ensureStarted()
     val recipientPrefixHex = recipient.toHex().take(MeshCoreConstants.PUB_KEY_PREFIX_SIZE * 2)
     val ev =
       requestOne(Frames.sendLogin(recipient, password), timeoutMs) { event ->
@@ -180,6 +274,7 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
   fun stop() {
     pumpJob?.cancel()
     pumpJob = null
+    started = false
   }
 
   private suspend fun handleEvent(event: MeshEvent) {
@@ -240,7 +335,14 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
       MeshEvent.MessagesWaiting -> log("event: MessagesWaiting")
       MeshEvent.NoMoreMessages -> log("event: NoMoreMessages")
       is MeshEvent.Raw ->
-        log("event: Raw code=0x${event.code.toString(16)} size=${event.body.size}")
+        // The parser hands back Raw for any frame it doesn't recognise or fails to decode. With no
+        // correlation IDs in the wire protocol there's nothing to match it against, so the best we
+        // can do is warn: an unexpected frame type usually means a firmware/protocol-version skew
+        // or a framing bug, and a silent drop hides both.
+        logger.warn(
+          "[MeshCoreClient] unexpected frame: code=0x${event.code.toString(16)} " +
+            "size=${event.body.size} (no parser matched or decode failed)"
+        )
       else -> Unit
     }
     _events.emit(event)
@@ -250,8 +352,9 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
    * Fetch contacts from the device. If [delta] is true and a previous fetch timestamp exists, only
    * requests contacts modified since then.
    */
-  suspend fun getContacts(delta: Boolean = false, timeoutMs: Long = 5_000): List<Contact> =
-    sendMutex.withLock {
+  override suspend fun getContacts(delta: Boolean, timeoutMs: Long): List<Contact> {
+    ensureStarted()
+    return sendMutex.withLock {
       val since = if (delta) lastContactsFetchedAt else null
       log("getContacts: requesting (delta=$delta, since=$since)")
       coroutineScope {
@@ -266,12 +369,14 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
       log("getContacts: done, ${_contacts.value.size} contacts")
       _contacts.value
     }
+  }
 
   /**
    * Enumerate all configured channels by requesting each index from 0 until
    * [DeviceInfo.maxChannels]. Empty channels are filtered out.
    */
-  suspend fun getChannels(perChannelTimeoutMs: Long = 1_000): List<ChannelInfo> {
+  override suspend fun getChannels(perChannelTimeoutMs: Long): List<ChannelInfo> {
+    ensureStarted()
     val maxCh = _device.value?.maxChannels ?: 8
     log("getChannels: requesting 0..$maxCh")
     val result = mutableListOf<ChannelInfo>()
@@ -296,12 +401,8 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
    * Create or update a channel on the device. After a successful call the local channel list is
    * refreshed.
    */
-  suspend fun setChannel(
-    index: Int,
-    name: String,
-    psk: kotlinx.io.bytestring.ByteString,
-    timeoutMs: Long = 2_000,
-  ) {
+  override suspend fun setChannel(index: Int, name: String, psk: ByteString, timeoutMs: Long) {
+    ensureStarted()
     val frame = Frames.setChannel(index, name, psk)
     val ev = requestOne(frame, timeoutMs) { it is MeshEvent.Ok || it is MeshEvent.Err }
     if (ev is MeshEvent.Err) error("setChannel failed: error code ${ev.code}")
@@ -314,7 +415,8 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
    * device replies with `NoMoreMessages`. Each iteration yields a `DirectMessage` or
    * `ChannelMessage` event through the [events] SharedFlow as usual.
    */
-  suspend fun syncMessages(perMessageTimeoutMs: Long = 5_000) {
+  override suspend fun syncMessages(perMessageTimeoutMs: Long) {
+    ensureStarted()
     log("syncMessages: draining pending queue")
     var count = 0
     while (true) {
@@ -333,67 +435,88 @@ class MeshCoreClient(private val transport: Transport, private val scope: Corout
     log("syncMessages: done, $count messages received")
   }
 
-  suspend fun getBatteryAndStorage(timeoutMs: Long = 3_000): BatteryInfo =
-    (requestOne(Frames.getBatteryAndStorage(), timeoutMs) { it is MeshEvent.Battery }
+  override suspend fun getBatteryAndStorage(timeoutMs: Long): BatteryInfo {
+    ensureStarted()
+    return (requestOne(Frames.getBatteryAndStorage(), timeoutMs) { it is MeshEvent.Battery }
         as MeshEvent.Battery)
       .info
+  }
 
-  suspend fun getRadioSettings(timeoutMs: Long = 3_000): RadioSettings =
-    (requestOne(Frames.getRadioSettings(), timeoutMs) { it is MeshEvent.Radio } as MeshEvent.Radio)
+  override suspend fun getRadioSettings(timeoutMs: Long): RadioSettings {
+    ensureStarted()
+    return (requestOne(Frames.getRadioSettings(), timeoutMs) { it is MeshEvent.Radio }
+        as MeshEvent.Radio)
       .settings
+  }
 
-  suspend fun getDeviceTime(timeoutMs: Long = 3_000): Instant =
-    (requestOne(Frames.getDeviceTime(), timeoutMs) { it is MeshEvent.CurrentTime }
+  override suspend fun getDeviceTime(timeoutMs: Long): Instant {
+    ensureStarted()
+    return (requestOne(Frames.getDeviceTime(), timeoutMs) { it is MeshEvent.CurrentTime }
         as MeshEvent.CurrentTime)
       .time
-
-  suspend fun setDeviceTime(time: Instant) = sendMutex.withLock {
-    transport.send(Frames.setDeviceTime(time))
   }
 
-  suspend fun setAdvertName(name: String) = sendMutex.withLock {
-    transport.send(Frames.setAdvertName(name))
+  override suspend fun setDeviceTime(time: Instant) {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.setDeviceTime(time)) }
   }
 
-  suspend fun setAdvertLatLon(lat: Double, lon: Double) = sendMutex.withLock {
-    transport.send(Frames.setAdvertLatLon(lat, lon))
+  override suspend fun setAdvertName(name: String) {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.setAdvertName(name)) }
   }
 
-  suspend fun setRadioParams(freqHz: Int, bwHz: Int, sf: Int, cr: Int) = sendMutex.withLock {
-    transport.send(Frames.setRadioParams(freqHz, bwHz, sf, cr))
+  override suspend fun setAdvertLatLon(lat: Double, lon: Double) {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.setAdvertLatLon(lat, lon)) }
   }
 
-  suspend fun setRadioTxPower(dbm: Int) = sendMutex.withLock {
-    transport.send(Frames.setRadioTxPower(dbm))
+  override suspend fun setRadioParams(freqHz: Int, bwHz: Int, sf: Int, cr: Int) {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.setRadioParams(freqHz, bwHz, sf, cr)) }
   }
 
-  suspend fun sendSelfAdvert(floodMode: Boolean = false) = sendMutex.withLock {
-    transport.send(Frames.sendSelfAdvert(floodMode))
+  override suspend fun setRadioTxPower(dbm: Int) {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.setRadioTxPower(dbm)) }
   }
 
-  suspend fun reboot() = sendMutex.withLock { transport.send(Frames.reboot()) }
+  override suspend fun sendSelfAdvert(floodMode: Boolean) {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.sendSelfAdvert(floodMode)) }
+  }
 
-  suspend fun syncNextMessage() = sendMutex.withLock { transport.send(Frames.syncNextMessage()) }
+  override suspend fun reboot() {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.reboot()) }
+  }
 
-  suspend fun sendText(
+  override suspend fun syncNextMessage() {
+    ensureStarted()
+    sendMutex.withLock { transport.send(Frames.syncNextMessage()) }
+  }
+
+  override suspend fun sendText(
     recipient: PublicKey,
     text: String,
     timestamp: Instant,
-    attempt: Int = 0,
-    timeoutMs: Long = 5_000,
+    attempt: Int,
+    timeoutMs: Long,
   ): SendAck {
+    ensureStarted()
     val frame = Frames.sendTextMessage(recipient, text, timestamp, attempt)
     val ev = requestOne(frame, timeoutMs) { it is MeshEvent.Sent || it is MeshEvent.Err }
     if (ev is MeshEvent.Err) error("device returned error code ${ev.code}")
     return (ev as MeshEvent.Sent).ack
   }
 
-  suspend fun sendChannelText(
+  override suspend fun sendChannelText(
     channelIdx: Int,
     text: String,
     timestamp: Instant,
-    timeoutMs: Long = 5_000,
+    timeoutMs: Long,
   ): SendAck {
+    ensureStarted()
     val frame = Frames.sendChannelTextMessage(channelIdx, text, timestamp)
     val ev = requestOne(frame, timeoutMs) { it is MeshEvent.Sent || it is MeshEvent.Err }
     if (ev is MeshEvent.Err) error("device returned error code ${ev.code}")

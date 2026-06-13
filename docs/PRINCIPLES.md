@@ -69,11 +69,14 @@ Three lines to connect, one call per command, StateFlows for
 everything reactive. If you can create a Transport and a
 CoroutineScope you can build a MeshCore app.
 
-**Where we've failed:** The library is easy to use but hard to use
-*correctly*. There is no compile-time guarantee that `start()` is
-called before `getContacts()`, or that `fetchAndPersist()` runs after
-connection. A builder or state-machine API that enforces the lifecycle
-would prevent a class of bugs.
+**Lifecycle is now enforced.** `MeshCoreClient.start()` returns a typed
+`StartedMeshCoreClient` handle, so new code can require the *started*
+capability in its signatures. Command methods on the client also guard
+at runtime — calling `getContacts()` before `start()` throws — with
+`enforceLifecycle = false` as the explicit unsafe escape hatch for frame
+replay and tests. (Full compile-time enforcement that threads the handle
+through every consumer remains a follow-up; `fetchAndPersist()` ordering
+is still by convention.)
 
 ---
 
@@ -185,11 +188,11 @@ non-Kotlin consumers (Python scripts, web UIs, Go services). The CLI
 already demonstrates the pattern — connect via TCP bridge — and gRPC
 will formalize it into a stable service contract.
 
-**Where we've failed:**
-- The binary protocol has no formal specification. Frame types are
-  scattered across `Codes.kt`, `CommandCode` enum, and inline comments
-  in parsers. A `.proto` or `.fbs` definition of the wire format would
-  make it possible to generate parsers for other languages.
+**Wire format is now documented.** `docs/WIRE_PROTOCOL.md` is an informal
+but complete spec of the framing, opcodes, and body layouts, kept in sync
+with `Codes.kt` / `Frames.kt` / `Parsers.kt`. A machine-readable `.proto`
+or `.fbs` definition that could generate parsers for other languages is
+still a future step.
 
 ---
 
@@ -252,8 +255,9 @@ what they do.
 - The protocol has no message IDs. Responses are matched to requests
   by type, not by correlation ID. If the device sends an unexpected
   frame, the wrong consumer may match it. This is a protocol-level
-  limitation but the client could defend against it with sequence
-  numbers or at least logging mismatches.
+  limitation; the client now defends against it by logging a warning
+  whenever a frame decodes to `MeshEvent.Raw` (unknown opcode or failed
+  decode). True correlation IDs remain a firmware-level change.
 
 **Hardcoded values:**
 - BLE connection timeout (20s), periodic refresh interval, and command

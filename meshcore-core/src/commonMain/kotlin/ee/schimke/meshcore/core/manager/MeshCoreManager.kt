@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.core.manager
 
+import ee.schimke.meshcore.core.client.Logger
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.transport.Transport
 import ee.schimke.meshcore.core.transport.TransportState
@@ -26,7 +27,8 @@ import kotlinx.coroutines.sync.withLock
  * `meshcore-mobile`.
  */
 class MeshCoreManager(
-  private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
+  private val logger: Logger = Logger.None,
 ) {
   private val _state = MutableStateFlow<ManagerState>(ManagerState.Idle)
   val state: StateFlow<ManagerState> = _state.asStateFlow()
@@ -82,7 +84,7 @@ class MeshCoreManager(
           _state.value = ManagerState.Failed(t)
           throw t
         }
-        val client = MeshCoreClient(transport, scope)
+        val client = MeshCoreClient(transport, scope, logger)
         try {
           client.start()
         } catch (t: Throwable) {
