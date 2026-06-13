@@ -6,7 +6,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.appGraph
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
@@ -22,7 +22,7 @@ class WidgetRefreshWorker(
 ) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
-        val app = MeshcoreApp.get()
+        val app = applicationContext.appGraph()
         val favorite = app.repository.observeFavorite().first()
             ?: return Result.failure()
 

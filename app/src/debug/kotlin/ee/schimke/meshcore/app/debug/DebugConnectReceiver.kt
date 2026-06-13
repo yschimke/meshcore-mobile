@@ -29,7 +29,7 @@ class DebugConnectReceiver : BroadcastReceiver() {
             Log.w(TAG, "ignoring action=${intent.action}")
             return
         }
-        val app = context.applicationContext as? MeshcoreApp ?: run {
+        val app = (context.applicationContext as? MeshcoreApp)?.appGraph ?: run {
             Log.w(TAG, "no MeshcoreApp"); return
         }
 

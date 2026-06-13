@@ -13,7 +13,7 @@ import kotlinx.coroutines.runBlocking
 internal object DebugDumpRead {
 
     fun summary(w: PrintWriter, app: MeshcoreApp, events: DebugEventBuffer) {
-        val controller = app.connectionController
+        val controller = app.appGraph.connectionController
         val state = controller.state.value
         w.println("ConnectionUiState:   ${state::class.simpleName}")
         w.println("connectedDeviceId:   ${controller.connectedDeviceId.value ?: "-"}")
@@ -109,12 +109,12 @@ internal object DebugDumpRead {
     }
 
     fun channelMessages(w: PrintWriter, app: MeshcoreApp, channelIdx: Int, limit: Int) {
-        val deviceId = app.connectionController.connectedDeviceId.value ?: run {
+        val deviceId = app.appGraph.connectionController.connectedDeviceId.value ?: run {
             w.println("not connected to a device")
             return
         }
         val msgs = runBlocking {
-            app.repository.observeChannelMessages(deviceId, channelIdx).first()
+            app.appGraph.repository.observeChannelMessages(deviceId, channelIdx).first()
         }
         val tail = msgs.takeLast(limit)
         w.println("channel[$channelIdx] messages: showing ${tail.size} of ${msgs.size}")
@@ -134,7 +134,7 @@ internal object DebugDumpRead {
     }
 
     fun savedDevices(w: PrintWriter, app: MeshcoreApp) {
-        val devices = runBlocking { app.repository.observeDevices().first() }
+        val devices = runBlocking { app.appGraph.repository.observeDevices().first() }
         w.println("SAVED DEVICES: ${devices.size}")
         devices.forEach { d ->
             val star = if (d.favorite) "★" else " "
@@ -145,7 +145,7 @@ internal object DebugDumpRead {
     // ---- helpers ------------------------------------------------------
 
     internal fun requireClient(w: PrintWriter, app: MeshcoreApp): MeshCoreClient? {
-        val state = app.connectionController.state.value
+        val state = app.appGraph.connectionController.state.value
         if (state !is ConnectionUiState.Connected) {
             w.println("Not connected (state=${state::class.simpleName}).")
             return null

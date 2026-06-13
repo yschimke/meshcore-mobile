@@ -29,7 +29,7 @@ internal class DebugEventBuffer(private val capacity: Int = 100) {
 
     fun attach(app: MeshcoreApp) {
         scope.launch {
-            app.connectionController.state.collect { state ->
+            app.appGraph.connectionController.state.collect { state ->
                 val client = (state as? ConnectionUiState.Connected)?.client
                 if (client === currentClient) return@collect
                 currentCollectJob?.cancel()

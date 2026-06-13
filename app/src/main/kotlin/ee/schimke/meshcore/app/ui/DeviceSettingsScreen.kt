@@ -34,7 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.data.entity.MessageDirection
@@ -112,7 +112,7 @@ fun DeviceSettingsScreen(
     channelIndex: Int,
     onBack: () -> Unit,
 ) {
-    val app = MeshcoreApp.get()
+    val app = LocalAppGraph.current
     val controller = app.connectionController
     val repository = app.repository
     val uiState by controller.state.collectAsState()

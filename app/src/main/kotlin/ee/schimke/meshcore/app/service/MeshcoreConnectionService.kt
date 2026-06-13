@@ -91,7 +91,7 @@ class MeshcoreConnectionService : Service() {
 
     private fun disconnect() {
         Log.d(TAG, "Service stopping — disconnecting BT")
-        val app = applicationContext as? MeshcoreApp ?: return
+        val app = (applicationContext as? MeshcoreApp)?.appGraph ?: return
         app.connectionController.cancel()
         stopSelf()
     }
