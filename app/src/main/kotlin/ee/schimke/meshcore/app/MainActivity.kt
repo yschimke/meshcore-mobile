@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -13,6 +14,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import ee.schimke.meshcore.app.di.LocalAppGraph
+import ee.schimke.meshcore.app.di.appGraph
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -50,13 +53,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { MeshcoreAppUi() }
+        val graph = appGraph()
+        setContent {
+            CompositionLocalProvider(LocalAppGraph provides graph) { MeshcoreAppUi() }
+        }
     }
 }
 
 @Composable
 private fun MeshcoreAppUi() {
-    val app = MeshcoreApp.get()
+    val app = LocalAppGraph.current
     val themeSettings by app.themePreferences.settings.collectAsState(initial = ThemeSettings())
     val scope = rememberCoroutineScope()
     var pickerVisible by remember { mutableStateOf(false) }

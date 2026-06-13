@@ -3,7 +3,7 @@ package ee.schimke.meshcore.app.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.data.repository.toBattery
 import ee.schimke.meshcore.data.repository.toRadio
 import ee.schimke.meshcore.data.repository.toSelfInfo
@@ -19,7 +19,7 @@ fun CachedDeviceScreen(
     onBack: () -> Unit,
     onOpenThemePicker: () -> Unit = {},
 ) {
-    val repository = MeshcoreApp.get().repository
+    val repository = LocalAppGraph.current.repository
     val state by repository.observeDeviceState(deviceId).collectAsState(initial = null)
     val contacts by repository.observeContacts(deviceId).collectAsState(initial = emptyList())
     val channels by repository.observeChannels(deviceId).collectAsState(initial = emptyList())

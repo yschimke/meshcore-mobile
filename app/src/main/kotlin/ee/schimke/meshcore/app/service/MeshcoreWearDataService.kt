@@ -43,7 +43,7 @@ class MeshcoreWearDataService : BaseGrpcDataService<MeshcoreGrpcServiceImpl>() {
     }
 
     override fun buildService(): MeshcoreGrpcServiceImpl {
-        val app = application as MeshcoreApp
+        val app = (application as MeshcoreApp).appGraph
         val bridge = object : MeshServiceBridge {
             override val managerState: StateFlow<ManagerState>
                 get() = app.manager.state

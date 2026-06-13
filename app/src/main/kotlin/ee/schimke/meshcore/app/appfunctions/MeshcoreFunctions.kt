@@ -2,7 +2,7 @@ package ee.schimke.meshcore.app.appfunctions
 
 import androidx.appfunctions.AppFunctionContext
 import androidx.appfunctions.service.AppFunction
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.appGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.PublicKey
@@ -20,9 +20,6 @@ import kotlinx.coroutines.flow.first
  */
 class MeshcoreFunctions {
 
-    private val app get() = MeshcoreApp.get()
-    private val repository get() = app.repository
-
     /**
      * Gets the status of the user's favorite mesh device, including
      * battery level, radio frequency, and storage usage.
@@ -31,6 +28,7 @@ class MeshcoreFunctions {
      */
     @AppFunction(isDescribedByKDoc = true)
     suspend fun getDeviceStatus(appFunctionContext: AppFunctionContext): DeviceStatus? {
+        val repository = appFunctionContext.context.appGraph().repository
         val favorite = repository.observeFavorite().first() ?: return null
         val state = repository.getDeviceState(favorite.id) ?: return null
 
@@ -57,6 +55,7 @@ class MeshcoreFunctions {
      */
     @AppFunction(isDescribedByKDoc = true)
     suspend fun getContacts(appFunctionContext: AppFunctionContext): List<MeshContact>? {
+        val repository = appFunctionContext.context.appGraph().repository
         val favorite = repository.observeFavorite().first() ?: return null
         val contacts = repository.getContacts(favorite.id)
         if (contacts.isEmpty()) return null
@@ -85,6 +84,7 @@ class MeshcoreFunctions {
         appFunctionContext: AppFunctionContext,
         limit: Int = 20,
     ): List<RecentMessage>? {
+        val repository = appFunctionContext.context.appGraph().repository
         val favorite = repository.observeFavorite().first() ?: return null
         val messages = repository.getRecentMessages(favorite.id, limit)
         if (messages.isEmpty()) return null
@@ -107,6 +107,7 @@ class MeshcoreFunctions {
      */
     @AppFunction(isDescribedByKDoc = true)
     suspend fun getChannels(appFunctionContext: AppFunctionContext): List<MeshChannel>? {
+        val repository = appFunctionContext.context.appGraph().repository
         val favorite = repository.observeFavorite().first() ?: return null
         val channels = repository.getChannels(favorite.id)
         if (channels.isEmpty()) return null
@@ -133,18 +134,19 @@ class MeshcoreFunctions {
         contactPublicKeyHex: String,
         message: String,
     ): SendResult {
-        val connectionState = app.connectionController.state.value
+        val graph = appFunctionContext.context.appGraph()
+        val connectionState = graph.connectionController.state.value
         val client = (connectionState as? ConnectionUiState.Connected)?.client
             ?: return SendResult(success = false, error = "Not connected to a mesh device")
 
-        val deviceId = app.connectionController.connectedDeviceId.value
+        val deviceId = graph.connectionController.connectedDeviceId.value
             ?: return SendResult(success = false, error = "No device ID available")
 
         return try {
             val recipient = PublicKey.fromHex(contactPublicKeyHex)
             val now = Clock.System.now()
             val ack = client.sendText(recipient = recipient, text = message, timestamp = now)
-            repository.insertSentDm(
+            graph.repository.insertSentDm(
                 deviceId = deviceId,
                 contactKeyHex = contactPublicKeyHex,
                 text = message,
@@ -171,7 +173,8 @@ class MeshcoreFunctions {
         channelIndex: Int,
         message: String,
     ): SendResult {
-        val connectionState = app.connectionController.state.value
+        val graph = appFunctionContext.context.appGraph()
+        val connectionState = graph.connectionController.state.value
         val client = (connectionState as? ConnectionUiState.Connected)?.client
             ?: return SendResult(success = false, error = "Not connected to a mesh device")
 

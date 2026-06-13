@@ -6,12 +6,13 @@ import com.github.ajalt.clikt.parameters.options.help
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.int
 import com.github.ajalt.mordant.rendering.TextColors.gray
-import com.juul.kable.toIdentifier
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.transport.Transport
 import ee.schimke.meshcore.data.repository.SavedTransport
+import ee.schimke.meshcore.session.ConnectionRequest
+import ee.schimke.meshcore.session.DefaultTransportFactory
+import ee.schimke.meshcore.session.JvmUsbPortResolver
 import ee.schimke.meshcore.transport.ble.BleScanner
-import ee.schimke.meshcore.transport.ble.BleTransport
 import ee.schimke.meshcore.transport.tcp.TcpTransport
 import ee.schimke.meshcore.transport.usb.JvmSerialPort
 import ee.schimke.meshcore.transport.usb.UsbSerialTransport
@@ -48,26 +49,33 @@ abstract class SessionCommand(name: String, help: String) : CliktCommand(name = 
 
   private val store = DeviceStore()
 
+  // Shared "ConnectionRequest -> Transport" mapping, identical to the one the
+  // phone app uses, so transport construction stays in sync across both.
+  private val transportFactory = DefaultTransportFactory(JvmUsbPortResolver())
+
   private fun createTransport(): Transport =
     when {
       ble != null -> createBleTransport(ble!!)
       usb != null -> createUsbTransport(usb!!)
-      host != null || port != null -> TcpTransport(host ?: "127.0.0.1", port ?: 5000)
+      host != null || port != null ->
+        transportFactory.resolve(ConnectionRequest.Tcp(host ?: "127.0.0.1", port ?: 5000)).transport
       else -> {
         val saved = store.getFavorite()
-        if (saved != null) {
-          terminal.println(gray("Using saved device ${saved.first}:${saved.second}"))
-          TcpTransport(saved.first, saved.second)
-        } else {
-          TcpTransport("127.0.0.1", 5000)
-        }
+        val request =
+          if (saved != null) {
+            terminal.println(gray("Using saved device ${saved.first}:${saved.second}"))
+            ConnectionRequest.Tcp(saved.first, saved.second)
+          } else {
+            ConnectionRequest.Tcp("127.0.0.1", 5000)
+          }
+        transportFactory.resolve(request).transport
       }
     }
 
   private fun createBleTransport(identifier: String): Transport {
     if (identifier.contains(":") || identifier.contains("-")) {
       terminal.println(gray("Connecting to BLE device $identifier..."))
-      return BleTransport.fromIdentifier(identifier.toIdentifier())
+      return transportFactory.resolve(ConnectionRequest.Ble(identifier, null)).transport
     }
     terminal.println(gray("Scanning for BLE device matching '$identifier' (10s timeout)..."))
     return runBlocking {
@@ -79,7 +87,7 @@ abstract class SessionCommand(name: String, help: String) : CliktCommand(name = 
           }
         } ?: error("No BLE device matching '$identifier' found within 10s.")
       terminal.println(gray("Found ${adv.name} (${adv.identifier})"))
-      BleTransport(adv)
+      transportFactory.resolve(ConnectionRequest.Ble(adv.identifier, adv.name)).transport
     }
   }
 

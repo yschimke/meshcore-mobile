@@ -1,8 +1,6 @@
 package ee.schimke.meshcore.app.connection
 
-import dev.mcarr.usb.interfaces.ISerialPortWrapper
 import ee.schimke.meshcore.core.client.MeshCoreClient
-import ee.schimke.meshcore.transport.ble.BleAdvertisement
 
 /**
  * Everything the UI needs to know about the current connection
@@ -37,22 +35,4 @@ sealed class ConnectionUiState {
         val nextRetryAtMs: Long,
         val deviceLabel: String,
     ) : ConnectionUiState()
-}
-
-/** Description of a connect request, independent of whether it's been dispatched. */
-sealed class ConnectionRequest {
-    abstract val label: String
-
-    data class Ble(val adv: BleAdvertisement) : ConnectionRequest() {
-        override val label: String get() = adv.name ?: adv.identifier
-    }
-
-    data class Tcp(val host: String, val port: Int) : ConnectionRequest() {
-        override val label: String get() = "$host:$port"
-    }
-
-    data class Usb(
-        val port: ISerialPortWrapper,
-        override val label: String = "USB %04X:%04X".format(port.vendorId, port.productId),
-    ) : ConnectionRequest()
 }

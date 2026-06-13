@@ -10,6 +10,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import androidx.compose.remote.creation.compose.capture.captureSingleRemoteDocument
 import androidx.compose.remote.creation.profile.RcPlatformProfiles
+import ee.schimke.meshcore.app.di.appGraph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
@@ -34,11 +35,11 @@ private fun staleLabel(snap: WidgetSnapshot): String? {
  * Get the current widget snapshot, seeding from Room if the in-memory
  * bridge hasn't been populated yet.
  */
-private suspend fun currentSnapshot(): WidgetSnapshot {
+private suspend fun currentSnapshot(context: Context): WidgetSnapshot {
     val snap = WidgetStateBridge.snapshot.value
     if (snap.batteryMv != null || snap.deviceName != null) return snap
 
-    val app = try { ee.schimke.meshcore.app.MeshcoreApp.get() } catch (_: Throwable) { return snap }
+    val app = runCatching { context.appGraph() }.getOrNull() ?: return snap
     val fav = app.repository.observeFavorite().first() ?: return snap
     val state = app.repository.getDeviceState(fav.id) ?: return snap
 
@@ -72,7 +73,7 @@ private suspend fun currentSnapshot(): WidgetSnapshot {
 class DeviceInfoWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
         goAsync {
-            val snap = currentSnapshot()
+            val snap = currentSnapshot(context)
             coroutineScope {
                 widgetIds.forEach { id ->
                     launch {

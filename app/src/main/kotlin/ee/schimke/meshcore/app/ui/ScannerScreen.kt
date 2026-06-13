@@ -37,19 +37,19 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ee.schimke.meshcore.app.MeshcoreApp
-import ee.schimke.meshcore.app.connection.ConnectionRequest
 import ee.schimke.meshcore.app.connection.ConnectionUiState
+import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.components.ui.BleDeviceList
 import ee.schimke.meshcore.components.ui.BleDeviceRow
 import ee.schimke.meshcore.components.ui.BlePermissionPanel
-import ee.schimke.meshcore.components.ui.BleScannerPanel
 import ee.schimke.meshcore.components.ui.ScanStatusBar
 import ee.schimke.meshcore.components.ui.TcpConnectPanel
 import ee.schimke.meshcore.components.ui.UsbPortCard
 import ee.schimke.meshcore.components.ui.UsbPortsPanel
+import ee.schimke.meshcore.mobile.ui.BleScannerPanel
+import ee.schimke.meshcore.session.ConnectionRequest
 
 // Stateful entry point. All network side effects live in
 // [AppConnectionController]; this composable only forwards user
@@ -67,7 +67,7 @@ fun ScannerScreen(
     onViewCachedDevice: (String) -> Unit = {},
     onOpenLicenses: () -> Unit = {},
 ) {
-    val app = MeshcoreApp.get()
+    val app = LocalAppGraph.current
     val controller = app.connectionController
     val uiState by controller.state.collectAsState()
     val savedDevices by app.repository.observeDevicesWithState().collectAsState(initial = emptyList())
@@ -103,17 +103,21 @@ fun ScannerScreen(
         bleContent = {
             BleScannerPanel(
                 busy = busy,
-                onConnectAdvertisement = { adv ->
-                    if (!busy) controller.requestConnect(ConnectionRequest.Ble(adv))
+                onConnect = { row ->
+                    if (!busy) controller.requestConnect(ConnectionRequest.Ble(row.identifier, row.name))
                 },
             )
         },
         usbContent = {
             UsbPortsPanel(
                 busy = busy,
-                listPorts = { app.usbPorts.list() },
-                onConnect = { port ->
-                    if (!busy) controller.requestConnect(ConnectionRequest.Usb(port))
+                listPorts = { app.usbPorts.descriptors() },
+                onConnect = { desc ->
+                    if (!busy) {
+                        controller.requestConnect(
+                            ConnectionRequest.Usb(desc.className, desc.vendorId, desc.productId),
+                        )
+                    }
                 },
             )
         },

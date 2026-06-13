@@ -14,6 +14,7 @@ java { toolchain { languageVersion.set(JavaLanguageVersion.of(21)) } }
 dependencies {
   implementation(projects.meshcoreCore)
   implementation(projects.meshcoreData)
+  implementation(projects.meshcoreSession)
   implementation(projects.meshcoreTransportTcp)
   implementation(projects.meshcoreTransportBle)
   implementation(projects.meshcoreTransportUsb)
