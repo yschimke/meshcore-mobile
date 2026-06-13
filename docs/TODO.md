@@ -13,9 +13,10 @@ the reasoning behind many of these items.
   - [x] Extract status views (`DeviceConnectStatus`, `DeviceStatusView`,
     `ConnectingCard`, `FailureCard`) to `DeviceStatusViews.kt` (231 lines)
   - [x] Move preview functions to `DeviceScreenPreviews.kt` (269 lines)
-- [ ] Enforce client lifecycle at compile time
-  - Builder or state-machine API so `start()` must precede commands
-  - Prevent calling `getContacts()` on an unstarted client
+- [x] Enforce client lifecycle
+  - `start()` returns a typed `StartedMeshCoreClient` handle for new code
+  - Command methods on `MeshCoreClient` throw until `start()` completes;
+    `enforceLifecycle = false` is the explicit unsafe escape hatch
 
 ## gRPC service layer
 
@@ -51,13 +52,17 @@ the reasoning behind many of these items.
 - [x] Surface stale-cache warnings to the user when Room queries fail
 - [x] Add BLE reconnect with exponential backoff in `AppConnectionController`
   - Up to 5 retries, 2s–60s backoff + jitter, `Retrying` UI state
-- [ ] Log or warn on protocol mismatches (unexpected frame types)
+- [x] Log or warn on protocol mismatches (unexpected frame types)
+  - `MeshCoreClient` warns via the injectable `Logger` when a frame
+    decodes to `MeshEvent.Raw`
 
 ## Protocol
 
-- [ ] Write a wire protocol spec for `meshcore-core`
-  - Document frame format, command codes, response types
-  - Currently scattered across `Codes.kt`, `CommandCode`, and parser comments
+- [x] Write a wire protocol spec for `meshcore-core`
+  - `docs/WIRE_PROTOCOL.md`: framing, command/response/push opcodes, body layouts
+- [x] Replace `println` in `meshcore-core` with injectable logging
+  - `Logger` interface (`Logger.None` default, `Logger.Println` opt-in),
+    threaded through `MeshCoreClient` and `MeshCoreManager`
 - [ ] Consider adding request/response correlation IDs
   - Currently matched by type only; misordering possible
 - [x] Extract hardcoded timeouts into named constants
