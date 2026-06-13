@@ -149,17 +149,18 @@ class MeshCoreClientTest {
       val client =
         MeshCoreClient(transport, CoroutineScope(UnconfinedTestDispatcher(testScheduler)))
 
-      val job = launch { client.start(timeoutMs = 2_000) }
+      var started: StartedMeshCoreClient? = null
+      val job = launch { started = client.start(timeoutMs = 2_000) }
       transport.receive(selfInfoFrame())
       job.join()
 
-      // The handle returned by start() exposes the command surface and is
-      // the same instance as the client.
-      val started: StartedMeshCoreClient = client
+      // start() hands back a distinct StartedMeshCoreClient handle — a raw,
+      // unstarted client is deliberately not assignable to this type.
+      val handle = assertNotNull(started, "start() should return a started handle")
       assertTrue(transport.sentFrames.any { it[0] == CommandCode.AppStart.raw })
 
-      // Issuing a command through the started client no longer throws.
-      val fetch = launch { runCatching { started.getContacts(timeoutMs = 100) } }
+      // Issuing a command through the started handle no longer throws.
+      val fetch = launch { runCatching { handle.getContacts(timeoutMs = 100) } }
       fetch.join()
       assertTrue(transport.sentFrames.any { it[0] == CommandCode.GetContacts.raw })
 

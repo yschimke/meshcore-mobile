@@ -37,15 +37,12 @@ import kotlinx.coroutines.withTimeout
 import kotlinx.io.bytestring.ByteString
 
 /**
- * The command surface of a [MeshCoreClient] that is only meaningful once the handshake has
- * completed. [MeshCoreClient.start] returns this handle so new code can thread the *started*
- * capability through its types: a function that issues device commands can accept a
- * [StartedMeshCoreClient] and the compiler then guarantees the caller went through `start()`.
- *
- * [MeshCoreClient] itself implements this interface (so existing `client.getContacts()` call sites
- * keep working), but those calls are guarded at runtime — see [MeshCoreClient.enforceLifecycle].
+ * The full set of device commands a [MeshCoreClient] can issue. [MeshCoreClient] implements this
+ * directly, so existing `client.getContacts()` call sites keep working — but those calls are
+ * guarded at runtime (see [MeshCoreClient.enforceLifecycle]) and a raw client is *not* a
+ * [StartedMeshCoreClient].
  */
-interface StartedMeshCoreClient {
+interface MeshCoreCommands {
   suspend fun login(recipient: PublicKey, password: String, timeoutMs: Long = 15_000)
 
   suspend fun getContacts(delta: Boolean = false, timeoutMs: Long = 5_000): List<Contact>
@@ -95,6 +92,18 @@ interface StartedMeshCoreClient {
 }
 
 /**
+ * A [MeshCoreCommands] surface that is also a *type-level proof the handshake ran*. The only way to
+ * obtain one is [MeshCoreClient.start], so a function that issues device commands can accept a
+ * [StartedMeshCoreClient] and the compiler then guarantees the caller went through `start()`. A
+ * fresh, unstarted [MeshCoreClient] deliberately does **not** satisfy this type.
+ */
+interface StartedMeshCoreClient : MeshCoreCommands
+
+/** [StartedMeshCoreClient] returned by [MeshCoreClient.start], delegating to the started client. */
+private class StartedHandle(commands: MeshCoreCommands) :
+  StartedMeshCoreClient, MeshCoreCommands by commands
+
+/**
  * High-level coroutine API over a [Transport]. Construct one per active device connection; call
  * [start] after the transport is connected.
  *
@@ -113,7 +122,7 @@ class MeshCoreClient(
   private val scope: CoroutineScope,
   private val logger: Logger = Logger.None,
   private val enforceLifecycle: Boolean = true,
-) : StartedMeshCoreClient {
+) : MeshCoreCommands {
   private fun log(msg: String) = logger.debug("[MeshCoreClient] $msg")
 
   @Volatile private var started = false
@@ -234,7 +243,7 @@ class MeshCoreClient(
       }
     }
     started = true
-    return this
+    return StartedHandle(this)
   }
 
   /**
