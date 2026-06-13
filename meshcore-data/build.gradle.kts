@@ -22,6 +22,12 @@ kotlin {
       implementation(libs.sqlite.bundled)
       implementation(libs.kotlinx.coroutines.core)
     }
+    jvmTest.dependencies {
+      implementation(libs.kotlin.test)
+      implementation(libs.kotlinx.coroutines.test)
+      implementation(libs.room.runtime)
+      implementation(libs.sqlite.bundled)
+    }
   }
 }
 
