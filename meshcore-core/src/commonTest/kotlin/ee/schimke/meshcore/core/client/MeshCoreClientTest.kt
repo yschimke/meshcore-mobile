@@ -107,6 +107,66 @@ class MeshCoreClientTest {
     }
 
   @Test
+  fun commandBeforeStart_throws() = runTest {
+    val transport = FakeTransport()
+    val client = MeshCoreClient(transport, backgroundScope)
+
+    // getContacts() on an unstarted client must fail fast rather than
+    // hang waiting for a response the device will never send.
+    assertFailsWith<IllegalStateException> { client.getContacts(timeoutMs = 100) }
+
+    // ...and nothing should have hit the wire.
+    assertTrue(transport.sentFrames.isEmpty(), "no frame should be sent before start()")
+  }
+
+  @Test
+  fun enforceLifecycleFalse_allowsCommandWithoutStart() =
+    runTest(UnconfinedTestDispatcher()) {
+      val transport = FakeTransport()
+      val client =
+        MeshCoreClient(
+          transport,
+          CoroutineScope(UnconfinedTestDispatcher(testScheduler)),
+          enforceLifecycle = false,
+        )
+
+      // The escape hatch lets a consumer drive the transport without a
+      // handshake — getContacts should reach the wire even though the
+      // pump was never started by start().
+      val job = launch { runCatching { client.getContacts(timeoutMs = 100) } }
+      job.join()
+
+      assertTrue(
+        transport.sentFrames.any { it[0] == CommandCode.GetContacts.raw },
+        "GetContacts frame should be sent when lifecycle enforcement is off",
+      )
+    }
+
+  @Test
+  fun start_returnsStartedHandleThatIssuesCommands() =
+    runTest(UnconfinedTestDispatcher()) {
+      val transport = FakeTransport()
+      val client =
+        MeshCoreClient(transport, CoroutineScope(UnconfinedTestDispatcher(testScheduler)))
+
+      val job = launch { client.start(timeoutMs = 2_000) }
+      transport.receive(selfInfoFrame())
+      job.join()
+
+      // The handle returned by start() exposes the command surface and is
+      // the same instance as the client.
+      val started: StartedMeshCoreClient = client
+      assertTrue(transport.sentFrames.any { it[0] == CommandCode.AppStart.raw })
+
+      // Issuing a command through the started client no longer throws.
+      val fetch = launch { runCatching { started.getContacts(timeoutMs = 100) } }
+      fetch.join()
+      assertTrue(transport.sentFrames.any { it[0] == CommandCode.GetContacts.raw })
+
+      client.stop()
+    }
+
+  @Test
   fun seedFromCache_populatesEmptyStateFlows() = runTest {
     val transport = FakeTransport()
     val client = MeshCoreClient(transport, backgroundScope)
