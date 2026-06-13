@@ -37,3 +37,6 @@ app/project.info
 */bin/*
 
 /.compose-preview-cli/
+
+# design-parity run output (generated; reference inputs live under design/)
+/.design-parity/out/

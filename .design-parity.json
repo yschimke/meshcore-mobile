@@ -1,0 +1,4 @@
+{
+  "$schema": "https://github.com/yschimke/design-parity/schema/parity-config.schema.json",
+  "direction": "code-led"
+}
