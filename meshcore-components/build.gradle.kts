@@ -12,6 +12,8 @@ kotlin {
     namespace = "ee.schimke.meshcore.components"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     minSdk = libs.versions.android.minSdk.get().toInt()
+    // Generate R for the Google Fonts cert array used by the Android font actual.
+    androidResources.enable = true
   }
 
   // Desktop (JVM) target: lets the shared presentational composables render on
@@ -41,6 +43,8 @@ kotlin {
         api(libs.compose.material.icons.extended)
         api(libs.androidx.activity.compose)
         api(libs.androidx.core.ktx)
+        // Downloadable Google Fonts provider for the branded faces (Android).
+        implementation(libs.compose.ui.text.google.fonts)
       }
     }
   }
