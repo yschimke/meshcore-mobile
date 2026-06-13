@@ -139,8 +139,9 @@ separated by `Dimens.RowGap` (8dp).
 
 Every screen has two composables:
 
-1. `FooScreen(onThing: () -> Unit)` — stateful entry point. Observes
-   `MeshcoreApp.get().manager`, wires callbacks, handles navigation.
+1. `FooScreen(onThing: () -> Unit)` — stateful entry point. Reads the
+   `AppGraph` via `LocalAppGraph.current` (controller, repository, …),
+   wires callbacks, handles navigation.
 2. `FooBody(state: …, onThing: () -> Unit, …)` — stateless body.
    Takes plain data and lambdas, renders UI. **This is what gets
    previewed.**

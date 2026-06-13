@@ -5,10 +5,14 @@ the reasoning behind many of these items.
 
 ## Architecture
 
-- [ ] Replace `MeshcoreApp` singleton with dependency injection
-  - Eliminate `MeshcoreApp.get()` calls scattered through UI code
-  - Make controllers injectable for testing
-  - Replace `GlobalScope.launch()` with scoped coroutines
+- [x] Replace `MeshcoreApp` singleton with dependency injection
+  - [x] Eliminate `MeshcoreApp.get()` calls (UI via `LocalAppGraph`,
+    workers/services via `Context.appGraph()`)
+  - [x] Make controllers injectable for testing (explicit `AppGraph`;
+    `AppConnectionController` takes its collaborators as parameters)
+  - [x] Replace `GlobalScope.launch()` with a scoped `applicationScope`
+  - [x] Centralize transport wiring in `meshcore-session` `TransportFactory`
+    (shared by app + CLI); decompose `AppConnectionController`
 - [x] Break `DeviceScreen.kt` (975 → 515 lines) into focused files
   - [x] Extract status views (`DeviceConnectStatus`, `DeviceStatusView`,
     `ConnectingCard`, `FailureCard`) to `DeviceStatusViews.kt` (231 lines)
