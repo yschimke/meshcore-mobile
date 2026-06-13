@@ -23,9 +23,20 @@ the first subject, in both **light** and **dark** themes.
 meshcore-mobile is **Android-only** for UI (the `:app` previews use
 `androidx.compose.ui.tooling.preview.Preview`; there is no Desktop/JVM Compose
 Multiplatform target). So parity uses the **Android render path** (Robolectric
-native graphics, no emulator) rather than the cheaper CMP/Desktop one. Lifting a
-pure composable + preview into `commonMain`/`desktopMain` would enable the
-Desktop path later, but isn't required.
+native graphics, no emulator) rather than the cheaper CMP/Desktop one.
+
+The Desktop path was spiked (a throwaway `jvm("desktop")` module with a
+`commonMain` `@Preview`). The build side works — Skiko resolves, `commonMain`
+Compose + the androidx `@Preview` annotation compile for desktop — but the
+render fails on a Skiko native-binding mismatch (`UnsatisfiedLinkError`
+`…skia.paragraph…_nSetFontEdging`): this repo is on Compose Multiplatform 1.11,
+whose Skiko Java bindings are newer than the native lib the renderer loads.
+That's an upstream renderer/Skiko lockstep gap, tracked at
+[compose-ai-tools#1844](https://github.com/yschimke/compose-ai-tools/issues/1844).
+Until it's resolved we stay on the Android path. Migrating the presentational
+composables into `commonMain` (plus inlining the `material-icons-extended` icons
+and bundling fonts, both Android-only) would let parity move to the Desktop path
+once the renderer supports CMP 1.11.
 
 ## Reproduce
 
