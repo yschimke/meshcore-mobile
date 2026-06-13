@@ -35,8 +35,12 @@ the reasoning behind many of these items.
 - [x] Core: unit tests for `MeshCoreClient` state machine (fake transport)
   - `FakeTransport`, `MeshCoreClientTest` (start, timeout, parse, seedFromCache)
 - [ ] Core: integration test for client handshake + event parsing
-- [ ] Core: test `MeshCoreManager` lifecycle (connect, disconnect, reconnect)
-- [ ] Data: test `MeshcoreRepository` device merging and deduplication
+- [x] Core: test `MeshCoreManager` lifecycle (connect, disconnect, reconnect)
+  - `MeshCoreManagerTest` (connect/disconnect, superseding connect, reconnect,
+    transport-error/disconnect state transitions, connect failure)
+- [x] Data: test `MeshcoreRepository` device merging and deduplication
+  - `MeshcoreRepositoryTest` (in-memory Room: public-key lookup, merge moves
+    transport + preserves canonical data, cascade delete, message dedup)
 - [x] Transport: test `StreamFrameCodec` edge cases (partial frames, junk recovery, oversized, reset)
 - [ ] App: unit tests for `AppConnectionController`
 - [ ] App: Compose screenshot tests for key UI states (empty, loaded, error)
