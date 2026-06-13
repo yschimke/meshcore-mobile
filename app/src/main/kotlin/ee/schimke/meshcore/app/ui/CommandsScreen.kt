@@ -26,7 +26,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ChatMessage
@@ -46,7 +46,7 @@ fun CommandsScreen(
     channelIndex: Int,
     onBack: () -> Unit,
 ) {
-    val app = MeshcoreApp.get()
+    val app = LocalAppGraph.current
     val controller = app.connectionController
     val repository = app.repository
     val uiState by controller.state.collectAsState()

@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.appGraph
 import ee.schimke.meshcore.data.repository.SavedTransport
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -28,7 +28,7 @@ class DevicePresenceReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != ACTION_DEVICE_APPEARING) return
 
-        val app = try { MeshcoreApp.get() } catch (_: Throwable) { return }
+        val app = runCatching { context.appGraph() }.getOrNull() ?: return
         val controller = app.connectionController
 
         // Already connected — nothing to do

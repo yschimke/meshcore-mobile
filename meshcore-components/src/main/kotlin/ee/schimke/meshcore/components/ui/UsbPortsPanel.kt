@@ -42,13 +42,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import dev.mcarr.usb.interfaces.ISerialPortWrapper
 
 private const val ACTION_USB_PERMISSION = "ee.schimke.meshcore.USB_PERMISSION"
 
-/** Display-friendly wrapper pairing a port with its USB device metadata. */
+/**
+ * Transport-agnostic descriptor of a USB serial port. Carries only the
+ * identifying triple (wrapper [className] plus vendor/product ids) so
+ * this UI module never has to depend on `meshcore-transport-usb`; the
+ * concrete serial port is resolved at the integration layer.
+ */
+data class UsbPortDescriptor(
+    val className: String,
+    val vendorId: Int,
+    val productId: Int,
+)
+
+/** Display-friendly wrapper pairing a port descriptor with its USB device metadata. */
 data class UsbPortInfo(
-    val port: ISerialPortWrapper,
+    val descriptor: UsbPortDescriptor,
     val deviceName: String?,
     val manufacturerName: String?,
     val productName: String?,
@@ -75,38 +86,41 @@ private fun Int.pid() = "%04X".format(this)
 /**
  * Lists USB serial ports and connects to the one picked by the user.
  * Automatically requests Android USB permission when needed.
+ *
  * The enumeration function is injected so the caller can route it
- * through Metro DI ([ee.schimke.meshcore.mobile.AndroidUsbPortLister]).
+ * through the integration layer; it yields transport-agnostic
+ * [UsbPortDescriptor]s, keeping this UI module free of any
+ * `meshcore-transport-usb` dependency.
  */
 @Composable
 fun UsbPortsPanel(
     busy: Boolean,
-    listPorts: () -> List<ISerialPortWrapper>,
-    onConnect: (ISerialPortWrapper) -> Unit,
+    listPorts: () -> List<UsbPortDescriptor>,
+    onConnect: (UsbPortDescriptor) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val usbManager = remember { context.getSystemService(Context.USB_SERVICE) as UsbManager }
     val portInfos = remember { mutableStateListOf<UsbPortInfo>() }
-    // Port waiting for permission grant
-    var pendingPort by remember { mutableStateOf<ISerialPortWrapper?>(null) }
+    // Descriptor waiting for permission grant
+    var pendingPort by remember { mutableStateOf<UsbPortDescriptor?>(null) }
 
     fun refreshPorts() {
         val rawPorts = listPorts()
         val sysDevices = usbManager.deviceList.values
         portInfos.clear()
-        portInfos.addAll(rawPorts.map { port ->
+        portInfos.addAll(rawPorts.map { descriptor ->
             val dev = sysDevices.firstOrNull { d ->
-                d.vendorId == port.vendorId && d.productId == port.productId
+                d.vendorId == descriptor.vendorId && d.productId == descriptor.productId
             }
             UsbPortInfo(
-                port = port,
+                descriptor = descriptor,
                 deviceName = dev?.deviceName,
                 manufacturerName = dev?.manufacturerName,
                 productName = dev?.productName,
                 deviceAddress = dev?.deviceName ?: "unknown",
-                vendorId = port.vendorId,
-                productId = port.productId,
+                vendorId = descriptor.vendorId,
+                productId = descriptor.productId,
             )
         })
     }
@@ -119,8 +133,8 @@ fun UsbPortsPanel(
             override fun onReceive(ctx: Context, intent: Intent) {
                 when (intent.action) {
                     ACTION_USB_PERMISSION -> {
-                        val granted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
-                        if (granted) {
+                        val wasGranted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
+                        if (wasGranted) {
                             pendingPort?.let(onConnect)
                         }
                         pendingPort = null
@@ -147,7 +161,7 @@ fun UsbPortsPanel(
         }
         android.util.Log.d("UsbConnect", "connectWithPermission: device=$device hasPermission=${device?.let { usbManager.hasPermission(it) }}")
         if (device != null && !usbManager.hasPermission(device)) {
-            pendingPort = info.port
+            pendingPort = info.descriptor
             // FLAG_MUTABLE is required so the system can attach EXTRA_PERMISSION_GRANTED.
             // FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT is needed on API 34+ because the
             // broadcast goes to a dynamically registered receiver (no component).
@@ -162,7 +176,7 @@ fun UsbPortsPanel(
             usbManager.requestPermission(device, pi)
         } else if (device != null) {
             android.util.Log.d("UsbConnect", "Permission granted, calling onConnect")
-            onConnect(info.port)
+            onConnect(info.descriptor)
         } else {
             android.util.Log.w("UsbConnect", "Device not found in system list for vid=${info.vendorId} pid=${info.productId}")
         }
@@ -203,7 +217,7 @@ fun UsbPortsPanel(
                     UsbPortCard(
                         label = info.displayLabel,
                         subtitle = info.subtitle,
-                        busy = busy || pendingPort == info.port,
+                        busy = busy || pendingPort == info.descriptor,
                         onConnect = { connectWithPermission(info) },
                         modifier = Modifier.animateItem(),
                     )

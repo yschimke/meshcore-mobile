@@ -9,7 +9,7 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.appGraph
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
@@ -32,7 +32,7 @@ class PeriodicRefreshWorker(
 ) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
-        val app = MeshcoreApp.get()
+        val app = applicationContext.appGraph()
         val favorite = app.repository.observeFavorite().first()
         if (favorite == null) {
             Log.d(TAG, "No favorite device, skipping refresh")

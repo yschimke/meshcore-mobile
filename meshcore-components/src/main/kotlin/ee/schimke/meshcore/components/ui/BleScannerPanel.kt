@@ -1,10 +1,5 @@
 package ee.schimke.meshcore.components.ui
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -43,124 +38,45 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import ee.schimke.meshcore.core.protocol.MeshCoreConstants
-import ee.schimke.meshcore.transport.ble.BleAdvertisement
-import ee.schimke.meshcore.transport.ble.BleScanner
 
 /** Display-only row so [BleDeviceList] can be previewed without Kable types. */
 data class BleDeviceRow(val identifier: String, val name: String?, val rssi: Int)
 
 /**
- * Composable panel that owns the full BLE connect UX:
- * runtime permission flow, Kable scanner, and a live device list.
- * Callers only need to supply a [busy] flag and the connect callback.
+ * Presentational BLE scanner content: renders the pairing tip, scan
+ * status, an optional error card, and the device list. It owns no
+ * scanning or permission state — the integration layer (which depends
+ * on `meshcore-transport-ble`) drives those and hands neutral
+ * [BleDeviceRow]s in. Keeping it transport-free means a TCP-only
+ * consumer of this module never pulls in BLE/USB transports.
  */
 @Composable
-fun BleScannerPanel(
+fun BleScannerContent(
+    rows: List<BleDeviceRow>,
     busy: Boolean,
-    onConnectAdvertisement: (BleAdvertisement) -> Unit,
+    meshOnly: Boolean,
+    onMeshOnlyChange: (Boolean) -> Unit,
+    onPick: (BleDeviceRow) -> Unit,
     modifier: Modifier = Modifier,
+    scanError: String? = null,
 ) {
-    val context = LocalContext.current
-    // BLE perms gate the scanner UI. POST_NOTIFICATIONS (Android 13+) is
-    // requested alongside but not gating — a denied notification permission
-    // shouldn't block connecting, it just means the foreground-service
-    // notification won't appear.
-    val blePerms = remember {
-        arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT)
-    }
-    val requestedPerms = remember {
-        buildList {
-            addAll(blePerms)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                add(Manifest.permission.POST_NOTIFICATIONS)
-            }
-        }.toTypedArray()
-    }
-    fun checkGranted(): Boolean = blePerms.all {
-        ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
-    }
-    var granted by remember { mutableStateOf(checkGranted()) }
-    var lastResult by remember { mutableStateOf<Map<String, Boolean>?>(null) }
-    val launcher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions(),
-    ) { result ->
-        lastResult = result
-        granted = blePerms.all { result[it] == true }
-    }
-    LaunchedEffect(Unit) {
-        granted = checkGranted()
-        // Existing users already granted BLE but never saw a POST_NOTIFICATIONS
-        // prompt (that permission was added later). Ask for anything still
-        // missing on first entry; system dialog is a no-op for granted perms
-        // and won't re-show after the user has denied twice.
-        if (granted && requestedPerms.any {
-                ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
-            }) {
-            launcher.launch(requestedPerms)
-        }
-    }
-
     Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        if (!granted) {
-            BlePermissionPanel(lastResult, onRequest = { launcher.launch(requestedPerms) })
-            return@Column
-        }
-
-        val scanner = remember { BleScanner() }
-        val devices = remember { mutableStateListOf<BleAdvertisement>() }
-        var scanError by remember { mutableStateOf<String?>(null) }
-        var meshOnly by remember { mutableStateOf(true) }
-
-        LaunchedEffect(granted, meshOnly) {
-            devices.clear()
-            scanError = null
-            if (!granted) return@LaunchedEffect
-            try {
-                scanner.advertisements.collect { adv ->
-                    val name = adv.name
-                    if (meshOnly) {
-                        if (name == null) return@collect
-                        val isMesh = MeshCoreConstants.BLE_NAME_PREFIXES.any { name.startsWith(it) }
-                        if (!isMesh) return@collect
-                    }
-                    if (devices.none { it.identifier == adv.identifier }) devices.add(adv)
-                }
-            } catch (c: kotlinx.coroutines.CancellationException) {
-                // Tab switch, navigation, or user-initiated cancel —
-                // not a scan failure. Suppress and re-throw for
-                // structured concurrency.
-                throw c
-            } catch (t: Throwable) {
-                // Only show errors that aren't routine scan interruptions
-                val msg = t.message?.lowercase() ?: ""
-                val suppress = msg.contains("bluetooth") && (msg.contains("disabled") || msg.contains("off"))
-                if (!suppress) {
-                    scanError = t.message
-                }
-                granted = checkGranted()
-            }
-        }
-
         BlePairingTipBanner()
 
         ScanStatusBar(
-            shown = devices.size,
+            shown = rows.size,
             meshOnly = meshOnly,
-            onMeshOnlyChange = { meshOnly = it },
+            onMeshOnlyChange = onMeshOnlyChange,
         )
         AnimatedVisibility(
             visible = scanError != null,
@@ -196,16 +112,13 @@ fun BleScannerPanel(
             }
         }
 
-        BleDeviceList(
-            rows = devices.map { BleDeviceRow(it.identifier, it.name, it.rssi) },
-            busy = busy,
-            onPick = { row ->
-                devices.firstOrNull { it.identifier == row.identifier }
-                    ?.let(onConnectAdvertisement)
-            },
-        )
+        BleDeviceList(rows = rows, busy = busy, onPick = onPick)
     }
 }
+
+/** Filter for whether a scanned BLE [name] looks like a MeshCore radio. */
+fun isMeshCoreName(name: String?): Boolean =
+    name != null && MeshCoreConstants.BLE_NAME_PREFIXES.any { name.startsWith(it) }
 
 @Composable
 fun ScanStatusBar(

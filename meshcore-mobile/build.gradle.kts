@@ -3,7 +3,6 @@ plugins {
   alias(libs.plugins.androidKotlinMultiplatformLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
-  alias(libs.plugins.metro)
 }
 
 kotlin {
@@ -22,7 +21,11 @@ kotlin {
     }
     val androidMain by getting {
       dependencies {
+        // The Android integration layer: reusable UI + transports + the
+        // shared session factory wired together for host apps.
         api(projects.meshcoreComponents)
+        api(projects.meshcoreSession)
+        implementation(projects.meshcoreData)
         implementation(libs.kotlinx.coroutines.android)
         api(projects.meshcoreTransportBle)
         api(projects.meshcoreTransportUsb)
