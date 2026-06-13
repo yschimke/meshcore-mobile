@@ -26,35 +26,40 @@ branch, regenerated on every push to `main`.
 
 ## Render path
 
-meshcore-mobile is **Android-only** for UI (the `:app` previews use
-`androidx.compose.ui.tooling.preview.Preview`; there is no Desktop/JVM Compose
-Multiplatform target). So parity uses the **Android render path** (Robolectric
-native graphics, no emulator) rather than the cheaper CMP/Desktop one.
+Parity renders on the **CMP desktop (Skiko) backend**. The presentational
+`DeviceBody` (and its leaf cards, theme, `Section`/`Dimens`, and the two parity
+`@Preview`s) live in **`:meshcore-components` `commonMain`** with a
+`jvm("desktop")` target, so the candidate renders off-Android — no Robolectric,
+no emulator. `bundle pack --module meshcore-components` reports `backend=desktop`.
 
-The Desktop path was spiked (a throwaway `jvm("desktop")` module with a
-`commonMain` `@Preview`). The build side works — Skiko resolves, `commonMain`
-Compose + the androidx `@Preview` annotation compile for desktop — but the
-render fails on a Skiko native-binding mismatch (`UnsatisfiedLinkError`
-`…skia.paragraph…_nSetFontEdging`): this repo is on Compose Multiplatform 1.11,
-whose Skiko Java bindings are newer than the native lib the renderer loads.
-That's an upstream renderer/Skiko lockstep gap, tracked at
-[compose-ai-tools#1844](https://github.com/yschimke/compose-ai-tools/issues/1844).
-Until it's resolved we stay on the Android path. Migrating the presentational
-composables into `commonMain` (plus inlining the `material-icons-extended` icons
-and bundling fonts, both Android-only) would let parity move to the Desktop path
-once the renderer supports CMP 1.11.
+Making the Device screen render off-Android required:
+- **Vendored icons** — `material-icons-extended` is Android-only on CMP, so the
+  20 Material `Rounded` icons the shared composables use are copied into
+  `commonMain` `MeshIcons.kt`, generated faithfully from the real androidx
+  `ImageVector`s by `app/src/test/.../IconExtractorTest.kt` (re-runnable).
+- **Multiplatform fonts** — the branded faces are wired `expect`/`actual`:
+  Android keeps the downloadable Google Fonts provider; desktop loads bundled
+  `.ttf` (`:meshcore-components/src/desktopMain/resources/fonts`).
+- **`:meshcore-components` applies `id("ee.schimke.composeai.preview")`** — the
+  CLI can't auto-inject into a `com.android.kotlin.multiplatform.library` module.
+
+This was unblocked by **compose-ai-tools 0.15.1** (#1846 resolves the renderer in
+the consumer's Compose graph so Skiko stays coherent with CMP 1.11); on 0.15.0
+the desktop render failed with a Skiko `UnsatisfiedLinkError`
+([compose-ai-tools#1844](https://github.com/yschimke/compose-ai-tools/issues/1844)).
+The stateful `DeviceScreen`/`ConnectedDevice` wrappers (transport, ViewModel)
+stay in `:app`; only the pure presentational subtree moved.
 
 ## Reproduce
 
 ```sh
-# 1. Render the candidates to one portable preview bundle (PNG + zip polyglot).
-#    Requires the Android SDK (see .claude/hooks/session-start.sh) and a
-#    UTF-8 locale (the preview ids contain an em-dash).
+# 1. Render the candidates to one portable preview bundle (CMP desktop backend).
+#    UTF-8 locale needed (the preview ids contain an em-dash).
 export LANG=C.UTF-8 LC_ALL=C.UTF-8
-compose-preview bundle pack --module app \
-  --id "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyPreview_Device — populated" \
-  --id "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyDarkPreview_Device — dark" \
-  -o app/build/compose-previews/bundle.png
+compose-preview bundle pack --module meshcore-components \
+  --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Device — populated" \
+  --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device — dark" \
+  -o build/design-parity/bundle.png
 
 # 2. Render the reference PNGs from the HTML (required — they're not committed),
 #    at the candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px):
@@ -66,16 +71,15 @@ done
 
 # 3. Run the parity check and open the reports.
 design-parity run --repo . \
-  --components "app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt#DeviceBodyPreview,app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt#DeviceBodyDarkPreview" \
-  --candidate-bundles app/build/compose-previews/bundle.png \
+  --components "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyPreview,meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyDarkPreview" \
+  --candidate-bundles build/design-parity/bundle.png \
   --out .design-parity/out
 # -> read the markdown verdict; open
 #    .design-parity/out/<component>/report.html  (reference | candidate | diff)
 ```
 
-Latest run: visual diff **~10%** (light) / **~6.6%** (dark) of pixels over the
-overlap — mostly typography (the branded Orbitron / Space Grotesk faces vs the
-web fallback) and minor vertical drift.
+Latest run (desktop backend): visual diff **~11%** (light) / **~6%** (dark) of
+pixels over the overlap — mostly typography and minor vertical drift.
 
 ## Continuous artifacts (`design-parity/main` branch)
 

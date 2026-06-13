@@ -30,8 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest, which the
-      # Robolectric render path uses (same assumption as compose-preview.yml).
+      # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest (the
+      # :meshcore-components module still has an android target to configure);
+      # the candidate itself renders on the CMP desktop (Skiko) backend.
       - uses: ./.github/actions/setup
 
       # The consumer-facing CLI install (downloads a release, doesn't build from
@@ -42,7 +43,7 @@ jobs:
         with:
           version: "0.15.1"
 
-      - name: Render candidate bundle
+      - name: Render candidate bundle (CMP desktop)
         env:
           # The preview ids contain an em-dash; force a UTF-8 locale.
           LANG: C.UTF-8
@@ -51,10 +52,12 @@ jobs:
           set -euo pipefail
           mkdir -p build/design-parity
           # Drive the render from design-map.json so this never drifts from it.
+          # DeviceBody + its previews live in :meshcore-components (commonMain),
+          # so the candidate renders on the desktop backend.
           mapfile -t IDS < <(jq -r '.components[].previewId' design-map.json)
           args=()
           for id in "${IDS[@]}"; do args+=(--id "$id"); done
-          compose-preview bundle pack --module app "${args[@]}" \
+          compose-preview bundle pack --module meshcore-components "${args[@]}" \
             -o build/design-parity/candidates.bundle.png --timeout 600
 
       # Reference images are generated from the design/*.html source of truth

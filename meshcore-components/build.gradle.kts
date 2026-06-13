@@ -3,6 +3,10 @@ plugins {
   alias(libs.plugins.androidKotlinMultiplatformLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  // compose-preview can't auto-inject into a com.android.kotlin.multiplatform.library
+  // module, so apply its plugin explicitly to expose the desktop previews (DeviceBody)
+  // to the design-parity render. Keep the version in lockstep with the CLI.
+  alias(libs.plugins.composePreview)
 }
 
 kotlin {

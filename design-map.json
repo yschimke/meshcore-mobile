@@ -2,16 +2,16 @@
   "$schema": "https://github.com/yschimke/design-parity/schema/design-map.schema.json",
   "components": [
     {
-      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt#DeviceBodyPreview",
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyPreview",
       "source": "claude-design",
       "ref": "design/DeviceScreen.light.html",
-      "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyPreview_Device — populated"
+      "previewId": "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Device — populated"
     },
     {
-      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt#DeviceBodyDarkPreview",
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyDarkPreview",
       "source": "claude-design",
       "ref": "design/DeviceScreen.dark.html",
-      "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyDarkPreview_Device — dark"
+      "previewId": "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device — dark"
     }
   ]
 }
