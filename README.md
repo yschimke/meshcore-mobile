@@ -42,4 +42,20 @@ in your IDE’s toolbar or run it directly from the terminal:
 
 ---
 
+## Design parity
+
+UI screens are checked against their design references with
+[design-parity](https://github.com/yschimke/design-parity). The design intent is
+committed as HTML under [`design/`](./design); see
+[`docs/design-parity.md`](./docs/design-parity.md) for how it works.
+
+The rendered artifacts (reference | candidate | diff `report.html` triptychs and
+the candidate bundle) are **not committed** — they're regenerated on every push
+to `main` by [`.github/workflows/design-parity.yml`](./.github/workflows/design-parity.yml)
+and published to the
+[**`design-parity/main`**](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
+branch, which always reflects the current parity state of `main`.
+
+---
+
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…

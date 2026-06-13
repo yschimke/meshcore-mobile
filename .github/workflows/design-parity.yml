@@ -57,6 +57,22 @@ jobs:
           compose-preview bundle pack --module app "${args[@]}" \
             -o build/design-parity/candidates.bundle.png --timeout 600
 
+      # Reference images are generated from the design/*.html source of truth
+      # (not committed — they'd drift from the HTML). The claude-design adapter's
+      # built-in rasterizer renders at Chrome's default viewport, which would clip
+      # the 411x914 design, so render them ourselves at the right size/scale (the
+      # Pixel 7 the @Preview targets: 411x914 dp @ 2.625). google-chrome-stable
+      # is preinstalled on ubuntu-latest.
+      - name: Render reference images from HTML
+        run: |
+          set -euo pipefail
+          for ref in $(jq -r '.components[].ref' design-map.json); do
+            png="${ref%.html}.png"
+            google-chrome-stable --headless=new --no-sandbox --disable-gpu \
+              --hide-scrollbars --force-device-scale-factor=2.625 \
+              --window-size=411,914 --screenshot="$png" "file://$PWD/$ref"
+          done
+
       # design-parity isn't published yet and its dist/ isn't committed, so build
       # it from a pinned checkout. Replace with a pinned `uses:` once the action
       # ships its bundled dist (design-parity#56 / #8).

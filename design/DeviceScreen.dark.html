@@ -7,8 +7,10 @@
   repo-root design-map.json (the `claude-design` entry points here). The visible
   markup below is the design hand-off; the application/design-parity+json script
   block at the end is the machine-readable manifest the design-parity
-  `claude-design` adapter reads (componentId, tokens, and the pre-rendered PNG
-  variant so the parity run is fully offline — no headless browser required).
+  `claude-design` adapter reads (componentId, tokens, and the `src` of the
+  reference PNG). That PNG is generated from this document (not committed — it
+  would drift from the HTML); the current render lives on the `design-parity/main`
+  branch. See docs/design-parity.md.
 
   This is the design intent for ee.schimke.meshcore.app.ui.DeviceScreen#DeviceBody
   as rendered by DeviceBodyDarkPreview ("Device — dark"). Colours, spacing,

@@ -12,11 +12,17 @@ the first subject, in both **light** and **dark** themes.
 
 | Path | Role |
 | --- | --- |
-| `design/DeviceScreen.light.html` | Claude Design HTML export — the **light** reference (`DeviceBodyPreview`). Carries an `application/design-parity+json` handoff manifest (M3 light tokens + a pre-rendered PNG variant). |
+| `design/DeviceScreen.light.html` | Claude Design HTML export — the **light** reference (`DeviceBodyPreview`), and the single source of truth for that variant. Carries an `application/design-parity+json` handoff manifest (M3 light tokens + the `src` of its reference PNG). |
 | `design/DeviceScreen.dark.html` | The **dark** reference (`DeviceBodyDarkPreview`), M3 dark tokens. |
-| `design/DeviceScreen.{light,dark}.png` | Pre-rendered reference images the manifests' `src` point to, so a parity run is fully offline (no headless browser at run time). |
 | `design-map.json` | Correspondence: each preview-function code handle ↔ its reference, plus the `previewId` that reconciles the compose-preview render id with the handle. |
 | `.design-parity.json` | Parity direction. **`code-led`** (advisory) for now — flip to `design-led` once thresholds are calibrated. |
+
+The reference PNGs the manifests' `src` point to (`design/*.png`) are **generated
+from the HTML, not committed** (they would drift from it) — gitignored and
+rendered on demand (see below). The current renders, plus the candidate bundle
+and `report.html` triptychs, live on the
+[`design-parity/main`](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
+branch, regenerated on every push to `main`.
 
 ## Render path
 
@@ -50,11 +56,13 @@ compose-preview bundle pack --module app \
   --id "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyDarkPreview_Device — dark" \
   -o app/build/compose-previews/bundle.png
 
-# 2. (Optional) re-render a reference PNG from its committed HTML, at the
-#    candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px):
-chrome --headless=new --no-sandbox --hide-scrollbars \
-  --force-device-scale-factor=2.625 --window-size=411,914 \
-  --screenshot=design/DeviceScreen.light.png design/DeviceScreen.light.html
+# 2. Render the reference PNGs from the HTML (required — they're not committed),
+#    at the candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px):
+for ref in $(jq -r '.components[].ref' design-map.json); do
+  chrome --headless=new --no-sandbox --hide-scrollbars \
+    --force-device-scale-factor=2.625 --window-size=411,914 \
+    --screenshot="${ref%.html}.png" "$ref"
+done
 
 # 3. Run the parity check and open the reports.
 design-parity run --repo . \
