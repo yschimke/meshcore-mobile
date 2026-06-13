@@ -3,32 +3,6 @@
 
 Rendered from `:<module>:composePreviewRenderAndroidResources`. One row per (resource × qualifier × shape) capture. See [`references/resource-previews.md`](https://github.com/yschimke/skills/blob/main/skills/compose-preview/references/resource-previews.md) for the rendering catalogue.
 
-> [!WARNING]
-> 16 resource capture(s) failed to render in the latest update (16 with no prior baseline to retain). See **Resource Render Failures** below.
-
-### Resource Render Failures
-
-The render task completed but no PNG was produced for these resource captures. Entries with a prior baseline keep their previous image; the rest are absent from the gallery until a successful render lands.
-
-| Resource | Module | Type | Qualifiers | Shape | Baseline |
-|---|---|---|---|---|---|
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | CIRCLE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | CIRCLE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | ROUNDED_SQUARE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | ROUNDED_SQUARE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | SQUARE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | SQUARE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | SQUIRCLE | none |
-| `mipmap/ic_launcher` | app | ADAPTIVE_ICON | `xhdpi` | SQUIRCLE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | CIRCLE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | CIRCLE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | ROUNDED_SQUARE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | ROUNDED_SQUARE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | SQUARE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | SQUARE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | SQUIRCLE | none |
-| `mipmap/ic_launcher_round` | app | ADAPTIVE_ICON | `xhdpi` | SQUIRCLE | none |
-
 ### app
 
 | Resource | Type | Qualifiers | Shape | Image |
