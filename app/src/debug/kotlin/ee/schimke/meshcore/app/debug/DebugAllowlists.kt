@@ -1,6 +1,6 @@
 package ee.schimke.meshcore.app.debug
 
-import ee.schimke.meshcore.app.ui.COMMANDS_CHANNEL_NAME
+import ee.schimke.meshcore.components.ui.COMMANDS_CHANNEL_NAME
 
 /**
  * Central allowlists for the debug adb surface. Kept in one place so a

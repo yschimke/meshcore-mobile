@@ -25,7 +25,7 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.1
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.5
         with:
           # The renderer can't rasterise our adaptive launcher icons
           # (mipmap/ic_launcher[_round]) to PNG, so those resource captures
@@ -33,3 +33,8 @@ jobs:
           # warning (still surfaced in the PR comment) so the check isn't red on
           # a renderer limitation unrelated to the Compose previews themselves.
           missing-renders: warn
+          # The repo has no notification previews, and :meshcore-components (a
+          # desktop preview module for design-parity) would otherwise be the only
+          # module scanned by the notifications pipeline — which hard-fails when
+          # no module produces a *Notification*.png. Skip the pipeline entirely.
+          skip: notifications
