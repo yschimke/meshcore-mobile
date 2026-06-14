@@ -19,12 +19,10 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `DeviceSummaryCardPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceSummaryCardPopulatedPreview_DeviceSummaryCard_populated.png" width="150" /> |
 | `TcpConnectPanelBusyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/TcpConnectPanelBusyPreview_TcpConnectPanel_busy.png" width="150" /> |
 | `TcpConnectPanelIdlePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/TcpConnectPanelIdlePreview_TcpConnectPanel_idle.png" width="150" /> |
-| `DeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyDarkPreview_Device_dark.png" width="150" /> |
 | `DeviceBodyLoadingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyLoadingPreview_Device_loading.png" width="150" /> |
 | `DeviceBodyLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyLowBatteryPreview_Device_low_battery.png" width="150" /> |
 | `DeviceBodyManyContactsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyManyContactsPreview_Device_many_contacts_scrolls.png" width="150" /> |
 | `DeviceBodyNoContactsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyNoContactsPreview_Device_contacts_loading.png" width="150" /> |
-| `DeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyPreview_Device_populated.png" width="150" /> |
 | `DeviceStatusConnectingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceStatusConnectingPreview_Device_status_connecting.png" width="150" /> |
 | `DeviceStatusFailedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceStatusFailedPreview_Device_status_failed.png" width="150" /> |
 | `PlayStoreFeature` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStoreFeature_Play_Store_feature_graphic_1024x500.png" width="150" /> |
@@ -52,6 +50,13 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `DeviceInfoWidgetEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png" width="150" /> |
 | `DeviceInfoWidgetPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png" width="150" /> |
 | `DeviceInfoWidgetStalePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale.png" width="150" /> |
+
+## meshcore-components
+
+| Preview | Image |
+|---------|-------|
+| `DeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyDarkPreview_Device_dark.png" width="150" /> |
+| `DeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyPreview_Device_populated.png" width="150" /> |
 
 ## wear
 
