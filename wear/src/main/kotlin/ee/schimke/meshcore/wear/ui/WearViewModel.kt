@@ -1,10 +1,11 @@
 package ee.schimke.meshcore.wear.ui
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import ee.schimke.meshcore.grpc.ConnectionState
 import ee.schimke.meshcore.grpc.ContactMsg
-import ee.schimke.meshcore.wear.MeshcoreWearApp
+import ee.schimke.meshcore.wear.WearGraphHolder
 import ee.schimke.meshcore.wear.data.MeshcoreWearClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,9 +28,10 @@ sealed class WearUiState {
     data class Error(val message: String) : WearUiState()
 }
 
-class WearViewModel : ViewModel() {
+class WearViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val client: MeshcoreWearClient = MeshcoreWearApp.get().meshClient
+    private val client: MeshcoreWearClient =
+        (application as WearGraphHolder).wearGraph.meshClient
 
     private val _state = MutableStateFlow<WearUiState>(WearUiState.Loading)
     val state: StateFlow<WearUiState> = _state.asStateFlow()

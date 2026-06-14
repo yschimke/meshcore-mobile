@@ -18,14 +18,27 @@ important consumer of that library, but it is not the library.
 ```
 meshcore-core          Pure Kotlin. Protocol, models, client, manager.
 meshcore-data          Room database + repository. Offline cache layer.
-meshcore-components    Reusable Compose UI (cards, chat bubbles, lists).
 meshcore-transport-*   One module per physical link (BLE, TCP, USB).
+meshcore-session       Neutral ConnectionRequest + shared TransportFactory
+                       (KMP: android + jvm). One "request → Transport"
+                       mapping shared by the app and the CLI.
+meshcore-components    Reusable Compose UI (cards, chat bubbles, lists).
+                       Transport-agnostic: panels take scan/port DTOs and
+                       this module has NO meshcore-transport-* dependency,
+                       so a TCP-only consumer pulls in no BLE/USB code. Its
+                       public API uses meshcore-core types or small UI DTOs.
+meshcore-mobile        Android integration layer. Wires components +
+                       transports + session together (stateful BLE scanner
+                       panel, USB lister/resolver, Android transport
+                       factory). The single Android entry point for hosts.
 meshcore-devices-proto Proto3 definitions for DataStore serialization.
 meshcore-grpc-service  gRPC service layer wrapping client API.
 ───────────────────────────────────────────────────────────────────────
-app                    Android phone app — consumes all of the above.
+app                    Android phone app — consumes meshcore-mobile,
+                       -components, -session, -data, -core (no direct
+                       transport deps).
 wear                   Wear OS companion — gRPC consumer via Data Layer.
-meshcore-cli           JVM CLI client (Clikt) — consumes core + TCP.
+meshcore-cli           JVM CLI client (Clikt) — core + session + transports.
 meshcore-tui           JVM terminal dashboard (Mordant) — same.
 ```
 
@@ -69,11 +82,14 @@ Three lines to connect, one call per command, StateFlows for
 everything reactive. If you can create a Transport and a
 CoroutineScope you can build a MeshCore app.
 
-**Where we've failed:** The library is easy to use but hard to use
-*correctly*. There is no compile-time guarantee that `start()` is
-called before `getContacts()`, or that `fetchAndPersist()` runs after
-connection. A builder or state-machine API that enforces the lifecycle
-would prevent a class of bugs.
+**Lifecycle is now enforced.** `MeshCoreClient.start()` returns a typed
+`StartedMeshCoreClient` handle, so new code can require the *started*
+capability in its signatures. Command methods on the client also guard
+at runtime — calling `getContacts()` before `start()` throws — with
+`enforceLifecycle = false` as the explicit unsafe escape hatch for frame
+replay and tests. (Full compile-time enforcement that threads the handle
+through every consumer remains a follow-up; `fetchAndPersist()` ordering
+is still by convention.)
 
 ---
 
@@ -110,10 +126,16 @@ The app follows **unidirectional data flow** with a stateful
 controller and stateless Compose UI:
 
 ```
-MeshcoreApp (singleton, owns graph)
-  └─ AppConnectionController (owns ConnectionUiState)
+AppGraph (explicit object graph, owns app-scoped singletons)
+  └─ AppConnectionController (owns ConnectionUiState; delegates to
+     │  TransportFactory, DeviceIdentityResolver, ConnectionSideEffects)
        └─ MeshCoreManager → MeshCoreClient → Transport
 ```
+
+`MeshcoreApp` only constructs the `AppGraph` and exposes it via
+`AppGraphHolder`. UI reads it through the `LocalAppGraph`
+CompositionLocal; workers/services/receivers resolve it with
+`Context.appGraph()`. There is no `MeshcoreApp.get()` service locator.
 
 UI screens observe `ConnectionUiState` (a sealed class:
 `Idle | Connecting | Connected | Failed`) and render accordingly.
@@ -132,17 +154,20 @@ This split is enforced by convention (see `docs/STYLEGUIDE.md` §
 Stateless / Stateful split) and makes every screen previewable with
 fake data.
 
-**Where we've failed:**
-- `DeviceScreen.kt` is 865 lines — too large for one file. The
-  connected-device UI, status cards, failure cards, and 165 lines of
-  preview functions should be extracted into separate files.
-- `MeshcoreApp` is a god-object singleton that owns the database,
-  repository, controller, theme preferences, widget bridge, and
-  presence manager. It uses `GlobalScope.launch()` in `onCreate()`.
-  This should be replaced with proper DI (Hilt or manual injection)
-  so components are testable and lifecycles are explicit.
-- Hidden dependencies are everywhere: `MeshcoreApp.get().connectionController`
-  appears deep in UI code with no way to inject a mock.
+**Resolved:**
+- Dependency injection: the `MeshcoreApp.get()` service locator and the
+  half-finished Metro graph were replaced by an explicit `AppGraph`
+  (and `WearAppGraph` on Wear). Startup work runs on a cancellable
+  `applicationScope`, not `GlobalScope`. Collaborators take their
+  dependencies as constructor parameters, so they're testable without an
+  `Application`.
+- `AppConnectionController` was decomposed: device-identity merge lives in
+  `DeviceIdentityResolver`, and OS-facing work behind a
+  `ConnectionSideEffects` interface — the controller is now connection
+  state + delegation.
+
+**Still open:**
+- `DeviceScreen.kt` is still large; further extraction is possible.
 
 ---
 
@@ -185,11 +210,11 @@ non-Kotlin consumers (Python scripts, web UIs, Go services). The CLI
 already demonstrates the pattern — connect via TCP bridge — and gRPC
 will formalize it into a stable service contract.
 
-**Where we've failed:**
-- The binary protocol has no formal specification. Frame types are
-  scattered across `Codes.kt`, `CommandCode` enum, and inline comments
-  in parsers. A `.proto` or `.fbs` definition of the wire format would
-  make it possible to generate parsers for other languages.
+**Wire format is now documented.** `docs/WIRE_PROTOCOL.md` is an informal
+but complete spec of the framing, opcodes, and body layouts, kept in sync
+with `Codes.kt` / `Frames.kt` / `Parsers.kt`. A machine-readable `.proto`
+or `.fbs` definition that could generate parsers for other languages is
+still a future step.
 
 ---
 
@@ -252,8 +277,9 @@ what they do.
 - The protocol has no message IDs. Responses are matched to requests
   by type, not by correlation ID. If the device sends an unexpected
   frame, the wrong consumer may match it. This is a protocol-level
-  limitation but the client could defend against it with sequence
-  numbers or at least logging mismatches.
+  limitation; the client now defends against it by logging a warning
+  whenever a frame decodes to `MeshEvent.Raw` (unknown opcode or failed
+  decode). True correlation IDs remain a firmware-level change.
 
 **Hardcoded values:**
 - BLE connection timeout (20s), periodic refresh interval, and command
@@ -268,7 +294,7 @@ what they do.
 | Priority | Area | Action |
 |---|---|---|
 | High | Testing | Add unit tests for core client, transport fakes, UI screenshot tests |
-| High | DI | Replace `MeshcoreApp` singleton with proper dependency injection |
+| ~~High~~ Done | DI | `MeshcoreApp.get()` replaced by explicit `AppGraph`/`WearAppGraph` |
 | Medium | File size | Break `DeviceScreen.kt` into focused files |
 | Medium | Error handling | Add logging to silent `runCatching` blocks; add BLE retry logic |
 | Medium | Documentation | Write a wire protocol spec (even informal) for `meshcore-core` |

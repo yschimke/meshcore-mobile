@@ -53,7 +53,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ee.schimke.meshcore.app.MeshcoreApp
+import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import androidx.compose.material3.CircularProgressIndicator
@@ -117,7 +117,7 @@ fun DeviceScreen(
     onNavigateToCommands: (ChannelInfo) -> Unit = {},
     onNavigateToSettings: (ChannelInfo) -> Unit = {},
 ) {
-    val controller = MeshcoreApp.get().connectionController
+    val controller = LocalAppGraph.current.connectionController
     val uiState by controller.state.collectAsState()
 
     // Track whether we've seen an active connection attempt so we
@@ -197,7 +197,7 @@ private fun ConnectedDevice(
     onNavigateToCommands: (ChannelInfo) -> Unit,
     onNavigateToSettings: (ChannelInfo) -> Unit,
 ) {
-    val app = MeshcoreApp.get()
+    val app = LocalAppGraph.current
     val controller = app.connectionController
     val repository = app.repository
     val prefs = app.themePreferences

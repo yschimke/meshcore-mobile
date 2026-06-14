@@ -16,7 +16,7 @@ import ee.schimke.meshcore.app.widget.goAsync
 class DebugActionReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        val app = context.applicationContext as? MeshcoreApp ?: return
+        val app = (context.applicationContext as? MeshcoreApp)?.appGraph ?: return
         when (intent.action) {
             ACTION_DISCONNECT -> {
                 Log.i(TAG, "disconnect")

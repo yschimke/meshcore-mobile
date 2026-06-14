@@ -32,7 +32,7 @@ class MeshcoreBinderService : LifecycleService() {
     override fun onCreate() {
         super.onCreate()
 
-        val app = application as MeshcoreApp
+        val app = (application as MeshcoreApp).appGraph
         val bridge = object : MeshServiceBridge {
             override val managerState: StateFlow<ManagerState>
                 get() = app.manager.state

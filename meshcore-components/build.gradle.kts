@@ -41,9 +41,6 @@ kotlin {
     val androidMain by getting {
       dependencies {
         implementation(libs.kotlinx.coroutines.android)
-        api(projects.meshcoreTransportBle)
-        api(projects.meshcoreTransportUsb)
-        implementation(libs.mcarr.usb.android)
         // Android-only Compose extras (extended icons live on Android; the
         // shared composables use the vendored MeshIcons instead).
         api(libs.compose.material.icons.extended)

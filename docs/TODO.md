@@ -5,17 +5,22 @@ the reasoning behind many of these items.
 
 ## Architecture
 
-- [ ] Replace `MeshcoreApp` singleton with dependency injection
-  - Eliminate `MeshcoreApp.get()` calls scattered through UI code
-  - Make controllers injectable for testing
-  - Replace `GlobalScope.launch()` with scoped coroutines
+- [x] Replace `MeshcoreApp` singleton with dependency injection
+  - [x] Eliminate `MeshcoreApp.get()` calls (UI via `LocalAppGraph`,
+    workers/services via `Context.appGraph()`)
+  - [x] Make controllers injectable for testing (explicit `AppGraph`;
+    `AppConnectionController` takes its collaborators as parameters)
+  - [x] Replace `GlobalScope.launch()` with a scoped `applicationScope`
+  - [x] Centralize transport wiring in `meshcore-session` `TransportFactory`
+    (shared by app + CLI); decompose `AppConnectionController`
 - [x] Break `DeviceScreen.kt` (975 → 515 lines) into focused files
   - [x] Extract status views (`DeviceConnectStatus`, `DeviceStatusView`,
     `ConnectingCard`, `FailureCard`) to `DeviceStatusViews.kt` (231 lines)
   - [x] Move preview functions to `DeviceScreenPreviews.kt` (269 lines)
-- [ ] Enforce client lifecycle at compile time
-  - Builder or state-machine API so `start()` must precede commands
-  - Prevent calling `getContacts()` on an unstarted client
+- [x] Enforce client lifecycle
+  - `start()` returns a typed `StartedMeshCoreClient` handle for new code
+  - Command methods on `MeshCoreClient` throw until `start()` completes;
+    `enforceLifecycle = false` is the explicit unsafe escape hatch
 
 ## gRPC service layer
 
@@ -35,8 +40,12 @@ the reasoning behind many of these items.
 - [x] Core: unit tests for `MeshCoreClient` state machine (fake transport)
   - `FakeTransport`, `MeshCoreClientTest` (start, timeout, parse, seedFromCache)
 - [ ] Core: integration test for client handshake + event parsing
-- [ ] Core: test `MeshCoreManager` lifecycle (connect, disconnect, reconnect)
-- [ ] Data: test `MeshcoreRepository` device merging and deduplication
+- [x] Core: test `MeshCoreManager` lifecycle (connect, disconnect, reconnect)
+  - `MeshCoreManagerTest` (connect/disconnect, superseding connect, reconnect,
+    transport-error/disconnect state transitions, connect failure)
+- [x] Data: test `MeshcoreRepository` device merging and deduplication
+  - `MeshcoreRepositoryTest` (in-memory Room: public-key lookup, merge moves
+    transport + preserves canonical data, cascade delete, message dedup)
 - [x] Transport: test `StreamFrameCodec` edge cases (partial frames, junk recovery, oversized, reset)
 - [ ] App: unit tests for `AppConnectionController`
 - [ ] App: Compose screenshot tests for key UI states (empty, loaded, error)
@@ -47,13 +56,17 @@ the reasoning behind many of these items.
 - [x] Surface stale-cache warnings to the user when Room queries fail
 - [x] Add BLE reconnect with exponential backoff in `AppConnectionController`
   - Up to 5 retries, 2s–60s backoff + jitter, `Retrying` UI state
-- [ ] Log or warn on protocol mismatches (unexpected frame types)
+- [x] Log or warn on protocol mismatches (unexpected frame types)
+  - `MeshCoreClient` warns via the injectable `Logger` when a frame
+    decodes to `MeshEvent.Raw`
 
 ## Protocol
 
-- [ ] Write a wire protocol spec for `meshcore-core`
-  - Document frame format, command codes, response types
-  - Currently scattered across `Codes.kt`, `CommandCode`, and parser comments
+- [x] Write a wire protocol spec for `meshcore-core`
+  - `docs/WIRE_PROTOCOL.md`: framing, command/response/push opcodes, body layouts
+- [x] Replace `println` in `meshcore-core` with injectable logging
+  - `Logger` interface (`Logger.None` default, `Logger.Println` opt-in),
+    threaded through `MeshCoreClient` and `MeshCoreManager`
 - [ ] Consider adding request/response correlation IDs
   - Currently matched by type only; misordering possible
 - [x] Extract hardcoded timeouts into named constants
