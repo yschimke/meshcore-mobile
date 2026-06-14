@@ -57,7 +57,14 @@ jobs:
           mapfile -t IDS < <(jq -r '.components[].previewId' design-map.json)
           args=()
           for id in "${IDS[@]}"; do args+=(--id "$id"); done
+          # --with-semantics injects each preview's previews/<id>.semantics.json
+          # (resolved fg/bg colours + a11y tree) so design-parity's token /
+          # contrast / a11y checks evaluate instead of reporting "missing from
+          # candidate" (compose-ai-tools#1843/#1845). It spins up the daemon and
+          # re-renders, and degrades gracefully (bundle stays valid, warning to
+          # stderr) if the desktop backend doesn't emit semantics.
           compose-preview bundle pack --module meshcore-components "${args[@]}" \
+            --with-semantics \
             -o build/design-parity/candidates.bundle.png --timeout 600
 
       # Reference images are generated from the design/*.html source of truth
