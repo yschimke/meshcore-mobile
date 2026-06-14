@@ -40,13 +40,14 @@ Making the Device screen render off-Android required:
 - **Multiplatform fonts** — the branded faces are wired `expect`/`actual`:
   Android keeps the downloadable Google Fonts provider; desktop loads bundled
   `.ttf` (`:meshcore-components/src/desktopMain/resources/fonts`).
-- **`:meshcore-components` applies `id("ee.schimke.composeai.preview")`** — the
-  CLI can't auto-inject into a `com.android.kotlin.multiplatform.library` module.
 
-This was unblocked by **compose-ai-tools 0.15.1** (#1846 resolves the renderer in
-the consumer's Compose graph so Skiko stays coherent with CMP 1.11); on 0.15.0
-the desktop render failed with a Skiko `UnsatisfiedLinkError`
-([compose-ai-tools#1844](https://github.com/yschimke/compose-ai-tools/issues/1844)).
+This was unblocked by **compose-ai-tools 0.15.x**: 0.15.1 (#1846) resolves the
+renderer in the consumer's Compose graph so Skiko stays coherent with CMP 1.11
+(on 0.15.0 the desktop render failed with a Skiko `UnsatisfiedLinkError`,
+[#1844](https://github.com/yschimke/compose-ai-tools/issues/1844)), and 0.15.2
+auto-injects the `ee.schimke.composeai.preview` plugin into
+`com.android.kotlin.multiplatform.library` modules so `:meshcore-components`
+needs no explicit `plugins {}` entry.
 The stateful `DeviceScreen`/`ConnectedDevice` wrappers (transport, ViewModel)
 stay in `:app`; only the pure presentational subtree moved.
 
