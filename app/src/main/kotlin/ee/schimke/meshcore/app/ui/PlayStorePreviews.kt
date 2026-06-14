@@ -22,6 +22,8 @@ package ee.schimke.meshcore.app.ui
 // short side, and 9:16 is the canonical Play phone aspect.
 // =============================================================================
 
+import ee.schimke.meshcore.components.ui.DeviceBody
+import ee.schimke.meshcore.components.ui.LastMessageInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview

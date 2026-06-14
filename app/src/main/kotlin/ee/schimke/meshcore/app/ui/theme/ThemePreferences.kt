@@ -11,6 +11,11 @@ import kotlinx.coroutines.flow.map
 import java.io.InputStream
 import java.io.OutputStream
 
+// Section / SectionStates moved to :meshcore-components (shared); re-exported so
+// existing app.ui.theme call-sites keep resolving.
+typealias Section = ee.schimke.meshcore.components.ui.theme.Section
+typealias SectionStates = ee.schimke.meshcore.components.ui.theme.SectionStates
+
 // --- Domain types ---
 
 /** User-facing light/dark selection. */
@@ -27,20 +32,6 @@ enum class ThemePalette { Meshcore, Dynamic }
 data class ThemeSettings(
     val mode: ThemeMode = ThemeMode.System,
     val palette: ThemePalette = ThemePalette.Meshcore,
-)
-
-enum class Section { CHANNELS, CONTACTS, ROOMS, REPEATERS, SENSORS }
-
-data class SectionStates(
-    val channelsExpanded: Boolean = true,
-    val channelsShowAll: Boolean = false,
-    val contactsExpanded: Boolean = true,
-    val contactsShowAll: Boolean = false,
-    val roomsExpanded: Boolean = true,
-    val roomsShowAll: Boolean = false,
-    val repeatersExpanded: Boolean = true,
-    val repeatersShowAll: Boolean = false,
-    val sensorsExpanded: Boolean = true,
 )
 
 // --- Wire proto ↔ domain mapping ---

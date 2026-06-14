@@ -1,0 +1,322 @@
+<!doctype html>
+<!--
+  Claude Design HTML export — Device screen ("Device — populated"), LIGHT theme.
+
+  Claude Design is a research preview with no read API and no Figma export, so
+  the design reference is committed as this HTML document and resolved via the
+  repo-root design-map.json (the `claude-design` entry points here). The visible
+  markup below is the design hand-off; the application/design-parity+json script
+  block at the end is the machine-readable manifest the design-parity
+  `claude-design` adapter reads (componentId, tokens, and the `src` of the
+  reference PNG). That PNG is generated from this document (not committed — it
+  would drift from the HTML); the current render lives on the `design-parity/main`
+  branch. See docs/design-parity.md.
+
+  This is the design intent for ee.schimke.meshcore.app.ui.DeviceScreen#DeviceBody
+  as rendered by DeviceBodyPreview ("Device — populated"). Colours, spacing,
+  radii and type roles below are the MeshCore Material 3 light scheme
+  (seed teal #006A60) taken from app/ui/theme/MeshcoreTheme.kt + Dimens.kt.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=411, initial-scale=1" />
+    <title>Device — populated · MeshCore (light)</title>
+    <style>
+      :root {
+        /* MeshCore M3 light tokens (MeshcoreTheme.kt) */
+        --primary: #006a60;
+        --on-primary: #ffffff;
+        --secondary-container: #cce8e2;
+        --on-secondary-container: #05201c;
+        --tertiary-container: #fddfa6;
+        --on-tertiary-container: #261a00;
+        --surface: #f4fbf8;
+        --on-surface: #161d1b;
+        --on-surface-variant: #3f4946;
+        --outline-variant: #bec9c5;
+        --surface-container-lowest: #ffffff;
+        --surface-container-low: #eef5f2;
+        --surface-container: #e8efec;
+        --surface-container-high: #e2e9e6;
+        /* Dimens.kt: ScreenPadding 16, CardGap 12, RowGap 8 */
+        --screen-pad: 16px;
+        --card-gap: 12px;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+
+      body {
+        width: 411px;
+        height: 914px;
+        overflow: hidden;
+        background: var(--surface);
+        color: var(--on-surface);
+        font-family: "Space Grotesk", "Roboto", "Segoe UI", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---- System status bar (showSystemUi = true) ---- */
+      .statusbar {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--on-surface);
+      }
+      .statusbar .battery {
+        width: 22px; height: 11px;
+        border: 1.5px solid var(--on-surface);
+        border-radius: 3px; position: relative;
+      }
+      .statusbar .battery::after {
+        content: ""; position: absolute; right: -3px; top: 3px;
+        width: 2px; height: 5px; background: var(--on-surface); border-radius: 0 1px 1px 0;
+      }
+      .statusbar .battery > span {
+        position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px;
+        background: var(--on-surface); border-radius: 1px;
+      }
+
+      /* ---- Top app bar ---- */
+      .topbar {
+        height: 56px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px 0 var(--screen-pad);
+        background: var(--surface);
+      }
+      .topbar .title {
+        flex: 1;
+        font-family: "Orbitron", "Space Grotesk", system-ui, sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        color: var(--on-surface);
+      }
+      .topbar .actions { display: flex; gap: 4px; }
+      .icon-btn {
+        width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+        color: var(--on-surface-variant);
+      }
+      .icon-btn svg { width: 24px; height: 24px; }
+
+      /* ---- Scroll content column ---- */
+      .content {
+        padding: 8px var(--screen-pad) 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--card-gap);
+      }
+
+      /* ---- Summary hero card ---- */
+      .summary {
+        background: var(--surface-container-low);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .summary .node-name {
+        font-family: "Orbitron", "Space Grotesk", system-ui, sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--on-surface);
+        margin-bottom: 2px;
+      }
+      .line { display: flex; align-items: center; gap: 10px; color: var(--on-surface-variant); font-size: 15px; }
+      .line svg { width: 18px; height: 18px; flex: none; }
+      .line.mono { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.5px; }
+      .battery-row { color: var(--on-surface); }
+      .progress {
+        height: 4px; border-radius: 2px; background: var(--surface-container-high);
+        margin: 2px 0 4px; overflow: hidden;
+      }
+      .progress > span { display: block; height: 100%; width: 81%; background: var(--primary); border-radius: 2px; }
+      .storage { font-size: 13px; }
+
+      /* ---- Last-message banner (outlined card) ---- */
+      .banner {
+        border: 1px solid var(--outline-variant);
+        border-radius: 12px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .banner svg { width: 22px; height: 22px; color: var(--primary); flex: none; }
+      .banner .who { font-size: 12px; font-weight: 600; color: var(--primary); }
+      .banner .text { font-size: 15px; color: var(--on-surface); }
+
+      /* ---- Section headers ---- */
+      .section-h {
+        display: flex; align-items: center; gap: 12px;
+        padding: 4px 0;
+        color: var(--on-surface-variant);
+      }
+      .section-h .label { flex: 1; font-size: 15px; font-weight: 600; }
+      .chip {
+        background: var(--secondary-container);
+        color: var(--on-secondary-container);
+        font-size: 13px; font-weight: 600;
+        padding: 6px 14px; border-radius: 8px;
+      }
+      .section-h .caret { width: 20px; height: 20px; color: var(--on-surface-variant); }
+
+      /* ---- Contact / channel rows ---- */
+      .row {
+        background: var(--surface-container-low);
+        border-radius: 12px;
+        padding: 10px 12px;
+        display: flex; align-items: center; gap: 12px;
+      }
+      .avatar {
+        width: 36px; height: 36px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--secondary-container); color: var(--on-secondary-container); flex: none;
+      }
+      .avatar.amber { background: var(--tertiary-container); color: var(--on-tertiary-container); }
+      .avatar svg { width: 20px; height: 20px; }
+      .row .name { font-size: 16px; font-weight: 600; color: var(--on-surface); }
+      .row .sub { font-size: 13px; color: var(--on-surface-variant); }
+      .empty { font-size: 13px; color: var(--on-surface-variant); padding: 8px 0; }
+    </style>
+  </head>
+  <body>
+    <div class="statusbar">
+      <span>9:30</span>
+      <span class="battery"><span></span></span>
+    </div>
+
+    <div class="topbar">
+      <div class="title">node-peak</div>
+      <div class="actions">
+        <span class="icon-btn" title="Tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 7 9 11 5 15"/><line x1="12" y1="16" x2="18" y2="16"/></svg></span>
+        <span class="icon-btn" title="Theme"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 100 20V2z"/><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        <span class="icon-btn" title="Disconnect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"/><polyline points="9 16 13 12 9 8"/><line x1="13" y1="12" x2="3" y2="12"/></svg></span>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Hero summary card -->
+      <div class="summary">
+        <div class="node-name">node-peak</div>
+        <div class="line mono">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 11a2 2 0 0 0-2 2c0 2 .5 3 .5 5"/><path d="M7 13a5 5 0 0 1 10 0c0 1 0 2-.3 3"/><path d="M4 13a8 8 0 0 1 16 0"/></svg>
+          abababababababab
+        </div>
+        <div class="line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          869.525 MHz · BW 125 kHz · SF 10 · CR 5
+        </div>
+        <div class="line battery-row">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="8" y="3" width="8" height="18" rx="1.5"/><rect x="10" y="1.5" width="4" height="2" rx="0.5"/></svg>
+          81% · 3980 mV
+        </div>
+        <div class="progress"><span></span></div>
+        <div class="line storage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+          512 / 4096 kB
+        </div>
+      </div>
+
+      <!-- Last message banner -->
+      <div class="banner">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18v13H7l-4 4z"/></svg>
+        <div>
+          <div class="who">alice</div>
+          <div class="text">hey — are you on tonight?</div>
+        </div>
+      </div>
+
+      <!-- Channels -->
+      <div class="section-h">
+        <span class="label">Channels (1)</span>
+        <span class="chip">Favourited</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
+      </div>
+      <div class="row">
+        <div class="avatar amber"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="10" r="2.4"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5z"/><path d="M14 19c0-2 1-3.5 3-4 2.2 0 4 1.6 4 4z"/></svg></div>
+        <div>
+          <div class="name">General</div>
+          <div class="sub">Channel 0</div>
+        </div>
+      </div>
+
+      <!-- Contacts -->
+      <div class="section-h">
+        <span class="label">Contacts (1)</span>
+        <span class="chip">Favourited</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
+      </div>
+      <div class="row">
+        <div class="avatar"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6z"/></svg></div>
+        <div>
+          <div class="name">alice</div>
+          <div class="sub">Contact · flood</div>
+        </div>
+      </div>
+
+      <!-- Rooms -->
+      <div class="section-h">
+        <span class="label">Rooms (1)</span>
+        <span class="chip">Joined</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
+      </div>
+      <div class="row">
+        <div class="avatar"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="10" r="2.4"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5z"/><path d="M14 19c0-2 1-3.5 3-4 2.2 0 4 1.6 4 4z"/></svg></div>
+        <div>
+          <div class="name">common-room</div>
+          <div class="sub">Room · 0 hops</div>
+        </div>
+      </div>
+
+      <!-- Repeaters -->
+      <div class="section-h">
+        <span class="label">Repeaters (0)</span>
+        <span class="chip">Joined</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
+      </div>
+      <div class="empty">No repeaters joined yet</div>
+
+      <!-- Sensors -->
+      <div class="section-h">
+        <span class="label">Sensors (1)</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
+      </div>
+    </div>
+
+    <script type="application/design-parity+json">
+      {
+        "componentId": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyPreview",
+        "tokens": {
+          "spacing": { "screenPadding": 16, "cardGap": 12, "rowGap": 8, "cardPadding": 16 },
+          "radius": { "card": 12, "chip": 8, "avatar": 18 },
+          "colors": {
+            "primary": "#006A60",
+            "surface": "#F4FBF8",
+            "onSurface": "#161D1B",
+            "onSurfaceVariant": "#3F4946",
+            "surfaceContainerLow": "#EEF5F2",
+            "secondaryContainer": "#CCE8E2",
+            "onSecondaryContainer": "#05201C",
+            "tertiaryContainer": "#FDDFA6",
+            "outlineVariant": "#BEC9C5"
+          }
+        },
+        "images": [
+          {
+            "state": "default",
+            "size": "compact",
+            "src": "DeviceScreen.light.png"
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

@@ -1,34 +1,54 @@
 plugins {
-  // AGP 9 has built-in Kotlin support, so `com.android.library` alone covers
-  // both Android and Kotlin compilation (no `org.jetbrains.kotlin.android`).
-  alias(libs.plugins.androidLibrary)
+  alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.androidKotlinMultiplatformLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  // compose-preview (0.15.3) does NOT auto-inject into
+  // com.android.kotlin.multiplatform.library modules — it skips them so a
+  // non-renderable one (e.g. :meshcore-mobile) can't fail the desktop render —
+  // so a KMP-Android library that *does* have previews must apply the plugin
+  // explicitly to expose its desktop previews (DeviceBody) to design-parity.
+  alias(libs.plugins.composePreview)
 }
 
-android {
-  namespace = "ee.schimke.meshcore.components"
-  compileSdk = libs.versions.android.compileSdk.get().toInt()
-  defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
-}
+kotlin {
+  jvmToolchain(21)
 
-kotlin { jvmToolchain(21) }
+  android {
+    namespace = "ee.schimke.meshcore.components"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    minSdk = libs.versions.android.minSdk.get().toInt()
+    // Generate R for the Google Fonts cert array used by the Android font actual.
+    androidResources.enable = true
+  }
 
-dependencies {
-  api(projects.meshcoreCore)
-  implementation(libs.kotlinx.coroutines.core)
-  implementation(libs.kotlinx.coroutines.android)
-  // Reusable Compose UI primitives for mobile apps. These are part of the
-  // public surface (callers theme/host these components), so `api`.
-  // Note: this module deliberately has no `meshcore-transport-*` dependency —
-  // scanner/port panels take transport-agnostic DTOs so a TCP-only consumer
-  // never pulls in BLE/USB transports.
-  api(libs.compose.runtime)
-  api(libs.compose.foundation)
-  api(libs.compose.material3)
-  api(libs.compose.material.icons.extended)
-  api(libs.compose.ui)
-  api(libs.compose.uiToolingPreview)
-  api(libs.androidx.activity.compose)
-  api(libs.androidx.core.ktx)
+  // Desktop (JVM) target: lets the shared presentational composables render on
+  // the cheaper CMP/Skiko path (design-parity). Android-only deps (extended
+  // icons, transports, activity) stay in androidMain.
+  jvm("desktop")
+
+  sourceSets {
+    commonMain.dependencies {
+      api(projects.meshcoreCore)
+      implementation(libs.kotlinx.coroutines.core)
+      // Reusable Compose UI primitives, multiplatform (Android + desktop).
+      api(libs.compose.runtime)
+      api(libs.compose.foundation)
+      api(libs.compose.material3)
+      api(libs.compose.ui)
+      api(libs.compose.uiToolingPreview)
+    }
+    val androidMain by getting {
+      dependencies {
+        implementation(libs.kotlinx.coroutines.android)
+        // Android-only Compose extras (extended icons live on Android; the
+        // shared composables use the vendored MeshIcons instead).
+        api(libs.compose.material.icons.extended)
+        api(libs.androidx.activity.compose)
+        api(libs.androidx.core.ktx)
+        // Downloadable Google Fonts provider for the branded faces (Android).
+        implementation(libs.compose.ui.text.google.fonts)
+      }
+    }
+  }
 }
