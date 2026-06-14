@@ -37,3 +37,12 @@ app/project.info
 */bin/*
 
 /.compose-preview-cli/
+
+# design-parity run output (generated; reference inputs live under design/)
+/.design-parity/out/
+
+# design-parity reference renders are generated from the design/*.html source of
+# truth (locally via the documented Chrome command, in CI by design-parity.yml)
+# and published to the design-parity/main branch — never committed, so they
+# can't drift from the HTML.
+/design/*.png

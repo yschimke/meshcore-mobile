@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
+import ee.schimke.meshcore.components.ui.COMMANDS_CHANNEL_NAME
+import ee.schimke.meshcore.components.ui.DeviceBody
+import ee.schimke.meshcore.components.ui.LastMessageInfo
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
@@ -49,47 +52,6 @@ private fun previewSelf(name: String = "node-peak") = SelfInfo(
 )
 
 // --- Previews ---------------------------------------------------------------
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Device — populated",
-)
-@Composable
-fun DeviceBodyPreview() {
-    val alice = previewContact("alice", -1, 0x11)
-    val room = previewContact("common-room", 0, 0x33, ContactType.ROOM)
-    MeshcoreTheme {
-        DeviceBody(
-            self = previewSelf(),
-            battery = BatteryInfo(3980, 512, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = listOf(
-                alice,
-                previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
-                room,
-                previewContact("soil-sensor-1", 3, 0x44, ContactType.SENSOR),
-            ),
-            channels = listOf(
-                ChannelInfo(0, "General", ByteString()),
-                ChannelInfo(1, "Emergency", ByteString()),
-                ChannelInfo(2, COMMANDS_CHANNEL_NAME, ByteString()),
-            ),
-            contactedKeys = setOf(alice.publicKey.toHex(), room.publicKey.toHex()),
-            contactedChannelIndices = setOf(0),
-            lastMessage = LastMessageInfo.Dm(
-                contactKeyHex = "112233445566778899aabbcc",
-                contactName = "alice",
-                text = "hey — are you on tonight?",
-                snr = 6,
-            ),
-
-            onDisconnect = {},
-        )
-    }
-}
-
 @Preview(
     showBackground = true,
     showSystemUi = true,
@@ -243,37 +205,6 @@ fun DeviceStatusFailedPreview() {
             title = "Connection failed",
             status = DeviceConnectStatus.Failed(cause),
             onCancel = {},
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
-    name = "Device — dark",
-)
-@Composable
-fun DeviceBodyDarkPreview() {
-    MeshcoreTheme(darkTheme = true) {
-        DeviceBody(
-            self = previewSelf(),
-            battery = BatteryInfo(3980, 512, 4096),
-            radio = RadioSettings(869_525_000, 125_000, 10, 5),
-            contacts = listOf(
-                previewContact("alice", -1, 0x11),
-                previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
-                previewContact("common-room", 0, 0x33, ContactType.ROOM),
-            ),
-            lastMessage = LastMessageInfo.Dm(
-                contactKeyHex = "112233445566778899aabbcc",
-                contactName = "alice",
-                text = "hey — are you on tonight?",
-                snr = 6,
-            ),
-
-            onDisconnect = {},
         )
     }
 }
