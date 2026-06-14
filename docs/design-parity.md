@@ -92,12 +92,11 @@ reference | candidate | diff without re-rendering locally.
 
 The workflow drives the render from `design-map.json` (so it can't drift from
 it): it installs the released `compose-preview` CLI, packs the candidate bundle,
-runs `design-parity run`, and publishes the output. It is the interim,
-hand-rolled version of a pattern design-parity's Action should own —
+runs the published `design-parity` CLI (`npx design-parity@0.1.1`), and publishes
+the output. The permanent-branch push is still the interim, hand-rolled version
+of a pattern design-parity's Action should own —
 [design-parity#56](https://github.com/yschimke/design-parity/issues/56) (modeled
-on compose-ai-tools' `apply` baseline branch). Until that lands, design-parity is
-built from a pinned checkout because it isn't published and its `dist/` isn't
-committed.
+on compose-ai-tools' `apply` baseline branch).
 
 ## Known gaps (first adoption)
 

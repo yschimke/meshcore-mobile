@@ -76,29 +76,15 @@ jobs:
               --window-size=411,914 --screenshot="$png" "file://$PWD/$ref"
           done
 
-      # design-parity isn't published yet and its dist/ isn't committed, so build
-      # it from a pinned checkout. Replace with a pinned `uses:` once the action
-      # ships its bundled dist (design-parity#56 / #8).
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/checkout@v6
-        with:
-          repository: yschimke/design-parity
-          ref: 3071a89 # pin; track a release tag once one exists
-          path: .design-parity-tool
-      - name: Build design-parity
-        run: |
-          set -euo pipefail
-          cd .design-parity-tool
-          npm ci
-          npm run build
 
       - name: Run design-parity
         run: |
           set -euo pipefail
           components="$(jq -r '[.components[].code] | join(",")' design-map.json)"
-          node .design-parity-tool/packages/action/dist/cli/run.js run \
+          npx -y design-parity@0.1.1 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png \
