@@ -73,7 +73,9 @@ class IconExtractorTest {
         sb.appendLine("// Regenerate via REGENERATE_ICONS=true :app:testDebugUnitTest --tests *IconExtractorTest.")
         sb.appendLine("package ee.schimke.meshcore.components.ui.icons")
         sb.appendLine()
+        sb.appendLine("import androidx.compose.ui.graphics.Color")
         sb.appendLine("import androidx.compose.ui.graphics.PathFillType")
+        sb.appendLine("import androidx.compose.ui.graphics.SolidColor")
         sb.appendLine("import androidx.compose.ui.graphics.vector.ImageVector")
         sb.appendLine("import androidx.compose.ui.graphics.vector.PathNode")
         sb.appendLine("import androidx.compose.ui.unit.dp")
@@ -110,6 +112,9 @@ class IconExtractorTest {
         for (p in paths) {
             b.appendLine("            addPath(")
             b.appendLine("                pathFillType = PathFillType.${fillType(p)},")
+            // Material icons fill solid black and rely on Icon(tint = …) to recolour; without an
+            // explicit fill brush the path geometry paints nothing (issue: blank glyphs in renders).
+            b.appendLine("                fill = SolidColor(Color.Black),")
             b.appendLine("                pathData = listOf(")
             for (node in p.pathData) {
                 b.appendLine("                    ${renderNode(node)},")
