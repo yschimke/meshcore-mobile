@@ -3,6 +3,12 @@ plugins {
   alias(libs.plugins.androidKotlinMultiplatformLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  // compose-preview (0.15.3) does NOT auto-inject into
+  // com.android.kotlin.multiplatform.library modules — it skips them so a
+  // non-renderable one (e.g. :meshcore-mobile) can't fail the desktop render —
+  // so a KMP-Android library that *does* have previews must apply the plugin
+  // explicitly to expose its desktop previews (DeviceBody) to design-parity.
+  alias(libs.plugins.composePreview)
 }
 
 kotlin {

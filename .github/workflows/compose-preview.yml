@@ -25,7 +25,7 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.2
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.3
         with:
           # The renderer can't rasterise our adaptive launcher icons
           # (mipmap/ic_launcher[_round]) to PNG, so those resource captures
