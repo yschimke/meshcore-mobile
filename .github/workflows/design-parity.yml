@@ -39,9 +39,9 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.15.6
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.15.7
         with:
-          version: "0.15.5"
+          version: "0.15.7"
 
       - name: Render candidate bundle (CMP desktop)
         env:
@@ -60,9 +60,10 @@ jobs:
           # --with-semantics injects each preview's previews/<id>.semantics.json
           # (resolved fg/bg colours + a11y tree) so design-parity's token /
           # contrast / a11y checks evaluate instead of reporting "missing from
-          # candidate" (compose-ai-tools#1843/#1845). It spins up the daemon and
-          # re-renders, and degrades gracefully (bundle stays valid, warning to
-          # stderr) if the desktop backend doesn't emit semantics.
+          # candidate" (compose-ai-tools#1843/#1845). Needs 0.15.7: the desktop
+          # daemon now emits the compose/semantics sidecar (#1891) and a
+          # daemon-start failure degrades gracefully — bundle stays valid,
+          # warning to stderr — instead of aborting the pack (#1885).
           compose-preview bundle pack --module meshcore-components "${args[@]}" \
             --with-semantics \
             -o build/design-parity/candidates.bundle.png --timeout 600
