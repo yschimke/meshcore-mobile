@@ -25,8 +25,16 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.8
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.9
         with:
+          # Pin the render CLI to the Gradle plugin version (single source of
+          # truth: composePreviewPlugin in libs.versions.toml) instead of the
+          # action's `latest` default. A newer published CLI auto-installed
+          # against the older applied plugin breaks preview discovery ("no
+          # modules have the plugin applied" — the 0.15.9 CLI vs 0.15.8 plugin
+          # skew); keying the CLI off the same catalog entry keeps them lockstep.
+          cli-version: catalog
+          catalog-key: composePreviewPlugin
           # The renderer can't rasterise our adaptive launcher icons
           # (mipmap/ic_launcher[_round]) to PNG, so those resource captures
           # produce no output. Downgrade missing renders from a hard error to a
