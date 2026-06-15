@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.3
 
       # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest (the
       # :meshcore-components module still has an android target to configure);
@@ -39,7 +39,7 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.15.5
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.15.6
         with:
           version: "0.15.5"
 
@@ -83,9 +83,9 @@ jobs:
               --window-size=411,914 --screenshot="$png" "file://$PWD/$ref"
           done
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4.4.0
         with:
-          node-version: 20
+          node-version: 20.20.2
 
       - name: Run design-parity
         run: |
