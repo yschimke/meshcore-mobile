@@ -75,6 +75,20 @@ jobs:
       # the 411x914 design, so render them ourselves at the right size/scale (the
       # Pixel 7 the @Preview targets: 411x914 dp @ 2.625). google-chrome-stable
       # is preinstalled on ubuntu-latest.
+      # The references name the branded faces (Space Grotesk / Orbitron /
+      # JetBrains Mono) but can't @font-face them portably, so install the same
+      # bundled .ttf the desktop candidate loads. Without this, headless Chrome
+      # falls back to a system sans and every glyph drifts vs the candidate —
+      # the dominant residual in the visual diff. fontconfig resolves them by
+      # the families the HTML already declares; no reference edits needed.
+      - name: Install branded fonts for reference rendering
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.local/share/fonts"
+          cp meshcore-components/src/desktopMain/resources/fonts/*.ttf \
+            "$HOME/.local/share/fonts/"
+          fc-cache -f >/dev/null
+
       - name: Render reference images from HTML
         run: |
           set -euo pipefail
