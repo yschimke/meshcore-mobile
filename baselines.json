@@ -349,6 +349,20 @@
     "sha256": "671553619d34d22a5a21d383d7f6d3c30f4fdcc125e803d3185714638333432f",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
+  "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device \u2014 dark": {
+    "captureLabel": "",
+    "functionName": "CachedDeviceBodyDarkPreview",
+    "renderBasename": "CachedDeviceBodyDarkPreview_Cached_device_dark.png",
+    "sha256": "1d51c2eeedc29a6726bfb3e842389a7a7ac8d4737a1c87eea6a4adb41c6dac5a",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Cached device": {
+    "captureLabel": "",
+    "functionName": "CachedDeviceBodyPreview",
+    "renderBasename": "CachedDeviceBodyPreview_Cached_device.png",
+    "sha256": "b289f73a8dbd06774e3b370b3df5c6bdb8b7203387f8ff043a99d2843e9efcfd",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
+  },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device \u2014 dark": {
     "captureLabel": "",
     "functionName": "DeviceBodyDarkPreview",
