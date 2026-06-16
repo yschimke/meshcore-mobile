@@ -84,7 +84,7 @@
 
       /* ---- Scroll content column ---- */
       .content {
-        padding: 8px var(--screen-pad) 0;
+        padding: 16px var(--screen-pad) 0;
         display: flex;
         flex-direction: column;
         gap: var(--card-gap);
@@ -104,15 +104,15 @@
         font-size: 22px;
         font-weight: 700;
         color: var(--on-surface);
-        margin-bottom: 2px;
+        margin-bottom: 0px;
       }
       .line { display: flex; align-items: center; gap: 10px; color: var(--on-surface-variant); font-size: 15px; }
       .line svg { width: 18px; height: 18px; flex: none; }
       .line.mono { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.5px; }
-      .battery-row { color: var(--on-surface); }
+      .battery-row { color: var(--on-surface-variant); }
       .progress {
         height: 4px; border-radius: 2px; background: var(--surface-container-high);
-        margin: 2px 0 4px; overflow: hidden;
+        margin: 1px 0 2px; overflow: hidden;
       }
       .progress > span { display: block; height: 100%; width: 81%; background: var(--primary); border-radius: 2px; }
       .storage { font-size: 13px; }
@@ -133,7 +133,7 @@
       /* ---- Section headers ---- */
       .section-h {
         display: flex; align-items: center; gap: 12px;
-        padding: 4px 0;
+        padding: 10px 0;
         color: var(--on-surface-variant);
       }
       .section-h .label { flex: 1; font-size: 15px; font-weight: 600; }
@@ -149,7 +149,7 @@
       .row {
         background: var(--surface-container-low);
         border-radius: 12px;
-        padding: 10px 12px;
+        padding: 11px 12px;
         display: flex; align-items: center; gap: 12px;
       }
       .avatar {
@@ -218,34 +218,37 @@
         <svg class="warn-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
       </div>
 
-      <!-- Last message banner -->
-      <div class="banner">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18v13H7l-4 4z"/></svg>
-        <div>
-          <div class="who">alice</div>
-          <div class="text">hey — are you on tonight?</div>
-        </div>
       </div>
 
-      <!-- Channels (none configured) -->
+      <!-- Channels -->
       <div class="section-h">
-        <span class="label">Channels (0)</span>
-        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
-      </div>
-      <div class="empty">No channels configured</div>
-
-      <!-- Contacts (none favourited) -->
-      <div class="section-h">
-        <span class="label">Contacts (0)</span>
+        <span class="label">Channels (1)</span>
         <span class="chip">Favourited</span>
         <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
       </div>
-      <div class="empty empty-center">
-        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6z"/></svg>
-        <span>No contacts yet</span>
+      <div class="row">
+        <div class="avatar amber"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="10" r="2.4"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5z"/><path d="M14 19c0-2 1-3.5 3-4 2.2 0 4 1.6 4 4z"/></svg></div>
+        <div>
+          <div class="name">General</div>
+          <div class="sub">Channel 0</div>
+        </div>
       </div>
 
-      <!-- Rooms (none joined) -->
+      <!-- Contacts -->
+      <div class="section-h">
+        <span class="label">Contacts (1)</span>
+        <span class="chip">Favourited</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 15 12 9 18 15"/></svg>
+      </div>
+      <div class="row">
+        <div class="avatar"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6z"/></svg></div>
+        <div>
+          <div class="name">alice</div>
+          <div class="sub">Contact · flood</div>
+        </div>
+      </div>
+
+      <!-- Rooms -->
       <div class="section-h">
         <span class="label">Rooms (0)</span>
         <span class="chip">Joined</span>
@@ -253,7 +256,7 @@
       </div>
       <div class="empty">No rooms joined yet</div>
 
-      <!-- Repeaters (none joined) -->
+      <!-- Repeaters -->
       <div class="section-h">
         <span class="label">Repeaters (0)</span>
         <span class="chip">Joined</span>
