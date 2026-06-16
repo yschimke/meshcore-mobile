@@ -126,19 +126,6 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
         -webkit-font-smoothing: antialiased;
         display: flex; flex-direction: column;
       }}
-      .statusbar {{
-        height: 28px; flex: none; display: flex; align-items: center;
-        justify-content: space-between; padding: 0 16px;
-        font-size: 13px; font-weight: 600; color: var(--on-surface);
-      }}
-      .statusbar .battery {{
-        width: 22px; height: 11px; border: 1.5px solid var(--on-surface);
-        border-radius: 3px; position: relative;
-      }}
-      .statusbar .battery > span {{
-        position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px;
-        background: var(--on-surface); border-radius: 1px;
-      }}
       .topbar {{
         height: 56px; flex: none; display: flex; align-items: center;
         gap: 4px; padding: 0 8px; background: var(--surface);
@@ -187,7 +174,6 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
     </style>
   </head>
   <body>
-    <div class="statusbar"><span>9:30</span><span class="battery"><span></span></span></div>
     <div class="topbar">
       <span class="icon-btn">{BACK}</span>
       <div class="titles"><div class="title">{html.escape(title)}</div>{sub}</div>
