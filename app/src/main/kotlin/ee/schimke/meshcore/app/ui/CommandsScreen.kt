@@ -1,21 +1,9 @@
 package ee.schimke.meshcore.app.ui
 
 import android.util.Log
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.Terminal
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
@@ -28,10 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
-import ee.schimke.meshcore.components.ui.ChatInput
+import ee.schimke.meshcore.components.ui.ChatBody
 import ee.schimke.meshcore.components.ui.ChatMessage
-import ee.schimke.meshcore.components.ui.ChatMessageList
 import ee.schimke.meshcore.components.ui.MessageStatus
+import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
 import kotlinx.coroutines.launch
@@ -40,7 +28,6 @@ import kotlin.time.Instant
 
 private const val TAG = "MeshSend"
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommandsScreen(
     channelIndex: Int,
@@ -123,59 +110,37 @@ fun CommandsScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text("Commands", style = MaterialTheme.typography.titleMedium)
-                    }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, "Back")
-                    }
-                },
-                actions = {
-                    Icon(
-                        Icons.Rounded.Terminal,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(end = 12.dp),
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
+    ChatBody(
+        title = "Commands",
+        messages = messages,
+        draft = draft,
+        onDraftChange = { draft = it },
+        onSend = {
+            val text = draft.trim()
+            if (text.isNotBlank() && client != null && deviceId != null) {
+                draft = ""
+                val now = Clock.System.now()
+                Log.d(TAG, "Commands[$channelIndex] sending: '$text'")
+                doSend(text, now)
+            } else {
+                Log.w(TAG, "Command send guard: blank=${text.isBlank()} client=${client != null} deviceId=$deviceId")
+            }
+        },
+        onBack = onBack,
+        inputEnabled = client != null,
+        inputPlaceholder = "Enter command…",
+        onRetry = { msg ->
+            msg.id.removePrefix("msg-").toLongOrNull()?.let { rowId ->
+                doSend(msg.text, msg.timestamp, existingRowId = rowId)
+            }
+        },
+        actions = {
+            Icon(
+                MeshIcons.Terminal,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(end = 12.dp),
             )
         },
-    ) { padding ->
-        Column(modifier = Modifier.fillMaxSize().padding(padding).imePadding()) {
-            ChatMessageList(
-                messages = messages,
-                modifier = Modifier.weight(1f),
-                onRetry = { msg ->
-                    val rowId = msg.id.removePrefix("msg-").toLongOrNull() ?: return@ChatMessageList
-                    doSend(msg.text, msg.timestamp, existingRowId = rowId)
-                },
-            )
-            ChatInput(
-                value = draft,
-                onValueChange = { draft = it },
-                enabled = client != null,
-                placeholder = "Enter command\u2026",
-                onSend = {
-                    val text = draft.trim()
-                    if (text.isBlank() || client == null || deviceId == null) {
-                        Log.w(TAG, "Command send guard: blank=${text.isBlank()} client=${client != null} deviceId=$deviceId")
-                        return@ChatInput
-                    }
-                    draft = ""
-                    val now = Clock.System.now()
-                    Log.d(TAG, "Commands[$channelIndex] sending: '$text'")
-                    doSend(text, now)
-                },
-            )
-        }
-    }
+    )
 }

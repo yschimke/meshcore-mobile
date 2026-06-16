@@ -13,6 +13,41 @@ import androidx.compose.ui.unit.dp
 
 /** Vendored Material Symbols (Rounded) — see MeshIcons.kt header. */
 object MeshIcons {
+  val ArrowBack: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "AutoMirrored.Rounded.ArrowBack",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f,
+        autoMirror = true,
+      )
+      .apply {
+        addPath(
+          pathFillType = PathFillType.NonZero,
+          fill = SolidColor(Color.Black),
+          pathData =
+            listOf(
+              PathNode.MoveTo(19.0f, 11.0f),
+              PathNode.HorizontalTo(7.83f),
+              PathNode.RelativeLineTo(4.88f, -4.88f),
+              PathNode.RelativeCurveTo(0.39f, -0.39f, 0.39f, -1.03f, 0.0f, -1.42f),
+              PathNode.RelativeCurveTo(-0.39f, -0.39f, -1.02f, -0.39f, -1.41f, 0.0f),
+              PathNode.RelativeLineTo(-6.59f, 6.59f),
+              PathNode.RelativeCurveTo(-0.39f, 0.39f, -0.39f, 1.02f, 0.0f, 1.41f),
+              PathNode.RelativeLineTo(6.59f, 6.59f),
+              PathNode.RelativeCurveTo(0.39f, 0.39f, 1.02f, 0.39f, 1.41f, 0.0f),
+              PathNode.RelativeCurveTo(0.39f, -0.39f, 0.39f, -1.02f, 0.0f, -1.41f),
+              PathNode.LineTo(7.83f, 13.0f),
+              PathNode.HorizontalTo(19.0f),
+              PathNode.RelativeCurveTo(0.55f, 0.0f, 1.0f, -0.45f, 1.0f, -1.0f),
+              PathNode.RelativeReflectiveCurveTo(-0.45f, -1.0f, -1.0f, -1.0f),
+              PathNode.Close,
+            ),
+        )
+      }
+      .build()
+  }
   val Battery1Bar: ImageVector by lazy {
     ImageVector.Builder(
         name = "Rounded.Battery1Bar",
@@ -1029,6 +1064,39 @@ object MeshIcons {
               PathNode.RelativeHorizontalTo(10.0f),
               PathNode.RelativeCurveTo(0.55f, 0.0f, 1.0f, 0.45f, 1.0f, 1.0f),
               PathNode.RelativeReflectiveCurveTo(-0.45f, 1.0f, -1.0f, 1.0f),
+              PathNode.Close,
+            ),
+        )
+      }
+      .build()
+  }
+  val Send: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "AutoMirrored.Rounded.Send",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f,
+        autoMirror = true,
+      )
+      .apply {
+        addPath(
+          pathFillType = PathFillType.NonZero,
+          fill = SolidColor(Color.Black),
+          pathData =
+            listOf(
+              PathNode.MoveTo(3.4f, 20.4f),
+              PathNode.RelativeLineTo(17.45f, -7.48f),
+              PathNode.RelativeCurveTo(0.81f, -0.35f, 0.81f, -1.49f, 0.0f, -1.84f),
+              PathNode.LineTo(3.4f, 3.6f),
+              PathNode.RelativeCurveTo(-0.66f, -0.29f, -1.39f, 0.2f, -1.39f, 0.91f),
+              PathNode.LineTo(2.0f, 9.12f),
+              PathNode.RelativeCurveTo(0.0f, 0.5f, 0.37f, 0.93f, 0.87f, 0.99f),
+              PathNode.LineTo(17.0f, 12.0f),
+              PathNode.LineTo(2.87f, 13.88f),
+              PathNode.RelativeCurveTo(-0.5f, 0.07f, -0.87f, 0.5f, -0.87f, 1.0f),
+              PathNode.RelativeLineTo(0.01f, 4.61f),
+              PathNode.RelativeCurveTo(0.0f, 0.71f, 0.73f, 1.2f, 1.39f, 0.91f),
               PathNode.Close,
             ),
         )
