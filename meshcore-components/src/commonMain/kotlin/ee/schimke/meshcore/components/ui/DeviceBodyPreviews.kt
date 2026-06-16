@@ -143,3 +143,53 @@ fun DeviceBodyDarkPreview() {
     )
   }
 }
+
+private const val CACHED_WARNING = "Cached data — connect to refresh"
+
+@Composable
+private fun cachedDevicePreview(dark: Boolean) {
+  val alice = previewContact("alice", -1, 0x11)
+  MeshcoreTheme(darkTheme = dark) {
+    DeviceBody(
+      self = previewSelf(),
+      battery = BatteryInfo(3980, 512, 4096),
+      radio = RadioSettings(869_525_000, 125_000, 10, 5),
+      contacts =
+        listOf(
+          alice,
+          previewContact("bob-repeater", 2, 0x22, ContactType.REPEATER),
+          previewContact("common-room", 0, 0x33, ContactType.ROOM),
+        ),
+      channels = listOf(ChannelInfo(0, "General", ByteString())),
+      contactedKeys = setOf(alice.publicKey.toHex()),
+      contactedChannelIndices = setOf(0),
+      warnings = listOf(CACHED_WARNING),
+      onDisconnect = {},
+    )
+  }
+}
+
+/**
+ * Design-parity subject for the **cached** (offline) Device screen — the `CachedDeviceScreen`
+ * state: `DeviceBody` carrying the "Cached data" warning banner. Reference
+ * `design/CachedDevice.light.html`. See `docs/design-parity.md`.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Cached device",
+)
+@Composable
+fun CachedDeviceBodyPreview() = cachedDevicePreview(dark = false)
+
+/** Cached Device screen, dark. Reference `design/CachedDevice.dark.html`. */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  uiMode = 0x20,
+  name = "Cached device — dark",
+)
+@Composable
+fun CachedDeviceBodyDarkPreview() = cachedDevicePreview(dark = true)
