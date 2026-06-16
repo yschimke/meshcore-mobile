@@ -12,6 +12,42 @@
       "source": "claude-design",
       "ref": "design/DeviceScreen.dark.html",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device — dark"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ContactChatPreview",
+      "source": "claude-design",
+      "ref": "design/ContactChat.light.html",
+      "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Contact chat"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ContactChatDarkPreview",
+      "source": "claude-design",
+      "ref": "design/ContactChat.dark.html",
+      "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatDarkPreview_Contact chat — dark"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ChannelChatPreview",
+      "source": "claude-design",
+      "ref": "design/ChannelChat.light.html",
+      "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Channel chat"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ChannelChatDarkPreview",
+      "source": "claude-design",
+      "ref": "design/ChannelChat.dark.html",
+      "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatDarkPreview_Channel chat — dark"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#CommandsPreview",
+      "source": "claude-design",
+      "ref": "design/Commands.light.html",
+      "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Commands"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#CommandsDarkPreview",
+      "source": "claude-design",
+      "ref": "design/Commands.dark.html",
+      "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsDarkPreview_Commands — dark"
     }
   ]
 }
