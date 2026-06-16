@@ -8,9 +8,10 @@ verdict + a self-contained HTML comparison page (reference | candidate | diff).
 This repo adopts it for the **Device screen** (`DeviceScreen.kt#DeviceBody`), its
 **cached (offline)** state (`CachedDeviceScreen` — `DeviceBody` with the
 "Cached data" warning banner), and the **chat screens** — contact (1:1), channel
-(group), and device commands, all sharing the stateless `ChatBody` — each in both
-**light** and **dark** themes. All render on the CMP desktop backend from
-`:meshcore-components` `commonMain`.
+(group), and device commands, all sharing the stateless `ChatBody` — and the
+**Device Settings** screen (`DeviceSettingsScreen` → stateless `DeviceSettingsBody`,
+its discovered buzzer-toggle state) — each in both **light** and **dark** themes.
+All render on the CMP desktop backend from `:meshcore-components` `commonMain`.
 
 ## What's committed
 
@@ -19,6 +20,7 @@ This repo adopts it for the **Device screen** (`DeviceScreen.kt#DeviceBody`), it
 | `design/DeviceScreen.{light,dark}.html` | Claude Design HTML export — the Device screen references (`DeviceBodyPreview` / `DeviceBodyDarkPreview`), the single source of truth for each variant. Each carries an `application/design-parity+json` handoff manifest (M3 tokens + the `src` of its reference PNG). |
 | `design/CachedDevice.{light,dark}.html` | The cached (offline) Device references (`CachedDeviceBodyPreview` etc.) — the Device reference plus the `tertiaryContainer` "Cached data" warning banner. |
 | `design/ContactChat.{light,dark}.html`, `design/ChannelChat.{light,dark}.html`, `design/Commands.{light,dark}.html` | The chat screen references (`ContactChatPreview` etc.), authored from the MeshCore M3 scheme; `design/gen_chat_refs.py` is the re-runnable generator that emits them. |
+| `design/DeviceSettings.{light,dark}.html` | The Device Settings references (`DeviceSettingsPreview` etc.) — the discovered buzzer-toggle state; `design/gen_settings_refs.py` is the generator. |
 | `design-map.json` | Correspondence: each preview-function code handle ↔ its reference, plus the `previewId` that reconciles the compose-preview render id with the handle. |
 | `.design-parity.json` | Parity direction. **`code-led`** (advisory) for now — flip to `design-led` once thresholds are calibrated. |
 
