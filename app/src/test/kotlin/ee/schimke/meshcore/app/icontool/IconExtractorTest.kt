@@ -1,8 +1,10 @@
 package ee.schimke.meshcore.app.icontool
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.automirrored.rounded.Message
+import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.Battery1Bar
 import androidx.compose.material.icons.rounded.Battery3Bar
 import androidx.compose.material.icons.rounded.Battery6Bar
@@ -36,6 +38,7 @@ import org.junit.Test
  */
 class IconExtractorTest {
     private val icons: Map<String, ImageVector> = linkedMapOf(
+        "ArrowBack" to Icons.AutoMirrored.Rounded.ArrowBack,
         "Battery1Bar" to Icons.Rounded.Battery1Bar,
         "Battery3Bar" to Icons.Rounded.Battery3Bar,
         "Battery6Bar" to Icons.Rounded.Battery6Bar,
@@ -56,6 +59,7 @@ class IconExtractorTest {
         "Wifi" to Icons.Rounded.Wifi,
         "Logout" to Icons.AutoMirrored.Rounded.Logout,
         "Message" to Icons.AutoMirrored.Rounded.Message,
+        "Send" to Icons.AutoMirrored.Rounded.Send,
     )
 
     @Test
