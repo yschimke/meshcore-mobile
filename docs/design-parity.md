@@ -70,7 +70,13 @@ compose-preview bundle pack --module meshcore-components \
   -o build/design-parity/bundle.png
 
 # 2. Render the reference PNGs from the HTML (required — they're not committed),
-#    at the candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px):
+#    at the candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px). Install
+#    the bundled branded faces first so Chrome resolves the families the HTML
+#    names (else it falls back to a system sans and the type drifts vs the
+#    candidate, which loads the same .ttf):
+mkdir -p "$HOME/.local/share/fonts"
+cp meshcore-components/src/desktopMain/resources/fonts/*.ttf "$HOME/.local/share/fonts/"
+fc-cache -f
 for ref in $(jq -r '.components[].ref' design-map.json); do
   chrome --headless=new --no-sandbox --hide-scrollbars \
     --force-device-scale-factor=2.625 --window-size=411,914 \
@@ -99,9 +105,15 @@ system bars for `showSystemUi = true`
 porting the Android renderer's `SystemBarsFrame`), the candidate will carry a
 status bar of its own and these references can restore the realistic phone framing.
 
+The references render the **branded faces** (Space Grotesk / Orbitron / JetBrains
+Mono): the workflow installs the bundled `.ttf` — the same ones the desktop
+candidate loads — into fontconfig before the Chrome render, so both sides draw the
+real type by family name. Without it Chrome falls back to a system sans, which was
+the dominant residual after the status bar.
+
 Earlier run (before dropping the status bar): visual diff **~11%** (light) /
 **~6%** (dark) of pixels over the overlap — the bulk of it that systemic vertical
-offset, with typography the main residual once it's removed.
+offset, then typography until the fonts were installed.
 
 ## Continuous artifacts (`design-parity/main` branch)
 
