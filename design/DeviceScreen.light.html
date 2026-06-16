@@ -58,29 +58,6 @@
       }
 
       /* ---- System status bar (showSystemUi = true) ---- */
-      .statusbar {
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 16px;
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--on-surface);
-      }
-      .statusbar .battery {
-        width: 22px; height: 11px;
-        border: 1.5px solid var(--on-surface);
-        border-radius: 3px; position: relative;
-      }
-      .statusbar .battery::after {
-        content: ""; position: absolute; right: -3px; top: 3px;
-        width: 2px; height: 5px; background: var(--on-surface); border-radius: 0 1px 1px 0;
-      }
-      .statusbar .battery > span {
-        position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px;
-        background: var(--on-surface); border-radius: 1px;
-      }
 
       /* ---- Top app bar ---- */
       .topbar {
@@ -188,11 +165,6 @@
     </style>
   </head>
   <body>
-    <div class="statusbar">
-      <span>9:30</span>
-      <span class="battery"><span></span></span>
-    </div>
-
     <div class="topbar">
       <div class="title">node-peak</div>
       <div class="actions">

@@ -86,8 +86,22 @@ design-parity run --repo . \
 #    .design-parity/out/<component>/report.html  (reference | candidate | diff)
 ```
 
-Latest run (desktop backend): visual diff **~11%** (light) / **~6%** (dark) of
-pixels over the overlap — mostly typography and minor vertical drift.
+References intentionally omit the OS **status bar**: the candidate renders on the
+CMP desktop backend with no system chrome (`showSystemUi` is an Android-tooling
+hint the Skiko render path ignores), so a status bar in the reference offset every
+row by its height and dominated the diff. The references draw the screen's own top
+app bar as the first element (y=0), matching the candidate; the system status bar
+is OS chrome, not part of the component under test.
+
+This is an **interim** measure: once the desktop renderer learns to draw synthetic
+system bars for `showSystemUi = true`
+([compose-ai-tools#1930](https://github.com/yschimke/compose-ai-tools/issues/1930),
+porting the Android renderer's `SystemBarsFrame`), the candidate will carry a
+status bar of its own and these references can restore the realistic phone framing.
+
+Earlier run (before dropping the status bar): visual diff **~11%** (light) /
+**~6%** (dark) of pixels over the overlap — the bulk of it that systemic vertical
+offset, with typography the main residual once it's removed.
 
 ## Continuous artifacts (`design-parity/main` branch)
 
