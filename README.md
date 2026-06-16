@@ -55,6 +55,12 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 
 | Preview | Image |
 |---------|-------|
+| `ChannelChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark.png" width="150" /> |
+| `ChannelChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatPreview_Channel_chat.png" width="150" /> |
+| `CommandsDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsDarkPreview_Commands_dark.png" width="150" /> |
+| `CommandsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsPreview_Commands.png" width="150" /> |
+| `ContactChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark.png" width="150" /> |
+| `ContactChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatPreview_Contact_chat.png" width="150" /> |
 | `DeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyDarkPreview_Device_dark.png" width="150" /> |
 | `DeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyPreview_Device_populated.png" width="150" /> |
 

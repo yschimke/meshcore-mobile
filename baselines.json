@@ -307,6 +307,48 @@
     "sha256": "75b2f783a8aa7e44f6f03d827250a230e442e1ec4c93a3f38e96933495793e17",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
   },
+  "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatDarkPreview_Channel chat \u2014 dark": {
+    "captureLabel": "",
+    "functionName": "ChannelChatDarkPreview",
+    "renderBasename": "ChannelChatDarkPreview_Channel_chat_dark.png",
+    "sha256": "cbbef474a815a8460d04bea7ed97ed82764652d851fc2b2225588169f50e7a8c",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Channel chat": {
+    "captureLabel": "",
+    "functionName": "ChannelChatPreview",
+    "renderBasename": "ChannelChatPreview_Channel_chat.png",
+    "sha256": "9cd0cab54da6de3c030e05b2f7518f8ef3f1fdf9d23463f740d91075a87a13df",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsDarkPreview_Commands \u2014 dark": {
+    "captureLabel": "",
+    "functionName": "CommandsDarkPreview",
+    "renderBasename": "CommandsDarkPreview_Commands_dark.png",
+    "sha256": "9aacdade448dbd552ae845e5517998db84f15d2013ad8aaae4132fd33c5cde53",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Commands": {
+    "captureLabel": "",
+    "functionName": "CommandsPreview",
+    "renderBasename": "CommandsPreview_Commands.png",
+    "sha256": "5e1108ba68b83187140a4a2a90f4d4a81b7e461e699821f415cd61b6a90066e4",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatDarkPreview_Contact chat \u2014 dark": {
+    "captureLabel": "",
+    "functionName": "ContactChatDarkPreview",
+    "renderBasename": "ContactChatDarkPreview_Contact_chat_dark.png",
+    "sha256": "69df93db4bf782f102a2bc1669ed30d098f31cf6efb723a9b0536d31d940eee2",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Contact chat": {
+    "captureLabel": "",
+    "functionName": "ContactChatPreview",
+    "renderBasename": "ContactChatPreview_Contact_chat.png",
+    "sha256": "671553619d34d22a5a21d383d7f6d3c30f4fdcc125e803d3185714638333432f",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
+  },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device \u2014 dark": {
     "captureLabel": "",
     "functionName": "DeviceBodyDarkPreview",
