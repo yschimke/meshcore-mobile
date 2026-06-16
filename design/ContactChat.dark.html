@@ -1,0 +1,149 @@
+<!doctype html>
+<!--
+  Claude Design HTML export — alice chat (dark).
+
+  Hand-authored design intent for the MeshCore chat screen as rendered by the
+  ChatBody preview, mirroring its CMP-desktop render. Colours, radii and spacing
+  below are the MeshCore Material 3 dark scheme (seed teal #006A60) from
+  MeshcoreTokens.kt. The application/design-parity+json manifest at the end is the
+  machine-readable hand-off (componentId, tokens, reference PNG src); the PNG is
+  generated from this document (not committed). See docs/design-parity.md.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=411, initial-scale=1" />
+    <title>alice · MeshCore (dark)</title>
+    <style>
+      :root {
+        --primary: #53dbc9;
+        --primary-container: #005048;
+        --on-primary-container: #74f8e5;
+        --surface: #0e1513;
+        --on-surface: #dde4e1;
+        --on-surface-variant: #bec9c5;
+        --surface-container-high: #242b29;
+        --outline: #89938f;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        width: 411px; height: 914px; overflow: hidden;
+        background: var(--surface); color: var(--on-surface);
+        font-family: "Space Grotesk", "Roboto", "Segoe UI", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: flex; flex-direction: column;
+      }
+      .statusbar {
+        height: 28px; flex: none; display: flex; align-items: center;
+        justify-content: space-between; padding: 0 16px;
+        font-size: 13px; font-weight: 600; color: var(--on-surface);
+      }
+      .statusbar .battery {
+        width: 22px; height: 11px; border: 1.5px solid var(--on-surface);
+        border-radius: 3px; position: relative;
+      }
+      .statusbar .battery > span {
+        position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px;
+        background: var(--on-surface); border-radius: 1px;
+      }
+      .topbar {
+        height: 56px; flex: none; display: flex; align-items: center;
+        gap: 4px; padding: 0 8px; background: var(--surface);
+      }
+      .icon-btn {
+        width: 40px; height: 40px; flex: none; display: flex;
+        align-items: center; justify-content: center; color: var(--on-surface);
+      }
+      .icon-btn.action { color: var(--on-surface-variant); margin-left: auto; }
+      .icon-btn svg { width: 24px; height: 24px; }
+      .titles { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+      .titles .title { font-size: 16px; font-weight: 600; color: var(--on-surface); }
+      .titles .subtitle { font-size: 13px; color: var(--on-surface-variant); }
+      .messages {
+        flex: 1; overflow: hidden; padding: 8px 12px;
+        display: flex; flex-direction: column; gap: 4px;
+      }
+      .row { display: flex; }
+      .row.them { justify-content: flex-start; padding-right: 48px; }
+      .row.mine { justify-content: flex-end; padding-left: 48px; }
+      .bubble { padding: 8px 12px; border-radius: 12px; max-width: 100%; }
+      .row.them .bubble {
+        background: var(--surface-container-high); color: var(--on-surface);
+        border-bottom-left-radius: 4px;
+      }
+      .row.mine .bubble {
+        background: var(--primary-container); color: var(--on-primary-container);
+        border-bottom-right-radius: 4px;
+      }
+      .who-row { display: flex; align-items: center; gap: 8px; }
+      .who { font-size: 12px; font-weight: 600; color: var(--primary); }
+      .snr { font-size: 11px; opacity: 0.55; }
+      .text { font-size: 15px; line-height: 1.3; }
+      .foot { display: flex; gap: 6px; font-size: 11px; opacity: 0.55; margin-top: 3px; }
+      .input {
+        flex: none; display: flex; align-items: center; gap: 8px; padding: 8px;
+      }
+      .field {
+        flex: 1; height: 48px; border: 1px solid var(--outline); border-radius: 24px;
+        display: flex; align-items: center; padding: 0 18px;
+        color: var(--on-surface-variant); font-size: 15px;
+      }
+      .send { width: 44px; height: 44px; flex: none; display: flex;
+        align-items: center; justify-content: center; color: var(--on-surface-variant); }
+      .send svg { width: 24px; height: 24px; }
+    </style>
+  </head>
+  <body>
+    <div class="statusbar"><span>9:30</span><span class="battery"><span></span></span></div>
+    <div class="topbar">
+      <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="5" y2="12"/><polyline points="11 18 5 12 11 6"/></svg></span>
+      <div class="titles"><div class="title">alice</div><div class="subtitle">Direct message</div></div>
+      
+    </div>
+    <div class="messages">
+      <div class="row them"><div class="bubble"><div class="text">hey — are you on tonight?</div><div class="foot"><span>14/11 21:58</span></div></div></div>
+      <div class="row mine"><div class="bubble"><div class="text">yeah, firing up the node now</div><div class="foot"><span>14/11 21:59</span><span class="dot">·</span><span>Delivered</span></div></div></div>
+      <div class="row them"><div class="bubble"><div class="text">nice — I&#x27;ll relay through bob-repeater</div><div class="foot"><span>14/11 22:11</span></div></div></div>
+      <div class="row mine"><div class="bubble"><div class="text">sounds good, sending a test ping</div><div class="foot"><span>14/11 22:12</span><span class="dot">·</span><span>Sent</span></div></div></div>
+    </div>
+    <div class="input">
+      <div class="field">Message</div>
+      <span class="send"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6 3 10l12 2-12 2z"/></svg></span>
+    </div>
+    <script type="application/design-parity+json">
+{
+  "componentId": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ContactChatDarkPreview",
+  "tokens": {
+    "spacing": {
+      "listPadding": 12,
+      "bubblePadding": 12,
+      "inputPadding": 8,
+      "bubbleGap": 4
+    },
+    "radius": {
+      "bubble": 12,
+      "input": 24
+    },
+    "colors": {
+      "primary": "#53DBC9",
+      "primaryContainer": "#005048",
+      "onPrimaryContainer": "#74F8E5",
+      "surface": "#0E1513",
+      "onSurface": "#DDE4E1",
+      "onSurfaceVariant": "#BEC9C5",
+      "surfaceContainerHigh": "#242B29",
+      "outline": "#89938F"
+    }
+  },
+  "images": [
+    {
+      "state": "default",
+      "size": "compact",
+      "src": "ContactChat.dark.png"
+    }
+  ]
+}
+    </script>
+  </body>
+</html>
