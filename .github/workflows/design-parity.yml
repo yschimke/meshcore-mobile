@@ -93,7 +93,7 @@ jobs:
         run: |
           set -euo pipefail
           components="$(jq -r '[.components[].code] | join(",")' design-map.json)"
-          npx -y design-parity@0.1.3 run \
+          npx -y design-parity@0.1.4 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png \
