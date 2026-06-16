@@ -62,7 +62,7 @@ def bubble(side, sender, snr, text, time, status):
     if mine and status:
         foot += f'<span class="dot">·</span><span>{html.escape(status)}</span>'
     return (f'<div class="row {"mine" if mine else "them"}">'
-            f'<div class="bubble">{header}'
+            f'<div class="bubble{" wide" if header else ""}">{header}'
             f'<div class="text">{html.escape(text)}</div>'
             f'<div class="foot">{foot}</div></div></div>')
 
@@ -140,7 +140,7 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
       .titles .title {{ font-size: 16px; font-weight: 600; color: var(--on-surface); }}
       .titles .subtitle {{ font-size: 13px; color: var(--on-surface-variant); }}
       .messages {{
-        flex: 1; overflow: hidden; padding: 8px 12px;
+        flex: 1; overflow: hidden; padding: 14px 12px 8px;
         display: flex; flex-direction: column; gap: 4px;
       }}
       .row {{ display: flex; }}
@@ -151,6 +151,7 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
         background: var(--surface-container-high); color: var(--on-surface);
         border-bottom-left-radius: 4px;
       }}
+      .row.them .bubble.wide {{ width: 100%; }}
       .row.mine .bubble {{
         background: var(--primary-container); color: var(--on-primary-container);
         border-bottom-right-radius: 4px;
