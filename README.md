@@ -65,6 +65,8 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `CachedDeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyPreview_Cached_device.png" width="150" /> |
 | `DeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyDarkPreview_Device_dark.png" width="150" /> |
 | `DeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyPreview_Device_populated.png" width="150" /> |
+| `DeviceSettingsDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsDarkPreview_Device_settings_dark.png" width="150" /> |
+| `DeviceSettingsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsPreview_Device_settings.png" width="150" /> |
 
 ## wear
 
