@@ -60,6 +60,18 @@
       "source": "claude-design",
       "ref": "design/CachedDevice.dark.html",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device — dark"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt#DeviceSettingsPreview",
+      "source": "claude-design",
+      "ref": "design/DeviceSettings.light.html",
+      "previewId": "ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsPreview_Device settings"
+    },
+    {
+      "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt#DeviceSettingsDarkPreview",
+      "source": "claude-design",
+      "ref": "design/DeviceSettings.dark.html",
+      "previewId": "ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsDarkPreview_Device settings — dark"
     }
   ]
 }

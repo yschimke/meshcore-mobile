@@ -1,0 +1,116 @@
+<!doctype html>
+<!--
+  Claude Design HTML export — Device Settings (dark).
+
+  Hand-authored design intent for the Device Settings screen's discovered "Ready"
+  state (buzzer toggle), mirroring the CMP-desktop render of DeviceSettingsBody.
+  Colours below are the MeshCore Material 3 dark scheme from MeshcoreTokens.kt.
+  The application/design-parity+json manifest at the end is the machine-readable
+  hand-off; the reference PNG is generated from this document (not committed).
+  See docs/design-parity.md.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=411, initial-scale=1" />
+    <title>Device Settings · MeshCore (dark)</title>
+    <style>
+      :root {
+        --primary: #53dbc9;
+        --on-primary: #003731;
+        --surface: #0e1513;
+        --on-surface: #dde4e1;
+        --on-surface-variant: #bec9c5;
+        --outline-variant: #3f4946;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        width: 411px; height: 914px; overflow: hidden;
+        background: var(--surface); color: var(--on-surface);
+        font-family: "Space Grotesk", "Roboto", "Segoe UI", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: flex; flex-direction: column;
+      }
+      .statusbar {
+        height: 28px; flex: none; display: flex; align-items: center;
+        justify-content: space-between; padding: 0 16px;
+        font-size: 13px; font-weight: 600; color: var(--on-surface);
+      }
+      .statusbar .battery {
+        width: 22px; height: 11px; border: 1.5px solid var(--on-surface);
+        border-radius: 3px; position: relative;
+      }
+      .statusbar .battery > span {
+        position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px;
+        background: var(--on-surface); border-radius: 1px;
+      }
+      .topbar {
+        height: 56px; flex: none; display: flex; align-items: center;
+        gap: 4px; padding: 0 8px; background: var(--surface);
+      }
+      .icon-btn {
+        width: 40px; height: 40px; flex: none; display: flex;
+        align-items: center; justify-content: center; color: var(--on-surface);
+      }
+      .icon-btn.action { color: var(--on-surface-variant); margin-left: auto; margin-right: 8px; }
+      .icon-btn svg { width: 24px; height: 24px; }
+      .title { flex: 1; font-size: 16px; font-weight: 600; color: var(--on-surface); }
+      .content { padding: 8px 16px 0; }
+      .row { display: flex; align-items: center; padding: 4px 0; }
+      .row .labels { flex: 1; }
+      .row .label { font-size: 16px; color: var(--on-surface); }
+      .row .sub { font-size: 13px; color: var(--on-surface-variant); }
+      .switch { width: 52px; height: 32px; border-radius: 16px; position: relative; flex: none; background: var(--primary); }
+      .switch .thumb { position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; background: var(--on-primary); }
+      .divider { height: 1px; background: var(--outline-variant); margin: 8px 0; }
+    </style>
+  </head>
+  <body>
+    <div class="statusbar"><span>9:30</span><span class="battery"><span></span></span></div>
+    <div class="topbar">
+      <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="5" y2="12"/><polyline points="11 18 5 12 11 6"/></svg></span>
+      <div class="title">Device Settings</div>
+      <span class="icon-btn action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L16 2H8l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 3 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L8 22h8l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6A7 7 0 0 0 19 12z"/></svg></span>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="labels">
+          <div class="label">Buzzer</div>
+          <div class="sub">On (rtttl)</div>
+        </div>
+        <div class="switch"><span class="thumb"></span></div>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <script type="application/design-parity+json">
+{
+  "componentId": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt#DeviceSettingsDarkPreview",
+  "tokens": {
+    "spacing": {
+      "screenPadding": 16,
+      "rowGap": 8
+    },
+    "radius": {
+      "switch": 16
+    },
+    "colors": {
+      "primary": "#53DBC9",
+      "onPrimary": "#003731",
+      "surface": "#0E1513",
+      "onSurface": "#DDE4E1",
+      "onSurfaceVariant": "#BEC9C5",
+      "outlineVariant": "#3F4946"
+    }
+  },
+  "images": [
+    {
+      "state": "default",
+      "size": "compact",
+      "src": "DeviceSettings.dark.png"
+    }
+  ]
+}
+    </script>
+  </body>
+</html>
