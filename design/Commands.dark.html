@@ -48,7 +48,7 @@
       .titles .title { font-size: 16px; font-weight: 600; color: var(--on-surface); }
       .titles .subtitle { font-size: 13px; color: var(--on-surface-variant); }
       .messages {
-        flex: 1; overflow: hidden; padding: 8px 12px;
+        flex: 1; overflow: hidden; padding: 14px 12px 8px;
         display: flex; flex-direction: column; gap: 4px;
       }
       .row { display: flex; }
@@ -59,6 +59,7 @@
         background: var(--surface-container-high); color: var(--on-surface);
         border-bottom-left-radius: 4px;
       }
+      .row.them .bubble.wide { width: 100%; }
       .row.mine .bubble {
         background: var(--primary-container); color: var(--on-primary-container);
         border-bottom-right-radius: 4px;
@@ -89,9 +90,9 @@
     </div>
     <div class="messages">
       <div class="row mine"><div class="bubble"><div class="text">get bat</div><div class="foot"><span>14/11 22:10</span><span class="dot">·</span><span>Sent</span></div></div></div>
-      <div class="row them"><div class="bubble"><div class="who-row"><span class="who">device</span><span class="snr">SNR 9</span></div><div class="text">battery: 3980 mV (97%)</div><div class="foot"><span>14/11 22:10</span></div></div></div>
+      <div class="row them"><div class="bubble wide"><div class="who-row"><span class="who">device</span><span class="snr">SNR 9</span></div><div class="text">battery: 3980 mV (97%)</div><div class="foot"><span>14/11 22:10</span></div></div></div>
       <div class="row mine"><div class="bubble"><div class="text">get freq</div><div class="foot"><span>14/11 22:12</span><span class="dot">·</span><span>Delivered</span></div></div></div>
-      <div class="row them"><div class="bubble"><div class="who-row"><span class="who">device</span><span class="snr">SNR 9</span></div><div class="text">freq: 869.525 MHz · BW 125 kHz · SF 10 · CR 5</div><div class="foot"><span>14/11 22:12</span></div></div></div>
+      <div class="row them"><div class="bubble wide"><div class="who-row"><span class="who">device</span><span class="snr">SNR 9</span></div><div class="text">freq: 869.525 MHz · BW 125 kHz · SF 10 · CR 5</div><div class="foot"><span>14/11 22:12</span></div></div></div>
     </div>
     <div class="input">
       <div class="field">Enter command…</div>
