@@ -122,6 +122,15 @@ jobs:
           cp -a build/design-parity/out/. "$art/"
           cp build/design-parity/candidates.bundle.png "$art/" || true
           printf '%s\n' "$GITHUB_SHA" > "$art/SOURCE_COMMIT"
+          # The artifacts live on a branch, where GitHub serves .html as source
+          # rather than rendering it, so the landing page's relative report links
+          # don't open. Each report is self-contained, so rewrite the README's
+          # report links to htmlpreview, which renders a branch-hosted HTML page.
+          if [ -f "$art/README.md" ]; then
+            sed -i -E \
+              "s#\]\(\./([^)]+\.html)\)#](https://htmlpreview.github.io/?https://github.com/${GITHUB_REPOSITORY}/blob/design-parity/main/\1)#g" \
+              "$art/README.md"
+          fi
           cd "$art"
           git init -q
           git checkout -q -b design-parity/main
