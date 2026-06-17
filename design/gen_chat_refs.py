@@ -159,15 +159,15 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
       .who-row {{ display: flex; align-items: center; gap: 8px; }}
       .who {{ font-size: 12px; font-weight: 600; color: var(--primary); }}
       .snr {{ font-size: 11px; opacity: 0.55; }}
-      .text {{ font-size: 15px; line-height: 1.3; }}
+      .text {{ font-size: 14px; line-height: 1.3; }}
       .foot {{ display: flex; gap: 6px; font-size: 11px; opacity: 0.55; margin-top: 3px; }}
       .input {{
         flex: none; display: flex; align-items: center; gap: 8px; padding: 8px;
       }}
       .field {{
-        flex: 1; height: 48px; border: 1px solid var(--outline); border-radius: 24px;
+        flex: 1; height: 56px; border: 1px solid var(--outline); border-radius: 24px;
         display: flex; align-items: center; padding: 0 18px;
-        color: var(--on-surface-variant); font-size: 15px;
+        color: var(--on-surface-variant); font-size: 16px;
       }}
       .send {{ width: 44px; height: 44px; flex: none; display: flex;
         align-items: center; justify-content: center; color: var(--on-surface-variant); }}
