@@ -82,8 +82,10 @@
       .send svg { width: 24px; height: 24px; }
     
       /* System bars (showSystemUi = true): status bar + gesture nav pill, drawn
-         as non-reflowing overlays so the app content keeps its measured place. */
-      body { position: relative; }
+         as non-reflowing overlays. Content is inset to match the candidate's
+         status-bar inset; the value is the residual layout-diff offset (Δpos dy)
+         this screen showed once the bars were added (body ~-2; centres the body). */
+      body { position: relative; padding-top: 2px; }
       .sysbar { position: absolute; left: 0; right: 0; pointer-events: none; color: var(--on-surface); }
       .sysbar-top { top: 0; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; }
       .sysbar-top svg { width: 22px; height: 12px; }
