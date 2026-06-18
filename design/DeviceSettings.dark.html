@@ -51,9 +51,20 @@
       .switch { width: 52px; height: 32px; border-radius: 16px; position: relative; flex: none; background: var(--primary); }
       .switch .thumb { position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; background: var(--on-primary); }
       .divider { height: 1px; background: var(--outline-variant); margin: 8px 0; }
+    
+      /* System bars (showSystemUi = true): status bar + gesture nav pill, drawn
+         as non-reflowing overlays so the app content keeps its measured place. */
+      body { position: relative; }
+      .sysbar { position: absolute; left: 0; right: 0; pointer-events: none; color: var(--on-surface); }
+      .sysbar-top { top: 0; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; }
+      .sysbar-top svg { width: 22px; height: 12px; }
+      .sysbar-bottom { bottom: 7px; display: flex; justify-content: center; }
+      .sysbar-bottom .pill { width: 108px; height: 4px; border-radius: 2px; background: currentColor; }
     </style>
   </head>
   <body>
+    <div class="sysbar sysbar-top"><span>9:30</span><svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="19" height="10" rx="2.5"/><rect x="3" y="3" width="11" height="6" rx="1" fill="currentColor" stroke="none"/><path d="M22 4.5v3" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="sysbar sysbar-bottom"><span class="pill"></span></div>
     <div class="topbar">
       <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="5" y2="12"/><polyline points="11 18 5 12 11 6"/></svg></span>
       <div class="title">Device Settings</div>
