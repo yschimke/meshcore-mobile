@@ -311,84 +311,84 @@
     "captureLabel": "",
     "functionName": "ChannelChatDarkPreview",
     "renderBasename": "ChannelChatDarkPreview_Channel_chat_dark.png",
-    "sha256": "cbbef474a815a8460d04bea7ed97ed82764652d851fc2b2225588169f50e7a8c",
+    "sha256": "4d2c42b19ab89942057a71a5cc0717a6cd6e32b451a74472601ea7daecba8f98",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Channel chat": {
     "captureLabel": "",
     "functionName": "ChannelChatPreview",
     "renderBasename": "ChannelChatPreview_Channel_chat.png",
-    "sha256": "9cd0cab54da6de3c030e05b2f7518f8ef3f1fdf9d23463f740d91075a87a13df",
+    "sha256": "d28e3a0ad9bc5ba456dbc00666abdc1cb10906ef9d37f1cc0ee33f4e3000e09f",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsDarkPreview_Commands \u2014 dark": {
     "captureLabel": "",
     "functionName": "CommandsDarkPreview",
     "renderBasename": "CommandsDarkPreview_Commands_dark.png",
-    "sha256": "9aacdade448dbd552ae845e5517998db84f15d2013ad8aaae4132fd33c5cde53",
+    "sha256": "a0c414f12525afd51454ffa252f9d3822e3d9c729fcce277cdce822a28effcae",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Commands": {
     "captureLabel": "",
     "functionName": "CommandsPreview",
     "renderBasename": "CommandsPreview_Commands.png",
-    "sha256": "5e1108ba68b83187140a4a2a90f4d4a81b7e461e699821f415cd61b6a90066e4",
+    "sha256": "70e1eadaf96facfe1ca97b9921c77e0d98dc14fd91d34f3a7c95af2892d7ca68",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatDarkPreview_Contact chat \u2014 dark": {
     "captureLabel": "",
     "functionName": "ContactChatDarkPreview",
     "renderBasename": "ContactChatDarkPreview_Contact_chat_dark.png",
-    "sha256": "69df93db4bf782f102a2bc1669ed30d098f31cf6efb723a9b0536d31d940eee2",
+    "sha256": "c40fddb7bfb143ce7baffb9473cb544d1c7873423428db1ee52a3c4849e2ab1b",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Contact chat": {
     "captureLabel": "",
     "functionName": "ContactChatPreview",
     "renderBasename": "ContactChatPreview_Contact_chat.png",
-    "sha256": "671553619d34d22a5a21d383d7f6d3c30f4fdcc125e803d3185714638333432f",
+    "sha256": "434d6f3c7bec51e23a32d2154e676d0255632430e66dbf4647415c6109e6faeb",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device \u2014 dark": {
     "captureLabel": "",
     "functionName": "CachedDeviceBodyDarkPreview",
     "renderBasename": "CachedDeviceBodyDarkPreview_Cached_device_dark.png",
-    "sha256": "1d51c2eeedc29a6726bfb3e842389a7a7ac8d4737a1c87eea6a4adb41c6dac5a",
+    "sha256": "fcc1d27c473f476e89daa1ba3bf4f70fc1017c71bf750643b974e768aae0e924",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Cached device": {
     "captureLabel": "",
     "functionName": "CachedDeviceBodyPreview",
     "renderBasename": "CachedDeviceBodyPreview_Cached_device.png",
-    "sha256": "b289f73a8dbd06774e3b370b3df5c6bdb8b7203387f8ff043a99d2843e9efcfd",
+    "sha256": "640481241b9be7b52846096ac8f7abf7bdd77d8831de6051707210c342eea3d0",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device \u2014 dark": {
     "captureLabel": "",
     "functionName": "DeviceBodyDarkPreview",
     "renderBasename": "DeviceBodyDarkPreview_Device_dark.png",
-    "sha256": "a60ee2ed5031781a86ee37b64f288f3284e44d2872b4a96bd1f609492843f31f",
+    "sha256": "4220d8cb1bf9e7fac31e516a30b4feb39ad1f7eafea9c02b9b4716c8946566b3",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Device \u2014 populated": {
     "captureLabel": "",
     "functionName": "DeviceBodyPreview",
     "renderBasename": "DeviceBodyPreview_Device_populated.png",
-    "sha256": "ebdd3c700c8ea2ba471cd16294f319328e5875b161ddf4a1a2744e7d1020cf6d",
+    "sha256": "fbfd5445fcd8944ad3ed7f9e74a176ed59032f03d082f8737d1aaf0d4296088e",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsDarkPreview_Device settings \u2014 dark": {
     "captureLabel": "",
     "functionName": "DeviceSettingsDarkPreview",
     "renderBasename": "DeviceSettingsDarkPreview_Device_settings_dark.png",
-    "sha256": "bb7188609fb6f01dc0bba881e8586e4d0d638fcbcf85bb8550117f32cb1f0d27",
+    "sha256": "45ac162176602501d3f605d069742488106bce3d6d9a3f2ce636ea72d8439078",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsPreview_Device settings": {
     "captureLabel": "",
     "functionName": "DeviceSettingsPreview",
     "renderBasename": "DeviceSettingsPreview_Device_settings.png",
-    "sha256": "440e5a6d624933f935b09d6657a7a460fad56d9e94608b292d03f8aaecee2106",
+    "sha256": "49eadab04f2670fb9f3dcacf0f9e5e369fbf527d490533e81888a195f6020803",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
