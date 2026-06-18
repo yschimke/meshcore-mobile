@@ -53,8 +53,11 @@
       .divider { height: 1px; background: var(--outline-variant); margin: 8px 0; }
     
       /* System bars (showSystemUi = true): status bar + gesture nav pill, drawn
-         as non-reflowing overlays so the app content keeps its measured place. */
-      body { position: relative; }
+         as non-reflowing overlays. Unlike the other references this screen's
+         content is flush to the top, so inset it by the status-bar height to match
+         the candidate, which insets its content ~14dp below the status bar
+         (measured layout-diff Δpos dy = -14). */
+      body { position: relative; padding-top: 14px; }
       .sysbar { position: absolute; left: 0; right: 0; pointer-events: none; color: var(--on-surface); }
       .sysbar-top { top: 0; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; }
       .sysbar-top svg { width: 22px; height: 12px; }
