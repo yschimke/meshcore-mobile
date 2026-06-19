@@ -51,12 +51,11 @@
       .switch { width: 52px; height: 32px; border-radius: 16px; position: relative; flex: none; background: var(--primary); }
       .switch .thumb { position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; background: var(--on-primary); }
       .divider { height: 1px; background: var(--outline-variant); margin: 8px 0; }
-    
-      /* System bars (showSystemUi = true): status bar + gesture nav pill, drawn
-         as non-reflowing overlays. Unlike the other references this screen's
-         content is flush to the top, so inset it by the status-bar height to match
-         the candidate, which insets its content ~14dp below the status bar
-         (measured layout-diff Δpos dy = -14). */
+
+      /* System bars (showSystemUi = true): status bar + gesture nav pill drawn as
+         non-reflowing overlays. padding-top insets the content to the candidate's
+         status-bar inset (the residual layout-diff offset this screen showed once
+         the bars were added). */
       body { position: relative; padding-top: 14px; }
       .sysbar { position: absolute; left: 0; right: 0; pointer-events: none; color: var(--on-surface); }
       .sysbar-top { top: 0; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; }
@@ -79,7 +78,7 @@
           <div class="label">Buzzer</div>
           <div class="sub">On (rtttl)</div>
         </div>
-        <div class="switch" role="switch" aria-label="Buzzer"><span class="thumb"></span></div>
+        <div class="switch" role="switch" aria-label="Buzzer" aria-checked="true"><span class="thumb"></span></div>
       </div>
       <div class="divider"></div>
     </div>

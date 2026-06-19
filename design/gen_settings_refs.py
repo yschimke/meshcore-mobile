@@ -26,6 +26,34 @@ GEAR = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
         'L16 2H8l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 3 12a7 7 0 0 0 .1 1.2l-2 1.6 '
         '2 3.4 2.4-1a7 7 0 0 0 2 1.2L8 22h8l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6A7 7 0 0 0 19 12z"/></svg>')
 
+# System bars (showSystemUi = true): a status bar (9:30 + battery) and a gesture
+# nav pill, drawn as non-reflowing overlays. Shared verbatim with gen_chat_refs.py
+# — keep the two in sync. This screen's content is flush to the top, so it carries
+# the full status-bar inset (14px, the residual Δpos dy it showed once bars added).
+SYSBAR_INSET = 14
+SYSBAR_MARKUP = (
+    '    <div class="sysbar sysbar-top"><span>9:30</span><svg viewBox="0 0 24 12" fill="none" '
+    'stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="19" height="10" rx="2.5"/>'
+    '<rect x="3" y="3" width="11" height="6" rx="1" fill="currentColor" stroke="none"/>'
+    '<path d="M22 4.5v3" stroke-width="2" stroke-linecap="round"/></svg></div>\n'
+    '    <div class="sysbar sysbar-bottom"><span class="pill"></span></div>'
+)
+
+
+def sysbar_style(inset):
+    pad = f" padding-top: {inset}px;" if inset else ""
+    return f"""
+      /* System bars (showSystemUi = true): status bar + gesture nav pill drawn as
+         non-reflowing overlays. padding-top insets the content to the candidate's
+         status-bar inset (the residual layout-diff offset this screen showed once
+         the bars were added). */
+      body {{ position: relative;{pad} }}
+      .sysbar {{ position: absolute; left: 0; right: 0; pointer-events: none; color: var(--on-surface); }}
+      .sysbar-top {{ top: 0; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; }}
+      .sysbar-top svg {{ width: 22px; height: 12px; }}
+      .sysbar-bottom {{ bottom: 7px; display: flex; justify-content: center; }}
+      .sysbar-bottom .pill {{ width: 108px; height: 4px; border-radius: 2px; background: currentColor; }}"""
+
 
 def render(theme, t, fn, png):
     manifest = json.dumps({
@@ -97,13 +125,15 @@ def render(theme, t, fn, png):
       .switch {{ width: 52px; height: 32px; border-radius: 16px; position: relative; flex: none; background: var(--primary); }}
       .switch .thumb {{ position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; background: var(--on-primary); }}
       .divider {{ height: 1px; background: var(--outline-variant); margin: 8px 0; }}
+{sysbar_style(SYSBAR_INSET)}
     </style>
   </head>
   <body>
+{SYSBAR_MARKUP}
     <div class="topbar">
-      <span class="icon-btn">{BACK}</span>
+      <span class="icon-btn" role="button" aria-label="Back">{BACK}</span>
       <div class="title">Device Settings</div>
-      <span class="icon-btn action">{GEAR}</span>
+      <span class="icon-btn action" aria-hidden="true">{GEAR}</span>
     </div>
     <div class="content">
       <div class="row">
@@ -111,7 +141,7 @@ def render(theme, t, fn, png):
           <div class="label">Buzzer</div>
           <div class="sub">On (rtttl)</div>
         </div>
-        <div class="switch"><span class="thumb"></span></div>
+        <div class="switch" role="switch" aria-label="Buzzer" aria-checked="true"><span class="thumb"></span></div>
       </div>
       <div class="divider"></div>
     </div>
