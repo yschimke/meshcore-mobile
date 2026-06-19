@@ -29,6 +29,38 @@ TERMINAL = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
             'stroke-linecap="round" stroke-linejoin="round"><polyline points="5 7 9 11 5 15"/>'
             '<line x1="12" y1="16" x2="18" y2="16"/></svg>')
 
+# System bars (showSystemUi = true): a status bar (9:30 + battery) and a gesture
+# nav pill, drawn as absolutely-positioned, non-reflowing overlays so the app
+# content keeps its measured place. Markup goes first in <body>; CSS goes last in
+# <style>. Shared verbatim with gen_settings_refs.py — keep the two in sync.
+SYSBAR_MARKUP = (
+    '    <div class="sysbar sysbar-top"><span>9:30</span><svg viewBox="0 0 24 12" fill="none" '
+    'stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="19" height="10" rx="2.5"/>'
+    '<rect x="3" y="3" width="11" height="6" rx="1" fill="currentColor" stroke="none"/>'
+    '<path d="M22 4.5v3" stroke-width="2" stroke-linecap="round"/></svg></div>\n'
+    '    <div class="sysbar sysbar-bottom"><span class="pill"></span></div>'
+)
+
+
+def sysbar_style(inset):
+    """The system-bar CSS plus the `body` overlay/inset rule. `inset` is the px the
+    content is pushed down to match the candidate's status-bar inset — the residual
+    layout-diff Δpos dy this screen showed once the bars were added; 0 means the
+    content already lines up and only the overlays are added."""
+    pad = f" padding-top: {inset}px;" if inset else ""
+    return f"""
+      /* System bars (showSystemUi = true): status bar + gesture nav pill drawn as
+         non-reflowing overlays. padding-top, when set, insets the content to the
+         candidate's status-bar inset (the residual layout-diff offset this screen
+         showed once the bars were added). */
+      body {{ position: relative;{pad} }}
+      .sysbar {{ position: absolute; left: 0; right: 0; pointer-events: none; color: var(--on-surface); }}
+      .sysbar-top {{ top: 0; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; }}
+      .sysbar-top svg {{ width: 22px; height: 12px; }}
+      .sysbar-bottom {{ bottom: 7px; display: flex; justify-content: center; }}
+      .sysbar-bottom .pill {{ width: 108px; height: 4px; border-radius: 2px; background: currentColor; }}"""
+
+
 # Messages mirror ChatBodyPreviews (sender, text, snr, mine, status, displayed time).
 contact = [
     ("in", None, None, "hey — are you on tonight?", "14/11 21:58", None),
@@ -67,9 +99,11 @@ def bubble(side, sender, snr, text, time, status):
             f'<div class="foot">{foot}</div></div></div>')
 
 
-def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, component_id, png):
+def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, inset, component_id, png):
     sub = f'<div class="subtitle">{html.escape(subtitle)}</div>' if subtitle else ""
-    action = f'<span class="icon-btn action">{TERMINAL}</span>' if terminal else ""
+    # The trailing terminal glyph is a decorative Icon (contentDescription = null in
+    # CommandsScreen.kt), so it is aria-hidden and stays unboxed like the candidate.
+    action = f'<span class="icon-btn action" aria-hidden="true">{TERMINAL}</span>' if terminal else ""
     bubbles = "\n      ".join(bubble(*m) for m in msgs)
     import json
     manifest = json.dumps({
@@ -172,11 +206,13 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
       .send {{ width: 44px; height: 44px; flex: none; display: flex;
         align-items: center; justify-content: center; color: var(--on-surface-variant); }}
       .send svg {{ width: 24px; height: 24px; }}
+{sysbar_style(inset)}
     </style>
   </head>
   <body>
+{SYSBAR_MARKUP}
     <div class="topbar">
-      <span class="icon-btn">{BACK}</span>
+      <span class="icon-btn" role="button" aria-label="Back">{BACK}</span>
       <div class="titles"><div class="title">{html.escape(title)}</div>{sub}</div>
       {action}
     </div>
@@ -185,7 +221,7 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
     </div>
     <div class="input">
       <div class="field">{html.escape(placeholder)}</div>
-      <span class="send">{SEND}</span>
+      <span class="send" role="button" aria-label="Send">{SEND}</span>
     </div>
     <script type="application/design-parity+json">
 {manifest}
@@ -195,22 +231,24 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, componen
 """
 
 
+# inset = px the content is pushed down to match the candidate's status-bar inset
+# (the residual layout-diff Δpos dy each screen showed once the bars were added).
 SCREENS = [
-    ("ContactChat", "alice", "Direct message", contact, "Message", False,
+    ("ContactChat", "alice", "Direct message", contact, "Message", False, 0,
      "ContactChatPreview", "ContactChatDarkPreview"),
-    ("ChannelChat", "General", "Channel 0", channel, "Message", False,
+    ("ChannelChat", "General", "Channel 0", channel, "Message", False, 2,
      "ChannelChatPreview", "ChannelChatDarkPreview"),
-    ("Commands", "Commands", None, commands, "Enter command…", True,
+    ("Commands", "Commands", None, commands, "Enter command…", True, 2,
      "CommandsPreview", "CommandsDarkPreview"),
 ]
 CID = "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#{}"
 
 out_dir = os.path.join(os.path.dirname(__file__))
-for base, title, subtitle, msgs, placeholder, terminal, light_fn, dark_fn in SCREENS:
+for base, title, subtitle, msgs, placeholder, terminal, inset, light_fn, dark_fn in SCREENS:
     for theme, t, fn in (("light", LIGHT, light_fn), ("dark", DARK, dark_fn)):
         path = os.path.join(out_dir, f"{base}.{theme}.html")
         png = f"{base}.{theme}.png"
         with open(path, "w") as f:
-            f.write(render(theme, t, title, subtitle, msgs, placeholder, terminal,
+            f.write(render(theme, t, title, subtitle, msgs, placeholder, terminal, inset,
                            CID.format(fn), png))
         print("wrote", path)
