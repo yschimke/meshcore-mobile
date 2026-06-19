@@ -70,8 +70,9 @@
       .topbar .title {
         flex: 1;
         font-family: "Orbitron", "Space Grotesk", system-ui, sans-serif;
-        font-size: 22px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
         letter-spacing: 0.2px;
         color: var(--on-surface);
       }
@@ -101,12 +102,13 @@
       }
       .summary .node-name {
         font-family: "Orbitron", "Space Grotesk", system-ui, sans-serif;
-        font-size: 22px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
         color: var(--on-surface);
         margin-bottom: 0px;
       }
-      .line { display: flex; align-items: center; gap: 10px; color: var(--on-surface-variant); font-size: 15px; }
+      .line { display: flex; align-items: center; gap: 10px; color: var(--on-surface-variant); font-size: 14px; line-height: 20px; }
       .line svg { width: 18px; height: 18px; flex: none; }
       .line.mono { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.5px; }
       .battery-row { color: var(--on-surface-variant); }
@@ -115,7 +117,7 @@
         margin: 1px 0 2px; overflow: hidden;
       }
       .progress > span { display: block; height: 100%; width: 81%; background: var(--primary); border-radius: 2px; }
-      .storage { font-size: 13px; }
+      .storage { font-size: 12px; line-height: 16px; }
 
       /* ---- Last-message banner (outlined card) ---- */
       .banner {
@@ -127,8 +129,8 @@
         gap: 8px;
       }
       .banner svg { width: 22px; height: 22px; color: var(--primary); flex: none; }
-      .banner .who { font-size: 12px; font-weight: 600; color: var(--primary); }
-      .banner .text { font-size: 15px; color: var(--on-surface); }
+      .banner .who { font-size: 12px; font-weight: 700; line-height: 16px; color: var(--primary); }
+      .banner .text { font-size: 14px; line-height: 20px; color: var(--on-surface); }
 
       /* ---- Section headers ---- */
       .section-h {
@@ -136,11 +138,11 @@
         padding: 12px 0;
         color: var(--on-surface-variant);
       }
-      .section-h .label { flex: 1; font-size: 15px; font-weight: 600; }
+      .section-h .label { flex: 1; font-size: 14px; font-weight: 500; line-height: 20px; }
       .chip {
         background: var(--secondary-container);
         color: var(--on-secondary-container);
-        font-size: 13px; font-weight: 600;
+        font-size: 14px; font-weight: 700; line-height: 20px;
         padding: 6px 14px; border-radius: 8px;
       }
       .section-h .caret { width: 20px; height: 20px; color: var(--on-surface-variant); }
@@ -159,9 +161,9 @@
       }
       .avatar.amber { background: var(--tertiary-container); color: var(--on-tertiary-container); }
       .avatar svg { width: 20px; height: 20px; }
-      .row .name { font-size: 16px; font-weight: 600; color: var(--on-surface); }
-      .row .sub { font-size: 13px; color: var(--on-surface-variant); }
-      .empty { font-size: 13px; color: var(--on-surface-variant); padding: 8px 0; }
+      .row .name { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--on-surface); }
+      .row .sub { font-size: 12px; line-height: 16px; color: var(--on-surface-variant); }
+      .empty { font-size: 12px; line-height: 16px; color: var(--on-surface-variant); padding: 8px 0; }
       .empty-center { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 0; }
       .empty-center svg { width: 20px; height: 20px; }
     
