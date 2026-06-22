@@ -1,0 +1,47 @@
+{
+  "$schema": "https://github.com/yschimke/design-parity/schema/dtcg-tokens.schema.json",
+  "$description": "MeshCore design-system tokens (Material 3, seed teal #00695C), the committed artifact a Claude Code /design-sync run materialises from the Claude Design system. Single source of truth shared with meshcore-components/.../theme/MeshcoreTokens.kt; consumed by design-parity as each claude-design component's spec tokens via design-map.json `tokensFile`. Colours are the light scheme (the canonical design-system values).",
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "#006A60" },
+    "on-primary": { "$value": "#FFFFFF" },
+    "primary-container": { "$value": "#74F8E5" },
+    "on-primary-container": { "$value": "#00201C" },
+    "secondary": { "$value": "#4A635F" },
+    "on-secondary": { "$value": "#FFFFFF" },
+    "secondary-container": { "$value": "#CCE8E2" },
+    "on-secondary-container": { "$value": "#05201C" },
+    "tertiary": { "$value": "#715B2E" },
+    "on-tertiary": { "$value": "#FFFFFF" },
+    "tertiary-container": { "$value": "#FDDFA6" },
+    "on-tertiary-container": { "$value": "#261A00" },
+    "error": { "$value": "#BA1A1A" },
+    "on-error": { "$value": "#FFFFFF" },
+    "error-container": { "$value": "#FFDAD6" },
+    "on-error-container": { "$value": "#410002" },
+    "surface": { "$value": "#F4FBF8" },
+    "on-surface": { "$value": "#161D1B" },
+    "surface-variant": { "$value": "#DAE5E1" },
+    "on-surface-variant": { "$value": "#3F4946" },
+    "outline": { "$value": "#6F7976" },
+    "outline-variant": { "$value": "#BEC9C5" },
+    "surface-container-lowest": { "$value": "#FFFFFF" },
+    "surface-container-low": { "$value": "#EEF5F2" },
+    "surface-container": { "$value": "#E8EFEC" },
+    "surface-container-high": { "$value": "#E2E9E6" },
+    "surface-container-highest": { "$value": "#DCE3E0" }
+  },
+  "shape": {
+    "$type": "dimension",
+    "corner-extra-small": { "$value": "4px" },
+    "corner-small": { "$value": "8px" },
+    "corner-medium": { "$value": "12px" },
+    "corner-large": { "$value": "16px" },
+    "corner-extra-large": { "$value": "28px" }
+  },
+  "space": {
+    "$type": "dimension",
+    "inset": { "$value": "16px" },
+    "gutter": { "$value": "8px" }
+  }
+}

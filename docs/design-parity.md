@@ -21,7 +21,8 @@ All render on the CMP desktop backend from `:meshcore-components` `commonMain`.
 | `design/CachedDevice.{light,dark}.html` | The cached (offline) Device references (`CachedDeviceBodyPreview` etc.) — the Device reference plus the `tertiaryContainer` "Cached data" warning banner. |
 | `design/ContactChat.{light,dark}.html`, `design/ChannelChat.{light,dark}.html`, `design/Commands.{light,dark}.html` | The chat screen references (`ContactChatPreview` etc.), authored from the MeshCore M3 scheme; `design/gen_chat_refs.py` is the re-runnable generator that emits them. |
 | `design/DeviceSettings.{light,dark}.html` | The Device Settings references (`DeviceSettingsPreview` etc.) — the discovered buzzer-toggle state; `design/gen_settings_refs.py` is the generator. |
-| `design-map.json` | Correspondence: each preview-function code handle ↔ its reference, plus the `previewId` that reconciles the compose-preview render id with the handle. |
+| `design/meshcore.tokens.json` | The MeshCore design-system tokens as a committed [W3C DTCG](https://tr.designtokens.org/) document — the artifact a Claude Code [`/design-sync`](#synced-design-system-tokens) run materialises from the Claude Design system (M3 colour roles + shape radii + spacing). Mirrors `meshcore-components/.../theme/MeshcoreTokens.kt`. |
+| `design-map.json` | Correspondence: each preview-function code handle ↔ its reference, plus the `previewId` that reconciles the compose-preview render id with the handle, plus the `tokensFile` that points every component at the synced `design/meshcore.tokens.json` spec tokens. |
 | `.design-parity.json` | Parity direction. **`code-led`** (advisory) for now — flip to `design-led` once thresholds are calibrated. |
 
 The reference PNGs the manifests' `src` point to (`design/*.png`) are **generated
@@ -30,6 +31,43 @@ rendered on demand (see below). The current renders, plus the candidate bundle
 and `report.html` triptychs, live on the
 [`design-parity/main`](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
 branch, regenerated on every push to `main`.
+
+## Synced design-system tokens (`/design-sync`)
+
+Each `design-map.json` entry carries a **`tokensFile`** pointing at
+`design/meshcore.tokens.json` — the MeshCore design system as a committed
+[W3C DTCG](https://tr.designtokens.org/) document. This is the artifact a
+[Claude Code `/design-sync`](https://github.com/yschimke/design-parity/blob/main/docs/claude-design-sync-impact.md)
+run materialises from the Claude Design system: the M3 colour roles, shape
+radii, and spacing, on disk and deterministic. design-parity loads it as each
+component's **spec tokens** (`@design-parity/adapter-claude-design` ≥ 0.1.18
+consumes `/design-sync` token artifacts) and runs them through the
+token-compliance diff against the candidate's resolved tokens — so the
+references no longer report "missing from candidate" for tokens (the
+[first-adoption gap](#known-gaps-first-adoption) for the token half).
+
+Because Claude Design exposes **no read API**, the file is committed, not fetched
+at run time — `/design-sync` produces it, design-parity enforces it. It is the
+**single source of truth** with `MeshcoreTokens.kt`: change one, change the
+other (the colours here are the light scheme — the canonical design-system
+values). Pointing every entry at the one file keeps the design system in one
+place; the loader caches it, so the 12 entries cost one parse.
+
+### Uploading back to Claude Design (the reverse direction)
+
+design-parity is **read-only on Claude Design**: it resolves a committed
+reference and diffs it, and ships **no `claude-design` canvas writer** (see
+[design-parity's reconciliation note](https://github.com/yschimke/design-parity/blob/main/docs/claude-design-sync-impact.md#follow-ups)).
+Getting what you built *into* Claude Design is **`/design-sync`'s** job — an
+**interactive, human-run** Claude Code skill, deliberately off the unattended
+Action path. So the round trip is: `/design-sync` (human, in a terminal) seeds
+`design/meshcore.tokens.json`; this workflow (CI) then enforces it on every PR.
+
+The push-back can't run in an unattended cloud agent session: `/design-sync`
+isn't installed there (it lands in new local sessions; `/update` if absent), and
+there is no Claude Design write API or credential to call. To upload, run
+`/design-sync` yourself from a local Claude Code session with Claude Design beta
+access.
 
 ## Render path
 
@@ -126,7 +164,7 @@ reference | candidate | diff without re-rendering locally.
 
 The workflow drives the render from `design-map.json` (so it can't drift from
 it): it installs the released `compose-preview` CLI, packs the candidate bundle,
-runs the published `design-parity` CLI (`npx design-parity@0.1.8`), and publishes
+runs the published `design-parity` CLI (`npx design-parity@0.1.18`), and publishes
 the output. The permanent-branch push is still the interim, hand-rolled version
 of a pattern design-parity's Action should own —
 [design-parity#56](https://github.com/yschimke/design-parity/issues/56) (modeled
