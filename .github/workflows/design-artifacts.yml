@@ -46,7 +46,7 @@ jobs:
       # Install the compose-preview CLI, pinned to the applied plugin version
       # (composePreviewPlugin in libs.versions.toml) so the CLI and plugin stay
       # in lockstep — exactly as compose-preview.yml does for the apply action.
-      - uses: yschimke/compose-ai-tools/.github/actions/install@v0.15.9
+      - uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.8
         with:
           version: catalog
           catalog-key: composePreviewPlugin
@@ -64,7 +64,7 @@ jobs:
 
       - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 22
+          node-version: 22.23.1
       - name: Install export engine (pinned npm packages)
         working-directory: compose-ai-tools/scripts/design-artifacts
         run: npm ci
