@@ -25,7 +25,7 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.15.9
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.16.8
         with:
           # Pin the render CLI to the Gradle plugin version (single source of
           # truth: composePreviewPlugin in libs.versions.toml) instead of the
