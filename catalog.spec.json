@@ -1,0 +1,104 @@
+{
+  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a `compose-preview bundle pack --module :app` render to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. Each `preview` MUST equal the exact @Preview function name in :app (ee.schimke.meshcore.app.ui.ComponentPreviews).",
+  "system": "meshcore-mobile",
+  "title": "MeshCore Mobile",
+  "library": [
+    "androidx.compose.material3:material3",
+    "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
+  ],
+  "module": "app",
+  "modes": ["light", "dark"],
+  "breakpoints": [{ "size": "compact", "widthDp": 412 }],
+  "groups": [
+    {
+      "name": "Device",
+      "components": [
+        {
+          "componentId": "DeviceSummaryCard/Populated",
+          "preview": "DeviceSummaryCardPopulatedPreview",
+          "caption": "The device summary card with radio, battery and signal populated."
+        },
+        {
+          "componentId": "DeviceSummaryCard/Loading",
+          "preview": "DeviceSummaryCardLoadingPreview",
+          "caption": "Loading / not-yet-known state."
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "components": [
+        {
+          "componentId": "ContactRow/Variants",
+          "preview": "ContactRowVariantsPreview",
+          "caption": "The four contact kinds: chat, repeater, room, sensor."
+        },
+        {
+          "componentId": "ContactList/Empty",
+          "preview": "ContactListEmptyPreview",
+          "caption": "Empty-state contact list."
+        },
+        {
+          "componentId": "ContactList/Few",
+          "preview": "ContactListFewPreview",
+          "caption": "A short contact list."
+        },
+        {
+          "componentId": "ContactList/Many",
+          "preview": "ContactListManyPreview",
+          "caption": "A long, scrollable contact list."
+        }
+      ]
+    },
+    {
+      "name": "Bluetooth",
+      "components": [
+        {
+          "componentId": "BleDeviceList/Empty",
+          "preview": "BleDeviceListEmptyPreview",
+          "caption": "No devices found while scanning."
+        },
+        {
+          "componentId": "BleDeviceList/Few",
+          "preview": "BleDeviceListFewPreview",
+          "caption": "A couple of discovered BLE devices."
+        },
+        {
+          "componentId": "BleDeviceList/Many",
+          "preview": "BleDeviceListManyPreview",
+          "caption": "A long, scrollable scan result list."
+        }
+      ]
+    },
+    {
+      "name": "Connection",
+      "components": [
+        {
+          "componentId": "TcpConnectPanel/Idle",
+          "preview": "TcpConnectPanelIdlePreview",
+          "caption": "TCP connect panel, idle."
+        },
+        {
+          "componentId": "TcpConnectPanel/Busy",
+          "preview": "TcpConnectPanelBusyPreview",
+          "caption": "TCP connect panel, connecting."
+        }
+      ]
+    },
+    {
+      "name": "Permissions",
+      "components": [
+        {
+          "componentId": "BlePermissionPanel/First",
+          "preview": "BlePermissionPanelFirstPreview",
+          "caption": "First-run Bluetooth permission request."
+        },
+        {
+          "componentId": "BlePermissionPanel/Denied",
+          "preview": "BlePermissionPanelDeniedPreview",
+          "caption": "Permission denied — how to recover."
+        }
+      ]
+    }
+  ]
+}
