@@ -37,6 +37,11 @@ kotlin {
       api(libs.compose.material3)
       api(libs.compose.ui)
       api(libs.compose.uiToolingPreview)
+      // MeshCore's alternative themes are declared in shared code via @ThemeCatalog
+      // (MeshcoreThemeCatalogs), so the annotations must be reachable from commonMain — hence the
+      // KMP variant of preview-annotations (0.16.14+). Reflection-only markers, no runtime
+      // footprint.
+      implementation(libs.compose.preview.annotations)
     }
     val androidMain by getting {
       dependencies {
