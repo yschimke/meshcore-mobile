@@ -1,5 +1,12 @@
 name: Compose Preview
 
+# The pipelines run as two parallel jobs (compose+resources / a11y) instead
+# of one serial `apply` invocation — they push to disjoint baseline/PR
+# branches and post disjoint sticky comments, so the only reason they were
+# serial (a shared Gradle build lock + `.git` in one workspace) disappears
+# on separate runners. Wall time drops from the sum of the two renders to
+# the slower one. The notifications pipeline stays skipped (see below).
+
 on:
   push:
     branches: [main]
@@ -16,6 +23,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  # Keeps the historical job id + check name so an existing required check
+  # keeps matching; the a11y job below is a new check name.
   apply:
     name: Render previews (baseline or PR comment, auto-selected)
     runs-on: ubuntu-latest
@@ -41,8 +50,24 @@ jobs:
           # warning (still surfaced in the PR comment) so the check isn't red on
           # a renderer limitation unrelated to the Compose previews themselves.
           missing-renders: warn
+          only: compose,resources
+
+  a11y:
+    name: A11y previews
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6.0.3
+      - uses: ./.github/actions/setup
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.16.8
+        with:
+          cli-version: catalog
+          catalog-key: composePreviewPlugin
+          missing-renders: warn
           # The repo has no notification previews, and :meshcore-components (a
           # desktop preview module for design-parity) would otherwise be the only
           # module scanned by the notifications pipeline — which hard-fails when
-          # no module produces a *Notification*.png. Skip the pipeline entirely.
-          skip: notifications
+          # no module produces a *Notification*.png. Only a11y runs here.
+          only: a11y
