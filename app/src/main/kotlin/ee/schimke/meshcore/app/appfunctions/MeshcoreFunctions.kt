@@ -1,7 +1,7 @@
 package ee.schimke.meshcore.app.appfunctions
 
+import androidx.appfunctions.AppFunction
 import androidx.appfunctions.AppFunctionContext
-import androidx.appfunctions.service.AppFunction
 import ee.schimke.meshcore.app.di.appGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.core.model.BatteryInfo

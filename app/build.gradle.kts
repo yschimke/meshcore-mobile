@@ -109,7 +109,6 @@ dependencies {
   implementation(libs.androidx.work.runtime)
   implementation(libs.wear.compose.remote.material3)
   implementation(libs.androidx.appfunctions)
-  implementation(libs.androidx.appfunctions.service)
   implementation(libs.aboutlibraries.compose.m3)
   ksp(libs.androidx.appfunctions.compiler)
   debugImplementation(libs.compose.uiTooling)
