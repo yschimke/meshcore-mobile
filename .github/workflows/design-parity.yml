@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
 
       # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest (the
       # :meshcore-components module still has an android target to configure);
@@ -99,9 +99,9 @@ jobs:
               --window-size=411,914 --screenshot="$png" "file://$PWD/$ref"
           done
 
-      - uses: actions/setup-node@v4.4.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 20.20.2
+          node-version: 24.17.0
 
       - name: Run design-parity
         run: |
