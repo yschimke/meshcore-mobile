@@ -84,7 +84,7 @@
              The AppFunctionService action is API 36+; on older devices the service
              is harmlessly never bound. -->
         <service
-            android:name="androidx.appfunctions.service.PlatformAppFunctionService"
+            android:name="androidx.appfunctions.PlatformAppFunctionService"
             android:exported="true"
             android:permission="android.permission.BIND_APP_FUNCTION_SERVICE"
             tools:targetApi="36">
