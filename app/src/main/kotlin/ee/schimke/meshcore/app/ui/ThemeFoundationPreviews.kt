@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -36,9 +35,9 @@ import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 // ---------------------------------------------------------------------------
 
 @Composable
-private fun Swatch(label: String, color: Color, onColor: Color) {
+private fun RowScope.Swatch(label: String, color: Color, onColor: Color) {
   Box(
-    Modifier.size(width = 52.dp, height = 40.dp).clip(RoundedCornerShape(8.dp)).background(color),
+    Modifier.weight(1f).height(40.dp).clip(RoundedCornerShape(8.dp)).background(color),
     contentAlignment = Alignment.Center,
   ) {
     Text(label, color = onColor, style = MaterialTheme.typography.labelSmall)
@@ -71,7 +70,7 @@ private fun ThemeFoundation(title: String, tagline: String) {
         Text(title, style = MaterialTheme.typography.titleLarge, color = cs.primary)
         Text(tagline, style = MaterialTheme.typography.labelMedium, color = cs.onSurfaceVariant)
       }
-      Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+      Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Swatch("P", cs.primary, cs.onPrimary)
         Swatch("PC", cs.primaryContainer, cs.onPrimaryContainer)
         Swatch("S", cs.secondary, cs.onSecondary)
