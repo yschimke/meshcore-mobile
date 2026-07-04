@@ -44,7 +44,7 @@ wear-compose = "1.6.2"
 wear-compose-material3 = "1.6.2"
 wear-compose-remote = "1.0.0-alpha07" # remote-material3 pinned to match the compose-ai-tools renderer (alpha03), in lockstep with androidx-remote-compose
 playservices-wearable = "20.0.1"
-aboutlibraries = "14.2.1"
+aboutlibraries = "15.0.0"
 ktfmt = "0.26.0"
 tapmoc = "0.4.2"
 
