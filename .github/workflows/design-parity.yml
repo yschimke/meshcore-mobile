@@ -39,7 +39,7 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.8
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.15
         with:
           version: "0.16.0"
 
@@ -101,7 +101,7 @@ jobs:
 
       - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 24.17.0
+          node-version: 24.18.0
 
       - name: Run design-parity
         run: |
