@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
