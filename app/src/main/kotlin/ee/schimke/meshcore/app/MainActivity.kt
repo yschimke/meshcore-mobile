@@ -30,6 +30,7 @@ import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
 import ee.schimke.meshcore.app.ui.theme.ThemeSettings
+import com.mikepenz.aboutlibraries.ui.compose.android.produceLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -147,7 +148,8 @@ private fun MeshcoreAppUi() {
                         )
                     }
                     entry<LicensesRoute> {
-                        LibrariesContainer()
+                        val libraries by produceLibraries()
+                        LibrariesContainer(libraries)
                     }
                 },
             )
