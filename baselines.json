@@ -272,6 +272,34 @@
     "sha256": "708bfeb5b03ae027349815f0d04ba745efa439cf3e0dd2738a61dd6f41da0ff2",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
   },
+  "app/ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMaterial3DarkPreview_Foundation \u2014 Material 3 dark": {
+    "captureLabel": "",
+    "functionName": "ThemeFoundationMaterial3DarkPreview",
+    "renderBasename": "ThemeFoundationMaterial3DarkPreview_Foundation_Material_3_dark.png",
+    "sha256": "d4d8195a991edd9e548e0a9d8cfc505b64ccdd1e96f94b5d094ea205f30ee218",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt"
+  },
+  "app/ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMaterial3LightPreview_Foundation \u2014 Material 3 light": {
+    "captureLabel": "",
+    "functionName": "ThemeFoundationMaterial3LightPreview",
+    "renderBasename": "ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light.png",
+    "sha256": "0a09e6b99db20d0a4ff38612424306cefd5be7f6a132ed6f379d4621a920de77",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt"
+  },
+  "app/ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMeshcoreDarkPreview_Foundation \u2014 MeshCore dark": {
+    "captureLabel": "",
+    "functionName": "ThemeFoundationMeshcoreDarkPreview",
+    "renderBasename": "ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark.png",
+    "sha256": "d78fa1b4edc00bdc99f8eb33f99cc00ffa0d13239da88faa44903b3fc850fa5e",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt"
+  },
+  "app/ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMeshcoreLightPreview_Foundation \u2014 MeshCore light": {
+    "captureLabel": "",
+    "functionName": "ThemeFoundationMeshcoreLightPreview",
+    "renderBasename": "ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light.png",
+    "sha256": "d3cd9ca5b560dd8ab33737f5539320ca743f35e2785e5d0baf48a34c5acd629f",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt"
+  },
   "app/ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker \u2014 Dynamic + Dark": {
     "captureLabel": "",
     "functionName": "ThemePickerDynamicDarkPreview",
