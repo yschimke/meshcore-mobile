@@ -11,6 +11,31 @@
   "breakpoints": [{ "size": "compact", "widthDp": 412 }],
   "groups": [
     {
+      "name": "Foundation",
+      "components": [
+        {
+          "componentId": "Theme/MeshCore-Light",
+          "preview": "ThemeFoundationMeshcoreLightPreview",
+          "caption": "MeshCore theme — colour roles, elevation and type (light)."
+        },
+        {
+          "componentId": "Theme/MeshCore-Dark",
+          "preview": "ThemeFoundationMeshcoreDarkPreview",
+          "caption": "MeshCore theme (dark)."
+        },
+        {
+          "componentId": "Theme/Material3-Light",
+          "preview": "ThemeFoundationMaterial3LightPreview",
+          "caption": "Material 3 baseline (untinted) reference (light)."
+        },
+        {
+          "componentId": "Theme/Material3-Dark",
+          "preview": "ThemeFoundationMaterial3DarkPreview",
+          "caption": "Material 3 baseline (dark)."
+        }
+      ]
+    },
+    {
       "name": "Device",
       "components": [
         {
@@ -97,6 +122,96 @@
           "componentId": "BlePermissionPanel/Denied",
           "preview": "BlePermissionPanelDeniedPreview",
           "caption": "Permission denied — how to recover."
+        }
+      ]
+    },
+    {
+      "name": "Screens · Scanner",
+      "components": [
+        {
+          "componentId": "Scanner/SavedEmpty",
+          "preview": "ScannerSavedEmptyPreview",
+          "caption": "Scanner, Saved tab — no saved devices yet."
+        },
+        {
+          "componentId": "Scanner/SavedPopulated",
+          "preview": "ScannerSavedPopulatedPreview",
+          "caption": "Scanner, Saved tab — a favourited BLE device + a TCP device."
+        },
+        {
+          "componentId": "Scanner/BlePermission",
+          "preview": "ScannerBlePermissionPreview",
+          "caption": "Scanner, BLE tab — permission request panel."
+        },
+        {
+          "componentId": "Scanner/BleEmpty",
+          "preview": "ScannerBleEmptyPreview",
+          "caption": "Scanner, BLE tab — scanning, nothing found yet."
+        },
+        {
+          "componentId": "Scanner/BleFew",
+          "preview": "ScannerBleFewPreview",
+          "caption": "Scanner, BLE tab — a couple of discovered devices."
+        },
+        {
+          "componentId": "Scanner/BleMany",
+          "preview": "ScannerBleManyPreview",
+          "caption": "Scanner, BLE tab — a long, scrolling result list."
+        },
+        {
+          "componentId": "Scanner/UsbEmpty",
+          "preview": "ScannerUsbEmptyPreview",
+          "caption": "Scanner, USB tab — no serial ports."
+        },
+        {
+          "componentId": "Scanner/UsbFew",
+          "preview": "ScannerUsbFewPreview",
+          "caption": "Scanner, USB tab — a couple of serial ports."
+        },
+        {
+          "componentId": "Scanner/Tcp",
+          "preview": "ScannerTcpPreview",
+          "caption": "Scanner, TCP tab — the connect form."
+        },
+        {
+          "componentId": "Scanner/BleDark",
+          "preview": "ScannerBleDarkPreview",
+          "caption": "Scanner, Saved tab populated (dark theme)."
+        }
+      ]
+    },
+    {
+      "name": "Screens · Device",
+      "components": [
+        {
+          "componentId": "Device/Loading",
+          "preview": "DeviceBodyLoadingPreview",
+          "caption": "Device screen — self-info still loading."
+        },
+        {
+          "componentId": "Device/NoContacts",
+          "preview": "DeviceBodyNoContactsPreview",
+          "caption": "Device screen — self known, contacts still loading."
+        },
+        {
+          "componentId": "Device/LowBattery",
+          "preview": "DeviceBodyLowBatteryPreview",
+          "caption": "Device screen — populated, low-battery reading."
+        },
+        {
+          "componentId": "Device/ManyContacts",
+          "preview": "DeviceBodyManyContactsPreview",
+          "caption": "Device screen — many contacts + a channel-message banner."
+        },
+        {
+          "componentId": "Device/StatusConnecting",
+          "preview": "DeviceStatusConnectingPreview",
+          "caption": "Device connection status — connecting."
+        },
+        {
+          "componentId": "Device/StatusFailed",
+          "preview": "DeviceStatusFailedPreview",
+          "caption": "Device connection status — failed, with cause."
         }
       ]
     }
