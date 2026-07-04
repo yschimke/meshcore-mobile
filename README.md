@@ -2,18 +2,6 @@
 
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
-> [!WARNING]
-> 2 preview(s) failed to render in the latest update (2 with no prior baseline to retain). See **Render Failures** below.
-
-## Render Failures
-
-The render task completed but no PNG was produced for these previews. Entries with a prior baseline keep their previous image; the rest are absent from the gallery until a successful render lands.
-
-| Preview | Module | Function | Source | Baseline |
-|---------|--------|----------|--------|----------|
-| `meshcore-components/themecatalog__MeshCore_Dark` | meshcore-components | `MeshCore Dark theme` | `—` | none |
-| `meshcore-components/themecatalog__MeshCore_Light` | meshcore-components | `MeshCore Light theme` | `—` | none |
-
 ## app
 
 | Preview | Image |
