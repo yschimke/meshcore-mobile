@@ -1,0 +1,28 @@
+{
+  "name": "DeviceSummaryCard-LobsterTwo",
+  "kind": "component-change",
+  "target": {
+    "repo": "yschimke/meshcore-mobile",
+    "module": ":meshcore-components",
+    "file": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceCards.kt",
+    "composable": "DeviceSummaryCard",
+    "fontMechanism": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/theme/MeshcoreFonts.kt"
+  },
+  "figma": {
+    "fileKey": "val8pMXEMH9lilRnSUHXVA",
+    "nodeId": "1:2",
+    "ref": "figma:val8pMXEMH9lilRnSUHXVA/1:2"
+  },
+  "change": {
+    "kind": "typography",
+    "element": "device-name title (titleLarge)",
+    "from": "branded display face (Space Grotesk / Orbitron)",
+    "to": "Lobster Two"
+  },
+  "reference": {
+    "png": "reference.png",
+    "svg": "reference.figma.svg"
+  },
+  "direction": "design-led",
+  "landing": "exploration — not expected to merge"
+}
