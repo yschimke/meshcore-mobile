@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
+import ee.schimke.meshcore.components.ui.theme.MeshcoreDeviceTitle
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
 import ee.schimke.meshcore.core.model.Contact
@@ -59,7 +60,7 @@ fun DeviceSummaryCard(
     ) {
       Text(
         text = self?.name ?: "Device",
-        style = MaterialTheme.typography.titleLarge,
+        style = MeshcoreDeviceTitle,
         color = MaterialTheme.colorScheme.onSurface,
       )
       PubkeyLine(self?.publicKey?.toHex())

@@ -39,3 +39,9 @@ internal actual val JetBrainsMono: FontFamily =
         gfont("JetBrains Mono", FontWeight.Normal),
         gfont("JetBrains Mono", FontWeight.Medium),
     )
+
+internal actual val LobsterTwo: FontFamily =
+    FontFamily(
+        gfont("Lobster Two", FontWeight.Normal),
+        gfont("Lobster Two", FontWeight.Bold),
+    )

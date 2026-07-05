@@ -31,3 +31,6 @@ internal actual val JetBrainsMono: FontFamily =
     ttf("fonts/JetBrainsMono.ttf", FontWeight.Normal),
     ttf("fonts/JetBrainsMono.ttf", FontWeight.Medium),
   )
+
+internal actual val LobsterTwo: FontFamily =
+  FontFamily(ttf("fonts/LobsterTwo.ttf", FontWeight.Normal))

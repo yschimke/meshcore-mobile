@@ -22,6 +22,9 @@ internal expect val Orbitron: FontFamily
 internal expect val SpaceGrotesk: FontFamily
 internal expect val JetBrainsMono: FontFamily
 
+/** Script/display face used for the device-name title (design-led — see design-briefs/). */
+internal expect val LobsterTwo: FontFamily
+
 /** Monospace body style exposed for callers that need to render data. */
 val MeshcoreMonoBody: TextStyle =
   TextStyle(
@@ -30,6 +33,15 @@ val MeshcoreMonoBody: TextStyle =
     fontSize = 13.sp,
     lineHeight = 18.sp,
     letterSpacing = 0.2.sp,
+  )
+
+/** Device-name title style — Lobster Two, per design-briefs/device-summary-card-lobster-two. */
+val MeshcoreDeviceTitle: TextStyle =
+  TextStyle(
+    fontFamily = LobsterTwo,
+    fontWeight = FontWeight.Normal,
+    fontSize = 24.sp,
+    lineHeight = 30.sp,
   )
 
 /** Typography for the MeshCore branded palette. */
