@@ -28,7 +28,7 @@ jobs:
       # Exchanged by the action for a short-lived Claude GitHub App token.
       id-token: write
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
         with:
           # Full history so recent commits can be matched against issues.
           fetch-depth: 0
