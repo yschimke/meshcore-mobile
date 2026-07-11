@@ -39,7 +39,7 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.24
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.35
         with:
           version: "0.16.0"
 
@@ -107,7 +107,7 @@ jobs:
         run: |
           set -euo pipefail
           components="$(jq -r '[.components[].code] | join(",")' design-map.json)"
-          npx -y design-parity@0.1.24 run \
+          npx -y design-parity@0.1.26 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png \
