@@ -39,7 +39,7 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.43
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.44
         with:
           version: "0.16.0"
 
