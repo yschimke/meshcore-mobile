@@ -350,7 +350,14 @@ private fun PreviewSavedPopulated() {
 
 // --- Saved tab previews ---------------------------------------------------
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — Saved empty")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerSavedEmptyPreview() {
     MeshcoreTheme {
@@ -364,7 +371,14 @@ fun ScannerSavedEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — Saved populated")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerSavedPopulatedPreview() {
     MeshcoreTheme {
@@ -380,7 +394,14 @@ fun ScannerSavedPopulatedPreview() {
 
 // --- BLE tab previews -----------------------------------------------------
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — BLE permission needed")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerBlePermissionPreview() {
     MeshcoreTheme {
@@ -394,7 +415,14 @@ fun ScannerBlePermissionPreview() {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — BLE scanning, 0 devices")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerBleEmptyPreview() {
     MeshcoreTheme {
@@ -408,7 +436,14 @@ fun ScannerBleEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — BLE scanning, 2 devices")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerBleFewPreview() {
     MeshcoreTheme {
@@ -422,7 +457,14 @@ fun ScannerBleFewPreview() {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — BLE scanning, 10 devices (scrolls)")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerBleManyPreview() {
     MeshcoreTheme {
@@ -438,7 +480,14 @@ fun ScannerBleManyPreview() {
 
 // --- USB tab previews -----------------------------------------------------
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — USB, no ports")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerUsbEmptyPreview() {
     MeshcoreTheme {
@@ -452,7 +501,14 @@ fun ScannerUsbEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — USB, 2 ports")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerUsbFewPreview() {
     MeshcoreTheme {
@@ -468,7 +524,14 @@ fun ScannerUsbFewPreview() {
 
 // --- TCP tab previews -----------------------------------------------------
 
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Scanner — TCP idle")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_7,
+    name = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun ScannerTcpPreview() {
     MeshcoreTheme {

@@ -29,6 +29,13 @@ import ee.schimke.meshcore.components.ui.TcpConnectPanel
 import kotlin.time.Instant
 import kotlinx.io.bytestring.ByteString
 
+// Each catalog component renders in BOTH light and dark via @MeshcoreModes (a `name = "Light"` +
+// `name = "Dark", uiMode = NIGHT_YES` multipreview). MeshcoreTheme's default `darkTheme =
+// isSystemInDarkTheme()` follows the render's uiMode, so the Dark variant is a real dark render —
+// the design-catalog export folds the pair into one component the preview server's Light/Dark
+// toggle swaps in place. Each preview keeps its own widthDp (the catalog render width), so wrap the
+// two @Preview lines rather than a width-less shared annotation.
+
 // --- Shared fixtures ------------------------------------------------------
 
 private fun pk(fill: Byte): PublicKey =
@@ -71,10 +78,11 @@ private fun tenContacts(): List<Contact> {
 
 // --- DeviceSummaryCard ----------------------------------------------------
 
-@Preview(name = "DeviceSummaryCard — populated", widthDp = 310, heightDp = 170)
+@Preview(name = "Light", widthDp = 310, heightDp = 170)
+@Preview(name = "Dark", widthDp = 310, heightDp = 170, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun DeviceSummaryCardPopulatedPreview() {
-    MeshcoreTheme(darkTheme = true) {
+    MeshcoreTheme {
             DeviceSummaryCard(
                 self = SelfInfo(
                     advertType = 1,
@@ -96,7 +104,8 @@ fun DeviceSummaryCardPopulatedPreview() {
         }
 }
 
-@Preview(showBackground = true, name = "DeviceSummaryCard — loading")
+@Preview(showBackground = true, name = "Light")
+@Preview(showBackground = true, name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun DeviceSummaryCardLoadingPreview() {
     MeshcoreTheme {
@@ -108,7 +117,8 @@ fun DeviceSummaryCardLoadingPreview() {
 
 // --- ContactRow / ContactList --------------------------------------------
 
-@Preview(showBackground = true, name = "ContactRow — variants", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun ContactRowVariantsPreview() {
     MeshcoreTheme {
@@ -121,7 +131,8 @@ fun ContactRowVariantsPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "ContactList — empty", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun ContactListEmptyPreview() {
     MeshcoreTheme {
@@ -135,7 +146,8 @@ fun ContactListEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "ContactList — 2 items", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun ContactListFewPreview() {
     MeshcoreTheme {
@@ -152,7 +164,8 @@ fun ContactListFewPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "ContactList — 10 items (scrolls)", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun ContactListManyPreview() {
     MeshcoreTheme {
@@ -168,7 +181,8 @@ fun ContactListManyPreview() {
 
 // --- BleDeviceList --------------------------------------------------------
 
-@Preview(showBackground = true, name = "BleDeviceList — empty", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BleDeviceListEmptyPreview() {
     MeshcoreTheme {
@@ -184,7 +198,8 @@ fun BleDeviceListEmptyPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "BleDeviceList — 2 devices", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BleDeviceListFewPreview() {
     MeshcoreTheme {
@@ -202,7 +217,8 @@ fun BleDeviceListFewPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "BleDeviceList — 10 devices (scrolls)", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BleDeviceListManyPreview() {
     MeshcoreTheme {
@@ -225,7 +241,8 @@ fun BleDeviceListManyPreview() {
 
 // --- TcpConnectPanel ------------------------------------------------------
 
-@Preview(showBackground = true, name = "TcpConnectPanel — idle", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun TcpConnectPanelIdlePreview() {
     MeshcoreTheme {
@@ -235,7 +252,8 @@ fun TcpConnectPanelIdlePreview() {
     }
 }
 
-@Preview(showBackground = true, name = "TcpConnectPanel — busy", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun TcpConnectPanelBusyPreview() {
     MeshcoreTheme {
@@ -247,7 +265,8 @@ fun TcpConnectPanelBusyPreview() {
 
 // --- BlePermissionPanel ---------------------------------------------------
 
-@Preview(showBackground = true, name = "BlePermissionPanel — first request", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BlePermissionPanelFirstPreview() {
     MeshcoreTheme {
@@ -257,7 +276,8 @@ fun BlePermissionPanelFirstPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "BlePermissionPanel — denied", widthDp = 340)
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun BlePermissionPanelDeniedPreview() {
     MeshcoreTheme {
