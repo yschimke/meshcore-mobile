@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.app.ui
 
+import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,11 +53,13 @@ private fun previewSelf(name: String = "node-peak") = SelfInfo(
 )
 
 // --- Previews ---------------------------------------------------------------
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — loading",
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun DeviceBodyLoadingPreview() {
@@ -73,11 +76,13 @@ fun DeviceBodyLoadingPreview() {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — contacts loading",
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun DeviceBodyNoContactsPreview() {
@@ -94,11 +99,13 @@ fun DeviceBodyNoContactsPreview() {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — low battery",
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun DeviceBodyLowBatteryPreview() {
@@ -117,11 +124,13 @@ fun DeviceBodyLowBatteryPreview() {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — many contacts (scrolls)",
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun DeviceBodyManyContactsPreview() {
@@ -162,11 +171,13 @@ fun DeviceBodyManyContactsPreview() {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — status connecting",
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun DeviceStatusConnectingPreview() {
@@ -188,11 +199,13 @@ fun DeviceStatusConnectingPreview() {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
     showBackground = true,
     showSystemUi = true,
     device = Devices.PIXEL_7,
-    name = "Device — status failed",
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun DeviceStatusFailedPreview() {
