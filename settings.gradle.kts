@@ -60,7 +60,20 @@ plugins {
 // Push: writes are restricted to trusted CI builds. CI sets ON_CI=true only on main-branch runs, so
 // PRs and developer machines are read-only. The gate is value-based (not env-var presence) so an
 // explicit ON_CI=false is honoured as read-only.
+val onCi = providers.environmentVariable("ON_CI").orElse("false").get().toBoolean()
 buildCache {
+    // On the trusted main-branch runs, CI is the sole writer of the BuildFetch remote cache — and the
+    // only thing that populates it for every other consumer (PRs, developer machines). Gradle never
+    // re-uploads a *local* build-cache hit to the remote; it pushes to the remote only when a task
+    // actually executes. setup-gradle restores a warm local build cache (caches/build-cache-1) from
+    // the GitHub Actions cache, so without this every task resolves as FROM-CACHE (local), nothing is
+    // pushed, and the remote stays empty (dev machines then see 0 remote hits). Disabling the local
+    // cache on the pushing runs forces tasks to execute-and-push, or to hit the remote directly, so
+    // BuildFetch actually gets seeded. Off-CI and on PRs the local cache stays on (harmless — those
+    // runs don't push, and a redundant local cache just makes them faster).
+    local {
+        isEnabled = !onCi
+    }
     remote<HttpBuildCache> {
         url = uri("https://cache.eu-central-a.buildfetch.com/vuFQad/gradle/")
 
@@ -79,7 +92,7 @@ buildCache {
                     .orNull
         }
 
-        isPush = providers.environmentVariable("ON_CI").orElse("false").get().toBoolean()
+        isPush = onCi
 
         isEnabled = credentials.password != null
     }
