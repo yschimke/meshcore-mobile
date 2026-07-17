@@ -6,6 +6,15 @@ inputs:
       Pass 'true' in publish/release jobs to prevent Gradle cache
       writes — avoids cache poisoning from untrusted PR runs.
     default: 'false'
+  exclude-local-build-cache:
+    description: >
+      Pass 'true' on the runs that push to the BuildFetch remote cache
+      (main-branch CI). settings.gradle.kts already disables Gradle's local
+      build cache on those runs so tasks execute-and-push to the remote;
+      this additionally stops setup-gradle from restoring/saving the (then
+      unused) local build cache to the GitHub Actions cache — saving cache
+      time and storage. Leave 'false' elsewhere so PR/dev runs keep it.
+    default: 'false'
 runs:
   using: 'composite'
   steps:
@@ -16,3 +25,4 @@ runs:
     - uses: gradle/actions/setup-gradle@v6.2.0
       with:
         cache-read-only: ${{ inputs.cache-read-only }}
+        gradle-home-cache-excludes: ${{ inputs.exclude-local-build-cache == 'true' && 'caches/build-cache-1' || '' }}
