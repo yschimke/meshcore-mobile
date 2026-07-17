@@ -18,6 +18,11 @@ jobs:
     name: Assemble (debug)
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # BuildFetch remote cache (see settings.gradle.kts). Token is absent on fork PRs, which
+      # disables the cache there. Writes happen only on trusted main-branch builds.
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
+      ON_CI: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
@@ -40,6 +45,9 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
+      ON_CI: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
@@ -61,6 +69,9 @@ jobs:
     name: Android lint
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
+      ON_CI: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
