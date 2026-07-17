@@ -44,6 +44,12 @@ plugins {
 // token is resolvable the cache disables itself (isEnabled below), so fork PRs and un-provisioned
 // checkouts fall back to the local cache with no error.
 //
+// The token is treated as absent unless it is non-blank. CI declares the env var unconditionally
+// (`BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.… }}`), so an unprovisioned secret or a fork
+// PR exports it as an empty string — which Gradle's `environmentVariable(...)` still reports as
+// *present*. Filtering blanks preserves the intended no-op (empty ⇒ cache disabled) and lets the
+// gradle-property fallback apply even when the env var is present-but-empty.
+//
 // Push: writes are restricted to trusted CI builds. CI sets ON_CI=true only on main-branch runs, so
 // PRs and developer machines are read-only. The gate is value-based (not env-var presence) so an
 // explicit ON_CI=false is honoured as read-only.
@@ -56,7 +62,14 @@ buildCache {
             password =
                 providers
                     .environmentVariable("BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN")
-                    .orElse(providers.gradleProperty("BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN"))
+                    .map { it.trim() }
+                    .filter { it.isNotEmpty() }
+                    .orElse(
+                        providers
+                            .gradleProperty("BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN")
+                            .map { it.trim() }
+                            .filter { it.isNotEmpty() }
+                    )
                     .orNull
         }
 
