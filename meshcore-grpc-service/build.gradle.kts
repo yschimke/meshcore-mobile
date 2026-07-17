@@ -32,6 +32,15 @@ protobuf {
         create("grpc") { option("lite") }
         create("grpckt") { option("lite") }
       }
+      // Make GenerateProtoTask relocatable across machines so it restores from
+      // the remote (BuildFetch) build cache. The jar-based grpckt plugin is
+      // launched through a `java` trampoline, and the task records the absolute
+      // path of that JDK as a cache-key input (`javaExecutablePath`). That path
+      // differs between CI and developer/agent machines, so this was the one
+      // task that never hit the remote cache. The generated sources don't
+      // depend on which JVM runs the plugin, so pin the input to a bare `java`
+      // (resolved from PATH at execution time) to keep the key machine-neutral.
+      task.javaExecutablePath.set("java")
     }
   }
 }
