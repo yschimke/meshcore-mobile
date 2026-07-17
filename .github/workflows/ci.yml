@@ -28,6 +28,9 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+          # Main-branch runs push to the BuildFetch remote cache (settings.gradle.kts disables the
+          # local cache there); don't restore/save the unused local build cache to the Actions cache.
+          exclude-local-build-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - run: ./gradlew :app:assembleDebug :wear:assembleDebug --stacktrace
 
@@ -53,6 +56,9 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+          # Main-branch runs push to the BuildFetch remote cache (settings.gradle.kts disables the
+          # local cache there); don't restore/save the unused local build cache to the Actions cache.
+          exclude-local-build-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - run: ./gradlew test --stacktrace
 
@@ -77,6 +83,9 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+          # Main-branch runs push to the BuildFetch remote cache (settings.gradle.kts disables the
+          # local cache there); don't restore/save the unused local build cache to the Actions cache.
+          exclude-local-build-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - run: ./gradlew lintDebug --stacktrace
 
