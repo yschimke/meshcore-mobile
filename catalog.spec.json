@@ -1,5 +1,5 @@
 {
-  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a `compose-preview bundle pack --module :app` render to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. Each `preview` MUST equal the exact @Preview function name in :app (ee.schimke.meshcore.app.ui.ComponentPreviews).",
+  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a `compose-preview bundle pack --module :app` render to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. Each `preview` MUST equal the exact @Preview function name in :app (ee.schimke.meshcore.app.ui.ComponentPreviews). Each group's optional `section` is the top-level TAB the preview server buckets it under (Themes / Components / Screens / Animations / …) — one level above `name`, which becomes the sub-heading inside the tab; groups follow this file's order, so tabs read Themes → Components → Screens.",
   "system": "meshcore-mobile",
   "title": "MeshCore Mobile",
   "library": [
@@ -12,6 +12,7 @@
   "groups": [
     {
       "name": "Foundation",
+      "section": "Themes",
       "components": [
         {
           "componentId": "Theme/MeshCore-Light",
@@ -37,6 +38,7 @@
     },
     {
       "name": "Device",
+      "section": "Components",
       "components": [
         {
           "componentId": "DeviceSummaryCard/Populated",
@@ -52,6 +54,7 @@
     },
     {
       "name": "Contacts",
+      "section": "Components",
       "components": [
         {
           "componentId": "ContactRow/Variants",
@@ -77,6 +80,7 @@
     },
     {
       "name": "Bluetooth",
+      "section": "Components",
       "components": [
         {
           "componentId": "BleDeviceList/Empty",
@@ -97,6 +101,7 @@
     },
     {
       "name": "Connection",
+      "section": "Components",
       "components": [
         {
           "componentId": "TcpConnectPanel/Idle",
@@ -112,6 +117,7 @@
     },
     {
       "name": "Permissions",
+      "section": "Components",
       "components": [
         {
           "componentId": "BlePermissionPanel/First",
@@ -126,7 +132,8 @@
       ]
     },
     {
-      "name": "Screens · Scanner",
+      "name": "Scanner",
+      "section": "Screens",
       "components": [
         {
           "componentId": "Scanner/SavedEmpty",
@@ -181,7 +188,8 @@
       ]
     },
     {
-      "name": "Screens · Device",
+      "name": "Device",
+      "section": "Screens",
       "components": [
         {
           "componentId": "Device/Loading",
