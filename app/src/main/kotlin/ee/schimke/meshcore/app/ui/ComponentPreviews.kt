@@ -115,17 +115,80 @@ fun DeviceSummaryCardLoadingPreview() {
     }
 }
 
+// Low-battery state: DeviceSummaryCard's BatterySection switches to the tertiary "warn" tint and the
+// low-battery icon below 30%, which no standalone card preview otherwise exercises.
+@Preview(showBackground = true, name = "Light")
+@Preview(showBackground = true, name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun DeviceSummaryCardLowBatteryPreview() {
+    MeshcoreTheme {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
+            DeviceSummaryCard(
+                self = SelfInfo(
+                    advertType = 1,
+                    txPowerDbm = 14,
+                    maxPowerDbm = 22,
+                    publicKey = pk(0xAB.toByte()),
+                    latitude = 53.0,
+                    longitude = -1.5,
+                    multiAcks = 0,
+                    advertLocationPolicy = 0,
+                    telemetryFlags = 0,
+                    manualAddContacts = 0,
+                    radio = RadioSettings(869_525_000, 125_000, 10, 5),
+                    name = "node-cabin",
+                ),
+                radio = RadioSettings(869_525_000, 125_000, 10, 5),
+                battery = BatteryInfo(3210, 3800, 4096),
+            )
+        }
+    }
+}
+
 // --- ContactRow / ContactList --------------------------------------------
+
+// One preview per contact kind (chat / repeater / room / sensor) so the catalog exports them as a
+// ContactRow component set keyed on type, instead of one stacked "variants" sticker.
 
 @Preview(showBackground = true, name = "Light", widthDp = 340)
 @Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ContactRowVariantsPreview() {
+fun ContactRowChatPreview() {
     MeshcoreTheme {
         Column(Modifier.fillMaxWidth().padding(16.dp)) {
             ContactRow(contact("alice", pathLen = -1, fill = 0x11, type = ContactType.CHAT))
+        }
+    }
+}
+
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ContactRowRepeaterPreview() {
+    MeshcoreTheme {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             ContactRow(contact("bob-repeater", pathLen = 2, fill = 0x22, type = ContactType.REPEATER))
+        }
+    }
+}
+
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ContactRowRoomPreview() {
+    MeshcoreTheme {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             ContactRow(contact("common-room", pathLen = 0, fill = 0x33, type = ContactType.ROOM))
+        }
+    }
+}
+
+@Preview(showBackground = true, name = "Light", widthDp = 340)
+@Preview(showBackground = true, name = "Dark", widthDp = 340, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ContactRowSensorPreview() {
+    MeshcoreTheme {
+        Column(Modifier.fillMaxWidth().padding(16.dp)) {
             ContactRow(contact("soil-sensor-1", pathLen = 3, fill = 0x44, type = ContactType.SENSOR))
         }
     }

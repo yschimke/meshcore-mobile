@@ -49,6 +49,11 @@
           "componentId": "DeviceSummaryCard/Loading",
           "preview": "DeviceSummaryCardLoadingPreview",
           "caption": "Loading / not-yet-known state."
+        },
+        {
+          "componentId": "DeviceSummaryCard/LowBattery",
+          "preview": "DeviceSummaryCardLowBatteryPreview",
+          "caption": "Low-battery warning tint (below 30%)."
         }
       ]
     },
@@ -57,9 +62,24 @@
       "section": "Components",
       "components": [
         {
-          "componentId": "ContactRow/Variants",
-          "preview": "ContactRowVariantsPreview",
-          "caption": "The four contact kinds: chat, repeater, room, sensor."
+          "componentId": "ContactRow/Chat",
+          "preview": "ContactRowChatPreview",
+          "caption": "Contact row — direct chat contact."
+        },
+        {
+          "componentId": "ContactRow/Repeater",
+          "preview": "ContactRowRepeaterPreview",
+          "caption": "Contact row — repeater."
+        },
+        {
+          "componentId": "ContactRow/Room",
+          "preview": "ContactRowRoomPreview",
+          "caption": "Contact row — room / group."
+        },
+        {
+          "componentId": "ContactRow/Sensor",
+          "preview": "ContactRowSensorPreview",
+          "caption": "Contact row — sensor."
         },
         {
           "componentId": "ContactList/Empty",
