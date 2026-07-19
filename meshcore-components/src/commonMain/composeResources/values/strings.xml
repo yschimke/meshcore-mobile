@@ -2,8 +2,8 @@
 <!--
   MeshCore shared UI strings (Compose Multiplatform resources). Default / English base; per-locale
   overrides live in values-<locale>/strings.xml. The daemon's LocaleList provider renders any of the
-  published locales, which feeds the design catalog's locale axis. Real translations exist for
-  en / ja / ar / de; the other 13 locales are scaffolded as English copies to be filled in.
+  published locales, which feeds the design catalog's locale axis. Real translations exist for all 17
+  published locales (ar de es fr hi id it ja ko nl pl pt-BR ru th tr zh-CN zh-TW).
 -->
 <resources>
   <string name="label_device">Device</string>

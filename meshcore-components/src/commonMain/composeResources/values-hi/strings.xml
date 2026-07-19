@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Scaffold: English copy, pending real translation for this locale. -->
 <resources>
-  <string name="label_device">Device</string>
-  <string name="label_no_contacts">No contacts yet</string>
+  <string name="label_device">डिवाइस</string>
+  <string name="label_no_contacts">अभी तक कोई संपर्क नहीं</string>
 </resources>
