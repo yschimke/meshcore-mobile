@@ -34,6 +34,11 @@ jobs:
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
+      # pull task outputs instead of building cold. Read-only, so safe at job
+      # scope; ci.yml holds the read-write token and stays the sole cache writer.
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
     steps:
       - uses: actions/checkout@v7.0.0
         with:
@@ -71,13 +76,28 @@ jobs:
 
       # Render the catalog module into a portable bundle with semantics (a11y
       # greenlines + layout tree → tokens/wireframes in the exported catalog).
-      - name: Render catalog bundle
+      - name: Render catalog bundle (:app, Android/Robolectric)
         run: |
           set -euo pipefail
           compose-preview bundle pack --module :app --with-semantics \
             -o "$GITHUB_WORKSPACE/meshcore-mobile-bundle.png"
 
-      # Join the render to catalog.spec.json and write the importable bundle.
+      # The Chat / Settings / Cached-device screens live in :meshcore-components
+      # (the shared CMP library) — previewed there for design-parity on the CMP
+      # desktop (Skiko) backend rather than re-authored as :app stickers. Render
+      # them as a second bundle so generate-design-catalog folds them in via
+      # --extra-renders; function names are unique across the two modules, so the
+      # join is unambiguous. UTF-8 forced: the component preview ids carry em-dashes.
+      - name: Render component screens (:meshcore-components, CMP desktop)
+        env:
+          LANG: C.UTF-8
+          LC_ALL: C.UTF-8
+        run: |
+          set -euo pipefail
+          compose-preview bundle pack --module meshcore-components --with-semantics \
+            -o "$GITHUB_WORKSPACE/meshcore-components-bundle.png" --timeout 600
+
+      # Join both renders to catalog.spec.json and write the importable bundle.
       # `source: {repo, ref, module}` lets a trusted, toolchain-equipped box
       # live-rerender; it's inert on the desktop-only public server.
       - name: Generate importable catalog
@@ -86,6 +106,7 @@ jobs:
           node compose-ai-tools/scripts/design-artifacts/generate-design-catalog.mjs \
             --spec catalog.spec.json \
             --renders "$GITHUB_WORKSPACE/meshcore-mobile-bundle.png" \
+            --extra-renders "$GITHUB_WORKSPACE/meshcore-components-bundle.png" \
             --out "$GITHUB_WORKSPACE/out" \
             --renderer "$(compose-preview --version | head -1)" \
             --source-repo "${GITHUB_REPOSITORY}" \
