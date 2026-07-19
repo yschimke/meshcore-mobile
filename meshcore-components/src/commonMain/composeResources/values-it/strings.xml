@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">Dispositivo</string>
   <string name="label_no_contacts">Ancora nessun contatto</string>
+  <string name="chat_hint_message">Messaggio</string>
+  <string name="chat_not_connected">Non connesso</string>
+  <string name="chat_empty">Ancora nessun messaggio</string>
+  <string name="chat_status_sending">Invio…</string>
+  <string name="chat_status_sent">Inviato</string>
+  <string name="chat_status_delivered">Consegnato</string>
+  <string name="chat_status_failed">Non riuscito</string>
+  <string name="chat_status_failed_retry">Non riuscito — tocca per riprovare</string>
+  <string name="cd_send">Invia</string>
+  <string name="cd_back">Indietro</string>
 </resources>

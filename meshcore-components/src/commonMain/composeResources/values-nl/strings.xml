@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">Apparaat</string>
   <string name="label_no_contacts">Nog geen contacten</string>
+  <string name="chat_hint_message">Bericht</string>
+  <string name="chat_not_connected">Niet verbonden</string>
+  <string name="chat_empty">Nog geen berichten</string>
+  <string name="chat_status_sending">Verzenden…</string>
+  <string name="chat_status_sent">Verzonden</string>
+  <string name="chat_status_delivered">Bezorgd</string>
+  <string name="chat_status_failed">Mislukt</string>
+  <string name="chat_status_failed_retry">Mislukt — tik om opnieuw te proberen</string>
+  <string name="cd_send">Verzenden</string>
+  <string name="cd_back">Terug</string>
 </resources>

@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">อุปกรณ์</string>
   <string name="label_no_contacts">ยังไม่มีรายชื่อติดต่อ</string>
+  <string name="chat_hint_message">ข้อความ</string>
+  <string name="chat_not_connected">ไม่ได้เชื่อมต่อ</string>
+  <string name="chat_empty">ยังไม่มีข้อความ</string>
+  <string name="chat_status_sending">กำลังส่ง…</string>
+  <string name="chat_status_sent">ส่งแล้ว</string>
+  <string name="chat_status_delivered">ส่งถึงแล้ว</string>
+  <string name="chat_status_failed">ล้มเหลว</string>
+  <string name="chat_status_failed_retry">ล้มเหลว — แตะเพื่อลองใหม่</string>
+  <string name="cd_send">ส่ง</string>
+  <string name="cd_back">ย้อนกลับ</string>
 </resources>

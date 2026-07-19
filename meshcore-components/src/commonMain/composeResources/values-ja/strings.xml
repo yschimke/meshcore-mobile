@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">デバイス</string>
   <string name="label_no_contacts">連絡先がまだありません</string>
+  <string name="chat_hint_message">メッセージ</string>
+  <string name="chat_not_connected">未接続</string>
+  <string name="chat_empty">メッセージはまだありません</string>
+  <string name="chat_status_sending">送信中…</string>
+  <string name="chat_status_sent">送信済み</string>
+  <string name="chat_status_delivered">配信済み</string>
+  <string name="chat_status_failed">失敗</string>
+  <string name="chat_status_failed_retry">失敗 — タップして再試行</string>
+  <string name="cd_send">送信</string>
+  <string name="cd_back">戻る</string>
 </resources>

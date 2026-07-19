@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">डिवाइस</string>
   <string name="label_no_contacts">अभी तक कोई संपर्क नहीं</string>
+  <string name="chat_hint_message">संदेश</string>
+  <string name="chat_not_connected">कनेक्ट नहीं है</string>
+  <string name="chat_empty">अभी तक कोई संदेश नहीं</string>
+  <string name="chat_status_sending">भेजा जा रहा है…</string>
+  <string name="chat_status_sent">भेजा गया</string>
+  <string name="chat_status_delivered">वितरित</string>
+  <string name="chat_status_failed">विफल</string>
+  <string name="chat_status_failed_retry">विफल — पुनः प्रयास के लिए टैप करें</string>
+  <string name="cd_send">भेजें</string>
+  <string name="cd_back">वापस</string>
 </resources>
