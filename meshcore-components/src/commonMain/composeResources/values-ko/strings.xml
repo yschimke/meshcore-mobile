@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">알 수 없음</string>
   <string name="settings_buzzer_off">꺼짐</string>
   <string name="settings_buzzer_on">켜짐 (%1$s)</string>
+  <string name="status_connecting">연결 중…</string>
+  <string name="status_waiting_radio">무선 응답 대기 중 — %1$d초</string>
+  <string name="btn_cancel">취소</string>
+  <string name="status_connection_failed">연결 실패</string>
+  <string name="status_unknown_error">알 수 없는 오류</string>
+  <string name="btn_back_to_scanner">스캐너로 돌아가기</string>
+  <string name="label_details">세부정보</string>
+  <string name="title_connecting">연결 중</string>
+  <string name="title_retrying">재시도 중 (%1$d/%2$d)</string>
+  <string name="title_disconnecting">연결 해제 중</string>
 </resources>

@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">Unbekannt</string>
   <string name="settings_buzzer_off">Aus</string>
   <string name="settings_buzzer_on">An (%1$s)</string>
+  <string name="status_connecting">Verbindung wird hergestellt…</string>
+  <string name="status_waiting_radio">Warte auf Antwort des Funkmoduls — %1$ds</string>
+  <string name="btn_cancel">Abbrechen</string>
+  <string name="status_connection_failed">Verbindung fehlgeschlagen</string>
+  <string name="status_unknown_error">Unbekannter Fehler</string>
+  <string name="btn_back_to_scanner">Zurück zum Scanner</string>
+  <string name="label_details">Details</string>
+  <string name="title_connecting">Verbindung wird hergestellt</string>
+  <string name="title_retrying">Erneuter Versuch (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Verbindung wird getrennt</string>
 </resources>

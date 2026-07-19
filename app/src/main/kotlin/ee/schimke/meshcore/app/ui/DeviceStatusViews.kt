@@ -32,6 +32,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.ui.theme.Dimens
+import ee.schimke.meshcore.components.generated.resources.Res
+import org.jetbrains.compose.resources.stringResource
 
 // --- Connecting / Failed status view ----------------------------------------
 
@@ -67,10 +69,10 @@ fun DeviceStatusView(
                 title = { Text(title, style = MaterialTheme.typography.titleLarge) },
                 actions = {
                     IconButton(onClick = onOpenThemePicker) {
-                        Icon(Icons.Rounded.Contrast, contentDescription = "Theme")
+                        Icon(Icons.Rounded.Contrast, contentDescription = stringResource(Res.string.cd_theme))
                     }
                     IconButton(onClick = onCancel) {
-                        Icon(Icons.AutoMirrored.Rounded.Logout, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Rounded.Logout, contentDescription = stringResource(Res.string.cd_back))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -145,12 +147,12 @@ private fun ConnectingCard(
                 Spacer(Modifier.size(Dimens.M))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Connecting…",
+                        text = stringResource(Res.string.status_connecting),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
                     Text(
-                        text = "Waiting for the radio to respond — ${remainingS}s",
+                        text = stringResource(Res.string.status_waiting_radio, remainingS),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
@@ -165,7 +167,7 @@ private fun ConnectingCard(
             OutlinedButton(
                 onClick = onCancel,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Cancel") }
+            ) { Text(stringResource(Res.string.btn_cancel)) }
         }
     }
 }
@@ -201,23 +203,23 @@ private fun FailureCard(cause: Throwable, onRetry: () -> Unit) {
                 )
                 Spacer(Modifier.size(Dimens.S))
                 Text(
-                    text = "Connection failed",
+                    text = stringResource(Res.string.status_connection_failed),
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onErrorContainer,
                 )
             }
             Text(
-                text = cause.message ?: "Unknown error",
+                text = cause.message ?: stringResource(Res.string.status_unknown_error),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onErrorContainer,
             )
-            OutlinedButton(onClick = onRetry) { Text("Back to scanner") }
+            OutlinedButton(onClick = onRetry) { Text(stringResource(Res.string.btn_back_to_scanner)) }
         }
     }
     OutlinedCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(12.dp)) {
             Text(
-                text = "Details",
+                text = stringResource(Res.string.label_details),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

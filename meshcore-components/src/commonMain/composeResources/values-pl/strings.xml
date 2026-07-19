@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">Nieznany</string>
   <string name="settings_buzzer_off">Wył.</string>
   <string name="settings_buzzer_on">Wł. (%1$s)</string>
+  <string name="status_connecting">Łączenie…</string>
+  <string name="status_waiting_radio">Oczekiwanie na odpowiedź radia — %1$ds</string>
+  <string name="btn_cancel">Anuluj</string>
+  <string name="status_connection_failed">Połączenie nieudane</string>
+  <string name="status_unknown_error">Nieznany błąd</string>
+  <string name="btn_back_to_scanner">Powrót do skanera</string>
+  <string name="label_details">Szczegóły</string>
+  <string name="title_connecting">Łączenie</string>
+  <string name="title_retrying">Ponawianie (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Rozłączanie</string>
 </resources>

@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">Неизвестно</string>
   <string name="settings_buzzer_off">Выкл.</string>
   <string name="settings_buzzer_on">Вкл. (%1$s)</string>
+  <string name="status_connecting">Подключение…</string>
+  <string name="status_waiting_radio">Ожидание ответа радио — %1$d с</string>
+  <string name="btn_cancel">Отмена</string>
+  <string name="status_connection_failed">Не удалось подключиться</string>
+  <string name="status_unknown_error">Неизвестная ошибка</string>
+  <string name="btn_back_to_scanner">Назад к сканеру</string>
+  <string name="label_details">Подробности</string>
+  <string name="title_connecting">Подключение</string>
+  <string name="title_retrying">Повтор (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Отключение</string>
 </resources>
