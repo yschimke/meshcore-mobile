@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  MeshCore shared UI strings (Compose Multiplatform resources). Default / English base; per-locale
+  overrides live in values-<locale>/strings.xml. The daemon's LocaleList provider renders any of the
+  published locales, which feeds the design catalog's locale axis. Real translations exist for
+  en / ja / ar / de; the other 13 locales are scaffolded as English copies to be filled in.
+-->
+<resources>
+  <string name="label_device">Device</string>
+  <string name="label_no_contacts">No contacts yet</string>
+</resources>
