@@ -29,6 +29,11 @@ jobs:
     name: Render previews (baseline or PR comment, auto-selected)
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
+      # pull task outputs instead of building cold. Read-only, so safe at job
+      # scope; ci.yml holds the read-write token and stays the sole cache writer.
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
     steps:
       - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
@@ -56,6 +61,11 @@ jobs:
     name: A11y previews
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
+      # pull task outputs instead of building cold. Read-only, so safe at job
+      # scope; ci.yml holds the read-write token and stays the sole cache writer.
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
     steps:
       - uses: actions/checkout@v7.0.0
       - uses: ./.github/actions/setup
