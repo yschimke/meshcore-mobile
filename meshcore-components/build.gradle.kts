@@ -44,7 +44,9 @@ kotlin {
       implementation(libs.compose.preview.annotations)
       // Compose Multiplatform string resources: UI copy resolves from the shared
       // commonMain/composeResources/values*/strings.xml, so the daemon localizes per locale.
-      implementation(libs.compose.components.resources)
+      // Exposed as api (not implementation) so consumers get the generated public Res +
+      // stringResource API on their compile classpath — :app reuses these same strings.
+      api(libs.compose.components.resources)
     }
     val androidMain by getting {
       dependencies {
