@@ -1,5 +1,5 @@
 {
-  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a `compose-preview bundle pack --module :app` render to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. Each `preview` MUST equal the exact @Preview function name in :app (ee.schimke.meshcore.app.ui.ComponentPreviews). Each group's optional `section` is the top-level TAB the preview server buckets it under (Themes / Components / Screens / Animations / …) — one level above `name`, which becomes the sub-heading inside the tab; groups follow this file's order, so tabs read Themes → Components → Screens.",
+  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a `compose-preview bundle pack --module :app` render — plus a second `--module meshcore-components` (CMP desktop) render folded in via the generator's `--extra-renders` for the Screens that live in that library module — to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. Each `preview` MUST equal an exact @Preview function name: for Themes/Components/the app Screens it is in :app (ee.schimke.meshcore.app.ui.ComponentPreviews etc.); for the meshcore-components Screens (Chat/*, Settings/*, Device/Cached) it is in :meshcore-components (ee.schimke.meshcore.components.ui.*Previews), folded in via --extra-renders. Function names are unique across the two modules, so the join is unambiguous. Each group's optional `section` is the top-level TAB the preview server buckets it under (Themes / Components / Screens / Animations / …) — one level above `name`, which becomes the sub-heading inside the tab; groups follow this file's order, so tabs read Themes → Components → Screens.",
   "system": "meshcore-mobile",
   "title": "MeshCore Mobile",
   "library": [
@@ -240,6 +240,43 @@
           "componentId": "Device/StatusFailed",
           "preview": "DeviceStatusFailedPreview",
           "caption": "Device connection status — failed, with cause."
+        },
+        {
+          "componentId": "Device/Cached",
+          "preview": "CachedDeviceBodyPreview",
+          "caption": "Device screen — cached (offline) data, with the stale-data warning banner."
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "section": "Screens",
+      "components": [
+        {
+          "componentId": "Chat/Contact",
+          "preview": "ContactChatPreview",
+          "caption": "Contact chat — a 1:1 direct-message thread."
+        },
+        {
+          "componentId": "Chat/Channel",
+          "preview": "ChannelChatPreview",
+          "caption": "Channel chat — a group broadcast channel."
+        },
+        {
+          "componentId": "Chat/Commands",
+          "preview": "CommandsPreview",
+          "caption": "Commands console — the device command/response log."
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "section": "Screens",
+      "components": [
+        {
+          "componentId": "Settings/Ready",
+          "preview": "DeviceSettingsPreview",
+          "caption": "Device settings — discovered device, with the buzzer toggle."
         }
       ]
     }
