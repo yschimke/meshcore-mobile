@@ -47,4 +47,11 @@
   <string name="cd_storage">ที่จัดเก็บ</string>
   <string name="cd_channel">ช่อง</string>
   <string name="channel_index">ช่อง %1$d</string>
+  <string name="settings_discovering">กำลังตรวจหาความสามารถของอุปกรณ์…</string>
+  <string name="settings_none">ไม่พบการตั้งค่าที่กำหนดได้</string>
+  <string name="settings_buzzer">ออด</string>
+  <string name="settings_buzzer_updating">กำลังอัปเดต…</string>
+  <string name="settings_buzzer_unknown">ไม่ทราบ</string>
+  <string name="settings_buzzer_off">ปิด</string>
+  <string name="settings_buzzer_on">เปิด (%1$s)</string>
 </resources>

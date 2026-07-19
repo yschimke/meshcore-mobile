@@ -23,7 +23,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_back
+import ee.schimke.meshcore.components.generated.resources.label_device_settings
+import ee.schimke.meshcore.components.generated.resources.settings_buzzer
+import ee.schimke.meshcore.components.generated.resources.settings_buzzer_off
+import ee.schimke.meshcore.components.generated.resources.settings_buzzer_on
+import ee.schimke.meshcore.components.generated.resources.settings_buzzer_unknown
+import ee.schimke.meshcore.components.generated.resources.settings_buzzer_updating
+import ee.schimke.meshcore.components.generated.resources.settings_discovering
+import ee.schimke.meshcore.components.generated.resources.settings_none
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Render state for the device settings screen. The stateful `DeviceSettingsScreen` wrapper in
@@ -65,8 +76,17 @@ fun DeviceSettingsBody(
     modifier = modifier,
     topBar = {
       TopAppBar(
-        title = { Text("Device Settings", style = MaterialTheme.typography.titleMedium) },
-        navigationIcon = { IconButton(onClick = onBack) { Icon(MeshIcons.ArrowBack, "Back") } },
+        title = {
+          Text(
+            stringResource(Res.string.label_device_settings),
+            style = MaterialTheme.typography.titleMedium,
+          )
+        },
+        navigationIcon = {
+          IconButton(onClick = onBack) {
+            Icon(MeshIcons.ArrowBack, stringResource(Res.string.cd_back))
+          }
+        },
         actions = {
           Icon(
             MeshIcons.Settings,
@@ -91,7 +111,7 @@ fun DeviceSettingsBody(
             CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
             Spacer(Modifier.size(12.dp))
             Text(
-              "Discovering device capabilities…",
+              stringResource(Res.string.settings_discovering),
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -106,7 +126,7 @@ fun DeviceSettingsBody(
         is DeviceSettingsUiState.Ready ->
           if (!state.hasBuzzer) {
             Text(
-              text = "No configurable settings detected",
+              text = stringResource(Res.string.settings_none),
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant,
               modifier = Modifier.padding(vertical = 24.dp),
@@ -135,17 +155,17 @@ private fun BuzzerRow(mode: String?, loading: Boolean, onToggle: (wantOn: Boolea
   ) {
     Column(modifier = Modifier.weight(1f)) {
       Text(
-        text = "Buzzer",
+        text = stringResource(Res.string.settings_buzzer),
         style = MaterialTheme.typography.bodyLarge,
         color = MaterialTheme.colorScheme.onSurface,
       )
       Text(
         text =
           when {
-            loading -> "Updating…"
-            mode == null -> "Unknown"
-            mode == "off" -> "Off"
-            else -> "On ($mode)"
+            loading -> stringResource(Res.string.settings_buzzer_updating)
+            mode == null -> stringResource(Res.string.settings_buzzer_unknown)
+            mode == "off" -> stringResource(Res.string.settings_buzzer_off)
+            else -> stringResource(Res.string.settings_buzzer_on, mode)
           },
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,

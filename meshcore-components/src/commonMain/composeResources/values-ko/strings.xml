@@ -47,4 +47,11 @@
   <string name="cd_storage">저장공간</string>
   <string name="cd_channel">채널</string>
   <string name="channel_index">채널 %1$d</string>
+  <string name="settings_discovering">기기 기능을 감지하는 중…</string>
+  <string name="settings_none">구성 가능한 설정이 없습니다</string>
+  <string name="settings_buzzer">부저</string>
+  <string name="settings_buzzer_updating">업데이트 중…</string>
+  <string name="settings_buzzer_unknown">알 수 없음</string>
+  <string name="settings_buzzer_off">꺼짐</string>
+  <string name="settings_buzzer_on">켜짐 (%1$s)</string>
 </resources>

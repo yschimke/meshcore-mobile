@@ -47,4 +47,11 @@
   <string name="cd_storage">Depolama</string>
   <string name="cd_channel">Kanal</string>
   <string name="channel_index">Kanal %1$d</string>
+  <string name="settings_discovering">Cihaz özellikleri algılanıyor…</string>
+  <string name="settings_none">Yapılandırılabilir ayar bulunamadı</string>
+  <string name="settings_buzzer">Zil</string>
+  <string name="settings_buzzer_updating">Güncelleniyor…</string>
+  <string name="settings_buzzer_unknown">Bilinmiyor</string>
+  <string name="settings_buzzer_off">Kapalı</string>
+  <string name="settings_buzzer_on">Açık (%1$s)</string>
 </resources>

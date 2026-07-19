@@ -53,4 +53,11 @@
   <string name="cd_storage">Storage</string>
   <string name="cd_channel">Channel</string>
   <string name="channel_index">Channel %1$d</string>
+  <string name="settings_discovering">Discovering device capabilities…</string>
+  <string name="settings_none">No configurable settings detected</string>
+  <string name="settings_buzzer">Buzzer</string>
+  <string name="settings_buzzer_updating">Updating…</string>
+  <string name="settings_buzzer_unknown">Unknown</string>
+  <string name="settings_buzzer_off">Off</string>
+  <string name="settings_buzzer_on">On (%1$s)</string>
 </resources>

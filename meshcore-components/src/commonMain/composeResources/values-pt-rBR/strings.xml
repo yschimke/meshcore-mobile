@@ -47,4 +47,11 @@
   <string name="cd_storage">Armazenamento</string>
   <string name="cd_channel">Canal</string>
   <string name="channel_index">Canal %1$d</string>
+  <string name="settings_discovering">Detectando recursos do dispositivo…</string>
+  <string name="settings_none">Nenhuma configuração ajustável detectada</string>
+  <string name="settings_buzzer">Campainha</string>
+  <string name="settings_buzzer_updating">Atualizando…</string>
+  <string name="settings_buzzer_unknown">Desconhecido</string>
+  <string name="settings_buzzer_off">Desligado</string>
+  <string name="settings_buzzer_on">Ligado (%1$s)</string>
 </resources>
