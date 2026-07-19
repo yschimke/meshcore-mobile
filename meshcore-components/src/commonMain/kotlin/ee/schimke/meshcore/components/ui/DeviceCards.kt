@@ -28,6 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.label_device
+import ee.schimke.meshcore.components.generated.resources.label_no_contacts
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
@@ -35,6 +38,7 @@ import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Elevated "hero" card showing identity + radio + battery for the currently connected MeshCore
@@ -58,7 +62,7 @@ fun DeviceSummaryCard(
       verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
       Text(
-        text = self?.name ?: "Device",
+        text = self?.name ?: stringResource(Res.string.label_device),
         style = MaterialTheme.typography.titleLarge,
         color = MaterialTheme.colorScheme.onSurface,
       )
@@ -279,7 +283,7 @@ fun ContactListEmpty(modifier: Modifier = Modifier) {
     )
     Spacer(Modifier.size(8.dp))
     Text(
-      text = "No contacts yet",
+      text = stringResource(Res.string.label_no_contacts),
       style = MaterialTheme.typography.bodySmall,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
