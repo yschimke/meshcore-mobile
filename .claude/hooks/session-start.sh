@@ -37,7 +37,14 @@ sdkmanager --sdk_root="$ANDROID_SDK_ROOT" \
   "platforms;android-$COMPILE_SDK" \
   "build-tools;$BUILD_TOOLS_VERSION" >/dev/null
 
-if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
+# Export for later tool calls via $CLAUDE_ENV_FILE. Append at most ONCE, guarded
+# on a marker: SessionStart re-fires on resume/compact, and a bare `>>` would
+# re-append these lines every time. Claude Code inlines this file into each
+# `bash -c` preamble to apply the env, so an ever-growing file eventually blows
+# past the kernel's 128 KiB single-argument limit (MAX_ARG_STRLEN) and every
+# shell command dies with E2BIG. The guard keeps it to a single copy. (The PATH
+# line also prepends, so re-appending would compound PATH on each sourcing too.)
+if [ -n "${CLAUDE_ENV_FILE:-}" ] && ! grep -qF "export ANDROID_HOME=" "$CLAUDE_ENV_FILE" 2>/dev/null; then
   {
     echo "export ANDROID_HOME=\"$ANDROID_SDK_ROOT\""
     echo "export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\""
