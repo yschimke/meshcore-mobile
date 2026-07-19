@@ -37,4 +37,14 @@
   <string name="cd_expand">Развернуть</string>
   <string name="cd_new_message">Новое сообщение</string>
   <string name="cd_dismiss">Закрыть</string>
+  <string name="contact_type_repeater">Ретранслятор</string>
+  <string name="contact_type_room">Комната</string>
+  <string name="contact_type_sensor">Датчик</string>
+  <string name="contact_type_contact">Контакт</string>
+  <string name="cd_public_key">Открытый ключ</string>
+  <string name="cd_radio">Радио</string>
+  <string name="cd_battery">Батарея</string>
+  <string name="cd_storage">Хранилище</string>
+  <string name="cd_channel">Канал</string>
+  <string name="channel_index">Канал %1$d</string>
 </resources>

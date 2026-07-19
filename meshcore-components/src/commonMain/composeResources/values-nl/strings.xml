@@ -37,4 +37,14 @@
   <string name="cd_expand">Uitvouwen</string>
   <string name="cd_new_message">Nieuw bericht</string>
   <string name="cd_dismiss">Sluiten</string>
+  <string name="contact_type_repeater">Repeater</string>
+  <string name="contact_type_room">Ruimte</string>
+  <string name="contact_type_sensor">Sensor</string>
+  <string name="contact_type_contact">Contact</string>
+  <string name="cd_public_key">Openbare sleutel</string>
+  <string name="cd_radio">Radio</string>
+  <string name="cd_battery">Batterij</string>
+  <string name="cd_storage">Opslag</string>
+  <string name="cd_channel">Kanaal</string>
+  <string name="channel_index">Kanaal %1$d</string>
 </resources>

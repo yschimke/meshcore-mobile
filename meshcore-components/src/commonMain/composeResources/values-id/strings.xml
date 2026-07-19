@@ -37,4 +37,14 @@
   <string name="cd_expand">Perluas</string>
   <string name="cd_new_message">Pesan baru</string>
   <string name="cd_dismiss">Tutup</string>
+  <string name="contact_type_repeater">Pengulang</string>
+  <string name="contact_type_room">Ruang</string>
+  <string name="contact_type_sensor">Sensor</string>
+  <string name="contact_type_contact">Kontak</string>
+  <string name="cd_public_key">Kunci publik</string>
+  <string name="cd_radio">Radio</string>
+  <string name="cd_battery">Baterai</string>
+  <string name="cd_storage">Penyimpanan</string>
+  <string name="cd_channel">Saluran</string>
+  <string name="channel_index">Saluran %1$d</string>
 </resources>

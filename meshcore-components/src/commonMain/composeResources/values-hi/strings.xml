@@ -37,4 +37,14 @@
   <string name="cd_expand">विस्तृत करें</string>
   <string name="cd_new_message">नया संदेश</string>
   <string name="cd_dismiss">खारिज करें</string>
+  <string name="contact_type_repeater">रिपीटर</string>
+  <string name="contact_type_room">रूम</string>
+  <string name="contact_type_sensor">सेंसर</string>
+  <string name="contact_type_contact">संपर्क</string>
+  <string name="cd_public_key">सार्वजनिक कुंजी</string>
+  <string name="cd_radio">रेडियो</string>
+  <string name="cd_battery">बैटरी</string>
+  <string name="cd_storage">स्टोरेज</string>
+  <string name="cd_channel">चैनल</string>
+  <string name="channel_index">चैनल %1$d</string>
 </resources>
