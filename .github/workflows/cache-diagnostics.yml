@@ -1,0 +1,42 @@
+name: Cache diagnostics
+
+# On-demand build-cache diagnostics (scripts/cache-diagnostics.sh). Not wired to
+# push/PR — it runs the build several times and is meant to be dispatched when
+# investigating the BuildFetch remote cache hit rate. It forces the remote cache
+# OFF (see the script), so it never reads from or writes to the shared remote.
+on:
+  workflow_dispatch:
+    inputs:
+      tasks:
+        description: 'Gradle tasks to probe (space-separated)'
+        default: ':app:assembleDebug :wear:assembleDebug test lintDebug'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    name: Relocatability + cacheability probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7.0.0
+
+      # JDK only — the Android SDK is preinstalled on ubuntu-latest, and we
+      # deliberately skip the shared setup-gradle Actions caching so the probe
+      # isn't perturbed by a restored Gradle home.
+      - uses: actions/setup-java@v5.6.0
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Run cache diagnostics
+        run: scripts/cache-diagnostics.sh ${{ inputs.tasks }}
+
+      - name: Upload raw Gradle logs
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: cache-diagnostics-logs
+          path: ${{ runner.temp }}/cache-diag/*.raw
+          if-no-files-found: ignore
