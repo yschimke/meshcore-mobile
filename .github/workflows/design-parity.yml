@@ -27,6 +27,11 @@ jobs:
     name: Render + publish design-parity artifacts
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # Read-only BuildFetch remote cache (see settings.gradle.kts): pull task
+      # outputs instead of building cold. ON_CI is unset, so this stays a reader
+      # — ci.yml remains the sole cache writer.
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
     steps:
       - uses: actions/checkout@v7.0.0
 
