@@ -10,6 +10,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.channel_index
 import ee.schimke.meshcore.components.ui.ChatBody
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.MessageStatus
@@ -19,6 +21,7 @@ import android.util.Log
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 import kotlin.time.Instant
+import org.jetbrains.compose.resources.stringResource
 
 private const val TAG = "MeshSend"
 
@@ -110,7 +113,7 @@ fun ChannelChatScreen(
 
     ChatBody(
         title = channelName,
-        subtitle = "Channel $channelIndex",
+        subtitle = stringResource(Res.string.channel_index, channelIndex),
         messages = messages,
         draft = draft,
         onDraftChange = { draft = it },
