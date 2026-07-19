@@ -84,8 +84,19 @@ build_keys "$LONG"  "$GH_L" long
 join -j 1 "$WORK/short.keys" "$WORK/long.keys" \
   | awk '$2 != $3 { print $1 }' | sort -u > "$WORK/nonreloc.txt" || true
 
-# Warm rebuild at the short path (GH_S is now populated) => cacheability check.
-echo ">>> warm rebuild at $SHORT (cacheability)"
+# Cacheability: consume GH_S (now populated) from a CLEAN tree at the SAME path
+# as the populating build. Re-extracting wipes all build/ outputs and
+# incremental state, so Gradle can't shortcut a task to UP-TO-DATE without
+# reading the cache (otherwise a non-cacheable-but-up-to-date task would be
+# silently omitted). Keeping the same path means a non-relocatable-but-cacheable
+# task still resolves FROM-CACHE, so this measures cacheability, not
+# relocatability. Anything that still executes is genuinely non-cacheable or has
+# an unstable key.
+echo ">>> warm rebuild at $SHORT from a clean tree (cacheability)"
+rm -rf "$SHORT"
+mkdir -p "$SHORT"
+git -C "$REPO_ROOT" archive --format=tar HEAD | tar -x -C "$SHORT"
+printf 'sdk.dir=%s\n' "$SDK" > "$SHORT/local.properties"
 ( cd "$SHORT" && ./gradlew --no-daemon --build-cache -g "$GH_S" \
     --console=plain "${TASKS[@]}" ) > "$WORK/warm.raw" 2>&1 || true
 # Task lines with no reuse suffix re-executed despite a warm cache.
