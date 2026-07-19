@@ -42,6 +42,9 @@ kotlin {
       // KMP variant of preview-annotations (0.16.14+). Reflection-only markers, no runtime
       // footprint.
       implementation(libs.compose.preview.annotations)
+      // Compose Multiplatform string resources: UI copy resolves from the shared
+      // commonMain/composeResources/values*/strings.xml, so the daemon localizes per locale.
+      implementation(libs.compose.components.resources)
     }
     val androidMain by getting {
       dependencies {
@@ -56,4 +59,11 @@ kotlin {
       }
     }
   }
+}
+
+// Generate a PUBLIC `Res` accessor so :app catalog previews (and any consumer) resolve
+// the shared string resources too — mirrors :samples:design-catalog-m3-shared.
+compose.resources {
+  publicResClass = true
+  packageOfResClass = "ee.schimke.meshcore.components.generated.resources"
 }
