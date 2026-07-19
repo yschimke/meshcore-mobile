@@ -37,4 +37,14 @@
   <string name="cd_expand">展開</string>
   <string name="cd_new_message">新訊息</string>
   <string name="cd_dismiss">關閉</string>
+  <string name="contact_type_repeater">中繼器</string>
+  <string name="contact_type_room">房間</string>
+  <string name="contact_type_sensor">感測器</string>
+  <string name="contact_type_contact">聯絡人</string>
+  <string name="cd_public_key">公鑰</string>
+  <string name="cd_radio">無線電</string>
+  <string name="cd_battery">電池</string>
+  <string name="cd_storage">儲存空間</string>
+  <string name="cd_channel">頻道</string>
+  <string name="channel_index">頻道 %1$d</string>
 </resources>

@@ -37,4 +37,14 @@
   <string name="cd_expand">Genişlet</string>
   <string name="cd_new_message">Yeni mesaj</string>
   <string name="cd_dismiss">Kapat</string>
+  <string name="contact_type_repeater">Yineleyici</string>
+  <string name="contact_type_room">Oda</string>
+  <string name="contact_type_sensor">Sensör</string>
+  <string name="contact_type_contact">Kişi</string>
+  <string name="cd_public_key">Ortak anahtar</string>
+  <string name="cd_radio">Telsiz</string>
+  <string name="cd_battery">Pil</string>
+  <string name="cd_storage">Depolama</string>
+  <string name="cd_channel">Kanal</string>
+  <string name="channel_index">Kanal %1$d</string>
 </resources>
