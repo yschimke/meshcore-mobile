@@ -16,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.connection.ConnectionUiState
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.menu_commands
 import ee.schimke.meshcore.components.ui.ChatBody
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.MessageStatus
@@ -25,6 +27,7 @@ import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 import kotlin.time.Instant
+import org.jetbrains.compose.resources.stringResource
 
 private const val TAG = "MeshSend"
 
@@ -111,7 +114,7 @@ fun CommandsScreen(
     }
 
     ChatBody(
-        title = "Commands",
+        title = stringResource(Res.string.menu_commands),
         messages = messages,
         draft = draft,
         onDraftChange = { draft = it },
