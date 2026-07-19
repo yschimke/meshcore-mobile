@@ -46,8 +46,9 @@ plugins {
 // The project-specific name lets a developer hold a separate readonly token per BuildFetch project
 // in a single ~/.gradle/gradle.properties (this repo and compose-ai-tools point at different caches,
 // so one shared token can't authenticate both). The general name stays as a fallback — it's what CI
-// exports (see .github/workflows/ci.yml) and what a single-project setup can use. Env wins over a
-// gradle property of the same name so CI overrides a stray local property.
+// exports (the ci.yml build/test/lint jobs plus the preview/render workflows: compose-preview,
+// design-parity, design-artifacts) and what a single-project setup can use. Env wins over a gradle
+// property of the same name so CI overrides a stray local property.
 //
 // The token is treated as absent unless it is non-blank. CI declares the env var unconditionally
 // (`BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.… }}`), so an unprovisioned secret or a fork
