@@ -37,4 +37,14 @@
   <string name="cd_expand">Expandir</string>
   <string name="cd_new_message">Nova mensagem</string>
   <string name="cd_dismiss">Dispensar</string>
+  <string name="contact_type_repeater">Repetidor</string>
+  <string name="contact_type_room">Sala</string>
+  <string name="contact_type_sensor">Sensor</string>
+  <string name="contact_type_contact">Contato</string>
+  <string name="cd_public_key">Chave pública</string>
+  <string name="cd_radio">Rádio</string>
+  <string name="cd_battery">Bateria</string>
+  <string name="cd_storage">Armazenamento</string>
+  <string name="cd_channel">Canal</string>
+  <string name="channel_index">Canal %1$d</string>
 </resources>

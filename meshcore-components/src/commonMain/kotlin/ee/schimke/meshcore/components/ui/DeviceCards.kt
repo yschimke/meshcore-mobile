@@ -29,6 +29,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_battery
+import ee.schimke.meshcore.components.generated.resources.cd_channel
+import ee.schimke.meshcore.components.generated.resources.cd_public_key
+import ee.schimke.meshcore.components.generated.resources.cd_radio
+import ee.schimke.meshcore.components.generated.resources.cd_storage
+import ee.schimke.meshcore.components.generated.resources.channel_index
+import ee.schimke.meshcore.components.generated.resources.contact_type_contact
+import ee.schimke.meshcore.components.generated.resources.contact_type_repeater
+import ee.schimke.meshcore.components.generated.resources.contact_type_room
+import ee.schimke.meshcore.components.generated.resources.contact_type_sensor
 import ee.schimke.meshcore.components.generated.resources.label_device
 import ee.schimke.meshcore.components.generated.resources.label_no_contacts
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
@@ -75,7 +85,10 @@ fun DeviceSummaryCard(
 
 @Composable
 private fun PubkeyLine(hex: String?) {
-  IconLabelRow(icon = MeshIcons.Fingerprint, contentDescription = "Public key") {
+  IconLabelRow(
+    icon = MeshIcons.Fingerprint,
+    contentDescription = stringResource(Res.string.cd_public_key),
+  ) {
     Text(
       text = hex?.take(16) ?: "—",
       style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
@@ -86,7 +99,7 @@ private fun PubkeyLine(hex: String?) {
 
 @Composable
 fun RadioLine(radio: RadioSettings) {
-  IconLabelRow(icon = MeshIcons.Wifi, contentDescription = "Radio") {
+  IconLabelRow(icon = MeshIcons.Wifi, contentDescription = stringResource(Res.string.cd_radio)) {
     Text(
       text =
         buildString {
@@ -120,7 +133,12 @@ fun BatterySection(battery: BatteryInfo) {
     }
   Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-      Icon(icon, contentDescription = "Battery", tint = tint, modifier = Modifier.size(18.dp))
+      Icon(
+        icon,
+        contentDescription = stringResource(Res.string.cd_battery),
+        tint = tint,
+        modifier = Modifier.size(18.dp),
+      )
       Text(
         text = "  $percent% · ${battery.millivolts} mV",
         style = MaterialTheme.typography.bodyMedium,
@@ -135,7 +153,10 @@ fun BatterySection(battery: BatteryInfo) {
       color = if (warn) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.primary,
       trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
     )
-    IconLabelRow(icon = MeshIcons.Storage, contentDescription = "Storage") {
+    IconLabelRow(
+      icon = MeshIcons.Storage,
+      contentDescription = stringResource(Res.string.cd_storage),
+    ) {
       Text(
         text = "${battery.storageUsedKb} / ${battery.storageTotalKb} kB",
         style = MaterialTheme.typography.bodySmall,
@@ -173,12 +194,13 @@ private fun Contact.iconFor(): ImageVector =
     else -> MeshIcons.Person
   }
 
+@Composable
 private fun Contact.typeLabel(): String =
   when (type) {
-    ContactType.REPEATER -> "Repeater"
-    ContactType.ROOM -> "Room"
-    ContactType.SENSOR -> "Sensor"
-    else -> "Contact"
+    ContactType.REPEATER -> stringResource(Res.string.contact_type_repeater)
+    ContactType.ROOM -> stringResource(Res.string.contact_type_room)
+    ContactType.SENSOR -> stringResource(Res.string.contact_type_sensor)
+    else -> stringResource(Res.string.contact_type_contact)
   }
 
 /**
@@ -187,6 +209,7 @@ private fun Contact.typeLabel(): String =
  */
 @Composable
 fun ContactRow(contact: Contact, onClick: (() -> Unit)? = null, modifier: Modifier = Modifier) {
+  val typeLabel = contact.typeLabel()
   Card(
     modifier = modifier.fillMaxWidth(),
     onClick = onClick ?: {},
@@ -208,7 +231,7 @@ fun ContactRow(contact: Contact, onClick: (() -> Unit)? = null, modifier: Modifi
         ) {
           Icon(
             imageVector = contact.iconFor(),
-            contentDescription = contact.typeLabel(),
+            contentDescription = typeLabel,
             tint = MaterialTheme.colorScheme.onSecondaryContainer,
             modifier = Modifier.size(20.dp).align(Alignment.CenterVertically),
           )
@@ -226,7 +249,7 @@ fun ContactRow(contact: Contact, onClick: (() -> Unit)? = null, modifier: Modifi
         Text(
           text =
             buildString {
-              append(contact.typeLabel())
+              append(typeLabel)
               append(" · ")
               append(if (contact.isFlood) "flood" else "${contact.pathLength} hops")
             },
@@ -294,6 +317,7 @@ fun ContactListEmpty(modifier: Modifier = Modifier) {
 
 @Composable
 fun ChannelRow(channel: ChannelInfo, onClick: (() -> Unit)? = null, modifier: Modifier = Modifier) {
+  val channelLabel = stringResource(Res.string.channel_index, channel.index)
   Card(
     modifier = modifier.fillMaxWidth(),
     onClick = onClick ?: {},
@@ -315,7 +339,7 @@ fun ChannelRow(channel: ChannelInfo, onClick: (() -> Unit)? = null, modifier: Mo
         ) {
           Icon(
             imageVector = MeshIcons.Groups,
-            contentDescription = "Channel",
+            contentDescription = stringResource(Res.string.cd_channel),
             tint = MaterialTheme.colorScheme.onTertiaryContainer,
             modifier = Modifier.size(20.dp).align(Alignment.CenterVertically),
           )
@@ -326,12 +350,12 @@ fun ChannelRow(channel: ChannelInfo, onClick: (() -> Unit)? = null, modifier: Mo
         verticalArrangement = Arrangement.spacedBy(2.dp),
       ) {
         Text(
-          text = channel.name.ifBlank { "Channel ${channel.index}" },
+          text = channel.name.ifBlank { channelLabel },
           style = MaterialTheme.typography.titleMedium,
           color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
-          text = "Channel ${channel.index}",
+          text = channelLabel,
           style = MaterialTheme.typography.bodySmall,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

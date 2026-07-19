@@ -37,4 +37,14 @@
   <string name="cd_expand">توسيع</string>
   <string name="cd_new_message">رسالة جديدة</string>
   <string name="cd_dismiss">تجاهل</string>
+  <string name="contact_type_repeater">مكرِّر</string>
+  <string name="contact_type_room">غرفة</string>
+  <string name="contact_type_sensor">مستشعر</string>
+  <string name="contact_type_contact">جهة اتصال</string>
+  <string name="cd_public_key">المفتاح العام</string>
+  <string name="cd_radio">الراديو</string>
+  <string name="cd_battery">البطارية</string>
+  <string name="cd_storage">التخزين</string>
+  <string name="cd_channel">قناة</string>
+  <string name="channel_index">القناة %1$d</string>
 </resources>

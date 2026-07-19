@@ -37,4 +37,14 @@
   <string name="cd_expand">展開</string>
   <string name="cd_new_message">新しいメッセージ</string>
   <string name="cd_dismiss">閉じる</string>
+  <string name="contact_type_repeater">リピーター</string>
+  <string name="contact_type_room">ルーム</string>
+  <string name="contact_type_sensor">センサー</string>
+  <string name="contact_type_contact">連絡先</string>
+  <string name="cd_public_key">公開鍵</string>
+  <string name="cd_radio">無線</string>
+  <string name="cd_battery">バッテリー</string>
+  <string name="cd_storage">ストレージ</string>
+  <string name="cd_channel">チャンネル</string>
+  <string name="channel_index">チャンネル %1$d</string>
 </resources>

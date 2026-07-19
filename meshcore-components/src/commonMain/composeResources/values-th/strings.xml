@@ -37,4 +37,14 @@
   <string name="cd_expand">ขยาย</string>
   <string name="cd_new_message">ข้อความใหม่</string>
   <string name="cd_dismiss">ปิด</string>
+  <string name="contact_type_repeater">รีพีทเตอร์</string>
+  <string name="contact_type_room">ห้อง</string>
+  <string name="contact_type_sensor">เซนเซอร์</string>
+  <string name="contact_type_contact">รายชื่อติดต่อ</string>
+  <string name="cd_public_key">คีย์สาธารณะ</string>
+  <string name="cd_radio">วิทยุ</string>
+  <string name="cd_battery">แบตเตอรี่</string>
+  <string name="cd_storage">ที่จัดเก็บ</string>
+  <string name="cd_channel">ช่อง</string>
+  <string name="channel_index">ช่อง %1$d</string>
 </resources>
