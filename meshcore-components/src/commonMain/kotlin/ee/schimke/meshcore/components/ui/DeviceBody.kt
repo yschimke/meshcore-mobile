@@ -42,6 +42,32 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_collapse
+import ee.schimke.meshcore.components.generated.resources.cd_disconnect
+import ee.schimke.meshcore.components.generated.resources.cd_dismiss
+import ee.schimke.meshcore.components.generated.resources.cd_expand
+import ee.schimke.meshcore.components.generated.resources.cd_new_message
+import ee.schimke.meshcore.components.generated.resources.cd_theme
+import ee.schimke.meshcore.components.generated.resources.cd_tools
+import ee.schimke.meshcore.components.generated.resources.device_loading
+import ee.schimke.meshcore.components.generated.resources.empty_channels
+import ee.schimke.meshcore.components.generated.resources.empty_channels_favourited
+import ee.schimke.meshcore.components.generated.resources.empty_repeaters
+import ee.schimke.meshcore.components.generated.resources.empty_rooms
+import ee.schimke.meshcore.components.generated.resources.filter_all
+import ee.schimke.meshcore.components.generated.resources.filter_favourited
+import ee.schimke.meshcore.components.generated.resources.filter_joined
+import ee.schimke.meshcore.components.generated.resources.label_contacts
+import ee.schimke.meshcore.components.generated.resources.label_device_settings
+import ee.schimke.meshcore.components.generated.resources.label_rooms
+import ee.schimke.meshcore.components.generated.resources.loading_contacts
+import ee.schimke.meshcore.components.generated.resources.menu_commands
+import ee.schimke.meshcore.components.generated.resources.section_channels
+import ee.schimke.meshcore.components.generated.resources.section_contacts
+import ee.schimke.meshcore.components.generated.resources.section_repeaters
+import ee.schimke.meshcore.components.generated.resources.section_rooms
+import ee.schimke.meshcore.components.generated.resources.section_sensors
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import ee.schimke.meshcore.components.ui.theme.Dimens
 import ee.schimke.meshcore.components.ui.theme.Section
@@ -52,6 +78,7 @@ import ee.schimke.meshcore.core.model.Contact
 import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
+import org.jetbrains.compose.resources.stringResource
 
 const val COMMANDS_CHANNEL_NAME = "meshcore-commands"
 
@@ -117,7 +144,7 @@ fun DeviceBody(
               CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
               Spacer(Modifier.size(Dimens.S))
               Text(
-                text = "Loading\u2026",
+                text = stringResource(Res.string.device_loading),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
               )
@@ -128,11 +155,14 @@ fun DeviceBody(
           var toolsMenuOpen by remember { mutableStateOf(false) }
           Box {
             IconButton(onClick = { toolsMenuOpen = true }) {
-              Icon(imageVector = MeshIcons.Terminal, contentDescription = "Tools")
+              Icon(
+                imageVector = MeshIcons.Terminal,
+                contentDescription = stringResource(Res.string.cd_tools),
+              )
             }
             DropdownMenu(expanded = toolsMenuOpen, onDismissRequest = { toolsMenuOpen = false }) {
               DropdownMenuItem(
-                text = { Text("Commands") },
+                text = { Text(stringResource(Res.string.menu_commands)) },
                 leadingIcon = { Icon(MeshIcons.Terminal, contentDescription = null) },
                 onClick = {
                   toolsMenuOpen = false
@@ -140,7 +170,7 @@ fun DeviceBody(
                 },
               )
               DropdownMenuItem(
-                text = { Text("Device Settings") },
+                text = { Text(stringResource(Res.string.label_device_settings)) },
                 leadingIcon = { Icon(MeshIcons.Settings, contentDescription = null) },
                 onClick = {
                   toolsMenuOpen = false
@@ -150,10 +180,16 @@ fun DeviceBody(
             }
           }
           IconButton(onClick = onOpenThemePicker) {
-            Icon(imageVector = MeshIcons.Contrast, contentDescription = "Theme")
+            Icon(
+              imageVector = MeshIcons.Contrast,
+              contentDescription = stringResource(Res.string.cd_theme),
+            )
           }
           IconButton(onClick = onDisconnect) {
-            Icon(imageVector = MeshIcons.Logout, contentDescription = "Disconnect")
+            Icon(
+              imageVector = MeshIcons.Logout,
+              contentDescription = stringResource(Res.string.cd_disconnect),
+            )
           }
         },
         colors =
@@ -210,7 +246,7 @@ fun DeviceBody(
         if (sectionStates.channelsShowAll) regularChannels
         else regularChannels.filter { it.index in contactedChannelIndices }
       CollapsibleSectionHeader(
-        text = "Channels (${visibleChannels.size})",
+        text = stringResource(Res.string.section_channels, visibleChannels.size),
         expanded = sectionStates.channelsExpanded,
         onToggle = { onSectionExpandedChange(Section.CHANNELS, !sectionStates.channelsExpanded) },
       ) {
@@ -218,7 +254,12 @@ fun DeviceBody(
           FilterChip(
             selected = !sectionStates.channelsShowAll,
             onClick = { onSectionShowAllChange(Section.CHANNELS, !sectionStates.channelsShowAll) },
-            label = { Text(if (sectionStates.channelsShowAll) "All" else "Favourited") },
+            label = {
+              Text(
+                if (sectionStates.channelsShowAll) stringResource(Res.string.filter_all)
+                else stringResource(Res.string.filter_favourited)
+              )
+            },
           )
         }
       }
@@ -231,8 +272,8 @@ fun DeviceBody(
           if (visibleChannels.isEmpty()) {
             Text(
               text =
-                if (regularChannels.isEmpty()) "No channels configured"
-                else "No favourited channels",
+                if (regularChannels.isEmpty()) stringResource(Res.string.empty_channels)
+                else stringResource(Res.string.empty_channels_favourited),
               style = MaterialTheme.typography.bodySmall,
               color = MaterialTheme.colorScheme.onSurfaceVariant,
               modifier = Modifier.padding(vertical = 8.dp),
@@ -250,7 +291,9 @@ fun DeviceBody(
         if (sectionStates.contactsShowAll) chatContacts
         else chatContacts.filter { it.publicKey.toHex() in contactedKeys }
       CollapsibleSectionHeader(
-        text = if (contactsLoading) "Contacts" else "Contacts (${messagedContacts.size})",
+        text =
+          if (contactsLoading) stringResource(Res.string.label_contacts)
+          else stringResource(Res.string.section_contacts, messagedContacts.size),
         expanded = sectionStates.contactsExpanded,
         onToggle = { onSectionExpandedChange(Section.CONTACTS, !sectionStates.contactsExpanded) },
       ) {
@@ -258,7 +301,12 @@ fun DeviceBody(
           FilterChip(
             selected = !sectionStates.contactsShowAll,
             onClick = { onSectionShowAllChange(Section.CONTACTS, !sectionStates.contactsShowAll) },
-            label = { Text(if (sectionStates.contactsShowAll) "All" else "Favourited") },
+            label = {
+              Text(
+                if (sectionStates.contactsShowAll) stringResource(Res.string.filter_all)
+                else stringResource(Res.string.filter_favourited)
+              )
+            },
           )
         }
       }
@@ -269,7 +317,7 @@ fun DeviceBody(
       ) {
         Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
           if (contactsLoading) {
-            LoadingPlaceholder("Fetching contacts\u2026")
+            LoadingPlaceholder(stringResource(Res.string.loading_contacts))
           } else if (messagedContacts.isEmpty()) {
             ContactListEmpty()
           } else {
@@ -286,7 +334,9 @@ fun DeviceBody(
           if (sectionStates.roomsShowAll) rooms
           else rooms.filter { it.publicKey.toHex() in contactedKeys }
         CollapsibleSectionHeader(
-          text = if (contactsLoading) "Rooms" else "Rooms (${visibleRooms.size})",
+          text =
+            if (contactsLoading) stringResource(Res.string.label_rooms)
+            else stringResource(Res.string.section_rooms, visibleRooms.size),
           expanded = sectionStates.roomsExpanded,
           onToggle = { onSectionExpandedChange(Section.ROOMS, !sectionStates.roomsExpanded) },
         ) {
@@ -294,7 +344,12 @@ fun DeviceBody(
             FilterChip(
               selected = !sectionStates.roomsShowAll,
               onClick = { onSectionShowAllChange(Section.ROOMS, !sectionStates.roomsShowAll) },
-              label = { Text(if (sectionStates.roomsShowAll) "All" else "Joined") },
+              label = {
+                Text(
+                  if (sectionStates.roomsShowAll) stringResource(Res.string.filter_all)
+                  else stringResource(Res.string.filter_joined)
+                )
+              },
             )
           }
         }
@@ -307,7 +362,7 @@ fun DeviceBody(
             if (!contactsLoading) {
               if (visibleRooms.isEmpty()) {
                 Text(
-                  text = "No rooms joined yet",
+                  text = stringResource(Res.string.empty_rooms),
                   style = MaterialTheme.typography.bodySmall,
                   color = MaterialTheme.colorScheme.onSurfaceVariant,
                   modifier = Modifier.padding(vertical = 8.dp),
@@ -328,7 +383,7 @@ fun DeviceBody(
           if (sectionStates.repeatersShowAll) repeaters
           else repeaters.filter { it.publicKey.toHex() in contactedKeys }
         CollapsibleSectionHeader(
-          text = "Repeaters (${visibleRepeaters.size})",
+          text = stringResource(Res.string.section_repeaters, visibleRepeaters.size),
           expanded = sectionStates.repeatersExpanded,
           onToggle = {
             onSectionExpandedChange(Section.REPEATERS, !sectionStates.repeatersExpanded)
@@ -339,7 +394,12 @@ fun DeviceBody(
             onClick = {
               onSectionShowAllChange(Section.REPEATERS, !sectionStates.repeatersShowAll)
             },
-            label = { Text(if (sectionStates.repeatersShowAll) "All" else "Joined") },
+            label = {
+              Text(
+                if (sectionStates.repeatersShowAll) stringResource(Res.string.filter_all)
+                else stringResource(Res.string.filter_joined)
+              )
+            },
           )
         }
         AnimatedVisibility(
@@ -350,7 +410,7 @@ fun DeviceBody(
           Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
             if (visibleRepeaters.isEmpty()) {
               Text(
-                text = "No repeaters joined yet",
+                text = stringResource(Res.string.empty_repeaters),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(vertical = 8.dp),
@@ -365,7 +425,7 @@ fun DeviceBody(
       // --- Sensors ---
       if (!contactsLoading && sensors.isNotEmpty()) {
         CollapsibleSectionHeader(
-          text = "Sensors (${sensors.size})",
+          text = stringResource(Res.string.section_sensors, sensors.size),
           expanded = sectionStates.sensorsExpanded,
           onToggle = { onSectionExpandedChange(Section.SENSORS, !sectionStates.sensorsExpanded) },
         )
@@ -423,7 +483,9 @@ private fun CollapsibleSectionHeader(
     trailing?.invoke()
     Icon(
       imageVector = if (expanded) MeshIcons.ExpandLess else MeshIcons.ExpandMore,
-      contentDescription = if (expanded) "Collapse" else "Expand",
+      contentDescription =
+        if (expanded) stringResource(Res.string.cd_collapse)
+        else stringResource(Res.string.cd_expand),
       tint = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = Modifier.size(20.dp),
     )
@@ -446,7 +508,7 @@ private fun LastMessageBanner(info: LastMessageInfo, onClick: () -> Unit) {
     Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
       Icon(
         imageVector = MeshIcons.Message,
-        contentDescription = "New message",
+        contentDescription = stringResource(Res.string.cd_new_message),
         tint = MaterialTheme.colorScheme.primary,
       )
       Spacer(Modifier.size(Dimens.S))
@@ -492,7 +554,7 @@ private fun WarningBanner(text: String, onDismiss: () -> Unit) {
       IconButton(onClick = onDismiss, modifier = Modifier.size(24.dp)) {
         Icon(
           imageVector = MeshIcons.Close,
-          contentDescription = "Dismiss",
+          contentDescription = stringResource(Res.string.cd_dismiss),
           tint = MaterialTheme.colorScheme.onTertiaryContainer,
           modifier = Modifier.size(16.dp),
         )
