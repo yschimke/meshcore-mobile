@@ -47,4 +47,11 @@
   <string name="cd_storage">Almacenamiento</string>
   <string name="cd_channel">Canal</string>
   <string name="channel_index">Canal %1$d</string>
+  <string name="settings_discovering">Detectando capacidades del dispositivo…</string>
+  <string name="settings_none">No se detectaron ajustes configurables</string>
+  <string name="settings_buzzer">Zumbador</string>
+  <string name="settings_buzzer_updating">Actualizando…</string>
+  <string name="settings_buzzer_unknown">Desconocido</string>
+  <string name="settings_buzzer_off">Apagado</string>
+  <string name="settings_buzzer_on">Encendido (%1$s)</string>
 </resources>

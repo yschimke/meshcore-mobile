@@ -47,4 +47,11 @@
   <string name="cd_storage">存储</string>
   <string name="cd_channel">频道</string>
   <string name="channel_index">频道 %1$d</string>
+  <string name="settings_discovering">正在检测设备功能…</string>
+  <string name="settings_none">未检测到可配置的设置</string>
+  <string name="settings_buzzer">蜂鸣器</string>
+  <string name="settings_buzzer_updating">更新中…</string>
+  <string name="settings_buzzer_unknown">未知</string>
+  <string name="settings_buzzer_off">关闭</string>
+  <string name="settings_buzzer_on">开启 (%1$s)</string>
 </resources>

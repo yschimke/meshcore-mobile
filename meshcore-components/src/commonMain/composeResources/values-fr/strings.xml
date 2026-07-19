@@ -47,4 +47,11 @@
   <string name="cd_storage">Stockage</string>
   <string name="cd_channel">Canal</string>
   <string name="channel_index">Canal %1$d</string>
+  <string name="settings_discovering">Détection des capacités de l’appareil…</string>
+  <string name="settings_none">Aucun réglage configurable détecté</string>
+  <string name="settings_buzzer">Buzzer</string>
+  <string name="settings_buzzer_updating">Mise à jour…</string>
+  <string name="settings_buzzer_unknown">Inconnu</string>
+  <string name="settings_buzzer_off">Désactivé</string>
+  <string name="settings_buzzer_on">Activé (%1$s)</string>
 </resources>

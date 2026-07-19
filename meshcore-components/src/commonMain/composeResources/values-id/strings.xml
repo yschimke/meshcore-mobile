@@ -47,4 +47,11 @@
   <string name="cd_storage">Penyimpanan</string>
   <string name="cd_channel">Saluran</string>
   <string name="channel_index">Saluran %1$d</string>
+  <string name="settings_discovering">Mendeteksi kemampuan perangkat…</string>
+  <string name="settings_none">Tidak ada pengaturan yang dapat dikonfigurasi</string>
+  <string name="settings_buzzer">Bel</string>
+  <string name="settings_buzzer_updating">Memperbarui…</string>
+  <string name="settings_buzzer_unknown">Tidak diketahui</string>
+  <string name="settings_buzzer_off">Mati</string>
+  <string name="settings_buzzer_on">Nyala (%1$s)</string>
 </resources>

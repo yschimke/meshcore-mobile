@@ -47,4 +47,11 @@
   <string name="cd_storage">Pamięć</string>
   <string name="cd_channel">Kanał</string>
   <string name="channel_index">Kanał %1$d</string>
+  <string name="settings_discovering">Wykrywanie możliwości urządzenia…</string>
+  <string name="settings_none">Nie wykryto konfigurowalnych ustawień</string>
+  <string name="settings_buzzer">Brzęczyk</string>
+  <string name="settings_buzzer_updating">Aktualizowanie…</string>
+  <string name="settings_buzzer_unknown">Nieznany</string>
+  <string name="settings_buzzer_off">Wył.</string>
+  <string name="settings_buzzer_on">Wł. (%1$s)</string>
 </resources>
