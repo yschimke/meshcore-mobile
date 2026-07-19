@@ -31,8 +31,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_send
+import ee.schimke.meshcore.components.generated.resources.chat_empty
+import ee.schimke.meshcore.components.generated.resources.chat_hint_message
+import ee.schimke.meshcore.components.generated.resources.chat_not_connected
+import ee.schimke.meshcore.components.generated.resources.chat_status_delivered
+import ee.schimke.meshcore.components.generated.resources.chat_status_failed
+import ee.schimke.meshcore.components.generated.resources.chat_status_failed_retry
+import ee.schimke.meshcore.components.generated.resources.chat_status_sending
+import ee.schimke.meshcore.components.generated.resources.chat_status_sent
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import kotlin.time.Instant
+import org.jetbrains.compose.resources.stringResource
 
 /** Presentation model for a single chat message. */
 data class ChatMessage(
@@ -73,7 +84,7 @@ fun ChatMessageList(
   if (messages.isEmpty()) {
     Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
       Text(
-        text = "No messages yet",
+        text = stringResource(Res.string.chat_empty),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
@@ -182,10 +193,12 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier, onRetry: (()
             ) { status ->
               val statusText =
                 when (status) {
-                  MessageStatus.Sending -> "Sending…"
-                  MessageStatus.Sent -> "Sent"
-                  MessageStatus.Confirmed -> "Delivered"
-                  MessageStatus.Failed -> if (onRetry != null) "Failed — tap to retry" else "Failed"
+                  MessageStatus.Sending -> stringResource(Res.string.chat_status_sending)
+                  MessageStatus.Sent -> stringResource(Res.string.chat_status_sent)
+                  MessageStatus.Confirmed -> stringResource(Res.string.chat_status_delivered)
+                  MessageStatus.Failed ->
+                    if (onRetry != null) stringResource(Res.string.chat_status_failed_retry)
+                    else stringResource(Res.string.chat_status_failed)
                 }
               Text(
                 text = statusText,
@@ -221,7 +234,7 @@ fun ChatInput(
   onValueChange: (String) -> Unit,
   onSend: () -> Unit,
   enabled: Boolean = true,
-  placeholder: String = "Message",
+  placeholder: String = stringResource(Res.string.chat_hint_message),
   modifier: Modifier = Modifier,
 ) {
   Row(
@@ -232,7 +245,9 @@ fun ChatInput(
       value = value,
       onValueChange = onValueChange,
       enabled = enabled,
-      placeholder = { Text(if (enabled) placeholder else "Not connected") },
+      placeholder = {
+        Text(if (enabled) placeholder else stringResource(Res.string.chat_not_connected))
+      },
       singleLine = true,
       modifier = Modifier.weight(1f),
       shape = RoundedCornerShape(24.dp),
@@ -241,7 +256,7 @@ fun ChatInput(
     IconButton(onClick = onSend, enabled = enabled && value.isNotBlank()) {
       Icon(
         imageVector = MeshIcons.Send,
-        contentDescription = "Send",
+        contentDescription = stringResource(Res.string.cd_send),
         tint =
           if (enabled && value.isNotBlank()) MaterialTheme.colorScheme.primary
           else MaterialTheme.colorScheme.onSurfaceVariant,

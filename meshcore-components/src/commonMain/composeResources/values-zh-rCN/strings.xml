@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">设备</string>
   <string name="label_no_contacts">暂无联系人</string>
+  <string name="chat_hint_message">消息</string>
+  <string name="chat_not_connected">未连接</string>
+  <string name="chat_empty">暂无消息</string>
+  <string name="chat_status_sending">发送中…</string>
+  <string name="chat_status_sent">已发送</string>
+  <string name="chat_status_delivered">已送达</string>
+  <string name="chat_status_failed">失败</string>
+  <string name="chat_status_failed_retry">失败 — 点按重试</string>
+  <string name="cd_send">发送</string>
+  <string name="cd_back">返回</string>
 </resources>

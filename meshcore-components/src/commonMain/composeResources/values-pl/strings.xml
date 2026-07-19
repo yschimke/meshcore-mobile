@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">Urządzenie</string>
   <string name="label_no_contacts">Brak kontaktów</string>
+  <string name="chat_hint_message">Wiadomość</string>
+  <string name="chat_not_connected">Brak połączenia</string>
+  <string name="chat_empty">Brak wiadomości</string>
+  <string name="chat_status_sending">Wysyłanie…</string>
+  <string name="chat_status_sent">Wysłano</string>
+  <string name="chat_status_delivered">Dostarczono</string>
+  <string name="chat_status_failed">Nieudane</string>
+  <string name="chat_status_failed_retry">Nieudane — dotknij, aby ponowić</string>
+  <string name="cd_send">Wyślij</string>
+  <string name="cd_back">Wstecz</string>
 </resources>
