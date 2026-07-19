@@ -47,4 +47,11 @@
   <string name="cd_storage">स्टोरेज</string>
   <string name="cd_channel">चैनल</string>
   <string name="channel_index">चैनल %1$d</string>
+  <string name="settings_discovering">डिवाइस क्षमताओं का पता लगाया जा रहा है…</string>
+  <string name="settings_none">कोई कॉन्फ़िगर करने योग्य सेटिंग नहीं मिली</string>
+  <string name="settings_buzzer">बजर</string>
+  <string name="settings_buzzer_updating">अपडेट हो रहा है…</string>
+  <string name="settings_buzzer_unknown">अज्ञात</string>
+  <string name="settings_buzzer_off">बंद</string>
+  <string name="settings_buzzer_on">चालू (%1$s)</string>
 </resources>

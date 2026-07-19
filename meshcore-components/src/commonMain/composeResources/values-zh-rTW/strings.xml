@@ -47,4 +47,11 @@
   <string name="cd_storage">儲存空間</string>
   <string name="cd_channel">頻道</string>
   <string name="channel_index">頻道 %1$d</string>
+  <string name="settings_discovering">正在偵測裝置功能…</string>
+  <string name="settings_none">未偵測到可設定的項目</string>
+  <string name="settings_buzzer">蜂鳴器</string>
+  <string name="settings_buzzer_updating">更新中…</string>
+  <string name="settings_buzzer_unknown">未知</string>
+  <string name="settings_buzzer_off">關閉</string>
+  <string name="settings_buzzer_on">開啟 (%1$s)</string>
 </resources>

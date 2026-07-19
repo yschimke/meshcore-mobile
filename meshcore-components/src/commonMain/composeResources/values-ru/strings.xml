@@ -47,4 +47,11 @@
   <string name="cd_storage">Хранилище</string>
   <string name="cd_channel">Канал</string>
   <string name="channel_index">Канал %1$d</string>
+  <string name="settings_discovering">Определение возможностей устройства…</string>
+  <string name="settings_none">Настраиваемые параметры не обнаружены</string>
+  <string name="settings_buzzer">Зуммер</string>
+  <string name="settings_buzzer_updating">Обновление…</string>
+  <string name="settings_buzzer_unknown">Неизвестно</string>
+  <string name="settings_buzzer_off">Выкл.</string>
+  <string name="settings_buzzer_on">Вкл. (%1$s)</string>
 </resources>

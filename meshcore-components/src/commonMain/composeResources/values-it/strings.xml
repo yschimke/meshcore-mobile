@@ -47,4 +47,11 @@
   <string name="cd_storage">Archiviazione</string>
   <string name="cd_channel">Canale</string>
   <string name="channel_index">Canale %1$d</string>
+  <string name="settings_discovering">Rilevamento delle funzionalità del dispositivo…</string>
+  <string name="settings_none">Nessuna impostazione configurabile rilevata</string>
+  <string name="settings_buzzer">Cicalino</string>
+  <string name="settings_buzzer_updating">Aggiornamento…</string>
+  <string name="settings_buzzer_unknown">Sconosciuto</string>
+  <string name="settings_buzzer_off">Spento</string>
+  <string name="settings_buzzer_on">Acceso (%1$s)</string>
 </resources>

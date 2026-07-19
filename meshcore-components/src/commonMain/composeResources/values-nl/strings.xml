@@ -47,4 +47,11 @@
   <string name="cd_storage">Opslag</string>
   <string name="cd_channel">Kanaal</string>
   <string name="channel_index">Kanaal %1$d</string>
+  <string name="settings_discovering">Apparaatmogelijkheden detecteren…</string>
+  <string name="settings_none">Geen configureerbare instellingen gevonden</string>
+  <string name="settings_buzzer">Zoemer</string>
+  <string name="settings_buzzer_updating">Bijwerken…</string>
+  <string name="settings_buzzer_unknown">Onbekend</string>
+  <string name="settings_buzzer_off">Uit</string>
+  <string name="settings_buzzer_on">Aan (%1$s)</string>
 </resources>

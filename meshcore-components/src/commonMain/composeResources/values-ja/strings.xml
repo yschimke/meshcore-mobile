@@ -47,4 +47,11 @@
   <string name="cd_storage">ストレージ</string>
   <string name="cd_channel">チャンネル</string>
   <string name="channel_index">チャンネル %1$d</string>
+  <string name="settings_discovering">デバイスの機能を検出中…</string>
+  <string name="settings_none">設定可能な項目が見つかりません</string>
+  <string name="settings_buzzer">ブザー</string>
+  <string name="settings_buzzer_updating">更新中…</string>
+  <string name="settings_buzzer_unknown">不明</string>
+  <string name="settings_buzzer_off">オフ</string>
+  <string name="settings_buzzer_on">オン (%1$s)</string>
 </resources>

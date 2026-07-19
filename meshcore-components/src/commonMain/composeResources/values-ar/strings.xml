@@ -47,4 +47,11 @@
   <string name="cd_storage">التخزين</string>
   <string name="cd_channel">قناة</string>
   <string name="channel_index">القناة %1$d</string>
+  <string name="settings_discovering">جارٍ اكتشاف قدرات الجهاز…</string>
+  <string name="settings_none">لم يتم اكتشاف إعدادات قابلة للتهيئة</string>
+  <string name="settings_buzzer">الجرس</string>
+  <string name="settings_buzzer_updating">جارٍ التحديث…</string>
+  <string name="settings_buzzer_unknown">غير معروف</string>
+  <string name="settings_buzzer_off">إيقاف</string>
+  <string name="settings_buzzer_on">تشغيل (%1$s)</string>
 </resources>

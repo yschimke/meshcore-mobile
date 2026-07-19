@@ -47,4 +47,11 @@
   <string name="cd_storage">Speicher</string>
   <string name="cd_channel">Kanal</string>
   <string name="channel_index">Kanal %1$d</string>
+  <string name="settings_discovering">Gerätefunktionen werden erkannt…</string>
+  <string name="settings_none">Keine konfigurierbaren Einstellungen erkannt</string>
+  <string name="settings_buzzer">Summer</string>
+  <string name="settings_buzzer_updating">Wird aktualisiert…</string>
+  <string name="settings_buzzer_unknown">Unbekannt</string>
+  <string name="settings_buzzer_off">Aus</string>
+  <string name="settings_buzzer_on">An (%1$s)</string>
 </resources>
