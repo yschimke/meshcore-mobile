@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">기기</string>
   <string name="label_no_contacts">아직 연락처가 없습니다</string>
+  <string name="chat_hint_message">메시지</string>
+  <string name="chat_not_connected">연결되지 않음</string>
+  <string name="chat_empty">아직 메시지가 없습니다</string>
+  <string name="chat_status_sending">보내는 중…</string>
+  <string name="chat_status_sent">전송됨</string>
+  <string name="chat_status_delivered">전달됨</string>
+  <string name="chat_status_failed">실패</string>
+  <string name="chat_status_failed_retry">실패 — 다시 시도하려면 탭하세요</string>
+  <string name="cd_send">보내기</string>
+  <string name="cd_back">뒤로</string>
 </resources>

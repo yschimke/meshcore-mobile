@@ -15,7 +15,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_back
+import ee.schimke.meshcore.components.generated.resources.chat_hint_message
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Stateless chat screen body: a top bar (title + optional subtitle + back), the scrollable message
@@ -36,7 +40,7 @@ fun ChatBody(
   modifier: Modifier = Modifier,
   subtitle: String? = null,
   inputEnabled: Boolean = true,
-  inputPlaceholder: String = "Message",
+  inputPlaceholder: String = stringResource(Res.string.chat_hint_message),
   onRetry: ((ChatMessage) -> Unit)? = null,
   actions: @Composable RowScope.() -> Unit = {},
 ) {
@@ -56,7 +60,11 @@ fun ChatBody(
             }
           }
         },
-        navigationIcon = { IconButton(onClick = onBack) { Icon(MeshIcons.ArrowBack, "Back") } },
+        navigationIcon = {
+          IconButton(onClick = onBack) {
+            Icon(MeshIcons.ArrowBack, stringResource(Res.string.cd_back))
+          }
+        },
         actions = actions,
         colors =
           TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface),

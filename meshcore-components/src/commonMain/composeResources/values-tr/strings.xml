@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">Cihaz</string>
   <string name="label_no_contacts">Henüz kişi yok</string>
+  <string name="chat_hint_message">Mesaj</string>
+  <string name="chat_not_connected">Bağlı değil</string>
+  <string name="chat_empty">Henüz mesaj yok</string>
+  <string name="chat_status_sending">Gönderiliyor…</string>
+  <string name="chat_status_sent">Gönderildi</string>
+  <string name="chat_status_delivered">İletildi</string>
+  <string name="chat_status_failed">Başarısız</string>
+  <string name="chat_status_failed_retry">Başarısız — yeniden denemek için dokunun</string>
+  <string name="cd_send">Gönder</string>
+  <string name="cd_back">Geri</string>
 </resources>

@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">جهاز</string>
   <string name="label_no_contacts">لا توجد جهات اتصال بعد</string>
+  <string name="chat_hint_message">رسالة</string>
+  <string name="chat_not_connected">غير متصل</string>
+  <string name="chat_empty">لا توجد رسائل بعد</string>
+  <string name="chat_status_sending">جارٍ الإرسال…</string>
+  <string name="chat_status_sent">تم الإرسال</string>
+  <string name="chat_status_delivered">تم التسليم</string>
+  <string name="chat_status_failed">فشل</string>
+  <string name="chat_status_failed_retry">فشل — انقر لإعادة المحاولة</string>
+  <string name="cd_send">إرسال</string>
+  <string name="cd_back">رجوع</string>
 </resources>

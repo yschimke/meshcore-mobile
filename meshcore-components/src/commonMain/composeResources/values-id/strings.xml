@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">Perangkat</string>
   <string name="label_no_contacts">Belum ada kontak</string>
+  <string name="chat_hint_message">Pesan</string>
+  <string name="chat_not_connected">Tidak terhubung</string>
+  <string name="chat_empty">Belum ada pesan</string>
+  <string name="chat_status_sending">Mengirim…</string>
+  <string name="chat_status_sent">Terkirim</string>
+  <string name="chat_status_delivered">Tersampaikan</string>
+  <string name="chat_status_failed">Gagal</string>
+  <string name="chat_status_failed_retry">Gagal — ketuk untuk mencoba lagi</string>
+  <string name="cd_send">Kirim</string>
+  <string name="cd_back">Kembali</string>
 </resources>

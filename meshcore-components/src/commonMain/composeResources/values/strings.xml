@@ -8,4 +8,14 @@
 <resources>
   <string name="label_device">Device</string>
   <string name="label_no_contacts">No contacts yet</string>
+  <string name="chat_hint_message">Message</string>
+  <string name="chat_not_connected">Not connected</string>
+  <string name="chat_empty">No messages yet</string>
+  <string name="chat_status_sending">Sending…</string>
+  <string name="chat_status_sent">Sent</string>
+  <string name="chat_status_delivered">Delivered</string>
+  <string name="chat_status_failed">Failed</string>
+  <string name="chat_status_failed_retry">Failed — tap to retry</string>
+  <string name="cd_send">Send</string>
+  <string name="cd_back">Back</string>
 </resources>

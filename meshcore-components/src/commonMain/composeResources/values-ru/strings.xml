@@ -2,4 +2,14 @@
 <resources>
   <string name="label_device">Устройство</string>
   <string name="label_no_contacts">Пока нет контактов</string>
+  <string name="chat_hint_message">Сообщение</string>
+  <string name="chat_not_connected">Нет подключения</string>
+  <string name="chat_empty">Сообщений пока нет</string>
+  <string name="chat_status_sending">Отправка…</string>
+  <string name="chat_status_sent">Отправлено</string>
+  <string name="chat_status_delivered">Доставлено</string>
+  <string name="chat_status_failed">Ошибка</string>
+  <string name="chat_status_failed_retry">Ошибка — нажмите, чтобы повторить</string>
+  <string name="cd_send">Отправить</string>
+  <string name="cd_back">Назад</string>
 </resources>
