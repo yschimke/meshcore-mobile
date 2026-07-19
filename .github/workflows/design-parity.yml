@@ -28,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      # Read-only BuildFetch remote cache (see settings.gradle.kts): pull task
-      # outputs instead of building cold. ON_CI is unset, so this stays a reader
-      # — ci.yml remains the sole cache writer.
-      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
+      # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
+      # pull task outputs instead of building cold. Read-only, so safe at job
+      # scope; ci.yml holds the read-write token and stays the sole cache writer.
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
     steps:
       - uses: actions/checkout@v7.0.0
 

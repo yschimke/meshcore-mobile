@@ -34,14 +34,15 @@ jobs:
       (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'claude')
     runs-on: ubuntu-latest
     timeout-minutes: 90
-    # Read-only access to the BuildFetch remote Gradle cache so agent sessions
-    # pull task outputs instead of executing cold. Push is gated on ON_CI (which
-    # this workflow never sets), so it stays read-only; an unprovisioned secret
-    # resolves blank and settings.gradle.kts self-disables the cache. Without
-    # this, every @claude build ran `assembleDebug` from scratch (~3min), which
-    # repeatedly blew the session budget before the fix could be pushed.
+    # Dedicated read-only BuildFetch cache token so agent sessions pull task
+    # outputs instead of executing cold (see settings.gradle.kts). A read-only
+    # credential is safe to expose at job scope; ci.yml holds the read-write
+    # token and stays the sole cache writer. A blank/unprovisioned secret makes
+    # the cache self-disable. Without this, every @claude build ran
+    # `assembleDebug` from scratch (~3min), repeatedly blowing the session budget
+    # before the fix could be pushed.
     env:
-      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
+      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
     # Queue (don't cancel) concurrent mentions on the same thread so two runs
     # never race pushes to the same working branch.
     concurrency:
