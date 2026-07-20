@@ -102,10 +102,12 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `ContactChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark.png" width="150" /> |
 | `ContactChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatPreview_Contact_chat.png" width="150" /> |
 | `CachedDeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyDarkPreview_Cached_device_dark.png" width="150" /> |
+| `CachedDeviceBodyGermanPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyGermanPreview_Cached_device_German.png" width="150" /> |
 | `CachedDeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyPreview_Cached_device.png" width="150" /> |
 | `DeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyDarkPreview_Device_dark.png" width="150" /> |
 | `DeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyPreview_Device_populated.png" width="150" /> |
 | `DeviceSettingsDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsDarkPreview_Device_settings_dark.png" width="150" /> |
+| `DeviceSettingsGermanPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsGermanPreview_Device_settings_German.png" width="150" /> |
 | `DeviceSettingsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsPreview_Device_settings.png" width="150" /> |
 
 ## wear
