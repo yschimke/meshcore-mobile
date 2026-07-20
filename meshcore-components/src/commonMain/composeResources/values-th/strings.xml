@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">ไม่ทราบ</string>
   <string name="settings_buzzer_off">ปิด</string>
   <string name="settings_buzzer_on">เปิด (%1$s)</string>
+  <string name="status_connecting">กำลังเชื่อมต่อ…</string>
+  <string name="status_waiting_radio">กำลังรอการตอบสนองจากวิทยุ — %1$d วิ</string>
+  <string name="btn_cancel">ยกเลิก</string>
+  <string name="status_connection_failed">การเชื่อมต่อล้มเหลว</string>
+  <string name="status_unknown_error">ข้อผิดพลาดที่ไม่รู้จัก</string>
+  <string name="btn_back_to_scanner">กลับไปที่ตัวสแกน</string>
+  <string name="label_details">รายละเอียด</string>
+  <string name="title_connecting">กำลังเชื่อมต่อ</string>
+  <string name="title_retrying">กำลังลองใหม่ (%1$d/%2$d)</string>
+  <string name="title_disconnecting">กำลังตัดการเชื่อมต่อ</string>
 </resources>

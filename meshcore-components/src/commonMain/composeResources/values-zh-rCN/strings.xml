@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">未知</string>
   <string name="settings_buzzer_off">关闭</string>
   <string name="settings_buzzer_on">开启 (%1$s)</string>
+  <string name="status_connecting">正在连接…</string>
+  <string name="status_waiting_radio">正在等待无线电响应 — %1$d秒</string>
+  <string name="btn_cancel">取消</string>
+  <string name="status_connection_failed">连接失败</string>
+  <string name="status_unknown_error">未知错误</string>
+  <string name="btn_back_to_scanner">返回扫描器</string>
+  <string name="label_details">详情</string>
+  <string name="title_connecting">正在连接</string>
+  <string name="title_retrying">正在重试 (%1$d/%2$d)</string>
+  <string name="title_disconnecting">正在断开连接</string>
 </resources>

@@ -74,6 +74,12 @@ import ee.schimke.meshcore.components.ui.LastMessageInfo
 import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.status_connection_failed
+import ee.schimke.meshcore.components.generated.resources.title_connecting
+import ee.schimke.meshcore.components.generated.resources.title_disconnecting
+import ee.schimke.meshcore.components.generated.resources.title_retrying
+import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.launch
 
 /** Channel name used for the device commands interface. */
@@ -146,7 +152,7 @@ fun DeviceScreen(
             onNavigateToSettings = onNavigateToSettings,
         )
         is ConnectionUiState.Connecting -> DeviceStatusView(
-            title = "Connecting",
+            title = stringResource(Res.string.title_connecting),
             onCancel = { controller.cancel() },
             onOpenThemePicker = onOpenThemePicker,
             status = DeviceConnectStatus.Connecting(
@@ -155,7 +161,7 @@ fun DeviceScreen(
             ),
         )
         is ConnectionUiState.Retrying -> DeviceStatusView(
-            title = "Retrying (${s.attempt}/${s.maxAttempts})",
+            title = stringResource(Res.string.title_retrying, s.attempt, s.maxAttempts),
             onCancel = { controller.cancel() },
             onOpenThemePicker = onOpenThemePicker,
             status = DeviceConnectStatus.Connecting(
@@ -164,7 +170,7 @@ fun DeviceScreen(
             ),
         )
         is ConnectionUiState.Failed -> DeviceStatusView(
-            title = "Connection failed",
+            title = stringResource(Res.string.status_connection_failed),
             onCancel = { controller.dismissError() },
             onOpenThemePicker = onOpenThemePicker,
             status = DeviceConnectStatus.Failed(s.cause),
@@ -174,7 +180,7 @@ fun DeviceScreen(
             // about to be popped by the LaunchedEffect above, so the
             // user never sees a flash of blank screen.
             DeviceStatusView(
-                title = "Disconnecting",
+                title = stringResource(Res.string.title_disconnecting),
                 onCancel = { onDisconnected() },
                 onOpenThemePicker = onOpenThemePicker,
                 status = DeviceConnectStatus.Connecting(

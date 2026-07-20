@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">Sconosciuto</string>
   <string name="settings_buzzer_off">Spento</string>
   <string name="settings_buzzer_on">Acceso (%1$s)</string>
+  <string name="status_connecting">Connessione…</string>
+  <string name="status_waiting_radio">In attesa della risposta della radio — %1$ds</string>
+  <string name="btn_cancel">Annulla</string>
+  <string name="status_connection_failed">Connessione non riuscita</string>
+  <string name="status_unknown_error">Errore sconosciuto</string>
+  <string name="btn_back_to_scanner">Torna allo scanner</string>
+  <string name="label_details">Dettagli</string>
+  <string name="title_connecting">Connessione</string>
+  <string name="title_retrying">Nuovo tentativo (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Disconnessione</string>
 </resources>
