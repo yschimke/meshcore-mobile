@@ -33,7 +33,9 @@ jobs:
     # Don't run on forks — the publish step pushes a branch into this repo.
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # Longer than the :app-only render: this job also re-themes + re-renders the
+    # published compose-m3 stickersheet through the desktop (Skiko) daemon.
+    timeout-minutes: 90
     env:
       # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
       # pull task outputs instead of building cold. Read-only, so safe at job
@@ -113,6 +115,87 @@ jobs:
             --source-ref main \
             --source-module :app \
             ${{ (github.event_name == 'workflow_dispatch' && inputs.allow_incomplete) && '--allow-incomplete' || '' }}
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Reuse compose-m3, re-themed under MeshCore's palette, as a "Material 3" tab
+      # ─────────────────────────────────────────────────────────────────────────
+      # compose-ai-tools publishes the compose-m3 stickersheet as a desktop render
+      # bundle + its externalized font pool to the design-artifacts/compose-m3
+      # branch. Re-theme that published bundle under MeshCore's own palette with NO
+      # source rebuild (`bundle render --knob theme.colors=… --res … --svg` +
+      # `bundle repack`), build a catalog from the re-themed bundle using
+      # compose-m3's own spec, and fold it into out/ as its own top-level tab.
+
+      # The re-theme drives the desktop (Skiko/CPU) render daemon, which links
+      # libGL — install Mesa's software GL + a font stack (the same deps
+      # compose-ai-tools' own design-artifacts installs for the compose-m3 render).
+      - name: Install desktop (Skiko) render deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            xvfb libgl1 libglx-mesa0 libgl1-mesa-dri libfreetype6 libfontconfig1 fontconfig
+
+      # `bundle render --res/--svg` + `bundle repack` are on compose-ai-tools@main
+      # but not in a released CLI yet, so build the CLI from the checkout above. The
+      # released `install` CLI (used for the :app / component packs) stays the one
+      # on $PATH; this from-source CLI is invoked by absolute path below so it never
+      # shadows the pinned one.
+      - name: Build compose-preview CLI from source (for the re-theme)
+        working-directory: compose-ai-tools
+        run: ./gradlew :cli:installDist --no-daemon
+
+      # Fetch the published bundle + its content-addressed font pool from the
+      # compose-m3 delivery branch (public repo, no auth). Shallow — just that branch.
+      - name: Fetch the published compose-m3 bundle + font pool
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch design-artifacts/compose-m3 \
+            https://github.com/yschimke/compose-ai-tools.git compose-m3-artifacts
+          test -f compose-m3-artifacts/bundle/compose-m3-bundle.png
+          test -d compose-m3-artifacts/bundle/res
+
+      - name: Re-theme compose-m3 under the MeshCore palette
+        env:
+          # Force Mesa's software GL for the desktop Skiko render (no GPU on the runner).
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          # Embed the measured face (Roboto Flex) into the re-themed figma-svg
+          # exports (fetched from Google Fonts with bounded retries; degrades to a
+          # font-family reference if unreachable — never fails the render).
+          JAVA_TOOL_OPTIONS: -Dcomposeai.figma.embedFonts=true
+        run: |
+          set -euo pipefail
+          CLI="$GITHUB_WORKSPACE/compose-ai-tools/cli/build/install/compose-preview/bin/compose-preview"
+          BLOB="$(jq -r .themeColors design/meshcore-theme-colors.json)"
+          SRC=compose-m3-artifacts/bundle/compose-m3-bundle.png
+          # Re-theme every published preview to PNG + editable figma-svg, rehydrating
+          # the externalized fonts from the branch's pool. Under xvfb so the desktop
+          # daemon has a display (matches compose-ai-tools' desktop-render jobs).
+          xvfb-run -a -s "-screen 0 2000x1400x24" \
+            "$CLI" bundle render "$SRC" \
+              --knob "theme.colors=$BLOB" \
+              --res compose-m3-artifacts/bundle/res \
+              --svg \
+              -o "$GITHUB_WORKSPACE/compose-m3-rethemed"
+          # Swap the re-themed PNG + figma-svg back into the bundle → a drop-in
+          # re-themed bundle the catalog exporter consumes like the original.
+          "$CLI" bundle repack "$SRC" \
+            --renders "$GITHUB_WORKSPACE/compose-m3-rethemed" \
+            -o "$GITHUB_WORKSPACE/compose-m3-meshcore.png"
+
+      - name: Fold the re-themed compose-m3 catalog in as a "Material 3" tab
+        run: |
+          set -euo pipefail
+          # Build a catalog from the re-themed bundle using compose-m3's own spec…
+          node compose-ai-tools/scripts/design-artifacts/generate-design-catalog.mjs \
+            --spec compose-ai-tools/samples/design-catalog-m3/catalog.spec.json \
+            --renders "$GITHUB_WORKSPACE/compose-m3-meshcore.png" \
+            --out "$GITHUB_WORKSPACE/out-m3" \
+            ${{ (github.event_name == 'workflow_dispatch' && inputs.allow_incomplete) && '--allow-incomplete' || '' }}
+          # …then fold it into MeshCore's catalog as its own top-level tab.
+          node compose-ai-tools/scripts/design-artifacts/merge-catalog-section.mjs \
+            --into "$GITHUB_WORKSPACE/out" \
+            --from "$GITHUB_WORKSPACE/out-m3" \
+            --section "Material 3"
 
       - name: Publish to design-artifacts/meshcore-mobile
         env:
