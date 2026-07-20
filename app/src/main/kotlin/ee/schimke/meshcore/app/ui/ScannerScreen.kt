@@ -50,6 +50,11 @@ import ee.schimke.meshcore.components.ui.UsbPortCard
 import ee.schimke.meshcore.components.ui.UsbPortsPanel
 import ee.schimke.meshcore.mobile.ui.BleScannerPanel
 import ee.schimke.meshcore.session.ConnectionRequest
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_licenses
+import ee.schimke.meshcore.components.generated.resources.cd_theme
+import ee.schimke.meshcore.components.generated.resources.tab_saved
+import org.jetbrains.compose.resources.stringResource
 
 // Stateful entry point. All network side effects live in
 // [AppConnectionController]; this composable only forwards user
@@ -163,13 +168,13 @@ fun ScannerBody(
                     IconButton(onClick = onOpenLicenses) {
                         Icon(
                             imageVector = Icons.Rounded.Policy,
-                            contentDescription = "Licenses",
+                            contentDescription = stringResource(Res.string.cd_licenses),
                         )
                     }
                     IconButton(onClick = onOpenThemePicker) {
                         Icon(
                             imageVector = Icons.Rounded.Contrast,
-                            contentDescription = "Theme",
+                            contentDescription = stringResource(Res.string.cd_theme),
                         )
                     }
                 },
@@ -192,7 +197,7 @@ fun ScannerBody(
                 selectedTabIndex = tab,
                 containerColor = MaterialTheme.colorScheme.surface,
             ) {
-                TransportTab(selected = tab == 0, icon = Icons.Rounded.Star, label = "Saved") { tab = 0 }
+                TransportTab(selected = tab == 0, icon = Icons.Rounded.Star, label = stringResource(Res.string.tab_saved)) { tab = 0 }
                 TransportTab(selected = tab == 1, icon = Icons.Rounded.Bluetooth, label = "BLE") { tab = 1 }
                 TransportTab(selected = tab == 2, icon = Icons.Rounded.Usb, label = "USB") { tab = 2 }
                 TransportTab(selected = tab == 3, icon = Icons.Rounded.Lan, label = "TCP") { tab = 3 }

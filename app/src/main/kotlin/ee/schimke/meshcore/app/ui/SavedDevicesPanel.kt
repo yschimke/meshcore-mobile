@@ -47,6 +47,18 @@ import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.data.repository.SavedDevice
 import ee.schimke.meshcore.data.repository.SavedDeviceWithState
 import ee.schimke.meshcore.data.repository.SavedTransport
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_delete
+import ee.schimke.meshcore.components.generated.resources.cd_favorite
+import ee.schimke.meshcore.components.generated.resources.cd_unfavorite
+import ee.schimke.meshcore.components.generated.resources.cd_view_cached
+import ee.schimke.meshcore.components.generated.resources.btn_view
+import ee.schimke.meshcore.components.generated.resources.btn_connect
+import ee.schimke.meshcore.components.generated.resources.saved_empty
+import ee.schimke.meshcore.components.generated.resources.saved_empty_hint
+import ee.schimke.meshcore.components.generated.resources.saved_connected
+import ee.schimke.meshcore.components.generated.resources.saved_contacts_count
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Stateless saved-devices list: shown as the first tab on the scanner
@@ -98,7 +110,7 @@ fun SavedDevicesPanel(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Delete,
-                            contentDescription = "Delete",
+                            contentDescription = stringResource(Res.string.cd_delete),
                             tint = MaterialTheme.colorScheme.onErrorContainer,
                         )
                     }
@@ -135,10 +147,13 @@ private fun SavedDeviceRow(
         is SavedTransport.Tcp -> Icons.Rounded.Lan
         is SavedTransport.Usb -> Icons.Rounded.Usb
     }
+    val connectedLabel = stringResource(Res.string.saved_connected)
+    val contactsLabel =
+        if (contactsCount > 0) stringResource(Res.string.saved_contacts_count, contactsCount) else null
     val subtitle: String = buildString {
-        if (isConnected) append("Connected · ")
+        if (isConnected) append(connectedLabel).append(" · ")
         val batteryStr = batteryMillivolts?.let { "%.2fV".format(it / 1000.0) }
-        val contactsStr = if (contactsCount > 0) "$contactsCount contacts" else null
+        val contactsStr = contactsLabel
         val parts = listOfNotNull(batteryStr, contactsStr)
         if (parts.isNotEmpty()) {
             append(parts.joinToString(" · "))
@@ -198,24 +213,25 @@ private fun SavedDeviceRow(
             IconButton(onClick = onToggleFavorite) {
                 Icon(
                     imageVector = if (device.favorite) Icons.Rounded.Star else Icons.Rounded.StarBorder,
-                    contentDescription = if (device.favorite) "Unfavorite" else "Favorite",
+                    contentDescription = if (device.favorite) stringResource(Res.string.cd_unfavorite)
+                        else stringResource(Res.string.cd_favorite),
                     tint = subtleColor,
                 )
             }
             if (isConnected) {
-                Button(onClick = onConnect) { Text("View") }
+                Button(onClick = onConnect) { Text(stringResource(Res.string.btn_view)) }
             } else {
                 if (contactsCount > 0) {
                     IconButton(onClick = onViewCached) {
                         Icon(
                             imageVector = Icons.Rounded.Info,
-                            contentDescription = "View cached",
+                            contentDescription = stringResource(Res.string.cd_view_cached),
                             tint = subtleColor,
                             modifier = Modifier.size(20.dp),
                         )
                     }
                 }
-                FilledTonalButton(enabled = !busy, onClick = onConnect) { Text("Connect") }
+                FilledTonalButton(enabled = !busy, onClick = onConnect) { Text(stringResource(Res.string.btn_connect)) }
             }
         }
     }
@@ -236,12 +252,12 @@ private fun SavedDevicesEmpty(modifier: Modifier = Modifier) {
             )
             Spacer(Modifier.height(6.dp))
             Text(
-                text = "No saved devices yet",
+                text = stringResource(Res.string.saved_empty),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = "Connect once from the BLE, USB or TCP tab and it will appear here.",
+                text = stringResource(Res.string.saved_empty_hint),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
