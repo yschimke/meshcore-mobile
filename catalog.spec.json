@@ -295,22 +295,6 @@
           "caption": "Saved-devices list — empty state with the connect-once hint."
         }
       ]
-    },
-    {
-      "name": "Theme picker",
-      "section": "Screens",
-      "components": [
-        {
-          "componentId": "ThemePicker/MeshcoreSystem",
-          "preview": "ThemePickerMeshcoreSystemPreview",
-          "caption": "Theme picker — MeshCore palette, follow-system mode."
-        },
-        {
-          "componentId": "ThemePicker/DynamicDark",
-          "preview": "ThemePickerDynamicDarkPreview",
-          "caption": "Theme picker — dynamic (Material You) palette, dark mode."
-        }
-      ]
     }
   ]
 }
