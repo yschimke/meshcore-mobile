@@ -75,6 +75,10 @@ import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.ContactRow
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
 import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.status_connection_failed
+import ee.schimke.meshcore.components.generated.resources.title_connecting
+import ee.schimke.meshcore.components.generated.resources.title_disconnecting
+import ee.schimke.meshcore.components.generated.resources.title_retrying
 import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.launch
 

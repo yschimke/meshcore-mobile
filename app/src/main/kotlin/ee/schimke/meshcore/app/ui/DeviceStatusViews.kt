@@ -33,6 +33,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.btn_back_to_scanner
+import ee.schimke.meshcore.components.generated.resources.btn_cancel
+import ee.schimke.meshcore.components.generated.resources.cd_back
+import ee.schimke.meshcore.components.generated.resources.cd_theme
+import ee.schimke.meshcore.components.generated.resources.label_details
+import ee.schimke.meshcore.components.generated.resources.status_connecting
+import ee.schimke.meshcore.components.generated.resources.status_connection_failed
+import ee.schimke.meshcore.components.generated.resources.status_unknown_error
+import ee.schimke.meshcore.components.generated.resources.status_waiting_radio
 import org.jetbrains.compose.resources.stringResource
 
 // --- Connecting / Failed status view ----------------------------------------
