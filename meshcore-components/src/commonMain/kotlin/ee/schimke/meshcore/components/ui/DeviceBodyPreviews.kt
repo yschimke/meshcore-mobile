@@ -193,3 +193,21 @@ fun CachedDeviceBodyPreview() = cachedDevicePreview(dark = false)
 )
 @Composable
 fun CachedDeviceBodyDarkPreview() = cachedDevicePreview(dark = true)
+
+/**
+ * German (`de`) locale variant of [CachedDeviceBodyPreview] — the `catalog.spec.json`
+ * `Device/Cached` `props:{locale:"de"}` variant. `DeviceBody`'s section headers (Channels /
+ * Contacts / Rooms → Kanäle / Kontakte / Räume), filter chips, and empty/warning copy come from
+ * `stringResource(...)`, so this renders them in German via a `localeTag` override — which requires
+ * the desktop render-engine locale fix (compose-preview plugin ≥ 0.17.1). Contact/channel names
+ * stay literal.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "de",
+  name = "Cached device — German",
+)
+@Composable
+fun CachedDeviceBodyGermanPreview() = cachedDevicePreview(dark = false)
