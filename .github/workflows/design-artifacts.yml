@@ -185,9 +185,20 @@ jobs:
               --svg \
               -o "$OUT" || echo "bundle render exited non-zero (expected for the metadata sheets)"
           count=$(find "$OUT" -maxdepth 1 -name '*.png' 2>/dev/null | wc -l)
-          echo "re-themed $count preview PNG(s)"
+          svgcount=$(find "$OUT" -maxdepth 1 -name '*.svg' 2>/dev/null | wc -l)
+          echo "re-themed $count preview PNG(s), $svgcount figma-svg(s)"
           if [ "$count" -lt 70 ]; then
             echo "::error::only $count re-themed previews — the render broadly failed"
+            exit 1
+          fi
+          # Every re-themed PNG must carry a matching re-themed figma-svg. `bundle
+          # render --svg` writes the vector best-effort (a preview can get a PNG but
+          # not its SVG), and `bundle repack` only swaps the SVGs present in --renders
+          # — otherwise keeping the bundle's original (stock Material-colour)
+          # previews/<id>.figma.svg. A partial SVG export would therefore publish
+          # MeshCore-teal PNGs beside stale Material-purple Figma imports; fail instead.
+          if [ "$svgcount" -lt "$count" ]; then
+            echo "::error::only $svgcount re-themed figma-svg(s) for $count PNG(s) — the vector export fell short; would leave stale figma.svg"
             exit 1
           fi
           # Swap the re-themed PNG + figma-svg back into the bundle → a drop-in
