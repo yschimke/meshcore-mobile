@@ -26,6 +26,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.theme_title
+import ee.schimke.meshcore.components.generated.resources.theme_palette
+import ee.schimke.meshcore.components.generated.resources.theme_light_dark
+import ee.schimke.meshcore.components.generated.resources.theme_done
+import ee.schimke.meshcore.components.generated.resources.theme_light
+import ee.schimke.meshcore.components.generated.resources.theme_dark
+import ee.schimke.meshcore.components.generated.resources.theme_follow_system
+import ee.schimke.meshcore.components.generated.resources.theme_dynamic
+import ee.schimke.meshcore.components.generated.resources.theme_meshcore_desc
+import ee.schimke.meshcore.components.generated.resources.theme_dynamic_desc
+import ee.schimke.meshcore.components.generated.resources.theme_follow_system_desc
+import ee.schimke.meshcore.components.generated.resources.theme_light_desc
+import ee.schimke.meshcore.components.generated.resources.theme_dark_desc
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Modal theme picker with two independent sections: which palette
@@ -42,51 +57,51 @@ fun ThemePickerDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Theme") },
+        title = { Text(stringResource(Res.string.theme_title)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                SectionLabel("Palette")
+                SectionLabel(stringResource(Res.string.theme_palette))
                 ThemeOption(
                     icon = Icons.Rounded.Palette,
                     label = "MeshCore",
-                    description = "Hand-tuned teal brand palette",
+                    description = stringResource(Res.string.theme_meshcore_desc),
                     selected = current.palette == ThemePalette.Meshcore,
                     onClick = { onPaletteSelect(ThemePalette.Meshcore) },
                 )
                 ThemeOption(
                     icon = Icons.Rounded.AutoAwesome,
-                    label = "Dynamic (system)",
-                    description = "Material You colors from your wallpaper",
+                    label = stringResource(Res.string.theme_dynamic),
+                    description = stringResource(Res.string.theme_dynamic_desc),
                     selected = current.palette == ThemePalette.Dynamic,
                     onClick = { onPaletteSelect(ThemePalette.Dynamic) },
                 )
                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-                SectionLabel("Light / dark")
+                SectionLabel(stringResource(Res.string.theme_light_dark))
                 ThemeOption(
                     icon = Icons.Rounded.SettingsBrightness,
-                    label = "Follow system",
-                    description = "Match your device's light/dark setting",
+                    label = stringResource(Res.string.theme_follow_system),
+                    description = stringResource(Res.string.theme_follow_system_desc),
                     selected = current.mode == ThemeMode.System,
                     onClick = { onModeSelect(ThemeMode.System) },
                 )
                 ThemeOption(
                     icon = Icons.Rounded.LightMode,
-                    label = "Light",
-                    description = "Always use the light palette",
+                    label = stringResource(Res.string.theme_light),
+                    description = stringResource(Res.string.theme_light_desc),
                     selected = current.mode == ThemeMode.Light,
                     onClick = { onModeSelect(ThemeMode.Light) },
                 )
                 ThemeOption(
                     icon = Icons.Rounded.DarkMode,
-                    label = "Dark",
-                    description = "Always use the dark palette",
+                    label = stringResource(Res.string.theme_dark),
+                    description = stringResource(Res.string.theme_dark_desc),
                     selected = current.mode == ThemeMode.Dark,
                     onClick = { onModeSelect(ThemeMode.Dark) },
                 )
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text("Done") }
+            TextButton(onClick = onDismiss) { Text(stringResource(Res.string.theme_done)) }
         },
     )
 }

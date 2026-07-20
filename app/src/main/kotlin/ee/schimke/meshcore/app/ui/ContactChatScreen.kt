@@ -14,7 +14,11 @@ import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.components.ui.ChatBody
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.MessageStatus
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.contact_type_room
+import ee.schimke.meshcore.components.generated.resources.contact_type_repeater
 import ee.schimke.meshcore.core.model.ContactType
+import org.jetbrains.compose.resources.stringResource
 import ee.schimke.meshcore.data.entity.MessageDirection
 import ee.schimke.meshcore.data.entity.MessageStatus as DbMessageStatus
 import android.util.Log
@@ -64,7 +68,8 @@ fun ContactChatScreen(
     if (loginDialogState != null && contact != null) {
         LoginDialog(
             contactName = contactName,
-            contactType = if (contact.type == ContactType.ROOM) "room" else "repeater",
+            contactType = if (contact.type == ContactType.ROOM) stringResource(Res.string.contact_type_room)
+                else stringResource(Res.string.contact_type_repeater),
             state = loginDialogState!!,
             onLogin = { password ->
                 loginDialogState = LoginDialogState.Authenticating
