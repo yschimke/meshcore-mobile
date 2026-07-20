@@ -244,7 +244,10 @@
         {
           "componentId": "Device/Cached",
           "preview": "CachedDeviceBodyPreview",
-          "caption": "Device screen — cached (offline) data, with the stale-data warning banner."
+          "caption": "Device screen — cached (offline) data, with the stale-data warning banner.",
+          "variants": [
+            { "props": { "locale": "de" }, "preview": "CachedDeviceBodyGermanPreview" }
+          ]
         }
       ]
     },
@@ -276,7 +279,10 @@
         {
           "componentId": "Settings/Ready",
           "preview": "DeviceSettingsPreview",
-          "caption": "Device settings — discovered device, with the buzzer toggle."
+          "caption": "Device settings — discovered device, with the buzzer toggle.",
+          "variants": [
+            { "props": { "locale": "de" }, "preview": "DeviceSettingsGermanPreview" }
+          ]
         }
       ]
     },
