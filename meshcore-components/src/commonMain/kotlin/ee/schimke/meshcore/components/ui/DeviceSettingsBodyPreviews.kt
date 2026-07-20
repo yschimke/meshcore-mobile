@@ -42,3 +42,20 @@ fun DeviceSettingsPreview() = settingsPreview(dark = false)
 )
 @Composable
 fun DeviceSettingsDarkPreview() = settingsPreview(dark = true)
+
+/**
+ * German (`de`) locale variant of [DeviceSettingsPreview] — the `catalog.spec.json`
+ * `Settings/Ready` `props:{locale:"de"}` variant. Renders the same screen with a `localeTag`
+ * override so `DeviceSettingsBody`'s `stringResource(...)` chrome resolves German copy; requires
+ * the desktop render-engine locale fix (compose-preview plugin ≥ 0.17.1). Sender/device data stays
+ * literal.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "de",
+  name = "Device settings — German",
+)
+@Composable
+fun DeviceSettingsGermanPreview() = settingsPreview(dark = false)
