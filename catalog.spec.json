@@ -279,6 +279,38 @@
           "caption": "Device settings — discovered device, with the buzzer toggle."
         }
       ]
+    },
+    {
+      "name": "Saved devices",
+      "section": "Screens",
+      "components": [
+        {
+          "componentId": "SavedDevices/Populated",
+          "preview": "SavedDevicesPopulatedPreview",
+          "caption": "Saved-devices list — a favourited BLE device, a second device and a TCP entry."
+        },
+        {
+          "componentId": "SavedDevices/Empty",
+          "preview": "SavedDevicesEmptyPreview",
+          "caption": "Saved-devices list — empty state with the connect-once hint."
+        }
+      ]
+    },
+    {
+      "name": "Theme picker",
+      "section": "Screens",
+      "components": [
+        {
+          "componentId": "ThemePicker/MeshcoreSystem",
+          "preview": "ThemePickerMeshcoreSystemPreview",
+          "caption": "Theme picker — MeshCore palette, follow-system mode."
+        },
+        {
+          "componentId": "ThemePicker/DynamicDark",
+          "preview": "ThemePickerDynamicDarkPreview",
+          "caption": "Theme picker — dynamic (Material You) palette, dark mode."
+        }
+      ]
     }
   ]
 }
