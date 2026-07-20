@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">غير معروف</string>
   <string name="settings_buzzer_off">إيقاف</string>
   <string name="settings_buzzer_on">تشغيل (%1$s)</string>
+  <string name="status_connecting">جارٍ الاتصال…</string>
+  <string name="status_waiting_radio">في انتظار استجابة الراديو — %1$d ث</string>
+  <string name="btn_cancel">إلغاء</string>
+  <string name="status_connection_failed">فشل الاتصال</string>
+  <string name="status_unknown_error">خطأ غير معروف</string>
+  <string name="btn_back_to_scanner">العودة إلى الماسح</string>
+  <string name="label_details">التفاصيل</string>
+  <string name="title_connecting">جارٍ الاتصال</string>
+  <string name="title_retrying">إعادة المحاولة (%1$d/%2$d)</string>
+  <string name="title_disconnecting">جارٍ قطع الاتصال</string>
 </resources>

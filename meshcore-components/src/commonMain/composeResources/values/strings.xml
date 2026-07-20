@@ -60,4 +60,14 @@
   <string name="settings_buzzer_unknown">Unknown</string>
   <string name="settings_buzzer_off">Off</string>
   <string name="settings_buzzer_on">On (%1$s)</string>
+  <string name="status_connecting">Connecting…</string>
+  <string name="status_waiting_radio">Waiting for the radio to respond — %1$ds</string>
+  <string name="btn_cancel">Cancel</string>
+  <string name="status_connection_failed">Connection failed</string>
+  <string name="status_unknown_error">Unknown error</string>
+  <string name="btn_back_to_scanner">Back to scanner</string>
+  <string name="label_details">Details</string>
+  <string name="title_connecting">Connecting</string>
+  <string name="title_retrying">Retrying (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Disconnecting</string>
 </resources>

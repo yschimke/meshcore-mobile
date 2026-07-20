@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">Inconnu</string>
   <string name="settings_buzzer_off">Désactivé</string>
   <string name="settings_buzzer_on">Activé (%1$s)</string>
+  <string name="status_connecting">Connexion…</string>
+  <string name="status_waiting_radio">En attente de la réponse de la radio — %1$ds</string>
+  <string name="btn_cancel">Annuler</string>
+  <string name="status_connection_failed">Échec de la connexion</string>
+  <string name="status_unknown_error">Erreur inconnue</string>
+  <string name="btn_back_to_scanner">Retour au scanner</string>
+  <string name="label_details">Détails</string>
+  <string name="title_connecting">Connexion</string>
+  <string name="title_retrying">Nouvelle tentative (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Déconnexion</string>
 </resources>

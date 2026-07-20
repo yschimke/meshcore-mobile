@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">Onbekend</string>
   <string name="settings_buzzer_off">Uit</string>
   <string name="settings_buzzer_on">Aan (%1$s)</string>
+  <string name="status_connecting">Verbinden…</string>
+  <string name="status_waiting_radio">Wachten op reactie van de radio — %1$ds</string>
+  <string name="btn_cancel">Annuleren</string>
+  <string name="status_connection_failed">Verbinding mislukt</string>
+  <string name="status_unknown_error">Onbekende fout</string>
+  <string name="btn_back_to_scanner">Terug naar scanner</string>
+  <string name="label_details">Details</string>
+  <string name="title_connecting">Verbinden</string>
+  <string name="title_retrying">Opnieuw proberen (%1$d/%2$d)</string>
+  <string name="title_disconnecting">Verbinding verbreken</string>
 </resources>

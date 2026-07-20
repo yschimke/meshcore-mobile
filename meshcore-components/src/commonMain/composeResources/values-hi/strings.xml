@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">अज्ञात</string>
   <string name="settings_buzzer_off">बंद</string>
   <string name="settings_buzzer_on">चालू (%1$s)</string>
+  <string name="status_connecting">कनेक्ट हो रहा है…</string>
+  <string name="status_waiting_radio">रेडियो के जवाब की प्रतीक्षा — %1$d सेकंड</string>
+  <string name="btn_cancel">रद्द करें</string>
+  <string name="status_connection_failed">कनेक्शन विफल</string>
+  <string name="status_unknown_error">अज्ञात त्रुटि</string>
+  <string name="btn_back_to_scanner">स्कैनर पर वापस जाएँ</string>
+  <string name="label_details">विवरण</string>
+  <string name="title_connecting">कनेक्ट हो रहा है</string>
+  <string name="title_retrying">पुनः प्रयास (%1$d/%2$d)</string>
+  <string name="title_disconnecting">डिस्कनेक्ट हो रहा है</string>
 </resources>

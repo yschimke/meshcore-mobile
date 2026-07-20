@@ -54,4 +54,14 @@
   <string name="settings_buzzer_unknown">不明</string>
   <string name="settings_buzzer_off">オフ</string>
   <string name="settings_buzzer_on">オン (%1$s)</string>
+  <string name="status_connecting">接続中…</string>
+  <string name="status_waiting_radio">無線の応答を待機中 — %1$d秒</string>
+  <string name="btn_cancel">キャンセル</string>
+  <string name="status_connection_failed">接続に失敗しました</string>
+  <string name="status_unknown_error">不明なエラー</string>
+  <string name="btn_back_to_scanner">スキャナーに戻る</string>
+  <string name="label_details">詳細</string>
+  <string name="title_connecting">接続中</string>
+  <string name="title_retrying">再試行中 (%1$d/%2$d)</string>
+  <string name="title_disconnecting">切断中</string>
 </resources>
