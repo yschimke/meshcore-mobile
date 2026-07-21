@@ -117,8 +117,23 @@ jobs:
             -o "$GITHUB_WORKSPACE/meshcore-components-bundle.png" --timeout 600
 
       # Join both renders to catalog.spec.json and write the importable bundle.
-      # `source: {repo, ref, module}` lets a trusted, toolchain-equipped box
-      # live-rerender; it's inert on the desktop-only public server.
+      #
+      # `--publish-live-bundle` carries the executable `:app` (Android/Robolectric)
+      # bundle onto the branch under `bundle/` and records `liveBundle: {path, file}`
+      # in catalog.json — the same treatment compose-ai-tools gives its Android
+      # `wear-m3` / `confetti` catalogs. The public preview server (preview.coo.ee)
+      # runs the prebuilt image, which bakes the Robolectric daemon + a minimal
+      # Android SDK, so it fetches this bundle and re-renders the `:app` previews
+      # (BlePermissionPanel, the Scanner tabs, …) live + per-variant instead of
+      # replaying baked PNGs. `bundle pack` (CLI ≥ 0.16.50) carries the app's
+      # compiled resource table so a `stringResource(R.string.…)` render resolves;
+      # a missing resource degrades to the placeholder marker rather than crashing.
+      #
+      # `source: {repo, ref, module}` stays as a fallback for a trusted,
+      # toolchain-equipped box that rebuilds from source — but it's inert on
+      # preview.coo.ee (cross-repo `source.repo` != server repo, and the public box
+      # has no meshcore checkout), so the carried liveBundle is what actually lights
+      # up the live lane there.
       - name: Generate importable catalog
         run: |
           set -euo pipefail
@@ -128,10 +143,37 @@ jobs:
             --extra-renders "$GITHUB_WORKSPACE/meshcore-components-bundle.png" \
             --out "$GITHUB_WORKSPACE/out" \
             --renderer "$(compose-preview --version | head -1)" \
+            --publish-live-bundle \
             --source-repo "${GITHUB_REPOSITORY}" \
             --source-ref main \
             --source-module :app \
             ${{ (github.event_name == 'workflow_dispatch' && inputs.allow_incomplete) && '--allow-incomplete' || '' }}
+
+      # Split the rendered sheet into one addressable, re-renderable bundle per
+      # preview under `bundle/previews/<id>.png` — the unit the serve host's
+      # per-preview live lane (ServePerPreviewLiveHost) fetches on demand so a
+      # `?knob.<key>=…` edit re-renders that one preview instead of routing through
+      # the monolithic catalog daemon (mirrors compose-ai-tools' Android live rows).
+      #
+      # FULL split of the `:app` tier: split the EXTERNALISED bundle the generate
+      # step wrote under out/bundle/ (fonts lifted to bundle/res/<sha>), not the raw
+      # sheet — so each per-preview bundle inherits the slimmed app.jar + shared-pool
+      # font references and the branch doesn't balloon by the preview count.
+      #
+      # The `:meshcore-components` supplement (the Chat / Settings / Cached screens,
+      # CMP desktop render) is split `--view-only`: those functions live only in the
+      # extra bundle, not the carried `:app` liveBundle, so they have no per-preview
+      # re-render classpath on this branch and stay baked-only (like compose-m3's
+      # Android supplement).
+      - name: Split into per-preview bundles
+        run: |
+          set -euo pipefail
+          compose-preview bundle split "$GITHUB_WORKSPACE/out/bundle/meshcore-mobile-bundle.png" \
+            -o "$GITHUB_WORKSPACE/out/bundle/previews"
+          if [ -f "$GITHUB_WORKSPACE/meshcore-components-bundle.png" ]; then
+            compose-preview bundle split "$GITHUB_WORKSPACE/meshcore-components-bundle.png" --view-only \
+              -o "$GITHUB_WORKSPACE/out/bundle/previews"
+          fi
 
       # ─────────────────────────────────────────────────────────────────────────
       # Reuse compose-m3, re-themed under MeshCore's palette, as a "Material 3" tab
