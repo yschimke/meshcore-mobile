@@ -39,6 +39,18 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+      # The desktop/Skiko render resolves a glyph a preview's FontFamily doesn't
+      # cover (CJK, here) through the system font path rather than continuing down
+      # the FontFamily list, so stage the app's own committed Noto subsets where
+      # fontconfig will find them before the render. These are the CJK/Arabic/…
+      # subsets the app bundles (meshcore-components/.../fonts/noto) — no generic
+      # Noto, so the Latin default is untouched. (Within-FontFamily fallback does
+      # work for Arabic etc., but not the CJK faces on this Skiko build; #253.)
+      - name: Stage bundled fallback fonts for the Skiko render
+        run: |
+          mkdir -p "$HOME/.local/share/fonts"
+          cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
+          fc-cache -f "$HOME/.local/share/fonts" >/dev/null
       - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.16.58
         with:
           # Pin the render CLI to the Gradle plugin version (single source of
@@ -71,6 +83,13 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+      # See the apply job: make the app's bundled Noto subsets visible to
+      # fontconfig so the Skiko a11y render resolves CJK too.
+      - name: Stage bundled fallback fonts for the Skiko render
+        run: |
+          mkdir -p "$HOME/.local/share/fonts"
+          cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
+          fc-cache -f "$HOME/.local/share/fonts" >/dev/null
       - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.16.58
         with:
           cli-version: catalog
