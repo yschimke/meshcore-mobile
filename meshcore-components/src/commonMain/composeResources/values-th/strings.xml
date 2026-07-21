@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">เชื่อมต่อครั้งหนึ่งจากแท็บ BLE, USB หรือ TCP แล้วรายการจะปรากฏที่นี่</string>
   <string name="saved_connected">เชื่อมต่อแล้ว</string>
   <string name="saved_contacts_count">%1$d รายชื่อ</string>
+  <string name="warning_cached_data">ข้อมูลแคช — เชื่อมต่อเพื่อรีเฟรช</string>
 </resources>

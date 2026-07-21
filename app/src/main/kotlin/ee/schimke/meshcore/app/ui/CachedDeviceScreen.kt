@@ -5,9 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import ee.schimke.meshcore.app.di.LocalAppGraph
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.warning_cached_data
 import ee.schimke.meshcore.data.repository.toBattery
 import ee.schimke.meshcore.data.repository.toRadio
 import ee.schimke.meshcore.data.repository.toSelfInfo
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Read-only device screen that shows cached data from Room for a saved
@@ -37,6 +40,8 @@ fun CachedDeviceScreen(
         channels = channels,
         onDisconnect = onBack,
         onOpenThemePicker = onOpenThemePicker,
-        warnings = if (state != null) listOf("Cached data — connect to refresh") else emptyList(),
+        warnings =
+            if (state != null) listOf(stringResource(Res.string.warning_cached_data))
+            else emptyList(),
     )
 }
