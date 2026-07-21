@@ -29,16 +29,20 @@ private fun gfont(name: String, weight: FontWeight) =
 // CJK is split JP/KR/SC/TC because no single per-language family carries Kana +
 // Hangul + both Han variants; a shared Han codepoint follows this order
 // (JP → SC → TC → KR). Downloadable, so nothing is added to the APK.
+//
+// CJK faces first — see MeshcoreFonts.desktop.kt: CJK punctuation in the
+// translations would otherwise let an earlier non-CJK face capture the run and
+// tofu the Kana/Han.
 private val NotoFallback =
     listOf(
-        gfont("Noto Sans", FontWeight.Normal), // Cyrillic / Greek / Latin-ext
-        gfont("Noto Sans Arabic", FontWeight.Normal),
-        gfont("Noto Sans Devanagari", FontWeight.Normal),
-        gfont("Noto Sans Thai", FontWeight.Normal),
         gfont("Noto Sans JP", FontWeight.Normal), // Kana + Japanese Han
         gfont("Noto Sans SC", FontWeight.Normal), // Simplified Han
         gfont("Noto Sans TC", FontWeight.Normal), // Traditional Han
         gfont("Noto Sans KR", FontWeight.Normal), // Hangul + Korean Han
+        gfont("Noto Sans Arabic", FontWeight.Normal),
+        gfont("Noto Sans Devanagari", FontWeight.Normal),
+        gfont("Noto Sans Thai", FontWeight.Normal),
+        gfont("Noto Sans", FontWeight.Normal), // Cyrillic / Greek / Latin-ext
     )
 
 internal actual val Orbitron: FontFamily =
