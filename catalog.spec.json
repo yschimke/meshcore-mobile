@@ -246,7 +246,9 @@
           "preview": "CachedDeviceBodyPreview",
           "caption": "Device screen — cached (offline) data, with the stale-data warning banner.",
           "variants": [
-            { "props": { "locale": "de" }, "preview": "CachedDeviceBodyGermanPreview" }
+            { "props": { "locale": "de" }, "preview": "CachedDeviceBodyGermanPreview" },
+            { "props": { "locale": "ja" }, "preview": "CachedDeviceBodyJapanesePreview" },
+            { "props": { "locale": "ar" }, "preview": "CachedDeviceBodyArabicPreview" }
           ]
         }
       ]
