@@ -76,6 +76,51 @@ jobs:
         working-directory: compose-ai-tools/scripts/design-artifacts
         run: npm ci
 
+      # Install the multilingual fallback fonts BEFORE any render, so every
+      # bundle produced below — the :meshcore-components CMP-desktop (Skiko) pack
+      # in particular — resolves CJK/Arabic/emoji glyphs through them instead of
+      # publishing tofu for a `@Preview(locale = "ja"/"ar"/…)`. (The later
+      # "Install desktop (Skiko) render deps" step runs after these packs, so it
+      # would be too late to feed the MeshCore catalog.) A one-time install
+      # persists for the whole job, including the compose-m3 re-theme render.
+      #
+      # FALLBACK ONLY — MeshCore's own branded families (Orbitron / Space Grotesk
+      # / JetBrains Mono, all Latin-only) still win for the scripts they cover:
+      # Compose matches them by family name, never via the generic aliases, so
+      # Noto only fills the codepoints they lack.
+      - name: Install fallback CJK / Arabic / emoji fonts (before any render)
+        run: |
+          sudo apt-get update
+          # Record the generic Latin defaults BEFORE the install: fonts-noto-core
+          # carries Noto Sans/Serif and fontconfig's 60-latin.conf ranks Noto
+          # ahead of DejaVu, so installing it would otherwise silently switch the
+          # generic sans/serif/mono default to Noto — broad churn instead of
+          # missing-glyph fill. (fc-match ships with the runner; if it can't read
+          # a generic, fall back to the historical DejaVu default.)
+          prev_sans="$(fc-match -f '%{family}\n' sans-serif 2>/dev/null | head -n1 | cut -d, -f1)"
+          prev_serif="$(fc-match -f '%{family}\n' serif 2>/dev/null | head -n1 | cut -d, -f1)"
+          prev_mono="$(fc-match -f '%{family}\n' monospace 2>/dev/null | head -n1 | cut -d, -f1)"
+          : "${prev_sans:=DejaVu Sans}"
+          : "${prev_serif:=DejaVu Serif}"
+          : "${prev_mono:=DejaVu Sans Mono}"
+          sudo apt-get install -y --no-install-recommends \
+            fontconfig fonts-noto-cjk fonts-noto-core fonts-noto-color-emoji
+          # Pin the generics back to the recorded defaults so Noto stays
+          # fallback-only. Strong prepend beats 60-latin's Noto preference.
+          {
+            echo '<?xml version="1.0"?>'
+            echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">'
+            echo '<fontconfig>'
+            for pair in "sans-serif:$prev_sans" "serif:$prev_serif" "monospace:$prev_mono"; do
+              generic="${pair%%:*}"; family="${pair#*:}"
+              [ -n "$family" ] || continue
+              printf '  <match target="pattern"><test qual="any" name="family"><string>%s</string></test><edit name="family" mode="prepend" binding="strong"><string>%s</string></edit></match>\n' "$generic" "$family"
+            done
+            echo '</fontconfig>'
+          } | sudo tee /etc/fonts/conf.d/99-preserve-generic-latin-default.conf >/dev/null
+          fc-cache -f >/dev/null
+          echo "generic sans-serif → $(fc-match -f '%{family}\n' sans-serif) (was: ${prev_sans})"
+
       # Render the catalog module into a portable bundle with semantics (a11y
       # greenlines + layout tree → tokens/wireframes in the exported catalog).
       - name: Render catalog bundle (:app, Android/Robolectric)
@@ -132,43 +177,8 @@ jobs:
       - name: Install desktop (Skiko) render deps
         run: |
           sudo apt-get update
-          # `fonts-noto-*` are FALLBACK faces so a `@Preview(locale = "ja"/"ar"/…)`
-          # catalog variant renders real glyphs instead of tofu on runners whose
-          # base image lacks CJK/Arabic/emoji. MeshCore's own branded families
-          # (Orbitron / Space Grotesk / JetBrains Mono, all Latin-only) still win
-          # for the scripts they cover — Compose matches them by name, never via
-          # the generic aliases — so Noto only fills the codepoints they lack.
-          #
-          # Record the generic Latin defaults BEFORE the install: fonts-noto-core
-          # carries Noto Sans/Serif and fontconfig's 60-latin.conf ranks Noto
-          # ahead of DejaVu, so installing it would otherwise silently switch the
-          # generic sans/serif/mono default to Noto — broad churn instead of
-          # missing-glyph fill. (fc-match is present on the runner; if it can't
-          # read a generic, fall back to the historical DejaVu default.)
-          prev_sans="$(fc-match -f '%{family}\n' sans-serif 2>/dev/null | head -n1 | cut -d, -f1)"
-          prev_serif="$(fc-match -f '%{family}\n' serif 2>/dev/null | head -n1 | cut -d, -f1)"
-          prev_mono="$(fc-match -f '%{family}\n' monospace 2>/dev/null | head -n1 | cut -d, -f1)"
-          : "${prev_sans:=DejaVu Sans}"
-          : "${prev_serif:=DejaVu Serif}"
-          : "${prev_mono:=DejaVu Sans Mono}"
           sudo apt-get install -y --no-install-recommends \
-            xvfb libgl1 libglx-mesa0 libgl1-mesa-dri libfreetype6 libfontconfig1 fontconfig \
-            fonts-noto-cjk fonts-noto-core fonts-noto-color-emoji
-          # Pin the generics back to the recorded defaults so Noto stays
-          # fallback-only. Strong prepend beats 60-latin's Noto preference.
-          {
-            echo '<?xml version="1.0"?>'
-            echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">'
-            echo '<fontconfig>'
-            for pair in "sans-serif:$prev_sans" "serif:$prev_serif" "monospace:$prev_mono"; do
-              generic="${pair%%:*}"; family="${pair#*:}"
-              [ -n "$family" ] || continue
-              printf '  <match target="pattern"><test qual="any" name="family"><string>%s</string></test><edit name="family" mode="prepend" binding="strong"><string>%s</string></edit></match>\n' "$generic" "$family"
-            done
-            echo '</fontconfig>'
-          } | sudo tee /etc/fonts/conf.d/99-preserve-generic-latin-default.conf >/dev/null
-          fc-cache -f >/dev/null
-          echo "generic sans-serif → $(fc-match -f '%{family}\n' sans-serif) (was: ${prev_sans})"
+            xvfb libgl1 libglx-mesa0 libgl1-mesa-dri libfreetype6 libfontconfig1 fontconfig
 
       # `bundle render --res/--svg` + `bundle repack` are on compose-ai-tools@main
       # but not in a released CLI yet, so build the CLI from the checkout above. The
