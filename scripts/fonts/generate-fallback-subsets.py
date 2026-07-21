@@ -92,15 +92,20 @@ def main():
         try:
             fetch(url, src)
             font = TTFont(src)
-            # Pin the variable font to its default Regular static instance so the
-            # bundled fallback is a single plain weight (no gvar bloat).
+            # Pin the variable font to a Regular (weight 400) static instance so
+            # the bundled fallback is a single plain weight (no gvar bloat).
+            # `updateFontNames=True` is essential: several Noto CJK VFs default
+            # their `wght` axis to 100 (Thin), so without it the instance keeps
+            # the family name "Noto Sans JP Thin" even though its OS/2 weight is
+            # 400 — and Skia parses that "Thin" as the face weight and skips the
+            # font when resolving fallback for normal-weight text (→ CJK tofu).
             if "fvar" in font:
                 axes = {a.axisTag: a.defaultValue for a in font["fvar"].axes}
                 if "wght" in axes:
                     axes["wght"] = 400
                 if "wdth" in axes:
                     axes["wdth"] = 100
-                instantiateVariableFont(font, axes, inplace=True)
+                instantiateVariableFont(font, axes, inplace=True, updateFontNames=True)
             options = subset.Options()
             options.layout_features = ["*"]  # keep shaping (Arabic/Devanagari/Thai)
             options.name_IDs = ["*"]
