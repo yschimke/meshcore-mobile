@@ -719,6 +719,14 @@
     "sha256": "301c7dc1860820a3c8762a4184f93a68183b46fd67a1a3cae2ecbd8817dfd678",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
+  "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyArabicPreview_Cached device \u2014 Arabic": {
+    "captureLabel": "",
+    "functionName": "CachedDeviceBodyArabicPreview",
+    "module": "meshcore-components",
+    "renderBasename": "CachedDeviceBodyArabicPreview_Cached_device_Arabic.png",
+    "sha256": "40da12809510263e107a23bf498d7ef557ac4c79651c4f6c5545e9c96c14bb96",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
+  },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device \u2014 dark": {
     "captureLabel": "",
     "functionName": "CachedDeviceBodyDarkPreview",
@@ -733,6 +741,14 @@
     "module": "meshcore-components",
     "renderBasename": "CachedDeviceBodyGermanPreview_Cached_device_German.png",
     "sha256": "c553f10c7e060f0ee4dfb208f627fbf58139f5d0239d15a2b6295c98ddd32575",
+    "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
+  },
+  "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyJapanesePreview_Cached device \u2014 Japanese": {
+    "captureLabel": "",
+    "functionName": "CachedDeviceBodyJapanesePreview",
+    "module": "meshcore-components",
+    "renderBasename": "CachedDeviceBodyJapanesePreview_Cached_device_Japanese.png",
+    "sha256": "cae3595de54878f85dd54f1a40a3aca9914376db79ebf5c0e3a1911d1c943a47",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Cached device": {
