@@ -3,6 +3,8 @@ package ee.schimke.meshcore.components.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.warning_cached_data
 import ee.schimke.meshcore.components.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
@@ -13,6 +15,7 @@ import ee.schimke.meshcore.core.model.RadioSettings
 import ee.schimke.meshcore.core.model.SelfInfo
 import kotlin.time.Instant
 import kotlinx.io.bytestring.ByteString
+import org.jetbrains.compose.resources.stringResource
 
 // Design-parity preview subjects for the Device screen, on the CMP desktop
 // render path. The other Device previews (status views, extra DeviceBody states)
@@ -144,8 +147,6 @@ fun DeviceBodyDarkPreview() {
   }
 }
 
-private const val CACHED_WARNING = "Cached data — connect to refresh"
-
 @Composable
 private fun cachedDevicePreview(dark: Boolean) {
   val alice = previewContact("alice", -1, 0x11)
@@ -163,7 +164,7 @@ private fun cachedDevicePreview(dark: Boolean) {
       channels = listOf(ChannelInfo(0, "General", ByteString())),
       contactedKeys = setOf(alice.publicKey.toHex()),
       contactedChannelIndices = setOf(0),
-      warnings = listOf(CACHED_WARNING),
+      warnings = listOf(stringResource(Res.string.warning_cached_data)),
       onDisconnect = {},
     )
   }

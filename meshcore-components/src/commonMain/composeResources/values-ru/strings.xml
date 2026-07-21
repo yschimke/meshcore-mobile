@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">Подключитесь один раз на вкладке BLE, USB или TCP, и оно появится здесь.</string>
   <string name="saved_connected">Подключено</string>
   <string name="saved_contacts_count">Контактов: %1$d</string>
+  <string name="warning_cached_data">Кэшированные данные — подключитесь для обновления</string>
 </resources>
