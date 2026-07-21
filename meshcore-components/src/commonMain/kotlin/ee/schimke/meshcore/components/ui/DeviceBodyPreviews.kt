@@ -212,3 +212,35 @@ fun CachedDeviceBodyDarkPreview() = cachedDevicePreview(dark = true)
 )
 @Composable
 fun CachedDeviceBodyGermanPreview() = cachedDevicePreview(dark = false)
+
+/**
+ * Japanese (`ja`) locale variant of [CachedDeviceBodyPreview] — the section headers, filter chips,
+ * and warning copy come from `stringResource(...)`, so a `localeTag` override renders them in
+ * Japanese. MeshCore's branded faces (Orbitron / Space Grotesk) are Latin-only, so this exercises
+ * the bundled **Noto** CJK fallback appended to those families (see `MeshcoreFonts.desktop.kt`):
+ * the Kana/Han resolve within the app's own typography instead of rendering tofu.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "ja",
+  name = "Cached device — Japanese",
+)
+@Composable
+fun CachedDeviceBodyJapanesePreview() = cachedDevicePreview(dark = false)
+
+/**
+ * Arabic (`ar`) locale variant of [CachedDeviceBodyPreview] — exercises the bundled **Noto Sans
+ * Arabic** fallback (glyph shaping) and right-to-left layout for the localized copy.
+ * Contact/channel names stay literal.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "ar",
+  name = "Cached device — Arabic",
+)
+@Composable
+fun CachedDeviceBodyArabicPreview() = cachedDevicePreview(dark = false)
