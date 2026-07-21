@@ -48,6 +48,9 @@ jobs:
       # work for Arabic etc., but not the CJK faces on this Skiko build; #253.)
       - name: Stage bundled fallback fonts for the Skiko render
         run: |
+          # fontconfig ships on ubuntu-latest, but guard so a leaner image can't
+          # fail this step with `fc-cache: command not found` before the render.
+          command -v fc-cache >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y --no-install-recommends fontconfig; }
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
@@ -87,6 +90,9 @@ jobs:
       # fontconfig so the Skiko a11y render resolves CJK too.
       - name: Stage bundled fallback fonts for the Skiko render
         run: |
+          # fontconfig ships on ubuntu-latest, but guard so a leaner image can't
+          # fail this step with `fc-cache: command not found` before the render.
+          command -v fc-cache >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y --no-install-recommends fontconfig; }
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
