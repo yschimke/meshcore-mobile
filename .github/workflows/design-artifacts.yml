@@ -76,6 +76,23 @@ jobs:
         working-directory: compose-ai-tools/scripts/design-artifacts
         run: npm ci
 
+      # The desktop/Skiko renders below (the :meshcore-components pack and the
+      # compose-m3 re-theme) resolve a glyph a preview's FontFamily doesn't cover
+      # (CJK) through the system font path rather than continuing down the
+      # FontFamily list, so stage the app's own committed Noto subsets where
+      # fontconfig will find them before any render. CJK/Arabic/… subsets the app
+      # bundles — no generic Noto, so the Latin default is untouched. A one-time
+      # stage persists for the whole job.
+      - name: Stage bundled fallback fonts for the Skiko renders
+        run: |
+          # fontconfig is installed later (Install desktop (Skiko) render deps),
+          # but this stage runs first, so ensure fc-cache exists here. It ships on
+          # ubuntu-latest; the guard just covers a leaner image.
+          command -v fc-cache >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y --no-install-recommends fontconfig; }
+          mkdir -p "$HOME/.local/share/fonts"
+          cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
+          fc-cache -f "$HOME/.local/share/fonts" >/dev/null
+
       # Render the catalog module into a portable bundle with semantics (a11y
       # greenlines + layout tree → tokens/wireframes in the exported catalog).
       - name: Render catalog bundle (:app, Android/Robolectric)
