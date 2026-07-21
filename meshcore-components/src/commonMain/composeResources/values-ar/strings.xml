@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">اتصل مرة واحدة من علامة تبويب BLE أو USB أو TCP وسيظهر هنا.</string>
   <string name="saved_connected">متصل</string>
   <string name="saved_contacts_count">%1$d جهة اتصال</string>
+  <string name="warning_cached_data">بيانات مخزّنة مؤقتًا — اتصل للتحديث</string>
 </resources>

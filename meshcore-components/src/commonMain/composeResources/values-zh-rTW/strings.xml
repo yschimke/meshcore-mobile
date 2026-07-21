@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">從 BLE、USB 或 TCP 分頁連線一次，它就會顯示在這裡。</string>
   <string name="saved_connected">已連線</string>
   <string name="saved_contacts_count">%1$d 個聯絡人</string>
+  <string name="warning_cached_data">快取資料 — 連線以重新整理</string>
 </resources>

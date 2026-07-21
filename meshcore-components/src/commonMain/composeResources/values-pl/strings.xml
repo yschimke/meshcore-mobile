@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">Połącz się raz z karty BLE, USB lub TCP, a pojawi się tutaj.</string>
   <string name="saved_connected">Połączono</string>
   <string name="saved_contacts_count">Kontakty: %1$d</string>
+  <string name="warning_cached_data">Dane z pamięci podręcznej — połącz, aby odświeżyć</string>
 </resources>

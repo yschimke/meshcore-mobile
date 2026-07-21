@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">BLE, USB 또는 TCP 탭에서 한 번 연결하면 여기에 표시됩니다.</string>
   <string name="saved_connected">연결됨</string>
   <string name="saved_contacts_count">연락처 %1$d개</string>
+  <string name="warning_cached_data">캐시된 데이터 — 새로 고치려면 연결하세요</string>
 </resources>

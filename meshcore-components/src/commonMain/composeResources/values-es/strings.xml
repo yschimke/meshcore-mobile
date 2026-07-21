@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">Conéctate una vez desde la pestaña BLE, USB o TCP y aparecerá aquí.</string>
   <string name="saved_connected">Conectado</string>
   <string name="saved_contacts_count">%1$d contactos</string>
+  <string name="warning_cached_data">Datos en caché — conéctate para actualizar</string>
 </resources>

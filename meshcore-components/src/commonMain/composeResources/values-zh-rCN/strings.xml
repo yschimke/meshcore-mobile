@@ -95,4 +95,5 @@
   <string name="saved_empty_hint">从 BLE、USB 或 TCP 标签页连接一次，它就会显示在这里。</string>
   <string name="saved_connected">已连接</string>
   <string name="saved_contacts_count">%1$d 个联系人</string>
+  <string name="warning_cached_data">缓存数据 — 连接以刷新</string>
 </resources>
