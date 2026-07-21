@@ -732,7 +732,7 @@
     "functionName": "CachedDeviceBodyGermanPreview",
     "module": "meshcore-components",
     "renderBasename": "CachedDeviceBodyGermanPreview_Cached_device_German.png",
-    "sha256": "eaf0849b66b8cdad41097fee175ece590c4fc92c885c7b10cf1d157636853c14",
+    "sha256": "c553f10c7e060f0ee4dfb208f627fbf58139f5d0239d15a2b6295c98ddd32575",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Cached device": {
