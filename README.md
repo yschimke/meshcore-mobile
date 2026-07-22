@@ -62,7 +62,6 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `PlayStoreTabletTenHome` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.png" width="150" /> |
 | `SavedDevicesEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/SavedDevicesEmptyPreview_Saved_devices_empty.png" width="150" /> |
 | `SavedDevicesPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/SavedDevicesPopulatedPreview_Saved_devices_populated.png" width="150" /> |
-| `ScannerBleDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleDarkPreview_Scanner_Saved_populated_dark.png" width="150" /> |
 | `ScannerBleEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleEmptyPreview_Dark.png" width="150" /> |
 | `ScannerBleEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleEmptyPreview_Light.png" width="150" /> |
 | `ScannerBleFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleFewPreview_Dark.png" width="150" /> |

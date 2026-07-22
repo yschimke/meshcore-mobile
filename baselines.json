@@ -447,14 +447,6 @@
     "sha256": "c2bd1645f1d48b22548ca49377ecf04e990644ee24c3f347c00f8de9050cc950",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt"
   },
-  "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleDarkPreview_Scanner \u2014 Saved populated, dark": {
-    "captureLabel": "",
-    "functionName": "ScannerBleDarkPreview",
-    "module": "app",
-    "renderBasename": "ScannerBleDarkPreview_Scanner_Saved_populated_dark.png",
-    "sha256": "31a0cd9b9a5751ff85362362ca0740da199c6ec73d6f60a0ae44221554511a8a",
-    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt"
-  },
   "app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleEmptyPreview_Dark": {
     "captureLabel": "",
     "functionName": "ScannerBleEmptyPreview",
