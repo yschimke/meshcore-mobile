@@ -258,7 +258,8 @@
           "preview": "ContactChatPreview",
           "caption": "Contact chat — a 1:1 direct-message thread.",
           "variants": [
-            { "theme": "dark", "preview": "ContactChatDarkPreview" }
+            { "theme": "dark", "preview": "ContactChatDarkPreview" },
+            { "props": { "locale": "ar" }, "preview": "ContactChatArabicPreview" }
           ]
         },
         {
@@ -266,7 +267,8 @@
           "preview": "ChannelChatPreview",
           "caption": "Channel chat — a group broadcast channel.",
           "variants": [
-            { "theme": "dark", "preview": "ChannelChatDarkPreview" }
+            { "theme": "dark", "preview": "ChannelChatDarkPreview" },
+            { "props": { "locale": "ar" }, "preview": "ChannelChatArabicPreview" }
           ]
         },
         {
@@ -274,7 +276,8 @@
           "preview": "CommandsPreview",
           "caption": "Commands console — the device command/response log.",
           "variants": [
-            { "theme": "dark", "preview": "CommandsDarkPreview" }
+            { "theme": "dark", "preview": "CommandsDarkPreview" },
+            { "props": { "locale": "ar" }, "preview": "CommandsArabicPreview" }
           ]
         }
       ]
@@ -289,7 +292,9 @@
           "caption": "Device settings — discovered device, with the buzzer toggle.",
           "variants": [
             { "theme": "dark", "preview": "DeviceSettingsDarkPreview" },
-            { "props": { "locale": "de" }, "preview": "DeviceSettingsGermanPreview" }
+            { "props": { "locale": "de" }, "preview": "DeviceSettingsGermanPreview" },
+            { "props": { "locale": "ja" }, "preview": "DeviceSettingsJapanesePreview" },
+            { "props": { "locale": "ar" }, "preview": "DeviceSettingsArabicPreview" }
           ]
         }
       ]
