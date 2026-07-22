@@ -94,10 +94,13 @@ jobs:
             "$HOME/.local/share/fonts/"
           fc-cache -f >/dev/null
 
+      # Only the `claude-design` entries have an HTML source to rasterize. The
+      # `figma` entries resolve through @design-parity/adapter-figma, which
+      # renders the node itself over the REST API — skip them here.
       - name: Render reference images from HTML
         run: |
           set -euo pipefail
-          for ref in $(jq -r '.components[].ref' design-map.json); do
+          for ref in $(jq -r '.components[] | select(.source == "claude-design") | .ref' design-map.json); do
             png="${ref%.html}.png"
             google-chrome-stable --headless=new --no-sandbox --disable-gpu \
               --hide-scrollbars --force-device-scale-factor=2.625 \
@@ -109,6 +112,18 @@ jobs:
           node-version: 24.18.0
 
       - name: Run design-parity
+        env:
+          # Needed by @design-parity/adapter-figma for the `figma:` entries in
+          # design-map.json: it fetches node structure and renders the reference
+          # image over the Figma REST API. A read-only personal access token with
+          # `file_content:read` is sufficient — that scope covers both
+          # /v1/files/:key/nodes and /v1/images.
+          #
+          # The adapter also probes /v1/files/:key/variables/local, which is
+          # Enterprise-only; on this Pro team it 403s and the adapter degrades to
+          # structure-only tokens. Harmless — spec tokens come from each entry's
+          # `tokensFile` (design/meshcore.tokens.json), not from Figma.
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
         run: |
           set -euo pipefail
           components="$(jq -r '[.components[].code] | join(",")' design-map.json)"
