@@ -199,11 +199,6 @@
           "componentId": "Scanner/Tcp",
           "preview": "ScannerTcpPreview",
           "caption": "Scanner, TCP tab — the connect form."
-        },
-        {
-          "componentId": "Scanner/BleDark",
-          "preview": "ScannerBleDarkPreview",
-          "caption": "Scanner, Saved tab populated (dark theme)."
         }
       ]
     },
