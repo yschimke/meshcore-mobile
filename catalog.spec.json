@@ -246,6 +246,7 @@
           "preview": "CachedDeviceBodyPreview",
           "caption": "Device screen — cached (offline) data, with the stale-data warning banner.",
           "variants": [
+            { "theme": "dark", "preview": "CachedDeviceBodyDarkPreview" },
             { "props": { "locale": "de" }, "preview": "CachedDeviceBodyGermanPreview" },
             { "props": { "locale": "ja" }, "preview": "CachedDeviceBodyJapanesePreview" },
             { "props": { "locale": "ar" }, "preview": "CachedDeviceBodyArabicPreview" }
@@ -260,17 +261,26 @@
         {
           "componentId": "Chat/Contact",
           "preview": "ContactChatPreview",
-          "caption": "Contact chat — a 1:1 direct-message thread."
+          "caption": "Contact chat — a 1:1 direct-message thread.",
+          "variants": [
+            { "theme": "dark", "preview": "ContactChatDarkPreview" }
+          ]
         },
         {
           "componentId": "Chat/Channel",
           "preview": "ChannelChatPreview",
-          "caption": "Channel chat — a group broadcast channel."
+          "caption": "Channel chat — a group broadcast channel.",
+          "variants": [
+            { "theme": "dark", "preview": "ChannelChatDarkPreview" }
+          ]
         },
         {
           "componentId": "Chat/Commands",
           "preview": "CommandsPreview",
-          "caption": "Commands console — the device command/response log."
+          "caption": "Commands console — the device command/response log.",
+          "variants": [
+            { "theme": "dark", "preview": "CommandsDarkPreview" }
+          ]
         }
       ]
     },
@@ -283,6 +293,7 @@
           "preview": "DeviceSettingsPreview",
           "caption": "Device settings — discovered device, with the buzzer toggle.",
           "variants": [
+            { "theme": "dark", "preview": "DeviceSettingsDarkPreview" },
             { "props": { "locale": "de" }, "preview": "DeviceSettingsGermanPreview" }
           ]
         }
