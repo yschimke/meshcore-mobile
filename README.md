@@ -94,10 +94,13 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 
 | Preview | Image |
 |---------|-------|
+| `ChannelChatArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic.png" width="150" /> |
 | `ChannelChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark.png" width="150" /> |
 | `ChannelChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatPreview_Channel_chat.png" width="150" /> |
+| `CommandsArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsArabicPreview_Commands_Arabic.png" width="150" /> |
 | `CommandsDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsDarkPreview_Commands_dark.png" width="150" /> |
 | `CommandsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsPreview_Commands.png" width="150" /> |
+| `ContactChatArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic.png" width="150" /> |
 | `ContactChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark.png" width="150" /> |
 | `ContactChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatPreview_Contact_chat.png" width="150" /> |
 | `CachedDeviceBodyArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyArabicPreview_Cached_device_Arabic.png" width="150" /> |
@@ -107,8 +110,10 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `CachedDeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyPreview_Cached_device.png" width="150" /> |
 | `DeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyDarkPreview_Device_dark.png" width="150" /> |
 | `DeviceBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceBodyPreview_Device_populated.png" width="150" /> |
+| `DeviceSettingsArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsArabicPreview_Device_settings_Arabic.png" width="150" /> |
 | `DeviceSettingsDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsDarkPreview_Device_settings_dark.png" width="150" /> |
 | `DeviceSettingsGermanPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsGermanPreview_Device_settings_German.png" width="150" /> |
+| `DeviceSettingsJapanesePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsJapanesePreview_Device_settings_Japanese.png" width="150" /> |
 | `DeviceSettingsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsPreview_Device_settings.png" width="150" /> |
 
 ## wear
