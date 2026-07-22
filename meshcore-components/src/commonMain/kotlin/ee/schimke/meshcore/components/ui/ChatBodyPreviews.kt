@@ -186,6 +186,30 @@ fun ContactChatPreview() = chatPreview("alice", "Direct message", contactMessage
 fun ContactChatDarkPreview() = chatPreview("alice", "Direct message", contactMessages, dark = true)
 
 /**
+ * Arabic (`ar`) locale variant of [ContactChatPreview] — the `catalog.spec.json` `Chat/Contact`
+ * `props:{locale:"ar"}` variant.
+ *
+ * `ChatBody` draws only three `stringResource(...)` strings (the input placeholder and the send /
+ * back content descriptions), so a `de` or `ja` variant would render all but indistinguishable from
+ * English and earn its place in the catalog on nothing. **RTL is different**: it mirrors the entire
+ * layout regardless of how much localized copy a screen carries — message bubbles swap sides, the
+ * back arrow flips, and the input row's leading/trailing affordances exchange ends. That is real
+ * coverage, and it's why `ar` is the one locale worth carrying on every screen.
+ *
+ * Sender names and message bodies stay literal, so any mirroring visible here is layout, not copy.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "ar",
+  name = "Contact chat — Arabic",
+)
+@Composable
+fun ContactChatArabicPreview() =
+  chatPreview("alice", "Direct message", contactMessages, dark = false)
+
+/**
  * Design-parity subject: the group channel chat (light). Reference `design/ChannelChat.light.html`.
  */
 @Preview(
@@ -211,12 +235,51 @@ fun ChannelChatPreview() = chatPreview("General", "Channel 0", channelMessages, 
 fun ChannelChatDarkPreview() = chatPreview("General", "Channel 0", channelMessages, dark = true)
 
 /**
+ * Arabic (`ar`) locale variant of [ChannelChatPreview] — see [ContactChatArabicPreview] for why RTL
+ * is the locale worth carrying here. The channel variant additionally mirrors the subtitle row
+ * ("Channel 0") under the title.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "ar",
+  name = "Channel chat — Arabic",
+)
+@Composable
+fun ChannelChatArabicPreview() = chatPreview("General", "Channel 0", channelMessages, dark = false)
+
+/**
  * Design-parity subject: the device commands console (light). Reference
  * `design/Commands.light.html`.
  */
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Commands")
 @Composable
 fun CommandsPreview() =
+  chatPreview(
+    title = "Commands",
+    subtitle = null,
+    messages = commandMessages,
+    dark = false,
+    inputPlaceholder = "Enter command…",
+    actions = { terminalAction() },
+  )
+
+/**
+ * Arabic (`ar`) locale variant of [CommandsPreview] — see [ContactChatArabicPreview] for why RTL is
+ * the locale worth carrying here. The commands console is the most interesting of the three under
+ * mirroring: its monospace command/response log and terminal action keep Latin content inside an
+ * otherwise mirrored frame, which is exactly where bidirectional layout tends to go wrong.
+ */
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  locale = "ar",
+  name = "Commands — Arabic",
+)
+@Composable
+fun CommandsArabicPreview() =
   chatPreview(
     title = "Commands",
     subtitle = null,
