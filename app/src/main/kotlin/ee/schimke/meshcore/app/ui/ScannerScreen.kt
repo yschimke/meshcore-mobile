@@ -549,23 +549,3 @@ fun ScannerTcpPreview() {
         )
     }
 }
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
-    name = "Scanner — Saved populated, dark",
-)
-@Composable
-fun ScannerBleDarkPreview() {
-    MeshcoreTheme(darkTheme = true) {
-        ScannerBody(
-            savedContent = { PreviewSavedPopulated() },
-            bleContent = { PreviewEmpty() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 0,
-        )
-    }
-}
