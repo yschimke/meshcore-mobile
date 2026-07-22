@@ -1,13 +1,17 @@
 name: Design Artifacts
 
-# Render the MeshCore design catalog (:app @Preview sticker sheet) and publish
-# its importable bundle (catalog.json + DTCG tokens + Figma variables + PNGs) to
-# a clean `design-artifacts/meshcore-mobile` branch. The public preview server
-# (preview.coo.ee) fetches that branch and serves it at /meshcore-mobile/.
+# Render the MeshCore design catalog and publish its importable bundle to a clean
+# `design-artifacts/meshcore-mobile` branch, which the public preview server
+# (preview.coo.ee) serves at /meshcore-mobile/.
 #
-# Pipeline mirrors compose-ai-tools' own design-artifacts job:
-#   compose-preview bundle pack  →  @design-parity/catalog-export driver
-#   (from a compose-ai-tools checkout)  →  force-push out/ to the branch.
+# The common render → validate → generate → publish is delegated to the shared
+# reusable workflow in compose-ai-tools; MeshCore only keeps its two bespoke
+# lanes, which the reusable workflow exposes as generic hooks:
+#   - the CJK fallback fonts are staged before the desktop render via
+#     `stage-font-globs`;
+#   - the "Material 3" tab (compose-m3 re-themed under MeshCore's palette) is
+#     built in the `retheme` job below, uploaded as an artifact, and folded in by
+#     the reusable workflow via `fold-*`.
 
 on:
   # Weekly, so the published sticker sheet tracks the catalog as it evolves.
@@ -21,173 +25,33 @@ on:
         default: false
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: design-artifacts-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  generate:
-    name: meshcore-mobile
-    # Don't run on forks — the publish step pushes a branch into this repo.
+  # ───────────────────────────────────────────────────────────────────────────
+  # Bespoke lane: re-theme the published compose-m3 stickersheet under MeshCore's
+  # palette (no source rebuild) and hand the re-themed bundle to the reusable
+  # workflow as an artifact, which folds it in as the "Material 3" tab.
+  # ───────────────────────────────────────────────────────────────────────────
+  retheme:
+    name: re-theme compose-m3
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     runs-on: ubuntu-latest
-    # Longer than the :app-only render: this job also re-themes + re-renders the
-    # published compose-m3 stickersheet through the desktop (Skiko) daemon.
-    timeout-minutes: 90
-    env:
-      # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
-      # pull task outputs instead of building cold. Read-only, so safe at job
-      # scope; ci.yml holds the read-write token and stays the sole cache writer.
-      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7.0.0
         with:
           persist-credentials: false
 
-      # JDK 21 + Gradle. The Android SDK is preinstalled on ubuntu-latest, which
-      # is what the :app Robolectric render needs (same as compose-preview.yml).
+      # JDK 21 + Gradle (to build the compose-preview CLI from source below).
       - uses: ./.github/actions/setup
 
-      # Install the compose-preview CLI, pinned to the applied plugin version
-      # (composePreviewPlugin in libs.versions.toml) so the CLI and plugin stay
-      # in lockstep — exactly as compose-preview.yml does for the apply action.
-      - uses: yschimke/compose-ai-tools/.github/actions/install@v0.16.58
-        with:
-          version: catalog
-          catalog-key: composePreviewPlugin
-          github-token: ${{ github.token }}
-
-      # The export driver + its render helpers live in compose-ai-tools; check it
-      # out (public repo) so we can run scripts/design-artifacts/. Pin CAT_REF to a
-      # release tag for full reproducibility once the path-URL changes have shipped.
-      - uses: actions/checkout@v7.0.0
-        with:
-          repository: yschimke/compose-ai-tools
-          ref: main
-          path: compose-ai-tools
-          persist-credentials: false
-
-      - uses: actions/setup-node@v7.0.0
-        with:
-          node-version: 24.18.0
-      - name: Install export engine (pinned npm packages)
-        working-directory: compose-ai-tools/scripts/design-artifacts
-        run: npm ci
-
-      # The desktop/Skiko renders below (the :meshcore-components pack and the
-      # compose-m3 re-theme) resolve a glyph a preview's FontFamily doesn't cover
-      # (CJK) through the system font path rather than continuing down the
-      # FontFamily list, so stage the app's own committed Noto subsets where
-      # fontconfig will find them before any render. CJK/Arabic/… subsets the app
-      # bundles — no generic Noto, so the Latin default is untouched. A one-time
-      # stage persists for the whole job.
-      - name: Stage bundled fallback fonts for the Skiko renders
-        run: |
-          # fontconfig is installed later (Install desktop (Skiko) render deps),
-          # but this stage runs first, so ensure fc-cache exists here. It ships on
-          # ubuntu-latest; the guard just covers a leaner image.
-          command -v fc-cache >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y --no-install-recommends fontconfig; }
-          mkdir -p "$HOME/.local/share/fonts"
-          cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
-          fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-
-      # Render the catalog module into a portable bundle with semantics (a11y
-      # greenlines + layout tree → tokens/wireframes in the exported catalog).
-      - name: Render catalog bundle (:app, Android/Robolectric)
-        run: |
-          set -euo pipefail
-          compose-preview bundle pack --module :app --with-semantics \
-            -o "$GITHUB_WORKSPACE/meshcore-mobile-bundle.png"
-
-      # The Chat / Settings / Cached-device screens live in :meshcore-components
-      # (the shared CMP library) — previewed there for design-parity on the CMP
-      # desktop (Skiko) backend rather than re-authored as :app stickers. Render
-      # them as a second bundle so generate-design-catalog folds them in via
-      # --extra-renders; function names are unique across the two modules, so the
-      # join is unambiguous. UTF-8 forced: the component preview ids carry em-dashes.
-      - name: Render component screens (:meshcore-components, CMP desktop)
-        env:
-          LANG: C.UTF-8
-          LC_ALL: C.UTF-8
-        run: |
-          set -euo pipefail
-          compose-preview bundle pack --module meshcore-components --with-semantics \
-            -o "$GITHUB_WORKSPACE/meshcore-components-bundle.png" --timeout 600
-
-      # Join both renders to catalog.spec.json and write the importable bundle.
-      #
-      # `--publish-live-bundle` carries the executable `:app` (Android/Robolectric)
-      # bundle onto the branch under `bundle/` and records `liveBundle: {path, file}`
-      # in catalog.json — the same treatment compose-ai-tools gives its Android
-      # `wear-m3` / `confetti` catalogs. The public preview server (preview.coo.ee)
-      # runs the prebuilt image, which bakes the Robolectric daemon + a minimal
-      # Android SDK, so it fetches this bundle and re-renders the `:app` previews
-      # (BlePermissionPanel, the Scanner tabs, …) live + per-variant instead of
-      # replaying baked PNGs. `bundle pack` (CLI ≥ 0.16.50) carries the app's
-      # compiled resource table so a `stringResource(R.string.…)` render resolves;
-      # a missing resource degrades to the placeholder marker rather than crashing.
-      #
-      # `source: {repo, ref, module}` stays as a fallback for a trusted,
-      # toolchain-equipped box that rebuilds from source — but it's inert on
-      # preview.coo.ee (cross-repo `source.repo` != server repo, and the public box
-      # has no meshcore checkout), so the carried liveBundle is what actually lights
-      # up the live lane there.
-      - name: Generate importable catalog
-        run: |
-          set -euo pipefail
-          node compose-ai-tools/scripts/design-artifacts/generate-design-catalog.mjs \
-            --spec catalog.spec.json \
-            --renders "$GITHUB_WORKSPACE/meshcore-mobile-bundle.png" \
-            --extra-renders "$GITHUB_WORKSPACE/meshcore-components-bundle.png" \
-            --out "$GITHUB_WORKSPACE/out" \
-            --renderer "$(compose-preview --version | head -1)" \
-            --publish-live-bundle \
-            --source-repo "${GITHUB_REPOSITORY}" \
-            --source-ref main \
-            --source-module :app \
-            ${{ (github.event_name == 'workflow_dispatch' && inputs.allow_incomplete) && '--allow-incomplete' || '' }}
-
-      # Split the rendered sheet into one addressable, re-renderable bundle per
-      # preview under `bundle/previews/<id>.png` — the unit the serve host's
-      # per-preview live lane (ServePerPreviewLiveHost) fetches on demand so a
-      # `?knob.<key>=…` edit re-renders that one preview instead of routing through
-      # the monolithic catalog daemon (mirrors compose-ai-tools' Android live rows).
-      #
-      # FULL split of the `:app` tier: split the EXTERNALISED bundle the generate
-      # step wrote under out/bundle/ (fonts lifted to bundle/res/<sha>), not the raw
-      # sheet — so each per-preview bundle inherits the slimmed app.jar + shared-pool
-      # font references and the branch doesn't balloon by the preview count.
-      #
-      # The `:meshcore-components` supplement (the Chat / Settings / Cached screens,
-      # CMP desktop render) is split `--view-only`: those functions live only in the
-      # extra bundle, not the carried `:app` liveBundle, so they have no per-preview
-      # re-render classpath on this branch and stay baked-only (like compose-m3's
-      # Android supplement).
-      - name: Split into per-preview bundles
-        run: |
-          set -euo pipefail
-          compose-preview bundle split "$GITHUB_WORKSPACE/out/bundle/meshcore-mobile-bundle.png" \
-            -o "$GITHUB_WORKSPACE/out/bundle/previews"
-          if [ -f "$GITHUB_WORKSPACE/meshcore-components-bundle.png" ]; then
-            compose-preview bundle split "$GITHUB_WORKSPACE/meshcore-components-bundle.png" --view-only \
-              -o "$GITHUB_WORKSPACE/out/bundle/previews"
-          fi
-
-      # ─────────────────────────────────────────────────────────────────────────
-      # Reuse compose-m3, re-themed under MeshCore's palette, as a "Material 3" tab
-      # ─────────────────────────────────────────────────────────────────────────
-      # compose-ai-tools publishes the compose-m3 stickersheet as a desktop render
-      # bundle + its externalized font pool to the design-artifacts/compose-m3
-      # branch. Re-theme that published bundle under MeshCore's own palette with NO
-      # source rebuild (`bundle render --knob theme.colors=… --res … --svg` +
-      # `bundle repack`), build a catalog from the re-themed bundle using
-      # compose-m3's own spec, and fold it into out/ as its own top-level tab.
-
       # The re-theme drives the desktop (Skiko/CPU) render daemon, which links
-      # libGL — install Mesa's software GL + a font stack (the same deps
-      # compose-ai-tools' own design-artifacts installs for the compose-m3 render).
+      # libGL — install Mesa's software GL + a font stack.
       - name: Install desktop (Skiko) render deps
         run: |
           sudo apt-get update
@@ -195,16 +59,20 @@ jobs:
             xvfb libgl1 libglx-mesa0 libgl1-mesa-dri libfreetype6 libfontconfig1 fontconfig
 
       # `bundle render --res/--svg` + `bundle repack` are on compose-ai-tools@main
-      # but not in a released CLI yet, so build the CLI from the checkout above. The
-      # released `install` CLI (used for the :app / component packs) stays the one
-      # on $PATH; this from-source CLI is invoked by absolute path below so it never
-      # shadows the pinned one.
+      # but not in a released CLI yet, so build the CLI from source.
+      - name: Check out compose-ai-tools
+        uses: actions/checkout@v7.0.0
+        with:
+          repository: yschimke/compose-ai-tools
+          ref: main
+          path: compose-ai-tools
+          persist-credentials: false
       - name: Build compose-preview CLI from source (for the re-theme)
         working-directory: compose-ai-tools
         run: ./gradlew :cli:installDist --no-daemon
 
-      # Fetch the published bundle + its content-addressed font pool from the
-      # compose-m3 delivery branch (public repo, no auth). Shallow — just that branch.
+      # Fetch the published compose-m3 bundle + its content-addressed font pool
+      # from the compose-m3 delivery branch (public repo, no auth). Shallow.
       - name: Fetch the published compose-m3 bundle + font pool
         run: |
           set -euo pipefail
@@ -229,7 +97,7 @@ jobs:
           OUT="$GITHUB_WORKSPACE/compose-m3-rethemed"
           # Re-theme every published preview to PNG + editable figma-svg, rehydrating
           # the externalized fonts from the branch's pool. Under xvfb so the desktop
-          # daemon has a display (matches compose-ai-tools' desktop-render jobs).
+          # daemon has a display.
           #
           # The color/type/shape "catalog" previews (Palette colours / Typeface type
           # styles / Shape shapes) are metadata sheets the daemon can't resolve on the
@@ -250,12 +118,9 @@ jobs:
             echo "::error::only $count re-themed previews — the render broadly failed"
             exit 1
           fi
-          # Every re-themed PNG must carry a matching re-themed figma-svg. `bundle
-          # render --svg` writes the vector best-effort (a preview can get a PNG but
-          # not its SVG), and `bundle repack` only swaps the SVGs present in --renders
-          # — otherwise keeping the bundle's original (stock Material-colour)
-          # previews/<id>.figma.svg. A partial SVG export would therefore publish
-          # MeshCore-teal PNGs beside stale Material-purple Figma imports; fail instead.
+          # Every re-themed PNG must carry a matching re-themed figma-svg, else
+          # `bundle repack` would leave the bundle's original (stock Material-colour)
+          # previews/<id>.figma.svg beside a MeshCore-teal PNG. Fail instead.
           if [ "$svgcount" -lt "$count" ]; then
             echo "::error::only $svgcount re-themed figma-svg(s) for $count PNG(s) — the vector export fell short; would leave stale figma.svg"
             exit 1
@@ -266,34 +131,49 @@ jobs:
             --renders "$OUT" \
             -o "$GITHUB_WORKSPACE/compose-m3-meshcore.png"
 
-      - name: Fold the re-themed compose-m3 catalog in as a "Material 3" tab
-        run: |
-          set -euo pipefail
-          # Build a catalog from the re-themed bundle using compose-m3's own spec…
-          node compose-ai-tools/scripts/design-artifacts/generate-design-catalog.mjs \
-            --spec compose-ai-tools/samples/design-catalog-m3/catalog.spec.json \
-            --renders "$GITHUB_WORKSPACE/compose-m3-meshcore.png" \
-            --out "$GITHUB_WORKSPACE/out-m3" \
-            ${{ (github.event_name == 'workflow_dispatch' && inputs.allow_incomplete) && '--allow-incomplete' || '' }}
-          # …then fold it into MeshCore's catalog as its own top-level tab.
-          node compose-ai-tools/scripts/design-artifacts/merge-catalog-section.mjs \
-            --into "$GITHUB_WORKSPACE/out" \
-            --from "$GITHUB_WORKSPACE/out-m3" \
-            --section "Material 3"
+      - name: Upload the re-themed bundle
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: compose-m3-meshcore
+          path: ${{ github.workspace }}/compose-m3-meshcore.png
+          if-no-files-found: error
 
-      - name: Publish to design-artifacts/meshcore-mobile
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          cd "$GITHUB_WORKSPACE/out"
-          git init -q
-          git checkout -q -b design-artifacts/meshcore-mobile
-          # Generated delivery branch — attributed to the repo owner, not a bot.
-          git config user.name 'Yuri Schimke'
-          git config user.email 'yuri@schimke.ee'
-          git add -A
-          git commit -q -m "chore(design-artifacts): regenerate meshcore-mobile catalog ($(date -u +%F))"
-          git push --force \
-            "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
-            "HEAD:refs/heads/design-artifacts/meshcore-mobile"
+  # ───────────────────────────────────────────────────────────────────────────
+  # Common lane: render :app (Android) + :meshcore-components (CMP desktop),
+  # validate the spec, generate, fold in the re-themed compose-m3 as a "Material
+  # 3" tab, and publish to design-artifacts/meshcore-mobile — all in the shared
+  # reusable workflow.
+  # ───────────────────────────────────────────────────────────────────────────
+  publish:
+    name: meshcore-mobile
+    needs: retheme
+    if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
+    permissions:
+      contents: write
+    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@main
+    with:
+      system: meshcore-mobile
+      spec: catalog.spec.json
+      module: ':app'
+      extra-module: meshcore-components
+      cli-version: catalog
+      catalog-key: composePreviewPlugin
+      commit-user-name: Yuri Schimke
+      commit-user-email: yuri@schimke.ee
+      timeout-minutes: 90
+      # Stage the app's bundled Noto subsets so the :meshcore-components desktop
+      # render resolves CJK/Arabic glyphs from them, not a system fallback.
+      stage-font-globs: meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf
+      # Carry the executable :app bundle + split it per preview, so preview.coo.ee
+      # re-renders the :app previews live (the :meshcore-components supplement is
+      # split view-only by the reusable workflow).
+      publish-live-bundle: true
+      split-per-preview: true
+      # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
+      fold-artifact: compose-m3-meshcore
+      fold-bundle: compose-m3-meshcore.png
+      fold-spec: compose-ai-tools/samples/design-catalog-m3/catalog.spec.json
+      fold-section: Material 3
+      allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
+    secrets:
+      buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
