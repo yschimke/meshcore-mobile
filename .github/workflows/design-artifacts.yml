@@ -174,6 +174,12 @@ jobs:
       # baked PNGs / livebundle-unavailable). Requires compose-ai-tools#2662.
       embed-deps: true
       split-per-preview: true
+      # With embed-deps the monolith live bundle carries ~84 MB of embedded jars.
+      # A `full` per-preview split would replicate that classpath into every one of
+      # the ~70 per-preview bundles (OOM at split time + a multi-GB branch), so split
+      # the per-preview lane view-only (baked). The monolith liveBundle still carries
+      # the embedded classpath, so the serve host re-renders live from it.
+      split-mode: view-only
       # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
       fold-artifact: compose-m3-meshcore
       fold-bundle: compose-m3-meshcore.png
