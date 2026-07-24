@@ -10,7 +10,9 @@ plugins {
 kotlin { jvmToolchain(21) }
 
 tapmoc {
-  java(21)
+  // Java 17 bytecode so the JDK-17 preview render daemon can load these classes;
+  // build toolchain stays on JDK 21. See :app for the full rationale.
+  java(17)
   kotlin(libs.versions.kotlin.get())
 }
 

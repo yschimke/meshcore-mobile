@@ -5,6 +5,15 @@ plugins {
   alias(libs.plugins.androidKotlinMultiplatformLibrary)
 }
 
+// Emit Java 17 bytecode (v61) so the JDK-17 preview render daemon (Robolectric,
+// preview.coo.ee) can load these classes; the build toolchain stays on JDK 21.
+// v65 (JDK 21) bytecode throws UnsupportedClassVersionError in the render daemon.
+// On the KMP extension jvmTarget isn't on the shared (common) compilerOptions, so
+// pin it on the JVM/Android Kotlin compile tasks directly.
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) }
+}
+
 kotlin {
   jvmToolchain(21)
 
