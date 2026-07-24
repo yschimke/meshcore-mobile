@@ -37,7 +37,12 @@ play {
 kotlin { jvmToolchain(21) }
 
 tapmoc {
-  java(21)
+  // Java 17 bytecode (class-file v61) so the preview render daemon — JDK 17,
+  // Robolectric on preview.coo.ee — can load :app's classes (e.g. the
+  // ComponentPreviews). The build toolchain stays on JDK 21 (jvmToolchain(21)
+  // above / gradle-daemon-jvm.properties); only the emitted target drops. JDK-21
+  // (v65) bytecode throws UnsupportedClassVersionError in the JDK-17 daemon.
+  java(17)
   kotlin(libs.versions.kotlin.get())
 }
 
