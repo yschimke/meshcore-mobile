@@ -5,6 +5,12 @@ plugins {
   alias(libs.plugins.composeCompiler)
 }
 
+// Java 17 bytecode so the JDK-17 preview render daemon can load these classes;
+// build toolchain stays on JDK 21. See :meshcore-core for the full rationale.
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) }
+}
+
 kotlin {
   jvmToolchain(21)
 

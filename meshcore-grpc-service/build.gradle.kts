@@ -3,7 +3,17 @@ plugins {
   alias(libs.plugins.protobuf)
 }
 
-kotlin { jvmToolchain(21) }
+kotlin {
+  jvmToolchain(21)
+  // Java 17 bytecode so the JDK-17 preview render daemon can load these classes
+  // (:app depends on this module); build toolchain stays on JDK 21.
+  compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) }
+}
+
+// protobuf generates Java here — pin javac to release 17 to match the Kotlin
+// target above (avoids a Kotlin/Java JVM-target mismatch and keeps the generated
+// classes at v61 for the JDK-17 render daemon).
+tasks.withType<JavaCompile>().configureEach { options.release.set(17) }
 
 dependencies {
   api(projects.meshcoreCore)
