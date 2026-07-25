@@ -39,14 +39,14 @@ import kotlinx.serialization.Serializable
 // Type-safe destination keys for androidx.navigation3. Each NavKey is
 // an @Serializable object/class so the back stack can survive process
 // death via rememberNavBackStack's saveable bundling.
-@Serializable private data object ScannerRoute : NavKey
-@Serializable private data object DeviceRoute : NavKey
-@Serializable private data class ContactRoute(val publicKeyHex: String) : NavKey
-@Serializable private data class ChannelRoute(val channelIndex: Int) : NavKey
-@Serializable private data class CommandsRoute(val channelIndex: Int) : NavKey
-@Serializable private data class DeviceSettingsRoute(val channelIndex: Int) : NavKey
-@Serializable private data class CachedDeviceRoute(val deviceId: String) : NavKey
-@Serializable private data object LicensesRoute : NavKey
+@Serializable internal data object ScannerRoute : NavKey
+@Serializable internal data object DeviceRoute : NavKey
+@Serializable internal data class ContactRoute(val publicKeyHex: String) : NavKey
+@Serializable internal data class ChannelRoute(val channelIndex: Int) : NavKey
+@Serializable internal data class CommandsRoute(val channelIndex: Int) : NavKey
+@Serializable internal data class DeviceSettingsRoute(val channelIndex: Int) : NavKey
+@Serializable internal data class CachedDeviceRoute(val deviceId: String) : NavKey
+@Serializable internal data object LicensesRoute : NavKey
 
 class MainActivity : ComponentActivity() {
     // Runtime BLE permissions are requested from the BLE tab on demand, not here;
