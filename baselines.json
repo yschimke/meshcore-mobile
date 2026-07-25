@@ -831,6 +831,14 @@
     "sha256": "2b02495207845b2e38a7f931b7a4b7829dbe1423ee86212e986c19a1bda06b12",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt"
   },
+  "wear/activity__LicenseActivity": {
+    "captureLabel": "",
+    "functionName": "LicenseActivity",
+    "module": "wear",
+    "renderBasename": "activity__LicenseActivity.png",
+    "sha256": "1fcd20f766dc00ba0f13ee385db954d6c9ea4bc8d693894fc92ed6b8e5e46397",
+    "sourceFile": null
+  },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
     "captureLabel": "",
     "functionName": "AnimatedCircularProgressPreview",
