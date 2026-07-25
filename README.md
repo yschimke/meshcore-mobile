@@ -3,7 +3,7 @@
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
 > [!WARNING]
-> 2 preview(s) failed to render in the latest update (2 with no prior baseline to retain). See **Render Failures** below.
+> 1 preview(s) failed to render in the latest update (1 with no prior baseline to retain). See **Render Failures** below.
 
 ## Render Failures
 
@@ -11,13 +11,16 @@ The render task completed but no PNG was produced for these previews. Entries wi
 
 | Preview | Module | Function | Source | Baseline |
 |---------|--------|----------|--------|----------|
-| `app/activity__MainActivity` | app | `MainActivity` | `—` | none |
 | `wear/activity__WearMainActivity` | wear | `WearMainActivity` | `—` | none |
 
 ## app
 
 | Preview | Image |
 |---------|-------|
+| `MainActivity` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/activity__MainActivity.png" width="150" /> |
+| `getting-started` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/apptour__getting-started_step00_launch.png" width="150" /> |
+| `getting-started` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/apptour__getting-started_step01_tcp_transport_tab.png" width="150" /> |
+| `getting-started` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/apptour__getting-started_step02_ble_transport_tab.png" width="150" /> |
 | `BleDeviceListEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/BleDeviceListEmptyPreview_Dark.png" width="150" /> |
 | `BleDeviceListEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/BleDeviceListEmptyPreview_Light.png" width="150" /> |
 | `BleDeviceListFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/BleDeviceListFewPreview_Dark.png" width="150" /> |

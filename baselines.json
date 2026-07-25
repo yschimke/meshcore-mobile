@@ -1,4 +1,36 @@
 {
+  "app/activity__MainActivity": {
+    "captureLabel": "",
+    "functionName": "MainActivity",
+    "module": "app",
+    "renderBasename": "activity__MainActivity.png",
+    "sha256": "697db81adba3a5d2f4a01b0917ddb443e50d09a19b21efc2b332f552478dd4fe",
+    "sourceFile": null
+  },
+  "app/apptour__getting-started": {
+    "captureLabel": "",
+    "functionName": "getting-started",
+    "module": "app",
+    "renderBasename": "apptour__getting-started_step00_launch.png",
+    "sha256": "697db81adba3a5d2f4a01b0917ddb443e50d09a19b21efc2b332f552478dd4fe",
+    "sourceFile": null
+  },
+  "app/apptour__getting-started#1": {
+    "captureLabel": "",
+    "functionName": "getting-started",
+    "module": "app",
+    "renderBasename": "apptour__getting-started_step01_tcp_transport_tab.png",
+    "sha256": "8f35aa4c16684765ff25878b033c7899e8d9f43ab28d5e11413c34a57b28d335",
+    "sourceFile": null
+  },
+  "app/apptour__getting-started#2": {
+    "captureLabel": "",
+    "functionName": "getting-started",
+    "module": "app",
+    "renderBasename": "apptour__getting-started_step02_ble_transport_tab.png",
+    "sha256": "932fd5fdb7000257777769723aa0c224f1b43813c00b3b29c06b5ff07b26b852",
+    "sourceFile": null
+  },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListEmptyPreview_Dark": {
     "captureLabel": "",
     "functionName": "BleDeviceListEmptyPreview",
