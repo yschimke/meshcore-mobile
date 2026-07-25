@@ -24,6 +24,7 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.playPublisher)
   alias(libs.plugins.tapmoc)
+  alias(libs.plugins.composePreview)
 }
 
 play {
@@ -35,6 +36,13 @@ play {
 }
 
 kotlin { jvmToolchain(21) }
+
+composePreview {
+  // Activity heroes + the getting-started app tour launch the real MainActivity,
+  // whose appGraph() casts the Application to AppGraphHolder — so previews must
+  // run with the manifest-declared MeshcoreApp, not Robolectric's default stub.
+  useConsumerApplication.set(true)
+}
 
 tapmoc {
   java(21)
