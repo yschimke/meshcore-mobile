@@ -105,9 +105,19 @@ jobs:
           # reports them as failures and exits non-zero. Don't let that fail the job;
           # instead require that the rest re-themed (guarding a broad render failure),
           # then repack.
+          #
+          # theme.fonts brands the M3 type scale to match MeshcoreBrandedTypography
+          # (Orbitron for display/headline/title, Space Grotesk for body/label), so
+          # the re-themed "Material 3" tab + the theme-meshcore-dark foundation sticker
+          # render in the MeshCore faces instead of Roboto. Families resolve against the
+          # compose-m3 catalog's vendored Orbitron / Space Grotesk faces. (The knob is
+          # per role group, so the title group is one face; MeshcoreBrandedTypography
+          # splits titleLarge=Orbitron vs titleMedium/Small=Space Grotesk — Orbitron
+          # matches the prominent titleLarge.)
           xvfb-run -a -s "-screen 0 2000x1400x24" \
             "$CLI" bundle render "$SRC" \
               --knob "theme.colors=$BLOB" \
+              --knob "theme.fonts=families:display=Orbitron,headline=Orbitron,title=Orbitron,body=Space Grotesk,label=Space Grotesk" \
               --res compose-m3-artifacts/bundle/res \
               --svg \
               -o "$OUT" || echo "bundle render exited non-zero (expected for the metadata sheets)"
