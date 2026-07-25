@@ -1,9 +1,18 @@
 {
   "name": "getting-started",
-  "description": "Cold launch lands on the scanner (no favourite device), switch to the TCP transport tab, open the licenses screen, then back to the scanner.",
+  "description": "Cold launch lands on the scanner (no favourite device), open the TCP transport tab, then the BLE tab with its runtime-permission gate.",
   "steps": [
-    { "label": "tcp transport tab", "click": { "text": "TCP" } },
-    { "label": "open licenses", "click": { "contentDescription": "Licenses" } },
-    { "label": "back to scanner", "back": true }
+    {
+      "label": "tcp transport tab",
+      "click": {
+        "text": "TCP"
+      }
+    },
+    {
+      "label": "ble transport tab",
+      "click": {
+        "text": "BLE"
+      }
+    }
   ]
 }
