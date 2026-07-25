@@ -37,6 +37,13 @@ play {
 
 kotlin { jvmToolchain(21) }
 
+composePreview {
+  // Activity heroes + the getting-started app tour launch the real MainActivity,
+  // whose appGraph() casts the Application to AppGraphHolder — so previews must
+  // run with the manifest-declared MeshcoreApp, not Robolectric's default stub.
+  useConsumerApplication.set(true)
+}
+
 tapmoc {
   // Java 17 bytecode (class-file v61) so the preview render daemon — JDK 17,
   // Robolectric on preview.coo.ee — can load :app's classes (e.g. the
