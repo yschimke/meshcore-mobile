@@ -24,6 +24,7 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.playPublisher)
   alias(libs.plugins.tapmoc)
+  alias(libs.plugins.composePreview)
 }
 
 play {

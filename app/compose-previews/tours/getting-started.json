@@ -1,0 +1,9 @@
+{
+  "name": "getting-started",
+  "description": "Cold launch lands on the scanner (no favourite device), switch to the TCP transport tab, open the licenses screen, then back to the scanner.",
+  "steps": [
+    { "label": "tcp transport tab", "click": { "text": "TCP" } },
+    { "label": "open licenses", "click": { "contentDescription": "Licenses" } },
+    { "label": "back to scanner", "back": true }
+  ]
+}
