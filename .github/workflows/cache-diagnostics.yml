@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
 
       # JDK only — the Android SDK is preinstalled on ubuntu-latest, and we
       # deliberately skip the shared setup-gradle Actions caching so the probe

@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 
@@ -61,7 +61,7 @@ jobs:
       # `bundle render --res/--svg` + `bundle repack` are on compose-ai-tools@main
       # but not in a released CLI yet, so build the CLI from source.
       - name: Check out compose-ai-tools
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           repository: yschimke/compose-ai-tools
           ref: main

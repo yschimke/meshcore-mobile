@@ -33,7 +33,7 @@ jobs:
       # scope; ci.yml holds the read-write token and stays the sole cache writer.
       BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
 
       # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest (the
       # :meshcore-components module still has an android target to configure);

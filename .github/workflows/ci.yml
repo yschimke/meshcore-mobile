@@ -24,7 +24,7 @@ jobs:
       BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
       ON_CI: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
@@ -52,7 +52,7 @@ jobs:
       BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
       ON_CI: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
@@ -79,7 +79,7 @@ jobs:
       BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN }}
       ON_CI: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
