@@ -951,6 +951,22 @@
     "sha256": "7a16524d753b515f2270443011997c684e9b7a1a2d1ba952061ac545e3031c92",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
+  "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedMediumBatteryPreview_Devices - Large Round": {
+    "captureLabel": "",
+    "functionName": "StatusBodyConnectedMediumBatteryPreview",
+    "module": "wear",
+    "renderBasename": "StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.png",
+    "sha256": "851a4fd11787f6a87fc10db4b97096b9c9be1c028aaa0bb657545595f3c43477",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+  },
+  "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedMediumBatteryPreview_Devices - Small Round": {
+    "captureLabel": "",
+    "functionName": "StatusBodyConnectedMediumBatteryPreview",
+    "module": "wear",
+    "renderBasename": "StatusBodyConnectedMediumBatteryPreview_Devices_Small_Round.png",
+    "sha256": "66ef3ccbff868d0b134505e112d57d886c152e1b2372639a9711bbc6c69f99d7",
+    "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
+  },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices - Large Round": {
     "captureLabel": "",
     "functionName": "StatusBodyConnectedPreview",
