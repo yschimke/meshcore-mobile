@@ -1215,6 +1215,16 @@
       "variant": "wearos_large_round"
     },
     {
+      "annotatedBasename": "StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.a11y.png",
+      "cleanBasename": "StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.png",
+      "findings": [],
+      "functionName": "StatusBodyConnectedMediumBatteryPreview",
+      "module": "wear",
+      "previewId": "ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedMediumBatteryPreview_Devices - Large Round",
+      "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "variant": "wearos_large_round"
+    },
+    {
       "annotatedBasename": "StatusBodyConnectedPreview_Devices_Large_Round.a11y.png",
       "cleanBasename": "StatusBodyConnectedPreview_Devices_Large_Round.png",
       "findings": [

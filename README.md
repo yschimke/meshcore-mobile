@@ -1,6 +1,6 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/main`. 87 preview(s) across 3 module(s) · 38 error(s) · 17 warning(s) · 11 info._
+_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 38 error(s) · 17 warning(s) · 11 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
 
@@ -553,6 +553,12 @@ _No findings._
 ### `StatusBodyConnectedLowBatteryPreview` · `wearos_large_round`
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusBodyConnectedLowBatteryPreview_Devices_Large_Round.a11y.png" width="400" />
+
+_No findings._
+
+### `StatusBodyConnectedMediumBatteryPreview` · `wearos_large_round`
+
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.a11y.png" width="400" />
 
 _No findings._
 
