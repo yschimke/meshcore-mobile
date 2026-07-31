@@ -99,10 +99,12 @@ fun ContactsBody(
             } else {
                 item {
                     ListHeader(
-                        modifier = Modifier.minimumVerticalContentPadding(
-                            top = ListHeaderDefaults.minimumTopListContentPadding,
-                            bottom = ListHeaderDefaults.minimumBottomListContentPadding,
-                        ),
+                        modifier = Modifier
+                            .minimumVerticalContentPadding(
+                                top = ListHeaderDefaults.minimumTopListContentPadding,
+                                bottom = ListHeaderDefaults.minimumBottomListContentPadding,
+                            )
+                            .transformedHeight(this, transformationSpec),
                     ) {
                         Text("Contacts")
                     }
