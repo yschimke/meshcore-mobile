@@ -935,9 +935,24 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.a11y.png",
       "cleanBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "64,422,190,548",
+          "level": "INFO",
+          "message": "This non-clickable item's speakable text: \"Selected\" is identical to that of 1 other item(s).",
+          "type": "DuplicateSpeakableTextCheck",
+          "viewDescription": "android.widget.RadioButton"
+        },
+        {
+          "boundsInScreen": "64,253,190,379",
+          "level": "WARNING",
+          "message": "This clickable item's speakable text: \"Not selected\" is identical to that of 2 other item(s).",
+          "type": "DuplicateSpeakableTextCheck",
+          "viewDescription": "android.widget.RadioButton"
+        }
+      ],
       "functionName": "ThemePickerDynamicDarkPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker \u2014 Dynamic + Dark",
@@ -945,9 +960,24 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.a11y.png",
       "cleanBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png",
-      "findings": [],
+      "findings": [
+        {
+          "boundsInScreen": "64,253,190,379",
+          "level": "INFO",
+          "message": "This non-clickable item's speakable text: \"Selected\" is identical to that of 1 other item(s).",
+          "type": "DuplicateSpeakableTextCheck",
+          "viewDescription": "android.widget.RadioButton"
+        },
+        {
+          "boundsInScreen": "64,422,190,548",
+          "level": "WARNING",
+          "message": "This clickable item's speakable text: \"Not selected\" is identical to that of 2 other item(s).",
+          "type": "DuplicateSpeakableTextCheck",
+          "viewDescription": "android.widget.RadioButton"
+        }
+      ],
       "functionName": "ThemePickerMeshcoreSystemPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker \u2014 MeshCore + System",

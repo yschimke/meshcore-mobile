@@ -1,6 +1,6 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 38 error(s) · 17 warning(s) · 11 info._
+_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 38 error(s) · 19 warning(s) · 13 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
 
@@ -386,15 +386,21 @@ _No findings._
 
 ### `ThemePickerDynamicDarkPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.a11y.png" width="400" />
 
-_No findings._
+| # | Level | Rule | Element | Message |
+|--:|---|---|---|---|
+| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.RadioButton | This non-clickable item's speakable text: "Selected" is identical to that of 1 other item(s). |
+| 2 | WARNING | DuplicateSpeakableTextCheck | android.widget.RadioButton | This clickable item's speakable text: "Not selected" is identical to that of 2 other item(s). |
 
 ### `ThemePickerMeshcoreSystemPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.a11y.png" width="400" />
 
-_No findings._
+| # | Level | Rule | Element | Message |
+|--:|---|---|---|---|
+| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.RadioButton | This non-clickable item's speakable text: "Selected" is identical to that of 1 other item(s). |
+| 2 | WARNING | DuplicateSpeakableTextCheck | android.widget.RadioButton | This clickable item's speakable text: "Not selected" is identical to that of 2 other item(s). |
 
 ## meshcore-components
 
