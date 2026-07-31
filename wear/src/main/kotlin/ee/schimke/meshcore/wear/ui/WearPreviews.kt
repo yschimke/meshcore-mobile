@@ -104,6 +104,28 @@ fun StatusBodyConnectedLowBatteryPreview() {
     }
 }
 
+/**
+ * The middle battery band. [StatusBody] tints the battery row in three steps, but the previews
+ * only covered the outer two — 18% (low) and 72% (normal) — leaving the 20..29 `tertiary` branch
+ * with no rendered coverage, so a regression there would not show up in a preview diff.
+ */
+@WearPreviewDevices
+@Composable
+fun StatusBodyConnectedMediumBatteryPreview() {
+    MeshcoreWearTheme {
+        PreviewAppScaffold {
+            StatusBody(
+                state = WearUiState.Connected(
+                    deviceName = "MeshNode-C",
+                    batteryPercent = 25,
+                    contactCount = 7,
+                    radioInfo = "869.525 MHz · SF10 · BW250k",
+                ),
+            )
+        }
+    }
+}
+
 @WearPreviewDevices
 @Composable
 fun StatusBodyErrorPreview() {
