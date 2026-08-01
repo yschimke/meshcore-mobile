@@ -660,7 +660,7 @@
     "functionName": "ThemePickerDynamicDarkPreview",
     "module": "app",
     "renderBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png",
-    "sha256": "9f34f448ca888f03e017b5dc60615255733c8c68432263d91a0887e8f2a1993c",
+    "sha256": "5cf9ca01b64d6ce2c811e4c5b5fad11be1b4db578d75e0b7b8c91829a0a32bda",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt"
   },
   "app/ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker \u2014 MeshCore + System": {
@@ -668,7 +668,7 @@
     "functionName": "ThemePickerMeshcoreSystemPreview",
     "module": "app",
     "renderBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png",
-    "sha256": "9f34f448ca888f03e017b5dc60615255733c8c68432263d91a0887e8f2a1993c",
+    "sha256": "531f55041677be169ad7d9bce30255dfda020c5411eebe625057c0f53c3b5bf8",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt"
   },
   "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo \u2014 no data": {
