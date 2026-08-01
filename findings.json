@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "annotatedBasename": "BleDeviceListEmptyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "BleDeviceListEmptyPreview_Dark.png",
       "findings": [],
       "functionName": "BleDeviceListEmptyPreview",
@@ -11,17 +11,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "BleDeviceListFewPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "BleDeviceListFewPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "535,106,815,232",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "BleDeviceListFewPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListFewPreview_Dark",
@@ -29,17 +21,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "BleDeviceListManyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "BleDeviceListManyPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "535,106,815,232",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 4 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "BleDeviceListManyPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListManyPreview_Dark",
@@ -47,7 +31,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "BlePermissionPanelDeniedPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "BlePermissionPanelDeniedPreview_Dark.png",
       "findings": [],
       "functionName": "BlePermissionPanelDeniedPreview",
@@ -57,7 +41,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "BlePermissionPanelFirstPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "BlePermissionPanelFirstPreview_Dark.png",
       "findings": [],
       "functionName": "BlePermissionPanelFirstPreview",
@@ -67,7 +51,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactListEmptyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactListEmptyPreview_Dark.png",
       "findings": [],
       "functionName": "ContactListEmptyPreview",
@@ -77,7 +61,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactListFewPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactListFewPreview_Dark.png",
       "findings": [],
       "functionName": "ContactListFewPreview",
@@ -87,7 +71,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactListManyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactListManyPreview_Dark.png",
       "findings": [],
       "functionName": "ContactListManyPreview",
@@ -97,7 +81,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactRowChatPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactRowChatPreview_Dark.png",
       "findings": [],
       "functionName": "ContactRowChatPreview",
@@ -107,7 +91,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactRowRepeaterPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactRowRepeaterPreview_Dark.png",
       "findings": [],
       "functionName": "ContactRowRepeaterPreview",
@@ -117,7 +101,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactRowRoomPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactRowRoomPreview_Dark.png",
       "findings": [],
       "functionName": "ContactRowRoomPreview",
@@ -127,7 +111,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ContactRowSensorPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactRowSensorPreview_Dark.png",
       "findings": [],
       "functionName": "ContactRowSensorPreview",
@@ -137,24 +121,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceBodyLoadingPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceBodyLoadingPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,323,146,370",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "502,835,576,909",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"In progress\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.ProgressBar"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceBodyLoadingPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLoadingPreview_Dark",
@@ -162,38 +131,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceBodyLowBatteryPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceBodyLowBatteryPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,323,146,370",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,396,146,443",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,549,146,596",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,231,398,297",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"node-peak\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceBodyLowBatteryPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLowBatteryPreview_Dark",
@@ -201,45 +141,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceBodyManyContactsPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceBodyManyContactsPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,323,146,370",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,396,146,443",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,549,146,596",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,231,458,297",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"base-station\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "772,1414,981,1540",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Joined\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceBodyManyContactsPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyManyContactsPreview_Dark",
@@ -247,38 +151,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceBodyNoContactsPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceBodyNoContactsPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,323,146,370",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,396,146,443",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,549,146,596",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,231,398,297",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"node-peak\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceBodyNoContactsPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyNoContactsPreview_Dark",
@@ -286,17 +161,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,758,420",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceInfoWidgetEmptyPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo \u2014 no data",
@@ -304,17 +171,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,758,420",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceInfoWidgetPopulatedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo \u2014 populated",
@@ -322,17 +181,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,758,420",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceInfoWidgetStalePreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo \u2014 stale",
@@ -340,7 +191,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceStatusConnectingPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceStatusConnectingPreview_Dark.png",
       "findings": [],
       "functionName": "DeviceStatusConnectingPreview",
@@ -350,17 +201,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceStatusFailedPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceStatusFailedPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "168,260,481,307",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"Connection failed\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceStatusFailedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Dark",
@@ -368,17 +211,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceSummaryCardLoadingPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceSummaryCardLoadingPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,176,146,223",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceSummaryCardLoadingPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardLoadingPreview_Dark",
@@ -386,31 +221,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceSummaryCardLowBatteryPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceSummaryCardLowBatteryPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,176,146,223",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,249,146,296",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,402,146,449",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceSummaryCardLowBatteryPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardLowBatteryPreview_Dark",
@@ -418,31 +231,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceSummaryCardPopulatedPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "DeviceSummaryCardPopulatedPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "84,134,104,181",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,208,104,255",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,362,104,401",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "DeviceSummaryCardPopulatedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardPopulatedPreview_Dark",
@@ -450,7 +241,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "PlayStoreFeature_Play_Store_feature_graphic_1024x500.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStoreFeature_Play_Store_feature_graphic_1024x500.png",
       "findings": [],
       "functionName": "PlayStoreFeature",
@@ -470,45 +261,9 @@
       "variant": "spec:width=512dp,height=512dp,dpi=160"
     },
     {
-      "annotatedBasename": "PlayStorePhoneHomeDark_Play_Store_phone_home_dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStorePhoneHomeDark_Play_Store_phone_home_dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,323,146,370",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,396,146,443",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,549,146,596",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,231,398,297",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"node-peak\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "701,864,981,990",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Favourited\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "PlayStorePhoneHomeDark",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneHomeDark_Play Store \u2014 phone home (dark)",
@@ -516,45 +271,9 @@
       "variant": "pixel_2"
     },
     {
-      "annotatedBasename": "PlayStorePhoneHomeLight_Play_Store_phone_home_light.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStorePhoneHomeLight_Play_Store_phone_home_light.png",
-      "findings": [
-        {
-          "boundsInScreen": "126,323,146,370",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,396,146,443",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "126,549,146,596",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "84,231,398,297",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"node-peak\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "701,864,981,990",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Favourited\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "PlayStorePhoneHomeLight",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneHomeLight_Play Store \u2014 phone home (light)",
@@ -562,17 +281,9 @@
       "variant": "pixel_2"
     },
     {
-      "annotatedBasename": "PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.png",
-      "findings": [
-        {
-          "boundsInScreen": "722,584,1002,710",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 3 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "PlayStorePhoneScannerBle",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneScannerBle_Play Store \u2014 phone scanner (BLE)",
@@ -580,17 +291,9 @@
       "variant": "pixel_2"
     },
     {
-      "annotatedBasename": "PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.png",
-      "findings": [
-        {
-          "boundsInScreen": "722,463,1002,589",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "PlayStorePhoneScannerSaved",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneScannerSaved_Play Store \u2014 phone scanner (saved)",
@@ -598,52 +301,9 @@
       "variant": "pixel_2"
     },
     {
-      "annotatedBasename": "PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home.png",
-      "findings": [
-        {
-          "boundsInScreen": "96,246,112,282",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "96,302,112,338",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "96,418,112,454",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "64,176,308,226",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"node-peak\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "912,657,1128,753",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Favourited\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        },
-        {
-          "boundsInScreen": "968,1485,1128,1581",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Joined\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "PlayStoreTabletSevenHome",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletSevenHome_Play Store \u2014 7-inch tablet home",
@@ -651,52 +311,9 @@
       "variant": "spec:width=600dp,height=960dp,dpi=320"
     },
     {
-      "annotatedBasename": "PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.png",
-      "findings": [
-        {
-          "boundsInScreen": "96,246,112,282",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "96,302,112,338",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "96,418,112,454",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "64,176,308,226",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"node-peak\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "1312,657,1528,753",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Favourited\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        },
-        {
-          "boundsInScreen": "1368,1485,1528,1581",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Selected, Joined\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "PlayStoreTabletTenHome",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletTenHome_Play Store \u2014 10-inch tablet home",
@@ -704,7 +321,7 @@
       "variant": "spec:width=800dp,height=1280dp,dpi=320"
     },
     {
-      "annotatedBasename": "SavedDevicesEmptyPreview_Saved_devices_empty.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "SavedDevicesEmptyPreview_Saved_devices_empty.png",
       "findings": [],
       "functionName": "SavedDevicesEmptyPreview",
@@ -714,31 +331,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "SavedDevicesPopulatedPreview_Saved_devices_populated.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "SavedDevicesPopulatedPreview_Saved_devices_populated.png",
-      "findings": [
-        {
-          "boundsInScreen": "445,316,571,442",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Favorite\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        },
-        {
-          "boundsInScreen": "169,567,530,620",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"192.168.1.10:5000\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        },
-        {
-          "boundsInScreen": "696,316,976,442",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "SavedDevicesPopulatedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesPopulatedPreview_Saved devices \u2014 populated",
@@ -746,7 +341,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ScannerBleEmptyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerBleEmptyPreview_Dark.png",
       "findings": [],
       "functionName": "ScannerBleEmptyPreview",
@@ -756,17 +351,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerBleFewPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerBleFewPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "722,584,1002,710",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "ScannerBleFewPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleFewPreview_Dark",
@@ -774,17 +361,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerBleManyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerBleManyPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "722,584,1002,710",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 7 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "ScannerBleManyPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleManyPreview_Dark",
@@ -792,7 +371,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerBlePermissionPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerBlePermissionPreview_Dark.png",
       "findings": [],
       "functionName": "ScannerBlePermissionPreview",
@@ -802,7 +381,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerSavedEmptyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerSavedEmptyPreview_Dark.png",
       "findings": [],
       "functionName": "ScannerSavedEmptyPreview",
@@ -812,24 +391,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerSavedPopulatedPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerSavedPopulatedPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "722,463,1002,589",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        },
-        {
-          "boundsInScreen": "169,714,530,767",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"192.168.1.10:5000\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.TextView"
-        }
-      ],
+      "findings": [],
       "functionName": "ScannerSavedPopulatedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedPopulatedPreview_Dark",
@@ -837,7 +401,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerTcpPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerTcpPreview_Dark.png",
       "findings": [],
       "functionName": "ScannerTcpPreview",
@@ -847,7 +411,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerUsbEmptyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerUsbEmptyPreview_Dark.png",
       "findings": [],
       "functionName": "ScannerUsbEmptyPreview",
@@ -857,17 +421,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ScannerUsbFewPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ScannerUsbFewPreview_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "722,494,1002,620",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "ScannerUsbFewPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbFewPreview_Dark",
@@ -875,7 +431,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "TcpConnectPanelBusyPreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "TcpConnectPanelBusyPreview_Dark.png",
       "findings": [],
       "functionName": "TcpConnectPanelBusyPreview",
@@ -885,7 +441,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "TcpConnectPanelIdlePreview_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "TcpConnectPanelIdlePreview_Dark.png",
       "findings": [],
       "functionName": "TcpConnectPanelIdlePreview",
@@ -895,7 +451,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemeFoundationMaterial3DarkPreview_Foundation_Material_3_dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ThemeFoundationMaterial3DarkPreview_Foundation_Material_3_dark.png",
       "findings": [],
       "functionName": "ThemeFoundationMaterial3DarkPreview",
@@ -905,7 +461,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light.png",
       "findings": [],
       "functionName": "ThemeFoundationMaterial3LightPreview",
@@ -915,7 +471,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark.png",
       "findings": [],
       "functionName": "ThemeFoundationMeshcoreDarkPreview",
@@ -925,7 +481,7 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light.png",
       "findings": [],
       "functionName": "ThemeFoundationMeshcoreLightPreview",
@@ -935,24 +491,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png",
-      "findings": [
-        {
-          "boundsInScreen": "64,422,190,548",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"Selected\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        },
-        {
-          "boundsInScreen": "64,253,190,379",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Not selected\" is identical to that of 2 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        }
-      ],
+      "findings": [],
       "functionName": "ThemePickerDynamicDarkPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker \u2014 Dynamic + Dark",
@@ -960,24 +501,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png",
-      "findings": [
-        {
-          "boundsInScreen": "64,253,190,379",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"Selected\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        },
-        {
-          "boundsInScreen": "64,422,190,548",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Not selected\" is identical to that of 2 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        }
-      ],
+      "findings": [],
       "functionName": "ThemePickerMeshcoreSystemPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker \u2014 MeshCore + System",
@@ -1195,7 +721,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactsBodyEmptyPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactsBodyEmptyPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "ContactsBodyEmptyPreview",
@@ -1205,7 +731,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "ContactsBodyFewPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactsBodyFewPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "ContactsBodyFewPreview",
@@ -1215,7 +741,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "InteractiveToggleChipPreview_Interactive_Toggle_Chip.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "InteractiveToggleChipPreview_Interactive_Toggle_Chip.png",
       "findings": [],
       "functionName": "InteractiveToggleChipPreview",
@@ -1225,7 +751,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "QuickReplyBodyPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "QuickReplyBodyPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "QuickReplyBodyPreview",
@@ -1235,7 +761,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyConnectedLowBatteryPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyConnectedLowBatteryPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "StatusBodyConnectedLowBatteryPreview",
@@ -1245,7 +771,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "StatusBodyConnectedMediumBatteryPreview",
@@ -1255,17 +781,9 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyConnectedPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyConnectedPreview_Devices_Large_Round.png",
-      "findings": [
-        {
-          "boundsInScreen": "60,354,394,440",
-          "level": "ERROR",
-          "message": "This item's height is 43dp. Consider making the height of this touch target 48dp or larger.",
-          "type": "TouchTargetSizeCheck",
-          "viewDescription": "android.view.View"
-        }
-      ],
+      "findings": [],
       "functionName": "StatusBodyConnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.ui.WearPreviewsKt.StatusBodyConnectedPreview_Devices - Large Round",
@@ -1273,7 +791,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyErrorPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyErrorPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "StatusBodyErrorPreview",
@@ -1283,7 +801,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyLoadingPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyLoadingPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "StatusBodyLoadingPreview",
@@ -1293,7 +811,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyPhoneDisconnectedPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyPhoneDisconnectedPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "StatusBodyPhoneDisconnectedPreview",
@@ -1303,7 +821,7 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusBodyRadioDisconnectedPreview_Devices_Large_Round.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusBodyRadioDisconnectedPreview_Devices_Large_Round.png",
       "findings": [],
       "functionName": "StatusBodyRadioDisconnectedPreview",
@@ -1313,17 +831,9 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusWidgetConnectedPreview_Status_connected.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusWidgetConnectedPreview_Status_connected.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "StatusWidgetConnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status \u2014 connected",
@@ -1331,17 +841,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "StatusWidgetDisconnectedPreview_Status_disconnected.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusWidgetDisconnectedPreview_Status_disconnected.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "StatusWidgetDisconnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status \u2014 disconnected",
@@ -1349,17 +851,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "StatusWidgetLowBatteryPreview_Status_low_battery.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "StatusWidgetLowBatteryPreview_Status_low_battery.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "StatusWidgetLowBatteryPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status \u2014 low battery",
@@ -1367,17 +861,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "WearComponentCatalogPreview_Component_Catalog.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "WearComponentCatalogPreview_Component_Catalog.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "WearComponentCatalogPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component Catalog",
@@ -1385,22 +871,15 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "WearComponentGridPreview_Component_Grid.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "WearComponentGridPreview_Component_Grid.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,1309,1309",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "findings": [],
       "functionName": "WearComponentGridPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "variant": ""
     }
-  ]
+  ],
+  "status": "atf-unavailable"
 }

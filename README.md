@@ -1,199 +1,163 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/pr`. 88 preview(s) across 3 module(s) · 38 error(s) · 19 warning(s) · 13 info._
+_Auto-generated from `compose-preview/a11y/pr`. 88 preview(s) across 3 module(s) · 0 error(s) · 0 warning(s) · 0 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
+
+> [!WARNING]
+> ATF data unavailable for this run — the daemon did not return accessibility findings. The renders below are **not** accessibility-checked.
+
+No accessibility findings.
 
 ## app
 
 ### `BleDeviceListEmptyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BleDeviceListEmptyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BleDeviceListEmptyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `BleDeviceListFewPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BleDeviceListFewPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BleDeviceListFewPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `BleDeviceListManyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BleDeviceListManyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BleDeviceListManyPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 4 other item(s). |
+_No findings._
 
 ### `BlePermissionPanelDeniedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BlePermissionPanelDeniedPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BlePermissionPanelDeniedPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `BlePermissionPanelFirstPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BlePermissionPanelFirstPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/BlePermissionPanelFirstPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactListEmptyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactListEmptyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactListEmptyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactListFewPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactListFewPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactListFewPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactListManyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactListManyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactListManyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactRowChatPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowChatPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowChatPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactRowRepeaterPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowRepeaterPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowRepeaterPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactRowRoomPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowRoomPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowRoomPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ContactRowSensorPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowSensorPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ContactRowSensorPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `DeviceBodyLoadingPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyLoadingPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyLoadingPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | INFO | DuplicateSpeakableTextCheck | android.widget.ProgressBar | This non-clickable item's speakable text: "In progress" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceBodyLowBatteryPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyLowBatteryPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyLowBatteryPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceBodyManyContactsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyManyContactsPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyManyContactsPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "base-station" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Joined" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceBodyNoContactsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyNoContactsPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceBodyNoContactsPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceInfoWidgetEmptyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceInfoWidgetPopulatedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceInfoWidgetStalePreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceStatusConnectingPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceStatusConnectingPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceStatusConnectingPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `DeviceStatusFailedPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceStatusFailedPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceStatusFailedPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "Connection failed" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceSummaryCardLoadingPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceSummaryCardLoadingPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceSummaryCardLoadingPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceSummaryCardLowBatteryPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceSummaryCardLowBatteryPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceSummaryCardLowBatteryPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceSummaryCardPopulatedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceSummaryCardPopulatedPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/DeviceSummaryCardPopulatedPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `PlayStoreFeature` · `spec:width=1024dp,height=500dp,dpi=160`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStoreFeature_Play_Store_feature_graphic_1024x500.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStoreFeature_Play_Store_feature_graphic_1024x500.png" width="400" />
 
 _No findings._
 
@@ -205,202 +169,153 @@ _No findings._
 
 ### `PlayStorePhoneHomeDark` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneHomeDark_Play_Store_phone_home_dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneHomeDark_Play_Store_phone_home_dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStorePhoneHomeLight` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneHomeLight_Play_Store_phone_home_light.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneHomeLight_Play_Store_phone_home_light.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStorePhoneScannerBle` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 3 other item(s). |
+_No findings._
 
 ### `PlayStorePhoneScannerSaved` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStoreTabletSevenHome` · `spec:width=600dp,height=960dp,dpi=320`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
-| 6 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Joined" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStoreTabletTenHome` · `spec:width=800dp,height=1280dp,dpi=320`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
-| 6 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Joined" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `SavedDevicesEmptyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/SavedDevicesEmptyPreview_Saved_devices_empty.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/SavedDevicesEmptyPreview_Saved_devices_empty.png" width="400" />
 
 _No findings._
 
 ### `SavedDevicesPopulatedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/SavedDevicesPopulatedPreview_Saved_devices_populated.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/SavedDevicesPopulatedPreview_Saved_devices_populated.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Favorite" is identical to that of 1 other item(s). |
-| 2 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "192.168.1.10:5000" is identical to that of 1 other item(s). |
-| 3 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `ScannerBleEmptyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBleEmptyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBleEmptyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ScannerBleFewPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBleFewPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBleFewPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `ScannerBleManyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBleManyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBleManyPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 7 other item(s). |
+_No findings._
 
 ### `ScannerBlePermissionPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBlePermissionPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerBlePermissionPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ScannerSavedEmptyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerSavedEmptyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerSavedEmptyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ScannerSavedPopulatedPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerSavedPopulatedPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerSavedPopulatedPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
-| 2 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "192.168.1.10:5000" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `ScannerTcpPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerTcpPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerTcpPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ScannerUsbEmptyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerUsbEmptyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerUsbEmptyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ScannerUsbFewPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerUsbFewPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ScannerUsbFewPreview_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `TcpConnectPanelBusyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/TcpConnectPanelBusyPreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/TcpConnectPanelBusyPreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `TcpConnectPanelIdlePreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/TcpConnectPanelIdlePreview_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/TcpConnectPanelIdlePreview_Dark.png" width="400" />
 
 _No findings._
 
 ### `ThemeFoundationMaterial3DarkPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMaterial3DarkPreview_Foundation_Material_3_dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMaterial3DarkPreview_Foundation_Material_3_dark.png" width="400" />
 
 _No findings._
 
 ### `ThemeFoundationMaterial3LightPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light.png" width="400" />
 
 _No findings._
 
 ### `ThemeFoundationMeshcoreDarkPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark.png" width="400" />
 
 _No findings._
 
 ### `ThemeFoundationMeshcoreLightPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light.png" width="400" />
 
 _No findings._
 
 ### `ThemePickerDynamicDarkPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.RadioButton | This non-clickable item's speakable text: "Selected" is identical to that of 1 other item(s). |
-| 2 | WARNING | DuplicateSpeakableTextCheck | android.widget.RadioButton | This clickable item's speakable text: "Not selected" is identical to that of 2 other item(s). |
+_No findings._
 
 ### `ThemePickerMeshcoreSystemPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/app/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.RadioButton | This non-clickable item's speakable text: "Selected" is identical to that of 1 other item(s). |
-| 2 | WARNING | DuplicateSpeakableTextCheck | android.widget.RadioButton | This clickable item's speakable text: "Not selected" is identical to that of 2 other item(s). |
+_No findings._
 
 ## meshcore-components
 
@@ -534,108 +449,96 @@ _No findings._
 
 ### `ContactsBodyEmptyPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/ContactsBodyEmptyPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/ContactsBodyEmptyPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `ContactsBodyFewPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/ContactsBodyFewPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/ContactsBodyFewPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `InteractiveToggleChipPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/InteractiveToggleChipPreview_Interactive_Toggle_Chip.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/InteractiveToggleChipPreview_Interactive_Toggle_Chip.png" width="400" />
 
 _No findings._
 
 ### `QuickReplyBodyPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/QuickReplyBodyPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/QuickReplyBodyPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusBodyConnectedLowBatteryPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyConnectedLowBatteryPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyConnectedLowBatteryPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusBodyConnectedMediumBatteryPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusBodyConnectedPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyConnectedPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyConnectedPreview_Devices_Large_Round.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | TouchTargetSizeCheck | android.view.View | This item's height is 43dp. Consider making the height of this touch target 48dp or larger. |
+_No findings._
 
 ### `StatusBodyErrorPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyErrorPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyErrorPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusBodyLoadingPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyLoadingPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyLoadingPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusBodyPhoneDisconnectedPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyPhoneDisconnectedPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyPhoneDisconnectedPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusBodyRadioDisconnectedPreview` · `wearos_large_round`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Large_Round.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Large_Round.png" width="400" />
 
 _No findings._
 
 ### `StatusWidgetConnectedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusWidgetConnectedPreview_Status_connected.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusWidgetConnectedPreview_Status_connected.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `StatusWidgetDisconnectedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `StatusWidgetLowBatteryPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `WearComponentCatalogPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/WearComponentCatalogPreview_Component_Catalog.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/WearComponentCatalogPreview_Component_Catalog.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `WearComponentGridPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/WearComponentGridPreview_Component_Grid.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/pr/renders/wear/WearComponentGridPreview_Component_Grid.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
