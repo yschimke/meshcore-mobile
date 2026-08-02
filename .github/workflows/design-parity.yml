@@ -46,7 +46,12 @@ jobs:
       - name: Install compose-preview CLI
         uses: yschimke/compose-ai-tools/.github/actions/install@v0.19.19
         with:
-          version: "0.16.0"
+          # Keep the CLI aligned with the Gradle plugin that produced the
+          # preview manifest. In particular, current bundle packing translates
+          # filename-safe ids back to raw discovery ids before requesting
+          # semantics from the daemon.
+          version: catalog
+          catalog-key: composePreviewPlugin
 
       - name: Render candidate bundle (CMP desktop)
         env:
