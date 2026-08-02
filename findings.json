@@ -15,7 +15,7 @@
       "cleanBasename": "BleDeviceListFewPreview_Dark.png",
       "findings": [
         {
-          "boundsInScreen": "535,106,815,232",
+          "boundsInScreen": "538,106,818,232",
           "level": "WARNING",
           "message": "This clickable item's speakable text: \"Connect\" is identical to that of 1 other item(s).",
           "type": "DuplicateSpeakableTextCheck",
@@ -33,7 +33,7 @@
       "cleanBasename": "BleDeviceListManyPreview_Dark.png",
       "findings": [
         {
-          "boundsInScreen": "535,106,815,232",
+          "boundsInScreen": "538,106,818,232",
           "level": "WARNING",
           "message": "This clickable item's speakable text: \"Connect\" is identical to that of 4 other item(s).",
           "type": "DuplicateSpeakableTextCheck",
@@ -1389,7 +1389,7 @@
       "cleanBasename": "WearComponentGridPreview_Component_Grid.png",
       "findings": [
         {
-          "boundsInScreen": "0,0,1309,1309",
+          "boundsInScreen": "0,0,1312,1312",
           "level": "ERROR",
           "message": "This item may not have a label readable by screen readers.",
           "type": "SpeakableTextPresentCheck",
