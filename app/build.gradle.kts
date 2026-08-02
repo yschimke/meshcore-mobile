@@ -104,6 +104,9 @@ dependencies {
   implementation(libs.compose.ui.text.google.fonts)
   implementation(libs.compose.ui)
   implementation(libs.compose.uiToolingPreview)
+  // ThemeCatalog providers make every persisted palette x light/dark combination available both
+  // as a generated specimen sheet and as a live theme override for any app preview.
+  implementation(libs.compose.preview.annotations)
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewmodelCompose)
   implementation(libs.androidx.navigation3.runtime)

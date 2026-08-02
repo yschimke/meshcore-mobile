@@ -15,6 +15,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import android.graphics.Color as AndroidColor
 
@@ -38,6 +39,9 @@ import android.graphics.Color as AndroidColor
 //     by our custom display faces.
 private val DefaultTypography: Typography = Typography()
 
+/** True while a theme-catalog provider already owns the preview's outer theme. */
+internal val LocalThemeCatalogOverride = staticCompositionLocalOf { false }
+
 /**
  * Top-level theme wrapper. All previews and the MainActivity content
  * should be wrapped in this — never in a bare MaterialTheme {} — so
@@ -53,6 +57,14 @@ fun MeshcoreTheme(
     palette: ThemePalette = ThemePalette.Meshcore,
     content: @Composable () -> Unit,
 ) {
+    // Theme catalog providers wrap the preview function. Most MeshCore previews also install their
+    // normal default theme in their body; without this guard that inner theme would shadow the
+    // selected provider and every theme override would render identical pixels.
+    if (LocalThemeCatalogOverride.current) {
+        content()
+        return
+    }
+
     val useDynamic = palette == ThemePalette.Dynamic
     val scheme = when {
         useDynamic && darkTheme -> dynamicDarkColorScheme(LocalContext.current)

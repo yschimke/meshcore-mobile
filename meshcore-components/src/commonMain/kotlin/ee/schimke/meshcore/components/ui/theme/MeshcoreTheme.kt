@@ -2,6 +2,10 @@ package ee.schimke.meshcore.components.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
+
+/** True while a theme-catalog provider already owns the preview's outer theme. */
+internal val LocalThemeCatalogOverride = staticCompositionLocalOf { false }
 
 /**
  * Multiplatform MeshCore theme for the shared composables (and the design-parity desktop render).
@@ -10,6 +14,11 @@ import androidx.compose.runtime.Composable
  */
 @Composable
 fun MeshcoreTheme(darkTheme: Boolean = false, content: @Composable () -> Unit) {
+  if (LocalThemeCatalogOverride.current) {
+    content()
+    return
+  }
+
   MaterialTheme(
     colorScheme = if (darkTheme) MeshcoreDarkColors else MeshcoreLightColors,
     typography = MeshcoreBrandedTypography,
