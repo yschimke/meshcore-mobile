@@ -1,6 +1,7 @@
 package ee.schimke.meshcore.components.ui.theme
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.tooling.preview.PreviewWrapperProvider
 import ee.schimke.composeai.preview.ThemeCatalog
 
@@ -17,15 +18,23 @@ import ee.schimke.composeai.preview.ThemeCatalog
  * render use. They live in `commonMain` (the tokens do too), which is why `preview-annotations` had
  * to ship as a Kotlin Multiplatform artifact.
  */
+@Composable
+private fun MeshcoreCatalogTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
+  MeshcoreTheme(darkTheme = darkTheme) {
+    CompositionLocalProvider(LocalThemeCatalogOverride provides true, content = content)
+  }
+}
+
 @ThemeCatalog(name = "MeshCore Light", group = "MeshCore")
 class MeshcoreLightThemeCatalog : PreviewWrapperProvider {
   @Composable
   override fun Wrap(content: @Composable () -> Unit) =
-    MeshcoreTheme(darkTheme = false) { content() }
+    MeshcoreCatalogTheme(darkTheme = false, content = content)
 }
 
 @ThemeCatalog(name = "MeshCore Dark", group = "MeshCore")
 class MeshcoreDarkThemeCatalog : PreviewWrapperProvider {
   @Composable
-  override fun Wrap(content: @Composable () -> Unit) = MeshcoreTheme(darkTheme = true) { content() }
+  override fun Wrap(content: @Composable () -> Unit) =
+    MeshcoreCatalogTheme(darkTheme = true, content = content)
 }

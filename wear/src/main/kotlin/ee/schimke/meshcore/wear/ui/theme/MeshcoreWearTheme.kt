@@ -1,6 +1,7 @@
 package ee.schimke.meshcore.wear.ui.theme
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -24,6 +25,9 @@ import ee.schimke.meshcore.wear.R
 // Uses androidx.wear.compose.material3.MaterialTheme directly.
 // No Horologist Compose wrappers.
 // ---------------------------------------------------------------------------
+
+/** True while a Wear theme-catalog provider already owns the preview's outer theme. */
+internal val LocalWearThemeCatalogOverride = staticCompositionLocalOf { false }
 
 // --- Dark palette (same values as phone MeshcoreDarkColors) ----------------
 
@@ -204,6 +208,11 @@ private val WearTypography = Typography(
 
 @Composable
 fun MeshcoreWearTheme(content: @Composable () -> Unit) {
+    if (LocalWearThemeCatalogOverride.current) {
+        content()
+        return
+    }
+
     MaterialTheme(
         colorScheme = MeshcoreWearColors,
         typography = WearTypography,
