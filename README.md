@@ -104,6 +104,10 @@ The render task completed but no PNG was produced for these previews. Entries wi
 | `DeviceInfoWidgetEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png" width="150" /> |
 | `DeviceInfoWidgetPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png" width="150" /> |
 | `DeviceInfoWidgetStalePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale.png" width="150" /> |
+| `Dynamic Dark theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__Dynamic_Dark.png" width="150" /> |
+| `Dynamic Light theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__Dynamic_Light.png" width="150" /> |
+| `MeshCore Dark theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__MeshCore_Dark.png" width="150" /> |
+| `MeshCore Light theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__MeshCore_Light.png" width="150" /> |
 
 ## meshcore-components
 
@@ -163,4 +167,5 @@ The render task completed but no PNG was produced for these previews. Entries wi
 | `StatusWidgetLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery.png" width="150" /> |
 | `WearComponentCatalogPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentCatalogPreview_Component_Catalog.png" width="150" /> |
 | `WearComponentGridPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentGridPreview_Component_Grid.png" width="150" /> |
+| `MeshCore theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/wearthemecatalog__MeshCore.png" width="150" /> |
 
