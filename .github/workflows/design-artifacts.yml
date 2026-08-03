@@ -48,6 +48,12 @@ on:
       - 'build.gradle.kts'
       - '**/build.gradle.kts'
       - 'catalog.spec.json'
+      # Design references are published onto the delivery branch from these, so
+      # they are inputs to the artifact exactly like catalog.spec.json is. Without
+      # them here, editing a mapping or a committed mock leaves the server serving
+      # the previous reference until the weekly cron or an unrelated change.
+      - 'design-map.json'
+      - 'design/**'
       - '.github/workflows/design-artifacts.yml'
       - '.github/workflows/compose-preview.yml'
   workflow_dispatch:
@@ -220,9 +226,12 @@ jobs:
       allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
     secrets:
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
-      # Lets the reusable workflow publish the `figma:` entries in design-map.json
-      # as design references on the delivery branch, so the preview server's
-      # PNG ↔ Design reference lane covers the light variants too and not just the
-      # committed HTML mocks. Same read-only token design-parity.yml already uses;
-      # without it those five entries are skipped with a warning.
-      figma_token: ${{ secrets.FIGMA_TOKEN }}
+      # TODO: add `figma_token: ${{ secrets.FIGMA_TOKEN }}` once
+      # yschimke/compose-ai-tools#3203 is on `main`. It lets the reusable workflow
+      # publish the `figma:` entries in design-map.json as design references, so the
+      # preview server's PNG ↔ Design reference lane covers the light variants and
+      # not just the committed HTML dark mocks. It cannot land here first: this
+      # caller pins the reusable workflow at `@main`, and GitHub rejects a named
+      # secret that the called workflow's `on.workflow_call.secrets` doesn't
+      # declare — the run would fail to parse before the job starts, taking every
+      # push/cron/dispatch of this workflow with it.
