@@ -110,7 +110,7 @@ fun DeviceInfoWidgetContentDynamic(
         RemoteBox(
             modifier = RemoteModifier.fillMaxWidth().height(4.rdp)
                 .background(SurfaceContainerHighest)
-                .visibility((batteryProgress ge (0.rf)).toVisibility()),
+                .visibility(batteryProgress.isGreaterThanOrEqualTo(0.rf).toVisibility()),
         ) {
             RemoteBox(
                 modifier = RemoteModifier
@@ -176,7 +176,7 @@ fun FunWithExpressions2(batteryLine: RemoteString, batteryPct: RemoteFloat) {
         )
     }
 
-    val batteryColor = (batteryPct lt 20.rf).select(Color.Red.rc, Color.Black.rc)
+    val batteryColor = batteryPct.isLessThan(20.rf).select(Color.Red.rc, Color.Black.rc)
 
     RemoteText(
         batteryLine,
