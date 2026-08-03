@@ -903,6 +903,14 @@
     "sha256": "1fcd20f766dc00ba0f13ee385db954d6c9ea4bc8d693894fc92ed6b8e5e46397",
     "sourceFile": null
   },
+  "wear/activity__WearMainActivity": {
+    "captureLabel": "",
+    "functionName": "WearMainActivity",
+    "module": "wear",
+    "renderBasename": "activity__WearMainActivity.png",
+    "sha256": "600eca364472eb09c7aa65ed162fc9de5dbed98d604f8ba29514c027b3b11e2c",
+    "sourceFile": null
+  },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
     "captureLabel": "",
     "functionName": "AnimatedCircularProgressPreview",

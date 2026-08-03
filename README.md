@@ -2,17 +2,6 @@
 
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
-> [!WARNING]
-> 1 preview(s) failed to render in the latest update (1 with no prior baseline to retain). See **Render Failures** below.
-
-## Render Failures
-
-The render task completed but no PNG was produced for these previews. Entries with a prior baseline keep their previous image; the rest are absent from the gallery until a successful render lands.
-
-| Preview | Module | Function | Source | Baseline |
-|---------|--------|----------|--------|----------|
-| `wear/activity__WearMainActivity` | wear | `WearMainActivity` | `—` | none |
-
 ## app
 
 | Preview | Image |
@@ -140,6 +129,7 @@ The render task completed but no PNG was produced for these previews. Entries wi
 | Preview | Image |
 |---------|-------|
 | `LicenseActivity` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/activity__LicenseActivity.png" width="150" /> |
+| `WearMainActivity` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/activity__WearMainActivity.png" width="150" /> |
 | `AnimatedCircularProgressPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/AnimatedCircularProgressPreview_Animated_Circular_Progress.gif" width="150" /> |
 | `ContactsBodyEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ContactsBodyEmptyPreview_Devices_Large_Round.png" width="150" /> |
 | `ContactsBodyEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ContactsBodyEmptyPreview_Devices_Small_Round.png" width="150" /> |
