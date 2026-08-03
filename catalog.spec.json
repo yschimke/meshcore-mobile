@@ -217,6 +217,17 @@
           "caption": "Device screen — self known, contacts still loading."
         },
         {
+          "componentId": "Device/Populated",
+          "preview": "DeviceBodyPreview",
+          "caption": "Device screen — populated with self info, contacts and channels.",
+          "variants": [
+            {
+              "theme": "dark",
+              "preview": "DeviceBodyDarkPreview"
+            }
+          ]
+        },
+        {
           "componentId": "Device/LowBattery",
           "preview": "DeviceBodyLowBatteryPreview",
           "caption": "Device screen — populated, low-battery reading."
