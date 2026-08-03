@@ -3,7 +3,7 @@
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
 > [!WARNING]
-> 1 preview(s) failed to render in the latest update (1 with no prior baseline to retain). See **Render Failures** below.
+> 9 preview(s) failed to render in the latest update (8 retained from the prior baseline; 1 with no prior baseline to retain). See **Render Failures** below.
 
 ## Render Failures
 
@@ -11,7 +11,15 @@ The render task completed but no PNG was produced for these previews. Entries wi
 
 | Preview | Module | Function | Source | Baseline |
 |---------|--------|----------|--------|----------|
+| `app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo — no data` | app | `DeviceInfoWidgetEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo — populated` | app | `DeviceInfoWidgetPopulatedPreview` | `src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo — stale` | app | `DeviceInfoWidgetStalePreview` | `src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt` | retained |
 | `wear/activity__WearMainActivity` | wear | `WearMainActivity` | `—` | none |
+| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status — connected` | wear | `StatusWidgetConnectedPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
+| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status — disconnected` | wear | `StatusWidgetDisconnectedPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
+| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status — low battery` | wear | `StatusWidgetLowBatteryPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
+| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component Catalog` | wear | `WearComponentCatalogPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
+| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid` | wear | `WearComponentGridPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
 
 ## app
 
@@ -101,9 +109,6 @@ The render task completed but no PNG was produced for these previews. Entries wi
 | `ThemeFoundationMeshcoreLightPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light.png" width="150" /> |
 | `ThemePickerDynamicDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark.png" width="150" /> |
 | `ThemePickerMeshcoreSystemPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System.png" width="150" /> |
-| `DeviceInfoWidgetEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.png" width="150" /> |
-| `DeviceInfoWidgetPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.png" width="150" /> |
-| `DeviceInfoWidgetStalePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale.png" width="150" /> |
 | `Dynamic Dark theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__Dynamic_Dark.png" width="150" /> |
 | `Dynamic Light theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__Dynamic_Light.png" width="150" /> |
 | `MeshCore Dark theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/themecatalog__MeshCore_Dark.png" width="150" /> |
@@ -162,10 +167,5 @@ The render task completed but no PNG was produced for these previews. Entries wi
 | `StatusBodyPhoneDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyPhoneDisconnectedPreview_Devices_Small_Round.png" width="150" /> |
 | `StatusBodyRadioDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Large_Round.png" width="150" /> |
 | `StatusBodyRadioDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Small_Round.png" width="150" /> |
-| `StatusWidgetConnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetConnectedPreview_Status_connected.png" width="150" /> |
-| `StatusWidgetDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected.png" width="150" /> |
-| `StatusWidgetLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery.png" width="150" /> |
-| `WearComponentCatalogPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentCatalogPreview_Component_Catalog.png" width="150" /> |
-| `WearComponentGridPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentGridPreview_Component_Grid.png" width="150" /> |
 | `MeshCore theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/wearthemecatalog__MeshCore.png" width="150" /> |
 
