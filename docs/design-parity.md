@@ -401,6 +401,15 @@ Two things follow from this that are worth knowing when editing `design-map.json
   The 28 component / Scanner / Saved-devices entries added alongside this do
   clear that bar — `catalog.spec.json` already publishes every one of those
   `@Preview` functions — so they reach the server as well as the parity run.
+- **Those 28 need the export driver's previewId narrowing to publish correctly.**
+  Their light and dark renders are two `@Preview` annotations on *one* function,
+  so the publisher's function-name join matches both stickers, and a light-only
+  reference would be published against the dark one too — the server then scores
+  a dark render against a light design. `planDesignReferences` narrows the match
+  set with each entry's `previewId` to prevent that; until a `design-artifacts`
+  run picks up a driver carrying it, expect the dark rows of these components to
+  read as large diffs on the compare page. The parity run itself is unaffected —
+  it joins on `previewId` directly, so it only ever pairs the light render.
 - **The `figma:` entries need the `FIGMA_TOKEN` secret** to be published, which
   `design-artifacts.yml` passes through. Without it the `figma`-sourced variants
   are skipped with a warning and only the committed HTML dark mocks appear on the
