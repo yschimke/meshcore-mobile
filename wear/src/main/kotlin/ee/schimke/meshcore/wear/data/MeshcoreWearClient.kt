@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.Flow
  * Uses Horologist's [MessageClientChannel] to create a gRPC channel,
  * then delegates to the generated coroutine stub.
  */
-class MeshcoreWearClient(registry: WearDataLayerRegistry) {
+class MeshcoreWearClient(registry: WearDataLayerRegistry) : WearClient {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
@@ -38,18 +38,18 @@ class MeshcoreWearClient(registry: WearDataLayerRegistry) {
 
     private val empty = Empty.getDefaultInstance()
 
-    suspend fun getConnectionStatus() = stub.getConnectionStatus(empty)
+    override suspend fun getConnectionStatus() = stub.getConnectionStatus(empty)
 
-    suspend fun getSelfInfo() = stub.getSelfInfo(empty)
+    override suspend fun getSelfInfo() = stub.getSelfInfo(empty)
 
-    suspend fun getContacts(refresh: Boolean = false) =
+    override suspend fun getContacts(refresh: Boolean) =
         stub.getContacts(GetContactsRequest.newBuilder().setRefresh(refresh).build())
 
-    suspend fun getChannels() = stub.getChannels(empty)
+    override suspend fun getChannels() = stub.getChannels(empty)
 
-    suspend fun getBatteryInfo() = stub.getBatteryInfo(empty)
+    override suspend fun getBatteryInfo() = stub.getBatteryInfo(empty)
 
-    suspend fun sendDirectMessage(recipientPublicKey: com.google.protobuf.ByteString, text: String) =
+    override suspend fun sendDirectMessage(recipientPublicKey: com.google.protobuf.ByteString, text: String) =
         stub.sendDirectMessage(
             SendDirectMessageRequest.newBuilder()
                 .setRecipientPublicKey(recipientPublicKey)
@@ -57,7 +57,7 @@ class MeshcoreWearClient(registry: WearDataLayerRegistry) {
                 .build(),
         )
 
-    suspend fun sendChannelMessage(channelIndex: Int, text: String) =
+    override suspend fun sendChannelMessage(channelIndex: Int, text: String) =
         stub.sendChannelMessage(
             SendChannelMessageRequest.newBuilder()
                 .setChannelIndex(channelIndex)
@@ -65,9 +65,9 @@ class MeshcoreWearClient(registry: WearDataLayerRegistry) {
                 .build(),
         )
 
-    fun subscribeConnectionStatus(): Flow<ee.schimke.meshcore.grpc.ConnectionStatus> =
+    override fun subscribeConnectionStatus(): Flow<ee.schimke.meshcore.grpc.ConnectionStatus> =
         stub.subscribeConnectionStatus(empty)
 
-    fun subscribeMessages(): Flow<ee.schimke.meshcore.grpc.MeshMessage> =
+    override fun subscribeMessages(): Flow<ee.schimke.meshcore.grpc.MeshMessage> =
         stub.subscribeMessages(empty)
 }
