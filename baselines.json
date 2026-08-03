@@ -900,7 +900,7 @@
     "functionName": "LicenseActivity",
     "module": "wear",
     "renderBasename": "activity__LicenseActivity.png",
-    "sha256": "1fcd20f766dc00ba0f13ee385db954d6c9ea4bc8d693894fc92ed6b8e5e46397",
+    "sha256": "d88b10c58cf6868e27830f94b01a8a1611fb4446110bd1a919f2967f31b99cee",
     "sourceFile": null
   },
   "wear/activity__WearMainActivity": {
@@ -908,7 +908,7 @@
     "functionName": "WearMainActivity",
     "module": "wear",
     "renderBasename": "activity__WearMainActivity.png",
-    "sha256": "600eca364472eb09c7aa65ed162fc9de5dbed98d604f8ba29514c027b3b11e2c",
+    "sha256": "e4ff45d409bc3f4ca8c5270f5e77e743e29ec81b80a753bb12ea811e6aee2ac7",
     "sourceFile": null
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
