@@ -18,7 +18,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ContactChatPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/73:5",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/73:6",
       "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Contact chat",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -32,7 +32,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ChannelChatPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/74:5",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/74:6",
       "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Channel chat",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -46,7 +46,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#CommandsPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/75:60",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/75:61",
       "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Commands",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -60,7 +60,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#CachedDeviceBodyPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/82:4",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/82:5",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Cached device",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -74,7 +74,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt#DeviceSettingsPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/76:104",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/76:105",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsPreview_Device settings",
       "tokensFile": "design/meshcore.tokens.json"
     },
