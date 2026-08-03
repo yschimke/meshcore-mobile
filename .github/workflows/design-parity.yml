@@ -118,6 +118,19 @@ jobs:
 
       - name: Run design-parity
         env:
+          # Same reason the render step sets these. This step joins every
+          # `previewId` in design-map.json against the bundle manifest's
+          # `rawPreviewIds`, and all but one of those ids carries a space and/or
+          # an em-dash. Runs through 2026-08-03 reported "no candidate render
+          # available" for 11 of 12 components — the survivor being
+          # `CommandsPreview_Commands`, the only id with neither character —
+          # while the job still went green. That join reproduces cleanly outside
+          # CI (same bundle, same design-map, same design-parity version), so the
+          # difference is environmental; the render step already forces UTF-8 for
+          # exactly this reason and this step was left on the runner default.
+          # Keep the whole pipeline on one encoding end to end.
+          LANG: C.UTF-8
+          LC_ALL: C.UTF-8
           # Needed by @design-parity/adapter-figma for the `figma:` entries in
           # design-map.json: it fetches node structure and renders the reference
           # image over the Figma REST API. A read-only personal access token with
