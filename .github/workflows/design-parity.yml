@@ -152,7 +152,21 @@ jobs:
           # out at twice the 1078x2399 candidate — a delta far past
           # visualDimTolerancePx, which the diff correctly reports as a total
           # mismatch. The five figma components produce real numbers from here on.
-          npx -y design-parity@0.1.33 run \
+          #
+          # 0.1.34 adds two things that only bite the `figma:` entries. The Figma
+          # adapter now populates `DesignReference.layout` from the node tree's
+          # `absoluteBoundingBox`es, so the structural layout diff actually runs
+          # for them — it was a silent no-op before (no reference geometry means
+          # an early return, so a shifted row read as "no findings" rather than
+          # "not checked", while the `claude-design` entries, which capture
+          # geometry from their own render, reported normally). It also gives the
+          # report a reference tree to draw box-model annotations from and a dp
+          # space to map the candidate's readouts into. Separately, the visual
+          # diff no longer saturates at a flat 100% when the two sides differ in
+          # size beyond `visualDimTolerancePx`: it diffs the shared region and
+          # reports the uncovered border, so a candidate that matches across its
+          # overlap but runs taller scores as such instead of as a total mismatch.
+          npx -y design-parity@0.1.34 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png \
