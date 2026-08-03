@@ -11,7 +11,28 @@ This repo adopts it for the **Device screen** (`DeviceScreen.kt#DeviceBody`), it
 (group), and device commands, all sharing the stateless `ChatBody` — and the
 **Device Settings** screen (`DeviceSettingsScreen` → stateless `DeviceSettingsBody`,
 its discovered buzzer-toggle state) — each in both **light** and **dark** themes.
-All render on the CMP desktop backend from `:meshcore-components` `commonMain`.
+These render on the CMP desktop backend from `:meshcore-components` `commonMain`.
+
+It also covers the **component sticker sheet** — `DeviceSummaryCard` (populated /
+loading / low-battery), `ContactRow` (chat / repeater / room / sensor),
+`ContactList` (empty / few / many), `BleDeviceList` (empty / few / many),
+`BlePermissionPanel` (first-run / denied) and `TcpConnectPanel` (idle / busy) —
+plus the **Scanner** tabs and the **Saved devices** panel, all against their cells
+on the Figma [Components page](#the-figma-file-design-led-references). Those
+`@Preview`s live in **`:app`** and render on the **Android** backend: the
+composables they exercise reach into `:meshcore-components` `androidMain`
+(`TcpConnectPanel.kt`, `BleScannerPanel.kt`), so unlike the screens they can't be
+packed off-Android. They are **light-only** — `figma-svg-emit.mjs` publishes one
+sticker per component function, preferring the light variant, so there is no dark
+cell to pair the `_Dark` half of each `@MeshcoreModes` pair against.
+
+Two consequences worth knowing before extending this. Because the two families
+render on different backends, the workflow packs **two candidate bundles** and
+passes both to `--candidate-bundles` (see [Render path](#render-path)). And
+because `:app` renders on the Android backend, those candidates carry the
+synthetic OS **status bar** that the CMP desktop ones omit — the same offset the
+`figma:` screen entries already carry, tolerable only while the direction is
+`code-led`.
 
 ## What's committed
 
@@ -145,11 +166,28 @@ Three gotchas, all hit during the first seed:
 
 The catalog carries the `:app` Device **state** variants, not the
 `:meshcore-components` parity subjects, and its figma-SVGs are **light only**. So
-five subjects have Figma nodes today (cached device, the three chat screens,
-device settings — all light); the seven others (`DeviceBodyPreview` and every
-`*DarkPreview`) still resolve to their HTML reference. Closing that gap means
-adding those previews to `catalog.spec.json` so the next `design-artifacts` run
-publishes figma-SVGs for them.
+of the screen subjects five have Figma nodes today (cached device, the three chat
+screens, device settings — all light); the seven others (`DeviceBodyPreview` and
+every `*DarkPreview`) still resolve to their HTML reference. Closing that gap
+means adding those previews to `catalog.spec.json` so the next `design-artifacts`
+run publishes figma-SVGs for them. Every component entry is light-only for the
+same reason.
+
+**26 cells on the Components page have no code handle at all** and so can't be
+mapped: `button-{filled,tonal,outlined,elevated,text}`, `fab`,
+`segmentedbutton`, `checkbox-checked`, `radiobutton-selected`, `switch-on`,
+`slider`, `chip-{assist,filter-selected}`, `badge`,
+`card-{elevated,filled,outlined,slots}`, `progress-{linear,circular}`,
+`textfield-{filled,outlined}`, `text-{maxlines-truncated,monospace,serif}` and
+`template-appscaffold`. Those are M3 baseline stickers the catalog export driver
+synthesises — they carry no `previewId` in `catalog.json` and appear nowhere in
+`catalog.spec.json`, because no `@Preview` in this repo renders them. A
+`design-map.json` entry needs a `path.kt#PreviewFn` on its left-hand side, so
+mapping them means writing those previews first. They are reference-only stickers
+until then.
+
+The Figma page also carries a hand-added `scanner-bledark` cell with no catalog
+or repo counterpart; it is left unmapped.
 
 The seeded renders also **include the synthetic OS status bar**, which the HTML
 references deliberately omit (see [Render path](#render-path)). Until the two
@@ -202,10 +240,25 @@ access.
 
 ## Render path
 
-Parity renders on the **CMP desktop (Skiko) backend**. The presentational
-`DeviceBody` (and its leaf cards, theme, `Section`/`Dimens`, and the two parity
-`@Preview`s) live in **`:meshcore-components` `commonMain`** with a
-`jvm("desktop")` target, so the candidate renders off-Android — no Robolectric,
+Parity renders **two bundles on two backends**, split by the module each
+`design-map.json` entry's `code` handle names:
+
+| Entries | Module | Pack | Backend |
+| --- | --- | --- | --- |
+| The screens (Device, cached, chat ×3, settings) | `:meshcore-components` | `bundle pack --module meshcore-components` | CMP desktop (Skiko) |
+| The components + Scanner + Saved devices | `:app` | `bundle pack --module app` | Android |
+
+design-parity takes a comma-separated `--candidate-bundles` list, so the two are
+merged into one candidate set at run time. The workflow derives both id lists from
+`design-map.json` itself (`select(.code | startswith(…))`) so they can't drift
+from it, and **fails the job** if an entry names a module neither pack covers —
+otherwise design-parity would report "no candidate render available" for it while
+the job stayed green, which is exactly the failure mode the em-dash encoding bug
+had.
+
+The presentational `DeviceBody` (and its leaf cards, theme, `Section`/`Dimens`,
+and the parity `@Preview`s) live in **`:meshcore-components` `commonMain`** with a
+`jvm("desktop")` target, so those candidates render off-Android — no Robolectric,
 no emulator. `bundle pack --module meshcore-components` reports `backend=desktop`.
 
 Making the Device screen render off-Android required:
@@ -227,35 +280,57 @@ needs no explicit `plugins {}` entry.
 The stateful `DeviceScreen`/`ConnectedDevice` wrappers (transport, ViewModel)
 stay in `:app`; only the pure presentational subtree moved.
 
+The component previews did **not** make that move: `ComponentPreviews.kt`,
+`ScannerScreen.kt` and `SavedDevicesPanel.kt` stay in `:app`, and two of the
+panels they render (`TcpConnectPanel`, `BleScannerPanel`) are `androidMain`-only,
+so they pack on the Android backend instead. Moving them to `commonMain` the way
+`DeviceBody` moved would let them share the desktop path — and would drop the
+status-bar offset from their diffs — but that is a source move, not a mapping
+change, so it is deliberately out of scope here.
+
 ## Reproduce
 
 ```sh
-# 1. Render the candidates to one portable preview bundle (CMP desktop backend).
+# 1. Render the candidates — two bundles, one per module, driven from
+#    design-map.json exactly as the workflow does.
 #    UTF-8 locale needed (the preview ids contain an em-dash).
 export LANG=C.UTF-8 LC_ALL=C.UTF-8
-compose-preview bundle pack --module meshcore-components \
-  --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Device — populated" \
-  --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device — dark" \
-  -o build/design-parity/bundle.png
+mkdir -p build/design-parity
+pack() { # <module> <output> <startswith-prefix>
+  mapfile -t IDS < <(
+    jq -r ".components[] | select(.code | startswith(\"$3\")) | .previewId" design-map.json
+  )
+  args=(); for id in "${IDS[@]}"; do args+=(--id "$id"); done
+  compose-preview bundle pack --module "$1" "${args[@]}" \
+    --with-semantics -o "$2" --timeout 900
+}
+# CMP desktop (Skiko) — the screens.
+pack meshcore-components build/design-parity/bundle.png       "meshcore-components/"
+# Android — the components, Scanner and Saved devices.
+pack app                 build/design-parity/app.bundle.png   "app/"
 
 # 2. Render the reference PNGs from the HTML (required — they're not committed),
-#    at the candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px). Install
-#    the bundled branded faces first so Chrome resolves the families the HTML
-#    names (else it falls back to a system sans and the type drifts vs the
-#    candidate, which loads the same .ttf):
+#    at the candidate's pixel size (411x914 dp @ 2.625 -> 1078x2399 px). Only the
+#    `claude-design` entries have HTML to rasterize; the `figma:` ones are
+#    rendered by the adapter over the REST API (needs FIGMA_TOKEN). Install the
+#    bundled branded faces first so Chrome resolves the families the HTML names
+#    (else it falls back to a system sans and the type drifts vs the candidate,
+#    which loads the same .ttf):
 mkdir -p "$HOME/.local/share/fonts"
 cp meshcore-components/src/desktopMain/resources/fonts/*.ttf "$HOME/.local/share/fonts/"
 fc-cache -f
-for ref in $(jq -r '.components[].ref' design-map.json); do
+for ref in $(jq -r '.components[] | select(.source == "claude-design") | .ref' design-map.json); do
   chrome --headless=new --no-sandbox --hide-scrollbars \
     --force-device-scale-factor=2.625 --window-size=411,914 \
-    --screenshot="${ref%.html}.png" "$ref"
+    --screenshot="${ref%.html}.png" "file://$PWD/$ref"
 done
 
-# 3. Run the parity check and open the reports.
+# 3. Run the parity check and open the reports. Pass every mapped component (or a
+#    comma-separated subset while iterating on one).
+export FIGMA_TOKEN=…   # read-only PAT with file_content:read
 design-parity run --repo . \
-  --components "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyPreview,meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#DeviceBodyDarkPreview" \
-  --candidate-bundles build/design-parity/bundle.png \
+  --components "$(jq -r '[.components[].code] | join(",")' design-map.json)" \
+  --candidate-bundles build/design-parity/bundle.png,build/design-parity/app.bundle.png \
   --out .design-parity/out
 # -> read the markdown verdict; open
 #    .design-parity/out/<component>/report.html  (reference | candidate | diff)
@@ -294,8 +369,8 @@ committing generated PNGs/HTML onto `main` itself — browse it to see the lates
 reference | candidate | diff without re-rendering locally.
 
 The workflow drives the render from `design-map.json` (so it can't drift from
-it): it installs the released `compose-preview` CLI, packs the candidate bundle,
-runs the published `design-parity` CLI (pinned in
+it): it installs the released `compose-preview` CLI, packs the two candidate
+bundles, runs the published `design-parity` CLI (pinned in
 [`design-parity.yml`](../.github/workflows/design-parity.yml), which carries the
 rationale for the current version), and publishes
 the output. The permanent-branch push is still the interim, hand-rolled version
@@ -323,9 +398,21 @@ Two things follow from this that are worth knowing when editing `design-map.json
   the catalog's Device screens come from `:app`'s `DeviceScreenPreviewsKt`
   instead — those two are parity-run-only, and the export says so with a warning
   rather than failing.
+  The 28 component / Scanner / Saved-devices entries added alongside this do
+  clear that bar — `catalog.spec.json` already publishes every one of those
+  `@Preview` functions — so they reach the server as well as the parity run.
+- **Those 28 need the export driver's previewId narrowing to publish correctly.**
+  Their light and dark renders are two `@Preview` annotations on *one* function,
+  so the publisher's function-name join matches both stickers, and a light-only
+  reference would be published against the dark one too — the server then scores
+  a dark render against a light design. `planDesignReferences` narrows the match
+  set with each entry's `previewId` to prevent that; until a `design-artifacts`
+  run picks up a driver carrying it, expect the dark rows of these components to
+  read as large diffs on the compare page. The parity run itself is unaffected —
+  it joins on `previewId` directly, so it only ever pairs the light render.
 - **The `figma:` entries need the `FIGMA_TOKEN` secret** to be published, which
-  `design-artifacts.yml` passes through. Without it the five light variants are
-  skipped with a warning and only the committed HTML dark mocks appear on the
+  `design-artifacts.yml` passes through. Without it the `figma`-sourced variants
+  are skipped with a warning and only the committed HTML dark mocks appear on the
   server. Note the ordering constraint if the reusable-workflow pin ever moves:
   the caller pins `@main`, and GitHub rejects a named secret the called workflow
   doesn't declare, so the pinned ref must always carry the `figma_token`

@@ -35,9 +35,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
 
-      # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest (the
-      # :meshcore-components module still has an android target to configure);
-      # the candidate itself renders on the CMP desktop (Skiko) backend.
+      # JDK + Gradle. The Android SDK is preinstalled on ubuntu-latest, and both
+      # render backends need it: :meshcore-components has an android target to
+      # configure even though its candidates render on CMP desktop (Skiko), and
+      # the :app component candidates render on the Android backend outright.
       - uses: ./.github/actions/setup
 
       # The consumer-facing CLI install (downloads a release, doesn't build from
@@ -53,7 +54,29 @@ jobs:
           version: catalog
           catalog-key: composePreviewPlugin
 
-      - name: Render candidate bundle (CMP desktop)
+      # Two bundles, one per module, because the parity subjects no longer live
+      # in a single module. The screen entries are :meshcore-components
+      # commonMain and render on the CMP desktop (Skiko) backend; the component
+      # entries (DeviceSummaryCard, ContactRow/List, BleDeviceList,
+      # TcpConnectPanel, BlePermissionPanel) and the Scanner / SavedDevices
+      # screens are :app @Previews and render on the Android backend — their
+      # composables reach into androidMain (TcpConnectPanel.kt,
+      # BleScannerPanel.kt), so they can't be packed off-Android. design-parity
+      # takes a comma-separated --candidate-bundles list, so both are merged
+      # into one candidate set at run time.
+      #
+      # Both packs are driven from design-map.json (so this never drifts from
+      # it), split on the `code` handle's module prefix.
+      #
+      # --with-semantics injects each preview's previews/<id>.semantics.json:
+      # an a11y tree + resolved fg/bg colours and, since 0.15.8, per-node
+      # design tokens (background colour / corner radius / padding,
+      # compose-ai-tools#1897/#1901) so design-parity's token / contrast /
+      # a11y checks can evaluate instead of reporting "missing from
+      # candidate" (#1843/#1845). The desktop daemon emits the
+      # compose/semantics sidecar (#1891) and a daemon-start failure
+      # degrades gracefully instead of aborting the pack (#1885).
+      - name: Render candidate bundles (CMP desktop + Android)
         env:
           # The preview ids contain an em-dash; force a UTF-8 locale.
           LANG: C.UTF-8
@@ -61,23 +84,50 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/design-parity
-          # Drive the render from design-map.json so this never drifts from it.
-          # DeviceBody + its previews live in :meshcore-components (commonMain),
-          # so the candidate renders on the desktop backend.
-          mapfile -t IDS < <(jq -r '.components[].previewId' design-map.json)
-          args=()
-          for id in "${IDS[@]}"; do args+=(--id "$id"); done
-          # --with-semantics injects each preview's previews/<id>.semantics.json:
-          # an a11y tree + resolved fg/bg colours and, since 0.15.8, per-node
-          # design tokens (background colour / corner radius / padding,
-          # compose-ai-tools#1897/#1901) so design-parity's token / contrast /
-          # a11y checks can evaluate instead of reporting "missing from
-          # candidate" (#1843/#1845). The desktop daemon emits the
-          # compose/semantics sidecar (#1891) and a daemon-start failure
-          # degrades gracefully instead of aborting the pack (#1885).
-          compose-preview bundle pack --module meshcore-components "${args[@]}" \
-            --with-semantics \
-            -o build/design-parity/candidates.bundle.png --timeout 600
+
+          # Fail loudly, and before spending ~20 min rendering, if an entry
+          # belongs to neither module — otherwise nothing renders a candidate for
+          # it and design-parity reports "no candidate render available" while
+          # the job stays green.
+          stray="$(jq -r '
+            [.components[].code
+             | select((startswith("meshcore-components/") or startswith("app/")) | not)]
+            | join(", ")' design-map.json)"
+          if [ -n "$stray" ]; then
+            echo "::error::design-map entries in an unpacked module: $stray" >&2
+            exit 1
+          fi
+
+          pack() { # <module> <output> <jq-filter-on-.code>
+            local module="$1" out="$2" filter="$3"
+            mapfile -t IDS < <(
+              jq -r ".components[] | select(.code | ${filter}) | .previewId" design-map.json
+            )
+            if [ "${#IDS[@]}" -eq 0 ]; then
+              echo "::error::no design-map entries matched ${module}" >&2
+              exit 1
+            fi
+            local args=()
+            for id in "${IDS[@]}"; do args+=(--id "$id"); done
+            echo "Packing ${#IDS[@]} preview(s) from :${module} -> ${out}"
+            compose-preview bundle pack --module "$module" "${args[@]}" \
+              --with-semantics -o "$out" --timeout 900
+            # Assert the artifact rather than trusting the exit status: a failed
+            # Gradle model query ("Could not query Gradle project model while
+            # resolving module ...") has been observed printing the error and
+            # still exiting 0, which would sail past `set -e` and leave
+            # design-parity reporting "no candidate render available" on a green
+            # job — the same silent-degradation shape as the em-dash bug below.
+            if [ ! -s "$out" ]; then
+              echo "::error::pack of :${module} produced no bundle at ${out}" >&2
+              exit 1
+            fi
+          }
+
+          pack meshcore-components build/design-parity/candidates.bundle.png \
+            'startswith("meshcore-components/")'
+          pack app build/design-parity/candidates.app.bundle.png \
+            'startswith("app/")'
 
       # Reference images are generated from the design/*.html source of truth
       # (not committed — they'd drift from the HTML). The claude-design adapter's
@@ -169,7 +219,7 @@ jobs:
           npx -y design-parity@0.1.34 run \
             --repo . \
             --components "$components" \
-            --candidate-bundles build/design-parity/candidates.bundle.png \
+            --candidate-bundles build/design-parity/candidates.bundle.png,build/design-parity/candidates.app.bundle.png \
             --out build/design-parity/out \
             --repo-slug "${GITHUB_REPOSITORY}" \
             --branch design-parity/main \
@@ -183,6 +233,7 @@ jobs:
           art="$(mktemp -d)"
           cp -a build/design-parity/out/. "$art/"
           cp build/design-parity/candidates.bundle.png "$art/" || true
+          cp build/design-parity/candidates.app.bundle.png "$art/" || true
           printf '%s\n' "$GITHUB_SHA" > "$art/SOURCE_COMMIT"
           cd "$art"
           git init -q
