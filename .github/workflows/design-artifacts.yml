@@ -220,3 +220,9 @@ jobs:
       allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
     secrets:
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
+      # Lets the reusable workflow publish the `figma:` entries in design-map.json
+      # as design references on the delivery branch, so the preview server's
+      # PNG ↔ Design reference lane covers the light variants too and not just the
+      # committed HTML mocks. Same read-only token design-parity.yml already uses;
+      # without it those five entries are skipped with a warning.
+      figma_token: ${{ secrets.FIGMA_TOKEN }}

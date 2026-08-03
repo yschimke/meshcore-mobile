@@ -301,6 +301,30 @@ of a pattern design-parity's Action should own —
 [design-parity#56](https://github.com/yschimke/design-parity/issues/56) (modeled
 on compose-ai-tools' `apply` baseline branch).
 
+## The same references on the preview server
+
+`design-map.json` now feeds a second consumer. The `Publish design references`
+step of compose-ai-tools' `design-artifacts-reusable.yml` reads it during the
+catalog render and writes a `compose-preview-references/v1` manifest to
+`references/` on the [`design-artifacts/meshcore-mobile`](https://github.com/yschimke/meshcore-mobile/tree/design-artifacts/meshcore-mobile)
+delivery branch — which turns on the **PNG ↔ Design reference** lane at
+<https://preview.coo.ee/meshcore-mobile/compare> and the Reference / Diff /
+Actual page behind it. Before that producer existed the server had read that
+manifest for some time but nothing wrote one, so the lane was absent on every
+published catalog.
+
+Two things follow from this that are worth knowing when editing `design-map.json`:
+
+- **An entry only reaches the server if `catalog.spec.json` publishes the same
+  `@Preview` function.** The join is by function name. `DeviceBodyPreview` /
+  `DeviceBodyDarkPreview` (`:meshcore-components`) map to nothing today, because
+  the catalog's Device screens come from `:app`'s `DeviceScreenPreviewsKt`
+  instead — those two are parity-run-only, and the export says so with a warning
+  rather than failing.
+- **The `figma:` entries need the `FIGMA_TOKEN` secret** to be published, which
+  `design-artifacts.yml` now passes through. Without it the five light variants
+  are skipped and only the committed HTML dark mocks appear on the server.
+
 ## Known gaps (first adoption)
 
 - **Bundle carries no semantics blob.** `compose-preview bundle pack` emits the

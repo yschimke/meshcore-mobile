@@ -122,7 +122,17 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, inset, c
                 "outline": t["outline"].upper(),
             },
         },
-        "images": [{"state": "default", "size": "compact", "src": png}],
+        # The dark export MUST tag its image `theme: "dark"`. design-parity pairs a
+        # reference image with a candidate image by variant slot, and the candidate
+        # rendered from a `*DarkPreview` @Preview is tagged `dark` — so an untagged
+        # dark reference lands on the `default/compact` slot, finds no candidate
+        # there, and the whole component reports "no candidate render to compare"
+        # instead of a diff. Light is the untagged default (mirrors
+        # DeviceScreen.{light,dark}.html, which got this right by hand).
+        "images": [
+            {"state": "default", "size": "compact", "src": png}
+            | ({"theme": "dark"} if theme_name == "dark" else {})
+        ],
     }, indent=2)
     return f"""<!doctype html>
 <!--

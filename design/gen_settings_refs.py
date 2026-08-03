@@ -70,7 +70,16 @@ def render(theme, t, fn, png):
                 "outlineVariant": t["outlineVariant"].upper(),
             },
         },
-        "images": [{"state": "default", "size": "compact", "src": png}],
+        # The dark export MUST tag its image `theme: "dark"` — design-parity pairs
+        # reference and candidate images by variant slot, and the candidate from
+        # `DeviceSettingsDarkPreview` is tagged `dark`. An untagged dark reference
+        # sits on the `default/compact` slot, finds no candidate there, and the
+        # component reports "no candidate render to compare" instead of a diff.
+        # Light is the untagged default (see design/gen_chat_refs.py).
+        "images": [
+            {"state": "default", "size": "compact", "src": png}
+            | ({"theme": "dark"} if theme == "dark" else {})
+        ],
     }, indent=2)
     return f"""<!doctype html>
 <!--
