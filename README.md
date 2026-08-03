@@ -1,6 +1,6 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 38 error(s) · 19 warning(s) · 13 info._
+_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 30 error(s) · 19 warning(s) · 13 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
 
@@ -127,27 +127,15 @@ _No findings._
 
 ### `DeviceInfoWidgetEmptyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceInfoWidgetPopulatedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceInfoWidgetStalePreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceStatusConnectingPreview` · `pixel_7`
 
@@ -602,40 +590,20 @@ _No findings._
 
 ### `StatusWidgetConnectedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusWidgetConnectedPreview_Status_connected.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `StatusWidgetDisconnectedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `StatusWidgetLowBatteryPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `WearComponentCatalogPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/WearComponentCatalogPreview_Component_Catalog.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `WearComponentGridPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/WearComponentGridPreview_Component_Grid.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
