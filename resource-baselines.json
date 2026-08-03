@@ -77,7 +77,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_LEGACY.png",
     "resourceId": "mipmap/ic_launcher_round",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "65296323ce42b98ce228043107a1eb75ce9f8195083ad69de13ccc4b74724ce3",
+    "sha256": "e560c4e8e542b8c97fbdbb0049d03ad759d3248c331b6c6c6d5af5d0821c1731",
     "shape": null
   },
   "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_circle.png": {
@@ -86,7 +86,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_circle.png",
     "resourceId": "mipmap/ic_launcher_round",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "d0976d952e53b76bd17d8c9c202e6c83034ad6da7287d59ee783129d7b7ae4cc",
+    "sha256": "2686fd532f990109dcb2bf78a62006349547d608aa3e622ada2e60b37c58cdcf",
     "shape": "CIRCLE"
   },
   "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_rounded_square.png": {
@@ -95,7 +95,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_rounded_square.png",
     "resourceId": "mipmap/ic_launcher_round",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "ecfbf8cb5f34df30dc8a2995586f05701253c70c5b9fef259f0f43660b4cf5c7",
+    "sha256": "00f37ab0638b32d9708afc022497b286bf2ee6eca42dbf79e35615b9b4451304",
     "shape": "ROUNDED_SQUARE"
   },
   "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_square.png": {
@@ -104,7 +104,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_square.png",
     "resourceId": "mipmap/ic_launcher_round",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "ee0137d79a62b4a26ed97f71c7d8afb37cc9156458c60de2a18ffc070d87f00d",
+    "sha256": "3a80f13d62b0f6adbdc1cf88cbf4632f00b9e2f054e94078f13e4ddb54a0e4d9",
     "shape": "SQUARE"
   },
   "app::mipmap/ic_launcher_round::renders/resources/mipmap/ic_launcher_round_xhdpi_SHAPE_squircle.png": {
@@ -113,7 +113,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_round_xhdpi_SHAPE_squircle.png",
     "resourceId": "mipmap/ic_launcher_round",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "28be9b4f0c3e1eff51b3271c5bb86ebb488de1d18100e82b95e261c582d2027b",
+    "sha256": "8b03c0626a98c82643eedf04569e73b5b7674355dc00efd0869b6209365e27b7",
     "shape": "SQUIRCLE"
   },
   "wear::drawable/ic_launcher_background::renders/resources/drawable/ic_launcher_background_xhdpi.png": {
