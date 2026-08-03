@@ -25,7 +25,7 @@ jobs:
       # JDK only — the Android SDK is preinstalled on ubuntu-latest, and we
       # deliberately skip the shared setup-gradle Actions caching so the probe
       # isn't perturbed by a restored Gradle home.
-      - uses: actions/setup-java@v5.6.0
+      - uses: actions/setup-java@v5.7.0
         with:
           distribution: temurin
           java-version: '21'
