@@ -145,7 +145,14 @@ jobs:
         run: |
           set -euo pipefail
           components="$(jq -r '[.components[].code] | join(",")' design-map.json)"
-          npx -y design-parity@0.1.30 run \
+          # 0.1.33 rasterises a vector reference at the CANDIDATE's density rather
+          # than a fixed 2x of its own user units. Under 0.1.30 every `figma:` entry
+          # here scored a flat "100.0% of pixels differ": this file's frames are
+          # seeded from the published device-pixel figma-SVGs, so a 2x raster came
+          # out at twice the 1078x2399 candidate — a delta far past
+          # visualDimTolerancePx, which the diff correctly reports as a total
+          # mismatch. The five figma components produce real numbers from here on.
+          npx -y design-parity@0.1.33 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png \
