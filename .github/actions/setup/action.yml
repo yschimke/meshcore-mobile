@@ -18,11 +18,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: actions/setup-java@v5.6.0
+    - uses: actions/setup-java@v5.7.0
       with:
         distribution: temurin
         java-version: '21'
-    - uses: gradle/actions/setup-gradle@v6.2.0
+    - uses: gradle/actions/setup-gradle@v6.3.0
       with:
         cache-read-only: ${{ inputs.cache-read-only }}
         gradle-home-cache-excludes: ${{ inputs.exclude-local-build-cache == 'true' && 'caches/build-cache-1' || '' }}
