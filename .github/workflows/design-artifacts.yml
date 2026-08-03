@@ -226,12 +226,16 @@ jobs:
       allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
     secrets:
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
-      # TODO: add `figma_token: ${{ secrets.FIGMA_TOKEN }}` once
-      # yschimke/compose-ai-tools#3203 is on `main`. It lets the reusable workflow
-      # publish the `figma:` entries in design-map.json as design references, so the
-      # preview server's PNG ↔ Design reference lane covers the light variants and
-      # not just the committed HTML dark mocks. It cannot land here first: this
-      # caller pins the reusable workflow at `@main`, and GitHub rejects a named
-      # secret that the called workflow's `on.workflow_call.secrets` doesn't
-      # declare — the run would fail to parse before the job starts, taking every
-      # push/cron/dispatch of this workflow with it.
+      # Lets the reusable workflow publish the `figma:` entries in design-map.json
+      # as design references on the delivery branch, so the preview server's
+      # PNG ↔ Design reference lane covers the light variants and not just the
+      # committed HTML dark mocks. Same read-only token design-parity.yml uses;
+      # without it those five entries are skipped with a warning and the rest of
+      # the manifest still publishes.
+      #
+      # Safe only because compose-ai-tools#3203 has landed: this caller pins the
+      # reusable workflow at `@main`, and GitHub rejects a named secret the called
+      # workflow's `on.workflow_call.secrets` doesn't declare — the run fails to
+      # parse before the job starts. Keep that ordering in mind if the pin ever
+      # moves to a ref without the declaration.
+      figma_token: ${{ secrets.FIGMA_TOKEN }}

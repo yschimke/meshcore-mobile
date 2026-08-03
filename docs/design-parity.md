@@ -321,13 +321,13 @@ Two things follow from this that are worth knowing when editing `design-map.json
   the catalog's Device screens come from `:app`'s `DeviceScreenPreviewsKt`
   instead — those two are parity-run-only, and the export says so with a warning
   rather than failing.
-- **The `figma:` entries need the `FIGMA_TOKEN` secret** to be published. Passing
-  it is a follow-up, not part of this change: the caller pins the reusable
-  workflow at `@main`, and GitHub rejects a named secret the called workflow
-  doesn't declare — so the `figma_token:` line can only be added once
-  [compose-ai-tools#3203](https://github.com/yschimke/compose-ai-tools/pull/3203)
-  has landed. Until then the five light variants are skipped with a warning and
-  only the committed HTML dark mocks appear on the server.
+- **The `figma:` entries need the `FIGMA_TOKEN` secret** to be published, which
+  `design-artifacts.yml` passes through. Without it the five light variants are
+  skipped with a warning and only the committed HTML dark mocks appear on the
+  server. Note the ordering constraint if the reusable-workflow pin ever moves:
+  the caller pins `@main`, and GitHub rejects a named secret the called workflow
+  doesn't declare, so the pinned ref must always carry the `figma_token`
+  declaration.
 
 ## Known gaps (first adoption)
 
