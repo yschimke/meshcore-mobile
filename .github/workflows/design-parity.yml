@@ -45,7 +45,7 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.19.27
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.19.28
         with:
           # Keep the CLI aligned with the Gradle plugin that produced the
           # preview manifest. In particular, current bundle packing translates
