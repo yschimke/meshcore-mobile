@@ -271,13 +271,13 @@ _No findings._
 
 ### `SavedDevicesEmptyPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/SavedDevicesEmptyPreview_Saved_devices_empty.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/SavedDevicesEmptyPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
 ### `SavedDevicesPopulatedPreview`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/SavedDevicesPopulatedPreview_Saved_devices_populated.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/SavedDevicesPopulatedPreview_Dark.a11y.png" width="400" />
 
 | # | Level | Rule | Element | Message |
 |--:|---|---|---|---|
@@ -430,7 +430,7 @@ _No findings._
 
 ### `CachedDeviceBodyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CachedDeviceBodyPreview_Cached_device.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CachedDeviceBodyPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
@@ -448,7 +448,7 @@ _No findings._
 
 ### `ChannelChatPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatPreview_Channel_chat.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
@@ -466,7 +466,7 @@ _No findings._
 
 ### `CommandsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsPreview_Commands.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
@@ -484,7 +484,7 @@ _No findings._
 
 ### `ContactChatPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatPreview_Contact_chat.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
@@ -496,7 +496,7 @@ _No findings._
 
 ### `DeviceBodyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/DeviceBodyPreview_Device_populated.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/DeviceBodyPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
@@ -526,7 +526,7 @@ _No findings._
 
 ### `DeviceSettingsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/DeviceSettingsPreview_Device_settings.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/DeviceSettingsPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
