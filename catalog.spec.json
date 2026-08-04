@@ -219,13 +219,7 @@
         {
           "componentId": "Device/Populated",
           "preview": "DeviceBodyPreview",
-          "caption": "Device screen — populated with self info, contacts and channels.",
-          "variants": [
-            {
-              "theme": "dark",
-              "preview": "DeviceBodyDarkPreview"
-            }
-          ]
+          "caption": "Device screen — populated with self info, contacts and channels."
         },
         {
           "componentId": "Device/LowBattery",
