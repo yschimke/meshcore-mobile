@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.components.ui
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,11 +68,13 @@ private fun previewSelf(name: String = "node-peak") =
  * [`design-parity/main`](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
  * branch (regenerated on every push to main); see `docs/design-parity.md`.
  */
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
   showBackground = true,
   showSystemUi = true,
   device = Devices.PIXEL_7,
-  name = "Device — populated",
+  uiMode = 0x20,
+  name = "Dark",
 )
 @Composable
 fun DeviceBodyPreview() {
@@ -148,7 +151,7 @@ fun DeviceBodyDarkPreview() {
 }
 
 @Composable
-private fun cachedDevicePreview(dark: Boolean) {
+private fun cachedDevicePreview(dark: Boolean = isSystemInDarkTheme()) {
   val alice = previewContact("alice", -1, 0x11)
   MeshcoreTheme(darkTheme = dark) {
     DeviceBody(
@@ -175,14 +178,16 @@ private fun cachedDevicePreview(dark: Boolean) {
  * state: `DeviceBody` carrying the "Cached data" warning banner. Reference
  * `design/CachedDevice.light.html`. See `docs/design-parity.md`.
  */
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
   showBackground = true,
   showSystemUi = true,
   device = Devices.PIXEL_7,
-  name = "Cached device",
+  uiMode = 0x20,
+  name = "Dark",
 )
 @Composable
-fun CachedDeviceBodyPreview() = cachedDevicePreview(dark = false)
+fun CachedDeviceBodyPreview() = cachedDevicePreview()
 
 /** Cached Device screen, dark. Reference `design/CachedDevice.dark.html`. */
 @Preview(
@@ -211,7 +216,7 @@ fun CachedDeviceBodyDarkPreview() = cachedDevicePreview(dark = true)
   name = "Cached device — German",
 )
 @Composable
-fun CachedDeviceBodyGermanPreview() = cachedDevicePreview(dark = false)
+fun CachedDeviceBodyGermanPreview() = cachedDevicePreview()
 
 /**
  * Japanese (`ja`) locale variant of [CachedDeviceBodyPreview] — the section headers, filter chips,
@@ -228,7 +233,7 @@ fun CachedDeviceBodyGermanPreview() = cachedDevicePreview(dark = false)
   name = "Cached device — Japanese",
 )
 @Composable
-fun CachedDeviceBodyJapanesePreview() = cachedDevicePreview(dark = false)
+fun CachedDeviceBodyJapanesePreview() = cachedDevicePreview()
 
 /**
  * Arabic (`ar`) locale variant of [CachedDeviceBodyPreview] — exercises the bundled **Noto Sans
@@ -243,4 +248,4 @@ fun CachedDeviceBodyJapanesePreview() = cachedDevicePreview(dark = false)
   name = "Cached device — Arabic",
 )
 @Composable
-fun CachedDeviceBodyArabicPreview() = cachedDevicePreview(dark = false)
+fun CachedDeviceBodyArabicPreview() = cachedDevicePreview()

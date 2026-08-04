@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.components.ui
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -133,7 +134,7 @@ private fun chatPreview(
   title: String,
   subtitle: String?,
   messages: List<ChatMessage>,
-  dark: Boolean,
+  dark: Boolean = isSystemInDarkTheme(),
   inputPlaceholder: String = "Message",
   actions: @Composable RowScope.() -> Unit = {},
 ) {
@@ -165,14 +166,16 @@ private fun RowScope.terminalAction() {
 /**
  * Design-parity subject: the 1:1 contact chat (light). Reference `design/ContactChat.light.html`.
  */
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
   showBackground = true,
   showSystemUi = true,
   device = Devices.PIXEL_7,
-  name = "Contact chat",
+  uiMode = 0x20,
+  name = "Dark",
 )
 @Composable
-fun ContactChatPreview() = chatPreview("alice", "Direct message", contactMessages, dark = false)
+fun ContactChatPreview() = chatPreview("alice", "Direct message", contactMessages)
 
 /** Design-parity subject: the 1:1 contact chat (dark). Reference `design/ContactChat.dark.html`. */
 @Preview(
@@ -206,20 +209,21 @@ fun ContactChatDarkPreview() = chatPreview("alice", "Direct message", contactMes
   name = "Contact chat — Arabic",
 )
 @Composable
-fun ContactChatArabicPreview() =
-  chatPreview("alice", "Direct message", contactMessages, dark = false)
+fun ContactChatArabicPreview() = chatPreview("alice", "Direct message", contactMessages)
 
 /**
  * Design-parity subject: the group channel chat (light). Reference `design/ChannelChat.light.html`.
  */
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
   showBackground = true,
   showSystemUi = true,
   device = Devices.PIXEL_7,
-  name = "Channel chat",
+  uiMode = 0x20,
+  name = "Dark",
 )
 @Composable
-fun ChannelChatPreview() = chatPreview("General", "Channel 0", channelMessages, dark = false)
+fun ChannelChatPreview() = chatPreview("General", "Channel 0", channelMessages)
 
 /**
  * Design-parity subject: the group channel chat (dark). Reference `design/ChannelChat.dark.html`.
@@ -247,20 +251,26 @@ fun ChannelChatDarkPreview() = chatPreview("General", "Channel 0", channelMessag
   name = "Channel chat — Arabic",
 )
 @Composable
-fun ChannelChatArabicPreview() = chatPreview("General", "Channel 0", channelMessages, dark = false)
+fun ChannelChatArabicPreview() = chatPreview("General", "Channel 0", channelMessages)
 
 /**
  * Design-parity subject: the device commands console (light). Reference
  * `design/Commands.light.html`.
  */
-@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Commands")
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
+@Preview(
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  uiMode = 0x20,
+  name = "Dark",
+)
 @Composable
 fun CommandsPreview() =
   chatPreview(
     title = "Commands",
     subtitle = null,
     messages = commandMessages,
-    dark = false,
     inputPlaceholder = "Enter command…",
     actions = { terminalAction() },
   )
@@ -284,7 +294,6 @@ fun CommandsArabicPreview() =
     title = "Commands",
     subtitle = null,
     messages = commandMessages,
-    dark = false,
     inputPlaceholder = "Enter command…",
     actions = { terminalAction() },
   )

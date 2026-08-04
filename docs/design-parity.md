@@ -234,7 +234,7 @@ stay in `:app`; only the pure presentational subtree moved.
 #    UTF-8 locale needed (the preview ids contain an em-dash).
 export LANG=C.UTF-8 LC_ALL=C.UTF-8
 compose-preview bundle pack --module meshcore-components \
-  --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Device — populated" \
+  --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Light" \
   --id "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device — dark" \
   -o build/design-parity/bundle.png
 
