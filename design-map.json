@@ -18,7 +18,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ContactChatPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/73:5",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/73:6",
       "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -32,7 +32,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#ChannelChatPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/74:5",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/74:6",
       "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -46,7 +46,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt#CommandsPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/75:60",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/75:61",
       "previewId": "ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -60,7 +60,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt#CachedDeviceBodyPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/82:4",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/82:5",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -74,7 +74,7 @@
     {
       "code": "meshcore-components/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt#DeviceSettingsPreview",
       "source": "figma",
-      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/76:104",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/76:105",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     },
@@ -83,6 +83,202 @@
       "source": "claude-design",
       "ref": "design/DeviceSettings.dark.html",
       "previewId": "ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsDarkPreview_Device settings — dark",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#DeviceSummaryCardPopulatedPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:153",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardPopulatedPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#DeviceSummaryCardLoadingPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:196",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardLoadingPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#DeviceSummaryCardLowBatteryPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:213",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.DeviceSummaryCardLowBatteryPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowChatPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:477",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactRowChatPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowRepeaterPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:495",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactRowRepeaterPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowRoomPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:513",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactRowRoomPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowSensorPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:531",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactRowSensorPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactListEmptyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:549",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactListEmptyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactListFewPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:559",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactListFewPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactListManyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:594",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.ContactListManyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BleDeviceListEmptyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/86:154",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListEmptyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BleDeviceListFewPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:18",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListFewPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BleDeviceListManyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:300",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListManyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BlePermissionPanelFirstPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/86:171",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BlePermissionPanelFirstPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BlePermissionPanelDeniedPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/86:195",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BlePermissionPanelDeniedPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#TcpConnectPanelIdlePreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:76",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.TcpConnectPanelIdlePreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#TcpConnectPanelBusyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/87:99",
+      "previewId": "ee.schimke.meshcore.app.ui.ComponentPreviewsKt.TcpConnectPanelBusyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerSavedEmptyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/92:84",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedEmptyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerSavedPopulatedPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/93:5",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedPopulatedPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBlePermissionPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/92:5",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBlePermissionPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBleEmptyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/88:7",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleEmptyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBleFewPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/89:77",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleFewPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBleManyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/90:5",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleManyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerUsbEmptyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/94:84",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbEmptyPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerUsbFewPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/95:5",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbFewPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerTcpPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/94:5",
+      "previewId": "ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerTcpPreview_Light",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt#SavedDevicesPopulatedPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/88:113",
+      "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesPopulatedPreview_Saved devices — populated",
+      "tokensFile": "design/meshcore.tokens.json"
+    },
+    {
+      "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt#SavedDevicesEmptyPreview",
+      "source": "figma",
+      "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/88:97",
+      "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesEmptyPreview_Saved devices — empty",
       "tokensFile": "design/meshcore.tokens.json"
     }
   ]

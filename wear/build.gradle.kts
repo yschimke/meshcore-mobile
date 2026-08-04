@@ -4,10 +4,20 @@ plugins {
   alias(libs.plugins.composeCompiler)
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.aboutlibraries)
+  alias(libs.plugins.composePreview)
   alias(libs.plugins.tapmoc)
 }
 
 kotlin { jvmToolchain(21) }
+
+composePreview {
+  // Same reason :app sets this. The activity preview launches the real
+  // WearMainActivity, whose WearNavigation() resolves a WearViewModel that casts
+  // the Application to WearGraphHolder — so previews must run with the
+  // manifest-declared MeshcoreWearApp, not Robolectric's default stub. Without
+  // it the cast throws and `wear/activity__WearMainActivity` renders no PNG.
+  useConsumerApplication.set(true)
+}
 
 tapmoc {
   java(21)

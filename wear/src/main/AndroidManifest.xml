@@ -7,7 +7,7 @@
         android:name=".MeshcoreWearApp"
         android:icon="@mipmap/ic_launcher"
         android:label="MeshCore"
-        android:theme="@android:style/Theme.DeviceDefault">
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 
         <meta-data
             android:name="com.google.android.wearable.standalone"

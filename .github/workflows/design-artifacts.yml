@@ -48,6 +48,12 @@ on:
       - 'build.gradle.kts'
       - '**/build.gradle.kts'
       - 'catalog.spec.json'
+      # Design references are published onto the delivery branch from these, so
+      # they are inputs to the artifact exactly like catalog.spec.json is. Without
+      # them here, editing a mapping or a committed mock leaves the server serving
+      # the previous reference until the weekly cron or an unrelated change.
+      - 'design-map.json'
+      - 'design/**'
       - '.github/workflows/design-artifacts.yml'
       - '.github/workflows/compose-preview.yml'
   workflow_dispatch:
@@ -212,6 +218,13 @@ jobs:
       # split view-only by the reusable workflow).
       publish-live-bundle: true
       split-per-preview: true
+      # Give the :meshcore-components screens a live lane of their own. They are the catalog's
+      # Screens section — Device/Populated, the Chat threads, Settings/Ready — and :app carries no
+      # copy of them, so as a pixels-only supplement they were the 32-of-70 components whose viewer
+      # said "Pre-rendered snapshot — overrides need the live server" on a catalog that has one.
+      # `full` externalises the supplement beside the :app bundle and splits it per preview, so
+      # those ids resolve through the serve host's per-preview pool.
+      extra-split-mode: full
       # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
       fold-artifact: compose-m3-meshcore
       fold-bundle: compose-m3-meshcore.png
@@ -220,3 +233,16 @@ jobs:
       allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
     secrets:
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
+      # Lets the reusable workflow publish the `figma:` entries in design-map.json
+      # as design references on the delivery branch, so the preview server's
+      # PNG ↔ Design reference lane covers the light variants and not just the
+      # committed HTML dark mocks. Same read-only token design-parity.yml uses;
+      # without it those five entries are skipped with a warning and the rest of
+      # the manifest still publishes.
+      #
+      # Safe only because compose-ai-tools#3203 has landed: this caller pins the
+      # reusable workflow at `@main`, and GitHub rejects a named secret the called
+      # workflow's `on.workflow_call.secrets` doesn't declare — the run fails to
+      # parse before the job starts. Keep that ordering in mind if the pin ever
+      # moves to a ref without the declaration.
+      figma_token: ${{ secrets.FIGMA_TOKEN }}
