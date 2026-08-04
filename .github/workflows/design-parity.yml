@@ -45,7 +45,7 @@ jobs:
       # source). Used here to run `bundle pack` ourselves rather than the `apply`
       # action, which renders preview baselines, not design-parity candidates.
       - name: Install compose-preview CLI
-        uses: yschimke/compose-ai-tools/.github/actions/install@v0.19.29
+        uses: yschimke/compose-ai-tools/.github/actions/install@v0.19.31
         with:
           # Keep the CLI aligned with the Gradle plugin that produced the
           # preview manifest. In particular, current bundle packing translates
@@ -216,7 +216,7 @@ jobs:
           # size beyond `visualDimTolerancePx`: it diffs the shared region and
           # reports the uncovered border, so a candidate that matches across its
           # overlap but runs taller scores as such instead of as a total mismatch.
-          npx -y design-parity@0.1.34 run \
+          npx -y design-parity@0.1.38 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png,build/design-parity/candidates.app.bundle.png \
