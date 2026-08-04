@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.app.ui
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -301,7 +302,12 @@ private fun sampleDevices(): List<SavedDeviceWithState> = listOf(
     ),
 )
 
-@Preview(showBackground = true, name = "Saved devices — populated")
+@Preview(showBackground = true, name = "Light")
+@Preview(
+    showBackground = true,
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun SavedDevicesPopulatedPreview() {
     MeshcoreTheme {
@@ -318,7 +324,12 @@ fun SavedDevicesPopulatedPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "Saved devices — empty")
+@Preview(showBackground = true, name = "Light")
+@Preview(
+    showBackground = true,
+    name = "Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 fun SavedDevicesEmptyPreview() {
     MeshcoreTheme {

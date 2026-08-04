@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.components.ui
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,7 +14,7 @@ private val readyState =
   DeviceSettingsUiState.Ready(hasBuzzer = true, buzzerMode = "rtttl", buzzerLoading = false)
 
 @Composable
-private fun settingsPreview(dark: Boolean) {
+private fun settingsPreview(dark: Boolean = isSystemInDarkTheme()) {
   MeshcoreTheme(darkTheme = dark) {
     DeviceSettingsBody(state = readyState, onToggleBuzzer = {}, onBack = {})
   }
@@ -23,14 +24,16 @@ private fun settingsPreview(dark: Boolean) {
  * Design-parity subject: Device Settings, discovered (light). Reference
  * `design/DeviceSettings.light.html`.
  */
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
   showBackground = true,
   showSystemUi = true,
   device = Devices.PIXEL_7,
-  name = "Device settings",
+  uiMode = 0x20,
+  name = "Dark",
 )
 @Composable
-fun DeviceSettingsPreview() = settingsPreview(dark = false)
+fun DeviceSettingsPreview() = settingsPreview()
 
 /** Device Settings, discovered (dark). Reference `design/DeviceSettings.dark.html`. */
 @Preview(
@@ -58,7 +61,7 @@ fun DeviceSettingsDarkPreview() = settingsPreview(dark = true)
   name = "Device settings — German",
 )
 @Composable
-fun DeviceSettingsGermanPreview() = settingsPreview(dark = false)
+fun DeviceSettingsGermanPreview() = settingsPreview()
 
 /**
  * Japanese (`ja`) locale variant of [DeviceSettingsPreview] — the screen title, the buzzer row's
@@ -76,7 +79,7 @@ fun DeviceSettingsGermanPreview() = settingsPreview(dark = false)
   name = "Device settings — Japanese",
 )
 @Composable
-fun DeviceSettingsJapanesePreview() = settingsPreview(dark = false)
+fun DeviceSettingsJapanesePreview() = settingsPreview()
 
 /**
  * Arabic (`ar`) locale variant of [DeviceSettingsPreview] — exercises the bundled **Noto Sans
@@ -93,4 +96,4 @@ fun DeviceSettingsJapanesePreview() = settingsPreview(dark = false)
   name = "Device settings — Arabic",
 )
 @Composable
-fun DeviceSettingsArabicPreview() = settingsPreview(dark = false)
+fun DeviceSettingsArabicPreview() = settingsPreview()

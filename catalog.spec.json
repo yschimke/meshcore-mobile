@@ -252,7 +252,6 @@
           "preview": "CachedDeviceBodyPreview",
           "caption": "Device screen — cached (offline) data, with the stale-data warning banner.",
           "variants": [
-            { "theme": "dark", "preview": "CachedDeviceBodyDarkPreview" },
             { "props": { "locale": "de" }, "preview": "CachedDeviceBodyGermanPreview" },
             { "props": { "locale": "ja" }, "preview": "CachedDeviceBodyJapanesePreview" },
             { "props": { "locale": "ar" }, "preview": "CachedDeviceBodyArabicPreview" }
@@ -269,7 +268,6 @@
           "preview": "ContactChatPreview",
           "caption": "Contact chat — a 1:1 direct-message thread.",
           "variants": [
-            { "theme": "dark", "preview": "ContactChatDarkPreview" },
             { "props": { "locale": "ar" }, "preview": "ContactChatArabicPreview" }
           ]
         },
@@ -278,7 +276,6 @@
           "preview": "ChannelChatPreview",
           "caption": "Channel chat — a group broadcast channel.",
           "variants": [
-            { "theme": "dark", "preview": "ChannelChatDarkPreview" },
             { "props": { "locale": "ar" }, "preview": "ChannelChatArabicPreview" }
           ]
         },
@@ -287,7 +284,6 @@
           "preview": "CommandsPreview",
           "caption": "Commands console — the device command/response log.",
           "variants": [
-            { "theme": "dark", "preview": "CommandsDarkPreview" },
             { "props": { "locale": "ar" }, "preview": "CommandsArabicPreview" }
           ]
         }
@@ -302,7 +298,6 @@
           "preview": "DeviceSettingsPreview",
           "caption": "Device settings — discovered device, with the buzzer toggle.",
           "variants": [
-            { "theme": "dark", "preview": "DeviceSettingsDarkPreview" },
             { "props": { "locale": "de" }, "preview": "DeviceSettingsGermanPreview" },
             { "props": { "locale": "ja" }, "preview": "DeviceSettingsJapanesePreview" },
             { "props": { "locale": "ar" }, "preview": "DeviceSettingsArabicPreview" }

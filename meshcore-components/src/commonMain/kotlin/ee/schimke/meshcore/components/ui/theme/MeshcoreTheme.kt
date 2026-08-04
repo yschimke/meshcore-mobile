@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.components.ui.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -13,7 +14,7 @@ internal val LocalThemeCatalogOverride = staticCompositionLocalOf { false }
  * `MeshcoreTheme` wraps this concern with Android-only dynamic color + edge-to-edge handling.
  */
 @Composable
-fun MeshcoreTheme(darkTheme: Boolean = false, content: @Composable () -> Unit) {
+fun MeshcoreTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
   if (LocalThemeCatalogOverride.current) {
     content()
     return
