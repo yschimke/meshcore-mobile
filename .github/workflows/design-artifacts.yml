@@ -218,6 +218,13 @@ jobs:
       # split view-only by the reusable workflow).
       publish-live-bundle: true
       split-per-preview: true
+      # Give the :meshcore-components screens a live lane of their own. They are the catalog's
+      # Screens section — Device/Populated, the Chat threads, Settings/Ready — and :app carries no
+      # copy of them, so as a pixels-only supplement they were the 32-of-70 components whose viewer
+      # said "Pre-rendered snapshot — overrides need the live server" on a catalog that has one.
+      # `full` externalises the supplement beside the :app bundle and splits it per preview, so
+      # those ids resolve through the serve host's per-preview pool.
+      extra-split-mode: full
       # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
       fold-artifact: compose-m3-meshcore
       fold-bundle: compose-m3-meshcore.png
