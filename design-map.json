@@ -271,14 +271,14 @@
       "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt#SavedDevicesPopulatedPreview",
       "source": "figma",
       "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/88:113",
-      "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesPopulatedPreview_Saved devices — populated",
+      "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesPopulatedPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     },
     {
       "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt#SavedDevicesEmptyPreview",
       "source": "figma",
       "ref": "figma:gYzowY4cQ7rNr2gYoco1M6/88:97",
-      "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesEmptyPreview_Saved devices — empty",
+      "previewId": "ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesEmptyPreview_Light",
       "tokensFile": "design/meshcore.tokens.json"
     }
   ]
