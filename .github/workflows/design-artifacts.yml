@@ -210,9 +210,20 @@ jobs:
       commit-user-name: Yuri Schimke
       commit-user-email: yuri@schimke.ee
       timeout-minutes: 90
-      # Stage the app's bundled Noto subsets so the :meshcore-components desktop
-      # render resolves CJK/Arabic glyphs from them, not a system fallback.
-      stage-font-globs: meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf
+      # Stage the app's bundled faces so both halves of the parity lane resolve the
+      # same glyphs. The Noto subsets are for the :meshcore-components desktop render
+      # (CJK/Arabic from the bundled face rather than a system fallback).
+      #
+      # The branded faces are for the OTHER half. `Publish design references` runs in
+      # this same job, after this staging step, and rasterises design/*.html with
+      # Playwright — so it sees exactly what fontconfig holds here. Without Orbitron
+      # staged, every mock whose stack starts `"Orbitron", "Space Grotesk", …` (the
+      # top-bar titles) silently fell back, and the published reference disagreed with
+      # the app about a typeface the app was rendering correctly. The comparison lane
+      # then scored that as drift: Device/Populated lost ~3 points to it alone.
+      stage-font-globs: >-
+        meshcore-components/src/desktopMain/resources/fonts/*.ttf
+        meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf
       # Carry the executable :app bundle + split it per preview, so preview.coo.ee
       # re-renders the :app previews live (the :meshcore-components supplement is
       # split view-only by the reusable workflow).
