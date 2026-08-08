@@ -1,6 +1,6 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 38 error(s) · 19 warning(s) · 13 info._
+_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 16 error(s) · 6 warning(s) · 3 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
 
@@ -84,46 +84,19 @@ _No findings._
 
 ### `DeviceBodyLoadingPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceBodyLoadingPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | INFO | DuplicateSpeakableTextCheck | android.widget.ProgressBar | This non-clickable item's speakable text: "In progress" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceBodyLowBatteryPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceBodyLowBatteryPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceBodyManyContactsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceBodyManyContactsPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "base-station" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Joined" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceBodyNoContactsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceBodyNoContactsPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceInfoWidgetEmptyPreview`
 
@@ -151,17 +124,11 @@ _No findings._
 
 ### `DeviceStatusConnectingPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceStatusConnectingPreview_Dark.a11y.png" width="400" />
-
 _No findings._
 
 ### `DeviceStatusFailedPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceStatusFailedPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "Connection failed" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `DeviceSummaryCardLoadingPreview`
 
@@ -205,69 +172,27 @@ _No findings._
 
 ### `PlayStorePhoneHomeDark` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/PlayStorePhoneHomeDark_Play_Store_phone_home_dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStorePhoneHomeLight` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/PlayStorePhoneHomeLight_Play_Store_phone_home_light.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStorePhoneScannerBle` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 3 other item(s). |
+_No findings._
 
 ### `PlayStorePhoneScannerSaved` · `pixel_2`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStoreTabletSevenHome` · `spec:width=600dp,height=960dp,dpi=320`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
-| 6 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Joined" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `PlayStoreTabletTenHome` · `spec:width=800dp,height=1280dp,dpi=320`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 2 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 3 | ERROR | SpeakableTextPresentCheck | android.widget.TextView | This item may not have a label readable by screen readers. |
-| 4 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "node-peak" is identical to that of 1 other item(s). |
-| 5 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Favourited" is identical to that of 1 other item(s). |
-| 6 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Selected, Joined" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `SavedDevicesEmptyPreview`
 
@@ -287,66 +212,39 @@ _No findings._
 
 ### `ScannerBleEmptyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerBleEmptyPreview_Dark.a11y.png" width="400" />
-
 _No findings._
 
 ### `ScannerBleFewPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerBleFewPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `ScannerBleManyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerBleManyPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 7 other item(s). |
+_No findings._
 
 ### `ScannerBlePermissionPreview` · `pixel_7`
-
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerBlePermissionPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
 ### `ScannerSavedEmptyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerSavedEmptyPreview_Dark.a11y.png" width="400" />
-
 _No findings._
 
 ### `ScannerSavedPopulatedPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerSavedPopulatedPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
-| 2 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "192.168.1.10:5000" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `ScannerTcpPreview` · `pixel_7`
-
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerTcpPreview_Dark.a11y.png" width="400" />
 
 _No findings._
 
 ### `ScannerUsbEmptyPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerUsbEmptyPreview_Dark.a11y.png" width="400" />
-
 _No findings._
 
 ### `ScannerUsbFewPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/ScannerUsbFewPreview_Dark.a11y.png" width="400" />
-
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | WARNING | DuplicateSpeakableTextCheck | android.view.View | This clickable item's speakable text: "Connect" is identical to that of 1 other item(s). |
+_No findings._
 
 ### `TcpConnectPanelBusyPreview`
 
