@@ -11,7 +11,13 @@ on:
   push:
     branches: [main]
   pull_request:
-    types: [opened, synchronize]
+    # `reopened` matters because the render is not just a check — it pushes the PR's
+    # renders to `compose-preview/pr` and posts the sticky diff comment. Without it a
+    # PR that is closed and reopened keeps whatever that branch held when it was
+    # closed, which by then is usually another PR's renders, and nothing re-renders
+    # until the next push. The other two `pull_request` workflows here (`pr-title`,
+    # `no-ai-coauthors`) already list it; this one was the odd one out.
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 permissions:
