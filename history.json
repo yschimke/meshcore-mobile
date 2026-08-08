@@ -1,6 +1,6 @@
 {
     "formatVersion": "compose-preview-history/v1",
-    "generatedFrom": "6a6cf325bc5c5e6569f14dccc60763d470da99ed",
+    "generatedFrom": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
     "previews": {
         "app/activity__MainActivity": {
             "path": "renders/app/activity__MainActivity.png",
@@ -1737,6 +1737,13 @@
             "path": "renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic.png",
             "versions": [
                 {
+                    "blob": "849b189443f61011df0da2922dd4627fd29950ac",
+                    "commit": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
+                    "date": "2026-08-08T18:56:40Z",
+                    "sourceSha": "b11431d2",
+                    "commits": 1
+                },
+                {
                     "blob": "c07472e55156b94a7a1876761e554d3f30556d52",
                     "commit": "ab690dbbc114ab2a049cce1313946d2077e62740",
                     "date": "2026-07-23T08:33:56Z",
@@ -1751,7 +1758,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 2,
+            "observations": 3,
             "unstable": false,
             "flapCount": 0
         },
@@ -1832,6 +1839,13 @@
             "path": "renders/meshcore-components/CommandsArabicPreview_Commands_Arabic.png",
             "versions": [
                 {
+                    "blob": "97c29e6b583e15d2330299d2ea12734980552607",
+                    "commit": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
+                    "date": "2026-08-08T18:56:40Z",
+                    "sourceSha": "b11431d2",
+                    "commits": 1
+                },
+                {
                     "blob": "efcfdbfb5d97b1c040d96e15c99ccf6407279522",
                     "commit": "ab690dbbc114ab2a049cce1313946d2077e62740",
                     "date": "2026-07-23T08:33:56Z",
@@ -1846,7 +1860,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 2,
+            "observations": 3,
             "unstable": false,
             "flapCount": 0
         },
@@ -1927,6 +1941,13 @@
             "path": "renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic.png",
             "versions": [
                 {
+                    "blob": "e33b2a24d0e2887652a789b2fd5f155680c8f8e9",
+                    "commit": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
+                    "date": "2026-08-08T18:56:40Z",
+                    "sourceSha": "b11431d2",
+                    "commits": 1
+                },
+                {
                     "blob": "72e6bc4018687cc5d4923ecaced31e9223a93b48",
                     "commit": "ab690dbbc114ab2a049cce1313946d2077e62740",
                     "date": "2026-07-23T08:33:56Z",
@@ -1941,7 +1962,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 2,
+            "observations": 3,
             "unstable": false,
             "flapCount": 0
         },
@@ -2022,6 +2043,13 @@
             "path": "renders/meshcore-components/CachedDeviceBodyArabicPreview_Cached_device_Arabic.png",
             "versions": [
                 {
+                    "blob": "6217c7f755c2037fb431a1bebd7a81e85e1e1ba3",
+                    "commit": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
+                    "date": "2026-08-08T18:56:40Z",
+                    "sourceSha": "b11431d2",
+                    "commits": 1
+                },
+                {
                     "blob": "b8586ddc17193931c40dd2f0f58c51de7b46b7d5",
                     "commit": "ab690dbbc114ab2a049cce1313946d2077e62740",
                     "date": "2026-07-23T08:33:56Z",
@@ -2043,7 +2071,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 3,
+            "observations": 4,
             "unstable": false,
             "flapCount": 0
         },
@@ -2262,6 +2290,13 @@
             "path": "renders/meshcore-components/DeviceSettingsArabicPreview_Device_settings_Arabic.png",
             "versions": [
                 {
+                    "blob": "1eac48f25d23979043d319d069401be3d9ca291c",
+                    "commit": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
+                    "date": "2026-08-08T18:56:40Z",
+                    "sourceSha": "b11431d2",
+                    "commits": 1
+                },
+                {
                     "blob": "48d0ec8292a1b97e0427eba17165b0456095a2f7",
                     "commit": "ab690dbbc114ab2a049cce1313946d2077e62740",
                     "date": "2026-07-23T08:33:56Z",
@@ -2276,7 +2311,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 2,
+            "observations": 3,
             "unstable": false,
             "flapCount": 0
         },
@@ -2443,6 +2478,13 @@
         "wear/activity__WearMainActivity": {
             "path": "renders/wear/activity__WearMainActivity.png",
             "versions": [
+                {
+                    "blob": "0cba5c8ef4abcde12152f3df27f8abeedf6aaa58",
+                    "commit": "f3539f48430a7e33267ed6290ced012b1c3e6d1a",
+                    "date": "2026-08-08T18:56:40Z",
+                    "sourceSha": "b11431d2",
+                    "commits": 1
+                },
                 {
                     "blob": "35bd2d724a60dfb9e8110d5ff1f39c489ac25bb9",
                     "commit": "6a6cf325bc5c5e6569f14dccc60763d470da99ed",
@@ -2654,7 +2696,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 30,
+            "observations": 31,
             "unstable": false,
             "flapCount": 0
         },
