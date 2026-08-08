@@ -716,7 +716,7 @@
     "functionName": "Dynamic Dark theme",
     "module": "app",
     "renderBasename": "themecatalog__Dynamic_Dark.png",
-    "sha256": "f8d50818e9a6f699bfc8a735e61beb91a67f0427666c9cc6b1cc4486849053d4",
+    "sha256": "25f338364100ccda569c01b022e54585d081476a7ac24fd8c35a3e8b0367cfd8",
     "sourceFile": null
   },
   "app/themecatalog__Dynamic_Light": {
@@ -724,7 +724,7 @@
     "functionName": "Dynamic Light theme",
     "module": "app",
     "renderBasename": "themecatalog__Dynamic_Light.png",
-    "sha256": "259891ca00eeabf672a231eb6914d58a6a2ae0c15320824f1fdf2e485d713de5",
+    "sha256": "6e509158e9b7d84ebc8e3935f504c616b985726979c6ddb4f37ca229a8438b22",
     "sourceFile": null
   },
   "app/themecatalog__MeshCore_Dark": {
@@ -732,7 +732,7 @@
     "functionName": "MeshCore Dark theme",
     "module": "app",
     "renderBasename": "themecatalog__MeshCore_Dark.png",
-    "sha256": "9d1f41ab5143721d953ac582a7e65f73207fa4b7ba7fb81a337dced9cc6fc19f",
+    "sha256": "134b4f392f49984fe71b80255950f41780911077179d7c3eb473514e91d32c5a",
     "sourceFile": null
   },
   "app/themecatalog__MeshCore_Light": {
@@ -740,7 +740,7 @@
     "functionName": "MeshCore Light theme",
     "module": "app",
     "renderBasename": "themecatalog__MeshCore_Light.png",
-    "sha256": "bec1922d9c195ac76c81f8cf0ae685e6906fa0b98241ed787894861b1c52d032",
+    "sha256": "28f3217809faea1ee61ed86ffc50eda52f5c764984594f44252d648d26ff4cd3",
     "sourceFile": null
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatArabicPreview_Channel chat \u2014 Arabic": {
@@ -972,7 +972,7 @@
     "functionName": "WearMainActivity",
     "module": "wear",
     "renderBasename": "activity__WearMainActivity.png",
-    "sha256": "74bdb404c3c1bb0bbce71963b73d47d161e42adc968872514c873462680539c6",
+    "sha256": "62b21480f6b2cf27b34e4ab2a882bbd20f2ef41f55392e676c415f295e80330f",
     "sourceFile": null
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
@@ -1196,7 +1196,7 @@
     "functionName": "MeshCore theme",
     "module": "wear",
     "renderBasename": "wearthemecatalog__MeshCore.png",
-    "sha256": "3bc4d80f1c7f732d11a741cea843c585ad94ce5543509a22db66429db75e2058",
+    "sha256": "667ea15a057b1efa27e373112258b187955e450423c838d788d5e614741ea567",
     "sourceFile": null
   }
 }
