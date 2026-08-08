@@ -748,7 +748,7 @@
     "functionName": "ChannelChatArabicPreview",
     "module": "meshcore-components",
     "renderBasename": "ChannelChatArabicPreview_Channel_chat_Arabic.png",
-    "sha256": "f4ca6bf2cfbce5cb2654f2ce5efb0885e166b4e434d7336eeaca93da642c3192",
+    "sha256": "5eab9bb53c64f38475b5915fbb35a1ac4bb54165d16dae1b2164344f33f0e81d",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatDarkPreview_Channel chat \u2014 dark": {
@@ -780,7 +780,7 @@
     "functionName": "CommandsArabicPreview",
     "module": "meshcore-components",
     "renderBasename": "CommandsArabicPreview_Commands_Arabic.png",
-    "sha256": "e65fda883ed489215a86f50812a96f650409038f28a7d558b7c89b30ceadad98",
+    "sha256": "b16ac3014ef5fcbf03bd3045057de94756c9a9a9dd45b0f11371749dbaada0b1",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsDarkPreview_Commands \u2014 dark": {
@@ -812,7 +812,7 @@
     "functionName": "ContactChatArabicPreview",
     "module": "meshcore-components",
     "renderBasename": "ContactChatArabicPreview_Contact_chat_Arabic.png",
-    "sha256": "79b82645d6976a290ec48123af63286e18a886b7ad173c6e41559206aaa5d799",
+    "sha256": "cf6c0b3e5c7fe10404dff1f5a06955411201a32320ccccb358fa03855da3d11f",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatDarkPreview_Contact chat \u2014 dark": {
@@ -844,7 +844,7 @@
     "functionName": "CachedDeviceBodyArabicPreview",
     "module": "meshcore-components",
     "renderBasename": "CachedDeviceBodyArabicPreview_Cached_device_Arabic.png",
-    "sha256": "f1bd6c10767c5782090fb378f706f4a252f533f5a03ad6ff0956cc9537dde45d",
+    "sha256": "ed163a83bc8e9b57d620def9fce8618e23be509ec22d7bbabf85bc85f250b322",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device \u2014 dark": {
@@ -916,7 +916,7 @@
     "functionName": "DeviceSettingsArabicPreview",
     "module": "meshcore-components",
     "renderBasename": "DeviceSettingsArabicPreview_Device_settings_Arabic.png",
-    "sha256": "8d0d7cac57aecad41fb0b2474db86f16402d1100b3cd10fb116dd27b7f04345b",
+    "sha256": "0d052a7efe8336d3024b28bc182967851cffc541990fcbebba5bd1f84fc83486",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsDarkPreview_Device settings \u2014 dark": {
@@ -972,7 +972,7 @@
     "functionName": "WearMainActivity",
     "module": "wear",
     "renderBasename": "activity__WearMainActivity.png",
-    "sha256": "3ffc086aa412cdf7f971ebee21a0799ff511eb93411fb988dcba430738ae1894",
+    "sha256": "3a67e292a74a7e529036a28f644fa541b44860f2c7dc6a51ebd5838c88429931",
     "sourceFile": null
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
