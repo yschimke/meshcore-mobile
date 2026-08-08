@@ -2,14 +2,60 @@
 
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
+> [!WARNING]
+> 40 preview(s) failed to render in the latest update (40 retained from the prior baseline). See **Render Failures** below.
+
+## Render Failures
+
+The render task completed but no PNG was produced for these previews. Entries with a prior baseline keep their previous image; the rest are absent from the gallery until a successful render lands.
+
+| Preview | Module | Function | Source | Baseline |
+|---------|--------|----------|--------|----------|
+| `app/activity__MainActivity` | app | `MainActivity` | `—` | retained |
+| `app/apptour__getting-started` | app | `getting-started` | `—` | retained |
+| `app/apptour__getting-started#1` | app | `getting-started` | `—` | retained |
+| `app/apptour__getting-started#2` | app | `getting-started` | `—` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLoadingPreview_Dark` | app | `DeviceBodyLoadingPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLoadingPreview_Light` | app | `DeviceBodyLoadingPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLowBatteryPreview_Dark` | app | `DeviceBodyLowBatteryPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyLowBatteryPreview_Light` | app | `DeviceBodyLowBatteryPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyManyContactsPreview_Dark` | app | `DeviceBodyManyContactsPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyManyContactsPreview_Light` | app | `DeviceBodyManyContactsPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyNoContactsPreview_Dark` | app | `DeviceBodyNoContactsPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceBodyNoContactsPreview_Light` | app | `DeviceBodyNoContactsPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusConnectingPreview_Dark` | app | `DeviceStatusConnectingPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusConnectingPreview_Light` | app | `DeviceStatusConnectingPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Dark` | app | `DeviceStatusFailedPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Light` | app | `DeviceStatusFailedPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneHomeDark_Play Store — phone home (dark)` | app | `PlayStorePhoneHomeDark` | `src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneHomeLight_Play Store — phone home (light)` | app | `PlayStorePhoneHomeLight` | `src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneScannerBle_Play Store — phone scanner (BLE)` | app | `PlayStorePhoneScannerBle` | `src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStorePhoneScannerSaved_Play Store — phone scanner (saved)` | app | `PlayStorePhoneScannerSaved` | `src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletSevenHome_Play Store — 7-inch tablet home` | app | `PlayStoreTabletSevenHome` | `src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletTenHome_Play Store — 10-inch tablet home` | app | `PlayStoreTabletTenHome` | `src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleEmptyPreview_Dark` | app | `ScannerBleEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleEmptyPreview_Light` | app | `ScannerBleEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleFewPreview_Dark` | app | `ScannerBleFewPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleFewPreview_Light` | app | `ScannerBleFewPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleManyPreview_Dark` | app | `ScannerBleManyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBleManyPreview_Light` | app | `ScannerBleManyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBlePermissionPreview_Dark` | app | `ScannerBlePermissionPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerBlePermissionPreview_Light` | app | `ScannerBlePermissionPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedEmptyPreview_Dark` | app | `ScannerSavedEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedEmptyPreview_Light` | app | `ScannerSavedEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedPopulatedPreview_Dark` | app | `ScannerSavedPopulatedPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerSavedPopulatedPreview_Light` | app | `ScannerSavedPopulatedPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerTcpPreview_Dark` | app | `ScannerTcpPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerTcpPreview_Light` | app | `ScannerTcpPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbEmptyPreview_Dark` | app | `ScannerUsbEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbEmptyPreview_Light` | app | `ScannerUsbEmptyPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbFewPreview_Dark` | app | `ScannerUsbFewPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+| `app/ee.schimke.meshcore.app.ui.ScannerScreenKt.ScannerUsbFewPreview_Light` | app | `ScannerUsbFewPreview` | `src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt` | retained |
+
 ## app
 
 | Preview | Image |
 |---------|-------|
-| `MainActivity` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/activity__MainActivity.png" width="150" /> |
-| `getting-started` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/apptour__getting-started_step00_launch.png" width="150" /> |
-| `getting-started` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/apptour__getting-started_step01_tcp_transport_tab.png" width="150" /> |
-| `getting-started` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/apptour__getting-started_step02_ble_transport_tab.png" width="150" /> |
 | `BleDeviceListEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/BleDeviceListEmptyPreview_Dark.png" width="150" /> |
 | `BleDeviceListEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/BleDeviceListEmptyPreview_Light.png" width="150" /> |
 | `BleDeviceListFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/BleDeviceListFewPreview_Dark.png" width="150" /> |
@@ -44,48 +90,12 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `TcpConnectPanelBusyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/TcpConnectPanelBusyPreview_Light.png" width="150" /> |
 | `TcpConnectPanelIdlePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/TcpConnectPanelIdlePreview_Dark.png" width="150" /> |
 | `TcpConnectPanelIdlePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/TcpConnectPanelIdlePreview_Light.png" width="150" /> |
-| `DeviceBodyLoadingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyLoadingPreview_Dark.png" width="150" /> |
-| `DeviceBodyLoadingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyLoadingPreview_Light.png" width="150" /> |
-| `DeviceBodyLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyLowBatteryPreview_Dark.png" width="150" /> |
-| `DeviceBodyLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyLowBatteryPreview_Light.png" width="150" /> |
-| `DeviceBodyManyContactsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyManyContactsPreview_Dark.png" width="150" /> |
-| `DeviceBodyManyContactsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyManyContactsPreview_Light.png" width="150" /> |
-| `DeviceBodyNoContactsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyNoContactsPreview_Dark.png" width="150" /> |
-| `DeviceBodyNoContactsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceBodyNoContactsPreview_Light.png" width="150" /> |
-| `DeviceStatusConnectingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceStatusConnectingPreview_Dark.png" width="150" /> |
-| `DeviceStatusConnectingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceStatusConnectingPreview_Light.png" width="150" /> |
-| `DeviceStatusFailedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceStatusFailedPreview_Dark.png" width="150" /> |
-| `DeviceStatusFailedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceStatusFailedPreview_Light.png" width="150" /> |
 | `PlayStoreFeature` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStoreFeature_Play_Store_feature_graphic_1024x500.png" width="150" /> |
 | `PlayStoreIcon` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStoreIcon_Play_Store_icon_512x512.png" width="150" /> |
-| `PlayStorePhoneHomeDark` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStorePhoneHomeDark_Play_Store_phone_home_dark.png" width="150" /> |
-| `PlayStorePhoneHomeLight` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStorePhoneHomeLight_Play_Store_phone_home_light.png" width="150" /> |
-| `PlayStorePhoneScannerBle` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStorePhoneScannerBle_Play_Store_phone_scanner_BLE.png" width="150" /> |
-| `PlayStorePhoneScannerSaved` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStorePhoneScannerSaved_Play_Store_phone_scanner_saved.png" width="150" /> |
-| `PlayStoreTabletSevenHome` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home.png" width="150" /> |
-| `PlayStoreTabletTenHome` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home.png" width="150" /> |
 | `SavedDevicesEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/SavedDevicesEmptyPreview_Dark.png" width="150" /> |
 | `SavedDevicesEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/SavedDevicesEmptyPreview_Light.png" width="150" /> |
 | `SavedDevicesPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/SavedDevicesPopulatedPreview_Dark.png" width="150" /> |
 | `SavedDevicesPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/SavedDevicesPopulatedPreview_Light.png" width="150" /> |
-| `ScannerBleEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleEmptyPreview_Dark.png" width="150" /> |
-| `ScannerBleEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleEmptyPreview_Light.png" width="150" /> |
-| `ScannerBleFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleFewPreview_Dark.png" width="150" /> |
-| `ScannerBleFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleFewPreview_Light.png" width="150" /> |
-| `ScannerBleManyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleManyPreview_Dark.png" width="150" /> |
-| `ScannerBleManyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBleManyPreview_Light.png" width="150" /> |
-| `ScannerBlePermissionPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBlePermissionPreview_Dark.png" width="150" /> |
-| `ScannerBlePermissionPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerBlePermissionPreview_Light.png" width="150" /> |
-| `ScannerSavedEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerSavedEmptyPreview_Dark.png" width="150" /> |
-| `ScannerSavedEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerSavedEmptyPreview_Light.png" width="150" /> |
-| `ScannerSavedPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerSavedPopulatedPreview_Dark.png" width="150" /> |
-| `ScannerSavedPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerSavedPopulatedPreview_Light.png" width="150" /> |
-| `ScannerTcpPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerTcpPreview_Dark.png" width="150" /> |
-| `ScannerTcpPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerTcpPreview_Light.png" width="150" /> |
-| `ScannerUsbEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerUsbEmptyPreview_Dark.png" width="150" /> |
-| `ScannerUsbEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerUsbEmptyPreview_Light.png" width="150" /> |
-| `ScannerUsbFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerUsbFewPreview_Dark.png" width="150" /> |
-| `ScannerUsbFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ScannerUsbFewPreview_Light.png" width="150" /> |
 | `ThemeFoundationMaterial3DarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMaterial3DarkPreview_Foundation_Material_3_dark.png" width="150" /> |
 | `ThemeFoundationMaterial3LightPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light.png" width="150" /> |
 | `ThemeFoundationMeshcoreDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark.png" width="150" /> |
