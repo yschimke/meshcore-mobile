@@ -972,7 +972,7 @@
     "functionName": "WearMainActivity",
     "module": "wear",
     "renderBasename": "activity__WearMainActivity.png",
-    "sha256": "3a67e292a74a7e529036a28f644fa541b44860f2c7dc6a51ebd5838c88429931",
+    "sha256": "5820cabfbc2878d5c18fe4ffc2aeb73b899a127fc0640152ce4ce8f361e50af5",
     "sourceFile": null
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.AnimatedCircularProgressPreview_Animated Circular Progress": {
