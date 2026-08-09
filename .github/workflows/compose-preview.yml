@@ -65,7 +65,7 @@ jobs:
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.19.52
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.19.53
         with:
           # Pin the render CLI to the Gradle plugin version (single source of
           # truth: composePreviewPlugin in libs.versions.toml) instead of the
@@ -107,7 +107,7 @@ jobs:
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.19.52
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v0.19.53
         with:
           cli-version: catalog
           catalog-key: composePreviewPlugin
