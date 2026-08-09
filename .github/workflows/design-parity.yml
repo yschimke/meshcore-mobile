@@ -216,7 +216,16 @@ jobs:
           # size beyond `visualDimTolerancePx`: it diffs the shared region and
           # reports the uncovered border, so a candidate that matches across its
           # overlap but runs taller scores as such instead of as a total mismatch.
-          npx -y design-parity@0.1.38 run \
+          #
+          # 0.1.41 matters for the same `figma:` entries from the other side: the
+          # adapter now batches every reference into a handful of REST calls and
+          # retries a rate-limited one instead of failing the run, so a five-entry
+          # refresh stops being the flakiest step here. 0.1.43 also stops the
+          # candidate loader discarding a bundle it merely couldn't version-check —
+          # it reads the compose-preview CLI version and compares it — and pairs a
+          # Figma reference on its component properties, which is what lets a
+          # variant land on the right reference rather than the first name match.
+          npx -y design-parity@0.1.46 run \
             --repo . \
             --components "$components" \
             --candidate-bundles build/design-parity/candidates.bundle.png,build/design-parity/candidates.app.bundle.png \
