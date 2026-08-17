@@ -188,10 +188,10 @@ jobs:
           if-no-files-found: error
 
   # ───────────────────────────────────────────────────────────────────────────
-  # Common lane: render :app (Android) + :meshcore-components (CMP desktop),
-  # validate the spec, generate, fold in the re-themed compose-m3 as a "Material
-  # 3" tab, and publish to design-artifacts/meshcore-mobile — all in the shared
-  # reusable workflow.
+  # Common lane: render every preview-enabled module — :app (Android),
+  # :meshcore-components (CMP desktop) and :wear — validate the spec, generate,
+  # fold in the re-themed compose-m3 as a "Material 3" tab, and publish to
+  # design-artifacts/meshcore-mobile — all in the shared reusable workflow.
   # ───────────────────────────────────────────────────────────────────────────
   publish:
     name: meshcore-mobile
@@ -203,8 +203,18 @@ jobs:
     with:
       system: meshcore-mobile
       spec: catalog.spec.json
-      module: ':app'
-      extra-module: meshcore-components
+      # Publish every preview-enabled module rather than `:app` plus one named
+      # supplement. `:wear` also applies the preview plugin and its previews were
+      # simply never published; repository-wide discovery picks it up alongside
+      # `:app` and `:meshcore-components`. `extra-module` is rejected outright in
+      # this mode ("redundant with repository-wide discovery"), and so is
+      # `extra-split-mode` — discovery already gives every non-primary module its
+      # own namespaced bundle, split per preview with its re-render classpath, which
+      # is what `extra-split-mode: full` was buying for :meshcore-components.
+      # `:app` stays the primary: catalog.spec.json's `"module": "app"` is passed to
+      # discovery as the preferred module, so the authored entries still resolve
+      # there and equal function names keep their historical winner.
+      modules: all
       cli-version: catalog
       catalog-key: composePreviewPlugin
       commit-user-name: Yuri Schimke
@@ -224,18 +234,14 @@ jobs:
       stage-font-globs: >-
         meshcore-components/src/desktopMain/resources/fonts/*.ttf
         meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf
-      # Carry the executable :app bundle + split it per preview, so preview.coo.ee
-      # re-renders the :app previews live (the :meshcore-components supplement is
-      # split view-only by the reusable workflow).
+      # Carry an executable bundle per discovered module and split it per preview, so
+      # preview.coo.ee re-renders live instead of replaying baked PNGs. This is what
+      # gives the :meshcore-components Screens section (Device/Populated, the Chat
+      # threads, Settings/Ready) a live lane of its own — previously bought with
+      # `extra-split-mode: full`, now the default treatment for every non-primary
+      # module under repository-wide discovery.
       publish-live-bundle: true
       split-per-preview: true
-      # Give the :meshcore-components screens a live lane of their own. They are the catalog's
-      # Screens section — Device/Populated, the Chat threads, Settings/Ready — and :app carries no
-      # copy of them, so as a pixels-only supplement they were the 32-of-70 components whose viewer
-      # said "Pre-rendered snapshot — overrides need the live server" on a catalog that has one.
-      # `full` externalises the supplement beside the :app bundle and splits it per preview, so
-      # those ids resolve through the serve host's per-preview pool.
-      extra-split-mode: full
       # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
       fold-artifact: compose-m3-meshcore
       fold-bundle: compose-m3-meshcore.png
