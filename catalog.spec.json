@@ -1,5 +1,5 @@
 {
-  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a `compose-preview bundle pack --module :app` render — plus a second `--module meshcore-components` (CMP desktop) render folded in via the generator's `--extra-renders` for the Screens that live in that library module — to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. Each `preview` MUST equal an exact @Preview function name: for Themes/Components/the app Screens it is in :app (ee.schimke.meshcore.app.ui.ComponentPreviews etc.); for the meshcore-components Screens (Chat/*, Settings/*, Device/Cached) it is in :meshcore-components (ee.schimke.meshcore.components.ui.*Previews), folded in via --extra-renders. Function names are unique across the two modules, so the join is unambiguous. Each group's optional `section` is the top-level TAB the preview server buckets it under (Themes / Components / Screens / Animations / …) — one level above `name`, which becomes the sub-heading inside the tab; groups follow this file's order, so tabs read Themes → Components → Screens.",
+  "$comment": "Design-catalog spec for the MeshCore mobile design system. Code-led: it declares which @Preview composables (by function name) make up the published sticker sheet, their grouping, and captions. Consumed by @design-parity/catalog-export (via compose-ai-tools' scripts/design-artifacts/generate-design-catalog.mjs) over a repository-wide render (`modules: all`) that packs one bundle per preview-enabled module — :app (Android), :meshcore-components (CMP desktop) and :wear — to produce the importable design-artifacts/meshcore-mobile bundle the public preview server serves at /meshcore-mobile/. `module` below names :app as the PRIMARY, which is what the authored entries here resolve against; the other modules come in as fallback inventory. Each `preview` MUST equal an exact @Preview function name: for Themes/Components/the app Screens it is in :app (ee.schimke.meshcore.app.ui.ComponentPreviews etc.); for the meshcore-components Screens (Chat/*, Settings/*, Device/Cached) it is in :meshcore-components (ee.schimke.meshcore.components.ui.*Previews). Function names are unique across those modules, so the join is unambiguous. NOTE the `breakpoints` entries below are load-bearing beyond layout: every variant of a component must land on a UNIQUE {state, theme, size, props} tuple or the generator aborts with 'produces duplicate output axes'. :wear's `@WearPreviewDevices` previews expand to two round devices, which both fell into the single `compact` bucket until smallRound/largeRound were added — see the same fix in compose-samples' Jetcaster spec. Each group's optional `section` is the top-level TAB the preview server buckets it under (Themes / Components / Screens / Animations / …) — one level above `name`, which becomes the sub-heading inside the tab; groups follow this file's order, so tabs read Themes → Components → Screens.",
   "system": "meshcore-mobile",
   "title": "MeshCore Mobile",
   "library": [
@@ -8,7 +8,11 @@
   ],
   "module": "app",
   "modes": ["light", "dark"],
-  "breakpoints": [{ "size": "compact", "widthDp": 412 }],
+  "breakpoints": [
+    { "size": "compact", "widthDp": 412 },
+    { "size": "smallRound", "device": "id:wearos_small_round" },
+    { "size": "largeRound", "device": "id:wearos_large_round" }
+  ],
   "groups": [
     {
       "name": "Foundation",
