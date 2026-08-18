@@ -16,7 +16,12 @@ core = "1.7.0"
 kotlin = "2.4.10"
 kotlinx-coroutines = "1.11.0"
 material3 = "1.10.0-alpha05"
-androidx-remote-compose = "1.0.0-alpha16" # MUST match the compose-ai-tools renderer pin (see composePreviewPlugin above); a skew fails preview render with NoSuchMethodError inside the RemoteCompose creation API
+# Remote Compose + its Wear widget layer resolve from an androidx-main post-submit
+# snapshot; both keys read 1.0.0-SNAPSHOT off the single `androidxSnapshotBuildId`
+# pinned in settings.gradle.kts, which is where a bump happens. Taking both from one
+# build is what keeps them from skewing — a mismatched pair fails preview render with
+# NoSuchMethodError inside the RemoteCompose creation API.
+androidx-remote-compose = "1.0.0-SNAPSHOT"
 androidx-datastore = "1.2.1"
 androidx-navigation3 = "1.1.6"
 wire = "6.4.5"
@@ -43,7 +48,7 @@ protobufPlugin = "0.10.0"
 horologist = "0.8.3-alpha"
 wear-compose = "1.6.2"
 wear-compose-material3 = "1.6.2"
-wear-compose-remote = "1.0.0-alpha09" # remote-material3, matching the compose-ai-tools renderer pin; bump in lockstep with androidx-remote-compose
+wear-compose-remote = "1.0.0-SNAPSHOT" # remote-material3, from the same snapshot build as androidx-remote-compose above
 playservices-wearable = "20.0.1"
 aboutlibraries = "15.0.4"
 ktfmt = "0.26.0"

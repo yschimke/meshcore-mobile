@@ -232,7 +232,7 @@ fun WearComponentGridPreview() {
         ) {
             CatalogComponentPreview("RemoteCard") {
                 RemoteCard(onClick = action) {
-                    RemoteText("Card Content", color = RemoteCardDefaults.cardColors().contentColor)
+                    RemoteText("Card Content".rs, color = RemoteCardDefaults.cardColors().contentColor)
                 }
             }
             CatalogComponentPreview("RemoteCircularProgressIndicator") {
@@ -255,15 +255,15 @@ fun WearComponentGridPreview() {
                 RemoteTextButton(onClick = action,
                         colors = filledTonalColor()) {
                     RemoteText(
-                        "Button"
+                        "Button".rs
                     )
                 }
             }
             CatalogComponentPreview("RemoteTitleCard") {
                 RemoteTitleCard(onClick = action, title = {
-                    RemoteText("Title", color = RemoteCardDefaults.cardColors().titleColor)
+                    RemoteText("Title".rs, color = RemoteCardDefaults.cardColors().titleColor)
                 }) {
-                    RemoteText("Card Content", color = RemoteCardDefaults.cardColors().contentColor)
+                    RemoteText("Card Content".rs, color = RemoteCardDefaults.cardColors().contentColor)
                 }
             }
         }
