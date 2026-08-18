@@ -1,6 +1,6 @@
 {
     "formatVersion": "compose-preview-history/v1",
-    "generatedFrom": "2a9c28bca606df8db7b499942f98ff7d664ce054",
+    "generatedFrom": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
     "previews": {
         "app/activity__MainActivity": {
             "path": "renders/app/activity__MainActivity.png",
@@ -1324,6 +1324,13 @@
             "path": "renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.png",
             "versions": [
                 {
+                    "blob": "dd5d4116e4e37376f4ab410e6bc6cd13ce9a1a9c",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
+                    "commits": 1
+                },
+                {
                     "blob": "5864390ee47cae185d35a08ae00a51d87d634460",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
                     "date": "2026-08-15T17:29:13Z",
@@ -1331,13 +1338,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo — populated": {
             "path": "renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.png",
             "versions": [
+                {
+                    "blob": "691ef6a3330f4983a6d78e956e4cfe3c29d0e152",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
+                    "commits": 1
+                },
                 {
                     "blob": "b52d5bb9209bf44f3112b8ef5c2ed6137d3004e6",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1346,13 +1360,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo — stale": {
             "path": "renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.png",
             "versions": [
+                {
+                    "blob": "734f8a02abf3ce4acb413d185997700c1552d1ff",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
+                    "commits": 1
+                },
                 {
                     "blob": "41b94a7ededb1ea14643a8b6e46edd54106c2c19",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1361,7 +1382,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
@@ -2562,13 +2583,13 @@
             "flapCount": 0
         },
         "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status — connected": {
-            "path": "renders/wear/StatusWidgetConnectedPreview_Status_connected.png",
+            "path": "renders/wear/StatusWidgetConnectedPreview_Status_connected-63591697.png",
             "versions": [
                 {
                     "blob": "0fedd61c1f0304e561a50d37386ba8daea91ecbd",
-                    "commit": "2ac8b41e1874db431f67481ad621c5288a70f63e",
-                    "date": "2026-06-11T12:53:24Z",
-                    "sourceSha": "5d57a47e",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
                     "commits": 1
                 }
             ],
@@ -2577,13 +2598,13 @@
             "flapCount": 0
         },
         "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status — disconnected": {
-            "path": "renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected.png",
+            "path": "renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.png",
             "versions": [
                 {
                     "blob": "82d5c397a6e3e84ad411ac10238300303b593f34",
-                    "commit": "2ac8b41e1874db431f67481ad621c5288a70f63e",
-                    "date": "2026-06-11T12:53:24Z",
-                    "sourceSha": "5d57a47e",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
                     "commits": 1
                 }
             ],
@@ -2592,13 +2613,13 @@
             "flapCount": 0
         },
         "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status — low battery": {
-            "path": "renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery.png",
+            "path": "renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery-149af881.png",
             "versions": [
                 {
                     "blob": "aa8e21ba0f18768f8437c6b3cc841b33fff87bd9",
-                    "commit": "2ac8b41e1874db431f67481ad621c5288a70f63e",
-                    "date": "2026-06-11T12:53:24Z",
-                    "sourceSha": "5d57a47e",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
                     "commits": 1
                 }
             ],
@@ -2622,24 +2643,17 @@
             "flapCount": 0
         },
         "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid": {
-            "path": "renders/wear/WearComponentGridPreview_Component_Grid.png",
+            "path": "renders/wear/WearComponentGridPreview_Component_Grid-cf79ccb8.png",
             "versions": [
                 {
-                    "blob": "c176a13aa2ce393424d7b26883b7dc24470bd027",
-                    "commit": "7e6a60a763c6e5bd3f9b332d8c6536fdc7886e92",
-                    "date": "2026-08-02T08:42:19Z",
-                    "sourceSha": "1502560a",
-                    "commits": 1
-                },
-                {
-                    "blob": "4e2b478ec749d1366691d0687d984573185cb5bb",
-                    "commit": "2ac8b41e1874db431f67481ad621c5288a70f63e",
-                    "date": "2026-06-11T12:53:24Z",
-                    "sourceSha": "5d57a47e",
+                    "blob": "5af76291742f6a47ae78c97091253352c1219b1f",
+                    "commit": "72871c9b140fc80e5eb2991eaaa05c8eac76f9bc",
+                    "date": "2026-08-18T22:29:20Z",
+                    "sourceSha": "a89d3da3",
                     "commits": 1
                 }
             ],
-            "observations": 2,
+            "observations": 1,
             "unstable": false,
             "flapCount": 0
         },
