@@ -2,20 +2,6 @@
 
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
-> [!WARNING]
-> 4 preview(s) failed to render in the latest update (4 retained from the prior baseline). See **Render Failures** below.
-
-## Render Failures
-
-The render task completed but no PNG was produced for these previews. Entries with a prior baseline keep their previous image; the rest are absent from the gallery until a successful render lands.
-
-| Preview | Module | Function | Source | Baseline |
-|---------|--------|----------|--------|----------|
-| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status — connected` | wear | `StatusWidgetConnectedPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
-| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status — disconnected` | wear | `StatusWidgetDisconnectedPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
-| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status — low battery` | wear | `StatusWidgetLowBatteryPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
-| `wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid` | wear | `WearComponentGridPreview` | `src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt` | retained |
-
 ## app
 
 | Preview | Image |
@@ -174,6 +160,10 @@ The render task completed but no PNG was produced for these previews. Entries wi
 | `StatusBodyPhoneDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyPhoneDisconnectedPreview_Devices_Small_Round-0008192a.png" width="150" /> |
 | `StatusBodyRadioDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Large_Round-fb081cfe.png" width="150" /> |
 | `StatusBodyRadioDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Small_Round-0b155380.png" width="150" /> |
+| `StatusWidgetConnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetConnectedPreview_Status_connected-63591697.png" width="150" /> |
+| `StatusWidgetDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.png" width="150" /> |
+| `StatusWidgetLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery-149af881.png" width="150" /> |
 | `WearComponentCatalogPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentCatalogPreview_Component_Catalog-ab535596.png" width="150" /> |
+| `WearComponentGridPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentGridPreview_Component_Grid-cf79ccb8.png" width="150" /> |
 | `MeshCore theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/wearthemecatalog__MeshCore.png" width="150" /> |
 
