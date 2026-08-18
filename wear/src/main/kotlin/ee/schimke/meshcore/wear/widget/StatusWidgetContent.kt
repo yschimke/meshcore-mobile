@@ -57,7 +57,7 @@ fun StatusWidgetContent(
         RemoteRow {
             val statusColor = if (connected) Primary else ErrorRed
             RemoteText(
-                text = if (connected) "\u2B24 " else "\u2B24 ",
+                text = (if (connected) "\u2B24 " else "\u2B24 ").rs,
                 color = statusColor,
                 fontSize = 10.rsp,
             )

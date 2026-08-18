@@ -3,6 +3,14 @@
   "extends": ["github>yschimke/renovate-config"],
   "packageRules": [
     {
+      "description": "Remote Compose and its Wear widget layer resolve from an androidx-main snapshot (`1.0.0-SNAPSHOT`), pinned by build id as `androidxSnapshotBuildId` in settings.gradle.kts. Renovate can't track a build id embedded in a repository URL, and left enabled it would 'upgrade' the snapshot back onto a stale Google Maven alpha. Moving the snapshot means editing that one line and re-rendering the previews.",
+      "matchPackageNames": [
+        "/^androidx\\.compose\\.remote($|[.:])/",
+        "/^androidx\\.wear\\.compose\\.remote($|[.:])/"
+      ],
+      "enabled": false
+    },
+    {
       "groupName": "Wire",
       "matchPackageNames": ["/^com\\.squareup\\.wire($|[.:])/"]
     },
