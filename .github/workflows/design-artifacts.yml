@@ -247,23 +247,10 @@ jobs:
       fold-bundle: compose-m3-meshcore.png
       fold-spec: compose-ai-tools/samples/design-catalog-m3/catalog.spec.json
       fold-section: Material 3
-      # TEMPORARY, tracked by yschimke/compose-ai-tools#4117 — revert to
-      # `${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}`
-      # once the completeness gate can exempt discovered inventory.
-      #
-      # Repository-wide discovery pulls the synthetic Activity renders into the catalog
-      # (`app/MainActivity`, `app/getting-started`, `wear/WearMainActivity`,
-      # `wear/LicenseActivity`). Those have no semantics tree — the app cold-starts with no
-      # data in the renderer, so the capture is a near-empty frame — and the gate counts them
-      # in `withoutSemantics`, which refuses the whole publish. They are not declared spec
-      # entries, so there is nothing to withhold, and the mode-filter only defers what the
-      # spec names. Until an exemption exists the only lever is this one.
-      #
-      # The cost is real and is why this carries an issue rather than a shrug: the gate is now
-      # off for DECLARED components too, so a genuine regression in one of them will publish
-      # instead of failing the run. The `empty` half still holds — a render that resolves zero
-      # components is still refused, so this cannot blank the delivery branch.
-      allow-incomplete: true
+      # The synthetic Activity renders that repository-wide discovery sweeps in are now
+      # exempted BY NAME in catalog.spec.json (`completeness.exemptSemantics`), so the gate
+      # is strict again for every declared component — see yschimke/compose-ai-tools#4117.
+      allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
     secrets:
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
       # Lets the reusable workflow publish the `figma:` entries in design-map.json
