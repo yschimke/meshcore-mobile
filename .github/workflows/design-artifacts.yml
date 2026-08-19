@@ -242,6 +242,15 @@ jobs:
       # module under repository-wide discovery.
       publish-live-bundle: true
       split-per-preview: true
+      # Shared classpath rather than a self-contained bundle per preview. The default
+      # (`auto`) splits as `full`, copying `classes/app.jar` into every per-preview
+      # bundle, so the delivery branch grows with the PREVIEW COUNT and re-writes all
+      # N copies on every publish (yschimke/compose-ai-tools#4211). This mode publishes
+      # the jar once into `bundle/res` and gives each split manifest a hash-verified
+      # `externalClasspath` instead — the per-module live lanes above (including
+      # :meshcore-components' Screens section) are unaffected, because a trusted serve
+      # host hydrates the pooled jar before starting the daemon.
+      split-mode: full-shared-classpath
       # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
       fold-artifact: compose-m3-meshcore
       fold-bundle: compose-m3-meshcore.png
