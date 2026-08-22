@@ -133,6 +133,7 @@ jobs:
           SRC=compose-m3-artifacts/bundle/compose-m3-bundle.png
           OUT="$GITHUB_WORKSPACE/compose-m3-rethemed"
           RENDERLOG="$RUNNER_TEMP/retheme-render.log"
+          render_rc=0
           # Re-theme every published preview to PNG + editable figma-svg, rehydrating
           # the externalized fonts from the branch's pool. Under xvfb so the desktop
           # daemon has a display.
@@ -164,15 +165,31 @@ jobs:
               --res compose-m3-artifacts/bundle/res \
               --svg \
               -o "$OUT" 2>&1 | tee "$RENDERLOG" \
-            || echo "bundle render exited non-zero — per-preview failures are reported below"
+            || render_rc=$?
+          echo "bundle render exited $render_rc"
           count=$(find "$OUT" -maxdepth 1 -name '*.png' 2>/dev/null | wc -l)
           svgcount=$(find "$OUT" -maxdepth 1 -name '*.svg' 2>/dev/null | wc -l)
           echo "re-themed $count preview PNG(s), $svgcount figma-svg(s)"
           {
             echo "### compose-m3 re-theme"
             echo
-            echo "Re-themed **$count** preview PNG(s) and **$svgcount** figma-svg(s)."
+            echo "Re-themed **$count** preview PNG(s) and **$svgcount** figma-svg(s); renderer exited \`$render_rc\`."
           } >> "$GITHUB_STEP_SUMMARY"
+          # A non-zero exit with no per-preview FAIL line is the renderer itself
+          # going down (daemon crash, bad input) rather than a preview refusing to
+          # theme. Without this the exit status is swallowed, a partial $OUT clears
+          # the count-is-zero guard, and the FAIL grep below finds nothing — so a
+          # half-re-themed bundle would publish reporting no problem at all.
+          if [ "$render_rc" -ne 0 ] && ! grep -qE '^[[:space:]]*FAIL' "$RENDERLOG"; then
+            echo "::warning::bundle render exited $render_rc without reporting any per-preview FAIL — the renderer itself failed; $count preview(s) were re-themed and the rest keep the bundle's original stickers"
+            {
+              echo
+              echo "> **Warning** — the renderer exited \`$render_rc\` without naming a failing"
+              echo "> preview, so it went down mid-run rather than skipping a sticker."
+              echo "> $count of the bundle's previews were re-themed; the remainder keep their"
+              echo "> original (stock Material-colour) renders. See the step log for the tail."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
           # Surface every preview that would not re-theme — one warning each, plus
           # the verbatim list in the job summary — and carry on with what rendered.
           if grep -qE '^[[:space:]]*FAIL' "$RENDERLOG"; then
