@@ -162,39 +162,64 @@ jobs:
               -o "$OUT" || echo "bundle render exited non-zero (expected for the metadata sheets)"
           count=$(find "$OUT" -maxdepth 1 -name '*.png' 2>/dev/null | wc -l)
           svgcount=$(find "$OUT" -maxdepth 1 -name '*.svg' 2>/dev/null | wc -l)
-          echo "re-themed $count preview PNG(s), $svgcount figma-svg(s)"
-          # Derive the floor from the bundle instead of hard-coding one. The old
-          # `-lt 70` was measured against compose-m3 as it stood on 2026-08-09
-          # (compose-ai-tools 0.19.52); the catalog has since been trimmed to 55
-          # declared previews, so the floor became unreachable and every run from
-          # 1.21.0 onward failed here — taking the `meshcore-mobile` publish job
+          # Check the bundle's own preview ids came back, one by one. The old gate
+          # was `count -lt 70`, a floor measured against compose-m3 as it stood on
+          # 2026-08-09 (compose-ai-tools 0.19.52); the catalog has since been
+          # trimmed to 55 declared previews, so the floor became unreachable and
+          # every run from 1.21.0 onward failed here — taking the publish job
           # (needs: retheme) down with it and freezing the served catalog on the
-          # last green publish, 1.15.0. A fixed floor is the wrong shape twice
-          # over: it goes stale whenever compose-m3 changes size, and it cannot
-          # catch a broad failure in a catalog that has grown past it.
+          # last green publish, 1.15.0.
           #
-          # This is also the inventory exemption the note above wants: the
-          # color/type/shape catalog entries are the only unrenderable ids, so
-          # excluding them by prefix gives the exact number of previews that must
-          # come back, and anything short of it is a real regression.
+          # Aggregate counts are the wrong instrument regardless of the number.
+          # `bundle repack` swaps per id (<id>.png → previews/<id>.png), so what
+          # matters is *which* ids came back, not how many artifacts landed in the
+          # directory. Any total-vs-total comparison can be satisfied by the wrong
+          # set: were an inventory id to start rendering — the CLI is built from a
+          # moving main, so that can change under us — its PNG would backfill the
+          # count for a required preview that failed, and the repack below would
+          # then publish that preview's original, un-themed asset. Same hole for
+          # the vector side, where the consequence is a stock-Material figma.svg
+          # beside a MeshCore-teal PNG.
+          #
+          # The renderable set is derived structurally rather than by name: an id
+          # is re-themable exactly when the bundle carries a top-level
+          # previews/<id>.png for repack to swap. The color/type/shape catalog
+          # entries are inventory metadata with no such slot, which is both why
+          # `bundle render` reports them as failures and why requiring them would
+          # be meaningless — repack has nothing to swap for them. That is the
+          # inventory exemption the note above asks for, without hard-coding the
+          # three ids or a name pattern that a future catalog could break.
           "$CLI" bundle extract "$SRC" -o compose-m3-manifest
-          expected=$(jq '[.previewIds[]
-            | select(test("^(colorcatalog|typographycatalog|shapecatalog)__") | not)]
-            | length' compose-m3-manifest/bundle.json)
-          echo "bundle declares $expected renderable preview(s)"
+          jq -r '.previewIds[]' compose-m3-manifest/bundle.json | sort -u > all-ids.txt
+          : > renderable-ids.txt
+          # if/fi rather than `[ … ] && …`: under `set -e` an AND-list whose test
+          # fails on the final iteration makes the loop's status non-zero, and the
+          # last id here is inventory. Explicit is cheaper than relying on that.
+          while IFS= read -r id; do
+            if [ -f "compose-m3-manifest/previews/$id.png" ]; then
+              printf '%s\n' "$id" >> renderable-ids.txt
+            fi
+          done < all-ids.txt
+          expected=$(wc -l < renderable-ids.txt | tr -d ' ')
+          echo "re-themed $count preview PNG(s), $svgcount figma-svg(s); bundle declares $expected renderable"
           if [ "$expected" -lt 1 ]; then
-            echo "::error::bundle declared no renderable previews — manifest unreadable"
+            echo "::error::bundle declared no renderable previews — manifest unreadable or layout changed"
             exit 1
           fi
-          if [ "$count" -lt "$expected" ]; then
-            echo "::error::re-themed only $count of $expected renderable previews — the render broadly failed"
+          missing_png=$(while IFS= read -r id; do
+            [ -f "$OUT/$id.png" ] || printf '%s\n' "$id"
+          done < renderable-ids.txt)
+          missing_svg=$(while IFS= read -r id; do
+            [ -f "$OUT/$id.svg" ] || printf '%s\n' "$id"
+          done < renderable-ids.txt)
+          if [ -n "$missing_png" ]; then
+            echo "::error::re-theme produced no PNG for $(printf '%s\n' "$missing_png" | wc -l | tr -d ' ') of $expected required preview(s) — the render broadly failed"
+            printf '%s\n' "$missing_png" | sed 's/^/  missing png: /'
             exit 1
           fi
-          # Every re-themed PNG must carry a matching re-themed figma-svg, else
-          # `bundle repack` would leave the bundle's original (stock Material-colour)
-          # previews/<id>.figma.svg beside a MeshCore-teal PNG. Fail instead.
-          if [ "$svgcount" -lt "$count" ]; then
-            echo "::error::only $svgcount re-themed figma-svg(s) for $count PNG(s) — the vector export fell short; would leave stale figma.svg"
+          if [ -n "$missing_svg" ]; then
+            echo "::error::re-theme produced no figma-svg for $(printf '%s\n' "$missing_svg" | wc -l | tr -d ' ') of $expected required preview(s) — would leave stale figma.svg beside a re-themed PNG"
+            printf '%s\n' "$missing_svg" | sed 's/^/  missing svg: /'
             exit 1
           fi
           # Swap the re-themed PNG + figma-svg back into the bundle → a drop-in
