@@ -56,12 +56,10 @@ on:
       - 'design/**'
       - '.github/workflows/design-artifacts.yml'
       - '.github/workflows/compose-preview.yml'
+  # No `allow_incomplete` input any more: the publish job now passes
+  # `allow-incomplete: true` unconditionally, so the dispatch toggle would be a
+  # control that does nothing.
   workflow_dispatch:
-    inputs:
-      allow_incomplete:
-        description: 'Publish even if some catalog previews fail to render or lack semantics (use for the first run while tuning the spec).'
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -134,6 +132,8 @@ jobs:
           BLOB="$(jq -r .themeColors design/meshcore-theme-colors.json)"
           SRC=compose-m3-artifacts/bundle/compose-m3-bundle.png
           OUT="$GITHUB_WORKSPACE/compose-m3-rethemed"
+          RENDERLOG="$RUNNER_TEMP/retheme-render.log"
+          render_rc=0
           # Re-theme every published preview to PNG + editable figma-svg, rehydrating
           # the externalized fonts from the branch's pool. Under xvfb so the desktop
           # daemon has a display.
@@ -141,9 +141,14 @@ jobs:
           # The color/type/shape "catalog" previews (Palette colours / Typeface type
           # styles / Shape shapes) are metadata sheets the daemon can't resolve on the
           # --knob path — the catalog exporter excludes them too — so `bundle render`
-          # reports them as failures and exits non-zero. Don't let that fail the job;
-          # instead require that the rest re-themed (guarding a broad render failure),
-          # then repack.
+          # reports them as failures and exits non-zero. Don't let that fail the job:
+          # a preview that won't re-theme costs that one sticker, and blocking on it
+          # strands the entire catalog. Every failure is surfaced as a warning and in
+          # the job summary instead; only a total absence of renders is fatal, since
+          # `bundle repack` then has nothing to swap in. (The absolute floor this
+          # replaced held the delivery branch stale from 2026-08-18: upstream
+          # compose-m3 shrank to 55 previews, of which these three always fail, so
+          # a healthy 52 could never clear it.)
           #
           # theme.fonts brands the M3 type scale to match MeshcoreBrandedTypography
           # (Orbitron for display/headline/title, Space Grotesk for body/label), so
@@ -159,19 +164,63 @@ jobs:
               --knob "theme.fonts=families:display=Orbitron,headline=Orbitron,title=Orbitron,body=Space Grotesk,label=Space Grotesk" \
               --res compose-m3-artifacts/bundle/res \
               --svg \
-              -o "$OUT" || echo "bundle render exited non-zero (expected for the metadata sheets)"
+              -o "$OUT" 2>&1 | tee "$RENDERLOG" \
+            || render_rc=$?
+          echo "bundle render exited $render_rc"
           count=$(find "$OUT" -maxdepth 1 -name '*.png' 2>/dev/null | wc -l)
           svgcount=$(find "$OUT" -maxdepth 1 -name '*.svg' 2>/dev/null | wc -l)
           echo "re-themed $count preview PNG(s), $svgcount figma-svg(s)"
-          if [ "$count" -lt 70 ]; then
-            echo "::error::only $count re-themed previews — the render broadly failed"
-            exit 1
+          {
+            echo "### compose-m3 re-theme"
+            echo
+            echo "Re-themed **$count** preview PNG(s) and **$svgcount** figma-svg(s); renderer exited \`$render_rc\`."
+          } >> "$GITHUB_STEP_SUMMARY"
+          # A non-zero exit with no per-preview FAIL line is the renderer itself
+          # going down (daemon crash, bad input) rather than a preview refusing to
+          # theme. Without this the exit status is swallowed, a partial $OUT clears
+          # the count-is-zero guard, and the FAIL grep below finds nothing — so a
+          # half-re-themed bundle would publish reporting no problem at all.
+          if [ "$render_rc" -ne 0 ] && ! grep -qE '^[[:space:]]*FAIL' "$RENDERLOG"; then
+            echo "::warning::bundle render exited $render_rc without reporting any per-preview FAIL — the renderer itself failed; $count preview(s) were re-themed and the rest keep the bundle's original stickers"
+            {
+              echo
+              echo "> **Warning** — the renderer exited \`$render_rc\` without naming a failing"
+              echo "> preview, so it went down mid-run rather than skipping a sticker."
+              echo "> $count of the bundle's previews were re-themed; the remainder keep their"
+              echo "> original (stock Material-colour) renders. See the step log for the tail."
+            } >> "$GITHUB_STEP_SUMMARY"
           fi
-          # Every re-themed PNG must carry a matching re-themed figma-svg, else
-          # `bundle repack` would leave the bundle's original (stock Material-colour)
-          # previews/<id>.figma.svg beside a MeshCore-teal PNG. Fail instead.
+          # Surface every preview that would not re-theme — one warning each, plus
+          # the verbatim list in the job summary — and carry on with what rendered.
+          if grep -qE '^[[:space:]]*FAIL' "$RENDERLOG"; then
+            failed=$(grep -cE '^[[:space:]]*FAIL' "$RENDERLOG")
+            echo "::warning::$failed preview(s) failed to re-theme — see the job summary"
+            {
+              echo
+              echo "<details><summary>$failed preview(s) failed to re-theme</summary>"
+              echo
+              echo '```'
+              grep -E '^[[:space:]]*FAIL' "$RENDERLOG"
+              echo '```'
+              echo
+              echo "</details>"
+            } >> "$GITHUB_STEP_SUMMARY"
+            grep -E '^[[:space:]]*FAIL' "$RENDERLOG" \
+              | sed -E 's/^[[:space:]]*FAIL[[:space:]]+/::warning::could not re-theme /'
+          fi
+          # Every re-themed PNG should carry a matching re-themed figma-svg; where it
+          # doesn't, `bundle repack` leaves the bundle's original (stock Material-colour)
+          # previews/<id>.figma.svg beside a MeshCore-teal PNG. Warn rather than block —
+          # a stale vector on some stickers beats no publish at all.
           if [ "$svgcount" -lt "$count" ]; then
-            echo "::error::only $svgcount re-themed figma-svg(s) for $count PNG(s) — the vector export fell short; would leave stale figma.svg"
+            echo "::warning::only $svgcount re-themed figma-svg(s) for $count PNG(s) — the vector export fell short; those stickers keep the bundle's original figma.svg"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "> **Warning** — only $svgcount figma-svg(s) for $count PNG(s); the shortfall keeps the original (stock Material-colour) vectors." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # The one fatal case: with nothing re-themed there is no bundle to repack
+          # and no artifact for the publish job's fold to consume.
+          if [ "$count" -eq 0 ]; then
+            echo "::error::no previews re-themed at all — nothing to repack"
             exit 1
           fi
           # Swap the re-themed PNG + figma-svg back into the bundle → a drop-in
@@ -256,10 +305,20 @@ jobs:
       fold-bundle: compose-m3-meshcore.png
       fold-spec: compose-ai-tools/samples/design-catalog-m3/catalog.spec.json
       fold-section: Material 3
-      # The synthetic Activity renders that repository-wide discovery sweeps in are now
-      # exempted BY NAME in catalog.spec.json (`completeness.exemptSemantics`), so the gate
-      # is strict again for every declared component — see yschimke/compose-ai-tools#4117.
-      allow-incomplete: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_incomplete }}
+      # The renders that legitimately carry no semantics tree — the synthetic Activity
+      # heroes repository-wide discovery sweeps in, and the RemotePreviewWrapper widget
+      # previews, which draw a RemoteDocument through a player View — are exempted BY
+      # NAME in catalog.spec.json (`completeness.exemptSemantics`); see
+      # yschimke/compose-ai-tools#4117.
+      #
+      # `allow-incomplete` is on unconditionally so anything the exemptions don't
+      # anticipate is REPORTED rather than fatal. Refusing to publish over a preview
+      # that failed to render is what stranded this catalog: the eight widget previews
+      # lost their semantics, the gate blocked, and preview.coo.ee served a bundle from
+      # before the Remote Compose snapshot switch until its live lane hit a
+      # NoSuchMethodError. A catalog missing a sticker still beats a stale one; the
+      # gaps come back as warnings in the run log and job summary.
+      allow-incomplete: true
     secrets:
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
       # Lets the reusable workflow publish the `figma:` entries in design-map.json
