@@ -149,7 +149,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_circle.png",
     "resourceId": "mipmap/ic_launcher",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "9e48088048e1d4e4203a4faa6163112203d6b10d2b2d3e1247df0f33cc56db1d",
+    "sha256": "8135d2a33878494f96c37e9e8409090280fd3c14db1bf49884a146ea4acd0426",
     "shape": "CIRCLE"
   },
   "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_circle_themed-dark.png": {
@@ -176,7 +176,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_rounded_square.png",
     "resourceId": "mipmap/ic_launcher",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "a17a4556219d17cab650945996414d6f38815a2e986b3bc75b78ef18e8d2e6fe",
+    "sha256": "20056e16a8baa66611584b220514ddbeaf97f6b4758646bfd9b087d1d6e77b0f",
     "shape": "ROUNDED_SQUARE"
   },
   "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_rounded_square_themed-dark.png": {
@@ -203,7 +203,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_square.png",
     "resourceId": "mipmap/ic_launcher",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "8b018ecf8ad99fc3e7049707c8d15f317b550ff6bfdba710c92b6f8856cd098a",
+    "sha256": "9492c96a35a661f18f01555b4d4fe7e3f5e7b8e28a264ebd4f2671a3afc8b53c",
     "shape": "SQUARE"
   },
   "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_square_themed-dark.png": {
@@ -230,7 +230,7 @@
     "renderBasename": "resources/mipmap/ic_launcher_xhdpi_SHAPE_squircle.png",
     "resourceId": "mipmap/ic_launcher",
     "resourceType": "ADAPTIVE_ICON",
-    "sha256": "8654057734ba54c66dbc0c46e4798fd0616af8650cfe413c211e285f8b0399e4",
+    "sha256": "bdb35dac14158c4a6057d5d3d92497d234131edf0a874a617ebfa819cd74b8c6",
     "shape": "SQUIRCLE"
   },
   "wear::mipmap/ic_launcher::renders/resources/mipmap/ic_launcher_xhdpi_SHAPE_squircle_themed-dark.png": {
