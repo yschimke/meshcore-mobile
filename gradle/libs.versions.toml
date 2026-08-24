@@ -1,5 +1,5 @@
 [versions]
-agp = "9.3.1"
+agp = "9.3.2"
 androidCacheFix = "3.0.3"
 playPublisher = "4.1.1"
 android-compileSdk = "37"
