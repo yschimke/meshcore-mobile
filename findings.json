@@ -1091,7 +1091,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png",
       "findings": [],
       "functionName": "ChannelChatArabicPreview",
@@ -1102,7 +1102,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png",
       "findings": [],
       "functionName": "ChannelChatDarkPreview",
@@ -1113,7 +1113,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ChannelChatPreview_Dark-32af4dfe.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ChannelChatPreview_Dark-32af4dfe.png",
       "findings": [],
       "functionName": "ChannelChatPreview",
@@ -1124,7 +1124,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.png",
       "findings": [],
       "functionName": "CommandsArabicPreview",
@@ -1135,7 +1135,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.png",
       "findings": [],
       "functionName": "CommandsDarkPreview",
@@ -1146,7 +1146,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "CommandsPreview_Dark-435b1f7d.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "CommandsPreview_Dark-435b1f7d.png",
       "findings": [],
       "functionName": "CommandsPreview",
@@ -1157,7 +1157,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png",
       "findings": [],
       "functionName": "ContactChatArabicPreview",
@@ -1168,7 +1168,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png",
       "findings": [],
       "functionName": "ContactChatDarkPreview",
@@ -1179,7 +1179,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactChatPreview_Dark-a03644a3.a11y.png",
+      "annotatedBasename": "",
       "cleanBasename": "ContactChatPreview_Dark-a03644a3.png",
       "findings": [],
       "functionName": "ContactChatPreview",

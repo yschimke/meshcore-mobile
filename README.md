@@ -436,55 +436,55 @@ _No findings._
 
 ### `ChannelChatArabicPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png" width="400" />
 
 _No findings._
 
 ### `ChannelChatDarkPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark-ac13324b.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png" width="400" />
 
 _No findings._
 
 ### `ChannelChatPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.png" width="400" />
 
 _No findings._
 
 ### `CommandsArabicPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsArabicPreview_Commands_Arabic-d422501d.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsArabicPreview_Commands_Arabic-d422501d.png" width="400" />
 
 _No findings._
 
 ### `CommandsDarkPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsDarkPreview_Commands_dark-d93ca6b4.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsDarkPreview_Commands_dark-d93ca6b4.png" width="400" />
 
 _No findings._
 
 ### `CommandsPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsPreview_Dark-435b1f7d.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsPreview_Dark-435b1f7d.png" width="400" />
 
 _No findings._
 
 ### `ContactChatArabicPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png" width="400" />
 
 _No findings._
 
 ### `ContactChatDarkPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png" width="400" />
 
 _No findings._
 
 ### `ContactChatPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatPreview_Dark-a03644a3.a11y.png" width="400" />
+<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatPreview_Dark-a03644a3.png" width="400" />
 
 _No findings._
 
