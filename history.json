@@ -1,6 +1,6 @@
 {
     "formatVersion": "compose-preview-history/v1",
-    "generatedFrom": "c778facef304213706231bbad905b39b572c0ca6",
+    "generatedFrom": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
     "previews": {
         "app/activity__MainActivity": {
             "path": "renders/app/activity__MainActivity.png",
@@ -1478,6 +1478,13 @@
             "path": "renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png",
             "versions": [
                 {
+                    "blob": "15e8724db75a1ff6afe28d31258254225d1b2fd6",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
+                {
                     "blob": "849b189443f61011df0da2922dd4627fd29950ac",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
                     "date": "2026-08-15T17:29:13Z",
@@ -1485,7 +1492,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
@@ -1493,20 +1500,12 @@
             "path": "renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png",
             "versions": [
                 {
-                    "blob": "2b6b3bf7a964837364a28c2b16fc1ec4f62897d8",
-                    "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
-                    "date": "2026-08-15T17:29:13Z",
-                    "sourceSha": "d628f548",
+                    "blob": "c4616a7e508e9a39b59378a02aa388cde7efd295",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
                     "commits": 1
-                }
-            ],
-            "observations": 1,
-            "unstable": false,
-            "flapCount": 0
-        },
-        "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Dark": {
-            "path": "renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.png",
-            "versions": [
+                },
                 {
                     "blob": "2b6b3bf7a964837364a28c2b16fc1ec4f62897d8",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1515,13 +1514,42 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Dark": {
+            "path": "renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.png",
+            "versions": [
+                {
+                    "blob": "c4616a7e508e9a39b59378a02aa388cde7efd295",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
+                {
+                    "blob": "2b6b3bf7a964837364a28c2b16fc1ec4f62897d8",
+                    "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
+                    "date": "2026-08-15T17:29:13Z",
+                    "sourceSha": "d628f548",
+                    "commits": 1
+                }
+            ],
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Light": {
             "path": "renders/meshcore-components/ChannelChatPreview_Light-241075b1.png",
             "versions": [
+                {
+                    "blob": "6e5d33639a400fa9aafd47b1658455a52e98853f",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "a100589c6ebf935b8848b069e7c630cf9ceab970",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1530,13 +1558,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsArabicPreview_Commands — Arabic": {
             "path": "renders/meshcore-components/CommandsArabicPreview_Commands_Arabic-d422501d.png",
             "versions": [
+                {
+                    "blob": "73d1ce9db9d3068c54ceb7b9c95d85d23ffb157a",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "97c29e6b583e15d2330299d2ea12734980552607",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1545,7 +1580,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
@@ -1553,20 +1588,12 @@
             "path": "renders/meshcore-components/CommandsDarkPreview_Commands_dark-d93ca6b4.png",
             "versions": [
                 {
-                    "blob": "9e5c306f1910fa10c0e70b12fb10e6c3f341f22c",
-                    "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
-                    "date": "2026-08-15T17:29:13Z",
-                    "sourceSha": "d628f548",
+                    "blob": "6327c43ad14296b5343c2931d9e9884aebf0e4af",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
                     "commits": 1
-                }
-            ],
-            "observations": 1,
-            "unstable": false,
-            "flapCount": 0
-        },
-        "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Dark": {
-            "path": "renders/meshcore-components/CommandsPreview_Dark-435b1f7d.png",
-            "versions": [
+                },
                 {
                     "blob": "9e5c306f1910fa10c0e70b12fb10e6c3f341f22c",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1575,13 +1602,42 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Dark": {
+            "path": "renders/meshcore-components/CommandsPreview_Dark-435b1f7d.png",
+            "versions": [
+                {
+                    "blob": "6327c43ad14296b5343c2931d9e9884aebf0e4af",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
+                {
+                    "blob": "9e5c306f1910fa10c0e70b12fb10e6c3f341f22c",
+                    "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
+                    "date": "2026-08-15T17:29:13Z",
+                    "sourceSha": "d628f548",
+                    "commits": 1
+                }
+            ],
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Light": {
             "path": "renders/meshcore-components/CommandsPreview_Light-7bc1fb02.png",
             "versions": [
+                {
+                    "blob": "1d151a74ce9ac48d6e89325327b6927cfa537580",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "f1da7daf94d146e91345868b8491aecd8ba9f426",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1590,13 +1646,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatArabicPreview_Contact chat — Arabic": {
             "path": "renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png",
             "versions": [
+                {
+                    "blob": "50178f396eb1fcdbbd6f6fe029158c8f51e6b006",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "e33b2a24d0e2887652a789b2fd5f155680c8f8e9",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1605,7 +1668,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
@@ -1613,20 +1676,12 @@
             "path": "renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png",
             "versions": [
                 {
-                    "blob": "6a8061f8ec98e8df8acbcda04a6d9b9bdbc0fb55",
-                    "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
-                    "date": "2026-08-15T17:29:13Z",
-                    "sourceSha": "d628f548",
+                    "blob": "daa95bd7ae5655ce4f6a531634241b5a52c1d4a7",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
                     "commits": 1
-                }
-            ],
-            "observations": 1,
-            "unstable": false,
-            "flapCount": 0
-        },
-        "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Dark": {
-            "path": "renders/meshcore-components/ContactChatPreview_Dark-a03644a3.png",
-            "versions": [
+                },
                 {
                     "blob": "6a8061f8ec98e8df8acbcda04a6d9b9bdbc0fb55",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1635,13 +1690,42 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Dark": {
+            "path": "renders/meshcore-components/ContactChatPreview_Dark-a03644a3.png",
+            "versions": [
+                {
+                    "blob": "daa95bd7ae5655ce4f6a531634241b5a52c1d4a7",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
+                {
+                    "blob": "6a8061f8ec98e8df8acbcda04a6d9b9bdbc0fb55",
+                    "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
+                    "date": "2026-08-15T17:29:13Z",
+                    "sourceSha": "d628f548",
+                    "commits": 1
+                }
+            ],
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Light": {
             "path": "renders/meshcore-components/ContactChatPreview_Light-2912dfcd.png",
             "versions": [
+                {
+                    "blob": "2f5fb43600c051a7eddcda3899606391f6d59529",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "b06906c6f005277d636a05d0fe40fe627a9f51c3",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1650,13 +1734,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyArabicPreview_Cached device — Arabic": {
             "path": "renders/meshcore-components/CachedDeviceBodyArabicPreview_Cached_device_Arabic-68448a40.png",
             "versions": [
+                {
+                    "blob": "3e0dbf5c20113dd6f59b5412a88032a31b77009a",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "6217c7f755c2037fb431a1bebd7a81e85e1e1ba3",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1665,13 +1756,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device — dark": {
             "path": "renders/meshcore-components/CachedDeviceBodyDarkPreview_Cached_device_dark-db126aa8.png",
             "versions": [
+                {
+                    "blob": "94e9de19ec6ddad3df055a894068f2321efd6d22",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "c2441ba6d1cbc6e63ce83638397b7a0b88d3289c",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1680,13 +1778,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyGermanPreview_Cached device — German": {
             "path": "renders/meshcore-components/CachedDeviceBodyGermanPreview_Cached_device_German-ae67372e.png",
             "versions": [
+                {
+                    "blob": "159eb45b361781b6610891fa61a4ab8f7cf975c3",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "e958b0b8565962b87109c9954beb846bd02c987e",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1695,13 +1800,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyJapanesePreview_Cached device — Japanese": {
             "path": "renders/meshcore-components/CachedDeviceBodyJapanesePreview_Cached_device_Japanese-5357f1df.png",
             "versions": [
+                {
+                    "blob": "1abeb0578dc64c86922fbe58712cde5972b89bdf",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "d883e2c6beba8038015a7e2639f770d5df0dff49",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1710,13 +1822,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Dark": {
             "path": "renders/meshcore-components/CachedDeviceBodyPreview_Dark-21aacbde.png",
             "versions": [
+                {
+                    "blob": "94e9de19ec6ddad3df055a894068f2321efd6d22",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "c2441ba6d1cbc6e63ce83638397b7a0b88d3289c",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1725,13 +1844,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyPreview_Light": {
             "path": "renders/meshcore-components/CachedDeviceBodyPreview_Light-1c8dc1c9.png",
             "versions": [
+                {
+                    "blob": "32446345f43f6fe33777177060181f1044ced308",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "7c8993e8f5625cf1269c171a206901fdedef18da",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1740,13 +1866,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyDarkPreview_Device — dark": {
             "path": "renders/meshcore-components/DeviceBodyDarkPreview_Device_dark-8a9024dc.png",
             "versions": [
+                {
+                    "blob": "a8d68e1774c1c1c2bb76734431d5858699ea5cb4",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "5aeaba16fcf5b1c2b01e7b15121d56e2a0a3234c",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1755,13 +1888,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Dark": {
             "path": "renders/meshcore-components/DeviceBodyPreview_Dark-15ee7343.png",
             "versions": [
+                {
+                    "blob": "c590a7a647cc8d18de20f9fab31ba264dc35bfd5",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "9f7625cc29f0b9fa8711a2d22f3599ff71cb9986",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1770,13 +1910,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.DeviceBodyPreview_Light": {
             "path": "renders/meshcore-components/DeviceBodyPreview_Light-8f78a2e1.png",
             "versions": [
+                {
+                    "blob": "a002a46af521b3fc738a19843269c70d4c21d16c",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "ad1573f674f44e95a7be40b55d7191f910a85313",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1785,13 +1932,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsArabicPreview_Device settings — Arabic": {
             "path": "renders/meshcore-components/DeviceSettingsArabicPreview_Device_settings_Arabic-6e225d28.png",
             "versions": [
+                {
+                    "blob": "8bd0e67c5da5a318844082b9a934c95e9d763b6d",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "1eac48f25d23979043d319d069401be3d9ca291c",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1800,13 +1954,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsDarkPreview_Device settings — dark": {
             "path": "renders/meshcore-components/DeviceSettingsDarkPreview_Device_settings_dark-45a7a820.png",
             "versions": [
+                {
+                    "blob": "9c177834092dc4f562c403a94d9891969252fa3c",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "b90b45e5aec00840d64280a252f6bc2a01cf9d32",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1815,13 +1976,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsGermanPreview_Device settings — German": {
             "path": "renders/meshcore-components/DeviceSettingsGermanPreview_Device_settings_German-7864dcd0.png",
             "versions": [
+                {
+                    "blob": "435fcc7adc6e52f73c9973ade6e926aa2c65996b",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "45d9b0d59b8da1df669065b7d65f6eceeaf6614f",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1830,13 +1998,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsJapanesePreview_Device settings — Japanese": {
             "path": "renders/meshcore-components/DeviceSettingsJapanesePreview_Device_settings_Japanese-2aebe55d.png",
             "versions": [
+                {
+                    "blob": "18a10a495dd136b66be6d6695b1e6501d9798a86",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "17d71c64c0c8e8bb40e09ba909c138f3ac0bea92",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1845,13 +2020,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsPreview_Dark": {
             "path": "renders/meshcore-components/DeviceSettingsPreview_Dark-ae0fa63a.png",
             "versions": [
+                {
+                    "blob": "9c177834092dc4f562c403a94d9891969252fa3c",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "b90b45e5aec00840d64280a252f6bc2a01cf9d32",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1860,13 +2042,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "meshcore-components/ee.schimke.meshcore.components.ui.DeviceSettingsBodyPreviewsKt.DeviceSettingsPreview_Light": {
             "path": "renders/meshcore-components/DeviceSettingsPreview_Light-d1d63021.png",
             "versions": [
+                {
+                    "blob": "ef1304b8cb3771600382f9d10870eb6a6f495093",
+                    "commit": "cf2ed10377c9a59921b1a937f97ec1718ac4db25",
+                    "date": "2026-08-31T07:27:07Z",
+                    "sourceSha": "3b3eff0c",
+                    "commits": 1
+                },
                 {
                     "blob": "fc2d2c19fa5bfd56f007be92aa6289ec24f8ea0e",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -1875,7 +2064,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
