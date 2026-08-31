@@ -50,7 +50,7 @@ wear-compose = "1.6.2"
 wear-compose-material3 = "1.6.2"
 wear-compose-remote = "1.0.0-SNAPSHOT" # remote-material3, from the same snapshot build as androidx-remote-compose above
 playservices-wearable = "20.0.1"
-aboutlibraries = "15.1.1"
+aboutlibraries = "15.2.0"
 ktfmt = "0.26.0"
 tapmoc = "0.4.2"
 
