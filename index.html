@@ -110,10 +110,10 @@
 <body>
 <header class="top">
   <h1>MeshCore Mobile</h1>
-  <div class="subtitle">system <code>meshcore-mobile</code> · androidx.compose.material3:material3, ee.schimke.meshcore:meshcore-components (MeshcoreTheme) · rendered by compose-preview 1.62.2 · 2026-09-02T11:52:27.526Z · 90 components · 2 failed renders</div>
-  <div class="subtitle"><a class="pagelink" href="compare.html">SVG vs PNG compare ↗</a></div>
+  <div class="subtitle">system <code>meshcore-mobile</code> · androidx.compose.material3:material3, ee.schimke.meshcore:meshcore-components (MeshcoreTheme) · rendered by compose-preview 1.62.2 · 2026-09-02T12:11:52.731Z · 88 components</div>
+  <div class="subtitle"><a class="pagelink" href="compare.html">SVG vs PNG compare ↗</a> <a class="pagelink" href="rc-compare.html">PNG vs Remote Compose ↗</a></div>
 </header>
-<aside class="failure-summary"><strong>2 failed renders</strong><ul><li><span>ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity</span><strong>×2</strong></li></ul></aside>
+
 <div class="layout">
   <nav class="index"><section class="nav-group">
       <a class="nav-head" href="#g-foundation">Foundation <span>4</span></a>
@@ -160,9 +160,6 @@
     </section><section class="nav-group">
       <a class="nav-head" href="#g-wear">Wear <span>1</span></a>
       <ul><li><a href="#c-wear-meshcore-theme">wear/MeshCore theme</a></li></ul>
-    </section><section class="nav-group">
-      <a class="nav-head" href="#g-components">Components <span>2</span></a>
-      <ul><li><a href="#c-previewactivity">PreviewActivity</a></li><li><a href="#c-wear-previewactivity">:wear::PreviewActivity</a></li></ul>
     </section></nav>
   <main><section class="group" id="g-foundation">
       <h2>Foundation</h2>
@@ -909,25 +906,6 @@
   <div class="meta">
     <h3><a class="ctitle" href="#d-wear-meshcore-theme">wear/MeshCore theme</a></h3>
     <div class="sub">900×760<a class="wf" href="wireframes/wear-meshcore-theme.svg" target="_blank" rel="noopener">wireframe ↗</a><a class="wf figma-svg-link" href="https://preview.coo.ee/meshcore-mobile/render/wear-meshcore-theme__ideal__default__expanded.svg" target="_blank" rel="noopener">figma svg ↗</a></div>
-    
-  </div>
-</article></div>
-    </section>
-<section class="group" id="g-components">
-      <h2>Components</h2>
-      <div class="grid"><article class="card card--failed" id="c-previewactivity">
-  <a class="shot shot--failed" href="#d-previewactivity" aria-label="Show render failure for PreviewActivity"><span class="failure-mark">!</span><strong>1 failed render</strong><span>ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity</span></a>
-  <div class="meta">
-    <h3><a class="ctitle" href="#d-previewactivity">PreviewActivity</a></h3>
-    <div class="sub"><span class="failure-chip">1 failed render</span></div>
-    
-  </div>
-</article>
-<article class="card card--failed" id="c-wear-previewactivity">
-  <a class="shot shot--failed" href="#d-wear-previewactivity" aria-label="Show render failure for :wear::PreviewActivity"><span class="failure-mark">!</span><strong>1 failed render</strong><span>ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity</span></a>
-  <div class="meta">
-    <h3><a class="ctitle" href="#d-wear-previewactivity">:wear::PreviewActivity</a></h3>
-    <div class="sub"><span class="failure-chip">1 failed render</span></div>
     
   </div>
 </article></div>
@@ -1723,174 +1701,6 @@
     <h3>wear/MeshCore theme</h3>
     <div class="detail-caption">MeshCore</div>
     <div class="detail-states"><figure class="state"><figcaption>default</figcaption><div class="state-shots"><div class="state-shot"><img loading="lazy" src="images/wear-meshcore-theme/ideal__default__expanded.png" alt="wear/MeshCore theme default" /><span>expanded</span></div></div></figure></div>
-  </div>
-</div>
-<div class="detail" id="d-previewactivity" role="dialog" aria-label="PreviewActivity">
-  <a class="detail-scrim" href="#c-previewactivity" aria-label="Close"></a>
-  <div class="detail-panel">
-    <a class="detail-x" href="#c-previewactivity" aria-label="Close">×</a>
-    <h3>PreviewActivity</h3>
-    
-    <div class="detail-states"><div class="failure-detail"><strong>ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity</strong><div class="failure-meta">render · activity__PreviewActivity</div><details><summary>Stack trace</summary><pre>java.lang.ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity
-	at org.robolectric.internal.bytecode.SandboxClassLoader.getByteCode(SandboxClassLoader.java:239)
-	at org.robolectric.internal.bytecode.SandboxClassLoader.maybeInstrumentClass(SandboxClassLoader.java:213)
-	at org.robolectric.internal.bytecode.SandboxClassLoader.lambda$loadClass$0(SandboxClassLoader.java:191)
-	at org.robolectric.util.PerfStatsCollector.measure(PerfStatsCollector.java:65)
-	at org.robolectric.internal.bytecode.SandboxClassLoader.loadClass(SandboxClassLoader.java:191)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:423)
-	at java.base/java.lang.Class.forName(Class.java:414)
-	at ee.schimke.composeai.renderer.AppTourRenderer$TourSession.resolveActivityClass(AppTourRenderer.kt:188)
-	at ee.schimke.composeai.renderer.AppTourRenderer$TourSession.launchIntent(AppTourRenderer.kt:192)
-	at ee.schimke.composeai.renderer.AppTourRenderer$TourSession.launch(AppTourRenderer.kt:122)
-	at ee.schimke.composeai.renderer.AppTourRenderer$render$statement$1.evaluate(AppTourRenderer.kt:75)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$testWithDisposal$1.evaluate(AndroidComposeTestRule.android.kt:426)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invokeSuspend(AndroidComposeTestRule.android.kt:448)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(AndroidComposeTestRule.android.kt)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(AndroidComposeTestRule.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invokeSuspend(ComposeUiTest.android.kt:689)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(ComposeUiTest.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(ComposeUiTest.android.kt)
-	at androidx.compose.ui.test.IdlingStrategy.withStrategy$suspendImpl(IdlingStrategy.android.kt:55)
-	at androidx.compose.ui.test.IdlingStrategy.withStrategy(IdlingStrategy.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invokeSuspend(ComposeUiTest.android.kt:686)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(ComposeUiTest.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(ComposeUiTest.android.kt)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
-	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
-	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
-	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(TestBuilders.kt:326)
-	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
-	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
-	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:54)
-	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlockingImpl(Builders.kt:30)
-	at kotlinx.coroutines.BuildersKt.runBlockingImpl(Unknown Source)
-	at kotlinx.coroutines.BuildersKt__Builders_concurrentKt.runBlockingK(Builders.concurrent.kt:172)
-	at kotlinx.coroutines.BuildersKt.runBlockingK(Unknown Source)
-	at kotlinx.coroutines.BuildersKt__Builders_concurrentKt.runBlockingK$default(Builders.concurrent.kt:157)
-	at kotlinx.coroutines.BuildersKt.runBlockingK$default(Unknown Source)
-	at kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
-	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:1)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
-	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:1)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.runTest(ComposeUiTest.android.kt:665)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1.evaluate(AndroidComposeTestRule.android.kt:447)
-	at ee.schimke.composeai.renderer.AppTourRenderer.render(AppTourRenderer.kt:99)
-	at ee.schimke.composeai.renderer.RobolectricRenderTestBase.renderPreview(RobolectricRenderTest.kt:1019)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:542)
-	at org.robolectric.internal.SandboxTestRunner.lambda$executeInSandbox$4(SandboxTestRunner.java:429)
-	at org.robolectric.internal.SandboxTestRunner.runInSandbox(SandboxTestRunner.java:455)
-	at org.robolectric.internal.SandboxTestRunner.executeInSandbox(SandboxTestRunner.java:420)
-	at org.robolectric.internal.SandboxTestRunner$5.evaluate(SandboxTestRunner.java:405)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at org.robolectric.internal.SandboxTestRunner.access$000(SandboxTestRunner.java:64)
-	at org.robolectric.internal.SandboxTestRunner$4.evaluate(SandboxTestRunner.java:294)
-	at org.robolectric.internal.SandboxTestRunner$2.evaluate(SandboxTestRunner.java:260)
-	at org.robolectric.internal.SandboxTestRunner$3.lambda$evaluate$0(SandboxTestRunner.java:280)
-	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThreadWithClassLoader$1(Sandbox.java:112)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-</pre></details></div></div>
-  </div>
-</div>
-<div class="detail" id="d-wear-previewactivity" role="dialog" aria-label=":wear::PreviewActivity">
-  <a class="detail-scrim" href="#c-wear-previewactivity" aria-label="Close"></a>
-  <div class="detail-panel">
-    <a class="detail-x" href="#c-wear-previewactivity" aria-label="Close">×</a>
-    <h3>:wear::PreviewActivity</h3>
-    
-    <div class="detail-states"><div class="failure-detail"><strong>ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity</strong><div class="failure-meta">render · module_3a77656172__module_77656172__activity__PreviewActivity</div><details><summary>Stack trace</summary><pre>java.lang.ClassNotFoundException: org.jetbrains.androidx.compose.ui.tooling.PreviewActivity
-	at org.robolectric.internal.bytecode.SandboxClassLoader.getByteCode(SandboxClassLoader.java:239)
-	at org.robolectric.internal.bytecode.SandboxClassLoader.maybeInstrumentClass(SandboxClassLoader.java:213)
-	at org.robolectric.internal.bytecode.SandboxClassLoader.lambda$loadClass$0(SandboxClassLoader.java:191)
-	at org.robolectric.util.PerfStatsCollector.measure(PerfStatsCollector.java:65)
-	at org.robolectric.internal.bytecode.SandboxClassLoader.loadClass(SandboxClassLoader.java:191)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:423)
-	at java.base/java.lang.Class.forName(Class.java:414)
-	at ee.schimke.composeai.renderer.AppTourRenderer$TourSession.resolveActivityClass(AppTourRenderer.kt:188)
-	at ee.schimke.composeai.renderer.AppTourRenderer$TourSession.launchIntent(AppTourRenderer.kt:192)
-	at ee.schimke.composeai.renderer.AppTourRenderer$TourSession.launch(AppTourRenderer.kt:122)
-	at ee.schimke.composeai.renderer.AppTourRenderer$render$statement$1.evaluate(AppTourRenderer.kt:75)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$testWithDisposal$1.evaluate(AndroidComposeTestRule.android.kt:426)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invokeSuspend(AndroidComposeTestRule.android.kt:448)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(AndroidComposeTestRule.android.kt)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(AndroidComposeTestRule.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invokeSuspend(ComposeUiTest.android.kt:689)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(ComposeUiTest.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(ComposeUiTest.android.kt)
-	at androidx.compose.ui.test.IdlingStrategy.withStrategy$suspendImpl(IdlingStrategy.android.kt:55)
-	at androidx.compose.ui.test.IdlingStrategy.withStrategy(IdlingStrategy.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invokeSuspend(ComposeUiTest.android.kt:686)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(ComposeUiTest.android.kt)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(ComposeUiTest.android.kt)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
-	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
-	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
-	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(TestBuilders.kt:326)
-	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
-	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
-	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
-	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:54)
-	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlockingImpl(Builders.kt:30)
-	at kotlinx.coroutines.BuildersKt.runBlockingImpl(Unknown Source)
-	at kotlinx.coroutines.BuildersKt__Builders_concurrentKt.runBlockingK(Builders.concurrent.kt:172)
-	at kotlinx.coroutines.BuildersKt.runBlockingK(Unknown Source)
-	at kotlinx.coroutines.BuildersKt__Builders_concurrentKt.runBlockingK$default(Builders.concurrent.kt:157)
-	at kotlinx.coroutines.BuildersKt.runBlockingK$default(Unknown Source)
-	at kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
-	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:1)
-	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
-	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:1)
-	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.runTest(ComposeUiTest.android.kt:665)
-	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1.evaluate(AndroidComposeTestRule.android.kt:447)
-	at ee.schimke.composeai.renderer.AppTourRenderer.render(AppTourRenderer.kt:99)
-	at ee.schimke.composeai.renderer.RobolectricRenderTestBase.renderPreview(RobolectricRenderTest.kt:1019)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:542)
-	at org.robolectric.internal.SandboxTestRunner.lambda$executeInSandbox$4(SandboxTestRunner.java:429)
-	at org.robolectric.internal.SandboxTestRunner.runInSandbox(SandboxTestRunner.java:455)
-	at org.robolectric.internal.SandboxTestRunner.executeInSandbox(SandboxTestRunner.java:420)
-	at org.robolectric.internal.SandboxTestRunner$5.evaluate(SandboxTestRunner.java:405)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at org.robolectric.internal.SandboxTestRunner.access$000(SandboxTestRunner.java:64)
-	at org.robolectric.internal.SandboxTestRunner$4.evaluate(SandboxTestRunner.java:294)
-	at org.robolectric.internal.SandboxTestRunner$2.evaluate(SandboxTestRunner.java:260)
-	at org.robolectric.internal.SandboxTestRunner$3.lambda$evaluate$0(SandboxTestRunner.java:280)
-	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThreadWithClassLoader$1(Sandbox.java:112)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-</pre></details></div></div>
   </div>
 </div>
 <script>
