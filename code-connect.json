@@ -1,0 +1,1694 @@
+{
+  "system": "meshcore-mobile",
+  "title": "MeshCore Mobile",
+  "label": "Compose",
+  "source": {
+    "repo": "yschimke/meshcore-mobile",
+    "ref": "main"
+  },
+  "generatedAt": "2026-09-02T06:49:54.198Z",
+  "mappings": [
+    {
+      "componentId": "Theme/MeshCore-Light",
+      "figmaLayerName": "Theme/MeshCore-Light",
+      "componentName": "ThemeFoundationMeshcoreLightPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ThemeFoundationMeshcoreLightPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-meshcore-light__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "Theme/MeshCore-Dark",
+      "figmaLayerName": "Theme/MeshCore-Dark",
+      "componentName": "ThemeFoundationMeshcoreDarkPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ThemeFoundationMeshcoreDarkPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-meshcore-dark__ideal__default__dark__compact.svg"
+    },
+    {
+      "componentId": "Theme/Material3-Light",
+      "figmaLayerName": "Theme/Material3-Light",
+      "componentName": "ThemeFoundationMaterial3LightPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ThemeFoundationMaterial3LightPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-material3-light__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "Theme/Material3-Dark",
+      "figmaLayerName": "Theme/Material3-Dark",
+      "componentName": "ThemeFoundationMaterial3DarkPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ThemeFoundationMaterial3DarkPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-material3-dark__ideal__default__dark__compact.svg"
+    },
+    {
+      "componentId": "DeviceSummaryCard/Populated",
+      "figmaLayerName": "DeviceSummaryCard/Populated",
+      "componentName": "DeviceSummaryCardPopulatedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceSummaryCardPopulatedPreview",
+      "figmaSvg": "figma/devicesummarycard-populated.svg"
+    },
+    {
+      "componentId": "DeviceSummaryCard/Loading",
+      "figmaLayerName": "DeviceSummaryCard/Loading",
+      "componentName": "DeviceSummaryCardLoadingPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceSummaryCardLoadingPreview",
+      "figmaSvg": "figma/devicesummarycard-loading.svg"
+    },
+    {
+      "componentId": "DeviceSummaryCard/LowBattery",
+      "figmaLayerName": "DeviceSummaryCard/LowBattery",
+      "componentName": "DeviceSummaryCardLowBatteryPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceSummaryCardLowBatteryPreview",
+      "figmaSvg": "figma/devicesummarycard-lowbattery.svg"
+    },
+    {
+      "componentId": "ContactRow/Chat",
+      "figmaLayerName": "ContactRow/Chat",
+      "componentName": "ContactRowChatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactRowChatPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-chat__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "ContactRow/Repeater",
+      "figmaLayerName": "ContactRow/Repeater",
+      "componentName": "ContactRowRepeaterPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactRowRepeaterPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-repeater__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "ContactRow/Room",
+      "figmaLayerName": "ContactRow/Room",
+      "componentName": "ContactRowRoomPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactRowRoomPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-room__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "ContactRow/Sensor",
+      "figmaLayerName": "ContactRow/Sensor",
+      "componentName": "ContactRowSensorPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactRowSensorPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-sensor__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "ContactList/Empty",
+      "figmaLayerName": "ContactList/Empty",
+      "componentName": "ContactListEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactListEmptyPreview",
+      "figmaSvg": "figma/contactlist-empty.svg"
+    },
+    {
+      "componentId": "ContactList/Few",
+      "figmaLayerName": "ContactList/Few",
+      "componentName": "ContactListFewPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactListFewPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactlist-few__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "ContactList/Many",
+      "figmaLayerName": "ContactList/Many",
+      "componentName": "ContactListManyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactListManyPreview",
+      "figmaSvg": "figma/contactlist-many.svg"
+    },
+    {
+      "componentId": "BleDeviceList/Empty",
+      "figmaLayerName": "BleDeviceList/Empty",
+      "componentName": "BleDeviceListEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "BleDeviceListEmptyPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-empty__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "BleDeviceList/Few",
+      "figmaLayerName": "BleDeviceList/Few",
+      "componentName": "BleDeviceListFewPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "BleDeviceListFewPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-few__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "BleDeviceList/Many",
+      "figmaLayerName": "BleDeviceList/Many",
+      "componentName": "BleDeviceListManyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "BleDeviceListManyPreview",
+      "figmaSvg": "figma/bledevicelist-many.svg"
+    },
+    {
+      "componentId": "TcpConnectPanel/Idle",
+      "figmaLayerName": "TcpConnectPanel/Idle",
+      "componentName": "TcpConnectPanelIdlePreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "TcpConnectPanelIdlePreview",
+      "figmaSvg": "figma/tcpconnectpanel-idle.svg"
+    },
+    {
+      "componentId": "TcpConnectPanel/Busy",
+      "figmaLayerName": "TcpConnectPanel/Busy",
+      "componentName": "TcpConnectPanelBusyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "TcpConnectPanelBusyPreview",
+      "figmaSvg": "figma/tcpconnectpanel-busy.svg"
+    },
+    {
+      "componentId": "BlePermissionPanel/First",
+      "figmaLayerName": "BlePermissionPanel/First",
+      "componentName": "BlePermissionPanelFirstPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "BlePermissionPanelFirstPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-first__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "BlePermissionPanel/Denied",
+      "figmaLayerName": "BlePermissionPanel/Denied",
+      "componentName": "BlePermissionPanelDeniedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "BlePermissionPanelDeniedPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-denied__ideal__default__light__compact.svg"
+    },
+    {
+      "componentId": "Scanner/SavedEmpty",
+      "figmaLayerName": "Scanner/SavedEmpty",
+      "componentName": "ScannerSavedEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerSavedEmptyPreview",
+      "figmaSvg": "figma/scanner-savedempty.svg"
+    },
+    {
+      "componentId": "Scanner/SavedPopulated",
+      "figmaLayerName": "Scanner/SavedPopulated",
+      "componentName": "ScannerSavedPopulatedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerSavedPopulatedPreview",
+      "figmaSvg": "figma/scanner-savedpopulated.svg"
+    },
+    {
+      "componentId": "Scanner/BlePermission",
+      "figmaLayerName": "Scanner/BlePermission",
+      "componentName": "ScannerBlePermissionPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerBlePermissionPreview",
+      "figmaSvg": "figma/scanner-blepermission.svg"
+    },
+    {
+      "componentId": "Scanner/BleEmpty",
+      "figmaLayerName": "Scanner/BleEmpty",
+      "componentName": "ScannerBleEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerBleEmptyPreview",
+      "figmaSvg": "figma/scanner-bleempty.svg"
+    },
+    {
+      "componentId": "Scanner/BleFew",
+      "figmaLayerName": "Scanner/BleFew",
+      "componentName": "ScannerBleFewPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerBleFewPreview",
+      "figmaSvg": "figma/scanner-blefew.svg"
+    },
+    {
+      "componentId": "Scanner/BleMany",
+      "figmaLayerName": "Scanner/BleMany",
+      "componentName": "ScannerBleManyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerBleManyPreview",
+      "figmaSvg": "figma/scanner-blemany.svg"
+    },
+    {
+      "componentId": "Scanner/UsbEmpty",
+      "figmaLayerName": "Scanner/UsbEmpty",
+      "componentName": "ScannerUsbEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerUsbEmptyPreview",
+      "figmaSvg": "figma/scanner-usbempty.svg"
+    },
+    {
+      "componentId": "Scanner/UsbFew",
+      "figmaLayerName": "Scanner/UsbFew",
+      "componentName": "ScannerUsbFewPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerUsbFewPreview",
+      "figmaSvg": "figma/scanner-usbfew.svg"
+    },
+    {
+      "componentId": "Scanner/Tcp",
+      "figmaLayerName": "Scanner/Tcp",
+      "componentName": "ScannerTcpPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ScannerTcpPreview",
+      "figmaSvg": "figma/scanner-tcp.svg"
+    },
+    {
+      "componentId": "Device/Loading",
+      "figmaLayerName": "Device/Loading",
+      "componentName": "DeviceBodyLoadingPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceBodyLoadingPreview",
+      "figmaSvg": "figma/device-loading.svg"
+    },
+    {
+      "componentId": "Device/NoContacts",
+      "figmaLayerName": "Device/NoContacts",
+      "componentName": "DeviceBodyNoContactsPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceBodyNoContactsPreview",
+      "figmaSvg": "figma/device-nocontacts.svg"
+    },
+    {
+      "componentId": "Device/Populated",
+      "figmaLayerName": "Device/Populated",
+      "componentName": "DeviceBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBody.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceBodyPreview",
+      "codeSnippet": "DeviceBody(\n    self = TODO(\"SelfInfo?\"),\n    battery = TODO(\"BatteryInfo?\"),\n    radio = TODO(\"RadioSettings?\"),\n    contacts = TODO(\"List<Contact>\"),\n    onDisconnect = TODO(\"() -> Unit\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.DeviceBody"
+      ],
+      "parameters": [
+        {
+          "name": "self",
+          "type": "SelfInfo?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "battery",
+          "type": "BatteryInfo?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "radio",
+          "type": "RadioSettings?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "contacts",
+          "type": "List<Contact>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "contactsLoading",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "contactsRefreshing",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "channels",
+          "type": "List<ChannelInfo>",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "contactedKeys",
+          "type": "Set<String>",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "contactedChannelIndices",
+          "type": "Set<Int>",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "sectionStates",
+          "type": "SectionStates",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onSectionExpandedChange",
+          "type": "(Section, Boolean) -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onSectionShowAllChange",
+          "type": "(Section, Boolean) -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "lastMessage",
+          "type": "LastMessageInfo?",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onLastMessageClick",
+          "type": "(LastMessageInfo) -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onContactClick",
+          "type": "(Contact) -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onChannelClick",
+          "type": "(ChannelInfo) -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onCommandsClick",
+          "type": "() -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onSettingsClick",
+          "type": "() -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onDisconnect",
+          "type": "() -> Unit",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "warnings",
+          "type": "List<String>",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "onDismissWarning",
+          "type": "(String) -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/device-populated.svg"
+    },
+    {
+      "componentId": "Device/LowBattery",
+      "figmaLayerName": "Device/LowBattery",
+      "componentName": "DeviceBodyLowBatteryPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceBodyLowBatteryPreview",
+      "figmaSvg": "figma/device-lowbattery.svg"
+    },
+    {
+      "componentId": "Device/ManyContacts",
+      "figmaLayerName": "Device/ManyContacts",
+      "componentName": "DeviceBodyManyContactsPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceBodyManyContactsPreview",
+      "figmaSvg": "figma/device-manycontacts.svg"
+    },
+    {
+      "componentId": "Device/StatusConnecting",
+      "figmaLayerName": "Device/StatusConnecting",
+      "componentName": "DeviceStatusView",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceStatusViews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceStatusConnectingPreview",
+      "codeSnippet": "DeviceStatusView(\n    title = TODO(\"String\"),\n    status = TODO(\"DeviceConnectStatus\"),\n    onCancel = TODO(\"() -> Unit\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.DeviceStatusView"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "status",
+          "type": "DeviceConnectStatus",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "onCancel",
+          "type": "() -> Unit",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "nowMs",
+          "type": "() -> Long",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/device-statusconnecting.svg"
+    },
+    {
+      "componentId": "Device/StatusFailed",
+      "figmaLayerName": "Device/StatusFailed",
+      "componentName": "DeviceStatusFailedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceStatusFailedPreview",
+      "figmaSvg": "figma/device-statusfailed.svg"
+    },
+    {
+      "componentId": "Device/Cached",
+      "figmaLayerName": "Device/Cached",
+      "componentName": "cachedDevicePreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "CachedDeviceBodyPreview",
+      "codeSnippet": "cachedDevicePreview()",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.cachedDevicePreview"
+      ],
+      "parameters": [
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/device-cached.svg"
+    },
+    {
+      "componentId": "Chat/Contact",
+      "figmaLayerName": "Chat/Contact",
+      "componentName": "chatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "ContactChatPreview",
+      "codeSnippet": "chatPreview(\n    title = TODO(\"String\"),\n    subtitle = TODO(\"String?\"),\n    messages = TODO(\"List<ChatMessage>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.chatPreview"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "subtitle",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "messages",
+          "type": "List<ChatMessage>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "inputPlaceholder",
+          "type": "String",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "actions",
+          "type": "RowScope.() -> Unit",
+          "hasDefault": true,
+          "composableSlot": true
+        }
+      ]
+    },
+    {
+      "componentId": "Chat/Channel",
+      "figmaLayerName": "Chat/Channel",
+      "componentName": "chatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "ChannelChatPreview",
+      "codeSnippet": "chatPreview(\n    title = TODO(\"String\"),\n    subtitle = TODO(\"String?\"),\n    messages = TODO(\"List<ChatMessage>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.chatPreview"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "subtitle",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "messages",
+          "type": "List<ChatMessage>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "inputPlaceholder",
+          "type": "String",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "actions",
+          "type": "RowScope.() -> Unit",
+          "hasDefault": true,
+          "composableSlot": true
+        }
+      ]
+    },
+    {
+      "componentId": "Chat/Commands",
+      "figmaLayerName": "Chat/Commands",
+      "componentName": "chatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "CommandsPreview",
+      "codeSnippet": "chatPreview(\n    title = TODO(\"String\"),\n    subtitle = TODO(\"String?\"),\n    messages = TODO(\"List<ChatMessage>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.chatPreview"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "subtitle",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "messages",
+          "type": "List<ChatMessage>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "inputPlaceholder",
+          "type": "String",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "actions",
+          "type": "RowScope.() -> Unit",
+          "hasDefault": true,
+          "composableSlot": true
+        }
+      ]
+    },
+    {
+      "componentId": "Settings/Ready",
+      "figmaLayerName": "Settings/Ready",
+      "componentName": "settingsPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceSettingsPreview",
+      "codeSnippet": "settingsPreview()",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.settingsPreview"
+      ],
+      "parameters": [
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/settings-ready.svg"
+    },
+    {
+      "componentId": "SavedDevices/Populated",
+      "figmaLayerName": "SavedDevices/Populated",
+      "componentName": "SavedDevicesPopulatedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "SavedDevicesPopulatedPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-populated__ideal__default__light.svg"
+    },
+    {
+      "componentId": "SavedDevices/Empty",
+      "figmaLayerName": "SavedDevices/Empty",
+      "componentName": "SavedDevicesEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "SavedDevicesEmptyPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-empty__ideal__default__light.svg"
+    },
+    {
+      "componentId": "app/PlayStoreIcon",
+      "figmaLayerName": "app/PlayStoreIcon",
+      "componentName": "PlayStoreIcon",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "PlayStoreIcon",
+      "figmaSvg": "figma/app-playstoreicon.svg"
+    },
+    {
+      "componentId": "app/PlayStoreFeature",
+      "figmaLayerName": "app/PlayStoreFeature",
+      "componentName": "PlayStoreFeature",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "PlayStoreFeature",
+      "figmaSvg": "figma/app-playstorefeature.svg"
+    },
+    {
+      "componentId": "app/PlayStorePhoneHomeLight",
+      "figmaLayerName": "app/PlayStorePhoneHomeLight",
+      "componentName": "PlayStoreHomeBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "PlayStorePhoneHomeLight",
+      "codeSnippet": "PlayStoreHomeBody(\n    darkTheme = TODO(\"Boolean\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.PlayStoreHomeBody"
+      ],
+      "parameters": [
+        {
+          "name": "darkTheme",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-playstorephonehomelight.svg"
+    },
+    {
+      "componentId": "app/PlayStorePhoneHomeDark",
+      "figmaLayerName": "app/PlayStorePhoneHomeDark",
+      "componentName": "PlayStoreHomeBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "PlayStorePhoneHomeDark",
+      "codeSnippet": "PlayStoreHomeBody(\n    darkTheme = TODO(\"Boolean\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.PlayStoreHomeBody"
+      ],
+      "parameters": [
+        {
+          "name": "darkTheme",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-playstorephonehomedark.svg"
+    },
+    {
+      "componentId": "app/PlayStorePhoneScannerSaved",
+      "figmaLayerName": "app/PlayStorePhoneScannerSaved",
+      "componentName": "PlayStoreSavedDevicesBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "PlayStorePhoneScannerSaved",
+      "codeSnippet": "PlayStoreSavedDevicesBody()",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.PlayStoreSavedDevicesBody"
+      ],
+      "figmaSvg": "figma/app-playstorephonescannersaved.svg"
+    },
+    {
+      "componentId": "app/PlayStorePhoneScannerBle",
+      "figmaLayerName": "app/PlayStorePhoneScannerBle",
+      "componentName": "PlayStoreBleScanningBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "PlayStorePhoneScannerBle",
+      "codeSnippet": "PlayStoreBleScanningBody()",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.PlayStoreBleScanningBody"
+      ],
+      "figmaSvg": "figma/app-playstorephonescannerble.svg"
+    },
+    {
+      "componentId": "app/PlayStoreTabletSevenHome",
+      "figmaLayerName": "app/PlayStoreTabletSevenHome",
+      "componentName": "PlayStoreHomeBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "PlayStoreTabletSevenHome",
+      "codeSnippet": "PlayStoreHomeBody(\n    darkTheme = TODO(\"Boolean\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.PlayStoreHomeBody"
+      ],
+      "parameters": [
+        {
+          "name": "darkTheme",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-playstoretabletsevenhome.svg"
+    },
+    {
+      "componentId": "app/PlayStoreTabletTenHome",
+      "figmaLayerName": "app/PlayStoreTabletTenHome",
+      "componentName": "PlayStoreHomeBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "PlayStoreTabletTenHome",
+      "codeSnippet": "PlayStoreHomeBody(\n    darkTheme = TODO(\"Boolean\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.PlayStoreHomeBody"
+      ],
+      "parameters": [
+        {
+          "name": "darkTheme",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-playstoretablettenhome.svg"
+    },
+    {
+      "componentId": "app/ThemePickerMeshcoreSystemPreview",
+      "figmaLayerName": "app/ThemePickerMeshcoreSystemPreview",
+      "componentName": "ThemePickerMeshcoreSystemPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ThemePickerMeshcoreSystemPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-themepickermeshcoresystempreview__ideal__default.svg"
+    },
+    {
+      "componentId": "app/ThemePickerDynamicDarkPreview",
+      "figmaLayerName": "app/ThemePickerDynamicDarkPreview",
+      "componentName": "ThemePickerDynamicDarkPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ThemePickerDynamicDarkPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-themepickerdynamicdarkpreview__ideal__default__dark.svg"
+    },
+    {
+      "componentId": "app/DeviceInfoWidgetPopulatedPreview",
+      "figmaLayerName": "app/DeviceInfoWidgetPopulatedPreview",
+      "componentName": "DeviceInfoWidgetContent",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetContent.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceInfoWidgetPopulatedPreview",
+      "codeSnippet": "DeviceInfoWidgetContent(\n    deviceName = TODO(\"String\"),\n    pubkeyPrefix = TODO(\"String?\"),\n    radioInfo = TODO(\"String?\"),\n    batteryLine = TODO(\"String?\"),\n    storageLine = TODO(\"String?\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.widget.DeviceInfoWidgetContent"
+      ],
+      "parameters": [
+        {
+          "name": "deviceName",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "pubkeyPrefix",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "radioInfo",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryLine",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryProgress",
+          "type": "Float?",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryWarn",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "storageLine",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "staleLabel",
+          "type": "String?",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-deviceinfowidgetpopulatedpreview.svg"
+    },
+    {
+      "componentId": "app/DeviceInfoWidgetEmptyPreview",
+      "figmaLayerName": "app/DeviceInfoWidgetEmptyPreview",
+      "componentName": "DeviceInfoWidgetContent",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetContent.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceInfoWidgetEmptyPreview",
+      "codeSnippet": "DeviceInfoWidgetContent(\n    deviceName = TODO(\"String\"),\n    pubkeyPrefix = TODO(\"String?\"),\n    radioInfo = TODO(\"String?\"),\n    batteryLine = TODO(\"String?\"),\n    storageLine = TODO(\"String?\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.widget.DeviceInfoWidgetContent"
+      ],
+      "parameters": [
+        {
+          "name": "deviceName",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "pubkeyPrefix",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "radioInfo",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryLine",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryProgress",
+          "type": "Float?",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryWarn",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "storageLine",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "staleLabel",
+          "type": "String?",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-deviceinfowidgetemptypreview.svg"
+    },
+    {
+      "componentId": "app/DeviceInfoWidgetStalePreview",
+      "figmaLayerName": "app/DeviceInfoWidgetStalePreview",
+      "componentName": "DeviceInfoWidgetContent",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetContent.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceInfoWidgetStalePreview",
+      "codeSnippet": "DeviceInfoWidgetContent(\n    deviceName = TODO(\"String\"),\n    pubkeyPrefix = TODO(\"String?\"),\n    radioInfo = TODO(\"String?\"),\n    batteryLine = TODO(\"String?\"),\n    storageLine = TODO(\"String?\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.widget.DeviceInfoWidgetContent"
+      ],
+      "parameters": [
+        {
+          "name": "deviceName",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "pubkeyPrefix",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "radioInfo",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryLine",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryProgress",
+          "type": "Float?",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryWarn",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "storageLine",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "staleLabel",
+          "type": "String?",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/app-deviceinfowidgetstalepreview.svg"
+    },
+    {
+      "componentId": "app/MainActivity",
+      "figmaLayerName": "app/MainActivity",
+      "componentName": "MainActivity",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "MainActivity"
+    },
+    {
+      "componentId": "app/getting-started",
+      "figmaLayerName": "app/getting-started",
+      "componentName": "getting-started",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "getting-started"
+    },
+    {
+      "componentId": "app/MeshCore Dark theme",
+      "figmaLayerName": "app/MeshCore Dark theme",
+      "componentName": "MeshCore Dark theme",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "MeshCore Dark theme",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-meshcore-dark-theme__ideal__default__dark__expanded.svg"
+    },
+    {
+      "componentId": "app/MeshCore Light theme",
+      "figmaLayerName": "app/MeshCore Light theme",
+      "componentName": "MeshCore Light theme",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "MeshCore Light theme",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-meshcore-light-theme__ideal__default__light__expanded.svg"
+    },
+    {
+      "componentId": "app/Dynamic Dark theme",
+      "figmaLayerName": "app/Dynamic Dark theme",
+      "componentName": "Dynamic Dark theme",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "Dynamic Dark theme",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-dynamic-dark-theme__ideal__default__dark__expanded.svg"
+    },
+    {
+      "componentId": "app/Dynamic Light theme",
+      "figmaLayerName": "app/Dynamic Light theme",
+      "componentName": "Dynamic Light theme",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "Dynamic Light theme",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-dynamic-light-theme__ideal__default__light__expanded.svg"
+    },
+    {
+      "componentId": "meshcore-components/ContactChatDarkPreview",
+      "figmaLayerName": "meshcore-components/ContactChatDarkPreview",
+      "componentName": "chatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "ContactChatDarkPreview",
+      "codeSnippet": "chatPreview(\n    title = TODO(\"String\"),\n    subtitle = TODO(\"String?\"),\n    messages = TODO(\"List<ChatMessage>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.chatPreview"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "subtitle",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "messages",
+          "type": "List<ChatMessage>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "inputPlaceholder",
+          "type": "String",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "actions",
+          "type": "RowScope.() -> Unit",
+          "hasDefault": true,
+          "composableSlot": true
+        }
+      ]
+    },
+    {
+      "componentId": "meshcore-components/ChannelChatDarkPreview",
+      "figmaLayerName": "meshcore-components/ChannelChatDarkPreview",
+      "componentName": "chatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "ChannelChatDarkPreview",
+      "codeSnippet": "chatPreview(\n    title = TODO(\"String\"),\n    subtitle = TODO(\"String?\"),\n    messages = TODO(\"List<ChatMessage>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.chatPreview"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "subtitle",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "messages",
+          "type": "List<ChatMessage>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "inputPlaceholder",
+          "type": "String",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "actions",
+          "type": "RowScope.() -> Unit",
+          "hasDefault": true,
+          "composableSlot": true
+        }
+      ]
+    },
+    {
+      "componentId": "meshcore-components/CommandsDarkPreview",
+      "figmaLayerName": "meshcore-components/CommandsDarkPreview",
+      "componentName": "chatPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "CommandsDarkPreview",
+      "codeSnippet": "chatPreview(\n    title = TODO(\"String\"),\n    subtitle = TODO(\"String?\"),\n    messages = TODO(\"List<ChatMessage>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.chatPreview"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "subtitle",
+          "type": "String?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "messages",
+          "type": "List<ChatMessage>",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "inputPlaceholder",
+          "type": "String",
+          "hasDefault": true,
+          "composableSlot": false
+        },
+        {
+          "name": "actions",
+          "type": "RowScope.() -> Unit",
+          "hasDefault": true,
+          "composableSlot": true
+        }
+      ]
+    },
+    {
+      "componentId": "meshcore-components/DeviceBodyDarkPreview",
+      "figmaLayerName": "meshcore-components/DeviceBodyDarkPreview",
+      "componentName": "DeviceBodyDarkPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "DeviceBodyDarkPreview",
+      "figmaSvg": "figma/meshcore-components-devicebodydarkpreview.svg"
+    },
+    {
+      "componentId": "meshcore-components/CachedDeviceBodyDarkPreview",
+      "figmaLayerName": "meshcore-components/CachedDeviceBodyDarkPreview",
+      "componentName": "cachedDevicePreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "CachedDeviceBodyDarkPreview",
+      "codeSnippet": "cachedDevicePreview()",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.cachedDevicePreview"
+      ],
+      "parameters": [
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/meshcore-components-cacheddevicebodydarkpreview.svg"
+    },
+    {
+      "componentId": "meshcore-components/DeviceSettingsDarkPreview",
+      "figmaLayerName": "meshcore-components/DeviceSettingsDarkPreview",
+      "componentName": "settingsPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "DeviceSettingsDarkPreview",
+      "codeSnippet": "settingsPreview()",
+      "imports": [
+        "import ee.schimke.meshcore.components.ui.settingsPreview"
+      ],
+      "parameters": [
+        {
+          "name": "dark",
+          "type": "Boolean",
+          "hasDefault": true,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/meshcore-components-devicesettingsdarkpreview.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyLoadingPreview",
+      "figmaLayerName": "wear/StatusBodyLoadingPreview",
+      "componentName": "StatusBodyLoadingPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyLoadingPreview",
+      "figmaSvg": "figma/wear-statusbodyloadingpreview.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyPhoneDisconnectedPreview",
+      "figmaLayerName": "wear/StatusBodyPhoneDisconnectedPreview",
+      "componentName": "StatusBodyPhoneDisconnectedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyPhoneDisconnectedPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyphonedisconnectedpreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyRadioDisconnectedPreview",
+      "figmaLayerName": "wear/StatusBodyRadioDisconnectedPreview",
+      "componentName": "StatusBodyRadioDisconnectedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyRadioDisconnectedPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyradiodisconnectedpreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyConnectedPreview",
+      "figmaLayerName": "wear/StatusBodyConnectedPreview",
+      "componentName": "StatusBodyConnectedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyConnectedPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyconnectedpreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyConnectedLowBatteryPreview",
+      "figmaLayerName": "wear/StatusBodyConnectedLowBatteryPreview",
+      "componentName": "StatusBodyConnectedLowBatteryPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyConnectedLowBatteryPreview",
+      "figmaSvg": "figma/wear-statusbodyconnectedlowbatterypreview.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyConnectedMediumBatteryPreview",
+      "figmaLayerName": "wear/StatusBodyConnectedMediumBatteryPreview",
+      "componentName": "StatusBodyConnectedMediumBatteryPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyConnectedMediumBatteryPreview",
+      "figmaSvg": "figma/wear-statusbodyconnectedmediumbatterypreview.svg"
+    },
+    {
+      "componentId": "wear/StatusBodyErrorPreview",
+      "figmaLayerName": "wear/StatusBodyErrorPreview",
+      "componentName": "StatusBodyErrorPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "StatusBodyErrorPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyerrorpreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/ContactsBodyEmptyPreview",
+      "figmaLayerName": "wear/ContactsBodyEmptyPreview",
+      "componentName": "ContactsBodyEmptyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactsBodyEmptyPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyemptypreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/ContactsBodyFewPreview",
+      "figmaLayerName": "wear/ContactsBodyFewPreview",
+      "componentName": "ContactsBodyFewPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "ContactsBodyFewPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyfewpreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/QuickReplyBodyPreview",
+      "figmaLayerName": "wear/QuickReplyBodyPreview",
+      "componentName": "QuickReplyBodyPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "QuickReplyBodyPreview",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-quickreplybodypreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/InteractiveToggleChipPreview",
+      "figmaLayerName": "wear/InteractiveToggleChipPreview",
+      "componentName": "PreviewAppScaffold",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "InteractiveToggleChipPreview",
+      "codeSnippet": "PreviewAppScaffold(\n    content = { },\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.PreviewAppScaffold"
+      ],
+      "parameters": [
+        {
+          "name": "content",
+          "type": "() -> Unit",
+          "hasDefault": false,
+          "composableSlot": true
+        }
+      ],
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-interactivetogglechippreview__ideal__default__largeround.svg"
+    },
+    {
+      "componentId": "wear/StatusWidgetConnectedPreview",
+      "figmaLayerName": "wear/StatusWidgetConnectedPreview",
+      "componentName": "StatusWidgetContent",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/widget/StatusWidgetContent.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "StatusWidgetConnectedPreview",
+      "codeSnippet": "StatusWidgetContent(\n    deviceName = TODO(\"String\"),\n    connected = TODO(\"Boolean\"),\n    batteryPercent = TODO(\"Int?\"),\n    contactCount = TODO(\"Int\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.widget.StatusWidgetContent"
+      ],
+      "parameters": [
+        {
+          "name": "deviceName",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "connected",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryPercent",
+          "type": "Int?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "contactCount",
+          "type": "Int",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/wear-statuswidgetconnectedpreview.svg"
+    },
+    {
+      "componentId": "wear/StatusWidgetDisconnectedPreview",
+      "figmaLayerName": "wear/StatusWidgetDisconnectedPreview",
+      "componentName": "StatusWidgetContent",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/widget/StatusWidgetContent.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "StatusWidgetDisconnectedPreview",
+      "codeSnippet": "StatusWidgetContent(\n    deviceName = TODO(\"String\"),\n    connected = TODO(\"Boolean\"),\n    batteryPercent = TODO(\"Int?\"),\n    contactCount = TODO(\"Int\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.widget.StatusWidgetContent"
+      ],
+      "parameters": [
+        {
+          "name": "deviceName",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "connected",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryPercent",
+          "type": "Int?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "contactCount",
+          "type": "Int",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/wear-statuswidgetdisconnectedpreview.svg"
+    },
+    {
+      "componentId": "wear/StatusWidgetLowBatteryPreview",
+      "figmaLayerName": "wear/StatusWidgetLowBatteryPreview",
+      "componentName": "StatusWidgetContent",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/widget/StatusWidgetContent.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "StatusWidgetLowBatteryPreview",
+      "codeSnippet": "StatusWidgetContent(\n    deviceName = TODO(\"String\"),\n    connected = TODO(\"Boolean\"),\n    batteryPercent = TODO(\"Int?\"),\n    contactCount = TODO(\"Int\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.widget.StatusWidgetContent"
+      ],
+      "parameters": [
+        {
+          "name": "deviceName",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "connected",
+          "type": "Boolean",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "batteryPercent",
+          "type": "Int?",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "contactCount",
+          "type": "Int",
+          "hasDefault": false,
+          "composableSlot": false
+        }
+      ],
+      "figmaSvg": "figma/wear-statuswidgetlowbatterypreview.svg"
+    },
+    {
+      "componentId": "wear/WearComponentCatalogPreview",
+      "figmaLayerName": "wear/WearComponentCatalogPreview",
+      "componentName": "WearComponentCatalogPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "WearComponentCatalogPreview",
+      "figmaSvg": "figma/wear-wearcomponentcatalogpreview.svg"
+    },
+    {
+      "componentId": "wear/WearComponentGridPreview",
+      "figmaLayerName": "wear/WearComponentGridPreview",
+      "componentName": "CatalogComponentPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
+      "label": "Compose",
+      "confidence": "LOW",
+      "previewName": "WearComponentGridPreview",
+      "codeSnippet": "CatalogComponentPreview(\n    label = TODO(\"String\"),\n    content = { },\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.widget.CatalogComponentPreview"
+      ],
+      "parameters": [
+        {
+          "name": "label",
+          "type": "String",
+          "hasDefault": false,
+          "composableSlot": false
+        },
+        {
+          "name": "content",
+          "type": "() -> Unit",
+          "hasDefault": false,
+          "composableSlot": true
+        }
+      ],
+      "figmaSvg": "figma/wear-wearcomponentgridpreview.svg"
+    },
+    {
+      "componentId": "wear/WearMainActivity",
+      "figmaLayerName": "wear/WearMainActivity",
+      "componentName": "WearMainActivity",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "WearMainActivity"
+    },
+    {
+      "componentId": "wear/LicenseActivity",
+      "figmaLayerName": "wear/LicenseActivity",
+      "componentName": "LicenseActivity",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "LicenseActivity"
+    },
+    {
+      "componentId": "wear/MeshCore theme",
+      "figmaLayerName": "wear/MeshCore theme",
+      "componentName": "MeshCore theme",
+      "source": "",
+      "label": "Compose",
+      "confidence": "preview-fallback",
+      "previewName": "MeshCore theme",
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-meshcore-theme__ideal__default__expanded.svg"
+    }
+  ]
+}

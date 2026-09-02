@@ -1,0 +1,789 @@
+{
+  "schema": "compose-preview-references/v1",
+  "references": [
+    {
+      "id": "devicesummarycard-populated__ideal__default__light__compact",
+      "previewId": "devicesummarycard-populated__ideal__default__light__compact",
+      "label": "DeviceSummaryCard/Populated — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/devicesummarycard-populated__ideal__default__light__compact.png",
+        "width": 814,
+        "height": 446,
+        "density": 2.625,
+        "sha256": "5cecda141e291976a8222f878423c858da25e3807185e2cc1cd43e0bb73f9765",
+        "transform": {
+          "scaleX": 0.380552,
+          "scaleY": 0.380786,
+          "offsetX": 0,
+          "offsetY": 5
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#DeviceSummaryCardPopulatedPreview",
+          "preview": "DeviceSummaryCardPopulatedPreview",
+          "componentId": "DeviceSummaryCard/Populated"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:153"
+      }
+    },
+    {
+      "id": "devicesummarycard-loading__ideal__default__light",
+      "previewId": "devicesummarycard-loading__ideal__default__light",
+      "label": "DeviceSummaryCard/Loading — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/devicesummarycard-loading__ideal__default__light.png",
+        "width": 1050,
+        "height": 307,
+        "density": 2.625,
+        "sha256": "77d84fe6ccc046437b5b789ca125b119c6096617058fca4d031a497a12356663",
+        "transform": {
+          "scaleX": 0.414038,
+          "scaleY": 0.414159,
+          "offsetX": 0,
+          "offsetY": 36
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#DeviceSummaryCardLoadingPreview",
+          "preview": "DeviceSummaryCardLoadingPreview",
+          "componentId": "DeviceSummaryCard/Loading"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:196"
+      }
+    },
+    {
+      "id": "devicesummarycard-lowbattery__ideal__default__light",
+      "previewId": "devicesummarycard-lowbattery__ideal__default__light",
+      "label": "DeviceSummaryCard/LowBattery — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/devicesummarycard-lowbattery__ideal__default__light.png",
+        "width": 1050,
+        "height": 533,
+        "density": 2.625,
+        "sha256": "a01160f31084feb8dc817b3de19d657e73c7c74ba389c01e5d62f68d50ae3f1d",
+        "transform": {
+          "scaleX": 0.414038,
+          "scaleY": 0.414248,
+          "offsetX": 0,
+          "offsetY": 31
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#DeviceSummaryCardLowBatteryPreview",
+          "preview": "DeviceSummaryCardLowBatteryPreview",
+          "componentId": "DeviceSummaryCard/LowBattery"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:213"
+      }
+    },
+    {
+      "id": "contactrow-chat__ideal__default__light__compact",
+      "previewId": "contactrow-chat__ideal__default__light__compact",
+      "label": "ContactRow/Chat — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactrow-chat__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 234,
+        "density": 2.625,
+        "sha256": "43e03ec741f2eacc5e9e2f185d4aa9b7e10a8f961e23fb951dc11b94c3a371a6",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.42228,
+          "offsetX": 0,
+          "offsetY": 35
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowChatPreview",
+          "preview": "ContactRowChatPreview",
+          "componentId": "ContactRow/Chat"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:477"
+      }
+    },
+    {
+      "id": "contactrow-repeater__ideal__default__light__compact",
+      "previewId": "contactrow-repeater__ideal__default__light__compact",
+      "label": "ContactRow/Repeater — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactrow-repeater__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 234,
+        "density": 2.625,
+        "sha256": "b8e9c5876d93af01174e8d45eba834f7f9051368aeb16aeb94aca1d88fe78c01",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.42228,
+          "offsetX": 0,
+          "offsetY": 35
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowRepeaterPreview",
+          "preview": "ContactRowRepeaterPreview",
+          "componentId": "ContactRow/Repeater"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:495"
+      }
+    },
+    {
+      "id": "contactrow-room__ideal__default__light__compact",
+      "previewId": "contactrow-room__ideal__default__light__compact",
+      "label": "ContactRow/Room — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactrow-room__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 234,
+        "density": 2.625,
+        "sha256": "6ae59ea8e437c008ffc93a85c36306a6fb7af8c54c80a6358996484aa8e5f8a4",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.42228,
+          "offsetX": 0,
+          "offsetY": 35
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowRoomPreview",
+          "preview": "ContactRowRoomPreview",
+          "componentId": "ContactRow/Room"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:513"
+      }
+    },
+    {
+      "id": "contactrow-sensor__ideal__default__light__compact",
+      "previewId": "contactrow-sensor__ideal__default__light__compact",
+      "label": "ContactRow/Sensor — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactrow-sensor__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 234,
+        "density": 2.625,
+        "sha256": "3b81550cbebcdd4383cc4884203ded3ccf9d2ec579f47b8d1680a258afdd5496",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.42228,
+          "offsetX": 0,
+          "offsetY": 35
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactRowSensorPreview",
+          "preview": "ContactRowSensorPreview",
+          "componentId": "ContactRow/Sensor"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:531"
+      }
+    },
+    {
+      "id": "contactlist-empty__ideal__default__light__compact",
+      "previewId": "contactlist-empty__ideal__default__light__compact",
+      "label": "ContactList/Empty — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactlist-empty__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 709,
+        "density": 2.625,
+        "sha256": "602d3c6139c5330cb725ee99e889e3c3df2bf9f041bd76c9d9fb36cd91b0de80",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.422457,
+          "offsetX": 0,
+          "offsetY": 14
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactListEmptyPreview",
+          "preview": "ContactListEmptyPreview",
+          "componentId": "ContactList/Empty"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:549"
+      }
+    },
+    {
+      "id": "contactlist-few__ideal__default__light__compact",
+      "previewId": "contactlist-few__ideal__default__light__compact",
+      "label": "ContactList/Few — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactlist-few__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 709,
+        "density": 2.625,
+        "sha256": "adef633ec915229b56a2a26d1ac99079c8398b81b9f8b7ef1b41a67818d8ae3b",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.421909,
+          "offsetX": 0,
+          "offsetY": 160
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactListFewPreview",
+          "preview": "ContactListFewPreview",
+          "componentId": "ContactList/Few"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:559"
+      }
+    },
+    {
+      "id": "contactlist-many__ideal__default__light__compact",
+      "previewId": "contactlist-many__ideal__default__light__compact",
+      "label": "ContactList/Many — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/contactlist-many__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 709,
+        "density": 2.625,
+        "sha256": "ebe78faaad9157599e18303fda83b2eb158b2b1fd232e699c04e5cd1239d8517",
+        "transform": {
+          "scaleX": 0.393094,
+          "scaleY": 0.393016,
+          "offsetX": 31,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#ContactListManyPreview",
+          "preview": "ContactListManyPreview",
+          "componentId": "ContactList/Many"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:594"
+      }
+    },
+    {
+      "id": "bledevicelist-empty__ideal__default__light__compact",
+      "previewId": "bledevicelist-empty__ideal__default__light__compact",
+      "label": "BleDeviceList/Empty — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/bledevicelist-empty__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 709,
+        "density": 2.625,
+        "sha256": "b24b1c529d60a5dfd288880b85a4b8b2f5026d592b39a8380df130e68383679d",
+        "transform": {
+          "scaleX": 0.52314,
+          "scaleY": 0.523105,
+          "offsetX": 0,
+          "offsetY": 71
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BleDeviceListEmptyPreview",
+          "preview": "BleDeviceListEmptyPreview",
+          "componentId": "BleDeviceList/Empty"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/86:154"
+      }
+    },
+    {
+      "id": "bledevicelist-few__ideal__default__light__compact",
+      "previewId": "bledevicelist-few__ideal__default__light__compact",
+      "label": "BleDeviceList/Few — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/bledevicelist-few__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 924,
+        "density": 2.625,
+        "sha256": "9f7aa70bc380af92f04d955b8f4d2899d59fdb03e0ccc7f1cf4e77bfad3fe4ad",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.42268,
+          "offsetX": 0,
+          "offsetY": 175
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BleDeviceListFewPreview",
+          "preview": "BleDeviceListFewPreview",
+          "componentId": "BleDeviceList/Few"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:18"
+      }
+    },
+    {
+      "id": "bledevicelist-many__ideal__default__light__compact",
+      "previewId": "bledevicelist-many__ideal__default__light__compact",
+      "label": "BleDeviceList/Many — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/bledevicelist-many__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 1449,
+        "density": 2.625,
+        "sha256": "bdcdda6345728f2e1cd8d142711dab2fb3c4926576ef847b759e4b5581caf54b",
+        "transform": {
+          "scaleX": 0.346263,
+          "scaleY": 0.346485,
+          "offsetX": 80,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BleDeviceListManyPreview",
+          "preview": "BleDeviceListManyPreview",
+          "componentId": "BleDeviceList/Many"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:300"
+      }
+    },
+    {
+      "id": "blepermissionpanel-first__ideal__default__light__compact",
+      "previewId": "blepermissionpanel-first__ideal__default__light__compact",
+      "label": "BlePermissionPanel/First — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/blepermissionpanel-first__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 562,
+        "density": 2.625,
+        "sha256": "b2368f21bae90650fc39c096496edeebdeeb4a4115086927506a623ffbe5421f",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.42249,
+          "offsetX": 0,
+          "offsetY": 18
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BlePermissionPanelFirstPreview",
+          "preview": "BlePermissionPanelFirstPreview",
+          "componentId": "BlePermissionPanel/First"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/86:171"
+      }
+    },
+    {
+      "id": "blepermissionpanel-denied__ideal__default__light__compact",
+      "previewId": "blepermissionpanel-denied__ideal__default__light__compact",
+      "label": "BlePermissionPanel/Denied — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/blepermissionpanel-denied__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 628,
+        "density": 2.625,
+        "sha256": "55e6f5635596ce598b82ee00ab1c7c49a149f070071eb8f0a69cafd0382bad02",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.422695,
+          "offsetX": 0,
+          "offsetY": 16
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#BlePermissionPanelDeniedPreview",
+          "preview": "BlePermissionPanelDeniedPreview",
+          "componentId": "BlePermissionPanel/Denied"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/86:195"
+      }
+    },
+    {
+      "id": "tcpconnectpanel-idle__ideal__default__light__compact",
+      "previewId": "tcpconnectpanel-idle__ideal__default__light__compact",
+      "label": "TcpConnectPanel/Idle — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/tcpconnectpanel-idle__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 789,
+        "density": 2.625,
+        "sha256": "78015d8d70fca67b19556f0782cde607663531e180b8323c5d73a9aeb416562f",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.422474,
+          "offsetX": 0,
+          "offsetY": 3
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#TcpConnectPanelIdlePreview",
+          "preview": "TcpConnectPanelIdlePreview",
+          "componentId": "TcpConnectPanel/Idle"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:76"
+      }
+    },
+    {
+      "id": "tcpconnectpanel-busy__ideal__default__light__compact",
+      "previewId": "tcpconnectpanel-busy__ideal__default__light__compact",
+      "label": "TcpConnectPanel/Busy — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/tcpconnectpanel-busy__ideal__default__light__compact.png",
+        "width": 893,
+        "height": 789,
+        "density": 2.625,
+        "sha256": "302921daf84a4b2395ce9c774af349c94c83241635b478739248ae7087c3e12d",
+        "transform": {
+          "scaleX": 0.422422,
+          "scaleY": 0.422474,
+          "offsetX": 0,
+          "offsetY": 3
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt#TcpConnectPanelBusyPreview",
+          "preview": "TcpConnectPanelBusyPreview",
+          "componentId": "TcpConnectPanel/Busy"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:99"
+      }
+    },
+    {
+      "id": "scanner-savedempty__ideal__default__light__compact",
+      "previewId": "scanner-savedempty__ideal__default__light__compact",
+      "label": "Scanner/SavedEmpty — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-savedempty__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "2f1228f96c8b92051b7336066583237b5588c892a54d70a27b1f4a7c4b70f588",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerSavedEmptyPreview",
+          "preview": "ScannerSavedEmptyPreview",
+          "componentId": "Scanner/SavedEmpty"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/92:84"
+      }
+    },
+    {
+      "id": "scanner-savedpopulated__ideal__default__light__compact",
+      "previewId": "scanner-savedpopulated__ideal__default__light__compact",
+      "label": "Scanner/SavedPopulated — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-savedpopulated__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "abeb316be269dd68fa974ad676532d74757e45cb978038d820bc6207a90e426d",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerSavedPopulatedPreview",
+          "preview": "ScannerSavedPopulatedPreview",
+          "componentId": "Scanner/SavedPopulated"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/93:5"
+      }
+    },
+    {
+      "id": "scanner-blepermission__ideal__default__light__compact",
+      "previewId": "scanner-blepermission__ideal__default__light__compact",
+      "label": "Scanner/BlePermission — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-blepermission__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "83300e43bcb632d55c1f8498f6886333a5cc41abb054c3c12d2cc54b0b894e96",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBlePermissionPreview",
+          "preview": "ScannerBlePermissionPreview",
+          "componentId": "Scanner/BlePermission"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/92:5"
+      }
+    },
+    {
+      "id": "scanner-bleempty__ideal__default__light__compact",
+      "previewId": "scanner-bleempty__ideal__default__light__compact",
+      "label": "Scanner/BleEmpty — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-bleempty__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "3b2a4753757ee206d14422c2f3baf219f8b1a00b11f570c03c4b4deb5e03c5b9",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBleEmptyPreview",
+          "preview": "ScannerBleEmptyPreview",
+          "componentId": "Scanner/BleEmpty"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/88:7"
+      }
+    },
+    {
+      "id": "scanner-blefew__ideal__default__light__compact",
+      "previewId": "scanner-blefew__ideal__default__light__compact",
+      "label": "Scanner/BleFew — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-blefew__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "d0159535c7bb65065b9f731404f41e4f72967de23f5dbbcfec6ad0e931988f8a",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBleFewPreview",
+          "preview": "ScannerBleFewPreview",
+          "componentId": "Scanner/BleFew"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/89:77"
+      }
+    },
+    {
+      "id": "scanner-blemany__ideal__default__light__compact",
+      "previewId": "scanner-blemany__ideal__default__light__compact",
+      "label": "Scanner/BleMany — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-blemany__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "b15472dd41fddc546aa80aa25faf5365097092a90d0595367c7491255056aee4",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerBleManyPreview",
+          "preview": "ScannerBleManyPreview",
+          "componentId": "Scanner/BleMany"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/90:5"
+      }
+    },
+    {
+      "id": "scanner-usbempty__ideal__default__light__compact",
+      "previewId": "scanner-usbempty__ideal__default__light__compact",
+      "label": "Scanner/UsbEmpty — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-usbempty__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "444bc2df6c5e29529039497e788438b0c94ca2bf0229a18b3843d4fe003323a2",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerUsbEmptyPreview",
+          "preview": "ScannerUsbEmptyPreview",
+          "componentId": "Scanner/UsbEmpty"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/94:84"
+      }
+    },
+    {
+      "id": "scanner-usbfew__ideal__default__light__compact",
+      "previewId": "scanner-usbfew__ideal__default__light__compact",
+      "label": "Scanner/UsbFew — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-usbfew__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "acd107ac7f6c1ff82ee98771c1fe88fd877db915ead3f4114f60e4c0eab730ad",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerUsbFewPreview",
+          "preview": "ScannerUsbFewPreview",
+          "componentId": "Scanner/UsbFew"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/95:5"
+      }
+    },
+    {
+      "id": "scanner-tcp__ideal__default__light__compact",
+      "previewId": "scanner-tcp__ideal__default__light__compact",
+      "label": "Scanner/Tcp — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/scanner-tcp__ideal__default__light__compact.png",
+        "width": 1078,
+        "height": 2399,
+        "density": 2.625,
+        "sha256": "a6de37d767cf7ff41aa90e34686a661145015ebe11c6c089bd01f7357e0c7ac9",
+        "transform": {
+          "scaleX": 0.381239,
+          "scaleY": 0.381399,
+          "offsetX": 0,
+          "offsetY": 0
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt#ScannerTcpPreview",
+          "preview": "ScannerTcpPreview",
+          "componentId": "Scanner/Tcp"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/94:5"
+      }
+    },
+    {
+      "id": "saveddevices-populated__ideal__default__light",
+      "previewId": "saveddevices-populated__ideal__default__light",
+      "label": "SavedDevices/Populated — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/saveddevices-populated__ideal__default__light.png",
+        "width": 1050,
+        "height": 745,
+        "density": 2.625,
+        "sha256": "8e10b35357a21e25a1e4197d7d812b0c4e90eb1d2453ec6fb4f5b3389e49a8c6",
+        "transform": {
+          "scaleX": 0.414038,
+          "scaleY": 0.413815,
+          "offsetX": 0,
+          "offsetY": 52
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt#SavedDevicesPopulatedPreview",
+          "preview": "SavedDevicesPopulatedPreview",
+          "componentId": "SavedDevices/Populated"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/88:113"
+      }
+    },
+    {
+      "id": "saveddevices-empty__ideal__default__light",
+      "previewId": "saveddevices-empty__ideal__default__light",
+      "label": "SavedDevices/Empty — figma",
+      "tier": "primary",
+      "raster": {
+        "path": "references/saveddevices-empty__ideal__default__light.png",
+        "width": 1050,
+        "height": 492,
+        "density": 2.625,
+        "sha256": "c921a815cf6858f69e19441ec44670eb05a93f394b3721d9b26df3d7c77de268",
+        "transform": {
+          "scaleX": 0.435504,
+          "scaleY": 0.435572,
+          "offsetX": 0,
+          "offsetY": 126
+        }
+      },
+      "source": {
+        "provider": "figma",
+        "attributes": {
+          "code": "app/src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt#SavedDevicesEmptyPreview",
+          "preview": "SavedDevicesEmptyPreview",
+          "componentId": "SavedDevices/Empty"
+        },
+        "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/88:97"
+      }
+    }
+  ]
+}

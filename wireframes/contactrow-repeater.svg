@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 892 234" width="892" height="234" role="img" aria-label="ContactRow/Repeater layout wireframe">
+  <title>ContactRow/Repeater — layout wireframe (slots + tokens)</title>
+  <rect width="892" height="234" fill="#ffffff"/>
+  <g>
+    <rect x="0" y="0" width="892" height="234" fill="none" fill-opacity="0" stroke="#5B6470" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="0" y="0" width="892" height="234" fill="none" fill-opacity="0" stroke="#2E7D6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="42" y="42" width="808" height="150" fill="none" fill-opacity="0" stroke="#8E6BA8" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <path d="M73.5,42 H818.5 A31.5,31.5 0 0 1 850,73.5 V160.5 A31.5,31.5 0 0 1 818.5,192 H73.5 A31.5,31.5 0 0 1 42,160.5 V73.5 A31.5,31.5 0 0 1 73.5,42 Z" fill="#DBE4E0" fill-opacity="1" stroke="#B0813B" stroke-width="1.5" stroke-opacity="1"/>
+    <text x="45" y="54" font-family="system-ui, sans-serif" font-size="9" fill="#B0813B">#FFDBE4E0</text>
+  </g>
+  <g>
+    <rect x="42" y="42" width="808" height="150" fill="none" fill-opacity="0" stroke="#3B72A8" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="74" y="68" width="404" height="98" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <path d="M121.5,70 H121.5 A47.5,47.5 0 0 1 169,117.5 V117.5 A47.5,47.5 0 0 1 121.5,165 H121.5 A47.5,47.5 0 0 1 74,117.5 V117.5 A47.5,47.5 0 0 1 121.5,70 Z" fill="#CCE8E2" fill-opacity="1" stroke="#4F8A4A" stroke-width="1.5" stroke-opacity="1"/>
+    <text x="77" y="82" font-family="system-ui, sans-serif" font-size="9" fill="#4F8A4A">#FFCCE8E2</text>
+  </g>
+  <g>
+    <rect x="74" y="70" width="95" height="95" fill="none" fill-opacity="0" stroke="#7A7A33" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="95" y="91" width="53" height="53" fill="none" fill-opacity="0" stroke="#5B6470" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="201" y="68" width="277" height="98" fill="none" fill-opacity="0" stroke="#4F8A4A" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="201" y="68" width="275" height="53" fill="none" fill-opacity="0" stroke="#7A7A33" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="201" y="126" width="277" height="40" fill="none" fill-opacity="0" stroke="#7A7A33" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+</svg>
