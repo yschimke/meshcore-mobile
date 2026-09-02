@@ -77,6 +77,8 @@ dependencies {
   implementation(libs.kotlinx.coroutines.android)
 
   implementation(libs.wear.compose.ui.tooling)
+  // Keep Remote Compose widget previews recorder-aware and safe under catalog theme overrides.
+  debugImplementation(libs.compose.preview.remotecompose.connector)
   debugImplementation(libs.compose.uiTooling)
 
   testImplementation(libs.robolectric)

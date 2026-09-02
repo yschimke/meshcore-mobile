@@ -122,6 +122,9 @@ dependencies {
   implementation(libs.androidx.appfunctions)
   implementation(libs.aboutlibraries.compose.m3)
   ksp(libs.androidx.appfunctions.compiler)
+  // Required in the preview runtime: substitutes RemotePreviewWrapper with the recorder-aware
+  // wrapper, emits the .rc sidecar, and marks it structural so theme overrides nest around it.
+  debugImplementation(libs.compose.preview.remotecompose.connector)
   debugImplementation(libs.compose.uiTooling)
   testImplementation(libs.robolectric)
   testImplementation(libs.androidx.core)
