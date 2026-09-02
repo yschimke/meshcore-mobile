@@ -283,23 +283,19 @@ jobs:
       stage-font-globs: >-
         meshcore-components/src/desktopMain/resources/fonts/*.ttf
         meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf
-      # Carry an executable bundle per discovered module and split it per preview, so
-      # preview.coo.ee re-renders live instead of replaying baked PNGs. This is what
-      # gives the :meshcore-components Screens section (Device/Populated, the Chat
-      # threads, Settings/Ready) a live lane of its own — previously bought with
-      # `extra-split-mode: full`, now the default treatment for every non-primary
-      # module under repository-wide discovery.
+      # Carry one executable bundle per discovered module so preview.coo.ee can still
+      # re-render live without publishing another executable bundle for every preview.
       publish-live-bundle: true
-      split-per-preview: true
-      # Shared classpath rather than a self-contained bundle per preview. The default
-      # (`auto`) splits as `full`, copying `classes/app.jar` into every per-preview
-      # bundle, so the delivery branch grows with the PREVIEW COUNT and re-writes all
-      # N copies on every publish (yschimke/compose-ai-tools#4211). This mode publishes
-      # the jar once into `bundle/res` and gives each split manifest a hash-verified
-      # `externalClasspath` instead — the per-module live lanes above (including
-      # :meshcore-components' Screens section) are unaffected, because a trusted serve
-      # host hydrates the pooled jar before starting the daemon.
-      split-mode: full-shared-classpath
+      # Pure editable SVGs are a daemon data product too. Keep them transient through catalog
+      # generation and per-preview cover cropping, then produce/cache them only when requested;
+      # raster-backed hybrid SVGs remain static so their crop references stay self-contained.
+      # This also avoids rewriting hundreds of coordinate-derived SVG files when an otherwise
+      # identical render is packed in a slightly different order (ported from m3-catalog #249).
+      defer-figma-svg: true
+      # The per-preview split is the bulk of the current delivery branch: every publish writes
+      # addressable copies under bundle/previews and bundle/modules. The module bundles above are
+      # sufficient for the trusted serve host, so avoid multiplying the artifact by preview count.
+      split-per-preview: false
       # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
       fold-artifact: compose-m3-meshcore
       fold-bundle: compose-m3-meshcore.png
