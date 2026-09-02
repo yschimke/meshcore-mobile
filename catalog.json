@@ -17669,7 +17669,7 @@
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
   "renderer": "compose-preview 1.62.2",
-  "generatedAt": "2026-09-02T06:49:52.850Z",
+  "generatedAt": "2026-09-02T11:52:27.526Z",
   "failures": [
     {
       "id": "render-failed--previewactivity--activity-previewactivity",
