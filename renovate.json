@@ -3,12 +3,12 @@
   "extends": ["github>yschimke/renovate-config"],
   "packageRules": [
     {
-      "description": "Remote Compose and its Wear widget layer resolve from an androidx-main snapshot (`1.0.0-SNAPSHOT`), pinned by build id as `androidxSnapshotBuildId` in settings.gradle.kts. Renovate can't track a build id embedded in a repository URL, and left enabled it would 'upgrade' the snapshot back onto a stale Google Maven alpha. Moving the snapshot means editing that one line and re-rendering the previews.",
+      "description": "Remote Compose (`androidx.compose.remote`) and its Wear widget layer (`androidx.wear.compose.remote`) are released alphas from Google Maven again, so Renovate tracks them — but only as ONE PR. The two layers are compiled against each other (remote-material3 alpha10 declares remote-creation* alpha18), and a pair that moves apart fails preview render with NoSuchMethodError inside the creation API. They were pinned to an androidx-main snapshot until the creation API these cards need reached a release; `1.0.0-SNAPSHOT` names no single build, which is how two consumers of \"the same\" version ended up holding two and killed this catalog's live render lane on the preview server (yschimke/compose-preview-server#187). Re-render the previews when this moves: an alpha bump has changed creation-API signatures before.",
       "matchPackageNames": [
         "/^androidx\\.compose\\.remote($|[.:])/",
         "/^androidx\\.wear\\.compose\\.remote($|[.:])/"
       ],
-      "enabled": false
+      "groupName": "Remote Compose"
     },
     {
       "groupName": "Wire",

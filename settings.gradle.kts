@@ -3,11 +3,6 @@
 rootProject.name = "Meshcore"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-// androidx-main post-submit build the Remote Compose artifacts resolve from. Bump this
-// one line to move every `androidx.compose.remote*` / `androidx.wear.compose.remote*`
-// coordinate to a newer snapshot; see the repository declaration below.
-val androidxSnapshotBuildId = "16113093"
-
 pluginManagement {
     repositories {
         google {
@@ -32,26 +27,6 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
-        // Remote Compose (`androidx.compose.remote`) and its Wear widget layer
-        // (`androidx.wear.compose.remote`) resolve from an androidx-main post-submit
-        // snapshot rather than Google Maven, so the creation API this repo's remote
-        // cards are written against doesn't have to wait for an alpha release. Both
-        // groups come from ONE build id — the catalog notes what a skew costs
-        // (`NoSuchMethodError` inside the creation API at render time) — and the id is
-        // pinned rather than `snapshots/latest` so the build stays reproducible.
-        // Scoped by group regex (which also covers `androidx.compose.remote.foundation`,
-        // a module that only exists on the snapshot line) and `snapshotsOnly()`, so
-        // nothing else can drift onto a snapshot and releases still come from google().
-        // Build ids age out after a few weeks; pick a fresh one from
-        // https://androidx.dev/snapshots/builds if these start 404-ing.
-        maven("https://androidx.dev/snapshots/builds/$androidxSnapshotBuildId/artifacts/repository") {
-            name = "androidxSnapshots"
-            content {
-                includeGroupByRegex("androidx\\.compose\\.remote.*")
-                includeGroupByRegex("androidx\\.wear\\.compose\\.remote.*")
-            }
-            mavenContent { snapshotsOnly() }
-        }
         maven("https://jitpack.io")
     }
 }
