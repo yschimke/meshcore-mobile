@@ -6,7 +6,7 @@
     "repo": "yschimke/meshcore-mobile",
     "ref": "main"
   },
-  "generatedAt": "2026-09-02T12:11:54.236Z",
+  "generatedAt": "2026-09-03T05:02:17.757Z",
   "mappings": [
     {
       "componentId": "Theme/MeshCore-Light",
@@ -345,133 +345,155 @@
           "name": "self",
           "type": "SelfInfo?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "battery",
           "type": "BatteryInfo?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "radio",
           "type": "RadioSettings?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contacts",
           "type": "List<Contact>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactsLoading",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactsRefreshing",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "channels",
           "type": "List<ChannelInfo>",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactedKeys",
           "type": "Set<String>",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactedChannelIndices",
           "type": "Set<Int>",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "sectionStates",
           "type": "SectionStates",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onSectionExpandedChange",
           "type": "(Section, Boolean) -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onSectionShowAllChange",
           "type": "(Section, Boolean) -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "lastMessage",
           "type": "LastMessageInfo?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onLastMessageClick",
           "type": "(LastMessageInfo) -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onContactClick",
           "type": "(Contact) -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onChannelClick",
           "type": "(ChannelInfo) -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onCommandsClick",
           "type": "() -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onSettingsClick",
           "type": "() -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onDisconnect",
           "type": "() -> Unit",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onOpenThemePicker",
           "type": "() -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "warnings",
           "type": "List<String>",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onDismissWarning",
           "type": "(String) -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/device-populated.svg"
@@ -513,31 +535,36 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "status",
           "type": "DeviceConnectStatus",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onCancel",
           "type": "() -> Unit",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "onOpenThemePicker",
           "type": "() -> Unit",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "nowMs",
           "type": "() -> Long",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/device-statusconnecting.svg"
@@ -569,7 +596,8 @@
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/device-cached.svg"
@@ -591,37 +619,43 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "subtitle",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "messages",
           "type": "List<ChatMessage>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "inputPlaceholder",
           "type": "String",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
           "hasDefault": true,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope"
         }
       ]
     },
@@ -642,37 +676,43 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "subtitle",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "messages",
           "type": "List<ChatMessage>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "inputPlaceholder",
           "type": "String",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
           "hasDefault": true,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope"
         }
       ]
     },
@@ -693,37 +733,43 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "subtitle",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "messages",
           "type": "List<ChatMessage>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "inputPlaceholder",
           "type": "String",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
           "hasDefault": true,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope"
         }
       ]
     },
@@ -744,7 +790,8 @@
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/settings-ready.svg"
@@ -806,7 +853,8 @@
           "name": "darkTheme",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstorephonehomelight.svg"
@@ -828,7 +876,8 @@
           "name": "darkTheme",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstorephonehomedark.svg"
@@ -878,7 +927,8 @@
           "name": "darkTheme",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstoretabletsevenhome.svg"
@@ -900,7 +950,8 @@
           "name": "darkTheme",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstoretablettenhome.svg"
@@ -942,49 +993,57 @@
           "name": "deviceName",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "pubkeyPrefix",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "radioInfo",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryLine",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryProgress",
           "type": "Float?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryWarn",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "storageLine",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "staleLabel",
           "type": "String?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetpopulatedpreview.svg"
@@ -1006,49 +1065,57 @@
           "name": "deviceName",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "pubkeyPrefix",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "radioInfo",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryLine",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryProgress",
           "type": "Float?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryWarn",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "storageLine",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "staleLabel",
           "type": "String?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetemptypreview.svg"
@@ -1070,49 +1137,57 @@
           "name": "deviceName",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "pubkeyPrefix",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "radioInfo",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryLine",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryProgress",
           "type": "Float?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryWarn",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "storageLine",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "staleLabel",
           "type": "String?",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetstalepreview.svg"
@@ -1192,37 +1267,43 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "subtitle",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "messages",
           "type": "List<ChatMessage>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "inputPlaceholder",
           "type": "String",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
           "hasDefault": true,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope"
         }
       ]
     },
@@ -1243,37 +1324,43 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "subtitle",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "messages",
           "type": "List<ChatMessage>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "inputPlaceholder",
           "type": "String",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
           "hasDefault": true,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope"
         }
       ]
     },
@@ -1294,37 +1381,43 @@
           "name": "title",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "subtitle",
           "type": "String?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "messages",
           "type": "List<ChatMessage>",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "inputPlaceholder",
           "type": "String",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
           "hasDefault": true,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope"
         }
       ]
     },
@@ -1355,7 +1448,8 @@
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/meshcore-components-cacheddevicebodydarkpreview.svg"
@@ -1377,7 +1471,8 @@
           "name": "dark",
           "type": "Boolean",
           "hasDefault": true,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/meshcore-components-devicesettingsdarkpreview.svg"
@@ -1499,7 +1594,8 @@
           "name": "content",
           "type": "() -> Unit",
           "hasDefault": false,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-interactivetogglechippreview__ideal__default__largeround.svg"
@@ -1521,25 +1617,29 @@
           "name": "deviceName",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "connected",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryPercent",
           "type": "Int?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactCount",
           "type": "Int",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetconnectedpreview.svg"
@@ -1561,25 +1661,29 @@
           "name": "deviceName",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "connected",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryPercent",
           "type": "Int?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactCount",
           "type": "Int",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetdisconnectedpreview.svg"
@@ -1601,25 +1705,29 @@
           "name": "deviceName",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "connected",
           "type": "Boolean",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "batteryPercent",
           "type": "Int?",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "contactCount",
           "type": "Int",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetlowbatterypreview.svg"
@@ -1651,13 +1759,15 @@
           "name": "label",
           "type": "String",
           "hasDefault": false,
-          "composableSlot": false
+          "composableSlot": false,
+          "composableSlotReceiver": null
         },
         {
           "name": "content",
           "type": "() -> Unit",
           "hasDefault": false,
-          "composableSlot": true
+          "composableSlot": true,
+          "composableSlotReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-wearcomponentgridpreview.svg"
