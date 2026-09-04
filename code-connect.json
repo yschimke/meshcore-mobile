@@ -6,7 +6,7 @@
     "repo": "yschimke/meshcore-mobile",
     "ref": "main"
   },
-  "generatedAt": "2026-09-04T00:28:43.930Z",
+  "generatedAt": "2026-09-04T13:55:24.375Z",
   "mappings": [
     {
       "componentId": "Theme/MeshCore-Light",
@@ -344,6 +344,7 @@
         {
           "name": "self",
           "type": "SelfInfo?",
+          "typeFqn": "ee.schimke.meshcore.core.model.SelfInfo",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -352,6 +353,7 @@
         {
           "name": "battery",
           "type": "BatteryInfo?",
+          "typeFqn": "ee.schimke.meshcore.core.model.BatteryInfo",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -360,6 +362,7 @@
         {
           "name": "radio",
           "type": "RadioSettings?",
+          "typeFqn": "ee.schimke.meshcore.core.model.RadioSettings",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -368,6 +371,7 @@
         {
           "name": "contacts",
           "type": "List<Contact>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -376,6 +380,7 @@
         {
           "name": "contactsLoading",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -384,6 +389,7 @@
         {
           "name": "contactsRefreshing",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -392,6 +398,7 @@
         {
           "name": "channels",
           "type": "List<ChannelInfo>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -400,6 +407,7 @@
         {
           "name": "contactedKeys",
           "type": "Set<String>",
+          "typeFqn": "kotlin.collections.Set",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -408,6 +416,7 @@
         {
           "name": "contactedChannelIndices",
           "type": "Set<Int>",
+          "typeFqn": "kotlin.collections.Set",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -416,6 +425,7 @@
         {
           "name": "sectionStates",
           "type": "SectionStates",
+          "typeFqn": "ee.schimke.meshcore.components.ui.theme.SectionStates",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -424,6 +434,7 @@
         {
           "name": "onSectionExpandedChange",
           "type": "(Section, Boolean) -> Unit",
+          "typeFqn": "kotlin.Function2",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -432,6 +443,7 @@
         {
           "name": "onSectionShowAllChange",
           "type": "(Section, Boolean) -> Unit",
+          "typeFqn": "kotlin.Function2",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -440,6 +452,7 @@
         {
           "name": "lastMessage",
           "type": "LastMessageInfo?",
+          "typeFqn": "ee.schimke.meshcore.components.ui.LastMessageInfo",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -448,6 +461,7 @@
         {
           "name": "onLastMessageClick",
           "type": "(LastMessageInfo) -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -456,6 +470,7 @@
         {
           "name": "onContactClick",
           "type": "(Contact) -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -464,6 +479,7 @@
         {
           "name": "onChannelClick",
           "type": "(ChannelInfo) -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -472,6 +488,7 @@
         {
           "name": "onCommandsClick",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -480,6 +497,7 @@
         {
           "name": "onSettingsClick",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -488,6 +506,7 @@
         {
           "name": "onDisconnect",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -496,6 +515,7 @@
         {
           "name": "onOpenThemePicker",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -504,6 +524,7 @@
         {
           "name": "warnings",
           "type": "List<String>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -512,6 +533,7 @@
         {
           "name": "onDismissWarning",
           "type": "(String) -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -556,6 +578,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -564,6 +587,7 @@
         {
           "name": "status",
           "type": "DeviceConnectStatus",
+          "typeFqn": "ee.schimke.meshcore.app.ui.DeviceConnectStatus",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -572,6 +596,7 @@
         {
           "name": "onCancel",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -580,6 +605,7 @@
         {
           "name": "onOpenThemePicker",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -588,6 +614,7 @@
         {
           "name": "nowMs",
           "type": "() -> Long",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -622,6 +649,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -646,6 +674,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -654,6 +683,7 @@
         {
           "name": "subtitle",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -662,6 +692,7 @@
         {
           "name": "messages",
           "type": "List<ChatMessage>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -670,6 +701,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -678,6 +710,7 @@
         {
           "name": "inputPlaceholder",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -686,6 +719,7 @@
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": true,
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
@@ -709,6 +743,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -717,6 +752,7 @@
         {
           "name": "subtitle",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -725,6 +761,7 @@
         {
           "name": "messages",
           "type": "List<ChatMessage>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -733,6 +770,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -741,6 +779,7 @@
         {
           "name": "inputPlaceholder",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -749,6 +788,7 @@
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": true,
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
@@ -772,6 +812,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -780,6 +821,7 @@
         {
           "name": "subtitle",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -788,6 +830,7 @@
         {
           "name": "messages",
           "type": "List<ChatMessage>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -796,6 +839,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -804,6 +848,7 @@
         {
           "name": "inputPlaceholder",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -812,6 +857,7 @@
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": true,
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
@@ -835,6 +881,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -899,6 +946,7 @@
         {
           "name": "darkTheme",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -923,6 +971,7 @@
         {
           "name": "darkTheme",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -975,6 +1024,7 @@
         {
           "name": "darkTheme",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -999,6 +1049,7 @@
         {
           "name": "darkTheme",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1043,6 +1094,7 @@
         {
           "name": "deviceName",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1051,6 +1103,7 @@
         {
           "name": "pubkeyPrefix",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1059,6 +1112,7 @@
         {
           "name": "radioInfo",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1067,6 +1121,7 @@
         {
           "name": "batteryLine",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1075,6 +1130,7 @@
         {
           "name": "batteryProgress",
           "type": "Float?",
+          "typeFqn": "kotlin.Float",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1083,6 +1139,7 @@
         {
           "name": "batteryWarn",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1091,6 +1148,7 @@
         {
           "name": "storageLine",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1099,6 +1157,7 @@
         {
           "name": "staleLabel",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1123,6 +1182,7 @@
         {
           "name": "deviceName",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1131,6 +1191,7 @@
         {
           "name": "pubkeyPrefix",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1139,6 +1200,7 @@
         {
           "name": "radioInfo",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1147,6 +1209,7 @@
         {
           "name": "batteryLine",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1155,6 +1218,7 @@
         {
           "name": "batteryProgress",
           "type": "Float?",
+          "typeFqn": "kotlin.Float",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1163,6 +1227,7 @@
         {
           "name": "batteryWarn",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1171,6 +1236,7 @@
         {
           "name": "storageLine",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1179,6 +1245,7 @@
         {
           "name": "staleLabel",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1203,6 +1270,7 @@
         {
           "name": "deviceName",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1211,6 +1279,7 @@
         {
           "name": "pubkeyPrefix",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1219,6 +1288,7 @@
         {
           "name": "radioInfo",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1227,6 +1297,7 @@
         {
           "name": "batteryLine",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1235,6 +1306,7 @@
         {
           "name": "batteryProgress",
           "type": "Float?",
+          "typeFqn": "kotlin.Float",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1243,6 +1315,7 @@
         {
           "name": "batteryWarn",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1251,6 +1324,7 @@
         {
           "name": "storageLine",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1259,6 +1333,7 @@
         {
           "name": "staleLabel",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1341,6 +1416,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1349,6 +1425,7 @@
         {
           "name": "subtitle",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1357,6 +1434,7 @@
         {
           "name": "messages",
           "type": "List<ChatMessage>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1365,6 +1443,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1373,6 +1452,7 @@
         {
           "name": "inputPlaceholder",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1381,6 +1461,7 @@
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": true,
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
@@ -1404,6 +1485,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1412,6 +1494,7 @@
         {
           "name": "subtitle",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1420,6 +1503,7 @@
         {
           "name": "messages",
           "type": "List<ChatMessage>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1428,6 +1512,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1436,6 +1521,7 @@
         {
           "name": "inputPlaceholder",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1444,6 +1530,7 @@
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": true,
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
@@ -1467,6 +1554,7 @@
         {
           "name": "title",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1475,6 +1563,7 @@
         {
           "name": "subtitle",
           "type": "String?",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1483,6 +1572,7 @@
         {
           "name": "messages",
           "type": "List<ChatMessage>",
+          "typeFqn": "kotlin.collections.List",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1491,6 +1581,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1499,6 +1590,7 @@
         {
           "name": "inputPlaceholder",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1507,6 +1599,7 @@
         {
           "name": "actions",
           "type": "RowScope.() -> Unit",
+          "typeFqn": "kotlin.Function1",
           "hasDefault": true,
           "composableSlot": true,
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
@@ -1540,6 +1633,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1564,6 +1658,7 @@
         {
           "name": "dark",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": true,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1688,6 +1783,7 @@
         {
           "name": "content",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": false,
           "composableSlot": true,
           "composableSlotReceiver": null,
@@ -1712,6 +1808,7 @@
         {
           "name": "deviceName",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1720,6 +1817,7 @@
         {
           "name": "connected",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1728,6 +1826,7 @@
         {
           "name": "batteryPercent",
           "type": "Int?",
+          "typeFqn": "kotlin.Int",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1736,6 +1835,7 @@
         {
           "name": "contactCount",
           "type": "Int",
+          "typeFqn": "kotlin.Int",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1760,6 +1860,7 @@
         {
           "name": "deviceName",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1768,6 +1869,7 @@
         {
           "name": "connected",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1776,6 +1878,7 @@
         {
           "name": "batteryPercent",
           "type": "Int?",
+          "typeFqn": "kotlin.Int",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1784,6 +1887,7 @@
         {
           "name": "contactCount",
           "type": "Int",
+          "typeFqn": "kotlin.Int",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1808,6 +1912,7 @@
         {
           "name": "deviceName",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1816,6 +1921,7 @@
         {
           "name": "connected",
           "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1824,6 +1930,7 @@
         {
           "name": "batteryPercent",
           "type": "Int?",
+          "typeFqn": "kotlin.Int",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1832,6 +1939,7 @@
         {
           "name": "contactCount",
           "type": "Int",
+          "typeFqn": "kotlin.Int",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1866,6 +1974,7 @@
         {
           "name": "label",
           "type": "String",
+          "typeFqn": "kotlin.String",
           "hasDefault": false,
           "composableSlot": false,
           "composableSlotReceiver": null,
@@ -1874,6 +1983,7 @@
         {
           "name": "content",
           "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
           "hasDefault": false,
           "composableSlot": true,
           "composableSlotReceiver": null,

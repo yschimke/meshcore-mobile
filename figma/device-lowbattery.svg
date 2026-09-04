@@ -54,7 +54,7 @@
                   </g>
                 </g>
                 <g id="Empty">
-                  <image href="device-lowbattery.figma-raster/1182.png" x="126" y="323" width="20" height="47"/>
+                  <image href="device-lowbattery.figma-raster/1480.png" x="126" y="323" width="20" height="47"/>
                 </g>
                 <g id="Empty">
                   <text x="146" y="363.92" font-size="36.75" font-family="Roboto Mono" font-weight="400" letter-spacing="0.66" fill="#3F4946">abababababababab</text>
@@ -67,7 +67,7 @@
                   </g>
                 </g>
                 <g id="Empty">
-                  <image href="device-lowbattery.figma-raster/1186.png" x="126" y="396" width="20" height="47"/>
+                  <image href="device-lowbattery.figma-raster/1484.png" x="126" y="396" width="20" height="47"/>
                 </g>
                 <g id="Empty">
                   <text x="146" y="434.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" fill="#3F4946">869.525 MHz · BW 125 kHz · SF 10 · CR 5</text>
@@ -98,7 +98,7 @@
                     </g>
                   </g>
                   <g id="Empty">
-                    <image href="device-lowbattery.figma-raster/1195.png" x="126" y="549" width="20" height="47"/>
+                    <image href="device-lowbattery.figma-raster/1493.png" x="126" y="549" width="20" height="47"/>
                   </g>
                   <g id="Empty">
                     <text x="146" y="584.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#3F4946">3800 / 4096 kB</text>
@@ -171,7 +171,7 @@
           </g>
         </g>
         <g id="Box">
-          <image href="device-lowbattery.figma-raster/1153.png" x="0" y="0" width="1076" height="168"/>
+          <image href="device-lowbattery.figma-raster/1451.png" x="0" y="0" width="1076" height="168"/>
           <g id="TopAppBar">
             <g id="Box">
             </g>

@@ -12410,6 +12410,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-deviceinfowidgetpopulatedpreview__ideal__default__compact",
           "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -12474,6 +12477,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-deviceinfowidgetemptypreview__ideal__default__compact",
           "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -12538,6 +12544,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-deviceinfowidgetstalepreview__ideal__default__compact",
           "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -16076,6 +16085,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-statuswidgetconnectedpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status___connected",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -16121,6 +16133,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-statuswidgetdisconnectedpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status___disconnected",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -16166,6 +16181,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-statuswidgetlowbatterypreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status___low_battery",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -16211,6 +16229,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-wearcomponentcatalogpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component_Catalog",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -16238,6 +16259,9 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-wearcomponentgridpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component_Grid",
+          "previewParams": {
+            "capturePlayer": "java"
+          },
           "density": 2.625
         }
       ],
@@ -17668,8 +17692,8 @@
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 1.70.0",
-  "generatedAt": "2026-09-04T00:28:42.414Z",
+  "renderer": "compose-preview 1.72.0",
+  "generatedAt": "2026-09-04T13:55:22.834Z",
   "liveBundle": {
     "path": "bundle/",
     "file": "bundle.png"
