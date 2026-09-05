@@ -22,6 +22,7 @@
     { "size": "smallRound", "device": "id:wearos_small_round" },
     { "size": "largeRound", "device": "id:wearos_large_round" }
   ],
+  "display": { "hero": "Device/Populated" },
   "groups": [
     {
       "name": "Foundation",
