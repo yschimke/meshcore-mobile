@@ -17692,8 +17692,8 @@
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 1.79.0",
-  "generatedAt": "2026-09-05T11:40:50.630Z",
+  "renderer": "compose-preview 1.80.0",
+  "generatedAt": "2026-09-05T14:12:50.703Z",
   "liveBundle": {
     "path": "bundle/",
     "file": "bundle.png"
