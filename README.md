@@ -132,38 +132,3 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `DeviceSettingsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsPreview_Dark-ae0fa63a.png" width="150" /> |
 | `DeviceSettingsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/DeviceSettingsPreview_Light-d1d63021.png" width="150" /> |
 
-## wear
-
-| Preview | Image |
-|---------|-------|
-| `LicenseActivity` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/activity__LicenseActivity.png" width="150" /> |
-| `WearMainActivity` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/activity__WearMainActivity.png" width="150" /> |
-| `AnimatedCircularProgressPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/AnimatedCircularProgressPreview_Animated_Circular_Progress-d47c429c.gif" width="150" /> |
-| `ContactsBodyEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ContactsBodyEmptyPreview_Devices_Large_Round-5330b383.png" width="150" /> |
-| `ContactsBodyEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ContactsBodyEmptyPreview_Devices_Small_Round-bb7d161a.png" width="150" /> |
-| `ContactsBodyFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ContactsBodyFewPreview_Devices_Large_Round-8e9c4a51.png" width="150" /> |
-| `ContactsBodyFewPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/ContactsBodyFewPreview_Devices_Small_Round-8b46dd43.png" width="150" /> |
-| `InteractiveToggleChipPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/InteractiveToggleChipPreview_Interactive_Toggle_Chip-01ea7305.png" width="150" /> |
-| `QuickReplyBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/QuickReplyBodyPreview_Devices_Large_Round-535f20de.png" width="150" /> |
-| `QuickReplyBodyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/QuickReplyBodyPreview_Devices_Small_Round-ebf6285c.png" width="150" /> |
-| `StatusBodyConnectedLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyConnectedLowBatteryPreview_Devices_Large_Round-1599ded0.png" width="150" /> |
-| `StatusBodyConnectedLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyConnectedLowBatteryPreview_Devices_Small_Round-6a23bc8b.png" width="150" /> |
-| `StatusBodyConnectedMediumBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyConnectedMediumBatteryPreview_Devices_Large_Round-cfdf34e0.png" width="150" /> |
-| `StatusBodyConnectedMediumBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyConnectedMediumBatteryPreview_Devices_Small_Round-09f165ae.png" width="150" /> |
-| `StatusBodyConnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyConnectedPreview_Devices_Large_Round-7db54984.png" width="150" /> |
-| `StatusBodyConnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyConnectedPreview_Devices_Small_Round-7605a2fa.png" width="150" /> |
-| `StatusBodyErrorPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyErrorPreview_Devices_Large_Round-ab56c677.png" width="150" /> |
-| `StatusBodyErrorPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyErrorPreview_Devices_Small_Round-da6dfa44.png" width="150" /> |
-| `StatusBodyLoadingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyLoadingPreview_Devices_Large_Round-71aafe9b.png" width="150" /> |
-| `StatusBodyLoadingPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyLoadingPreview_Devices_Small_Round-0c5d5dcf.png" width="150" /> |
-| `StatusBodyPhoneDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyPhoneDisconnectedPreview_Devices_Large_Round-8386b665.png" width="150" /> |
-| `StatusBodyPhoneDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyPhoneDisconnectedPreview_Devices_Small_Round-0008192a.png" width="150" /> |
-| `StatusBodyRadioDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Large_Round-fb081cfe.png" width="150" /> |
-| `StatusBodyRadioDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusBodyRadioDisconnectedPreview_Devices_Small_Round-0b155380.png" width="150" /> |
-| `StatusWidgetConnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetConnectedPreview_Status_connected-63591697.png" width="150" /> |
-| `StatusWidgetDisconnectedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.png" width="150" /> |
-| `StatusWidgetLowBatteryPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery-149af881.png" width="150" /> |
-| `WearComponentCatalogPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentCatalogPreview_Component_Catalog-ab535596.png" width="150" /> |
-| `WearComponentGridPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/WearComponentGridPreview_Component_Grid-cf79ccb8.png" width="150" /> |
-| `MeshCore theme` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/wear/wearthemecatalog__MeshCore.png" width="150" /> |
-
