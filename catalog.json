@@ -17693,7 +17693,10 @@
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
   "renderer": "compose-preview 1.82.0",
-  "generatedAt": "2026-09-05T21:03:44.560Z",
+  "generatedAt": "2026-09-05T21:50:35.302Z",
+  "display": {
+    "hero": "Device/Populated"
+  },
   "liveBundle": {
     "path": "bundle/",
     "file": "bundle.png"
