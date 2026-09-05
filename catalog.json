@@ -17515,7 +17515,7 @@
       "wireframe": "wireframes/template-appscaffold.svg",
       "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogTemplates.kt",
       "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 65,
+      "bodyLine": 70,
       "sourceDirectory": "samples/design-catalog-m3",
       "sourceFunction": "AppScaffoldTemplate",
       "parameters": [
@@ -17692,8 +17692,8 @@
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 1.72.0",
-  "generatedAt": "2026-09-04T13:55:22.834Z",
+  "renderer": "compose-preview 1.73.0",
+  "generatedAt": "2026-09-05T00:05:59.261Z",
   "liveBundle": {
     "path": "bundle/",
     "file": "bundle.png"
