@@ -6,7 +6,7 @@
     "repo": "yschimke/meshcore-mobile",
     "ref": "main"
   },
-  "generatedAt": "2026-09-06T05:08:24.003Z",
+  "generatedAt": "2026-09-06T09:22:09.116Z",
   "mappings": [
     {
       "componentId": "Theme/MeshCore-Light",
@@ -351,7 +351,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "battery",
@@ -363,7 +364,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "radio",
@@ -375,7 +377,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contacts",
@@ -387,7 +390,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactsLoading",
@@ -399,7 +403,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactsRefreshing",
@@ -411,7 +416,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "channels",
@@ -423,7 +429,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactedKeys",
@@ -435,7 +442,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactedChannelIndices",
@@ -447,7 +455,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "sectionStates",
@@ -459,7 +468,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "onSectionExpandedChange",
@@ -471,7 +481,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onSectionShowAllChange",
@@ -483,7 +494,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "lastMessage",
@@ -495,7 +507,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "onLastMessageClick",
@@ -507,7 +520,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onContactClick",
@@ -519,7 +533,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onChannelClick",
@@ -531,7 +546,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onCommandsClick",
@@ -543,7 +559,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onSettingsClick",
@@ -555,7 +572,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onDisconnect",
@@ -567,7 +585,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onOpenThemePicker",
@@ -579,7 +598,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "warnings",
@@ -591,7 +611,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "onDismissWarning",
@@ -603,7 +624,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ],
       "figmaSvg": "figma/device-populated.svg"
@@ -651,7 +673,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "status",
@@ -663,7 +686,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "onCancel",
@@ -675,7 +699,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "onOpenThemePicker",
@@ -687,7 +712,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         },
         {
           "name": "nowMs",
@@ -699,7 +725,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Long"
         }
       ],
       "figmaSvg": "figma/device-statusconnecting.svg"
@@ -737,7 +764,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/device-cached.svg"
@@ -765,7 +793,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "subtitle",
@@ -777,7 +806,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "messages",
@@ -789,7 +819,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "dark",
@@ -801,7 +832,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "inputPlaceholder",
@@ -813,7 +845,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "actions",
@@ -825,7 +858,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ]
     },
@@ -852,7 +886,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "subtitle",
@@ -864,7 +899,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "messages",
@@ -876,7 +912,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "dark",
@@ -888,7 +925,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "inputPlaceholder",
@@ -900,7 +938,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "actions",
@@ -912,7 +951,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ]
     },
@@ -939,7 +979,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "subtitle",
@@ -951,7 +992,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "messages",
@@ -963,7 +1005,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "dark",
@@ -975,7 +1018,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "inputPlaceholder",
@@ -987,7 +1031,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "actions",
@@ -999,7 +1044,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ]
     },
@@ -1026,7 +1072,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/settings-ready.svg"
@@ -1094,7 +1141,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-playstorephonehomelight.svg"
@@ -1122,7 +1170,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-playstorephonehomedark.svg"
@@ -1178,7 +1227,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-playstoretabletsevenhome.svg"
@@ -1206,7 +1256,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-playstoretablettenhome.svg"
@@ -1254,7 +1305,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "pubkeyPrefix",
@@ -1266,7 +1318,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "radioInfo",
@@ -1278,7 +1331,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryLine",
@@ -1290,7 +1344,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryProgress",
@@ -1302,7 +1357,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryWarn",
@@ -1314,7 +1370,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "storageLine",
@@ -1326,7 +1383,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "staleLabel",
@@ -1338,7 +1396,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetpopulatedpreview.svg"
@@ -1366,7 +1425,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "pubkeyPrefix",
@@ -1378,7 +1438,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "radioInfo",
@@ -1390,7 +1451,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryLine",
@@ -1402,7 +1464,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryProgress",
@@ -1414,7 +1477,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryWarn",
@@ -1426,7 +1490,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "storageLine",
@@ -1438,7 +1503,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "staleLabel",
@@ -1450,7 +1516,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetemptypreview.svg"
@@ -1478,7 +1545,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "pubkeyPrefix",
@@ -1490,7 +1558,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "radioInfo",
@@ -1502,7 +1571,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryLine",
@@ -1514,7 +1584,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryProgress",
@@ -1526,7 +1597,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryWarn",
@@ -1538,7 +1610,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "storageLine",
@@ -1550,7 +1623,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "staleLabel",
@@ -1562,7 +1636,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetstalepreview.svg"
@@ -1648,7 +1723,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "subtitle",
@@ -1660,7 +1736,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "messages",
@@ -1672,7 +1749,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "dark",
@@ -1684,7 +1762,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "inputPlaceholder",
@@ -1696,7 +1775,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "actions",
@@ -1708,7 +1788,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ]
     },
@@ -1735,7 +1816,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "subtitle",
@@ -1747,7 +1829,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "messages",
@@ -1759,7 +1842,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "dark",
@@ -1771,7 +1855,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "inputPlaceholder",
@@ -1783,7 +1868,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "actions",
@@ -1795,7 +1881,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ]
     },
@@ -1822,7 +1909,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "subtitle",
@@ -1834,7 +1922,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "messages",
@@ -1846,7 +1935,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "dark",
@@ -1858,7 +1948,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "inputPlaceholder",
@@ -1870,7 +1961,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "actions",
@@ -1882,7 +1974,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ]
     },
@@ -1919,7 +2012,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/meshcore-components-cacheddevicebodydarkpreview.svg"
@@ -1947,7 +2041,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/meshcore-components-devicesettingsdarkpreview.svg"
@@ -2075,7 +2170,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ],
       "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-interactivetogglechippreview__ideal__default__largeround.svg"
@@ -2103,7 +2199,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "connected",
@@ -2115,7 +2212,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryPercent",
@@ -2127,7 +2225,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactCount",
@@ -2139,7 +2238,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetconnectedpreview.svg"
@@ -2167,7 +2267,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "connected",
@@ -2179,7 +2280,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryPercent",
@@ -2191,7 +2293,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactCount",
@@ -2203,7 +2306,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetdisconnectedpreview.svg"
@@ -2231,7 +2335,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "connected",
@@ -2243,7 +2348,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "batteryPercent",
@@ -2255,7 +2361,8 @@
           "nullable": true,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "contactCount",
@@ -2267,7 +2374,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetlowbatterypreview.svg"
@@ -2305,7 +2413,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
         },
         {
           "name": "content",
@@ -2317,7 +2426,8 @@
           "nullable": false,
           "noArgConstructible": false,
           "noArgFactory": null,
-          "scopeDslReceiver": null
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
         }
       ],
       "figmaSvg": "figma/wear-wearcomponentgridpreview.svg"

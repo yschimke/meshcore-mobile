@@ -17692,8 +17692,8 @@
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 1.83.0",
-  "generatedAt": "2026-09-06T05:08:22.498Z",
+  "renderer": "compose-preview 1.84.0",
+  "generatedAt": "2026-09-06T09:22:07.623Z",
   "display": {
     "hero": "Device/Populated"
   },
