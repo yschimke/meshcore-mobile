@@ -6,7 +6,7 @@
     "repo": "yschimke/meshcore-mobile",
     "ref": "main"
   },
-  "generatedAt": "2026-09-05T21:50:36.792Z",
+  "generatedAt": "2026-09-06T05:08:24.003Z",
   "mappings": [
     {
       "componentId": "Theme/MeshCore-Light",
@@ -350,7 +350,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "battery",
@@ -361,7 +362,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "radio",
@@ -372,7 +374,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contacts",
@@ -383,7 +386,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactsLoading",
@@ -394,7 +398,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactsRefreshing",
@@ -405,7 +410,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "channels",
@@ -416,7 +422,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactedKeys",
@@ -427,7 +434,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactedChannelIndices",
@@ -438,7 +446,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "sectionStates",
@@ -449,7 +458,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onSectionExpandedChange",
@@ -460,7 +470,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onSectionShowAllChange",
@@ -471,7 +482,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "lastMessage",
@@ -482,7 +494,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onLastMessageClick",
@@ -493,7 +506,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onContactClick",
@@ -504,7 +518,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onChannelClick",
@@ -515,7 +530,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onCommandsClick",
@@ -526,7 +542,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onSettingsClick",
@@ -537,7 +554,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onDisconnect",
@@ -548,7 +566,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onOpenThemePicker",
@@ -559,7 +578,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "warnings",
@@ -570,7 +590,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onDismissWarning",
@@ -581,7 +602,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/device-populated.svg"
@@ -628,7 +650,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "status",
@@ -639,7 +662,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onCancel",
@@ -650,7 +674,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "onOpenThemePicker",
@@ -661,7 +686,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "nowMs",
@@ -672,7 +698,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/device-statusconnecting.svg"
@@ -709,7 +736,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/device-cached.svg"
@@ -736,7 +764,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "subtitle",
@@ -747,7 +776,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "messages",
@@ -758,7 +788,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "dark",
@@ -769,7 +800,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "inputPlaceholder",
@@ -780,7 +812,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "actions",
@@ -791,7 +824,8 @@
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ]
     },
@@ -817,7 +851,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "subtitle",
@@ -828,7 +863,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "messages",
@@ -839,7 +875,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "dark",
@@ -850,7 +887,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "inputPlaceholder",
@@ -861,7 +899,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "actions",
@@ -872,7 +911,8 @@
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ]
     },
@@ -898,7 +938,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "subtitle",
@@ -909,7 +950,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "messages",
@@ -920,7 +962,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "dark",
@@ -931,7 +974,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "inputPlaceholder",
@@ -942,7 +986,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "actions",
@@ -953,7 +998,8 @@
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ]
     },
@@ -979,7 +1025,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/settings-ready.svg"
@@ -1046,7 +1093,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstorephonehomelight.svg"
@@ -1073,7 +1121,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstorephonehomedark.svg"
@@ -1128,7 +1177,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstoretabletsevenhome.svg"
@@ -1155,7 +1205,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-playstoretablettenhome.svg"
@@ -1202,7 +1253,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "pubkeyPrefix",
@@ -1213,7 +1265,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "radioInfo",
@@ -1224,7 +1277,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryLine",
@@ -1235,7 +1289,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryProgress",
@@ -1246,7 +1301,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryWarn",
@@ -1257,7 +1313,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "storageLine",
@@ -1268,7 +1325,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "staleLabel",
@@ -1279,7 +1337,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetpopulatedpreview.svg"
@@ -1306,7 +1365,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "pubkeyPrefix",
@@ -1317,7 +1377,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "radioInfo",
@@ -1328,7 +1389,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryLine",
@@ -1339,7 +1401,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryProgress",
@@ -1350,7 +1413,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryWarn",
@@ -1361,7 +1425,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "storageLine",
@@ -1372,7 +1437,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "staleLabel",
@@ -1383,7 +1449,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetemptypreview.svg"
@@ -1410,7 +1477,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "pubkeyPrefix",
@@ -1421,7 +1489,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "radioInfo",
@@ -1432,7 +1501,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryLine",
@@ -1443,7 +1513,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryProgress",
@@ -1454,7 +1525,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryWarn",
@@ -1465,7 +1537,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "storageLine",
@@ -1476,7 +1549,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "staleLabel",
@@ -1487,7 +1561,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/app-deviceinfowidgetstalepreview.svg"
@@ -1572,7 +1647,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "subtitle",
@@ -1583,7 +1659,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "messages",
@@ -1594,7 +1671,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "dark",
@@ -1605,7 +1683,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "inputPlaceholder",
@@ -1616,7 +1695,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "actions",
@@ -1627,7 +1707,8 @@
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ]
     },
@@ -1653,7 +1734,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "subtitle",
@@ -1664,7 +1746,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "messages",
@@ -1675,7 +1758,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "dark",
@@ -1686,7 +1770,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "inputPlaceholder",
@@ -1697,7 +1782,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "actions",
@@ -1708,7 +1794,8 @@
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ]
     },
@@ -1734,7 +1821,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "subtitle",
@@ -1745,7 +1833,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "messages",
@@ -1756,7 +1845,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "dark",
@@ -1767,7 +1857,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "inputPlaceholder",
@@ -1778,7 +1869,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "actions",
@@ -1789,7 +1881,8 @@
           "composableSlotReceiver": "androidx.compose.foundation.layout.RowScope",
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ]
     },
@@ -1825,7 +1918,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/meshcore-components-cacheddevicebodydarkpreview.svg"
@@ -1852,7 +1946,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/meshcore-components-devicesettingsdarkpreview.svg"
@@ -1979,7 +2074,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-interactivetogglechippreview__ideal__default__largeround.svg"
@@ -2006,7 +2102,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "connected",
@@ -2017,7 +2114,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryPercent",
@@ -2028,7 +2126,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactCount",
@@ -2039,7 +2138,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetconnectedpreview.svg"
@@ -2066,7 +2166,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "connected",
@@ -2077,7 +2178,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryPercent",
@@ -2088,7 +2190,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactCount",
@@ -2099,7 +2202,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetdisconnectedpreview.svg"
@@ -2126,7 +2230,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "connected",
@@ -2137,7 +2242,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "batteryPercent",
@@ -2148,7 +2254,8 @@
           "composableSlotReceiver": null,
           "nullable": true,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "contactCount",
@@ -2159,7 +2266,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-statuswidgetlowbatterypreview.svg"
@@ -2196,7 +2304,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         },
         {
           "name": "content",
@@ -2207,7 +2316,8 @@
           "composableSlotReceiver": null,
           "nullable": false,
           "noArgConstructible": false,
-          "noArgFactory": null
+          "noArgFactory": null,
+          "scopeDslReceiver": null
         }
       ],
       "figmaSvg": "figma/wear-wearcomponentgridpreview.svg"
