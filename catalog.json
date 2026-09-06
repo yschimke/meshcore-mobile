@@ -2402,7 +2402,49 @@
       "sourceModule": ":app",
       "bodyLine": 367,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerSavedEmptyPreview"
+      "sourceFunction": "ScannerSavedEmptyPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/SavedPopulated",
@@ -2818,7 +2860,49 @@
       "sourceModule": ":app",
       "bodyLine": 388,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerSavedPopulatedPreview"
+      "sourceFunction": "ScannerSavedPopulatedPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/BlePermission",
@@ -3075,7 +3159,49 @@
       "sourceModule": ":app",
       "bodyLine": 411,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerBlePermissionPreview"
+      "sourceFunction": "ScannerBlePermissionPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/BleEmpty",
@@ -3332,7 +3458,49 @@
       "sourceModule": ":app",
       "bodyLine": 432,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerBleEmptyPreview"
+      "sourceFunction": "ScannerBleEmptyPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/BleFew",
@@ -3667,7 +3835,49 @@
       "sourceModule": ":app",
       "bodyLine": 453,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerBleFewPreview"
+      "sourceFunction": "ScannerBleFewPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/BleMany",
@@ -4236,7 +4446,49 @@
       "sourceModule": ":app",
       "bodyLine": 474,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerBleManyPreview"
+      "sourceFunction": "ScannerBleManyPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/UsbEmpty",
@@ -4484,7 +4736,49 @@
       "sourceModule": ":app",
       "bodyLine": 497,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerUsbEmptyPreview"
+      "sourceFunction": "ScannerUsbEmptyPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/UsbFew",
@@ -4780,7 +5074,49 @@
       "sourceModule": ":app",
       "bodyLine": 518,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerUsbFewPreview"
+      "sourceFunction": "ScannerUsbFewPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Scanner/Tcp",
@@ -5083,7 +5419,49 @@
       "sourceModule": ":app",
       "bodyLine": 541,
       "sourceDirectory": "app",
-      "sourceFunction": "ScannerTcpPreview"
+      "sourceFunction": "ScannerTcpPreview",
+      "parameters": [
+        {
+          "name": "savedContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "bleContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "usbContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "tcpContent",
+          "type": "() -> Unit",
+          "composableSlot": true
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onOpenLicenses",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "initialTab",
+          "type": "Int",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Device/Loading",
@@ -7448,7 +7826,31 @@
       "sourceModule": ":app",
       "bodyLine": 211,
       "sourceDirectory": "app",
-      "sourceFunction": "DeviceStatusFailedPreview"
+      "sourceFunction": "DeviceStatusFailedPreview",
+      "parameters": [
+        {
+          "name": "title",
+          "type": "String"
+        },
+        {
+          "name": "status",
+          "type": "DeviceConnectStatus"
+        },
+        {
+          "name": "onCancel",
+          "type": "() -> Unit"
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "nowMs",
+          "type": "() -> Long",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "Device/Cached",
@@ -8908,7 +9310,44 @@
       "sourceModule": ":app",
       "bodyLine": 312,
       "sourceDirectory": "app",
-      "sourceFunction": "SavedDevicesPopulatedPreview"
+      "sourceFunction": "SavedDevicesPopulatedPreview",
+      "parameters": [
+        {
+          "name": "devices",
+          "type": "List<SavedDeviceWithState>"
+        },
+        {
+          "name": "busy",
+          "type": "Boolean"
+        },
+        {
+          "name": "onConnect",
+          "type": "(SavedDevice) -> Unit"
+        },
+        {
+          "name": "onForget",
+          "type": "(SavedDevice) -> Unit"
+        },
+        {
+          "name": "onToggleFavorite",
+          "type": "(SavedDevice) -> Unit"
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "connectedDeviceId",
+          "type": "String?",
+          "hasDefault": true
+        },
+        {
+          "name": "onViewCached",
+          "type": "(SavedDevice) -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "SavedDevices/Empty",
@@ -8955,7 +9394,44 @@
       "sourceModule": ":app",
       "bodyLine": 334,
       "sourceDirectory": "app",
-      "sourceFunction": "SavedDevicesEmptyPreview"
+      "sourceFunction": "SavedDevicesEmptyPreview",
+      "parameters": [
+        {
+          "name": "devices",
+          "type": "List<SavedDeviceWithState>"
+        },
+        {
+          "name": "busy",
+          "type": "Boolean"
+        },
+        {
+          "name": "onConnect",
+          "type": "(SavedDevice) -> Unit"
+        },
+        {
+          "name": "onForget",
+          "type": "(SavedDevice) -> Unit"
+        },
+        {
+          "name": "onToggleFavorite",
+          "type": "(SavedDevice) -> Unit"
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
+          "name": "connectedDeviceId",
+          "type": "String?",
+          "hasDefault": true
+        },
+        {
+          "name": "onViewCached",
+          "type": "(SavedDevice) -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "app/PlayStoreIcon",
@@ -12149,7 +12625,25 @@
       "sourceModule": ":app",
       "bodyLine": 160,
       "sourceDirectory": "app",
-      "sourceFunction": "ThemePickerMeshcoreSystemPreview"
+      "sourceFunction": "ThemePickerMeshcoreSystemPreview",
+      "parameters": [
+        {
+          "name": "current",
+          "type": "ThemeSettings"
+        },
+        {
+          "name": "onModeSelect",
+          "type": "(ThemeMode) -> Unit"
+        },
+        {
+          "name": "onPaletteSelect",
+          "type": "(ThemePalette) -> Unit"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() -> Unit"
+        }
+      ]
     },
     {
       "componentId": "app/ThemePickerDynamicDarkPreview",
@@ -12396,7 +12890,25 @@
       "sourceModule": ":app",
       "bodyLine": 173,
       "sourceDirectory": "app",
-      "sourceFunction": "ThemePickerDynamicDarkPreview"
+      "sourceFunction": "ThemePickerDynamicDarkPreview",
+      "parameters": [
+        {
+          "name": "current",
+          "type": "ThemeSettings"
+        },
+        {
+          "name": "onModeSelect",
+          "type": "(ThemeMode) -> Unit"
+        },
+        {
+          "name": "onPaletteSelect",
+          "type": "(ThemePalette) -> Unit"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() -> Unit"
+        }
+      ]
     },
     {
       "componentId": "app/DeviceInfoWidgetPopulatedPreview",
@@ -14334,7 +14846,114 @@
       "sourceModule": ":meshcore-components",
       "bodyLine": 129,
       "sourceDirectory": "meshcore-components",
-      "sourceFunction": "DeviceBodyDarkPreview"
+      "sourceFunction": "DeviceBodyDarkPreview",
+      "parameters": [
+        {
+          "name": "self",
+          "type": "SelfInfo?"
+        },
+        {
+          "name": "battery",
+          "type": "BatteryInfo?"
+        },
+        {
+          "name": "radio",
+          "type": "RadioSettings?"
+        },
+        {
+          "name": "contacts",
+          "type": "List<Contact>"
+        },
+        {
+          "name": "contactsLoading",
+          "type": "Boolean",
+          "hasDefault": true
+        },
+        {
+          "name": "contactsRefreshing",
+          "type": "Boolean",
+          "hasDefault": true
+        },
+        {
+          "name": "channels",
+          "type": "List<ChannelInfo>",
+          "hasDefault": true
+        },
+        {
+          "name": "contactedKeys",
+          "type": "Set<String>",
+          "hasDefault": true
+        },
+        {
+          "name": "contactedChannelIndices",
+          "type": "Set<Int>",
+          "hasDefault": true
+        },
+        {
+          "name": "sectionStates",
+          "type": "SectionStates",
+          "hasDefault": true
+        },
+        {
+          "name": "onSectionExpandedChange",
+          "type": "(Section, Boolean) -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onSectionShowAllChange",
+          "type": "(Section, Boolean) -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "lastMessage",
+          "type": "LastMessageInfo?",
+          "hasDefault": true
+        },
+        {
+          "name": "onLastMessageClick",
+          "type": "(LastMessageInfo) -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onContactClick",
+          "type": "(Contact) -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onChannelClick",
+          "type": "(ChannelInfo) -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onCommandsClick",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onSettingsClick",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "onDisconnect",
+          "type": "() -> Unit"
+        },
+        {
+          "name": "onOpenThemePicker",
+          "type": "() -> Unit",
+          "hasDefault": true
+        },
+        {
+          "name": "warnings",
+          "type": "List<String>",
+          "hasDefault": true
+        },
+        {
+          "name": "onDismissWarning",
+          "type": "(String) -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "meshcore-components/CachedDeviceBodyDarkPreview",
@@ -17692,8 +18311,8 @@
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 1.84.0",
-  "generatedAt": "2026-09-06T09:22:07.623Z",
+  "renderer": "compose-preview 1.85.0",
+  "generatedAt": "2026-09-06T16:38:22.391Z",
   "display": {
     "hero": "Device/Populated"
   },
@@ -17721,6 +18340,7 @@
       "previewIdPrefix": "module_3a77656172__"
     }
   ],
+  "componentsFile": "components.json",
   "source": {
     "repo": "yschimke/meshcore-mobile",
     "ref": "main",
