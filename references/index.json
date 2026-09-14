@@ -11,7 +11,7 @@
         "width": 814,
         "height": 446,
         "density": 2.625,
-        "sha256": "5cecda141e291976a8222f878423c858da25e3807185e2cc1cd43e0bb73f9765",
+        "sha256": "319575213116d73b4ae351d4d31eb57a504d39df9504c4c74459b1bc3022c284",
         "transform": {
           "scaleX": 0.380552,
           "scaleY": 0.380786,
@@ -27,6 +27,11 @@
           "componentId": "DeviceSummaryCard/Populated"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:153"
+      },
+      "match": {
+        "percent": 89.35,
+        "changedPercent": 14.25,
+        "scoreVersion": 3
       }
     },
     {
@@ -39,7 +44,7 @@
         "width": 1050,
         "height": 307,
         "density": 2.625,
-        "sha256": "77d84fe6ccc046437b5b789ca125b119c6096617058fca4d031a497a12356663",
+        "sha256": "e0dc1f92c3d5a3049349069502f62fecf29c2038c4bbbe531401706b6bcc2815",
         "transform": {
           "scaleX": 0.414038,
           "scaleY": 0.414159,
@@ -55,6 +60,11 @@
           "componentId": "DeviceSummaryCard/Loading"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:196"
+      },
+      "match": {
+        "percent": 97.29,
+        "changedPercent": 10.86,
+        "scoreVersion": 3
       }
     },
     {
@@ -67,7 +77,7 @@
         "width": 1050,
         "height": 533,
         "density": 2.625,
-        "sha256": "a01160f31084feb8dc817b3de19d657e73c7c74ba389c01e5d62f68d50ae3f1d",
+        "sha256": "95799342b0e09544c8646b7831f6fdb3ac8ffa1b4a3ae329f98cbcd3205c6fbd",
         "transform": {
           "scaleX": 0.414038,
           "scaleY": 0.414248,
@@ -83,6 +93,12 @@
           "componentId": "DeviceSummaryCard/LowBattery"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:213"
+      },
+      "match": {
+        "percent": 97.13,
+        "changedPercent": 15.28,
+        "scoreVersion": 3,
+        "geometry": 2.9
       }
     },
     {
@@ -95,7 +111,7 @@
         "width": 893,
         "height": 234,
         "density": 2.625,
-        "sha256": "43e03ec741f2eacc5e9e2f185d4aa9b7e10a8f961e23fb951dc11b94c3a371a6",
+        "sha256": "89be237f2649995986086d942f68f842eefcb263e67276e153c5f0a3f4d34f30",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.42228,
@@ -111,6 +127,11 @@
           "componentId": "ContactRow/Chat"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:477"
+      },
+      "match": {
+        "percent": 98.44,
+        "changedPercent": 12.15,
+        "scoreVersion": 3
       }
     },
     {
@@ -123,7 +144,7 @@
         "width": 893,
         "height": 234,
         "density": 2.625,
-        "sha256": "b8e9c5876d93af01174e8d45eba834f7f9051368aeb16aeb94aca1d88fe78c01",
+        "sha256": "207df277fda3fc971db94a762d0678ae3568e5a74a317a0b72152b239c72b515",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.42228,
@@ -139,6 +160,11 @@
           "componentId": "ContactRow/Repeater"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:495"
+      },
+      "match": {
+        "percent": 98.18,
+        "changedPercent": 15.61,
+        "scoreVersion": 3
       }
     },
     {
@@ -151,7 +177,7 @@
         "width": 893,
         "height": 234,
         "density": 2.625,
-        "sha256": "6ae59ea8e437c008ffc93a85c36306a6fb7af8c54c80a6358996484aa8e5f8a4",
+        "sha256": "4b59a9dfdfb676c778a000bc1e55b0f7b7aa6418326dc918c704133c6746caae",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.42228,
@@ -167,6 +193,11 @@
           "componentId": "ContactRow/Room"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:513"
+      },
+      "match": {
+        "percent": 98.11,
+        "changedPercent": 15.36,
+        "scoreVersion": 3
       }
     },
     {
@@ -179,7 +210,7 @@
         "width": 893,
         "height": 234,
         "density": 2.625,
-        "sha256": "3b81550cbebcdd4383cc4884203ded3ccf9d2ec579f47b8d1680a258afdd5496",
+        "sha256": "481176c737e16eebf6b4611e6ea9c56f9e8eba0a68478a95f4e3897a1d43f28e",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.42228,
@@ -195,6 +226,11 @@
           "componentId": "ContactRow/Sensor"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:531"
+      },
+      "match": {
+        "percent": 97.96,
+        "changedPercent": 15.23,
+        "scoreVersion": 3
       }
     },
     {
@@ -207,7 +243,7 @@
         "width": 893,
         "height": 709,
         "density": 2.625,
-        "sha256": "602d3c6139c5330cb725ee99e889e3c3df2bf9f041bd76c9d9fb36cd91b0de80",
+        "sha256": "7956aea85ed1b121552303e28e17233906deb20c0a10a947e1efa5e0bd1a5ebf",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.422457,
@@ -223,6 +259,12 @@
           "componentId": "ContactList/Empty"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:549"
+      },
+      "match": {
+        "percent": 75.48,
+        "changedPercent": 10.06,
+        "scoreVersion": 3,
+        "geometry": 73.8
       }
     },
     {
@@ -235,7 +277,7 @@
         "width": 893,
         "height": 709,
         "density": 2.625,
-        "sha256": "adef633ec915229b56a2a26d1ac99079c8398b81b9f8b7ef1b41a67818d8ae3b",
+        "sha256": "37dcdf8165dc07c1f053710d1d6071cd2d8067c20bcb782059ecb9d1a5593190",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.421909,
@@ -251,6 +293,11 @@
           "componentId": "ContactList/Few"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:559"
+      },
+      "match": {
+        "percent": 98.54,
+        "changedPercent": 27.09,
+        "scoreVersion": 3
       }
     },
     {
@@ -263,7 +310,7 @@
         "width": 893,
         "height": 709,
         "density": 2.625,
-        "sha256": "ebe78faaad9157599e18303fda83b2eb158b2b1fd232e699c04e5cd1239d8517",
+        "sha256": "644054eed31fa622df43d72394b1def1db135d7aac88e32f6e7d3ecf5fb5007d",
         "transform": {
           "scaleX": 0.393094,
           "scaleY": 0.393016,
@@ -279,6 +326,12 @@
           "componentId": "ContactList/Many"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:594"
+      },
+      "match": {
+        "percent": 90.28,
+        "changedPercent": 39.31,
+        "scoreVersion": 3,
+        "geometry": 8.8
       }
     },
     {
@@ -291,7 +344,7 @@
         "width": 893,
         "height": 709,
         "density": 2.625,
-        "sha256": "b24b1c529d60a5dfd288880b85a4b8b2f5026d592b39a8380df130e68383679d",
+        "sha256": "1e3aca18bb5e788675ba1507e312f1ad4ae9823f57c0811fa8eead541fde5fc0",
         "transform": {
           "scaleX": 0.52314,
           "scaleY": 0.523105,
@@ -307,6 +360,11 @@
           "componentId": "BleDeviceList/Empty"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/86:154"
+      },
+      "match": {
+        "percent": 94.08,
+        "changedPercent": 99.63,
+        "scoreVersion": 3
       }
     },
     {
@@ -319,7 +377,7 @@
         "width": 893,
         "height": 924,
         "density": 2.625,
-        "sha256": "9f7aa70bc380af92f04d955b8f4d2899d59fdb03e0ccc7f1cf4e77bfad3fe4ad",
+        "sha256": "fe5f2b2ef83eea2ee75a5e4ce4196e9645921624ccd10edd5c2f9fd5cc4765c1",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.42268,
@@ -335,6 +393,11 @@
           "componentId": "BleDeviceList/Few"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:18"
+      },
+      "match": {
+        "percent": 95.62,
+        "changedPercent": 17.6,
+        "scoreVersion": 3
       }
     },
     {
@@ -347,7 +410,7 @@
         "width": 893,
         "height": 1449,
         "density": 2.625,
-        "sha256": "bdcdda6345728f2e1cd8d142711dab2fb3c4926576ef847b759e4b5581caf54b",
+        "sha256": "2fe30e39b8f01f073e817cd9df67d0ce6a7fe26eaa08619877534e17e9be18fa",
         "transform": {
           "scaleX": 0.346263,
           "scaleY": 0.346485,
@@ -363,6 +426,12 @@
           "componentId": "BleDeviceList/Many"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:300"
+      },
+      "match": {
+        "percent": 87.94,
+        "changedPercent": 39.74,
+        "scoreVersion": 3,
+        "geometry": 15.2
       }
     },
     {
@@ -375,7 +444,7 @@
         "width": 893,
         "height": 562,
         "density": 2.625,
-        "sha256": "b2368f21bae90650fc39c096496edeebdeeb4a4115086927506a623ffbe5421f",
+        "sha256": "8f0ad28a2387103e3d9e2be45e74ed7e96f6cf43aef2e867ab9926d877da175a",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.42249,
@@ -391,6 +460,11 @@
           "componentId": "BlePermissionPanel/First"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/86:171"
+      },
+      "match": {
+        "percent": 96.51,
+        "changedPercent": 16.75,
+        "scoreVersion": 3
       }
     },
     {
@@ -403,7 +477,7 @@
         "width": 893,
         "height": 628,
         "density": 2.625,
-        "sha256": "55e6f5635596ce598b82ee00ab1c7c49a149f070071eb8f0a69cafd0382bad02",
+        "sha256": "fbec9b4da04d641d44f216a762d4411fac797c281bef3635779e80052d4c7786",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.422695,
@@ -419,6 +493,11 @@
           "componentId": "BlePermissionPanel/Denied"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/86:195"
+      },
+      "match": {
+        "percent": 96.87,
+        "changedPercent": 16.22,
+        "scoreVersion": 3
       }
     },
     {
@@ -431,7 +510,7 @@
         "width": 893,
         "height": 789,
         "density": 2.625,
-        "sha256": "78015d8d70fca67b19556f0782cde607663531e180b8323c5d73a9aeb416562f",
+        "sha256": "98faf5dd8f0093a57cc8a4af2bf2e67cdbe1eac888f784731d8f57520cd528e2",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.422474,
@@ -447,6 +526,11 @@
           "componentId": "TcpConnectPanel/Idle"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:76"
+      },
+      "match": {
+        "percent": 98.21,
+        "changedPercent": 8.18,
+        "scoreVersion": 3
       }
     },
     {
@@ -459,7 +543,7 @@
         "width": 893,
         "height": 789,
         "density": 2.625,
-        "sha256": "302921daf84a4b2395ce9c774af349c94c83241635b478739248ae7087c3e12d",
+        "sha256": "64e02e6279b1872243136bc55e25bfeaaa29856d48ff240a70ca334a5d3cff57",
         "transform": {
           "scaleX": 0.422422,
           "scaleY": 0.422474,
@@ -475,6 +559,11 @@
           "componentId": "TcpConnectPanel/Busy"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:99"
+      },
+      "match": {
+        "percent": 99.44,
+        "changedPercent": 7.87,
+        "scoreVersion": 3
       }
     },
     {
@@ -487,7 +576,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "2f1228f96c8b92051b7336066583237b5588c892a54d70a27b1f4a7c4b70f588",
+        "sha256": "d2e1baa4bae60d4b14ccbc35889abf4190aa60d33d5c81e23c9b3839cca711ca",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -503,6 +592,11 @@
           "componentId": "Scanner/SavedEmpty"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/92:84"
+      },
+      "match": {
+        "percent": 96.62,
+        "changedPercent": 6.7,
+        "scoreVersion": 3
       }
     },
     {
@@ -515,7 +609,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "abeb316be269dd68fa974ad676532d74757e45cb978038d820bc6207a90e426d",
+        "sha256": "233681f4cb21ccd4edae5055998792c335a2bfcfffa89c79a100677f01f208a2",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -531,6 +625,11 @@
           "componentId": "Scanner/SavedPopulated"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/93:5"
+      },
+      "match": {
+        "percent": 97.83,
+        "changedPercent": 7.76,
+        "scoreVersion": 3
       }
     },
     {
@@ -543,7 +642,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "83300e43bcb632d55c1f8498f6886333a5cc41abb054c3c12d2cc54b0b894e96",
+        "sha256": "375f3b18e1d18e9e3d95105d6f0fe73bab2611fe064e34b955015010364ff23c",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -559,6 +658,11 @@
           "componentId": "Scanner/BlePermission"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/92:5"
+      },
+      "match": {
+        "percent": 98.12,
+        "changedPercent": 8.15,
+        "scoreVersion": 3
       }
     },
     {
@@ -571,7 +675,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "3b2a4753757ee206d14422c2f3baf219f8b1a00b11f570c03c4b4deb5e03c5b9",
+        "sha256": "496345034c5d8d6ab8759a0e540a5e39c858eee65d95f1566b0cd17c19c60a90",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -587,6 +691,11 @@
           "componentId": "Scanner/BleEmpty"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/88:7"
+      },
+      "match": {
+        "percent": 96.78,
+        "changedPercent": 6.84,
+        "scoreVersion": 3
       }
     },
     {
@@ -599,7 +708,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "d0159535c7bb65065b9f731404f41e4f72967de23f5dbbcfec6ad0e931988f8a",
+        "sha256": "4326b118f303defda54e740430438ec12fb348a6c2896b10ceb0eaa76ca3bb29",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -615,6 +724,11 @@
           "componentId": "Scanner/BleFew"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/89:77"
+      },
+      "match": {
+        "percent": 97.49,
+        "changedPercent": 8.75,
+        "scoreVersion": 3
       }
     },
     {
@@ -627,7 +741,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "b15472dd41fddc546aa80aa25faf5365097092a90d0595367c7491255056aee4",
+        "sha256": "a2d230b4787832330e50a48060b72c5ed3eeae6c9c8146846ec06b698b996d0a",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -643,6 +757,11 @@
           "componentId": "Scanner/BleMany"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/90:5"
+      },
+      "match": {
+        "percent": 98.03,
+        "changedPercent": 17.71,
+        "scoreVersion": 3
       }
     },
     {
@@ -655,7 +774,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "444bc2df6c5e29529039497e788438b0c94ca2bf0229a18b3843d4fe003323a2",
+        "sha256": "281e9917f16646b65ae092fde461a67f7103cddc4978476501f73ba5896e34bd",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -671,6 +790,11 @@
           "componentId": "Scanner/UsbEmpty"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/94:84"
+      },
+      "match": {
+        "percent": 97.03,
+        "changedPercent": 7.11,
+        "scoreVersion": 3
       }
     },
     {
@@ -683,7 +807,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "acd107ac7f6c1ff82ee98771c1fe88fd877db915ead3f4114f60e4c0eab730ad",
+        "sha256": "73b037d686f4c8d0eb2779229b9bb4fa5262a77430ed46bd280fca60d9299e4d",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -699,6 +823,11 @@
           "componentId": "Scanner/UsbFew"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/95:5"
+      },
+      "match": {
+        "percent": 94.71,
+        "changedPercent": 7.61,
+        "scoreVersion": 3
       }
     },
     {
@@ -711,7 +840,7 @@
         "width": 1078,
         "height": 2399,
         "density": 2.625,
-        "sha256": "a6de37d767cf7ff41aa90e34686a661145015ebe11c6c089bd01f7357e0c7ac9",
+        "sha256": "bef8765f483527089ef03be83a810b71b343b62aca4ca614f8ed255754013dec",
         "transform": {
           "scaleX": 0.381239,
           "scaleY": 0.381399,
@@ -727,6 +856,11 @@
           "componentId": "Scanner/Tcp"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/94:5"
+      },
+      "match": {
+        "percent": 98.06,
+        "changedPercent": 8.28,
+        "scoreVersion": 3
       }
     },
     {
@@ -739,7 +873,7 @@
         "width": 1050,
         "height": 745,
         "density": 2.625,
-        "sha256": "8e10b35357a21e25a1e4197d7d812b0c4e90eb1d2453ec6fb4f5b3389e49a8c6",
+        "sha256": "c384fa417d94ec03bd6b763c6db272601fdfc16ebe516fb229c8b57ba43e35b1",
         "transform": {
           "scaleX": 0.414038,
           "scaleY": 0.413815,
@@ -755,6 +889,12 @@
           "componentId": "SavedDevices/Populated"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/88:113"
+      },
+      "match": {
+        "percent": 92.34,
+        "changedPercent": 28.67,
+        "scoreVersion": 3,
+        "geometry": 9.2
       }
     },
     {
@@ -767,7 +907,7 @@
         "width": 1050,
         "height": 492,
         "density": 2.625,
-        "sha256": "c921a815cf6858f69e19441ec44670eb05a93f394b3721d9b26df3d7c77de268",
+        "sha256": "298063c526d63b1e1707c62846bce374d196cc5f8374b0602be0263cf9ce361a",
         "transform": {
           "scaleX": 0.435504,
           "scaleY": 0.435572,
@@ -783,6 +923,12 @@
           "componentId": "SavedDevices/Empty"
         },
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/88:97"
+      },
+      "match": {
+        "percent": 91.96,
+        "changedPercent": 99.71,
+        "scoreVersion": 3,
+        "geometry": 10.5
       }
     }
   ]
