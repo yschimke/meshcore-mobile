@@ -47,7 +47,10 @@ jobs:
           import json,os,subprocess
           repo=os.environ['GITHUB_REPOSITORY']
           tag=os.environ['RELEASE_TAG']
-          release=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/releases/tags/{tag}']))
+          pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/{repo}/releases?per_page=100']))
+          matches=[r for page in pages for r in page if r['tag_name']==tag]
+          if len(matches)!=1: raise SystemExit('Expected exactly one release draft')
+          release=matches[0]
           if not release['draft']: raise SystemExit('Expected an unpublished draft release')
           sha=subprocess.check_output(['gh','api',f'repos/{repo}/commits/{release["target_commitish"]}','--jq','.sha'],text=True).strip()
           lookup=subprocess.run(['gh','api',f'repos/{repo}/git/ref/tags/{tag}'],capture_output=True,text=True)
