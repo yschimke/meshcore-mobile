@@ -302,8 +302,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.a11y.png",
+      "cleanBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.png",
       "findings": [],
       "functionName": "DeviceInfoWidgetEmptyPreview",
       "module": "app",
@@ -313,8 +313,8 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.a11y.png",
+      "cleanBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.png",
       "findings": [],
       "functionName": "DeviceInfoWidgetPopulatedPreview",
       "module": "app",
@@ -324,8 +324,8 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.a11y.png",
+      "cleanBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.png",
       "findings": [],
       "functionName": "DeviceInfoWidgetStalePreview",
       "module": "app",
@@ -1372,8 +1372,8 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "StatusWidgetConnectedPreview_Status_connected-63591697.a11y.png",
+      "cleanBasename": "StatusWidgetConnectedPreview_Status_connected-63591697.png",
       "findings": [],
       "functionName": "StatusWidgetConnectedPreview",
       "module": "wear",
@@ -1383,8 +1383,8 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.a11y.png",
+      "cleanBasename": "StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.png",
       "findings": [],
       "functionName": "StatusWidgetDisconnectedPreview",
       "module": "wear",
@@ -1394,8 +1394,8 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "StatusWidgetLowBatteryPreview_Status_low_battery-149af881.a11y.png",
+      "cleanBasename": "StatusWidgetLowBatteryPreview_Status_low_battery-149af881.png",
       "findings": [],
       "functionName": "StatusWidgetLowBatteryPreview",
       "module": "wear",
@@ -1405,8 +1405,8 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
+      "annotatedBasename": "WearComponentCatalogPreview_Component_Catalog-ab535596.a11y.png",
+      "cleanBasename": "WearComponentCatalogPreview_Component_Catalog-ab535596.png",
       "findings": [],
       "functionName": "WearComponentCatalogPreview",
       "module": "wear",
@@ -1416,9 +1416,24 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "",
-      "cleanBasename": "",
-      "findings": [],
+      "annotatedBasename": "WearComponentGridPreview_Component_Grid-cf79ccb8.a11y.png",
+      "cleanBasename": "WearComponentGridPreview_Component_Grid-cf79ccb8.png",
+      "findings": [
+        {
+          "boundsInScreen": "95,582,276,619",
+          "level": "INFO",
+          "message": "This non-clickable item's speakable text: \"Card Content\" is identical to that of 1 other item(s).",
+          "type": "DuplicateSpeakableTextCheck",
+          "viewDescription": "android.widget.TextView"
+        },
+        {
+          "boundsInScreen": "95,185,156,222",
+          "level": "INFO",
+          "message": "This non-clickable item's speakable text: \"Title\" is identical to that of 1 other item(s).",
+          "type": "DuplicateSpeakableTextCheck",
+          "viewDescription": "android.widget.TextView"
+        }
+      ],
       "functionName": "WearComponentGridPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid",
