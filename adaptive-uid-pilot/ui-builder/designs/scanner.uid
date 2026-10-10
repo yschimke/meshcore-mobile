@@ -190,7 +190,10 @@
       "modifiers": [
         {
           "type": "padding",
-          "all": 16
+          "startDp": 16,
+          "topDp": 16,
+          "endDp": 16,
+          "bottomDp": 16
         }
       ],
       "eventBindings": {}
@@ -373,7 +376,10 @@
         },
         {
           "type": "padding",
-          "all": 24
+          "startDp": 24,
+          "topDp": 24,
+          "endDp": 24,
+          "bottomDp": 24
         },
         {
           "type": "verticalScroll"
@@ -471,7 +477,10 @@
       "modifiers": [
         {
           "type": "padding",
-          "all": 16
+          "startDp": 16,
+          "topDp": 16,
+          "endDp": 16,
+          "bottomDp": 16
         }
       ],
       "eventBindings": {}
@@ -592,7 +601,10 @@
         },
         {
           "type": "padding",
-          "all": 24
+          "startDp": 24,
+          "topDp": 24,
+          "endDp": 24,
+          "bottomDp": 24
         },
         {
           "type": "verticalScroll"
