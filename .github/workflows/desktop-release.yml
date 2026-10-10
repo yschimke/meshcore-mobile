@@ -90,8 +90,8 @@ jobs:
           if existing and existing['target_commitish']!=os.environ['SOURCE_SHA']:
               raise SystemExit('Release source does not match')
           if not existing:
-              Path('/tmp/desktop-notes.md').write_text(f'Native desktop installers for [{tag}](https://github.com/{repo}/releases/tag/{tag}).\n\nThe primary release is immutable, so these installers are published separately from the exact same source commit `{os.environ["SOURCE_SHA"]}`. All four native CI builds succeeded in [run {os.environ["SOURCE_RUN"]}](https://github.com/{repo}/actions/runs/{os.environ["SOURCE_RUN"]}); each installer includes a SHA-256 checksum.\n')
-              subprocess.run(['gh','release','create',supplement,'--repo',repo,'--draft','--target',os.environ['SOURCE_SHA'],'--title',f'Desktop installers {tag}','--notes-file','/tmp/desktop-notes.md'],check=True)
+              Path('desktop-notes.md').write_text(f'Native desktop installers for [{tag}](https://github.com/{repo}/releases/tag/{tag}).\n\nThe primary release is immutable, so these installers are published separately from the exact same source commit `{os.environ["SOURCE_SHA"]}`. All four native CI builds succeeded in [run {os.environ["SOURCE_RUN"]}](https://github.com/{repo}/actions/runs/{os.environ["SOURCE_RUN"]}); each installer includes a SHA-256 checksum.\n')
+              subprocess.run(['gh','release','create',supplement,'--repo',repo,'--draft','--target',os.environ['SOURCE_SHA'],'--title',f'Desktop installers {tag}','--notes-file','desktop-notes.md'],check=True)
           if not existing or existing['draft']:
               subprocess.run(['gh','release','upload',supplement,'--repo',repo,'--clobber',*[str(root/n) for n in sorted(expected)]],check=True)
           release=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/releases/tags/{supplement}']))
