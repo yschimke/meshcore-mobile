@@ -11,16 +11,16 @@ androidx-lifecycle = "2.11.0"
 androidx-testExt = "1.3.0"
 composeMultiplatform = "1.12.0"
 composePreviewAnnotations = "3.13.2"
-composePreviewPlugin = "2.39.2"
+composePreviewPlugin = "2.40.0"
 # The data connector publishes from yschimke/compose-preview-daemon on that repository's own
 # version line, not compose-ai-tools'. Pinned to what the plugin's daemon BOM resolves
-# (compose-preview-daemon-bom 3.15.1, baked into plugin 2.39.2), so the connector on the
+# (compose-preview-daemon-bom 3.15.2, baked into plugin 2.40.0), so the connector on the
 # debug classpath matches the renderer the plugin runs.
-composePreviewDaemonConnector = "3.14.1"
+composePreviewDaemonConnector = "3.15.2"
 # The embedded Remote Compose player the connector draws every RemotePreview with. Since
 # compose-preview-daemon 3.x the connector keeps it `compileOnly` and refuses the render
 # (RemoteComposeLinkageException) instead of falling back to the View player, so the consumer
-# must put it on the render classpath. 2.1.4 is what rc-players-bom 2.4.0 (the daemon 3.15.1
+# must put it on the render classpath. 2.1.4 is what rc-players-bom 2.4.0 (the daemon 3.15.2
 # line) selects, and is built against androidx.compose.remote 1.0.0-alpha19, matching below.
 composePreviewRcEmbeddedPlayer = "2.1.4"
 core = "1.7.0"
