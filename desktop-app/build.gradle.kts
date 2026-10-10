@@ -14,6 +14,7 @@ kotlin {
       implementation(projects.meshcoreComponents)
       implementation(projects.meshcoreTransportTcp)
       implementation(compose.desktop.currentOs)
+      implementation(libs.kotlinx.coroutines.swing)
     }
   }
 }

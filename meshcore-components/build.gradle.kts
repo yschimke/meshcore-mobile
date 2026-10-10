@@ -25,9 +25,8 @@ kotlin {
     androidResources.enable = true
   }
 
-  // Desktop (JVM) target: lets the shared presentational composables render on
-  // the cheaper CMP/Skiko path (design-parity). Android-only deps (extended
-  // icons, transports, activity) stay in androidMain.
+  // Desktop (JVM) target for shared presentation and design-parity. Android
+  // activity and platform integrations stay in androidMain.
   jvm("desktop")
 
   sourceSets {
@@ -42,7 +41,7 @@ kotlin {
       api(libs.compose.uiToolingPreview)
       api(libs.cmp.navigation3.runtime)
       implementation(libs.kotlinx.serialization.json)
-      api("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+      implementation(libs.cmp.material.icons.extended)
       implementation(libs.cmp.navigation3.ui)
       implementation(libs.cmp.adaptive)
       implementation(libs.cmp.navigation.suite)

@@ -47,7 +47,7 @@ fun TcpConnectPanel(
     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
       Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
-          imageVector = MeshIcons.Settings,
+          imageVector = MeshIcons.Router,
           contentDescription = null,
           tint = MaterialTheme.colorScheme.primary,
         )

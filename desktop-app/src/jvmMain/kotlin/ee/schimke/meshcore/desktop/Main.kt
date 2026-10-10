@@ -14,18 +14,31 @@ import ee.schimke.meshcore.components.ui.MeshcoreClientApp
 import ee.schimke.meshcore.components.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.core.manager.MeshCoreManager
 import ee.schimke.meshcore.transport.tcp.TcpTransport
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 
 fun main() = application {
   val manager = remember { MeshCoreManager() }
+  val scope = rememberCoroutineScope()
+  var closing by remember { mutableStateOf(false) }
   var settings by remember { mutableStateOf(ThemeSettings()) }
   var pickerVisible by remember { mutableStateOf(false) }
   Window(
     title = "MeshCore",
     state = rememberWindowState(width = 1100.dp, height = 800.dp),
     onCloseRequest = {
-      runBlocking { manager.disconnect() }
-      exitApplication()
+      if (!closing) {
+        closing = true
+        scope.launch {
+          try {
+            withTimeoutOrNull(3_000) { withContext(Dispatchers.IO) { manager.disconnect() } }
+          } finally {
+            exitApplication()
+          }
+        }
+      }
     },
   ) {
     val dark =

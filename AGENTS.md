@@ -25,7 +25,7 @@
   --no-verify` / `git push --no-verify` bypass them locally — CI still won't.
   Change the detector only with `scripts/test-agent-attribution.sh` passing;
   CI runs it on every PR.
-- Project layout: `app/` (Android), Wear in `wear/`, plus several
+- Project layout: `app/` (Android), Wear in `wear/`, desktop in `desktop-app/`, plus several
   `meshcore-*` library modules (`meshcore-core`, `meshcore-data`,
   `meshcore-components`, `meshcore-mobile`, `meshcore-cli`,
   `meshcore-tui`, `meshcore-grpc-service`, and the

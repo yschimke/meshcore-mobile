@@ -46,8 +46,8 @@ plugins {
 //   4. prop BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN
 // The project-specific name lets a developer hold a separate readonly token per BuildFetch project
 // in a single ~/.gradle/gradle.properties (this repo and compose-ai-tools point at different
-// caches,
-// so one shared token can't authenticate both). The general name stays as a fallback — it's what CI
+// caches, so one shared token can't authenticate both). The general name stays as a fallback —
+// it's what CI
 // exports (the ci.yml build/test/lint jobs plus the preview/render workflows: compose-preview,
 // design-parity, design-artifacts) and what a single-project setup can use. Env wins over a gradle
 // property of the same name so CI overrides a stray local property.
@@ -65,9 +65,8 @@ plugins {
 // explicit ON_CI=false is honoured as read-only.
 val onCi = providers.environmentVariable("ON_CI").orElse("false").get().toBoolean()
 
-// Non-blank view of a single env var / gradle property: trims and drops empties so a
-// present-but-empty
-// source doesn't shadow a later fallback (see the header comment).
+// Non-blank view of an env var / Gradle property. Trimming and dropping empties prevents
+// a present-but-empty source from shadowing a later fallback (see the header comment).
 val nonBlank = { source: Provider<String> -> source.map { it.trim() }.filter { it.isNotEmpty() } }
 val cacheToken =
   nonBlank(providers.environmentVariable("BUILDFETCH_MESHCORE_GRADLE_REMOTE_CACHE_TOKEN"))
@@ -76,10 +75,8 @@ val cacheToken =
     .orElse(nonBlank(providers.gradleProperty("BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN")))
     .orNull
 
-// True only when this run will actually push to the remote: a trusted main-branch run (ON_CI) with
-// a
-// usable token. Anything else (PRs, dev machines, or a main run whose token is unprovisioned/blank)
-// does not push, so it must keep the local cache.
+// Push only from a trusted main-branch run (ON_CI) with a usable token. Other runs (PRs, developer
+// machines, or a main run with an unprovisioned/blank token) must keep the local cache.
 val remotePushEnabled = onCi && cacheToken != null
 
 buildCache {
@@ -88,10 +85,8 @@ buildCache {
   // re-uploads a *local* build-cache hit to the remote; it pushes to the remote only when a task
   // actually executes. setup-gradle restores a warm local build cache (caches/build-cache-1) from
   // the GitHub Actions cache, so with it in place every task resolves as FROM-CACHE (local),
-  // nothing
-  // is pushed, and the remote stays empty (dev machines then see 0 remote hits). Disabling the
-  // local
-  // cache on the pushing runs forces tasks to execute-and-push, or to hit the remote directly, so
+  // nothing is pushed, and the remote stays empty (dev machines then see 0 remote hits). Disabling the
+  // local cache on the pushing runs forces tasks to execute-and-push, or to hit the remote directly, so
   // BuildFetch actually gets seeded.
   //
   // Gate this on remotePushEnabled, not just ON_CI: if the token is unprovisioned/blank the remote

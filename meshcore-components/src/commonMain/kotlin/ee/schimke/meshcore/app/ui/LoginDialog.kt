@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.btn_cancel
@@ -50,7 +53,7 @@ fun LoginDialog(
   onLogin: (password: String) -> Unit,
   onDismiss: () -> Unit,
 ) {
-  var password by remember { mutableStateOf("") }
+  var password by remember(contactName, contactType) { mutableStateOf("") }
 
   AlertDialog(
     onDismissRequest = { if (state !is LoginDialogState.Authenticating) onDismiss() },
@@ -72,6 +75,8 @@ fun LoginDialog(
           label = { Text(stringResource(Res.string.login_password)) },
           placeholder = { Text(stringResource(Res.string.login_password_hint)) },
           singleLine = true,
+          visualTransformation = PasswordVisualTransformation(),
+          keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
           enabled = state is LoginDialogState.Prompting,
           isError = state is LoginDialogState.Prompting && state.errorMessage != null,
           supportingText =

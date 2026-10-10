@@ -12,16 +12,21 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
+import ee.schimke.meshcore.app.ui.LoginDialog
+import ee.schimke.meshcore.app.ui.LoginDialogState
 import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import ee.schimke.meshcore.components.ui.theme.Section
 import ee.schimke.meshcore.components.ui.theme.SectionStates
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState
 import ee.schimke.meshcore.core.manager.MeshCoreManager
+import ee.schimke.meshcore.core.model.Contact
+import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.MeshEvent
 import ee.schimke.meshcore.core.model.PublicKey
 import kotlin.time.Clock
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.filter
@@ -102,12 +107,63 @@ private fun ConnectedMeshcoreApp(
   }
   val backStack = remember { mutableStateListOf<NavKey>(DeviceDestination) }
   var error by remember { mutableStateOf<String?>(null) }
+  var notice by remember { mutableStateOf<String?>(null) }
+  fun openChat(route: NavKey) {
+    // Replacing the active conversation keeps wide master/detail navigation bounded.
+    while (backStack.size > 1) backStack.removeLastOrNull()
+    backStack.add(route)
+  }
   val messageSync = remember(client) { Mutex() }
+  val sentByConversation = remember(client) { mutableMapOf<String, MutableList<ChatMessage>>() }
+  val authenticated = remember(client) { mutableStateListOf<String>() }
+  var loginContact by remember(client) { mutableStateOf<Contact?>(null) }
+  var loginState by
+    remember(client) { mutableStateOf<LoginDialogState>(LoginDialogState.Prompting()) }
+  val scope = rememberCoroutineScope()
+  notice?.let { message ->
+    AlertDialog(
+      onDismissRequest = { notice = null },
+      title = { Text("Device settings") },
+      text = { Text(message) },
+      confirmButton = { TextButton(onClick = { notice = null }) { Text("OK") } },
+    )
+  }
+  loginContact?.let { contact ->
+    key(contact.publicKey) {
+      LoginDialog(
+        contactName = contact.name,
+        contactType = if (contact.type == ContactType.ROOM) "room" else "repeater",
+        state = loginState,
+        onLogin = { password ->
+          loginState = LoginDialogState.Authenticating
+          scope.launch {
+            try {
+              client.login(contact.publicKey, password)
+              authenticated.add(contact.publicKey.toHex())
+              loginContact = null
+              openChat(ContactDestination(contact.publicKey.toHex(), contact.name))
+              messageSync.withLock { client.syncMessages() }
+            } catch (e: CancellationException) {
+              throw e
+            } catch (e: Exception) {
+              if (loginContact != null)
+                loginState =
+                  LoginDialogState.Prompting("Login failed. Check the password and try again.")
+              else error = "Could not refresh messages."
+            }
+          }
+        },
+        onDismiss = { loginContact = null },
+      )
+    }
+  }
   LaunchedEffect(client) {
     try {
       client.getContacts()
       client.getChannels()
       messageSync.withLock { client.syncMessages() }
+      client.getBatteryAndStorage()
+      client.getRadioSettings()
     } catch (e: CancellationException) {
       throw e
     } catch (e: Exception) {
@@ -160,18 +216,26 @@ private fun ConnectedMeshcoreApp(
       onCommandsClick = {
         val commands = channels.firstOrNull { it.name == COMMANDS_CHANNEL_NAME }
         if (commands == null) error = "The companion radio has no commands channel."
-        else backStack.add(ChannelDestination(commands.index, "Commands"))
+        else openChat(ChannelDestination(commands.index, "Commands"))
       },
       onSettingsClick = {
-        error =
+        notice =
           "Device settings are currently available in the Android app. Use Commands for radio configuration."
       },
       onDisconnect = disconnect,
       warnings = listOfNotNull(error),
       onDismissWarning = { error = null },
       onOpenThemePicker = onOpenThemePicker,
-      onContactClick = { backStack.add(ContactDestination(it.publicKey.toHex(), it.name)) },
-      onChannelClick = { backStack.add(ChannelDestination(it.index, it.name)) },
+      onContactClick = { contact ->
+        if (
+          contact.type in setOf(ContactType.ROOM, ContactType.REPEATER) &&
+            contact.publicKey.toHex() !in authenticated
+        ) {
+          loginContact = contact
+          loginState = LoginDialogState.Prompting()
+        } else openChat(ContactDestination(contact.publicKey.toHex(), contact.name))
+      },
+      onChannelClick = { openChat(ChannelDestination(it.index, it.name)) },
     )
   }
   NavigationSuiteScaffold(
@@ -205,7 +269,10 @@ private fun ConnectedMeshcoreApp(
                 MeshcoreChat(
                   client,
                   route.name,
+                  sendScope = scope,
                   contactKey = route.key,
+                  sent =
+                    sentByConversation.getOrPut("contact-${route.key}") { mutableStateListOf() },
                   onBack = { backStack.removeLastOrNull() },
                 )
               }
@@ -213,7 +280,10 @@ private fun ConnectedMeshcoreApp(
                 MeshcoreChat(
                   client,
                   route.name,
+                  sendScope = scope,
                   channelIndex = route.index,
+                  sent =
+                    sentByConversation.getOrPut("channel-${route.index}") { mutableStateListOf() },
                   onBack = { backStack.removeLastOrNull() },
                 )
               }
@@ -228,16 +298,16 @@ private fun ConnectedMeshcoreApp(
 private fun MeshcoreChat(
   client: MeshCoreClient,
   title: String,
+  sent: MutableList<ChatMessage>,
+  sendScope: CoroutineScope,
   contactKey: String? = null,
   channelIndex: Int? = null,
   onBack: () -> Unit,
 ) {
   val direct by client.directMessages.collectAsState()
   val channel by client.channelMessages.collectAsState()
-  val sent = remember(client, contactKey, channelIndex) { mutableStateListOf<ChatMessage>() }
   var draft by rememberSaveable(contactKey, channelIndex) { mutableStateOf("") }
-  var sending by remember { mutableStateOf(false) }
-  val scope = rememberCoroutineScope()
+  val sending = sent.any { it.status == MessageStatus.Sending }
   val received =
     if (channelIndex != null) {
       channel[channelIndex].orEmpty().mapIndexed { index, m ->
@@ -275,8 +345,7 @@ private fun MeshcoreChat(
           )
         sent.add(message)
         draft = ""
-        sending = true
-        scope.launch {
+        sendScope.launch {
           try {
             if (channelIndex != null) client.sendChannelText(channelIndex, text, timestamp)
             else client.sendText(PublicKey.fromHex(requireNotNull(contactKey)), text, timestamp)
@@ -287,8 +356,6 @@ private fun MeshcoreChat(
           } catch (e: Exception) {
             val index = sent.indexOfFirst { it.id == message.id }
             if (index >= 0) sent[index] = message.copy(status = MessageStatus.Failed)
-          } finally {
-            sending = false
           }
         }
       }

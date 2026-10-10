@@ -34,10 +34,6 @@ import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-// Type-safe destination keys for androidx.navigation3. Each NavKey is
-// an @Serializable object/class so the back stack can survive process
-// death via rememberNavBackStack's saveable bundling.
-
 class MainActivity : ComponentActivity() {
   // Runtime BLE permissions are requested from the BLE tab on demand, not here;
   // that way users can deny without crashing the app on launch.

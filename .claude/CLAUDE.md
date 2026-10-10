@@ -9,7 +9,7 @@ don't.
 
 A `SessionStart` hook at `.claude/hooks/session-start.sh` installs JDK 21 (if
 missing) and downloads the Android SDK into `$HOME/.android-sdk` with the
-`platform-tools`, `platforms;android-36`, and `build-tools;36.0.0` packages,
+`platform-tools`, `platforms;android-37.1`, and `build-tools;37.0.0` packages,
 then exports `ANDROID_HOME` / `ANDROID_SDK_ROOT` / `PATH` via
 `$CLAUDE_ENV_FILE`. It also points `core.hooksPath` at `.githooks/` so the
 ktfmt pre-commit and conventional-commits commit-msg hooks are in place

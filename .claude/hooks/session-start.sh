@@ -14,8 +14,8 @@ fi
 # Android SDK: needed for :app, :wear, :meshcore-mobile assemble + lint.
 ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT:-$HOME/.android-sdk}"
 CMDLINE_TOOLS_DIR="$ANDROID_SDK_ROOT/cmdline-tools/latest"
-COMPILE_SDK=36
-BUILD_TOOLS_VERSION=36.0.0
+COMPILE_SDK=37.1
+BUILD_TOOLS_VERSION=37.0.0
 CMDLINE_TOOLS_ZIP="commandlinetools-linux-11076708_latest.zip"
 
 if [ ! -x "$CMDLINE_TOOLS_DIR/bin/sdkmanager" ]; then
