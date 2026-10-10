@@ -4,7 +4,7 @@
     "functionName": "MainActivity",
     "module": "app",
     "renderBasename": "activity__MainActivity.png",
-    "sha256": "697db81adba3a5d2f4a01b0917ddb443e50d09a19b21efc2b332f552478dd4fe",
+    "sha256": "08d6b5a0b3f2840ddb8edde5e64aed22be9e243b993855c91ae9ec8bb9621433",
     "sourceFile": null
   },
   "app/apptour__getting-started": {
@@ -12,7 +12,7 @@
     "functionName": "getting-started",
     "module": "app",
     "renderBasename": "apptour__getting-started_step00_launch.png",
-    "sha256": "697db81adba3a5d2f4a01b0917ddb443e50d09a19b21efc2b332f552478dd4fe",
+    "sha256": "08d6b5a0b3f2840ddb8edde5e64aed22be9e243b993855c91ae9ec8bb9621433",
     "sourceFile": null
   },
   "app/apptour__getting-started#1": {
@@ -20,7 +20,7 @@
     "functionName": "getting-started",
     "module": "app",
     "renderBasename": "apptour__getting-started_step01_tcp_transport_tab.png",
-    "sha256": "8f35aa4c16684765ff25878b033c7899e8d9f43ab28d5e11413c34a57b28d335",
+    "sha256": "93e79c6bc127ba1112d9b8ed5fe6597bbd55e1c6aaffd33715b0d53b78af04b6",
     "sourceFile": null
   },
   "app/apptour__getting-started#2": {
@@ -28,7 +28,7 @@
     "functionName": "getting-started",
     "module": "app",
     "renderBasename": "apptour__getting-started_step02_ble_transport_tab.png",
-    "sha256": "932fd5fdb7000257777769723aa0c224f1b43813c00b3b29c06b5ff07b26b852",
+    "sha256": "b9306e59400d47b323da580cdaaabdda9e56e451670a88aad5d457665a34320d",
     "sourceFile": null
   },
   "app/ee.schimke.meshcore.app.ui.ComponentPreviewsKt.BleDeviceListEmptyPreview_Dark": {
@@ -700,7 +700,7 @@
     "functionName": "DeviceInfoWidgetPopulatedPreview",
     "module": "app",
     "renderBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.png",
-    "sha256": "3537d0ffc020e353c0f37d66f6bb905c077cac9b42a2884ca9ecede2955e72d8",
+    "sha256": "a17372cc5743cadb6b3bf232420d2d505847f436400fb0bcedaf1512e22e1c40",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo \u2014 stale": {
@@ -708,7 +708,7 @@
     "functionName": "DeviceInfoWidgetStalePreview",
     "module": "app",
     "renderBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.png",
-    "sha256": "f3789bf2bb511db8c9e4796a93939c3ddc4a06652853700c89d0017bf3edb06d",
+    "sha256": "06543137e25f34f69c37d485c82133af4308ca993abc8d31e55df364590acade",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/widget/WidgetPreviews.kt"
   },
   "app/themecatalog__Dynamic_Dark": {
@@ -980,7 +980,7 @@
     "functionName": "AnimatedCircularProgressPreview",
     "module": "wear",
     "renderBasename": "AnimatedCircularProgressPreview_Animated_Circular_Progress-d47c429c.gif",
-    "sha256": "8067c48b7be4cc73364b58569e9327a669c7344f905b4bd8488bbcf775e37104",
+    "sha256": "051b9483a5c3ce159404085dc5302e6982749020256cf72e0015f64ca10e06ca",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.ui.WearPreviewsKt.ContactsBodyEmptyPreview_Devices - Large Round": {
@@ -1156,7 +1156,7 @@
     "functionName": "StatusWidgetConnectedPreview",
     "module": "wear",
     "renderBasename": "StatusWidgetConnectedPreview_Status_connected-63591697.png",
-    "sha256": "6eaced688a2a3b1bdafd6e4fb37b6c883cfc678f283a84d04959c57745f05538",
+    "sha256": "774aab8c78dfae9ba4446c0f88e46cdc6204f57c4f7ceae57078868a202fd55d",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status \u2014 disconnected": {
@@ -1164,7 +1164,7 @@
     "functionName": "StatusWidgetDisconnectedPreview",
     "module": "wear",
     "renderBasename": "StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.png",
-    "sha256": "8dcd09513bdce117bb72c48fe1680f209f7417fc121dfe8396b321829ae165ef",
+    "sha256": "c7a9003f3030613f38e025ea3171edc3fe9ae5b71fb5cd0c1284f7331df58341",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status \u2014 low battery": {
@@ -1172,7 +1172,7 @@
     "functionName": "StatusWidgetLowBatteryPreview",
     "module": "wear",
     "renderBasename": "StatusWidgetLowBatteryPreview_Status_low_battery-149af881.png",
-    "sha256": "0bac77ea731e5266a373121b95f939e39bf4c40c1ce6f9a92caf930305c36809",
+    "sha256": "2ccb56aeb072e0e75bae5ca32b5b7d09dd8bb6f2a669b4f4396b654e74b65788",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component Catalog": {
@@ -1180,7 +1180,7 @@
     "functionName": "WearComponentCatalogPreview",
     "module": "wear",
     "renderBasename": "WearComponentCatalogPreview_Component_Catalog-ab535596.png",
-    "sha256": "dcc5550c6323443131960780d9c68eed149a8c9749fc7bc676d26ee9385c9dbc",
+    "sha256": "c311491efd6171d6245a1bda01c88034fb42ecd5db0ed4985c9d4215e438f5e9",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid": {
@@ -1188,7 +1188,7 @@
     "functionName": "WearComponentGridPreview",
     "module": "wear",
     "renderBasename": "WearComponentGridPreview_Component_Grid-cf79ccb8.png",
-    "sha256": "83578387783e147c39b8c940ab015a04c59ee17a4144546a5fddb176d2de41f1",
+    "sha256": "998a0d88a98d22af245f50ce452d4b36b57e7eb35432081b8d3b37c42912f1bc",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt"
   },
   "wear/wearthemecatalog__MeshCore": {

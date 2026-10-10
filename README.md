@@ -2,6 +2,28 @@
 
 Auto-generated from `main`. Browse inline or compare against PR branches.
 
+> [!WARNING]
+> 12 preview(s) failed to render in the latest update (12 retained from the prior baseline). See **Render Failures** below.
+
+## Render Failures
+
+The render task completed but no PNG was produced for these previews. Entries with a prior baseline keep their previous image; the rest are absent from the gallery until a successful render lands.
+
+| Preview | Module | Function | Source | Baseline |
+|---------|--------|----------|--------|----------|
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatArabicPreview_Channel chat — Arabic` | meshcore-components | `ChannelChatArabicPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatDarkPreview_Channel chat — dark` | meshcore-components | `ChannelChatDarkPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Dark` | meshcore-components | `ChannelChatPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ChannelChatPreview_Light` | meshcore-components | `ChannelChatPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsArabicPreview_Commands — Arabic` | meshcore-components | `CommandsArabicPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsDarkPreview_Commands — dark` | meshcore-components | `CommandsDarkPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Dark` | meshcore-components | `CommandsPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.CommandsPreview_Light` | meshcore-components | `CommandsPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatArabicPreview_Contact chat — Arabic` | meshcore-components | `ContactChatArabicPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatDarkPreview_Contact chat — dark` | meshcore-components | `ContactChatDarkPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Dark` | meshcore-components | `ContactChatPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+| `meshcore-components/ee.schimke.meshcore.components.ui.ChatBodyPreviewsKt.ContactChatPreview_Light` | meshcore-components | `ContactChatPreview` | `src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt` | retained |
+
 ## app
 
 | Preview | Image |
@@ -104,18 +126,6 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 
 | Preview | Image |
 |---------|-------|
-| `ChannelChatArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png" width="150" /> |
-| `ChannelChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png" width="150" /> |
-| `ChannelChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.png" width="150" /> |
-| `ChannelChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatPreview_Light-241075b1.png" width="150" /> |
-| `CommandsArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsArabicPreview_Commands_Arabic-d422501d.png" width="150" /> |
-| `CommandsDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsDarkPreview_Commands_dark-d93ca6b4.png" width="150" /> |
-| `CommandsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsPreview_Dark-435b1f7d.png" width="150" /> |
-| `CommandsPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CommandsPreview_Light-7bc1fb02.png" width="150" /> |
-| `ContactChatArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png" width="150" /> |
-| `ContactChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png" width="150" /> |
-| `ContactChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatPreview_Dark-a03644a3.png" width="150" /> |
-| `ContactChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ContactChatPreview_Light-2912dfcd.png" width="150" /> |
 | `CachedDeviceBodyArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyArabicPreview_Cached_device_Arabic-68448a40.png" width="150" /> |
 | `CachedDeviceBodyDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyDarkPreview_Cached_device_dark-db126aa8.png" width="150" /> |
 | `CachedDeviceBodyGermanPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/CachedDeviceBodyGermanPreview_Cached_device_German-ae67372e.png" width="150" /> |
