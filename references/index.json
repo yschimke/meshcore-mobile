@@ -930,6 +930,270 @@
         "scoreVersion": 3,
         "geometry": 10.5
       }
+    },
+    {
+      "id": "contacts-412-list-light",
+      "previewId": "contact-browser__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/contacts-412-list-light-1c9ef8848d28e278af713c3bdac1c8be5eabf5e7fe044b515721eff09d5a3927.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "1c9ef8848d28e278af713c3bdac1c8be5eabf5e7fe044b515721eff09d5a3927"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-412-list-light-7cca62afdd81727f7c619a096aa51470fceb01abd0677dae038912fd1997e815.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "7cca62afdd81727f7c619a096aa51470fceb01abd0677dae038912fd1997e815",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-412-detail-light",
+      "previewId": "contact-browser__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/contacts-412-detail-light-32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-412-detail-light-df36bf89848680bc6beb500e42a2290060f26480d5776e4f9386cce2605e1370.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "df36bf89848680bc6beb500e42a2290060f26480d5776e4f9386cce2605e1370",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-412-list-dark",
+      "previewId": "contact-browser__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/contacts-412-list-dark-1c9ef8848d28e278af713c3bdac1c8be5eabf5e7fe044b515721eff09d5a3927.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "1c9ef8848d28e278af713c3bdac1c8be5eabf5e7fe044b515721eff09d5a3927"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-412-list-dark-984c069d69ba24657f463f7387540fe08e2b405f3b835b6a959cac851e256be4.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "984c069d69ba24657f463f7387540fe08e2b405f3b835b6a959cac851e256be4",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-412-detail-dark",
+      "previewId": "contact-browser__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/contacts-412-detail-dark-32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-412-detail-dark-01ae0d16ba945f4ee428775c4c5de62a1f102d8664cbe81151b87a2d4cf87bf2.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "01ae0d16ba945f4ee428775c4c5de62a1f102d8664cbe81151b87a2d4cf87bf2",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-840-list-light",
+      "previewId": "contact-browser__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/contacts-840-list-light-419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-840-list-light-894c798085fe7750583ac8cfed7d02eea85e64a7bbc72d74b176c8946c5c193f.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "894c798085fe7750583ac8cfed7d02eea85e64a7bbc72d74b176c8946c5c193f",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-840-detail-light",
+      "previewId": "contact-browser__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/contacts-840-detail-light-307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-840-detail-light-b6cb6b17445e616aaa14bd80f38bfa46d82dbdbfeb34ee9d0051c0b5aed36b7b.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "b6cb6b17445e616aaa14bd80f38bfa46d82dbdbfeb34ee9d0051c0b5aed36b7b",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-840-list-dark",
+      "previewId": "contact-browser__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/contacts-840-list-dark-419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-840-list-dark-af6e4bf2347567e3f325fa85fc2dae7c45c02f36082a052187785a5ec4f6c062.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "af6e4bf2347567e3f325fa85fc2dae7c45c02f36082a052187785a5ec4f6c062",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "contacts-840-detail-dark",
+      "previewId": "contact-browser__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/contacts-840-detail-dark-307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/contacts-840-detail-dark-b12401fb2c2be6e236c95dd7ee9da81dafc54ba75dfa2299ebebef0a0a16faa7.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "fcf5c5b259bf5b6218bde45b24f9abc2d452256a",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/fcf5c5b259bf5b6218bde45b24f9abc2d452256a/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "attributes": {
+          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "contacts",
+          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
+          "documentSha256": "b12401fb2c2be6e236c95dd7ee9da81dafc54ba75dfa2299ebebef0a0a16faa7",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Contact browser"
+        }
+      }
     }
   ]
 }
