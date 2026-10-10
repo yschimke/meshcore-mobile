@@ -41,6 +41,10 @@ resize, destination-aware send callbacks, read-only cached data and supported-se
 for the captured phone/tablet light/dark states. The exported catalog source link goes to the
 independent proposal; the table above links the real Android destination.
 
+UID references do not reproduce the navigator's runtime focus restoration. For example,
+the unavailable-settings Compose pane focuses its only detail action (Back), producing a
+focus highlight absent from the static UID reference. That visual difference remains advisory.
+
 UID buttons are layout specimens. Use Compose previews/tests for behavior. The UI Builder's
 editing canvas unfolds panes; choose **Device view** to see adaptive layout at the capture size.
 Download editor changes, review and commit the UID before replacing the reference baseline.
