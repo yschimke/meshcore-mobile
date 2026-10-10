@@ -26,7 +26,7 @@ composePreviewDaemonConnector = "3.14.1"
 # (RemoteComposeLinkageException) instead of falling back to the View player, so the consumer
 # must put it on the render classpath. 2.1.4 is what rc-players-bom 2.4.0 (the daemon 3.15.2
 # line) selects, and is built against androidx.compose.remote 1.0.0-alpha19; the app now resolves alpha21.
-composePreviewRcEmbeddedPlayer = "2.1.4"
+composePreviewRcEmbeddedPlayer = "2.5.0"
 core = "1.7.0"
 kotlin = "2.4.21"
 kotlinx-coroutines = "1.11.0"
