@@ -844,7 +844,7 @@
     "functionName": "CachedDeviceBodyArabicPreview",
     "module": "meshcore-components",
     "renderBasename": "CachedDeviceBodyArabicPreview_Cached_device_Arabic-68448a40.png",
-    "sha256": "4a04dadf7da7a884dc50ed3abe4d1b9aba566db2a51d24d7b798afaa72b65990",
+    "sha256": "91835964fe667de47fe1504c4d375a30a0679a981d34a5c9e8241863430daeff",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyDarkPreview_Cached device \u2014 dark": {
@@ -860,7 +860,7 @@
     "functionName": "CachedDeviceBodyGermanPreview",
     "module": "meshcore-components",
     "renderBasename": "CachedDeviceBodyGermanPreview_Cached_device_German-ae67372e.png",
-    "sha256": "83645f7b0e9f2aa6239c5d0be734eac9271c4eb9aa3480d8cd337863e7c942af",
+    "sha256": "1d71d7a0dab4c904c69c6ea207a182c2d92a41e89dcd7f00779761340793b6ab",
     "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceBodyPreviews.kt"
   },
   "meshcore-components/ee.schimke.meshcore.components.ui.DeviceBodyPreviewsKt.CachedDeviceBodyJapanesePreview_Cached device \u2014 Japanese": {
