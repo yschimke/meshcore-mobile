@@ -6,12 +6,15 @@ name: Design Artifacts
 #
 # The common render → validate → generate → publish is delegated to the shared
 # reusable workflow in compose-ai-tools; MeshCore only keeps its two bespoke
-# lanes, which the reusable workflow exposes as generic hooks:
-#   - the CJK fallback fonts are staged before the desktop render via
-#     `stage-font-globs`;
-#   - the "Material 3" tab (compose-m3 re-themed under MeshCore's palette) is
-#     built in the `retheme` job below, uploaded as an artifact, and folded in by
-#     the reusable workflow via `fold-*`.
+# lane, which the reusable workflow exposes as a generic hook: the CJK fallback
+# fonts are staged before the desktop render via `stage-font-globs`.
+#
+# MeshCore's theme tab comes from its own `@ThemeCatalog` / `@WearThemeCatalog`
+# providers (MeshcoreThemeCatalogs.kt), rendered in this build against MeshCore's
+# real MaterialTheme. There used to be a second "Material 3" tab: compose-ai-tools'
+# pre-rendered compose-m3 bundle re-coloured with a palette scraped from source.
+# It never ran MeshCore's theme, type, shapes or material3 version, so it showed
+# what MeshCore might look like rather than what it renders, and it is gone.
 
 on:
   # Weekly, so the published sticker sheet tracks the catalog as it evolves.
@@ -70,184 +73,13 @@ concurrency:
 
 jobs:
   # ───────────────────────────────────────────────────────────────────────────
-  # Bespoke lane: re-theme the published compose-m3 stickersheet under MeshCore's
-  # palette (no source rebuild) and hand the re-themed bundle to the reusable
-  # workflow as an artifact, which folds it in as the "Material 3" tab.
-  # ───────────────────────────────────────────────────────────────────────────
-  retheme:
-    name: re-theme compose-m3
-    if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@v7.0.1
-        with:
-          persist-credentials: false
-
-      # JDK 21 + Gradle (to build the compose-preview CLI from source below).
-      - uses: ./.github/actions/setup
-
-      # The re-theme drives the desktop (Skiko/CPU) render daemon, which links
-      # libGL — install Mesa's software GL + a font stack.
-      - name: Install desktop (Skiko) render deps
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            xvfb libgl1 libglx-mesa0 libgl1-mesa-dri libfreetype6 libfontconfig1 fontconfig
-
-      # `bundle render --res/--svg` + `bundle repack` are on compose-ai-tools@main
-      # but not in a released CLI yet, so build the CLI from source.
-      - name: Check out compose-ai-tools
-        uses: actions/checkout@v7.0.1
-        with:
-          repository: yschimke/compose-ai-tools
-          ref: main
-          path: compose-ai-tools
-          persist-credentials: false
-      - name: Build compose-preview CLI from source (for the re-theme)
-        working-directory: compose-ai-tools
-        run: ./gradlew :cli:installDist --no-daemon
-
-      # Fetch the published compose-m3 bundle + its content-addressed font pool
-      # from the compose-m3 delivery branch (public repo, no auth). Shallow.
-      # The branch moved out of compose-ai-tools into its generated-output
-      # repository (compose-ai-tools docs/design/OUTPUT_REPOSITORIES.md), so it
-      # is fetched from compose-ai-tools-out under the same branch name.
-      - name: Fetch the published compose-m3 bundle + font pool
-        run: |
-          set -euo pipefail
-          git clone --depth 1 --branch design-artifacts/compose-m3 \
-            https://github.com/yschimke/compose-ai-tools-out.git compose-m3-artifacts
-          test -f compose-m3-artifacts/bundle/compose-m3-bundle.png
-          test -d compose-m3-artifacts/bundle/res
-
-      - name: Re-theme compose-m3 under the MeshCore palette
-        env:
-          # Force Mesa's software GL for the desktop Skiko render (no GPU on the runner).
-          LIBGL_ALWAYS_SOFTWARE: '1'
-          # Embed the measured face (Roboto Flex) into the re-themed figma-svg
-          # exports (fetched from Google Fonts with bounded retries; degrades to a
-          # font-family reference if unreachable — never fails the render).
-          JAVA_TOOL_OPTIONS: -Dcomposeai.figma.embedFonts=true
-        run: |
-          set -euo pipefail
-          CLI="$GITHUB_WORKSPACE/compose-ai-tools/cli/build/install/compose-preview/bin/compose-preview"
-          BLOB="$(jq -r .themeColors design/meshcore-theme-colors.json)"
-          SRC=compose-m3-artifacts/bundle/compose-m3-bundle.png
-          OUT="$GITHUB_WORKSPACE/compose-m3-rethemed"
-          RENDERLOG="$RUNNER_TEMP/retheme-render.log"
-          render_rc=0
-          # Re-theme every published preview to PNG + editable figma-svg, rehydrating
-          # the externalized fonts from the branch's pool. Under xvfb so the desktop
-          # daemon has a display.
-          #
-          # The color/type/shape "catalog" previews (Palette colours / Typeface type
-          # styles / Shape shapes) are metadata sheets the daemon can't resolve on the
-          # --knob path — the catalog exporter excludes them too — so `bundle render`
-          # reports them as failures and exits non-zero. Don't let that fail the job:
-          # a preview that won't re-theme costs that one sticker, and blocking on it
-          # strands the entire catalog. Every failure is surfaced as a warning and in
-          # the job summary instead; only a total absence of renders is fatal, since
-          # `bundle repack` then has nothing to swap in. (The absolute floor this
-          # replaced held the delivery branch stale from 2026-08-18: upstream
-          # compose-m3 shrank to 55 previews, of which these three always fail, so
-          # a healthy 52 could never clear it.)
-          #
-          # theme.fonts brands the M3 type scale to match MeshcoreBrandedTypography
-          # (Orbitron for display/headline/title, Space Grotesk for body/label), so
-          # the re-themed "Material 3" tab + the theme-meshcore-dark foundation sticker
-          # render in the MeshCore faces instead of Roboto. Families resolve against the
-          # compose-m3 catalog's vendored Orbitron / Space Grotesk faces. (The knob is
-          # per role group, so the title group is one face; MeshcoreBrandedTypography
-          # splits titleLarge=Orbitron vs titleMedium/Small=Space Grotesk — Orbitron
-          # matches the prominent titleLarge.)
-          xvfb-run -a -s "-screen 0 2000x1400x24" \
-            "$CLI" bundle render "$SRC" \
-              --knob "theme.colors=$BLOB" \
-              --knob "theme.fonts=families:display=Orbitron,headline=Orbitron,title=Orbitron,body=Space Grotesk,label=Space Grotesk" \
-              --res compose-m3-artifacts/bundle/res \
-              --svg \
-              -o "$OUT" 2>&1 | tee "$RENDERLOG" \
-            || render_rc=$?
-          echo "bundle render exited $render_rc"
-          count=$(find "$OUT" -maxdepth 1 -name '*.png' 2>/dev/null | wc -l)
-          svgcount=$(find "$OUT" -maxdepth 1 -name '*.svg' 2>/dev/null | wc -l)
-          echo "re-themed $count preview PNG(s), $svgcount figma-svg(s)"
-          {
-            echo "### compose-m3 re-theme"
-            echo
-            echo "Re-themed **$count** preview PNG(s) and **$svgcount** figma-svg(s); renderer exited \`$render_rc\`."
-          } >> "$GITHUB_STEP_SUMMARY"
-          # A non-zero exit with no per-preview FAIL line is the renderer itself
-          # going down (daemon crash, bad input) rather than a preview refusing to
-          # theme. Without this the exit status is swallowed, a partial $OUT clears
-          # the count-is-zero guard, and the FAIL grep below finds nothing — so a
-          # half-re-themed bundle would publish reporting no problem at all.
-          if [ "$render_rc" -ne 0 ] && ! grep -qE '^[[:space:]]*FAIL' "$RENDERLOG"; then
-            echo "::warning::bundle render exited $render_rc without reporting any per-preview FAIL — the renderer itself failed; $count preview(s) were re-themed and the rest keep the bundle's original stickers"
-            {
-              echo
-              echo "> **Warning** — the renderer exited \`$render_rc\` without naming a failing"
-              echo "> preview, so it went down mid-run rather than skipping a sticker."
-              echo "> $count of the bundle's previews were re-themed; the remainder keep their"
-              echo "> original (stock Material-colour) renders. See the step log for the tail."
-            } >> "$GITHUB_STEP_SUMMARY"
-          fi
-          # Surface every preview that would not re-theme — one warning each, plus
-          # the verbatim list in the job summary — and carry on with what rendered.
-          if grep -qE '^[[:space:]]*FAIL' "$RENDERLOG"; then
-            failed=$(grep -cE '^[[:space:]]*FAIL' "$RENDERLOG")
-            echo "::warning::$failed preview(s) failed to re-theme — see the job summary"
-            {
-              echo
-              echo "<details><summary>$failed preview(s) failed to re-theme</summary>"
-              echo
-              echo '```'
-              grep -E '^[[:space:]]*FAIL' "$RENDERLOG"
-              echo '```'
-              echo
-              echo "</details>"
-            } >> "$GITHUB_STEP_SUMMARY"
-            grep -E '^[[:space:]]*FAIL' "$RENDERLOG" \
-              | sed -E 's/^[[:space:]]*FAIL[[:space:]]+/::warning::could not re-theme /'
-          fi
-          # Every re-themed PNG should carry a matching re-themed figma-svg; where it
-          # doesn't, `bundle repack` leaves the bundle's original (stock Material-colour)
-          # previews/<id>.figma.svg beside a MeshCore-teal PNG. Warn rather than block —
-          # a stale vector on some stickers beats no publish at all.
-          if [ "$svgcount" -lt "$count" ]; then
-            echo "::warning::only $svgcount re-themed figma-svg(s) for $count PNG(s) — the vector export fell short; those stickers keep the bundle's original figma.svg"
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "> **Warning** — only $svgcount figma-svg(s) for $count PNG(s); the shortfall keeps the original (stock Material-colour) vectors." >> "$GITHUB_STEP_SUMMARY"
-          fi
-          # The one fatal case: with nothing re-themed there is no bundle to repack
-          # and no artifact for the publish job's fold to consume.
-          if [ "$count" -eq 0 ]; then
-            echo "::error::no previews re-themed at all — nothing to repack"
-            exit 1
-          fi
-          # Swap the re-themed PNG + figma-svg back into the bundle → a drop-in
-          # re-themed bundle the catalog exporter consumes like the original.
-          "$CLI" bundle repack "$SRC" \
-            --renders "$OUT" \
-            -o "$GITHUB_WORKSPACE/compose-m3-meshcore.png"
-
-      - name: Upload the re-themed bundle
-        uses: actions/upload-artifact@v7.0.1
-        with:
-          name: compose-m3-meshcore
-          path: ${{ github.workspace }}/compose-m3-meshcore.png
-          if-no-files-found: error
-
-  # ───────────────────────────────────────────────────────────────────────────
   # Common lane: render every preview-enabled module — :app (Android),
   # :meshcore-components (CMP desktop) and :wear — validate the spec, generate,
-  # fold in the re-themed compose-m3 as a "Material 3" tab, and publish to
-  # design-artifacts/meshcore-mobile — all in the shared reusable workflow.
+  # and publish to design-artifacts/meshcore-mobile — all in the shared reusable
+  # workflow.
   # ───────────────────────────────────────────────────────────────────────────
   publish:
     name: meshcore-mobile
-    needs: retheme
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     permissions:
       contents: write
@@ -299,11 +131,6 @@ jobs:
       # addressable copies under bundle/previews and bundle/modules. The module bundles above are
       # sufficient for the trusted serve host, so avoid multiplying the artifact by preview count.
       split-per-preview: false
-      # Fold the re-themed compose-m3 bundle (from the retheme job) in as a tab.
-      fold-artifact: compose-m3-meshcore
-      fold-bundle: compose-m3-meshcore.png
-      fold-spec: compose-ai-tools/samples/design-catalog-m3/catalog.spec.json
-      fold-section: Material 3
       # The renders that legitimately carry no semantics tree — the synthetic Activity
       # heroes repository-wide discovery sweeps in, and the RemotePreviewWrapper widget
       # previews, which draw a RemoteDocument through a player View — are exempted BY
