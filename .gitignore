@@ -49,3 +49,9 @@ app/project.info
 
 # Staged desktop release installers.
 /_release-desktop/
+
+# GitHub Pages staging and browser evidence.
+/_site/
+/_wasm-test/
+
+__pycache__/

@@ -44,9 +44,11 @@ private data class ChannelDestination(val index: Int, val name: String) : NavKey
 @Composable
 fun MeshcoreClientApp(
   manager: MeshCoreManager,
-  connect: suspend (String, Int) -> Unit,
+  connect: (suspend (String, Int) -> Unit)? = null,
   onOpenThemePicker: () -> Unit = {},
+  connectionContent: (@Composable (Boolean) -> Unit)? = null,
 ) {
+  require(connect != null || connectionContent != null) { "A connection panel is required" }
   val state by manager.state.collectAsState()
   val scope = rememberCoroutineScope()
   var error by remember { mutableStateOf<String?>(null) }
@@ -58,22 +60,24 @@ fun MeshcoreClientApp(
         verticalArrangement = Arrangement.spacedBy(16.dp),
       ) {
         Text("Connect to your companion radio", style = MaterialTheme.typography.headlineSmall)
-        TcpConnectPanel(
-          busy = state is ManagerState.Connecting,
-          onConnect = { host, port ->
-            scope.launch {
-              error = null
-              try {
-                connect(host, port)
-              } catch (e: CancellationException) {
-                throw e
-              } catch (e: Exception) {
-                error = e.message ?: "Connection failed"
+        if (connectionContent != null) connectionContent(state is ManagerState.Connecting)
+        else
+          TcpConnectPanel(
+            busy = state is ManagerState.Connecting,
+            onConnect = { host, port ->
+              scope.launch {
+                error = null
+                try {
+                  requireNotNull(connect)(host, port)
+                } catch (e: CancellationException) {
+                  throw e
+                } catch (e: Exception) {
+                  error = e.message ?: "Connection failed"
+                }
               }
-            }
-          },
-          modifier = Modifier.widthIn(max = 560.dp),
-        )
+            },
+            modifier = Modifier.widthIn(max = 560.dp),
+          )
         (error ?: (state as? ManagerState.Failed)?.cause?.message)?.let {
           Text(it, color = MaterialTheme.colorScheme.error)
         }

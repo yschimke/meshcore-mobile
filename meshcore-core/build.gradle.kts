@@ -17,6 +17,7 @@ kotlin {
     minSdk = libs.versions.android.minSdk.get().toInt()
   }
   jvm()
+  @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class) wasmJs { browser() }
 
   sourceSets {
     commonMain.dependencies {

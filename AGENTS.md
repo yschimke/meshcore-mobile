@@ -31,11 +31,11 @@
   --no-verify` / `git push --no-verify` bypass them locally — CI still won't.
   Change the detector only with `scripts/test-agent-attribution.sh` passing;
   CI runs it on every PR.
-- Project layout: `app/` (Android), Wear in `wear/`, desktop in `desktop-app/`, plus several
+- Project layout: `app/` (Android), Wear in `wear/`, desktop in `desktop-app/`, browser in `web-app/`, plus several
   `meshcore-*` library modules (`meshcore-core`, `meshcore-data`,
   `meshcore-components`, `meshcore-mobile`, `meshcore-cli`,
   `meshcore-tui`, `meshcore-grpc-service`, and the
-  `meshcore-transport-{ble,tcp,usb}` transports).
+  `meshcore-transport-{ble,tcp,usb,webserial}` transports).
 - Build: `./gradlew assembleDebug` for debug APKs;
   `./gradlew test lintDebug ktfmtCheck` mirrors what CI runs.
 - JDK: 21 (configured via `gradle/gradle-daemon-jvm.properties`; do not

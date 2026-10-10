@@ -4,6 +4,7 @@ import ee.schimke.meshcore.core.client.Logger
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.transport.Transport
 import ee.schimke.meshcore.core.transport.TransportState
+import kotlin.concurrent.Volatile
 import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope

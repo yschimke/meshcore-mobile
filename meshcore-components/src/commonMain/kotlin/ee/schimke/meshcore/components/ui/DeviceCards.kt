@@ -103,7 +103,10 @@ fun RadioLine(radio: RadioSettings) {
     Text(
       text =
         buildString {
-          append("%.3f".format(radio.frequencyHz / 1_000_000.0))
+          val kilohertz = (radio.frequencyHz + 500) / 1000
+          append(kilohertz / 1000)
+          append('.')
+          append((kilohertz % 1000).toString().padStart(3, '0'))
           append(" MHz · BW ")
           append(radio.bandwidthHz / 1000)
           append(" kHz · SF ")

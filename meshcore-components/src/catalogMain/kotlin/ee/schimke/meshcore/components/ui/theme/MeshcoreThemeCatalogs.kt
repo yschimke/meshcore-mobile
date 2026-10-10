@@ -15,8 +15,8 @@ import ee.schimke.composeai.preview.ThemeCatalog
  * MeshCore has a single brand palette across two modes, so the matrix is `MeshCore × {Light, Dark}`
  * — the N-ary generalization of a single `uiMode` light/dark toggle. Both wrap the shared
  * [MeshcoreTheme], so the sheets reflect exactly the palette the app and the design-parity desktop
- * render use. They live in `commonMain` (the tokens do too), which is why `preview-annotations` had
- * to ship as a Kotlin Multiplatform artifact.
+ * render use. They live in `catalogMain`, shared by Android and desktop. The browser uses the
+ * common theme tokens without depending on JVM-only catalog annotations.
  */
 @Composable
 private fun MeshcoreCatalogTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
