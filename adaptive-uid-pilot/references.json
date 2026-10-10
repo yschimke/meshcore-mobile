@@ -19,6 +19,9 @@
             "value": 0
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 0
       }
     },
     {
@@ -38,6 +41,9 @@
             "value": 1
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 0
       }
     },
     {
@@ -57,6 +63,9 @@
             "value": 0
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 0
       }
     },
     {
@@ -76,6 +85,9 @@
             "value": 1
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 0
       }
     },
     {
@@ -95,6 +107,9 @@
             "value": 0
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 0
       }
     },
     {
@@ -138,6 +153,9 @@
             "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 1
       }
     },
     {
@@ -157,6 +175,9 @@
             "value": 0
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 0
       }
     },
     {
@@ -200,7 +221,35 @@
             "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
           }
         }
+      },
+      "candidateState": {
+        "selectedIndex": 1
       }
     }
-  ]
+  ],
+  "distinctCaptures": [
+    [
+      "contacts-840-list-light",
+      "contacts-840-detail-light"
+    ],
+    [
+      "contacts-840-list-dark",
+      "contacts-840-detail-dark"
+    ]
+  ],
+  "publication": {
+    "system": "meshcore-mobile",
+    "title": "MeshCore Mobile",
+    "sourceModule": ":adaptive-uid-pilot",
+    "components": [
+      {
+        "designId": "contacts",
+        "componentId": "Contact browser",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/ContactBrowser.kt",
+        "caption": "Adaptive stock Material 3 design proposal: phone and tablet, list and detail, light and dark."
+      }
+    ],
+    "sourceDirectory": "adaptive-uid-pilot"
+  }
 }
