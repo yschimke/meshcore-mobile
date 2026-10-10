@@ -37,3 +37,34 @@ tasks.register<JavaExec>("exportTypedCatalog") {
   outputs.dir(output)
   doFirst { output.get().asFile.deleteRecursively() }
 }
+
+// A portable local delivery artifact: the host reads these JSON files and loads only JARs.
+val stageJvmCatalogBundle =
+  tasks.register<Sync>("stageJvmCatalogBundle") {
+    dependsOn("exportTypedCatalog")
+    into(layout.buildDirectory.dir("jvm-catalog-bundle"))
+    from(layout.buildDirectory.dir("catalog"))
+    from("fixtures") { into("designs") }
+    into("lib") {
+      from(tasks.named("jar"))
+      from(configurations.runtimeClasspath)
+    }
+  }
+
+val packageJvmCatalogBundle =
+  tasks.register<Zip>("packageJvmCatalogBundle") {
+    group = "ui builder"
+    description = "Package the generated catalog and executable JVM adapters for a separate host."
+    dependsOn(stageJvmCatalogBundle)
+    from(layout.buildDirectory.dir("jvm-catalog-bundle"))
+    archiveFileName.set("meshcore-mobile-jvm-catalog.zip")
+    destinationDirectory.set(layout.buildDirectory.dir("distributions"))
+  }
+
+tasks.register<Sync>("unpackJvmCatalogBundle") {
+  group = "verification"
+  description = "Install the packaged ZIP into a task-owned directory for an external host test."
+  dependsOn(packageJvmCatalogBundle)
+  from(zipTree(packageJvmCatalogBundle.flatMap { it.archiveFile }))
+  into(layout.buildDirectory.dir("installed-jvm-catalog"))
+}

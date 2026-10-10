@@ -18,6 +18,29 @@ compares native `ChatInput` with its typed adapter pixel for pixel, edits its ac
 `PublishedUiBuilderCatalog` with no app implementation on its classpath. PNG comparisons are saved
 under `ui-builder-catalog/build/renders`; neither rendering test connects to a real device or server.
 
+The script also packages `build/distributions/meshcore-mobile-jvm-catalog.zip`: the generated pair,
+a tracked `designs/chat-input.uid`, and the adapter and runtime dependency JARs in `lib/`. A third,
+separate builder process compiles without Meshcore classes, installs those JARs with a dedicated
+class loader, resolves the catalog provider through the JVM SDK service entry point, and renders
+the saved design with `UiBuilderSurface`. The test edits `enabled` and `placeholder` through the
+editor reducer, types into the actual ChatInput, checks its two-way state against a sibling text
+node, and clicks Send to execute the design's event action. It then saves and reopens the edited
+`.uid`, checking that property edits persist and interaction state resets. It saves screenshots and
+the edited `.uid` under the builder's `ui-builder/build/typed-catalog/e2e`; CI uploads these and the ZIP.
+Send writes preview state only; it does not send a radio message.
+
+To replay a packaged artifact independently, unzip it into a directory and run in the matching
+builder checkout (no app checkout or source dependency is needed by this command):
+
+```sh
+./gradlew -PtypedAdapterCatalog=true -PlocalBuilds=tools \
+  -PlocalBuild.tools=../compose-ai-tools -PtypedCatalogJvmBundle=/absolute/path/to/unzipped-bundle \
+  :ui-builder:jvmTest --tests '*ExternalJvmCatalogEndToEndTest'
+```
+
+Only install a bundle whose code you trust. JVM providers execute in the host process. The test
+keeps the loader open for the lifetime of the rendered composition and closes it afterward.
+
 To generate the standard pair directly:
 
 ```sh
@@ -38,7 +61,8 @@ and comparison renders as review artifacts; this module does not push a delivery
 
 These app libraries currently target Android/JVM, not Wasm. Records explicitly declare `nativeOnly`,
 so a browser editor must show its existing native placeholder until a compatible runtime is
-packaged. A general JVM/IDE loader is still separate work. The existing sticker-sheet catalog and
+packaged. This is a JVM bundle/host proof; desktop editor installation UI, IDE integration, public
+artifact resolution and preview-server discovery remain separate work. The existing sticker-sheet catalog and
 its live preview bundles are not replaced by this opt-in proof. General event capabilities and
 omitted-property default/export parity retain the limits documented in the authoring API.
 
