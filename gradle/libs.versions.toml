@@ -15,8 +15,9 @@ composePreviewPlugin = "2.40.0"
 # The data connector publishes from yschimke/compose-preview-daemon on that repository's own
 # version line, not compose-ai-tools'. Pinned to what the plugin's daemon BOM resolves
 # (compose-preview-daemon-bom 3.15.2, baked into plugin 2.40.0), so the connector on the
-# debug classpath matches the renderer the plugin runs.
-composePreviewDaemonConnector = "3.15.2"
+# debug classpath matches the renderer the plugin runs. A daemon release republishes only the
+# modules that changed, so the connector can trail the BOM: 3.14.1 is still its latest.
+composePreviewDaemonConnector = "3.14.1"
 # The embedded Remote Compose player the connector draws every RemotePreview with. Since
 # compose-preview-daemon 3.x the connector keeps it `compileOnly` and refuses the render
 # (RemoteComposeLinkageException) instead of falling back to the View player, so the consumer
