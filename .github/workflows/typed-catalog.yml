@@ -6,6 +6,7 @@ on:
     paths:
       - 'ui-builder-catalog/**'
       - 'scripts/validate-typed-catalog.sh'
+      - 'scripts/publish-typed-catalog.sh'
       - '.github/workflows/typed-catalog.yml'
       - '**/*.gradle.kts'
       - 'gradle/**'
@@ -16,12 +17,18 @@ on:
     paths:
       - 'ui-builder-catalog/**'
       - 'scripts/validate-typed-catalog.sh'
+      - 'scripts/publish-typed-catalog.sh'
       - '.github/workflows/typed-catalog.yml'
       - '**/*.gradle.kts'
       - 'gradle/**'
       - 'meshcore-components/**'
       - 'meshcore-core/**'
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish this validated generation as an experimental catalog prerelease
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -52,7 +59,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: yschimke/compose-ui-builder
-          ref: 1d7313b1aa261ad2ed9314b52eba9463fb4e8d96
+          ref: 21ae10f037ce417507f93715fc316f72c88e3265
           path: compose-ui-builder
           persist-credentials: false
       - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
@@ -81,3 +88,38 @@ jobs:
             compose-ui-builder/ui-builder/build/test-results/jvmTest
             compose-ui-builder/ui-builder/build/typed-catalog/e2e
           if-no-files-found: warn
+
+  publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    needs: catalog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: meshcore-mobile
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: meshcore-mobile
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: yschimke/compose-ai-tools
+          ref: a1d116206a85f8a7c72f7175ca06283ca5fe8f61
+          path: compose-ai-tools
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: yschimke/compose-ui-builder
+          ref: 21ae10f037ce417507f93715fc316f72c88e3265
+          path: compose-ui-builder
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: meshcore-mobile-typed-catalog
+          path: ${{ github.workspace }}
+      - name: Publish the tested artifact without rebuilding it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/publish-typed-catalog.sh "$GITHUB_WORKSPACE/compose-ai-tools" "$GITHUB_WORKSPACE/compose-ui-builder"
