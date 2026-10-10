@@ -235,6 +235,22 @@
     [
       "contacts-840-list-dark",
       "contacts-840-detail-dark"
+    ],
+    [
+      "contacts-412-list-light",
+      "contacts-412-list-dark"
+    ],
+    [
+      "contacts-412-detail-light",
+      "contacts-412-detail-dark"
+    ],
+    [
+      "contacts-840-list-light",
+      "contacts-840-list-dark"
+    ],
+    [
+      "contacts-840-detail-light",
+      "contacts-840-detail-dark"
     ]
   ],
   "publication": {
