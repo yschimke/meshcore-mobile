@@ -124,3 +124,8 @@ include(":meshcore-tui")
 include(":meshcore-grpc-service")
 include(":app")
 include(":wear")
+
+// Repository-owned UI Builder screen pilot; excluded from default catalog publication.
+if (providers.gradleProperty("adaptiveUidPilot").orNull == "true") {
+    include(":adaptive-uid-pilot")
+}
