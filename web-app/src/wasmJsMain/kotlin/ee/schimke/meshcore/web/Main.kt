@@ -16,7 +16,9 @@ import ee.schimke.meshcore.core.manager.MeshCoreManager
 import ee.schimke.meshcore.transport.webserial.WebSerial
 import ee.schimke.meshcore.transport.webserial.WebSerialTransport
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 fun main() {
   ComposeViewport(viewportContainerId = "app", configure = { enableBrowserWindowInsets = true }) {
@@ -66,8 +68,10 @@ private fun SerialConnectPanel(manager: MeshCoreManager, busy: Boolean) {
           try {
             manager.connect(WebSerialTransport(request.awaitConnection()))
           } catch (e: CancellationException) {
+            withContext(NonCancellable) { manager.disconnect() }
             throw e
           } catch (e: Exception) {
+            withContext(NonCancellable) { manager.disconnect() }
             error = "Could not connect. Choose a USB radio running MeshCore companion firmware."
           } finally {
             selecting = false

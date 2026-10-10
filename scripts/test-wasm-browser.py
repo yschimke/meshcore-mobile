@@ -32,7 +32,7 @@ self_info = bytes([5, 1, 14, 22]) + bytes([171] * 32) + struct.pack(
 radio = bytes([0x19]) + struct.pack('<iiBB', 869525000, 125000, 10, 5)
 fixture = r"""
 (() => {
-  const fixture = window.serialFixture = {requests: 0, gestures: [], opens: 0, closes: 0, writes: [], cancel: true};
+  const fixture = window.serialFixture = {requests: 0, gestures: [], opens: 0, closes: 0, writes: [], cancel: true, failHandshake: false};
   let controller, port, opened = false;
   function respond(payload) {
     const frame = Uint8Array.from([0x3e, payload.length & 255, payload.length >> 8, ...payload]);
@@ -53,7 +53,7 @@ fixture = r"""
         }
         const command = frame[3];
         switch (command) {
-          case 1: respond(SELF_INFO); break;
+          case 1: if (!fixture.failHandshake) respond(SELF_INFO); break;
           case 0x16: respond([0x0d, 3, 1, 1]); break;
           case 0x14: respond([0x0c, 0xa0, 0x0f, 0,0,0,0, 0,0,0,0]); break;
           case 0x39: respond(RADIO); break;
@@ -97,6 +97,15 @@ try:
         expect(page.get_by_text(re.compile('Could not connect'))).to_have_count(1)
         assert page.evaluate('serialFixture.opens') == 0
         page.evaluate('serialFixture.cancel = false')
+        page.evaluate('serialFixture.failHandshake = true')
+        button.click(force=True)
+        expect(page.get_by_role('button', name='Connecting…', exact=True)).to_be_disabled()
+        expect(page.get_by_text(re.compile('Could not connect'))).to_have_count(1, timeout=15000)
+        expect(button).to_be_enabled()
+        assert page.evaluate('serialFixture.opens') == 1
+        assert page.evaluate('serialFixture.closes') == 1
+        assert page.evaluate('!serialFixture.port.readable.locked && !serialFixture.port.writable.locked')
+        page.evaluate('serialFixture.failHandshake = false')
         button.click(force=True)
         disconnect = page.get_by_role('button', name='Disconnect', exact=True)
         expect(disconnect).to_have_count(1, timeout=15000)
@@ -136,18 +145,18 @@ try:
         page.get_by_role('button', name='Back', exact=True).dispatch_event('click')
         expect(page.get_by_role('button', name='Back', exact=True)).to_have_count(0)
         assert page.evaluate('serialFixture.gestures.every(Boolean)')
-        assert page.evaluate('serialFixture.opens') == 1
+        assert page.evaluate('serialFixture.opens') == 2
         Path('_wasm-test').mkdir(exist_ok=True)
         page.screenshot(path='_wasm-test/meshcore-connected.png')
         disconnect.dispatch_event('click')
         expect(button).to_be_enabled()
-        assert page.evaluate('serialFixture.closes') == 1
+        assert page.evaluate('serialFixture.closes') == 2
         assert page.evaluate('!serialFixture.port.readable.locked && !serialFixture.port.writable.locked')
         button.click(force=True)
         expect(disconnect).to_have_count(1)
         page.evaluate('serialFixture.unplug()')
         expect(button).to_be_enabled()
-        assert page.evaluate('serialFixture.closes') == 2
+        assert page.evaluate('serialFixture.closes') == 3
         assert not errors, errors
         context.close()
         # Unsupported browsers still load the shared app and explain the missing API.
@@ -158,6 +167,6 @@ try:
         expect(page.get_by_role('button', name='Connect USB radio', exact=True)).to_be_disabled()
         expect(page.get_by_text(re.compile('USB connections require Chrome or Edge'))).to_have_count(1)
         browser.close()
-        print('Wasm browser: project path, permission gesture, cancel/retry, companion handshake, chat send/history, disconnect/reconnect, unplug and unsupported browser passed')
+        print('Wasm browser: project path, permission gesture, cancel/retry, failed handshake cleanup, companion handshake, chat send/history, disconnect/reconnect, unplug and unsupported browser passed')
 finally:
     server.shutdown()
