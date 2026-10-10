@@ -13,18 +13,25 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffold
 import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole
+import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
@@ -36,6 +43,7 @@ fun ContactBrowser(
   initialDetail: Boolean = false,
   initialSelectedIndex: Int = 0,
   onOpen: (String) -> Unit = {},
+  onSend: (String, String) -> Unit = { _, _ -> },
 ) {
   val windowInfo = currentWindowAdaptiveInfoV2()
   require(initialSelectedIndex in entries.indices)
@@ -76,9 +84,19 @@ fun ContactBrowser(
                   onClick = {
                     scope.launch { navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, index) }
                   },
-                  modifier = Modifier.fillMaxWidth().testTag("entry-$index"),
+                  modifier =
+                    Modifier.fillMaxWidth().testTag("entry-$index").semantics {
+                      this.selected = selected == index
+                    },
                 ) {
-                  Text(entry.title)
+                  Text(
+                    if (
+                      navigator.scaffoldValue[ListDetailPaneScaffoldRole.Detail] ==
+                        PaneAdaptedValue.Expanded && selected == index
+                    )
+                      "Selected · ${entry.title}"
+                    else entry.title
+                  )
                 }
               }
             }
@@ -98,10 +116,27 @@ fun ContactBrowser(
               Text(entry.subtitle, style = MaterialTheme.typography.titleLarge)
               Text(entry.status, style = MaterialTheme.typography.labelLarge)
               Text(entry.body, style = MaterialTheme.typography.bodyLarge)
-              Button(onClick = { onOpen(entry.id) }, modifier = Modifier.testTag("open-entry")) {
-                Text("Start chat")
-              }
+              var draft by rememberSaveable(selected) { mutableStateOf("") }
+              TextField(
+                draft,
+                { draft = it },
+                Modifier.fillMaxWidth().testTag("message-input"),
+                label = { Text("Message") },
+              )
               Button(
+                onClick = {
+                  onSend(entry.id, draft)
+                  draft = ""
+                },
+                enabled = draft.isNotBlank(),
+                modifier = Modifier.testTag("send-message"),
+              ) {
+                Text("Send")
+              }
+              Button(onClick = { onOpen(entry.id) }, modifier = Modifier.testTag("open-entry")) {
+                Text("Contact details")
+              }
+              TextButton(
                 onClick = {
                   scope.launch { navigator.navigateTo(ListDetailPaneScaffoldRole.List, selected) }
                 },

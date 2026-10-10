@@ -27,12 +27,23 @@ fun main(args: Array<String>) {
       val height = capture.getValue("heightDp").jsonPrimitive.int
       val density = capture.getValue("density").jsonPrimitive.float
       val dark = capture.getValue("theme").jsonPrimitive.content == "dark"
-      val detail = capture.getValue("state").jsonPrimitive.content == "detail"
+      val detail = capture.getValue("state").jsonPrimitive.content != "list"
       val selected =
         capture.getValue("candidateState").jsonObject.getValue("selectedIndex").jsonPrimitive.int
       val scene =
         ImageComposeScene((width * density).toInt(), (height * density).toInt(), Density(density)) {
-          ContactBrowser(dark, detail, initialSelectedIndex = selected)
+          val design = capture.getValue("designId").jsonPrimitive.content
+          if (design == "contacts") ContactBrowser(dark, detail, initialSelectedIndex = selected)
+          else
+            KeyScreen(
+              design,
+              dark,
+              detail,
+              selected,
+              failure =
+                capture["candidateState"]?.jsonObject?.get("failure")?.jsonPrimitive?.content ==
+                  "true",
+            )
         }
       try {
         // Let layout and pane-expansion effects settle; capture at a fixed animation time.

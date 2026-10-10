@@ -106,6 +106,12 @@
             "type": "int",
             "value": 0
           }
+        },
+        "entry-0-label": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Alice"
+          }
         }
       },
       "candidateState": {
@@ -152,6 +158,12 @@
             "type": "string",
             "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
           }
+        },
+        "entry-1-label": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Bob"
+          }
         }
       },
       "candidateState": {
@@ -173,6 +185,12 @@
           "activePaneIndex": {
             "type": "int",
             "value": 0
+          }
+        },
+        "entry-0-label": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Alice"
           }
         }
       },
@@ -220,10 +238,1308 @@
             "type": "string",
             "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
           }
+        },
+        "entry-1-label": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Bob"
+          }
         }
       },
       "candidateState": {
         "selectedIndex": 1
+      }
+    },
+    {
+      "id": "scanner-412-list-light",
+      "previewId": "scanner-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+      "designId": "scanner",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "scanner-412-list-dark",
+      "previewId": "scanner-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+      "designId": "scanner",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "scanner-412-detail-light",
+      "previewId": "scanner-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+      "designId": "scanner",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "scanner-412-detail-dark",
+      "previewId": "scanner-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+      "designId": "scanner",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "scanner-840-list-light",
+      "previewId": "scanner-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+      "designId": "scanner",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Bluetooth"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "scanner-840-list-dark",
+      "previewId": "scanner-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+      "designId": "scanner",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Bluetooth"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "scanner-840-detail-light",
+      "previewId": "scanner-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner-secondary.uid",
+      "designId": "scanner",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 TCP"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "scanner-840-detail-dark",
+      "previewId": "scanner-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner-secondary.uid",
+      "designId": "scanner",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 TCP"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "device-412-list-light",
+      "previewId": "device-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device.uid",
+      "designId": "device",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "device-412-list-dark",
+      "previewId": "device-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device.uid",
+      "designId": "device",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "device-412-detail-light",
+      "previewId": "device-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device.uid",
+      "designId": "device",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "device-412-detail-dark",
+      "previewId": "device-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device.uid",
+      "designId": "device",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "device-840-list-light",
+      "previewId": "device-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device.uid",
+      "designId": "device",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Radio status"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "device-840-list-dark",
+      "previewId": "device-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device.uid",
+      "designId": "device",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Radio status"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "device-840-detail-light",
+      "previewId": "device-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device-secondary.uid",
+      "designId": "device",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Conversations"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "device-840-detail-dark",
+      "previewId": "device-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/device-secondary.uid",
+      "designId": "device",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Conversations"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "channels-412-list-light",
+      "previewId": "channels-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels.uid",
+      "designId": "channels",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "channels-412-list-dark",
+      "previewId": "channels-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels.uid",
+      "designId": "channels",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "channels-412-detail-light",
+      "previewId": "channels-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels.uid",
+      "designId": "channels",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "channels-412-detail-dark",
+      "previewId": "channels-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels.uid",
+      "designId": "channels",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "channels-840-list-light",
+      "previewId": "channels-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels.uid",
+      "designId": "channels",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 #Camp"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "channels-840-list-dark",
+      "previewId": "channels-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels.uid",
+      "designId": "channels",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 #Camp"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "channels-840-detail-light",
+      "previewId": "channels-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels-secondary.uid",
+      "designId": "channels",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 #Trail"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "channels-840-detail-dark",
+      "previewId": "channels-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/channels-secondary.uid",
+      "designId": "channels",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 #Trail"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "commands-412-list-light",
+      "previewId": "commands-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands.uid",
+      "designId": "commands",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "commands-412-list-dark",
+      "previewId": "commands-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands.uid",
+      "designId": "commands",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "commands-412-detail-light",
+      "previewId": "commands-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands.uid",
+      "designId": "commands",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "commands-412-detail-dark",
+      "previewId": "commands-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands.uid",
+      "designId": "commands",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "commands-840-list-light",
+      "previewId": "commands-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands.uid",
+      "designId": "commands",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Ridge repeater"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "commands-840-list-dark",
+      "previewId": "commands-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands.uid",
+      "designId": "commands",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Ridge repeater"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "commands-840-detail-light",
+      "previewId": "commands-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands-secondary.uid",
+      "designId": "commands",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Camp room"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "commands-840-detail-dark",
+      "previewId": "commands-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/commands-secondary.uid",
+      "designId": "commands",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Camp room"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "settings-412-list-light",
+      "previewId": "settings-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings.uid",
+      "designId": "settings",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "settings-412-list-dark",
+      "previewId": "settings-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings.uid",
+      "designId": "settings",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "settings-412-detail-light",
+      "previewId": "settings-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings.uid",
+      "designId": "settings",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "settings-412-detail-dark",
+      "previewId": "settings-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings.uid",
+      "designId": "settings",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "settings-840-list-light",
+      "previewId": "settings-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings.uid",
+      "designId": "settings",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Notifications"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "settings-840-list-dark",
+      "previewId": "settings-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings.uid",
+      "designId": "settings",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Notifications"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "settings-840-detail-light",
+      "previewId": "settings-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings-secondary.uid",
+      "designId": "settings",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "settings-840-detail-dark",
+      "previewId": "settings-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/settings-secondary.uid",
+      "designId": "settings",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "cached-412-list-light",
+      "previewId": "cached-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached.uid",
+      "designId": "cached",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "cached-412-list-dark",
+      "previewId": "cached-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached.uid",
+      "designId": "cached",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "cached-412-detail-light",
+      "previewId": "cached-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached.uid",
+      "designId": "cached",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "cached-412-detail-dark",
+      "previewId": "cached-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached.uid",
+      "designId": "cached",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "cached-840-list-light",
+      "previewId": "cached-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached.uid",
+      "designId": "cached",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Saved radio status"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "cached-840-list-dark",
+      "previewId": "cached-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached.uid",
+      "designId": "cached",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "panel-0-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Saved radio status"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 0
+      }
+    },
+    {
+      "id": "cached-840-detail-light",
+      "previewId": "cached-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached-secondary.uid",
+      "designId": "cached",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Saved contacts"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "cached-840-detail-dark",
+      "previewId": "cached-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/cached-secondary.uid",
+      "designId": "cached",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 Saved contacts"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1
+      }
+    },
+    {
+      "id": "scanner-412-failure-light",
+      "previewId": "scanner-412-failure-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+      "designId": "scanner",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "failure",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1,
+        "failure": true
+      }
+    },
+    {
+      "id": "scanner-412-failure-dark",
+      "previewId": "scanner-412-failure-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+      "designId": "scanner",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "failure",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1,
+        "failure": true
+      }
+    },
+    {
+      "id": "scanner-840-failure-light",
+      "previewId": "scanner-840-failure-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+      "designId": "scanner",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "failure",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 TCP"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1,
+        "failure": true
+      }
+    },
+    {
+      "id": "scanner-840-failure-dark",
+      "previewId": "scanner-840-failure-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+      "designId": "scanner",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "failure",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "panel-1-text": {
+          "text": {
+            "type": "string",
+            "value": "Selected \u00b7 TCP"
+          }
+        }
+      },
+      "candidateState": {
+        "selectedIndex": 1,
+        "failure": true
       }
     }
   ],
@@ -251,6 +1567,158 @@
     [
       "contacts-840-detail-light",
       "contacts-840-detail-dark"
+    ],
+    [
+      "scanner-412-list-light",
+      "scanner-412-list-dark"
+    ],
+    [
+      "scanner-412-detail-light",
+      "scanner-412-detail-dark"
+    ],
+    [
+      "scanner-840-list-light",
+      "scanner-840-list-dark"
+    ],
+    [
+      "scanner-840-detail-light",
+      "scanner-840-detail-dark"
+    ],
+    [
+      "scanner-840-list-light",
+      "scanner-840-detail-light"
+    ],
+    [
+      "scanner-840-list-dark",
+      "scanner-840-detail-dark"
+    ],
+    [
+      "device-412-list-light",
+      "device-412-list-dark"
+    ],
+    [
+      "device-412-detail-light",
+      "device-412-detail-dark"
+    ],
+    [
+      "device-840-list-light",
+      "device-840-list-dark"
+    ],
+    [
+      "device-840-detail-light",
+      "device-840-detail-dark"
+    ],
+    [
+      "device-840-list-light",
+      "device-840-detail-light"
+    ],
+    [
+      "device-840-list-dark",
+      "device-840-detail-dark"
+    ],
+    [
+      "channels-412-list-light",
+      "channels-412-list-dark"
+    ],
+    [
+      "channels-412-detail-light",
+      "channels-412-detail-dark"
+    ],
+    [
+      "channels-840-list-light",
+      "channels-840-list-dark"
+    ],
+    [
+      "channels-840-detail-light",
+      "channels-840-detail-dark"
+    ],
+    [
+      "channels-840-list-light",
+      "channels-840-detail-light"
+    ],
+    [
+      "channels-840-list-dark",
+      "channels-840-detail-dark"
+    ],
+    [
+      "commands-412-list-light",
+      "commands-412-list-dark"
+    ],
+    [
+      "commands-412-detail-light",
+      "commands-412-detail-dark"
+    ],
+    [
+      "commands-840-list-light",
+      "commands-840-list-dark"
+    ],
+    [
+      "commands-840-detail-light",
+      "commands-840-detail-dark"
+    ],
+    [
+      "commands-840-list-light",
+      "commands-840-detail-light"
+    ],
+    [
+      "commands-840-list-dark",
+      "commands-840-detail-dark"
+    ],
+    [
+      "settings-412-list-light",
+      "settings-412-list-dark"
+    ],
+    [
+      "settings-412-detail-light",
+      "settings-412-detail-dark"
+    ],
+    [
+      "settings-840-list-light",
+      "settings-840-list-dark"
+    ],
+    [
+      "settings-840-detail-light",
+      "settings-840-detail-dark"
+    ],
+    [
+      "settings-840-list-light",
+      "settings-840-detail-light"
+    ],
+    [
+      "settings-840-list-dark",
+      "settings-840-detail-dark"
+    ],
+    [
+      "cached-412-list-light",
+      "cached-412-list-dark"
+    ],
+    [
+      "cached-412-detail-light",
+      "cached-412-detail-dark"
+    ],
+    [
+      "cached-840-list-light",
+      "cached-840-list-dark"
+    ],
+    [
+      "cached-840-detail-light",
+      "cached-840-detail-dark"
+    ],
+    [
+      "cached-840-list-light",
+      "cached-840-detail-light"
+    ],
+    [
+      "cached-840-list-dark",
+      "cached-840-detail-dark"
+    ],
+    [
+      "scanner-412-failure-light",
+      "scanner-412-failure-dark"
+    ],
+    [
+      "scanner-840-failure-light",
+      "scanner-840-failure-dark"
     ]
   ],
   "publication": {
@@ -264,6 +1732,48 @@
         "defaultState": "list",
         "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/ContactBrowser.kt",
         "caption": "Adaptive stock Material 3 design proposal: phone and tablet, list and detail, light and dark."
+      },
+      {
+        "designId": "scanner",
+        "componentId": "Connect",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt",
+        "caption": "Adaptive stock Material 3 design proposal; independent Compose specimen, not the production route."
+      },
+      {
+        "designId": "device",
+        "componentId": "Device",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt",
+        "caption": "Adaptive stock Material 3 design proposal; independent Compose specimen, not the production route."
+      },
+      {
+        "designId": "channels",
+        "componentId": "Channels",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt",
+        "caption": "Adaptive stock Material 3 design proposal; independent Compose specimen, not the production route."
+      },
+      {
+        "designId": "commands",
+        "componentId": "Commands",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt",
+        "caption": "Adaptive stock Material 3 design proposal; independent Compose specimen, not the production route."
+      },
+      {
+        "designId": "settings",
+        "componentId": "Device settings",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt",
+        "caption": "Adaptive stock Material 3 design proposal; independent Compose specimen, not the production route."
+      },
+      {
+        "designId": "cached",
+        "componentId": "Offline device",
+        "defaultState": "list",
+        "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt",
+        "caption": "Adaptive stock Material 3 design proposal; independent Compose specimen, not the production route."
       }
     ],
     "sourceDirectory": "adaptive-uid-pilot"

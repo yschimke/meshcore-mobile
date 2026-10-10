@@ -130,6 +130,8 @@
           "detail-subtitle",
           "detail-status",
           "detail-body",
+          "message-input",
+          "send-message",
           "open-entry",
           "back-to-list"
         ]
@@ -390,7 +392,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Start chat"
+          "value": "Contact details"
         }
       },
       "slots": {},
@@ -433,12 +435,88 @@
       "properties": {
         "style": {
           "type": "enum",
-          "value": "filled"
+          "value": "text"
         }
       },
       "slots": {
         "content": [
           "back-to-list-label"
+        ]
+      },
+      "modifiers": [],
+      "eventBindings": {}
+    },
+    "message-input-label": {
+      "id": "message-input-label",
+      "componentId": "m3/text",
+      "properties": {
+        "text": {
+          "type": "string",
+          "value": "Message"
+        },
+        "style": {
+          "type": "enum",
+          "value": "bodyLarge"
+        }
+      },
+      "slots": {},
+      "modifiers": [],
+      "eventBindings": {}
+    },
+    "message-input": {
+      "id": "message-input",
+      "componentId": "m3/text-field",
+      "properties": {
+        "value": {
+          "type": "string",
+          "value": ""
+        },
+        "singleLine": {
+          "type": "bool",
+          "value": false
+        }
+      },
+      "slots": {
+        "label": [
+          "message-input-label"
+        ]
+      },
+      "modifiers": [
+        {
+          "type": "fillMaxWidth"
+        }
+      ],
+      "eventBindings": {}
+    },
+    "send-message-text": {
+      "id": "send-message-text",
+      "componentId": "m3/text",
+      "properties": {
+        "text": {
+          "type": "string",
+          "value": "Send"
+        },
+        "style": {
+          "type": "enum",
+          "value": "labelLarge"
+        }
+      },
+      "slots": {},
+      "modifiers": [],
+      "eventBindings": {}
+    },
+    "send-message": {
+      "id": "send-message",
+      "componentId": "m3/button",
+      "properties": {
+        "enabled": {
+          "type": "bool",
+          "value": false
+        }
+      },
+      "slots": {
+        "content": [
+          "send-message-text"
         ]
       },
       "modifiers": [],
