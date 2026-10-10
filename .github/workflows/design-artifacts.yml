@@ -16,9 +16,9 @@ name: Design Artifacts
 on:
   # Weekly, so the published sticker sheet tracks the catalog as it evolves.
   schedule:
-    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+    - cron: '20 2 * * 3' # Wednesdays 02:20 UTC — weekly, at a quiet time, off the top of the hour
   # Republish as soon as something that changes the rendered output lands on
-  # main, instead of serving stale artifacts until Monday. The paths are the
+  # main, instead of serving stale artifacts until Wednesday. The paths are the
   # render's inputs: the Gradle dependency manifests (they carry the
   # composePreviewPlugin pin that `cli-version: catalog` below resolves the
   # CLI from — a compose-ai-tools release changes the renderer itself — and
@@ -110,11 +110,14 @@ jobs:
 
       # Fetch the published compose-m3 bundle + its content-addressed font pool
       # from the compose-m3 delivery branch (public repo, no auth). Shallow.
+      # The branch moved out of compose-ai-tools into its generated-output
+      # repository (compose-ai-tools docs/design/OUTPUT_REPOSITORIES.md), so it
+      # is fetched from compose-ai-tools-out under the same branch name.
       - name: Fetch the published compose-m3 bundle + font pool
         run: |
           set -euo pipefail
           git clone --depth 1 --branch design-artifacts/compose-m3 \
-            https://github.com/yschimke/compose-ai-tools.git compose-m3-artifacts
+            https://github.com/yschimke/compose-ai-tools-out.git compose-m3-artifacts
           test -f compose-m3-artifacts/bundle/compose-m3-bundle.png
           test -d compose-m3-artifacts/bundle/res
 
