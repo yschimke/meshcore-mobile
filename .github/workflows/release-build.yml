@@ -110,15 +110,30 @@ jobs:
         uses: softprops/action-gh-release@v3.0.3
         with:
           tag_name: ${{ env.TAG_NAME }}
+          draft: true
           files: |
             _release/*.apk
             _release/*.aab
           fail_on_unmatched_files: true
 
       - name: Upload workflow artifact
-        if: github.event_name == 'workflow_dispatch' || env.HAS_SIGNING_KEYSTORE != 'true'
+        if: always() && steps.stage.outcome == 'success'
         uses: actions/upload-artifact@v7.0.1
         with:
           name: release-${{ steps.stage.outputs.version }}
           path: _release/
           if-no-files-found: ignore
+
+  publish:
+    name: Publish completed release
+    needs: [desktop, release]
+    if: github.event_name == 'push' || github.event_name == 'workflow_call'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
+    steps:
+      - name: Publish only after every asset job succeeds
+        run: gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --draft=false
