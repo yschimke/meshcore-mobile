@@ -145,3 +145,16 @@ include(":desktop-app")
 if (providers.gradleProperty("adaptiveUidPilot").orNull == "true") {
     include(":adaptive-uid-pilot")
 }
+
+// Unreleased typed catalog API: opt in explicitly and build against pinned source checkouts.
+if (providers.gradleProperty("typedAdapterCatalog").orNull == "true") {
+    require(providers.gradleProperty("localBuilds").orNull?.split(",")?.contains("tools") == true) {
+        "typedAdapterCatalog requires -PlocalBuilds=tools"
+    }
+    val builderSource = providers.gradleProperty("uiBuilderSource").orElse("../compose-ui-builder").get()
+    require(file(builderSource).resolve("settings.gradle.kts").isFile) {
+        "uiBuilderSource must point to the matching compose-ui-builder checkout"
+    }
+    includeBuild(builderSource)
+    include(":ui-builder-catalog")
+}
