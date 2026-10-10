@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 fun ContactBrowserListLightPreview() = ContactBrowser(dark = false, initialDetail = false)
 
 @Preview(name = "Phone DetailLight", widthDp = 412, heightDp = 720)
-@Preview(name = "Tablet DetailLight", widthDp = 840, heightDp = 720)
 @Composable
 fun ContactBrowserDetailLightPreview() = ContactBrowser(dark = false, initialDetail = true)
 
@@ -20,6 +19,15 @@ fun ContactBrowserDetailLightPreview() = ContactBrowser(dark = false, initialDet
 fun ContactBrowserListDarkPreview() = ContactBrowser(dark = true, initialDetail = false)
 
 @Preview(name = "Phone DetailDark", widthDp = 412, heightDp = 720)
-@Preview(name = "Tablet DetailDark", widthDp = 840, heightDp = 720)
 @Composable
 fun ContactBrowserDetailDarkPreview() = ContactBrowser(dark = true, initialDetail = true)
+
+@Preview(name = "Tablet DetailLight", widthDp = 840, heightDp = 720)
+@Composable
+fun ContactBrowserTabletDetailLightPreview() =
+  ContactBrowser(dark = false, initialDetail = true, initialSelectedIndex = 1)
+
+@Preview(name = "Tablet DetailDark", widthDp = 840, heightDp = 720)
+@Composable
+fun ContactBrowserTabletDetailDarkPreview() =
+  ContactBrowser(dark = true, initialDetail = true, initialSelectedIndex = 1)

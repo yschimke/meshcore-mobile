@@ -113,6 +113,30 @@
             "type": "int",
             "value": 1
           }
+        },
+        "detail-title": {
+          "text": {
+            "type": "string",
+            "value": "Bob"
+          }
+        },
+        "detail-subtitle": {
+          "text": {
+            "type": "string",
+            "value": "Camp coordination"
+          }
+        },
+        "detail-status": {
+          "text": {
+            "type": "string",
+            "value": "2 hops \u00b7 heard 5 minutes ago"
+          }
+        },
+        "detail-body": {
+          "text": {
+            "type": "string",
+            "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
+          }
         }
       }
     },
@@ -150,6 +174,30 @@
           "activePaneIndex": {
             "type": "int",
             "value": 1
+          }
+        },
+        "detail-title": {
+          "text": {
+            "type": "string",
+            "value": "Bob"
+          }
+        },
+        "detail-subtitle": {
+          "text": {
+            "type": "string",
+            "value": "Camp coordination"
+          }
+        },
+        "detail-status": {
+          "text": {
+            "type": "string",
+            "value": "2 hops \u00b7 heard 5 minutes ago"
+          }
+        },
+        "detail-body": {
+          "text": {
+            "type": "string",
+            "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
           }
         }
       }
