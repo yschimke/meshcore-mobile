@@ -36,6 +36,29 @@ jobs:
           config-file: .github/release-please-config.json
           manifest-file: .github/.release-please-manifest.json
 
+
+      - name: Materialize the draft release tag
+        if: steps.release.outputs.release_created == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag_name }}
+        run: |
+          python - <<'PYTHON'
+          import json,os,subprocess
+          repo=os.environ['GITHUB_REPOSITORY']
+          tag=os.environ['RELEASE_TAG']
+          release=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/releases/tags/{tag}']))
+          if not release['draft']: raise SystemExit('Expected an unpublished draft release')
+          sha=subprocess.check_output(['gh','api',f'repos/{repo}/commits/{release["target_commitish"]}','--jq','.sha'],text=True).strip()
+          lookup=subprocess.run(['gh','api',f'repos/{repo}/git/ref/tags/{tag}'],capture_output=True,text=True)
+          if lookup.returncode:
+              if '404' not in lookup.stderr: raise SystemExit(lookup.stderr)
+              subprocess.run(['gh','api','--method','POST',f'repos/{repo}/git/refs','-f',f'ref=refs/tags/{tag}','-f',f'sha={sha}'],check=True)
+          else:
+              actual=subprocess.check_output(['gh','api',f'repos/{repo}/commits/{tag}','--jq','.sha'],text=True).strip()
+              if actual!=sha: raise SystemExit('Existing tag points to a different source')
+          PYTHON
+
   release:
     needs: release-please
     if: needs.release-please.outputs.release_created == 'true'
