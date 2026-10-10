@@ -52,6 +52,7 @@ app/project.info
 
 # GitHub Pages staging and browser evidence.
 /_site/
+/_site-docs/
 /_wasm-test/
 
 __pycache__/
