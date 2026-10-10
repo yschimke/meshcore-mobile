@@ -125,6 +125,9 @@ dependencies {
   // Required in the preview runtime: substitutes RemotePreviewWrapper with the recorder-aware
   // wrapper, emits the .rc sidecar, and marks it structural so theme overrides nest around it.
   debugImplementation(libs.compose.preview.remotecompose.connector)
+  // The connector's default `androidx-embedded` player; without it every RemotePreview render
+  // throws RemoteComposeLinkageException (RcPlayerKt / RcPlayerState not found).
+  debugImplementation(libs.compose.preview.rc.embedded.player)
   debugImplementation(libs.compose.uiTooling)
   testImplementation(libs.robolectric)
   testImplementation(libs.androidx.core)

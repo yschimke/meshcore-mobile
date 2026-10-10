@@ -79,6 +79,9 @@ dependencies {
   implementation(libs.wear.compose.ui.tooling)
   // Keep Remote Compose widget previews recorder-aware and safe under catalog theme overrides.
   debugImplementation(libs.compose.preview.remotecompose.connector)
+  // The connector's default `androidx-embedded` player; without it every RemotePreview render
+  // throws RemoteComposeLinkageException (RcPlayerKt / RcPlayerState not found).
+  debugImplementation(libs.compose.preview.rc.embedded.player)
   debugImplementation(libs.compose.uiTooling)
 
   testImplementation(libs.robolectric)
