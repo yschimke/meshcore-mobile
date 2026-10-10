@@ -302,17 +302,9 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.a11y.png",
-      "cleanBasename": "DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,758,420",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "DeviceInfoWidgetEmptyPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo \u2014 no data",
@@ -321,17 +313,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.a11y.png",
-      "cleanBasename": "DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,758,420",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "DeviceInfoWidgetPopulatedPreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo \u2014 populated",
@@ -340,17 +324,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.a11y.png",
-      "cleanBasename": "DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,758,420",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "DeviceInfoWidgetStalePreview",
       "module": "app",
       "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo \u2014 stale",
@@ -1091,8 +1067,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.a11y.png",
-      "cleanBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "ChannelChatArabicPreview",
       "module": "meshcore-components",
@@ -1102,8 +1078,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.a11y.png",
-      "cleanBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "ChannelChatDarkPreview",
       "module": "meshcore-components",
@@ -1113,8 +1089,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ChannelChatPreview_Dark-32af4dfe.a11y.png",
-      "cleanBasename": "ChannelChatPreview_Dark-32af4dfe.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "ChannelChatPreview",
       "module": "meshcore-components",
@@ -1124,8 +1100,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.a11y.png",
-      "cleanBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "CommandsArabicPreview",
       "module": "meshcore-components",
@@ -1135,8 +1111,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.a11y.png",
-      "cleanBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "CommandsDarkPreview",
       "module": "meshcore-components",
@@ -1146,8 +1122,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "CommandsPreview_Dark-435b1f7d.a11y.png",
-      "cleanBasename": "CommandsPreview_Dark-435b1f7d.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "CommandsPreview",
       "module": "meshcore-components",
@@ -1157,8 +1133,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.a11y.png",
-      "cleanBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "ContactChatArabicPreview",
       "module": "meshcore-components",
@@ -1168,8 +1144,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.a11y.png",
-      "cleanBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "ContactChatDarkPreview",
       "module": "meshcore-components",
@@ -1179,8 +1155,8 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "ContactChatPreview_Dark-a03644a3.a11y.png",
-      "cleanBasename": "ContactChatPreview_Dark-a03644a3.png",
+      "annotatedBasename": "",
+      "cleanBasename": "",
       "findings": [],
       "functionName": "ContactChatPreview",
       "module": "meshcore-components",
@@ -1396,17 +1372,9 @@
       "variant": "wearos_large_round"
     },
     {
-      "annotatedBasename": "StatusWidgetConnectedPreview_Status_connected-63591697.a11y.png",
-      "cleanBasename": "StatusWidgetConnectedPreview_Status_connected-63591697.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "StatusWidgetConnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status \u2014 connected",
@@ -1415,17 +1383,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.a11y.png",
-      "cleanBasename": "StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "StatusWidgetDisconnectedPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status \u2014 disconnected",
@@ -1434,17 +1394,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "StatusWidgetLowBatteryPreview_Status_low_battery-149af881.a11y.png",
-      "cleanBasename": "StatusWidgetLowBatteryPreview_Status_low_battery-149af881.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "StatusWidgetLowBatteryPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status \u2014 low battery",
@@ -1453,17 +1405,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "WearComponentCatalogPreview_Component_Catalog-ab535596.a11y.png",
-      "cleanBasename": "WearComponentCatalogPreview_Component_Catalog-ab535596.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,504,504",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "WearComponentCatalogPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component Catalog",
@@ -1472,17 +1416,9 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "WearComponentGridPreview_Component_Grid-cf79ccb8.a11y.png",
-      "cleanBasename": "WearComponentGridPreview_Component_Grid-cf79ccb8.png",
-      "findings": [
-        {
-          "boundsInScreen": "0,0,1312,1312",
-          "level": "ERROR",
-          "message": "This item may not have a label readable by screen readers.",
-          "type": "SpeakableTextPresentCheck",
-          "viewDescription": "androidx.compose.remote.player.view.RemoteComposePlayer"
-        }
-      ],
+      "annotatedBasename": "",
+      "cleanBasename": "",
+      "findings": [],
       "functionName": "WearComponentGridPreview",
       "module": "wear",
       "previewId": "ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component Grid",
