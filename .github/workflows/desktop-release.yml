@@ -19,8 +19,14 @@ concurrency:
 jobs:
   publish:
     if: inputs.publish
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: bash
     steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
       - name: Validate source
         id: source
         env:
