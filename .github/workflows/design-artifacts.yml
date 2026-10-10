@@ -51,6 +51,9 @@ on:
       - 'build.gradle.kts'
       - '**/build.gradle.kts'
       - 'catalog.spec.json'
+      - 'adaptive-uid-pilot/**'
+      - 'build-logic/**'
+      - '.github/workflows/adaptive-uid-*.yml'
       # Design references are published onto the delivery branch from these, so
       # they are inputs to the artifact exactly like catalog.spec.json is. Without
       # them here, editing a mapping or a committed mock leaves the server serving
@@ -72,6 +75,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  uid-references:
+    uses: ./.github/workflows/adaptive-uid-pilot.yml
+
   # ───────────────────────────────────────────────────────────────────────────
   # Common lane: render every preview-enabled module — :app (Android),
   # :meshcore-components (CMP desktop) and :wear — validate the spec, generate,
@@ -79,13 +85,19 @@ jobs:
   # workflow.
   # ───────────────────────────────────────────────────────────────────────────
   publish:
+    needs: uid-references
     name: meshcore-mobile
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     permissions:
       contents: write
-    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@main
+    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@593574226cfd132837d8e087ea6944fbc501ecd6
     with:
       system: meshcore-mobile
+      ref: ${{ github.sha }}
+      catalog-section-artifact: adaptive-uid-catalog
+      catalog-section: Screens
+      publish: ${{ github.ref == 'refs/heads/main' }}
+      upload-out: true
       spec: catalog.spec.json
       # Publish every preview-enabled module rather than `:app` plus one named
       # supplement. `:wear` also applies the preview plugin and its previews were
