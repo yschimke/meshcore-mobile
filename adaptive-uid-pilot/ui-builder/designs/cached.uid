@@ -224,7 +224,7 @@
         },
         "style": {
           "type": "enum",
-          "value": "bodyLarge"
+          "value": "labelLarge"
         }
       },
       "slots": {},
@@ -262,7 +262,7 @@
         },
         "style": {
           "type": "enum",
-          "value": "bodyLarge"
+          "value": "labelLarge"
         }
       },
       "slots": {},
@@ -489,7 +489,7 @@
         },
         "style": {
           "type": "enum",
-          "value": "bodyLarge"
+          "value": "labelLarge"
         }
       },
       "slots": {},
