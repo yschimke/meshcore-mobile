@@ -68,3 +68,27 @@ omitted-property default/export parity retain the limits documented in the autho
 
 The committed `evidence/` images show the direct native call and the typed adapter from the parity
 test. Regenerate them from `build/renders` after component changes; CI uploads current renders.
+
+### Publish a validated initial generation
+
+A manual dispatch can publish the tested ZIP and standard catalog pair as a GitHub prerelease:
+
+```sh
+gh workflow run typed-catalog.yml --ref YOUR_SOURCE_BRANCH -f publish=true
+```
+
+The separate publication job runs only after validation succeeds, reuses its uploaded artifact,
+and records full app/tools/builder commits and SHA-256 hashes in `bundle.json`. The prerelease tag
+is `typed-catalog-preview-FULL_SOURCE_SHA`; an existing generation is never replaced. Normal PR
+runs have read-only permissions, and production preview delivery branches remain unchanged.
+
+From the matching UI Builder checkout, download the exact published generation into a new directory:
+
+```sh
+scripts/download-typed-catalog.sh yschimke/meshcore-mobile FULL_SOURCE_SHA jvm-linux-x64 /tmp/published-mesh
+```
+
+Run `ExternalJvmCatalogEndToEndTest` with `-PtypedCatalogJvmBundle=/tmp/published-mesh` to repeat the
+proof using downloaded artifacts. The installer refuses a mismatched source, runtime, checksum,
+or catalog pair. This initial executable archive targets Linux x64; it is an explicit trusted-code
+opt-in, not a browser renderer or a general desktop installation UI.
