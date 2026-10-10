@@ -22,10 +22,10 @@
               <g id="Row">
                 <g id="Column">
                   <g id="Empty">
-                    <text x="42" y="261.99" font-size="42" font-family="Space Grotesk" font-weight="400" letter-spacing="1.31" fill="#161D1B">Buzzer</text>
+                    <text x="42" y="261.99" font-size="42" font-family="Space Grotesk" font-weight="400" letter-spacing="1.31" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#161D1B">Buzzer</text>
                   </g>
                   <g id="Empty">
-                    <text x="42" y="301.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#3F4946">On (rtttl)</text>
+                    <text x="42" y="301.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#3F4946">On (rtttl)</text>
                   </g>
                 </g>
                 <g id="Box">
@@ -52,7 +52,7 @@
                   </g>
                 </g>
                 <g id="Empty">
-                  <text x="148" y="102.99" font-size="42" font-family="Space Grotesk" font-weight="600" letter-spacing="0.39" fill="#161D1B">Device Settings</text>
+                  <text x="148" y="102.99" font-size="42" font-family="Space Grotesk" font-weight="600" letter-spacing="0.39" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 600.0" fill="#161D1B">Device Settings</text>
                 </g>
                 <g id="BoxKt" data-material-icon="settings" data-material-icon-style="Rounded" data-material-icon-url="https://fonts.gstatic.com/s/i/materialiconsround/settings/v1/24px.svg">
                   <g transform="translate(972 52) scale(2.62 2.62)">

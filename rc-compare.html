@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>meshcore-mobile — PNG vs Remote Compose (JS player)</title>
+<title>meshcore-mobile — PNG vs Remote Compose (Camaelon JS player)</title>
 <style>
   :root { color-scheme: light dark; --bg:#fff; --fg:#111; --muted:#666; --line:#e2e2e2; --card:#fafafa; --accent:#0969da; }
   @media (prefers-color-scheme: dark) {
@@ -69,15 +69,15 @@
 </head>
 <body>
 <header>
-  <h1>meshcore-mobile — PNG vs Remote Compose <span style="font-weight:400;color:var(--muted)">(JS player)</span></h1>
-  <div class="summary"><strong>JS player:</strong> 3 scored · mean mismatch <strong>1.47%</strong></div>
+  <h1>meshcore-mobile — PNG vs Remote Compose <span style="font-weight:400;color:var(--muted)">(Camaelon JS player)</span></h1>
+  <div class="summary"><strong>Camaelon JS:</strong> 3 scored · mean mismatch <strong>1.51%</strong></div>
   <span class="note">3 Remote Compose preview(s) · pixelmatch threshold 0.1 · theme light</span>
   <div class="toolbar">
     <label for="refselect">Diff against</label>
     <select id="refselect">
       <option value="none" selected>nothing (show renders only)</option>
       <option value="baked">AndroidX Embedded · baked</option>
-      <option value="js">RC · JS player</option>
+      <option value="js">Camaelon JS</option>
     </select>
     <span id="refstatus" class="refstatus"></span>
   </div>
@@ -86,7 +86,7 @@
 own offline Robolectric/Skiko render, through AndroidX's embedded <code>RcPlayer</code> unless the
 preview pins the view-backed lane) next to the same
 <code>ir/*.rc</code> document as each player renders it.
-The <strong>JS player</strong> is the vendored TypeScript <code>RC.RcdPlayer</code> on a <code>&lt;canvas&gt;</code>.
+<strong>Camaelon JS</strong> is the vendored TypeScript <code>RC.RcdPlayer</code> on a <code>&lt;canvas&gt;</code>.
 <strong>Nothing is diffed until you ask for it:</strong> pick a column in <em>Diff against</em> and every
 other column grows a pixel diff plus a mismatch chip. Choosing the baked lane replays the build-time
 <code>pixelmatch</code> diffs; choosing a player diffs in the browser, which is how you compare two
@@ -94,12 +94,12 @@ players directly. Rows sort worst-match-first using the build-time scores in the
 <strong>fully transparent</strong> is shown but not scored against it: with nothing in the reference, a
 player that draws nothing would score a perfect 0% — so those rows read <code>no reference</code> and
 stay out of the means.</p>
-<p class="lede absent">Not in this run: <strong>AndroidX Embedded · vendored Android</strong>, <strong>AndroidX Embedded · androidx.dev</strong>, <strong>RC · cmp-jvm player</strong>, <strong>RC · cmp-wasm player</strong>. A player earns a column only where the run recorded a verdict for it, so these are absent rather than empty — the publishing workflow opts each lane in per catalog.</p>
+<p class="lede absent">Not in this run: <strong>AndroidX Embedded · vendored Android</strong>, <strong>AndroidX Embedded · androidx.dev</strong>, <strong>CMP JVM</strong>, <strong>CMP Wasm</strong>. A player earns a column only where the run recorded a verdict for it, so these are absent rather than empty — the publishing workflow opts each lane in per catalog.</p>
 <div class="wrap">
 <table class="grid">
-  <thead><tr><th>preview</th><th>AndroidX Embedded · baked</th><th>RC · JS player</th></tr></thead>
+  <thead><tr><th>preview</th><th>AndroidX Embedded · baked</th><th>Camaelon JS</th></tr></thead>
   <tbody>
-<tr class="row rendered" data-row="0" data-pct="2.59245353857706" data-embedded-pct="" data-androidx-embedded-pct="" data-embedded-jvm-pct="" data-cmp-wasm-pct="">
+<tr class="row rendered" data-row="0" data-pct="2.6722357799887364" data-embedded-pct="" data-androidx-embedded-pct="" data-embedded-jvm-pct="" data-cmp-wasm-pct="">
   <th class="meta">
     <div class="name">DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated</div>
     
@@ -111,12 +111,12 @@ stay out of the means.</p>
       <img loading="lazy" src="rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png" alt="AndroidX Embedded · baked">
       <div class="diffslot" hidden></div>
     </figure></td><td><figure class="cell lane-js" data-lane="js">
-      <figcaption>RC · JS player<span class="refbadge">reference</span></figcaption>
-      <img loading="lazy" src="rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png" alt="RC · JS player">
+      <figcaption>Camaelon JS<span class="refbadge">reference</span></figcaption>
+      <img loading="lazy" src="rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png" alt="Camaelon JS">
       <div class="diffslot" hidden></div>
     </figure></td>
 </tr>
-<tr class="row rendered" data-row="1" data-pct="1.7523934672423502" data-embedded-pct="" data-androidx-embedded-pct="" data-embedded-jvm-pct="" data-cmp-wasm-pct="">
+<tr class="row rendered" data-row="1" data-pct="1.8074588573931543" data-embedded-pct="" data-androidx-embedded-pct="" data-embedded-jvm-pct="" data-cmp-wasm-pct="">
   <th class="meta">
     <div class="name">DeviceInfoWidgetStalePreview_DeviceInfo___stale</div>
     
@@ -128,8 +128,8 @@ stay out of the means.</p>
       <img loading="lazy" src="rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png" alt="AndroidX Embedded · baked">
       <div class="diffslot" hidden></div>
     </figure></td><td><figure class="cell lane-js" data-lane="js">
-      <figcaption>RC · JS player<span class="refbadge">reference</span></figcaption>
-      <img loading="lazy" src="rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png" alt="RC · JS player">
+      <figcaption>Camaelon JS<span class="refbadge">reference</span></figcaption>
+      <img loading="lazy" src="rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png" alt="Camaelon JS">
       <div class="diffslot" hidden></div>
     </figure></td>
 </tr>
@@ -145,15 +145,15 @@ stay out of the means.</p>
       <img loading="lazy" src="rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png" alt="AndroidX Embedded · baked">
       <div class="diffslot" hidden></div>
     </figure></td><td><figure class="cell lane-js" data-lane="js">
-      <figcaption>RC · JS player<span class="refbadge">reference</span></figcaption>
-      <img loading="lazy" src="rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png" alt="RC · JS player">
+      <figcaption>Camaelon JS<span class="refbadge">reference</span></figcaption>
+      <img loading="lazy" src="rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png" alt="Camaelon JS">
       <div class="diffslot" hidden></div>
     </figure></td>
 </tr>
   </tbody>
 </table>
 </div>
-<script type="application/json" id="rc-model">{"lanes":[{"id":"baked","label":"AndroidX Embedded · baked","short":"baked"},{"id":"js","label":"RC · JS player","short":"js"}],"rows":[{"name":"DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated","referenceBlank":false,"lanes":{"baked":{"src":"rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png","diff":"","pct":null,"px":null,"rendered":true,"note":""},"js":{"src":"rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png","diff":"rc-diff/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png","pct":2.59245353857706,"px":8286,"rendered":true,"note":""}}},{"name":"DeviceInfoWidgetStalePreview_DeviceInfo___stale","referenceBlank":false,"lanes":{"baked":{"src":"rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png","diff":"","pct":null,"px":null,"rendered":true,"note":""},"js":{"src":"rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png","diff":"rc-diff/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png","pct":1.7523934672423502,"px":5601,"rendered":true,"note":""}}},{"name":"DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data","referenceBlank":false,"lanes":{"baked":{"src":"rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png","diff":"","pct":null,"px":null,"rendered":true,"note":""},"js":{"src":"rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png","diff":"rc-diff/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png","pct":0.05099806019648332,"px":163,"rendered":true,"note":""}}}]}</script>
+<script type="application/json" id="rc-model">{"lanes":[{"id":"baked","label":"AndroidX Embedded · baked","short":"baked"},{"id":"js","label":"Camaelon JS","short":"js"}],"rows":[{"name":"DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated","referenceBlank":false,"lanes":{"baked":{"src":"rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png","diff":"","pct":null,"px":null,"rendered":true,"note":""},"js":{"src":"rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png","diff":"rc-diff/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated.png","pct":2.6722357799887364,"px":8541,"rendered":true,"note":""}}},{"name":"DeviceInfoWidgetStalePreview_DeviceInfo___stale","referenceBlank":false,"lanes":{"baked":{"src":"rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png","diff":"","pct":null,"px":null,"rendered":true,"note":""},"js":{"src":"rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png","diff":"rc-diff/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale.png","pct":1.8074588573931543,"px":5777,"rendered":true,"note":""}}},{"name":"DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data","referenceBlank":false,"lanes":{"baked":{"src":"rc-baked/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png","diff":"","pct":null,"px":null,"rendered":true,"note":""},"js":{"src":"rc/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png","diff":"rc-diff/ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data.png","pct":0.05099806019648332,"px":163,"rendered":true,"note":""}}}]}</script>
 <script>
 (() => {
   const MODEL = JSON.parse(document.getElementById("rc-model").textContent);

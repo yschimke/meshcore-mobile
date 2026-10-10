@@ -51,7 +51,7 @@
                   <rect x="42" y="189" width="994" height="449" rx="31.5" ry="31.5" fill="#1A211F"/>
                 <g id="Column">
                   <g id="Empty">
-                    <text x="84" y="285.86" font-size="52.5" font-family="Orbitron" font-weight="500" letter-spacing="0.53" fill="#DDE4E1">node-peak</text>
+                    <text x="84" y="285.86" font-size="52.5" font-family="Orbitron" font-weight="500" letter-spacing="0.53" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#DDE4E1">node-peak</text>
                   </g>
                   <g id="Row">
                     <g id="BoxKt" data-material-icon="fingerprint" data-material-icon-style="Rounded" data-material-icon-url="https://fonts.gstatic.com/s/i/materialiconsround/fingerprint/v1/24px.svg">
@@ -76,7 +76,7 @@
                       <image href="meshcore-components-devicebodydarkpreview.figma-raster/943.png" x="126" y="396" width="21" height="47"/>
                     </g>
                     <g id="Empty">
-                      <text x="147" y="434.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" fill="#BEC9C5">869.525 MHz · BW 125 kHz · SF 10 · CR 5</text>
+                      <text x="147" y="434.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#BEC9C5">869.525 MHz · BW 125 kHz · SF 10 · CR 5</text>
                     </g>
                   </g>
                   <g id="Column">
@@ -87,7 +87,7 @@
                         </g>
                       </g>
                       <g id="Empty">
-                        <text x="131" y="507.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" fill="#DDE4E1">  81% · 3980 mV</text>
+                        <text x="131" y="507.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#DDE4E1">  81% · 3980 mV</text>
                       </g>
                     </g>
                     <g id="Spacer">
@@ -107,7 +107,7 @@
                         <image href="meshcore-components-devicebodydarkpreview.figma-raster/952.png" x="126" y="549" width="21" height="47"/>
                       </g>
                       <g id="Empty">
-                        <text x="147" y="584.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#BEC9C5">512 / 4096 kB</text>
+                        <text x="147" y="584.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#BEC9C5">512 / 4096 kB</text>
                       </g>
                     </g>
                   </g>
@@ -125,17 +125,17 @@
                   </g>
                   <g id="Column">
                     <g id="Empty">
-                      <text x="158" y="733.86" font-size="31.5" font-family="Space Grotesk" font-weight="700" letter-spacing="1.31" fill="#53DBC9">alice</text>
+                      <text x="158" y="733.86" font-size="31.5" font-family="Space Grotesk" font-weight="700" letter-spacing="1.31" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 700.0" fill="#53DBC9">alice</text>
                     </g>
                     <g id="Empty">
-                      <text x="158" y="780.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" fill="#DDE4E1">hey — are you on tonight?</text>
+                      <text x="158" y="780.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#DDE4E1">hey — are you on tonight?</text>
                     </g>
                   </g>
                 </g>
               </g>
               <g id="Row">
                 <g id="Empty">
-                  <text x="42" y="905.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" fill="#BEC9C5">Channels (0)</text>
+                  <text x="42" y="905.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#BEC9C5">Channels (0)</text>
                 </g>
                 <g id="BoxKt" data-material-icon="expand_less" data-material-icon-style="Rounded" data-material-icon-url="https://fonts.gstatic.com/s/i/materialiconsround/expand_less/v1/24px.svg">
                   <g transform="translate(983 864) scale(2.2 2.2)">
@@ -144,11 +144,11 @@
                 </g>
               </g>
               <g id="Empty">
-                <text x="42" y="1012.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#BEC9C5">No channels configured</text>
+                <text x="42" y="1012.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#BEC9C5">No channels configured</text>
               </g>
               <g id="Row">
                 <g id="Empty">
-                  <text x="42" y="1163.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" fill="#BEC9C5">Contacts (0)</text>
+                  <text x="42" y="1163.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#BEC9C5">Contacts (0)</text>
                 </g>
                 <g id="Box">
                   <rect x="699" y="1106" width="284" height="84" rx="21" ry="21" fill="#324B47"/>
@@ -156,7 +156,7 @@
                     <g id="Spacer">
                     </g>
                     <g id="Empty">
-                      <text x="741" y="1163.92" font-size="36.75" font-family="Space Grotesk" font-weight="700" letter-spacing="1.05" fill="#CCE8E2">Favourited</text>
+                      <text x="741" y="1163.92" font-size="36.75" font-family="Space Grotesk" font-weight="700" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 700.0" fill="#CCE8E2">Favourited</text>
                     </g>
                     <g id="Spacer">
                     </g>
@@ -177,12 +177,12 @@
                 <g id="Spacer">
                 </g>
                 <g id="Empty">
-                  <text x="445" y="1324.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#BEC9C5">No contacts yet</text>
+                  <text x="445" y="1324.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#BEC9C5">No contacts yet</text>
                 </g>
               </g>
               <g id="Row">
                 <g id="Empty">
-                  <text x="42" y="1492.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" fill="#BEC9C5">Rooms (0)</text>
+                  <text x="42" y="1492.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#BEC9C5">Rooms (0)</text>
                 </g>
                 <g id="Box">
                   <rect x="772" y="1435" width="211" height="84" rx="21" ry="21" fill="#324B47"/>
@@ -190,7 +190,7 @@
                     <g id="Spacer">
                     </g>
                     <g id="Empty">
-                      <text x="814" y="1492.92" font-size="36.75" font-family="Space Grotesk" font-weight="700" letter-spacing="1.05" fill="#CCE8E2">Joined</text>
+                      <text x="814" y="1492.92" font-size="36.75" font-family="Space Grotesk" font-weight="700" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 700.0" fill="#CCE8E2">Joined</text>
                     </g>
                     <g id="Spacer">
                     </g>
@@ -203,11 +203,11 @@
                 </g>
               </g>
               <g id="Empty">
-                <text x="42" y="1635.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#BEC9C5">No rooms joined yet</text>
+                <text x="42" y="1635.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#BEC9C5">No rooms joined yet</text>
               </g>
               <g id="Row">
                 <g id="Empty">
-                  <text x="42" y="1786.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" fill="#BEC9C5">Repeaters (0)</text>
+                  <text x="42" y="1786.92" font-size="36.75" font-family="Space Grotesk" font-weight="500" letter-spacing="0.26" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#BEC9C5">Repeaters (0)</text>
                 </g>
                 <g id="Box">
                   <rect x="772" y="1729" width="211" height="84" rx="21" ry="21" fill="#324B47"/>
@@ -215,7 +215,7 @@
                     <g id="Spacer">
                     </g>
                     <g id="Empty">
-                      <text x="814" y="1786.92" font-size="36.75" font-family="Space Grotesk" font-weight="700" letter-spacing="1.05" fill="#CCE8E2">Joined</text>
+                      <text x="814" y="1786.92" font-size="36.75" font-family="Space Grotesk" font-weight="700" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 700.0" fill="#CCE8E2">Joined</text>
                     </g>
                     <g id="Spacer">
                     </g>
@@ -228,7 +228,7 @@
                 </g>
               </g>
               <g id="Empty">
-                <text x="42" y="1929.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" fill="#BEC9C5">No repeaters joined yet</text>
+                <text x="42" y="1929.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#BEC9C5">No repeaters joined yet</text>
               </g>
               <g id="Spacer">
               </g>
@@ -239,7 +239,7 @@
                 <g id="Box">
                 </g>
                 <g id="Empty">
-                  <text x="43" y="105.86" font-size="52.5" font-family="Orbitron" font-weight="500" letter-spacing="0.53" fill="#DDE4E1">node-peak</text>
+                  <text x="43" y="105.86" font-size="52.5" font-family="Orbitron" font-weight="500" letter-spacing="0.53" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#DDE4E1">node-peak</text>
                 </g>
                 <g id="Row">
                   <g id="Box">

@@ -16,8 +16,7 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/theme-meshcore-light__ideal__default__light__compact",
           "previewId": "ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMeshcoreLightPreview_Foundation___MeshCore_light",
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-meshcore-light__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -154,8 +153,7 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/theme-meshcore-dark__ideal__default__dark__compact",
           "previewId": "ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMeshcoreDarkPreview_Foundation___MeshCore_dark",
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-meshcore-dark__ideal__default__dark__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -292,8 +290,7 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/theme-material3-light__ideal__default__light__compact",
           "previewId": "ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMaterial3LightPreview_Foundation___Material_3_light",
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-material3-light__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -430,8 +427,7 @@
           "size": "compact",
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/theme-material3-dark__ideal__default__dark__compact",
           "previewId": "ee.schimke.meshcore.app.ui.ThemeFoundationPreviewsKt.ThemeFoundationMaterial3DarkPreview_Foundation___Material_3_dark",
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-material3-dark__ideal__default__dark__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -808,8 +804,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-chat__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -824,8 +819,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-chat__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -876,8 +870,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-repeater__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -892,8 +885,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-repeater__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -944,8 +936,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-room__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -960,8 +951,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-room__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -1012,8 +1002,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-sensor__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -1028,8 +1017,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-sensor__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -1127,8 +1115,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactlist-few__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -1143,8 +1130,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactlist-few__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -1333,8 +1319,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-empty__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -1349,8 +1334,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-empty__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -1382,8 +1366,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-few__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -1398,8 +1381,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-few__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [
@@ -2023,8 +2005,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-first__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -2039,8 +2020,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-first__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [
@@ -2113,8 +2093,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-denied__ideal__default__dark__compact.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -2129,8 +2108,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-denied__ideal__default__light__compact.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [
@@ -8997,8 +8975,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-populated__ideal__default__dark.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -9012,8 +8989,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-populated__ideal__default__light.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [
@@ -9365,8 +9341,7 @@
             "uiMode": 32,
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-empty__ideal__default__dark.svg"
+          "density": 2.625
         },
         {
           "variant": "ideal",
@@ -9380,8 +9355,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-empty__ideal__default__light.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [],
@@ -12395,8 +12369,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-themepickermeshcoresystempreview__ideal__default.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [
@@ -12660,8 +12633,7 @@
           "previewParams": {
             "showBackground": true
           },
-          "density": 2.625,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-themepickerdynamicdarkpreview__ideal__default__dark.svg"
+          "density": 2.625
         }
       ],
       "greenlines": [
@@ -12923,12 +12895,93 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-deviceinfowidgetpopulatedpreview__ideal__default__compact",
           "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetPopulatedPreview_DeviceInfo___populated",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
-      "greenlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 130,
+              "width": 32,
+              "height": 32
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 130,
+            "width": 32,
+            "height": 32
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 199,
+              "width": 32,
+              "height": 32
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 199,
+            "width": 32,
+            "height": 32
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 268,
+              "width": 32,
+              "height": 32
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 268,
+            "width": 32,
+            "height": 32
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 359,
+              "width": 32,
+              "height": 19
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 359,
+            "width": 32,
+            "height": 19
+          }
+        }
+      ],
       "redlines": [],
       "section": ":app",
       "group": "Previews",
@@ -12990,7 +13043,7 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-deviceinfowidgetemptypreview__ideal__default__compact",
           "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetEmptyPreview_DeviceInfo___no_data",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
@@ -13057,12 +13110,93 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-deviceinfowidgetstalepreview__ideal__default__compact",
           "previewId": "ee.schimke.meshcore.app.widget.WidgetPreviewsKt.DeviceInfoWidgetStalePreview_DeviceInfo___stale",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
-      "greenlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 130,
+              "width": 32,
+              "height": 32
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 130,
+            "width": 32,
+            "height": 32
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 199,
+              "width": 32,
+              "height": 32
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 199,
+            "width": 32,
+            "height": 32
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 268,
+              "width": 32,
+              "height": 32
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 268,
+            "width": 32,
+            "height": 32
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 42,
+              "y": 359,
+              "width": 32,
+              "height": 19
+            }
+          },
+          "bounds": {
+            "x": 42,
+            "y": 359,
+            "width": 32,
+            "height": 19
+          }
+        }
+      ],
       "redlines": [],
       "section": ":app",
       "group": "Previews",
@@ -13172,8 +13306,7 @@
             "widthDp": 900,
             "heightDp": 760
           },
-          "density": 1,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-meshcore-dark-theme__ideal__default__dark__expanded.svg"
+          "density": 1
         }
       ],
       "greenlines": [],
@@ -13442,8 +13575,7 @@
             "widthDp": 900,
             "heightDp": 760
           },
-          "density": 1,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-meshcore-light-theme__ideal__default__light__expanded.svg"
+          "density": 1
         }
       ],
       "greenlines": [],
@@ -13712,8 +13844,7 @@
             "widthDp": 900,
             "heightDp": 760
           },
-          "density": 1,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-dynamic-dark-theme__ideal__default__dark__expanded.svg"
+          "density": 1
         }
       ],
       "greenlines": [],
@@ -13982,8 +14113,7 @@
             "widthDp": 900,
             "heightDp": 760
           },
-          "density": 1,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-dynamic-light-theme__ideal__default__light__expanded.svg"
+          "density": 1
         }
       ],
       "greenlines": [],
@@ -15671,7 +15801,18 @@
       "sourceModule": ":wear",
       "bodyLine": 45,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyLoadingPreview"
+      "sourceFunction": "StatusBodyLoadingPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyPhoneDisconnectedPreview",
@@ -15692,8 +15833,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyphonedisconnectedpreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -15711,8 +15851,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyphonedisconnectedpreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [],
@@ -15724,7 +15863,18 @@
       "sourceModule": ":wear",
       "bodyLine": 55,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyPhoneDisconnectedPreview"
+      "sourceFunction": "StatusBodyPhoneDisconnectedPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyRadioDisconnectedPreview",
@@ -15745,8 +15895,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyradiodisconnectedpreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -15764,8 +15913,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyradiodisconnectedpreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [],
@@ -15777,7 +15925,18 @@
       "sourceModule": ":wear",
       "bodyLine": 65,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyRadioDisconnectedPreview"
+      "sourceFunction": "StatusBodyRadioDisconnectedPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyConnectedPreview",
@@ -15798,8 +15957,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyconnectedpreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -15817,8 +15975,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyconnectedpreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [
@@ -15903,7 +16060,18 @@
       "sourceModule": ":wear",
       "bodyLine": 75,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyConnectedPreview"
+      "sourceFunction": "StatusBodyConnectedPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyConnectedLowBatteryPreview",
@@ -16027,7 +16195,18 @@
       "sourceModule": ":wear",
       "bodyLine": 92,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyConnectedLowBatteryPreview"
+      "sourceFunction": "StatusBodyConnectedLowBatteryPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyConnectedMediumBatteryPreview",
@@ -16151,7 +16330,18 @@
       "sourceModule": ":wear",
       "bodyLine": 114,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyConnectedMediumBatteryPreview"
+      "sourceFunction": "StatusBodyConnectedMediumBatteryPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyErrorPreview",
@@ -16172,8 +16362,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyerrorpreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -16191,8 +16380,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyerrorpreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [],
@@ -16204,7 +16392,18 @@
       "sourceModule": ":wear",
       "bodyLine": 131,
       "sourceDirectory": "wear",
-      "sourceFunction": "StatusBodyErrorPreview"
+      "sourceFunction": "StatusBodyErrorPreview",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState"
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/ContactsBodyEmptyPreview",
@@ -16225,8 +16424,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyemptypreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -16244,8 +16442,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyemptypreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [],
@@ -16257,7 +16454,18 @@
       "sourceModule": ":wear",
       "bodyLine": 143,
       "sourceDirectory": "wear",
-      "sourceFunction": "ContactsBodyEmptyPreview"
+      "sourceFunction": "ContactsBodyEmptyPreview",
+      "parameters": [
+        {
+          "name": "contacts",
+          "type": "List<ContactMsg>"
+        },
+        {
+          "name": "onContactSelected",
+          "type": "(ContactMsg) -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/ContactsBodyFewPreview",
@@ -16278,8 +16486,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyfewpreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -16297,8 +16504,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyfewpreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [
@@ -16434,7 +16640,18 @@
       "sourceModule": ":wear",
       "bodyLine": 153,
       "sourceDirectory": "wear",
-      "sourceFunction": "ContactsBodyFewPreview"
+      "sourceFunction": "ContactsBodyFewPreview",
+      "parameters": [
+        {
+          "name": "contacts",
+          "type": "List<ContactMsg>"
+        },
+        {
+          "name": "onContactSelected",
+          "type": "(ContactMsg) -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/QuickReplyBodyPreview",
@@ -16455,8 +16672,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-quickreplybodypreview__ideal__default__largeround.svg"
+          "density": 2
         },
         {
           "variant": "ideal",
@@ -16474,8 +16690,7 @@
             "widthDp": 192,
             "heightDp": 192
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-quickreplybodypreview__ideal__default__smallround.svg"
+          "density": 2
         }
       ],
       "greenlines": [
@@ -16611,7 +16826,19 @@
       "sourceModule": ":wear",
       "bodyLine": 171,
       "sourceDirectory": "wear",
-      "sourceFunction": "QuickReplyBodyPreview"
+      "sourceFunction": "QuickReplyBodyPreview",
+      "parameters": [
+        {
+          "name": "replies",
+          "type": "List<String>",
+          "hasDefault": true
+        },
+        {
+          "name": "onReply",
+          "type": "(String) -> Unit",
+          "hasDefault": true
+        }
+      ]
     },
     {
       "componentId": "wear/InteractiveToggleChipPreview",
@@ -16631,8 +16858,7 @@
             "widthDp": 227,
             "heightDp": 227
           },
-          "density": 2,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-interactivetogglechippreview__ideal__default__largeround.svg"
+          "density": 2
         }
       ],
       "greenlines": [
@@ -16705,13 +16931,29 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-statuswidgetconnectedpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetConnectedPreview_Status___connected",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
       "greenlines": [],
-      "redlines": [],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 32,
+            "width": 440,
+            "height": 440
+          },
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          },
+          "gap": 6
+        }
+      ],
       "section": ":wear",
       "group": "Previews",
       "caption": "Status — connected",
@@ -16753,13 +16995,29 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-statuswidgetdisconnectedpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetDisconnectedPreview_Status___disconnected",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
       "greenlines": [],
-      "redlines": [],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 32,
+            "width": 440,
+            "height": 440
+          },
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          },
+          "gap": 6
+        }
+      ],
       "section": ":wear",
       "group": "Previews",
       "caption": "Status — disconnected",
@@ -16801,13 +17059,29 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-statuswidgetlowbatterypreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.StatusWidgetLowBatteryPreview_Status___low_battery",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
       "greenlines": [],
-      "redlines": [],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 32,
+            "width": 440,
+            "height": 440
+          },
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          },
+          "gap": 6
+        }
+      ],
       "section": ":wear",
       "group": "Previews",
       "caption": "Status — low battery",
@@ -16849,13 +17123,29 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-wearcomponentcatalogpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentCatalogPreview_Component_Catalog",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
       "greenlines": [],
-      "redlines": [],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 32,
+            "width": 440,
+            "height": 440
+          },
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          },
+          "gap": 4
+        }
+      ],
       "section": ":wear",
       "group": "Previews",
       "caption": "Component Catalog",
@@ -16879,13 +17169,315 @@
           "livePreview": "https://preview.coo.ee/meshcore-mobile/p/wear-wearcomponentgridpreview__ideal__default__compact",
           "previewId": "module_3a77656172__module_77656172__ee.schimke.meshcore.wear.widget.WidgetPreviewsKt.WearComponentGridPreview_Component_Grid",
           "previewParams": {
-            "capturePlayer": "java"
+            "capturePlayer": "androidx-embedded"
           },
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 63,
+              "y": 100,
+              "width": 354,
+              "height": 196
+            }
+          },
+          "bounds": {
+            "x": 63,
+            "y": 100,
+            "width": 354,
+            "height": 196
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 647,
+              "y": 146,
+              "width": 19,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 647,
+            "y": 146,
+            "width": 19,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 962,
+              "y": 146,
+              "width": 17,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 962,
+            "y": 146,
+            "width": 17,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 1064,
+              "y": 146,
+              "width": 17,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 1064,
+            "y": 146,
+            "width": 17,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 1166,
+              "y": 146,
+              "width": 17,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 1166,
+            "y": 146,
+            "width": 17,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 63,
+              "y": 550,
+              "width": 354,
+              "height": 168
+            }
+          },
+          "bounds": {
+            "x": 63,
+            "y": 550,
+            "width": 354,
+            "height": 168
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 1041,
+              "y": 603,
+              "width": 63,
+              "height": 63
+            }
+          },
+          "bounds": {
+            "x": 1041,
+            "y": 603,
+            "width": 63,
+            "height": 63
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 588,
+              "y": 1002,
+              "width": 137,
+              "height": 137
+            }
+          },
+          "bounds": {
+            "x": 588,
+            "y": 1002,
+            "width": 137,
+            "height": 137
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 895,
+              "y": 986,
+              "width": 354,
+              "height": 168
+            }
+          },
+          "bounds": {
+            "x": 895,
+            "y": 986,
+            "width": 354,
+            "height": 168
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 21,
+            "y": 21,
+            "width": 1270,
+            "height": 1270
+          },
+          "padding": {
+            "start": 8,
+            "top": 8,
+            "end": 8,
+            "bottom": 8
+          },
+          "gap": 16
+        },
+        {
+          "bounds": {
+            "x": 63,
+            "y": 100,
+            "width": 354,
+            "height": 196
+          },
+          "role": "Button",
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          }
+        },
+        {
+          "bounds": {
+            "x": 647,
+            "y": 146,
+            "width": 19,
+            "height": 105
+          },
+          "role": "Button",
+          "padding": {
+            "start": 14,
+            "top": 6,
+            "end": 14,
+            "bottom": 6
+          }
+        },
+        {
+          "bounds": {
+            "x": 962,
+            "y": 146,
+            "width": 17,
+            "height": 105
+          },
+          "role": "Button",
+          "padding": {
+            "start": 14,
+            "top": 6,
+            "end": 14,
+            "bottom": 6
+          }
+        },
+        {
+          "bounds": {
+            "x": 1064,
+            "y": 146,
+            "width": 17,
+            "height": 105
+          },
+          "role": "Button",
+          "padding": {
+            "start": 14,
+            "top": 6,
+            "end": 14,
+            "bottom": 6
+          }
+        },
+        {
+          "bounds": {
+            "x": 1166,
+            "y": 146,
+            "width": 17,
+            "height": 105
+          },
+          "role": "Button",
+          "padding": {
+            "start": 14,
+            "top": 6,
+            "end": 14,
+            "bottom": 6
+          }
+        },
+        {
+          "bounds": {
+            "x": 63,
+            "y": 550,
+            "width": 354,
+            "height": 168
+          },
+          "role": "Button",
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          }
+        },
+        {
+          "bounds": {
+            "x": 895,
+            "y": 986,
+            "width": 354,
+            "height": 168
+          },
+          "role": "Button",
+          "padding": {
+            "start": 12,
+            "top": 12,
+            "end": 12,
+            "bottom": 12
+          }
+        }
+      ],
       "section": ":wear",
       "group": "Previews",
       "caption": "Component Grid",
@@ -16967,8 +17559,7 @@
             "widthDp": 900,
             "heightDp": 760
           },
-          "density": 1,
-          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-meshcore-theme__ideal__default__expanded.svg"
+          "density": 1
         }
       ],
       "greenlines": [],
@@ -17247,1072 +17838,14 @@
       "group": "Wear",
       "caption": "MeshCore",
       "wireframe": "wireframes/wear-meshcore-theme.svg"
-    },
-    {
-      "componentId": "Button/Filled",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__default__dark.png",
-          "state": "default",
-          "width": 304,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__disabled__dark.png",
-          "state": "disabled",
-          "width": 304,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__default__light.png",
-          "state": "default",
-          "width": 304,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__disabled.png",
-          "state": "disabled",
-          "width": 304,
-          "height": 210,
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__default__dark__fontscale-2.0.png",
-          "state": "default",
-          "width": 398,
-          "height": 231,
-          "theme": "dark",
-          "props": {
-            "fontScale": "2.0"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__default__light__fontscale-2.0.png",
-          "state": "default",
-          "width": 398,
-          "height": 231,
-          "theme": "light",
-          "props": {
-            "fontScale": "2.0"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__pressed__dark.png",
-          "state": "pressed",
-          "width": 354,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__pressed__light.png",
-          "state": "pressed",
-          "width": 354,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__keyboard-focus__dark.png",
-          "state": "keyboard-focus",
-          "width": 364,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__keyboard-focus__light.png",
-          "state": "keyboard-focus",
-          "width": 364,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__default__dark__content-icon-label.png",
-          "state": "default",
-          "width": 372,
-          "height": 210,
-          "theme": "dark",
-          "props": {
-            "content": "icon+label"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/button-filled/ideal__default__light__content-icon-label.png",
-          "state": "default",
-          "width": 372,
-          "height": 210,
-          "theme": "light",
-          "props": {
-            "content": "icon+label"
-          },
-          "density": 2.625
-        }
-      ],
-      "greenlines": [
-        {
-          "kind": "a11y",
-          "severity": "info",
-          "message": "button",
-          "detail": {
-            "role": "button",
-            "bounds": {
-              "x": 42,
-              "y": 53,
-              "width": 216,
-              "height": 105
-            }
-          },
-          "bounds": {
-            "x": 42,
-            "y": 53,
-            "width": 216,
-            "height": 105
-          }
-        }
-      ],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 42,
-            "y": 53,
-            "width": 216,
-            "height": 105
-          },
-          "role": "Button",
-          "cornerRadius": 20
-        }
-      ],
-      "group": "Buttons",
-      "caption": "The catalog's stateless-action carrier; the disabled state folds in as an @OverrideVariant (enabled = false).",
-      "wireframe": "wireframes/button-filled.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogButtons.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 27,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "FilledButton",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Progress/Linear",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/progress-linear/ideal__default__dark.png",
-          "state": "default",
-          "width": 662,
-          "height": 95,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/progress-linear/ideal__default__light.png",
-          "state": "default",
-          "width": 662,
-          "height": 95,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 42,
-            "y": 16,
-            "width": 578,
-            "height": 63
-          },
-          "padding": {
-            "start": 0,
-            "top": 10,
-            "end": 0,
-            "bottom": 10
-          }
-        }
-      ],
-      "group": "Communication",
-      "caption": "Determinate, driven by the `progress` Float knob.",
-      "wireframe": "wireframes/progress-linear.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogCommunication.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 17,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "LinearProgressSticker",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Badge",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/badge/ideal__default__dark.png",
-          "state": "default",
-          "width": 126,
-          "height": 126,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/badge/ideal__default__light.png",
-          "state": "default",
-          "width": 126,
-          "height": 126,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 53,
-            "y": 42,
-            "width": 20,
-            "height": 42
-          },
-          "padding": {
-            "start": 4,
-            "top": 0,
-            "end": 4,
-            "bottom": 0
-          },
-          "cornerRadius": 3.81
-        }
-      ],
-      "group": "Communication",
-      "caption": "The sheet's Int knob (`count`).",
-      "wireframe": "wireframes/badge.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogCommunication.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 26,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "BadgeSticker",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Card/Slots",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/card-slots/ideal__default__dark.png",
-          "state": "default",
-          "width": 653,
-          "height": 274,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/card-slots/ideal__default__light.png",
-          "state": "default",
-          "width": 653,
-          "height": 274,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/card-slots/ideal__slot-mode__dark.png",
-          "state": "slot-mode",
-          "width": 653,
-          "height": 2100,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/card-slots/ideal__slot-mode__light.png",
-          "state": "slot-mode",
-          "width": 653,
-          "height": 2100,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/card-slots/ideal__default__dark__locale-ar.png",
-          "state": "default",
-          "width": 653,
-          "height": 274,
-          "theme": "dark",
-          "props": {
-            "locale": "ar"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/card-slots/ideal__default__light__locale-ar.png",
-          "state": "default",
-          "width": 653,
-          "height": 274,
-          "theme": "light",
-          "props": {
-            "locale": "ar"
-          },
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 42,
-            "y": 42,
-            "width": 569,
-            "height": 190
-          },
-          "cornerRadius": 12
-        }
-      ],
-      "group": "Containment",
-      "caption": "A card with named PreviewSlot regions a structured-screen builder fills.",
-      "wireframe": "wireframes/card-slots.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogContainment.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 27,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "SlottedCardSticker",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Checkbox/Checked",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/checkbox-checked/ideal__default__dark.png",
-          "state": "default",
-          "width": 210,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/checkbox-checked/ideal__unchecked__dark.png",
-          "state": "unchecked",
-          "width": 210,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/checkbox-checked/ideal__default__light.png",
-          "state": "default",
-          "width": 210,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/checkbox-checked/ideal__unchecked.png",
-          "state": "unchecked",
-          "width": 210,
-          "height": 210,
-          "density": 2.625
-        }
-      ],
-      "greenlines": [
-        {
-          "kind": "a11y",
-          "severity": "info",
-          "message": "checkbox",
-          "detail": {
-            "role": "checkbox",
-            "bounds": {
-              "x": 74,
-              "y": 74,
-              "width": 63,
-              "height": 63
-            }
-          },
-          "bounds": {
-            "x": 74,
-            "y": 74,
-            "width": 63,
-            "height": 63
-          }
-        }
-      ],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 74,
-            "y": 74,
-            "width": 63,
-            "height": 63
-          },
-          "role": "Checkbox",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        }
-      ],
-      "group": "Selection",
-      "caption": "Checked; the unchecked state folds in as an @OverrideVariant (checked = false).",
-      "wireframe": "wireframes/checkbox-checked.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogSelection.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 29,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "CheckboxChecked",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Switch/On",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__dark.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__off__dark.png",
-          "state": "off",
-          "width": 221,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__light.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__off.png",
-          "state": "off",
-          "width": 221,
-          "height": 210,
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__dark__locale-ar-xb.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "dark",
-          "props": {
-            "locale": "ar-XB"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__light__locale-ar-xb.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "light",
-          "props": {
-            "locale": "ar-XB"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__dark__direction-rtl.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "dark",
-          "props": {
-            "direction": "rtl"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__light__direction-rtl.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "light",
-          "props": {
-            "direction": "rtl"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__dark__fontscale-2.0.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "dark",
-          "props": {
-            "fontScale": "2.0"
-          },
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/switch-on/ideal__default__light__fontscale-2.0.png",
-          "state": "default",
-          "width": 221,
-          "height": 210,
-          "theme": "light",
-          "props": {
-            "fontScale": "2.0"
-          },
-          "density": 2.625
-        }
-      ],
-      "greenlines": [
-        {
-          "kind": "a11y",
-          "severity": "info",
-          "message": "switch",
-          "detail": {
-            "role": "switch",
-            "bounds": {
-              "x": 42,
-              "y": 63,
-              "width": 137,
-              "height": 84
-            }
-          },
-          "bounds": {
-            "x": 42,
-            "y": 63,
-            "width": 137,
-            "height": 84
-          }
-        }
-      ],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 42,
-            "y": 63,
-            "width": 137,
-            "height": 84
-          },
-          "role": "Switch",
-          "cornerRadius": 16
-        },
-        {
-          "bounds": {
-            "x": 105,
-            "y": 74,
-            "width": 63,
-            "height": 63
-          },
-          "cornerRadius": 12
-        }
-      ],
-      "motion": [
-        {
-          "path": "motion/switch-on/com.example.designcatalogm3.CatalogSelectionKt.SwitchOn_Dark.apng",
-          "kind": "interaction",
-          "caption": "Toggle off and back on. The thumb resolves through the theme's spatial motion spec — the travel and its settle are what a still frame of either end state cannot show."
-        },
-        {
-          "path": "motion/switch-on/com.example.designcatalogm3.CatalogSelectionKt.SwitchOn_Light.apng",
-          "kind": "interaction",
-          "caption": "Toggle off and back on. The thumb resolves through the theme's spatial motion spec — the travel and its settle are what a still frame of either end state cannot show."
-        }
-      ],
-      "group": "Selection",
-      "caption": "On; the off state folds in as an @OverrideVariant (checked = false).",
-      "wireframe": "wireframes/switch-on.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogSelection.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 49,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "SwitchOn",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Slider",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/slider/ideal__default__dark.png",
-          "state": "default",
-          "width": 662,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/slider/ideal__default__light.png",
-          "state": "default",
-          "width": 662,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 16,
-            "y": 47,
-            "width": 630,
-            "height": 116
-          },
-          "padding": {
-            "start": 10,
-            "top": 0,
-            "end": 10,
-            "bottom": 0
-          }
-        },
-        {
-          "bounds": {
-            "x": 326,
-            "y": 47,
-            "width": 11,
-            "height": 116
-          },
-          "cornerRadius": 2.1
-        }
-      ],
-      "group": "Selection",
-      "caption": "The sheet's Float knob (`value`).",
-      "wireframe": "wireframes/slider.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogSelection.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 58,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "SliderMid",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Shape/Morph",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/shape-morph/ideal__default__dark.png",
-          "state": "default",
-          "width": 880,
-          "height": 746,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/shape-morph/ideal__default__light.png",
-          "state": "default",
-          "width": 880,
-          "height": 746,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 99,
-            "y": 520,
-            "width": 630,
-            "height": 116
-          },
-          "padding": {
-            "start": 10,
-            "top": 0,
-            "end": 10,
-            "bottom": 0
-          }
-        },
-        {
-          "bounds": {
-            "x": 409,
-            "y": 520,
-            "width": 11,
-            "height": 116
-          },
-          "cornerRadius": 2.1
-        }
-      ],
-      "group": "Shape",
-      "caption": "Square to rounded 9-point star; drag the slider in Live Compose or Wasm.",
-      "wireframe": "wireframes/shape-morph.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogShapes.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 14,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "ShapeMorph",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Template/AppScaffold",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/template-appscaffold/ideal__default__dark__compact.png",
-          "state": "default",
-          "width": 1078,
-          "height": 2399,
-          "theme": "dark",
-          "size": "compact",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/template-appscaffold/ideal__default__light__compact.png",
-          "state": "default",
-          "width": 1078,
-          "height": 2399,
-          "theme": "light",
-          "size": "compact",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [
-        {
-          "kind": "a11y",
-          "severity": "info",
-          "message": "button",
-          "detail": {
-            "role": "button",
-            "bounds": {
-              "x": 889,
-              "y": 2147,
-              "width": 147,
-              "height": 147
-            }
-          },
-          "bounds": {
-            "x": 889,
-            "y": 2147,
-            "width": 147,
-            "height": 147
-          }
-        }
-      ],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 43,
-            "y": 110,
-            "width": 159,
-            "height": 74
-          },
-          "padding": {
-            "start": 4,
-            "top": 0,
-            "end": 4,
-            "bottom": 0
-          }
-        },
-        {
-          "bounds": {
-            "x": 889,
-            "y": 2147,
-            "width": 147,
-            "height": 147
-          },
-          "role": "Button",
-          "cornerRadius": 16
-        },
-        {
-          "bounds": {
-            "x": 42,
-            "y": 0,
-            "width": 994,
-            "height": 63
-          },
-          "padding": {
-            "start": 16,
-            "top": 0,
-            "end": 16,
-            "bottom": 0
-          }
-        },
-        {
-          "bounds": {
-            "x": 397,
-            "y": 2368,
-            "width": 284,
-            "height": 11
-          },
-          "padding": {
-            "start": 0,
-            "top": 4,
-            "end": 0,
-            "bottom": 0
-          },
-          "cornerRadius": 2
-        }
-      ],
-      "group": "Scaffold templates",
-      "caption": "Full-screen layout with the OS status bar — TopAppBar, a list, and a FAB, captured with showSystemUi on a phone.",
-      "wireframe": "wireframes/template-appscaffold.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogTemplates.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 70,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "AppScaffoldTemplate",
-      "parameters": [
-        {
-          "name": "content",
-          "type": "() -> Unit",
-          "composableSlot": true
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "TextField/Filled",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/textfield-filled/ideal__default__dark.png",
-          "state": "default",
-          "width": 819,
-          "height": 231,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/textfield-filled/ideal__default__light.png",
-          "state": "default",
-          "width": 819,
-          "height": 231,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [],
-      "group": "Text fields",
-      "caption": "Editable value + floating label — the sheet's string-knob carrier.",
-      "wireframe": "wireframes/textfield-filled.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogTextFields.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 18,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "TextFieldSticker",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Text/MaxLines-Truncated",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/text-maxlines-truncated/ideal__default__dark.png",
-          "state": "default",
-          "width": 420,
-          "height": 210,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/text-maxlines-truncated/ideal__default__light.png",
-          "state": "default",
-          "width": 420,
-          "height": 210,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [],
-      "group": "Text options",
-      "caption": "maxLines=2 + ellipsis overflow — exercises the textOverflow product.",
-      "wireframe": "wireframes/text-maxlines-truncated.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogText.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 20,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "TextMaxLinesTruncated",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Text/Serif",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/text-serif/ideal__default__dark.png",
-          "state": "default",
-          "width": 510,
-          "height": 147,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/text-serif/ideal__default__light.png",
-          "state": "default",
-          "width": 510,
-          "height": 147,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [],
-      "group": "Text options",
-      "caption": "Generic serif family (Noto Serif) — pins the Wasm tier’s font interception.",
-      "wireframe": "wireframes/text-serif.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogText.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 29,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "TextSerifSpecimen",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
-    },
-    {
-      "componentId": "Text/Monospace",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/text-monospace/ideal__default__dark.png",
-          "state": "default",
-          "width": 562,
-          "height": 147,
-          "theme": "dark",
-          "density": 2.625
-        },
-        {
-          "variant": "ideal",
-          "path": "images/text-monospace/ideal__default__light.png",
-          "state": "default",
-          "width": 562,
-          "height": 147,
-          "theme": "light",
-          "density": 2.625
-        }
-      ],
-      "greenlines": [],
-      "redlines": [],
-      "group": "Text options",
-      "caption": "Generic monospace family (Droid Sans Mono) — pins the Wasm tier’s font interception.",
-      "wireframe": "wireframes/text-monospace.svg",
-      "sourceFile": "src/main/kotlin/com/example/designcatalogm3/CatalogText.kt",
-      "sourceModule": ":samples:design-catalog-m3",
-      "bodyLine": 38,
-      "sourceDirectory": "samples/design-catalog-m3",
-      "sourceFunction": "TextMonospaceSpecimen",
-      "parameters": [
-        {
-          "name": "id",
-          "type": "String"
-        }
-      ],
-      "section": "Material 3"
     }
   ],
   "library": [
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 2.0.0",
-  "generatedAt": "2026-09-20T17:08:53.519Z",
+  "renderer": "compose-preview 2.40.0",
+  "generatedAt": "2026-10-10T11:01:53.543Z",
   "display": {
     "hero": "Device/Populated"
   },

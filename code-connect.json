@@ -6,7 +6,7 @@
     "repo": "yschimke/meshcore-mobile",
     "ref": "main"
   },
-  "generatedAt": "2026-09-20T17:08:54.811Z",
+  "generatedAt": "2026-10-10T11:01:54.482Z",
   "mappings": [
     {
       "componentId": "Theme/MeshCore-Light",
@@ -15,8 +15,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ThemeFoundationMeshcoreLightPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-meshcore-light__ideal__default__light__compact.svg"
+      "previewName": "ThemeFoundationMeshcoreLightPreview"
     },
     {
       "componentId": "Theme/MeshCore-Dark",
@@ -25,8 +24,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ThemeFoundationMeshcoreDarkPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-meshcore-dark__ideal__default__dark__compact.svg"
+      "previewName": "ThemeFoundationMeshcoreDarkPreview"
     },
     {
       "componentId": "Theme/Material3-Light",
@@ -35,8 +33,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ThemeFoundationMaterial3LightPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-material3-light__ideal__default__light__compact.svg"
+      "previewName": "ThemeFoundationMaterial3LightPreview"
     },
     {
       "componentId": "Theme/Material3-Dark",
@@ -45,8 +42,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ThemeFoundationPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ThemeFoundationMaterial3DarkPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/theme-material3-dark__ideal__default__dark__compact.svg"
+      "previewName": "ThemeFoundationMaterial3DarkPreview"
     },
     {
       "componentId": "DeviceSummaryCard/Populated",
@@ -55,8 +51,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceSummaryCardPopulatedPreview",
-      "figmaSvg": "figma/devicesummarycard-populated.svg"
+      "previewName": "DeviceSummaryCardPopulatedPreview"
     },
     {
       "componentId": "DeviceSummaryCard/Loading",
@@ -65,8 +60,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceSummaryCardLoadingPreview",
-      "figmaSvg": "figma/devicesummarycard-loading.svg"
+      "previewName": "DeviceSummaryCardLoadingPreview"
     },
     {
       "componentId": "DeviceSummaryCard/LowBattery",
@@ -75,8 +69,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceSummaryCardLowBatteryPreview",
-      "figmaSvg": "figma/devicesummarycard-lowbattery.svg"
+      "previewName": "DeviceSummaryCardLowBatteryPreview"
     },
     {
       "componentId": "ContactRow/Chat",
@@ -85,8 +78,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactRowChatPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-chat__ideal__default__light__compact.svg"
+      "previewName": "ContactRowChatPreview"
     },
     {
       "componentId": "ContactRow/Repeater",
@@ -95,8 +87,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactRowRepeaterPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-repeater__ideal__default__light__compact.svg"
+      "previewName": "ContactRowRepeaterPreview"
     },
     {
       "componentId": "ContactRow/Room",
@@ -105,8 +96,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactRowRoomPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-room__ideal__default__light__compact.svg"
+      "previewName": "ContactRowRoomPreview"
     },
     {
       "componentId": "ContactRow/Sensor",
@@ -115,8 +105,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactRowSensorPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactrow-sensor__ideal__default__light__compact.svg"
+      "previewName": "ContactRowSensorPreview"
     },
     {
       "componentId": "ContactList/Empty",
@@ -125,8 +114,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactListEmptyPreview",
-      "figmaSvg": "figma/contactlist-empty.svg"
+      "previewName": "ContactListEmptyPreview"
     },
     {
       "componentId": "ContactList/Few",
@@ -135,8 +123,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactListFewPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/contactlist-few__ideal__default__light__compact.svg"
+      "previewName": "ContactListFewPreview"
     },
     {
       "componentId": "ContactList/Many",
@@ -145,8 +132,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "ContactListManyPreview",
-      "figmaSvg": "figma/contactlist-many.svg"
+      "previewName": "ContactListManyPreview"
     },
     {
       "componentId": "BleDeviceList/Empty",
@@ -155,8 +141,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "BleDeviceListEmptyPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-empty__ideal__default__light__compact.svg"
+      "previewName": "BleDeviceListEmptyPreview"
     },
     {
       "componentId": "BleDeviceList/Few",
@@ -165,8 +150,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "BleDeviceListFewPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/bledevicelist-few__ideal__default__light__compact.svg"
+      "previewName": "BleDeviceListFewPreview"
     },
     {
       "componentId": "BleDeviceList/Many",
@@ -175,8 +159,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "BleDeviceListManyPreview",
-      "figmaSvg": "figma/bledevicelist-many.svg"
+      "previewName": "BleDeviceListManyPreview"
     },
     {
       "componentId": "TcpConnectPanel/Idle",
@@ -185,8 +168,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "TcpConnectPanelIdlePreview",
-      "figmaSvg": "figma/tcpconnectpanel-idle.svg"
+      "previewName": "TcpConnectPanelIdlePreview"
     },
     {
       "componentId": "TcpConnectPanel/Busy",
@@ -195,8 +177,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "TcpConnectPanelBusyPreview",
-      "figmaSvg": "figma/tcpconnectpanel-busy.svg"
+      "previewName": "TcpConnectPanelBusyPreview"
     },
     {
       "componentId": "BlePermissionPanel/First",
@@ -205,8 +186,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "BlePermissionPanelFirstPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-first__ideal__default__light__compact.svg"
+      "previewName": "BlePermissionPanelFirstPreview"
     },
     {
       "componentId": "BlePermissionPanel/Denied",
@@ -215,8 +195,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "BlePermissionPanelDeniedPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/blepermissionpanel-denied__ideal__default__light__compact.svg"
+      "previewName": "BlePermissionPanelDeniedPreview"
     },
     {
       "componentId": "Scanner/SavedEmpty",
@@ -335,8 +314,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-savedempty.svg"
+      ]
     },
     {
       "componentId": "Scanner/SavedPopulated",
@@ -455,8 +433,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-savedpopulated.svg"
+      ]
     },
     {
       "componentId": "Scanner/BlePermission",
@@ -575,8 +552,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-blepermission.svg"
+      ]
     },
     {
       "componentId": "Scanner/BleEmpty",
@@ -695,8 +671,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-bleempty.svg"
+      ]
     },
     {
       "componentId": "Scanner/BleFew",
@@ -815,8 +790,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-blefew.svg"
+      ]
     },
     {
       "componentId": "Scanner/BleMany",
@@ -935,8 +909,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-blemany.svg"
+      ]
     },
     {
       "componentId": "Scanner/UsbEmpty",
@@ -1055,8 +1028,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-usbempty.svg"
+      ]
     },
     {
       "componentId": "Scanner/UsbFew",
@@ -1175,8 +1147,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-usbfew.svg"
+      ]
     },
     {
       "componentId": "Scanner/Tcp",
@@ -1295,8 +1266,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/scanner-tcp.svg"
+      ]
     },
     {
       "componentId": "Device/Loading",
@@ -1305,8 +1275,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceBodyLoadingPreview",
-      "figmaSvg": "figma/device-loading.svg"
+      "previewName": "DeviceBodyLoadingPreview"
     },
     {
       "componentId": "Device/NoContacts",
@@ -1315,8 +1284,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceBodyNoContactsPreview",
-      "figmaSvg": "figma/device-nocontacts.svg"
+      "previewName": "DeviceBodyNoContactsPreview"
     },
     {
       "componentId": "Device/Populated",
@@ -1627,8 +1595,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceBodyLowBatteryPreview",
-      "figmaSvg": "figma/device-lowbattery.svg"
+      "previewName": "DeviceBodyLowBatteryPreview"
     },
     {
       "componentId": "Device/ManyContacts",
@@ -1637,8 +1604,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "DeviceBodyManyContactsPreview",
-      "figmaSvg": "figma/device-manycontacts.svg"
+      "previewName": "DeviceBodyManyContactsPreview"
     },
     {
       "componentId": "Device/StatusConnecting",
@@ -1718,8 +1684,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Long"
         }
-      ],
-      "figmaSvg": "figma/device-statusconnecting.svg"
+      ]
     },
     {
       "componentId": "Device/StatusFailed",
@@ -1799,8 +1764,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Long"
         }
-      ],
-      "figmaSvg": "figma/device-statusfailed.svg"
+      ]
     },
     {
       "componentId": "Device/Cached",
@@ -2256,8 +2220,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ],
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-populated__ideal__default__light.svg"
+      ]
     },
     {
       "componentId": "SavedDevices/Empty",
@@ -2376,8 +2339,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ],
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/saveddevices-empty__ideal__default__light.svg"
+      ]
     },
     {
       "componentId": "app/PlayStoreIcon",
@@ -2386,8 +2348,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "PlayStoreIcon",
-      "figmaSvg": "figma/app-playstoreicon.svg"
+      "previewName": "PlayStoreIcon"
     },
     {
       "componentId": "app/PlayStoreFeature",
@@ -2396,8 +2357,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "PlayStoreFeature",
-      "figmaSvg": "figma/app-playstorefeature.svg"
+      "previewName": "PlayStoreFeature"
     },
     {
       "componentId": "app/PlayStorePhoneHomeLight",
@@ -2425,8 +2385,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-playstorephonehomelight.svg"
+      ]
     },
     {
       "componentId": "app/PlayStorePhoneHomeDark",
@@ -2454,8 +2413,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-playstorephonehomedark.svg"
+      ]
     },
     {
       "componentId": "app/PlayStorePhoneScannerSaved",
@@ -2468,8 +2426,7 @@
       "codeSnippet": "PlayStoreSavedDevicesBody()",
       "imports": [
         "import ee.schimke.meshcore.app.ui.PlayStoreSavedDevicesBody"
-      ],
-      "figmaSvg": "figma/app-playstorephonescannersaved.svg"
+      ]
     },
     {
       "componentId": "app/PlayStorePhoneScannerBle",
@@ -2482,8 +2439,7 @@
       "codeSnippet": "PlayStoreBleScanningBody()",
       "imports": [
         "import ee.schimke.meshcore.app.ui.PlayStoreBleScanningBody"
-      ],
-      "figmaSvg": "figma/app-playstorephonescannerble.svg"
+      ]
     },
     {
       "componentId": "app/PlayStoreTabletSevenHome",
@@ -2511,8 +2467,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-playstoretabletsevenhome.svg"
+      ]
     },
     {
       "componentId": "app/PlayStoreTabletTenHome",
@@ -2540,8 +2495,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-playstoretablettenhome.svg"
+      ]
     },
     {
       "componentId": "app/ThemePickerMeshcoreSystemPreview",
@@ -2608,8 +2562,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ],
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-themepickermeshcoresystempreview__ideal__default.svg"
+      ]
     },
     {
       "componentId": "app/ThemePickerDynamicDarkPreview",
@@ -2676,8 +2629,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ],
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-themepickerdynamicdarkpreview__ideal__default__dark.svg"
+      ]
     },
     {
       "componentId": "app/DeviceInfoWidgetPopulatedPreview",
@@ -2796,8 +2748,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-deviceinfowidgetpopulatedpreview.svg"
+      ]
     },
     {
       "componentId": "app/DeviceInfoWidgetEmptyPreview",
@@ -2916,8 +2867,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-deviceinfowidgetemptypreview.svg"
+      ]
     },
     {
       "componentId": "app/DeviceInfoWidgetStalePreview",
@@ -3036,8 +2986,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/app-deviceinfowidgetstalepreview.svg"
+      ]
     },
     {
       "componentId": "app/MainActivity",
@@ -3064,8 +3013,7 @@
       "source": "",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "MeshCore Dark theme",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-meshcore-dark-theme__ideal__default__dark__expanded.svg"
+      "previewName": "MeshCore Dark theme"
     },
     {
       "componentId": "app/MeshCore Light theme",
@@ -3074,8 +3022,7 @@
       "source": "",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "MeshCore Light theme",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-meshcore-light-theme__ideal__default__light__expanded.svg"
+      "previewName": "MeshCore Light theme"
     },
     {
       "componentId": "app/Dynamic Dark theme",
@@ -3084,8 +3031,7 @@
       "source": "",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "Dynamic Dark theme",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-dynamic-dark-theme__ideal__default__dark__expanded.svg"
+      "previewName": "Dynamic Dark theme"
     },
     {
       "componentId": "app/Dynamic Light theme",
@@ -3094,8 +3040,7 @@
       "source": "",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "Dynamic Light theme",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/app-dynamic-light-theme__ideal__default__light__expanded.svg"
+      "previewName": "Dynamic Light theme"
     },
     {
       "componentId": "meshcore-components/ContactChatDarkPreview",
@@ -3739,102 +3684,412 @@
     {
       "componentId": "wear/StatusBodyLoadingPreview",
       "figmaLayerName": "wear/StatusBodyLoadingPreview",
-      "componentName": "StatusBodyLoadingPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyLoadingPreview",
-      "figmaSvg": "figma/wear-statusbodyloadingpreview.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyPhoneDisconnectedPreview",
       "figmaLayerName": "wear/StatusBodyPhoneDisconnectedPreview",
-      "componentName": "StatusBodyPhoneDisconnectedPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyPhoneDisconnectedPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyphonedisconnectedpreview__ideal__default__largeround.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyRadioDisconnectedPreview",
       "figmaLayerName": "wear/StatusBodyRadioDisconnectedPreview",
-      "componentName": "StatusBodyRadioDisconnectedPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyRadioDisconnectedPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyradiodisconnectedpreview__ideal__default__largeround.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyConnectedPreview",
       "figmaLayerName": "wear/StatusBodyConnectedPreview",
-      "componentName": "StatusBodyConnectedPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyConnectedPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyconnectedpreview__ideal__default__largeround.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyConnectedLowBatteryPreview",
       "figmaLayerName": "wear/StatusBodyConnectedLowBatteryPreview",
-      "componentName": "StatusBodyConnectedLowBatteryPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyConnectedLowBatteryPreview",
-      "figmaSvg": "figma/wear-statusbodyconnectedlowbatterypreview.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyConnectedMediumBatteryPreview",
       "figmaLayerName": "wear/StatusBodyConnectedMediumBatteryPreview",
-      "componentName": "StatusBodyConnectedMediumBatteryPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyConnectedMediumBatteryPreview",
-      "figmaSvg": "figma/wear-statusbodyconnectedmediumbatterypreview.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/StatusBodyErrorPreview",
       "figmaLayerName": "wear/StatusBodyErrorPreview",
-      "componentName": "StatusBodyErrorPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "StatusBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/StatusScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "StatusBodyErrorPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-statusbodyerrorpreview__ideal__default__largeround.svg"
+      "codeSnippet": "StatusBody(\n    state = TODO(\"WearUiState\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.StatusBody"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "WearUiState",
+          "typeFqn": "ee.schimke.meshcore.wear.ui.WearUiState",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onViewContacts",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/ContactsBodyEmptyPreview",
       "figmaLayerName": "wear/ContactsBodyEmptyPreview",
-      "componentName": "ContactsBodyEmptyPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "ContactsBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/ContactsScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "ContactsBodyEmptyPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyemptypreview__ideal__default__largeround.svg"
+      "codeSnippet": "ContactsBody(\n    contacts = TODO(\"List<ContactMsg>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.ContactsBody"
+      ],
+      "parameters": [
+        {
+          "name": "contacts",
+          "type": "List<ContactMsg>",
+          "typeFqn": "kotlin.collections.List",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onContactSelected",
+          "type": "(ContactMsg) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/ContactsBodyFewPreview",
       "figmaLayerName": "wear/ContactsBodyFewPreview",
-      "componentName": "ContactsBodyFewPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "ContactsBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/ContactsScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "ContactsBodyFewPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-contactsbodyfewpreview__ideal__default__largeround.svg"
+      "codeSnippet": "ContactsBody(\n    contacts = TODO(\"List<ContactMsg>\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.ContactsBody"
+      ],
+      "parameters": [
+        {
+          "name": "contacts",
+          "type": "List<ContactMsg>",
+          "typeFqn": "kotlin.collections.List",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onContactSelected",
+          "type": "(ContactMsg) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/QuickReplyBodyPreview",
       "figmaLayerName": "wear/QuickReplyBodyPreview",
-      "componentName": "QuickReplyBodyPreview",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
+      "componentName": "QuickReplyBody",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/ui/QuickReplyScreen.kt",
       "label": "Compose",
-      "confidence": "preview-fallback",
+      "confidence": "HIGH",
       "previewName": "QuickReplyBodyPreview",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-quickreplybodypreview__ideal__default__largeround.svg"
+      "codeSnippet": "QuickReplyBody()",
+      "imports": [
+        "import ee.schimke.meshcore.wear.ui.QuickReplyBody"
+      ],
+      "parameters": [
+        {
+          "name": "replies",
+          "type": "List<String>",
+          "typeFqn": "kotlin.collections.List",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onReply",
+          "type": "(String) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        }
+      ]
     },
     {
       "componentId": "wear/InteractiveToggleChipPreview",
@@ -3862,8 +4117,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ],
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-interactivetogglechippreview__ideal__default__largeround.svg"
+      ]
     },
     {
       "componentId": "wear/StatusWidgetConnectedPreview",
@@ -3930,8 +4184,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/wear-statuswidgetconnectedpreview.svg"
+      ]
     },
     {
       "componentId": "wear/StatusWidgetDisconnectedPreview",
@@ -3998,8 +4251,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/wear-statuswidgetdisconnectedpreview.svg"
+      ]
     },
     {
       "componentId": "wear/StatusWidgetLowBatteryPreview",
@@ -4066,8 +4318,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": null
         }
-      ],
-      "figmaSvg": "figma/wear-statuswidgetlowbatterypreview.svg"
+      ]
     },
     {
       "componentId": "wear/WearComponentCatalogPreview",
@@ -4076,8 +4327,7 @@
       "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "WearComponentCatalogPreview",
-      "figmaSvg": "figma/wear-wearcomponentcatalogpreview.svg"
+      "previewName": "WearComponentCatalogPreview"
     },
     {
       "componentId": "wear/WearComponentGridPreview",
@@ -4118,8 +4368,7 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ],
-      "figmaSvg": "figma/wear-wearcomponentgridpreview.svg"
+      ]
     },
     {
       "componentId": "wear/WearMainActivity",
@@ -4146,8 +4395,7 @@
       "source": "",
       "label": "Compose",
       "confidence": "preview-fallback",
-      "previewName": "MeshCore theme",
-      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/wear-meshcore-theme__ideal__default__expanded.svg"
+      "previewName": "MeshCore theme"
     }
   ]
 }

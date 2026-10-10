@@ -10,4 +10,43 @@
   <g>
     <rect x="0" y="0" width="504" height="504" fill="none" fill-opacity="0" stroke="#8E6BA8" stroke-width="1" stroke-opacity="0.5"/>
   </g>
+  <g>
+    <rect x="32" y="32" width="440" height="440" fill="#1A211F" fill-opacity="1" stroke="#B0813B" stroke-width="1.5" stroke-opacity="1"/>
+    <text x="35" y="44" font-family="system-ui, sans-serif" font-size="9" fill="#B0813B">#FF1A211F  pad 12.0dp  gap 6.0dp</text>
+  </g>
+  <g>
+    <rect x="32" y="32" width="221" height="49" fill="none" fill-opacity="0" stroke="#3B72A8" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="32" y="32" width="26" height="36" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="58" y="32" width="195" height="49" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="32" y="97" width="104" height="37" fill="none" fill-opacity="0" stroke="#3B72A8" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="32" y="97" width="47" height="37" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="79" y="97" width="57" height="37" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="32" y="150" width="440" height="8" fill="#2F3634" fill-opacity="1" stroke="#3B72A8" stroke-width="1.5" stroke-opacity="1"/>
+    <text x="35" y="162" font-family="system-ui, sans-serif" font-size="9" fill="#3B72A8">#FF2F3634</text>
+  </g>
+  <g>
+    <rect x="32" y="150" width="66" height="8" fill="#E0C38C" fill-opacity="1" stroke="#A85B6B" stroke-width="1.5" stroke-opacity="1"/>
+    <text x="35" y="162" font-family="system-ui, sans-serif" font-size="9" fill="#A85B6B">#FFE0C38C</text>
+  </g>
+  <g>
+    <rect x="32" y="174" width="192" height="37" fill="none" fill-opacity="0" stroke="#3B72A8" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="32" y="174" width="47" height="37" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <rect x="79" y="174" width="145" height="37" fill="none" fill-opacity="0" stroke="#A85B6B" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
 </svg>
