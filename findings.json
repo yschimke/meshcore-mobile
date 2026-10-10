@@ -960,58 +960,6 @@
       "variant": ""
     },
     {
-      "annotatedBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark-4a40b5c7.a11y.png",
-      "cleanBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark-4a40b5c7.png",
-      "findings": [
-        {
-          "boundsInScreen": "64,422,190,548",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"Selected\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        },
-        {
-          "boundsInScreen": "64,253,190,379",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Not selected\" is identical to that of 2 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        }
-      ],
-      "functionName": "ThemePickerDynamicDarkPreview",
-      "module": "app",
-      "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker \u2014 Dynamic + Dark",
-      "rendersDir": "app",
-      "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
-      "variant": ""
-    },
-    {
-      "annotatedBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System-f38cd3bb.a11y.png",
-      "cleanBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System-f38cd3bb.png",
-      "findings": [
-        {
-          "boundsInScreen": "64,253,190,379",
-          "level": "INFO",
-          "message": "This non-clickable item's speakable text: \"Selected\" is identical to that of 1 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        },
-        {
-          "boundsInScreen": "64,422,190,548",
-          "level": "WARNING",
-          "message": "This clickable item's speakable text: \"Not selected\" is identical to that of 2 other item(s).",
-          "type": "DuplicateSpeakableTextCheck",
-          "viewDescription": "android.widget.RadioButton"
-        }
-      ],
-      "functionName": "ThemePickerMeshcoreSystemPreview",
-      "module": "app",
-      "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker \u2014 MeshCore + System",
-      "rendersDir": "app",
-      "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
-      "variant": ""
-    },
-    {
       "annotatedBasename": "CachedDeviceBodyArabicPreview_Cached_device_Arabic-68448a40.a11y.png",
       "cleanBasename": "CachedDeviceBodyArabicPreview_Cached_device_Arabic-68448a40.png",
       "findings": [],
@@ -1067,7 +1015,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.a11y.png",
       "cleanBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png",
       "findings": [],
       "functionName": "ChannelChatArabicPreview",
@@ -1078,7 +1026,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.a11y.png",
       "cleanBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png",
       "findings": [],
       "functionName": "ChannelChatDarkPreview",
@@ -1089,7 +1037,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ChannelChatPreview_Dark-32af4dfe.a11y.png",
       "cleanBasename": "ChannelChatPreview_Dark-32af4dfe.png",
       "findings": [],
       "functionName": "ChannelChatPreview",
@@ -1100,7 +1048,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.a11y.png",
       "cleanBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.png",
       "findings": [],
       "functionName": "CommandsArabicPreview",
@@ -1111,7 +1059,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.a11y.png",
       "cleanBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.png",
       "findings": [],
       "functionName": "CommandsDarkPreview",
@@ -1122,7 +1070,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "CommandsPreview_Dark-435b1f7d.a11y.png",
       "cleanBasename": "CommandsPreview_Dark-435b1f7d.png",
       "findings": [],
       "functionName": "CommandsPreview",
@@ -1133,7 +1081,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.a11y.png",
       "cleanBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png",
       "findings": [],
       "functionName": "ContactChatArabicPreview",
@@ -1144,7 +1092,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.a11y.png",
       "cleanBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png",
       "findings": [],
       "functionName": "ContactChatDarkPreview",
@@ -1155,7 +1103,7 @@
       "variant": "pixel_7"
     },
     {
-      "annotatedBasename": "",
+      "annotatedBasename": "ContactChatPreview_Dark-a03644a3.a11y.png",
       "cleanBasename": "ContactChatPreview_Dark-a03644a3.png",
       "findings": [],
       "functionName": "ContactChatPreview",
@@ -1241,6 +1189,28 @@
       "rendersDir": "meshcore-components",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/DeviceSettingsBodyPreviews.kt",
       "variant": "pixel_7"
+    },
+    {
+      "annotatedBasename": "",
+      "cleanBasename": "ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark-4a40b5c7.png",
+      "findings": [],
+      "functionName": "ThemePickerDynamicDarkPreview",
+      "module": "meshcore-components",
+      "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker \u2014 Dynamic + Dark",
+      "rendersDir": "meshcore-components",
+      "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "variant": ""
+    },
+    {
+      "annotatedBasename": "",
+      "cleanBasename": "ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System-f38cd3bb.png",
+      "findings": [],
+      "functionName": "ThemePickerMeshcoreSystemPreview",
+      "module": "meshcore-components",
+      "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker \u2014 MeshCore + System",
+      "rendersDir": "meshcore-components",
+      "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "variant": ""
     },
     {
       "annotatedBasename": "ContactsBodyEmptyPreview_Devices_Large_Round-5330b383.a11y.png",
