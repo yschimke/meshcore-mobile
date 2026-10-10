@@ -67,3 +67,13 @@ Release tags publish desktop installers to [GitHub Releases](https://github.com/
 Desktop installer checks run on pull requests and retain their packages as workflow artifacts. The **Desktop installers** workflow can also build any ref without publishing, or rebuild an existing release by supplying its tag. Manual builds stay build-only unless **publish** is explicitly selected; automated tagged releases publish all platforms. Release assets include SHA-256 checksums, and their filenames identify the application version and architecture. Installer metadata offsets the semantic major version by one to satisfy macOS packaging requirements while keeping upgrades monotonic.
 
 Local packaging: `./gradlew :desktop-app:packageDistributionForCurrentOS`. Override the app version with `-PdesktopVersion=0.1.0`.
+
+### Web app
+
+The production Wasm app is deployed by **Wasm website** to [GitHub Pages](https://yschimke.github.io/meshcore-mobile/). Pull requests build the same production distribution and exercise browser flows before deployment. Existing documentation remains available alongside the app.
+
+Local build: `./gradlew :web-app:wasmJsBrowserDistribution`. Serve `web-app/build/dist/wasmJs/productionExecutable` over HTTP on localhost or over HTTPS; opening `index.html` directly from disk does not work.
+
+MeshCore connects directly to USB companion radios through Web Serial at 115200 baud, using the same framing as Android USB. Use desktop Chrome or Edge and choose a port when prompted. Firefox and Safari can load the UI but do not provide Web Serial. Raw TCP sockets, Android BLE permissions and persistent message storage are not available in the browser. Browser typography uses platform font families.
+
+Browser checks: `python -m pip install playwright==1.62.0`, `python -m playwright install chromium`, then `python scripts/test-wasm-browser.py web-app/build/dist/wasmJs/productionExecutable`. Set `CHROMIUM_PATH` to use an existing Chromium installation.

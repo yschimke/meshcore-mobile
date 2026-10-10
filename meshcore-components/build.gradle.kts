@@ -28,6 +28,7 @@ kotlin {
   // Desktop (JVM) target for shared presentation and design-parity. Android
   // activity and platform integrations stay in androidMain.
   jvm("desktop")
+  @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class) wasmJs { browser() }
 
   sourceSets {
     commonMain.dependencies {
@@ -46,18 +47,20 @@ kotlin {
       implementation(libs.cmp.adaptive)
       implementation(libs.cmp.navigation.suite)
       api(libs.rc.player.compose)
-      // MeshCore's alternative themes are declared in shared code via @ThemeCatalog
-      // (MeshcoreThemeCatalogs), so the annotations must be reachable from commonMain — hence the
-      // KMP variant of preview-annotations (0.16.14+). Reflection-only markers, no runtime
-      // footprint.
-      implementation(libs.compose.preview.annotations)
       // Compose Multiplatform string resources: UI copy resolves from the shared
       // commonMain/composeResources/values*/strings.xml, so the daemon localizes per locale.
       // Exposed as api (not implementation) so consumers get the generated public Res +
       // stringResource API on their compile classpath — :app reuses these same strings.
       api(libs.compose.components.resources)
     }
+    // Catalog annotations currently publish Android/JVM variants, but no Wasm variant.
+    val catalogMain by creating {
+      dependsOn(commonMain.get())
+      dependencies { implementation(libs.compose.preview.annotations) }
+    }
+    getByName("desktopMain").dependsOn(catalogMain)
     val androidMain by getting {
+      dependsOn(catalogMain)
       dependencies {
         implementation(libs.kotlinx.coroutines.android)
         // Android-only Compose extras (extended icons live on Android; the

@@ -16,6 +16,7 @@ import ee.schimke.meshcore.core.protocol.MeshCoreConstants
 import ee.schimke.meshcore.core.protocol.Parsers
 import ee.schimke.meshcore.core.transport.Transport
 import ee.schimke.meshcore.core.transport.TransportState
+import kotlin.concurrent.Volatile
 import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart

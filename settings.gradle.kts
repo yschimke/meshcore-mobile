@@ -158,3 +158,5 @@ if (providers.gradleProperty("typedAdapterCatalog").orNull == "true") {
     includeBuild(builderSource)
     include(":ui-builder-catalog")
 }
+
+include(":web-app", ":meshcore-transport-webserial")
