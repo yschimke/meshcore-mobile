@@ -943,18 +943,18 @@
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-412-list-light-7cca62afdd81727f7c619a096aa51470fceb01abd0677dae038912fd1997e815.uid"
+        "path": "references/contacts-412-list-light-2fcf052ab37d9360bead92e34d690d55185668c1fc038a3d29e9b1ea132c192f.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "7cca62afdd81727f7c619a096aa51470fceb01abd0677dae038912fd1997e815",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "2fcf052ab37d9360bead92e34d690d55185668c1fc038a3d29e9b1ea132c192f",
           "widthDp": "412",
           "heightDp": "720",
           "theme": "light",
@@ -969,25 +969,25 @@
       "previewId": "contact-browser__ideal__detail__light__412dp",
       "label": "UI Builder · 412dp · detail · light",
       "raster": {
-        "path": "references/contacts-412-detail-light-32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305.png",
+        "path": "references/contacts-412-detail-light-ba64c7b6e4ebaca7fb80ed7d1cf2101dd2cdfa2695c7c97f69e8af6f672e895c.png",
         "width": 824,
         "height": 1440,
-        "sha256": "32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305"
+        "sha256": "ba64c7b6e4ebaca7fb80ed7d1cf2101dd2cdfa2695c7c97f69e8af6f672e895c"
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-412-detail-light-df36bf89848680bc6beb500e42a2290060f26480d5776e4f9386cce2605e1370.uid"
+        "path": "references/contacts-412-detail-light-f257d712fc8f99bbca27dfad5f4121942c5fd141a52dd4267f532d9eafd02f40.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "df36bf89848680bc6beb500e42a2290060f26480d5776e4f9386cce2605e1370",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "f257d712fc8f99bbca27dfad5f4121942c5fd141a52dd4267f532d9eafd02f40",
           "widthDp": "412",
           "heightDp": "720",
           "theme": "light",
@@ -1009,18 +1009,18 @@
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-412-list-dark-984c069d69ba24657f463f7387540fe08e2b405f3b835b6a959cac851e256be4.uid"
+        "path": "references/contacts-412-list-dark-a09ed0e8e3a242158a6f0003713ef53d456fcf698f1b3db0d491e1c241a052e7.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "984c069d69ba24657f463f7387540fe08e2b405f3b835b6a959cac851e256be4",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "a09ed0e8e3a242158a6f0003713ef53d456fcf698f1b3db0d491e1c241a052e7",
           "widthDp": "412",
           "heightDp": "720",
           "theme": "dark",
@@ -1035,25 +1035,25 @@
       "previewId": "contact-browser__ideal__detail__dark__412dp",
       "label": "UI Builder · 412dp · detail · dark",
       "raster": {
-        "path": "references/contacts-412-detail-dark-5b4efcc251429e79c6b656ec5db8a50b805321a7879f63ade47b5b1545738007.png",
+        "path": "references/contacts-412-detail-dark-7bb4b5dfcde9357bb901758dd6acdd36d0575d353bca77bb62849d14358a7886.png",
         "width": 824,
         "height": 1440,
-        "sha256": "5b4efcc251429e79c6b656ec5db8a50b805321a7879f63ade47b5b1545738007"
+        "sha256": "7bb4b5dfcde9357bb901758dd6acdd36d0575d353bca77bb62849d14358a7886"
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-412-detail-dark-01ae0d16ba945f4ee428775c4c5de62a1f102d8664cbe81151b87a2d4cf87bf2.uid"
+        "path": "references/contacts-412-detail-dark-a82b710df8dab86fddf7b9ef307f4fd0a6ccfa5902e5b02233d2ec09eb9a8019.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "01ae0d16ba945f4ee428775c4c5de62a1f102d8664cbe81151b87a2d4cf87bf2",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "a82b710df8dab86fddf7b9ef307f4fd0a6ccfa5902e5b02233d2ec09eb9a8019",
           "widthDp": "412",
           "heightDp": "720",
           "theme": "dark",
@@ -1068,25 +1068,25 @@
       "previewId": "contact-browser__ideal__default__light__840dp",
       "label": "UI Builder · 840dp · list · light",
       "raster": {
-        "path": "references/contacts-840-list-light-419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853.png",
+        "path": "references/contacts-840-list-light-4ac6216bcbcbcb44709d890fdca33d9c5a6df2f31d3068172e8da61a77503055.png",
         "width": 1680,
         "height": 1440,
-        "sha256": "419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853"
+        "sha256": "4ac6216bcbcbcb44709d890fdca33d9c5a6df2f31d3068172e8da61a77503055"
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-840-list-light-894c798085fe7750583ac8cfed7d02eea85e64a7bbc72d74b176c8946c5c193f.uid"
+        "path": "references/contacts-840-list-light-e86e8da02c6925addb668e1a7808bc41453c6bcd581e4074c992b3ffa0858647.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "894c798085fe7750583ac8cfed7d02eea85e64a7bbc72d74b176c8946c5c193f",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "e86e8da02c6925addb668e1a7808bc41453c6bcd581e4074c992b3ffa0858647",
           "widthDp": "840",
           "heightDp": "720",
           "theme": "light",
@@ -1101,25 +1101,25 @@
       "previewId": "contact-browser__ideal__detail__light__840dp",
       "label": "UI Builder · 840dp · detail · light",
       "raster": {
-        "path": "references/contacts-840-detail-light-307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af.png",
+        "path": "references/contacts-840-detail-light-986c97189ccb80e1a54c1e474181d55cfc148f315b6446d9dd1cb82e40c26941.png",
         "width": 1680,
         "height": 1440,
-        "sha256": "307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af"
+        "sha256": "986c97189ccb80e1a54c1e474181d55cfc148f315b6446d9dd1cb82e40c26941"
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-840-detail-light-b6cb6b17445e616aaa14bd80f38bfa46d82dbdbfeb34ee9d0051c0b5aed36b7b.uid"
+        "path": "references/contacts-840-detail-light-06fec446c269cc394eb34daca63b5fd66e6dfba27568c34142309d091126d4dc.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "b6cb6b17445e616aaa14bd80f38bfa46d82dbdbfeb34ee9d0051c0b5aed36b7b",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "06fec446c269cc394eb34daca63b5fd66e6dfba27568c34142309d091126d4dc",
           "widthDp": "840",
           "heightDp": "720",
           "theme": "light",
@@ -1134,25 +1134,25 @@
       "previewId": "contact-browser__ideal__default__dark__840dp",
       "label": "UI Builder · 840dp · list · dark",
       "raster": {
-        "path": "references/contacts-840-list-dark-83affcf1736c9dcf7a7a12f8a70ce09dab2d63fa540d193a9fade70e5a06dac2.png",
+        "path": "references/contacts-840-list-dark-335d87d29927742510d7e6474c0d02b366f89133efc60d9e13fba4c380dabd50.png",
         "width": 1680,
         "height": 1440,
-        "sha256": "83affcf1736c9dcf7a7a12f8a70ce09dab2d63fa540d193a9fade70e5a06dac2"
+        "sha256": "335d87d29927742510d7e6474c0d02b366f89133efc60d9e13fba4c380dabd50"
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-840-list-dark-af6e4bf2347567e3f325fa85fc2dae7c45c02f36082a052187785a5ec4f6c062.uid"
+        "path": "references/contacts-840-list-dark-8575e817d9975b140d8c9d749da9bffe47b865db07bce59441b5b75263f8141e.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "af6e4bf2347567e3f325fa85fc2dae7c45c02f36082a052187785a5ec4f6c062",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "8575e817d9975b140d8c9d749da9bffe47b865db07bce59441b5b75263f8141e",
           "widthDp": "840",
           "heightDp": "720",
           "theme": "dark",
@@ -1167,31 +1167,1747 @@
       "previewId": "contact-browser__ideal__detail__dark__840dp",
       "label": "UI Builder · 840dp · detail · dark",
       "raster": {
-        "path": "references/contacts-840-detail-dark-09cbbeef1727e9d00dc047e812672c6b0ef89283032eddf5ccde17718ec3b74c.png",
+        "path": "references/contacts-840-detail-dark-7521a6921b353ca00d56b17a0997fde14a67cd3e2febf4d31f0476fa8216babc.png",
         "width": 1680,
         "height": 1440,
-        "sha256": "09cbbeef1727e9d00dc047e812672c6b0ef89283032eddf5ccde17718ec3b74c"
+        "sha256": "7521a6921b353ca00d56b17a0997fde14a67cd3e2febf4d31f0476fa8216babc"
       },
       "artifact": {
         "kind": "uid",
-        "path": "references/contacts-840-detail-dark-b12401fb2c2be6e236c95dd7ee9da81dafc54ba75dfa2299ebebef0a0a16faa7.uid"
+        "path": "references/contacts-840-detail-dark-cd5219d1e200fd6b2cb0d3b72b2db4373d28b784fd8bde4bdca6d4317e5ab817.uid"
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
           "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
-          "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
-          "documentSha256": "b12401fb2c2be6e236c95dd7ee9da81dafc54ba75dfa2299ebebef0a0a16faa7",
+          "sourceSha256": "cdebcc9d22946ba76e1b9fbc739075f2bf3cf1a3cfb1258d64bf266e05591c39",
+          "documentSha256": "cd5219d1e200fd6b2cb0d3b72b2db4373d28b784fd8bde4bdca6d4317e5ab817",
           "widthDp": "840",
           "heightDp": "720",
           "theme": "dark",
           "state": "detail",
           "density": "2",
           "componentId": "Contact browser"
+        }
+      }
+    },
+    {
+      "id": "scanner-412-list-light",
+      "previewId": "connect__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/scanner-412-list-light-7cd47941610de8a6ce9cb2d5daf979fcd9f01e2b910cffda81ee9c6c54921da9.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "7cd47941610de8a6ce9cb2d5daf979fcd9f01e2b910cffda81ee9c6c54921da9"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-412-list-light-8e81366dc1241e966d2056d4bca3f384f8ecdc1809e5c87f204cdea58858c075.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "84bf02156faaa5fc146e32e515abca88c96c6b22d9fca37899ccd04b7f4e7aa6",
+          "documentSha256": "8e81366dc1241e966d2056d4bca3f384f8ecdc1809e5c87f204cdea58858c075",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-412-list-dark",
+      "previewId": "connect__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/scanner-412-list-dark-ec0da03a5bcc138fe771741f1f84b3a24902ae4403129a758de22600c59096ca.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "ec0da03a5bcc138fe771741f1f84b3a24902ae4403129a758de22600c59096ca"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-412-list-dark-d6cc8ce0a615baadb14aa3e3fa2c7de2ab5a1a4d7271ba6fcf40af042504a401.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "84bf02156faaa5fc146e32e515abca88c96c6b22d9fca37899ccd04b7f4e7aa6",
+          "documentSha256": "d6cc8ce0a615baadb14aa3e3fa2c7de2ab5a1a4d7271ba6fcf40af042504a401",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-412-detail-light",
+      "previewId": "connect__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/scanner-412-detail-light-422dc2fe58c90961f1f3e8d48ffcdd3c4d99d265b9e4d55613c3c553e264c18a.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "422dc2fe58c90961f1f3e8d48ffcdd3c4d99d265b9e4d55613c3c553e264c18a"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-412-detail-light-5b6a8fcdc664f299ac4f3692d505edd59f7eb5bfa66012b314d30db8aed7be75.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "84bf02156faaa5fc146e32e515abca88c96c6b22d9fca37899ccd04b7f4e7aa6",
+          "documentSha256": "5b6a8fcdc664f299ac4f3692d505edd59f7eb5bfa66012b314d30db8aed7be75",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-412-detail-dark",
+      "previewId": "connect__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/scanner-412-detail-dark-6ebd37d2b739c9b6bb2961f8edb526a4a83f7e675f261dcc37553a3a5a618418.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "6ebd37d2b739c9b6bb2961f8edb526a4a83f7e675f261dcc37553a3a5a618418"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-412-detail-dark-d92643385239e5cb82febe5a0a4414b621f525881011bf66b4e91dedb53495d0.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "84bf02156faaa5fc146e32e515abca88c96c6b22d9fca37899ccd04b7f4e7aa6",
+          "documentSha256": "d92643385239e5cb82febe5a0a4414b621f525881011bf66b4e91dedb53495d0",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-840-list-light",
+      "previewId": "connect__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/scanner-840-list-light-5d3fefdd8bbd6ee6b4dc421a4efbfcdac1989fb283a4d34a78b7a54961035ed4.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "5d3fefdd8bbd6ee6b4dc421a4efbfcdac1989fb283a4d34a78b7a54961035ed4"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-840-list-light-6a5a17a030d16f2256b88d08eea41b351615a7e407d5c1b2381d9f435cfe391a.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "84bf02156faaa5fc146e32e515abca88c96c6b22d9fca37899ccd04b7f4e7aa6",
+          "documentSha256": "6a5a17a030d16f2256b88d08eea41b351615a7e407d5c1b2381d9f435cfe391a",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-840-list-dark",
+      "previewId": "connect__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/scanner-840-list-dark-afe3a0c55caadf55327f1ced59e0d2649820c51692b26a1dfa0459e54fc7b018.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "afe3a0c55caadf55327f1ced59e0d2649820c51692b26a1dfa0459e54fc7b018"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-840-list-dark-5377aff3965b1cf84efd80684abb5c6ba2f87dad8d29362d2f67336e655b7618.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "84bf02156faaa5fc146e32e515abca88c96c6b22d9fca37899ccd04b7f4e7aa6",
+          "documentSha256": "5377aff3965b1cf84efd80684abb5c6ba2f87dad8d29362d2f67336e655b7618",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-840-detail-light",
+      "previewId": "connect__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/scanner-840-detail-light-79855bc8040f444ac9bdff27b54f074c95cad23aa7863090904090de847fb840.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "79855bc8040f444ac9bdff27b54f074c95cad23aa7863090904090de847fb840"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-840-detail-light-cc3c3f5a761bdcfca6ff6edb3e5ca48258389350af16ab6803f2efcef3f6b528.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "160c10fd634388f98f507346aa5a10ad90dffe6addd2293226beb7be3e4f1999",
+          "documentSha256": "cc3c3f5a761bdcfca6ff6edb3e5ca48258389350af16ab6803f2efcef3f6b528",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-840-detail-dark",
+      "previewId": "connect__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/scanner-840-detail-dark-536da34926f4a75a4f29da000d417ac0a9604767661e438ca59c182f9d97bfcb.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "536da34926f4a75a4f29da000d417ac0a9604767661e438ca59c182f9d97bfcb"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-840-detail-dark-d675ca304ad3395f9d145981c6e13c19f02aed6f5ee04cab281e4534b1650a23.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "160c10fd634388f98f507346aa5a10ad90dffe6addd2293226beb7be3e4f1999",
+          "documentSha256": "d675ca304ad3395f9d145981c6e13c19f02aed6f5ee04cab281e4534b1650a23",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "device-412-list-light",
+      "previewId": "device__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/device-412-list-light-a32910db355f0497b5e61f09f5c08517796d6f74e242a3a63b20fb0736fb2d80.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "a32910db355f0497b5e61f09f5c08517796d6f74e242a3a63b20fb0736fb2d80"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-412-list-light-c07993792e75d602f7dca41e32b6f304afcd78108f9e9d076514118ebb97376c.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "81b877031baf53ce8754e56a218bff5b9339d95154e0a37c2c164e86dd131a81",
+          "documentSha256": "c07993792e75d602f7dca41e32b6f304afcd78108f9e9d076514118ebb97376c",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-412-list-dark",
+      "previewId": "device__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/device-412-list-dark-e2fef8200c4a64a20edb62c701a36ff82b12551f375c111c682602a56860f5b1.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "e2fef8200c4a64a20edb62c701a36ff82b12551f375c111c682602a56860f5b1"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-412-list-dark-daede6c381b85c54d361e1396bbed51b4721e309bfd5efbba0aedeb0316e6217.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "81b877031baf53ce8754e56a218bff5b9339d95154e0a37c2c164e86dd131a81",
+          "documentSha256": "daede6c381b85c54d361e1396bbed51b4721e309bfd5efbba0aedeb0316e6217",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-412-detail-light",
+      "previewId": "device__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/device-412-detail-light-8803efef11eb7507c916aaf3c129719616e86df955ef52444506b39a1f8b2149.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "8803efef11eb7507c916aaf3c129719616e86df955ef52444506b39a1f8b2149"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-412-detail-light-b4172bea2cdce1b9e2b88461ae790c402c21dd7ac47e467a68a93c31264de113.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "81b877031baf53ce8754e56a218bff5b9339d95154e0a37c2c164e86dd131a81",
+          "documentSha256": "b4172bea2cdce1b9e2b88461ae790c402c21dd7ac47e467a68a93c31264de113",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-412-detail-dark",
+      "previewId": "device__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/device-412-detail-dark-3e96e29e39ead8abb5c726e02aebcfdb89ccccafcd77f41fc62b594908cc7476.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "3e96e29e39ead8abb5c726e02aebcfdb89ccccafcd77f41fc62b594908cc7476"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-412-detail-dark-a4c8f14c98ad2b4e4717cee3355715b387e18d5deac47ee8c23337efd515a54b.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "81b877031baf53ce8754e56a218bff5b9339d95154e0a37c2c164e86dd131a81",
+          "documentSha256": "a4c8f14c98ad2b4e4717cee3355715b387e18d5deac47ee8c23337efd515a54b",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-840-list-light",
+      "previewId": "device__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/device-840-list-light-218d71442ae99c59acbdedfa5a144aa3f244168ce5a8179ae0666be7db3af095.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "218d71442ae99c59acbdedfa5a144aa3f244168ce5a8179ae0666be7db3af095"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-840-list-light-970ed5df229965ec796c644df82723d16765493517f3bd9ae8d1ca7d5941f461.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "81b877031baf53ce8754e56a218bff5b9339d95154e0a37c2c164e86dd131a81",
+          "documentSha256": "970ed5df229965ec796c644df82723d16765493517f3bd9ae8d1ca7d5941f461",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-840-list-dark",
+      "previewId": "device__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/device-840-list-dark-ab3a4cbe4989992820d4337af311bfa4b7008c5ea1a88c966a73935f27eee0fc.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "ab3a4cbe4989992820d4337af311bfa4b7008c5ea1a88c966a73935f27eee0fc"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-840-list-dark-dcdfcd4784cc34c0d3ab66fa0e7847e0ecedc2126c47c41606f651a233e6cbbe.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "81b877031baf53ce8754e56a218bff5b9339d95154e0a37c2c164e86dd131a81",
+          "documentSha256": "dcdfcd4784cc34c0d3ab66fa0e7847e0ecedc2126c47c41606f651a233e6cbbe",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-840-detail-light",
+      "previewId": "device__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/device-840-detail-light-1ccc5f1aae55f1c4b45f35ef62078c24a517e7bbfb9ef621cc255177c6e5feb9.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "1ccc5f1aae55f1c4b45f35ef62078c24a517e7bbfb9ef621cc255177c6e5feb9"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-840-detail-light-08843ebf6a6940734c713c49ffb60868af2f135f36ae91c6ccc9e72aee3d0b5d.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "3a573a5260f349122d0fcaf57f5a718b3b3203d4597744fb9ea8960fcddf7a94",
+          "documentSha256": "08843ebf6a6940734c713c49ffb60868af2f135f36ae91c6ccc9e72aee3d0b5d",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "device-840-detail-dark",
+      "previewId": "device__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/device-840-detail-dark-6ffaa19da4e901e67e9042acd91720b2de2a01b08cc0ff8aef4c9eb1a95cb9b8.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "6ffaa19da4e901e67e9042acd91720b2de2a01b08cc0ff8aef4c9eb1a95cb9b8"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/device-840-detail-dark-641a71700fb72e1e1e6d1d0e16d1c980e33e89d50f53bdbd6bc136bb745cd431.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/device-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "device",
+          "sourceSha256": "3a573a5260f349122d0fcaf57f5a718b3b3203d4597744fb9ea8960fcddf7a94",
+          "documentSha256": "641a71700fb72e1e1e6d1d0e16d1c980e33e89d50f53bdbd6bc136bb745cd431",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device"
+        }
+      }
+    },
+    {
+      "id": "channels-412-list-light",
+      "previewId": "channels__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/channels-412-list-light-5a0a697493fd18043093cf56159fd08bc33bee9ad0edb4705b49cd29198803e2.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "5a0a697493fd18043093cf56159fd08bc33bee9ad0edb4705b49cd29198803e2"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-412-list-light-050b80c5aef4eccb7b8695b2b8e0686e23a1498d73917e96e84b58a66d857397.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "25bea967965971f73e75bd3567fa66ca14e00eab118f02c71bde037e5399663a",
+          "documentSha256": "050b80c5aef4eccb7b8695b2b8e0686e23a1498d73917e96e84b58a66d857397",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-412-list-dark",
+      "previewId": "channels__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/channels-412-list-dark-909d9802490ff86f01aef0ccbbf4bb71d32e4a090a95db13c0d72a76044b6a8f.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "909d9802490ff86f01aef0ccbbf4bb71d32e4a090a95db13c0d72a76044b6a8f"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-412-list-dark-93e0bcad0a700b13477e3884d3965f4d39ae3a23a99948828baa3d78b3029e9b.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "25bea967965971f73e75bd3567fa66ca14e00eab118f02c71bde037e5399663a",
+          "documentSha256": "93e0bcad0a700b13477e3884d3965f4d39ae3a23a99948828baa3d78b3029e9b",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-412-detail-light",
+      "previewId": "channels__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/channels-412-detail-light-3333b2c043b8a9bca545155526a0731755877af7affa901b5e8a699e6f0672be.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "3333b2c043b8a9bca545155526a0731755877af7affa901b5e8a699e6f0672be"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-412-detail-light-714842dba58642ec9ac169fb560c6bbfc6f2cf9ac7766d66565a94c4554cbfa4.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "25bea967965971f73e75bd3567fa66ca14e00eab118f02c71bde037e5399663a",
+          "documentSha256": "714842dba58642ec9ac169fb560c6bbfc6f2cf9ac7766d66565a94c4554cbfa4",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-412-detail-dark",
+      "previewId": "channels__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/channels-412-detail-dark-57aa042b30f56455684d6ae68595c09b783a88c627b2a90e2fc49a19e2819f58.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "57aa042b30f56455684d6ae68595c09b783a88c627b2a90e2fc49a19e2819f58"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-412-detail-dark-9e003e79280f13b44dc50abe650427a70d67e42feafce3be6fc10e14ed55d0fb.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "25bea967965971f73e75bd3567fa66ca14e00eab118f02c71bde037e5399663a",
+          "documentSha256": "9e003e79280f13b44dc50abe650427a70d67e42feafce3be6fc10e14ed55d0fb",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-840-list-light",
+      "previewId": "channels__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/channels-840-list-light-0f8323ab80893dc8d918ba69e7f8556723f24fd9d5cb10a870d58d0a398bb501.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "0f8323ab80893dc8d918ba69e7f8556723f24fd9d5cb10a870d58d0a398bb501"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-840-list-light-a9cf908962fdce4b7a4d375b1c25aa86fd01540a3f107661573f44ebd14b857a.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "25bea967965971f73e75bd3567fa66ca14e00eab118f02c71bde037e5399663a",
+          "documentSha256": "a9cf908962fdce4b7a4d375b1c25aa86fd01540a3f107661573f44ebd14b857a",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-840-list-dark",
+      "previewId": "channels__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/channels-840-list-dark-0e1ad9752cdf60fe7efacd7e799cf4cb1b525a54726277b5536012bb36ea5ce7.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "0e1ad9752cdf60fe7efacd7e799cf4cb1b525a54726277b5536012bb36ea5ce7"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-840-list-dark-d7c10535bab0d6e869d97ea6ed8478101a025468ee16354e8827c9965e3a5059.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "25bea967965971f73e75bd3567fa66ca14e00eab118f02c71bde037e5399663a",
+          "documentSha256": "d7c10535bab0d6e869d97ea6ed8478101a025468ee16354e8827c9965e3a5059",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-840-detail-light",
+      "previewId": "channels__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/channels-840-detail-light-30be78b08298352bb3bb3ca25e5e044b7db135af1d4b868b5807e4a237d153f1.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "30be78b08298352bb3bb3ca25e5e044b7db135af1d4b868b5807e4a237d153f1"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-840-detail-light-f699effc34921d814b13764016feed7faf52169810130a39cc5bedbcc3600387.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "b3ac39fc223f7af0efb3b7a77f0668da612f06443914892ac3554e3432c3a506",
+          "documentSha256": "f699effc34921d814b13764016feed7faf52169810130a39cc5bedbcc3600387",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "channels-840-detail-dark",
+      "previewId": "channels__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/channels-840-detail-dark-1cf7b9371621dcfe805bad375f769a931d62dc728b2dbc87a1a3f17a2d2dc925.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "1cf7b9371621dcfe805bad375f769a931d62dc728b2dbc87a1a3f17a2d2dc925"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/channels-840-detail-dark-1eff1be2b24388b60c4c9957a3ea0f6c10617a6a3f4971e0c4aa6bb10e115f6d.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/channels-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "channels",
+          "sourceSha256": "b3ac39fc223f7af0efb3b7a77f0668da612f06443914892ac3554e3432c3a506",
+          "documentSha256": "1eff1be2b24388b60c4c9957a3ea0f6c10617a6a3f4971e0c4aa6bb10e115f6d",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Channels"
+        }
+      }
+    },
+    {
+      "id": "commands-412-list-light",
+      "previewId": "commands__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/commands-412-list-light-398db5d8caf40c2c17524f0d35a39e29a15c7c020789e5d0b4c81c8cb4feb1bf.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "398db5d8caf40c2c17524f0d35a39e29a15c7c020789e5d0b4c81c8cb4feb1bf"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-412-list-light-42c1505af3944739df09ba9fad89b7f5da4008b43761cc99124a0bca5c28eb21.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "1a3626d5856746cd267d8741b4c2382d51b54ebee3e0555eb9fda92aeafeb491",
+          "documentSha256": "42c1505af3944739df09ba9fad89b7f5da4008b43761cc99124a0bca5c28eb21",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-412-list-dark",
+      "previewId": "commands__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/commands-412-list-dark-013bbf7f61ee308b7f6a721ff7c19d06422c6ed525070677c80b042c6d7b5527.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "013bbf7f61ee308b7f6a721ff7c19d06422c6ed525070677c80b042c6d7b5527"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-412-list-dark-93c456557b510172e7dc69f8f4ac425d0caad00d760f624d257c38dbb29a372d.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "1a3626d5856746cd267d8741b4c2382d51b54ebee3e0555eb9fda92aeafeb491",
+          "documentSha256": "93c456557b510172e7dc69f8f4ac425d0caad00d760f624d257c38dbb29a372d",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-412-detail-light",
+      "previewId": "commands__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/commands-412-detail-light-25d462551ac9206fe6a51a038e22c4fc30b7e593e141d599b31602bb483dc330.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "25d462551ac9206fe6a51a038e22c4fc30b7e593e141d599b31602bb483dc330"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-412-detail-light-d32f7b2abbd4687b5dc91bcd298a045893eb8b281effa851dc7eda349148992b.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "1a3626d5856746cd267d8741b4c2382d51b54ebee3e0555eb9fda92aeafeb491",
+          "documentSha256": "d32f7b2abbd4687b5dc91bcd298a045893eb8b281effa851dc7eda349148992b",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-412-detail-dark",
+      "previewId": "commands__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/commands-412-detail-dark-d4263816f966a843e853a65132fbed0bfef9a137e427d9001338288c9b6e6cae.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "d4263816f966a843e853a65132fbed0bfef9a137e427d9001338288c9b6e6cae"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-412-detail-dark-fd23b395f04ab5440f5c825d2550c22a9da1333f19e39930891344ea014754a3.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "1a3626d5856746cd267d8741b4c2382d51b54ebee3e0555eb9fda92aeafeb491",
+          "documentSha256": "fd23b395f04ab5440f5c825d2550c22a9da1333f19e39930891344ea014754a3",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-840-list-light",
+      "previewId": "commands__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/commands-840-list-light-033821b825c9dc93fcdf6d7ace44bc23db076f5d8ec5f0e51790cb761704e636.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "033821b825c9dc93fcdf6d7ace44bc23db076f5d8ec5f0e51790cb761704e636"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-840-list-light-c41d7e4390c559c8c0057d19166edc9ea8db0d1dbb496e1702ebf31c0fc1393e.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "1a3626d5856746cd267d8741b4c2382d51b54ebee3e0555eb9fda92aeafeb491",
+          "documentSha256": "c41d7e4390c559c8c0057d19166edc9ea8db0d1dbb496e1702ebf31c0fc1393e",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-840-list-dark",
+      "previewId": "commands__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/commands-840-list-dark-2627366f0374e4c3fadb26a62d5f6e0c0101f5c7f9b0fff91fb7c80e09f73a3b.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "2627366f0374e4c3fadb26a62d5f6e0c0101f5c7f9b0fff91fb7c80e09f73a3b"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-840-list-dark-3cd82be10a131f14b43966c93cc0f189ccfae35fa883173a0b6dd18ec5eca782.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "1a3626d5856746cd267d8741b4c2382d51b54ebee3e0555eb9fda92aeafeb491",
+          "documentSha256": "3cd82be10a131f14b43966c93cc0f189ccfae35fa883173a0b6dd18ec5eca782",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-840-detail-light",
+      "previewId": "commands__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/commands-840-detail-light-54394cedb3a85ede42cf6edd74a5f704f2635b8966c01e2dc95928aa757d9fa0.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "54394cedb3a85ede42cf6edd74a5f704f2635b8966c01e2dc95928aa757d9fa0"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-840-detail-light-60a75d8e8737e30728d28aa2ebcd0e51af2a7aa1fe6bcdea331a8c434894f68e.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "214ebe9992f408872635087c60dfabd0e8e6c830c0764d326705431959427a45",
+          "documentSha256": "60a75d8e8737e30728d28aa2ebcd0e51af2a7aa1fe6bcdea331a8c434894f68e",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "commands-840-detail-dark",
+      "previewId": "commands__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/commands-840-detail-dark-0425ba10d70695730db960eca6a37aada5c68d0b41e256198966ae38f7254eff.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "0425ba10d70695730db960eca6a37aada5c68d0b41e256198966ae38f7254eff"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/commands-840-detail-dark-847fa44359cc018d726a759ff82a8f6a6b08dfa5536a3d795d4fd15b3c470520.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/commands-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "commands",
+          "sourceSha256": "214ebe9992f408872635087c60dfabd0e8e6c830c0764d326705431959427a45",
+          "documentSha256": "847fa44359cc018d726a759ff82a8f6a6b08dfa5536a3d795d4fd15b3c470520",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Commands"
+        }
+      }
+    },
+    {
+      "id": "settings-412-list-light",
+      "previewId": "device-settings__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/settings-412-list-light-868c517fea5bfc19fc6dc8a14f8c44b6852b0872aa96e80116a18620c83691dd.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "868c517fea5bfc19fc6dc8a14f8c44b6852b0872aa96e80116a18620c83691dd"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-412-list-light-d05ea63e8705cc46f30dec0c79cf6a4252e21c29edea8d8161d776fe10b1c969.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "9b0ae6d5d9d1efcb59e008711b30665cba289f4b551dda0c96f6a1652247e196",
+          "documentSha256": "d05ea63e8705cc46f30dec0c79cf6a4252e21c29edea8d8161d776fe10b1c969",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-412-list-dark",
+      "previewId": "device-settings__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/settings-412-list-dark-a54b3027b4cfa200b0e8ab2852cb3d616e215cd1f55eb512db42fc28a92b88d3.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "a54b3027b4cfa200b0e8ab2852cb3d616e215cd1f55eb512db42fc28a92b88d3"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-412-list-dark-8fb3c930137174e3a34c9cce41f5ff1f7d7cfd4b5105ccc67ed62fbc26013e70.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "9b0ae6d5d9d1efcb59e008711b30665cba289f4b551dda0c96f6a1652247e196",
+          "documentSha256": "8fb3c930137174e3a34c9cce41f5ff1f7d7cfd4b5105ccc67ed62fbc26013e70",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-412-detail-light",
+      "previewId": "device-settings__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/settings-412-detail-light-a378499661ebf1ab4ed883b10aa717c1c1d177018b2eb0a8a260592aba108e96.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "a378499661ebf1ab4ed883b10aa717c1c1d177018b2eb0a8a260592aba108e96"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-412-detail-light-eb318d64d360518e2869ad2a9340274361664e2722228996d4f9a409e7fc1d05.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "9b0ae6d5d9d1efcb59e008711b30665cba289f4b551dda0c96f6a1652247e196",
+          "documentSha256": "eb318d64d360518e2869ad2a9340274361664e2722228996d4f9a409e7fc1d05",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-412-detail-dark",
+      "previewId": "device-settings__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/settings-412-detail-dark-c4caa42f7968c37e411d8ac3d26bdc1fa09c50524d9464f0371b6a6c360599c5.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "c4caa42f7968c37e411d8ac3d26bdc1fa09c50524d9464f0371b6a6c360599c5"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-412-detail-dark-f1d4833bb0fe738de3140cd0173d6b122b65eb263d401c2a3cb8058aca3c2ea4.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "9b0ae6d5d9d1efcb59e008711b30665cba289f4b551dda0c96f6a1652247e196",
+          "documentSha256": "f1d4833bb0fe738de3140cd0173d6b122b65eb263d401c2a3cb8058aca3c2ea4",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-840-list-light",
+      "previewId": "device-settings__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/settings-840-list-light-c5981c17e9b56d7967df25742c64dec1cd5ae6d7242dc1c0407a2797fab913b0.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "c5981c17e9b56d7967df25742c64dec1cd5ae6d7242dc1c0407a2797fab913b0"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-840-list-light-75a3fb95eaf5b99c8879f5030223ee8b1eb71ce49b21ed752f3e20d56631e0e5.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "9b0ae6d5d9d1efcb59e008711b30665cba289f4b551dda0c96f6a1652247e196",
+          "documentSha256": "75a3fb95eaf5b99c8879f5030223ee8b1eb71ce49b21ed752f3e20d56631e0e5",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-840-list-dark",
+      "previewId": "device-settings__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/settings-840-list-dark-6b394c32259948838cb6fb42748ec8b25486f4f619ab745e7796ab3e1eb6d8e1.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "6b394c32259948838cb6fb42748ec8b25486f4f619ab745e7796ab3e1eb6d8e1"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-840-list-dark-058076f78e1f0ccfe1634fa77c49da686a98bb1bbb810d4c61cae7adae46a1b0.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "9b0ae6d5d9d1efcb59e008711b30665cba289f4b551dda0c96f6a1652247e196",
+          "documentSha256": "058076f78e1f0ccfe1634fa77c49da686a98bb1bbb810d4c61cae7adae46a1b0",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-840-detail-light",
+      "previewId": "device-settings__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/settings-840-detail-light-52825c9b89f66d32365af670c4039e53412adccba68359cdba9a97d807606b1d.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "52825c9b89f66d32365af670c4039e53412adccba68359cdba9a97d807606b1d"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-840-detail-light-fb7f3d9e47a6241aee58c94a425385e612dfee4e43c53b08a172320065131a58.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "885d9d9cbb8feafd8fead91592c6ec9da61ee7959426fe0a59ff719742614790",
+          "documentSha256": "fb7f3d9e47a6241aee58c94a425385e612dfee4e43c53b08a172320065131a58",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "settings-840-detail-dark",
+      "previewId": "device-settings__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/settings-840-detail-dark-b23828771bd1f37c638843daa8165e7685a5e660a45ac34f18c6a53576de6fa5.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "b23828771bd1f37c638843daa8165e7685a5e660a45ac34f18c6a53576de6fa5"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/settings-840-detail-dark-2389e268d3642da585b3ff9c48235d43bea16ac353f89e9884abee26f15a1462.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/settings-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "settings",
+          "sourceSha256": "885d9d9cbb8feafd8fead91592c6ec9da61ee7959426fe0a59ff719742614790",
+          "documentSha256": "2389e268d3642da585b3ff9c48235d43bea16ac353f89e9884abee26f15a1462",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Device settings"
+        }
+      }
+    },
+    {
+      "id": "cached-412-list-light",
+      "previewId": "offline-device__ideal__default__light__412dp",
+      "label": "UI Builder · 412dp · list · light",
+      "raster": {
+        "path": "references/cached-412-list-light-57d12371bdecfcf4d017443590ad5098795ada691c986e302dafcd5fafd82eec.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "57d12371bdecfcf4d017443590ad5098795ada691c986e302dafcd5fafd82eec"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-412-list-light-4419d98f457c698e4db93ab46665f5cc86463dc9c9feaa0e1fcf1e1f5e93a9bf.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "0241c81d86569c589bba69bf922a33e07cc422ee210641aa2d1a388d9faba4eb",
+          "documentSha256": "4419d98f457c698e4db93ab46665f5cc86463dc9c9feaa0e1fcf1e1f5e93a9bf",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-412-list-dark",
+      "previewId": "offline-device__ideal__default__dark__412dp",
+      "label": "UI Builder · 412dp · list · dark",
+      "raster": {
+        "path": "references/cached-412-list-dark-c56d4518079571075ea3242ca665cf56023fd8340e8e36153b98a3e0b0173d0f.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "c56d4518079571075ea3242ca665cf56023fd8340e8e36153b98a3e0b0173d0f"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-412-list-dark-36eff67a64e4c37207f2f277d18e947cd9cd86e31e3bf35ae682b2c6411b3190.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "0241c81d86569c589bba69bf922a33e07cc422ee210641aa2d1a388d9faba4eb",
+          "documentSha256": "36eff67a64e4c37207f2f277d18e947cd9cd86e31e3bf35ae682b2c6411b3190",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-412-detail-light",
+      "previewId": "offline-device__ideal__detail__light__412dp",
+      "label": "UI Builder · 412dp · detail · light",
+      "raster": {
+        "path": "references/cached-412-detail-light-cc396c60563599b08b49682ad2786908654fbd359b3e500f055b9efe9b589e05.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "cc396c60563599b08b49682ad2786908654fbd359b3e500f055b9efe9b589e05"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-412-detail-light-b546de9cb8d009506dc9040b5a0b079d0f9edb0bc8ef9d3e59468325fbdcb5f1.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "0241c81d86569c589bba69bf922a33e07cc422ee210641aa2d1a388d9faba4eb",
+          "documentSha256": "b546de9cb8d009506dc9040b5a0b079d0f9edb0bc8ef9d3e59468325fbdcb5f1",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-412-detail-dark",
+      "previewId": "offline-device__ideal__detail__dark__412dp",
+      "label": "UI Builder · 412dp · detail · dark",
+      "raster": {
+        "path": "references/cached-412-detail-dark-9f6adf46a5146eddea75583adef1296334d8fe79438550deb3657586223110e6.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "9f6adf46a5146eddea75583adef1296334d8fe79438550deb3657586223110e6"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-412-detail-dark-ac415bd4ce78a6c1496fc235279bf64e8943b85a184c10d572b577e7ab597b34.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "0241c81d86569c589bba69bf922a33e07cc422ee210641aa2d1a388d9faba4eb",
+          "documentSha256": "ac415bd4ce78a6c1496fc235279bf64e8943b85a184c10d572b577e7ab597b34",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-840-list-light",
+      "previewId": "offline-device__ideal__default__light__840dp",
+      "label": "UI Builder · 840dp · list · light",
+      "raster": {
+        "path": "references/cached-840-list-light-fde88409ba4b9be0712504d88128d448590de1980c5460620fd16c1a583f6dc3.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "fde88409ba4b9be0712504d88128d448590de1980c5460620fd16c1a583f6dc3"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-840-list-light-04be4149c7dd94cc2f867f5efb11ebffbdba3e99a4bdde04e5517ee266bdda61.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "0241c81d86569c589bba69bf922a33e07cc422ee210641aa2d1a388d9faba4eb",
+          "documentSha256": "04be4149c7dd94cc2f867f5efb11ebffbdba3e99a4bdde04e5517ee266bdda61",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "list",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-840-list-dark",
+      "previewId": "offline-device__ideal__default__dark__840dp",
+      "label": "UI Builder · 840dp · list · dark",
+      "raster": {
+        "path": "references/cached-840-list-dark-630f747b2a3dfcf9de1e63ab8094d265e6b27d6a42064e497072222ee122f94c.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "630f747b2a3dfcf9de1e63ab8094d265e6b27d6a42064e497072222ee122f94c"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-840-list-dark-305a4f4103d496d557d2b37d979a45b5e92b8256b4f3c87a899e3436d159fd92.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "0241c81d86569c589bba69bf922a33e07cc422ee210641aa2d1a388d9faba4eb",
+          "documentSha256": "305a4f4103d496d557d2b37d979a45b5e92b8256b4f3c87a899e3436d159fd92",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "list",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-840-detail-light",
+      "previewId": "offline-device__ideal__detail__light__840dp",
+      "label": "UI Builder · 840dp · detail · light",
+      "raster": {
+        "path": "references/cached-840-detail-light-e79939b009753a5eb52485b582f5e00b69ef0bcebfab945466ce5a9886183f45.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "e79939b009753a5eb52485b582f5e00b69ef0bcebfab945466ce5a9886183f45"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-840-detail-light-5b35f8d6f88436441f49baf873b3535eec14b268bbec40df8e1d022d20eabc1f.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "2bafafb82d43a29212c74ea02b84ca6b96c5c9e9c8d04dee459ce84867a8ff1c",
+          "documentSha256": "5b35f8d6f88436441f49baf873b3535eec14b268bbec40df8e1d022d20eabc1f",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "cached-840-detail-dark",
+      "previewId": "offline-device__ideal__detail__dark__840dp",
+      "label": "UI Builder · 840dp · detail · dark",
+      "raster": {
+        "path": "references/cached-840-detail-dark-7e608285574c83c103652d82f223d6e6bb93401830ea6becec2a396cfead1407.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "7e608285574c83c103652d82f223d6e6bb93401830ea6becec2a396cfead1407"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/cached-840-detail-dark-8a84b13b99b5c4a8d9d9788ac5d9e47ce97725e039046fa9a9dd082a20e5170e.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/cached-secondary.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "cached",
+          "sourceSha256": "2bafafb82d43a29212c74ea02b84ca6b96c5c9e9c8d04dee459ce84867a8ff1c",
+          "documentSha256": "8a84b13b99b5c4a8d9d9788ac5d9e47ce97725e039046fa9a9dd082a20e5170e",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "detail",
+          "density": "2",
+          "componentId": "Offline device"
+        }
+      }
+    },
+    {
+      "id": "scanner-412-failure-light",
+      "previewId": "connect__ideal__failure__light__412dp",
+      "label": "UI Builder · 412dp · failure · light",
+      "raster": {
+        "path": "references/scanner-412-failure-light-c96f5f47546151166c8820e977d0c712e2703d6febac473dcf4a6666fe4a168a.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "c96f5f47546151166c8820e977d0c712e2703d6febac473dcf4a6666fe4a168a"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-412-failure-light-15601d6a1aa3c421e05f909ca3f03a17ecc3b272be9735315347121b39f61def.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "01a4e6d1cc99f26aebd9d3d41be34bebe0f34304b54d505c95fbb5dd7a274aec",
+          "documentSha256": "15601d6a1aa3c421e05f909ca3f03a17ecc3b272be9735315347121b39f61def",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "failure",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-412-failure-dark",
+      "previewId": "connect__ideal__failure__dark__412dp",
+      "label": "UI Builder · 412dp · failure · dark",
+      "raster": {
+        "path": "references/scanner-412-failure-dark-3f3a9e7d9ffa1a761c575b69892a3b43c9f17ff36beb3b2d4c9f6d846e96b787.png",
+        "width": 824,
+        "height": 1440,
+        "sha256": "3f3a9e7d9ffa1a761c575b69892a3b43c9f17ff36beb3b2d4c9f6d846e96b787"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-412-failure-dark-c1934eaf0a39dd8010a4ba2206f1a2825b6864a7b36f78054698519b22e3e090.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "01a4e6d1cc99f26aebd9d3d41be34bebe0f34304b54d505c95fbb5dd7a274aec",
+          "documentSha256": "c1934eaf0a39dd8010a4ba2206f1a2825b6864a7b36f78054698519b22e3e090",
+          "widthDp": "412",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "failure",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-840-failure-light",
+      "previewId": "connect__ideal__failure__light__840dp",
+      "label": "UI Builder · 840dp · failure · light",
+      "raster": {
+        "path": "references/scanner-840-failure-light-8e98d389aea8442091bd00730a1a9959ddbafe1c3f9141a057b6d7dbfc97814d.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "8e98d389aea8442091bd00730a1a9959ddbafe1c3f9141a057b6d7dbfc97814d"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-840-failure-light-e580901772f500121e2a939ae226e75467ef233871bcf2593881a29cfb35f840.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "01a4e6d1cc99f26aebd9d3d41be34bebe0f34304b54d505c95fbb5dd7a274aec",
+          "documentSha256": "e580901772f500121e2a939ae226e75467ef233871bcf2593881a29cfb35f840",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "light",
+          "state": "failure",
+          "density": "2",
+          "componentId": "Connect"
+        }
+      }
+    },
+    {
+      "id": "scanner-840-failure-dark",
+      "previewId": "connect__ideal__failure__dark__840dp",
+      "label": "UI Builder · 840dp · failure · dark",
+      "raster": {
+        "path": "references/scanner-840-failure-dark-2001a4ffd252f5cd768d23ddbf5473d95d923e5aae5d659b2d7b635422210d77.png",
+        "width": 1680,
+        "height": 1440,
+        "sha256": "2001a4ffd252f5cd768d23ddbf5473d95d923e5aae5d659b2d7b635422210d77"
+      },
+      "artifact": {
+        "kind": "uid",
+        "path": "references/scanner-840-failure-dark-4d3dcc65a4fa7a6c5a65d8ef2ab51f67ef3f48051b3ba38b6cc820cc540d6350.uid"
+      },
+      "source": {
+        "provider": "ui-builder",
+        "revision": "805795fc10130d80d0043178bdd88ed24d8e6a46",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/805795fc10130d80d0043178bdd88ed24d8e6a46/adaptive-uid-pilot/ui-builder/designs/scanner-failure.uid",
+        "attributes": {
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
+          "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
+          "designId": "scanner",
+          "sourceSha256": "01a4e6d1cc99f26aebd9d3d41be34bebe0f34304b54d505c95fbb5dd7a274aec",
+          "documentSha256": "4d3dcc65a4fa7a6c5a65d8ef2ab51f67ef3f48051b3ba38b6cc820cc540d6350",
+          "widthDp": "840",
+          "heightDp": "720",
+          "theme": "dark",
+          "state": "failure",
+          "density": "2",
+          "componentId": "Connect"
         }
       }
     }
