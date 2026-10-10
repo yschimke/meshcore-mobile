@@ -25,7 +25,7 @@ jobs:
       export-catalog: true
       pilot-directory: adaptive-uid-pilot
       artifact-prefix: adaptive-uid
-      bundle-name: contacts
+      bundle-name: key-screens
       build-command: >-
         ./gradlew -PadaptiveUidPilot=true
         :adaptive-uid-pilot:ktfmtCheck
