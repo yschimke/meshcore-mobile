@@ -7603,31 +7603,7 @@
       "sourceModule": ":app",
       "bodyLine": 183,
       "sourceDirectory": "app",
-      "sourceFunction": "DeviceStatusConnectingPreview",
-      "parameters": [
-        {
-          "name": "title",
-          "type": "String"
-        },
-        {
-          "name": "status",
-          "type": "DeviceConnectStatus"
-        },
-        {
-          "name": "onCancel",
-          "type": "() -> Unit"
-        },
-        {
-          "name": "onOpenThemePicker",
-          "type": "() -> Unit",
-          "hasDefault": true
-        },
-        {
-          "name": "nowMs",
-          "type": "() -> Long",
-          "hasDefault": true
-        }
-      ]
+      "sourceFunction": "DeviceStatusConnectingPreview"
     },
     {
       "componentId": "Device/StatusFailed",
@@ -7804,31 +7780,7 @@
       "sourceModule": ":app",
       "bodyLine": 211,
       "sourceDirectory": "app",
-      "sourceFunction": "DeviceStatusFailedPreview",
-      "parameters": [
-        {
-          "name": "title",
-          "type": "String"
-        },
-        {
-          "name": "status",
-          "type": "DeviceConnectStatus"
-        },
-        {
-          "name": "onCancel",
-          "type": "() -> Unit"
-        },
-        {
-          "name": "onOpenThemePicker",
-          "type": "() -> Unit",
-          "hasDefault": true
-        },
-        {
-          "name": "nowMs",
-          "type": "() -> Long",
-          "hasDefault": true
-        }
-      ]
+      "sourceFunction": "DeviceStatusFailedPreview"
     },
     {
       "componentId": "Device/Cached",
@@ -8480,11 +8432,236 @@
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 942,
+              "y": 2250,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 22,
+              "y": 32,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 168,
+            "width": 1014,
+            "height": 2037
+          },
+          "padding": {
+            "start": 12,
+            "top": 0,
+            "end": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 366,
+            "y": 619,
+            "width": 680,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 398,
+            "y": 640,
+            "width": 616,
+            "height": 47
+          },
+          "label": "sounds good, sending a test ping",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 474,
+            "width": 750,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 495,
+            "width": 686,
+            "height": 47
+          },
+          "label": "nice — I'll relay through bob-repeater",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 454,
+            "y": 329,
+            "width": 592,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 486,
+            "y": 350,
+            "width": 528,
+            "height": 47
+          },
+          "label": "yeah, firing up the node now",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 184,
+            "width": 550,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 205,
+            "width": 486,
+            "height": 47
+          },
+          "label": "hey — are you on tonight?",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 21,
+            "y": 2226,
+            "width": 889,
+            "height": 152
+          },
+          "cornerRadius": 24
+        },
+        {
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 148,
+            "y": 37,
+            "width": 250,
+            "height": 94
+          },
+          "padding": {
+            "start": 4,
+            "top": 0,
+            "end": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 42,
+            "y": 0,
+            "width": 994,
+            "height": 63
+          },
+          "padding": {
+            "start": 16,
+            "top": 0,
+            "end": 16,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 397,
+            "y": 2368,
+            "width": 284,
+            "height": 11
+          },
+          "padding": {
+            "start": 0,
+            "top": 4,
+            "end": 0,
+            "bottom": 0
+          },
+          "cornerRadius": 2
+        }
+      ],
       "section": "Screens",
       "group": "Chat",
       "caption": "Contact chat — a 1:1 direct-message thread.",
+      "wireframe": "wireframes/chat-contact.svg",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
       "sourceModule": ":meshcore-components",
       "bodyLine": 178,
@@ -8582,11 +8759,236 @@
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 942,
+              "y": 2250,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 22,
+              "y": 32,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 168,
+            "width": 1014,
+            "height": 2037
+          },
+          "padding": {
+            "start": 12,
+            "top": 0,
+            "end": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 433,
+            "y": 709,
+            "width": 613,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 465,
+            "y": 730,
+            "width": 549,
+            "height": 47
+          },
+          "label": "broadcasting weather update",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 516,
+            "y": 564,
+            "width": 530,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 548,
+            "y": 585,
+            "width": 466,
+            "height": 47
+          },
+          "label": "copy — net looks healthy",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 374,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 440,
+            "width": 532,
+            "height": 47
+          },
+          "label": "I've got line of sight, relaying",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 184,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 250,
+            "width": 542,
+            "height": 47
+          },
+          "label": "anyone near the north ridge?",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 21,
+            "y": 2226,
+            "width": 889,
+            "height": 152
+          },
+          "cornerRadius": 24
+        },
+        {
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 148,
+            "y": 37,
+            "width": 161,
+            "height": 94
+          },
+          "padding": {
+            "start": 4,
+            "top": 0,
+            "end": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 42,
+            "y": 0,
+            "width": 994,
+            "height": 63
+          },
+          "padding": {
+            "start": 16,
+            "top": 0,
+            "end": 16,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 397,
+            "y": 2368,
+            "width": 284,
+            "height": 11
+          },
+          "padding": {
+            "start": 0,
+            "top": 4,
+            "end": 0,
+            "bottom": 0
+          },
+          "cornerRadius": 2
+        }
+      ],
       "section": "Screens",
       "group": "Chat",
       "caption": "Channel chat — a group broadcast channel.",
+      "wireframe": "wireframes/chat-channel.svg",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
       "sourceModule": ":meshcore-components",
       "bodyLine": 226,
@@ -8684,11 +9086,236 @@
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 942,
+              "y": 2250,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 22,
+              "y": 32,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 168,
+            "width": 1014,
+            "height": 2037
+          },
+          "padding": {
+            "start": 12,
+            "top": 0,
+            "end": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 664,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 730,
+            "width": 795,
+            "height": 47
+          },
+          "label": "freq: 869.525 MHz · BW 125 kHz · SF 10 · CR 5",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 636,
+            "y": 519,
+            "width": 410,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 668,
+            "y": 540,
+            "width": 152,
+            "height": 47
+          },
+          "label": "get freq",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 329,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 395,
+            "width": 426,
+            "height": 47
+          },
+          "label": "battery: 3980 mV (97%)",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 706,
+            "y": 184,
+            "width": 340,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 738,
+            "y": 205,
+            "width": 137,
+            "height": 47
+          },
+          "label": "get bat",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 21,
+            "y": 2226,
+            "width": 889,
+            "height": 152
+          },
+          "cornerRadius": 24
+        },
+        {
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 148,
+            "y": 57,
+            "width": 227,
+            "height": 54
+          },
+          "padding": {
+            "start": 4,
+            "top": 0,
+            "end": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 42,
+            "y": 0,
+            "width": 994,
+            "height": 63
+          },
+          "padding": {
+            "start": 16,
+            "top": 0,
+            "end": 16,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 397,
+            "y": 2368,
+            "width": 284,
+            "height": 11
+          },
+          "padding": {
+            "start": 0,
+            "top": 4,
+            "end": 0,
+            "bottom": 0
+          },
+          "cornerRadius": 2
+        }
+      ],
       "section": "Screens",
       "group": "Chat",
       "caption": "Commands console — the device command/response log.",
+      "wireframe": "wireframes/chat-commands.svg",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
       "sourceModule": ":meshcore-components",
       "bodyLine": 269,
@@ -12356,533 +12983,6 @@
       ]
     },
     {
-      "componentId": "app/ThemePickerMeshcoreSystemPreview",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/app-themepickermeshcoresystempreview/ideal__default.png",
-          "state": "default",
-          "width": 1050,
-          "height": 1430,
-          "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-themepickermeshcoresystempreview__ideal__default",
-          "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker___MeshCore___System",
-          "previewParams": {
-            "showBackground": true
-          },
-          "density": 2.625
-        }
-      ],
-      "greenlines": [
-        {
-          "kind": "a11y",
-          "severity": "info",
-          "message": "button",
-          "detail": {
-            "role": "button",
-            "bounds": {
-              "x": 829,
-              "y": 1252,
-              "width": 158,
-              "height": 105
-            }
-          },
-          "bounds": {
-            "x": 829,
-            "y": 1252,
-            "width": 158,
-            "height": 105
-          }
-        }
-      ],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 0,
-            "y": 0,
-            "width": 1050,
-            "height": 1430
-          },
-          "cornerRadius": 28
-        },
-        {
-          "bounds": {
-            "x": 74,
-            "y": 184,
-            "width": 122,
-            "height": 36
-          },
-          "label": "PALETTE",
-          "padding": {
-            "start": 4,
-            "top": 0,
-            "end": 0,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 236,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 284,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 405,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 453,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 74,
-            "y": 630,
-            "width": 188,
-            "height": 36
-          },
-          "label": "LIGHT / DARK",
-          "padding": {
-            "start": 4,
-            "top": 0,
-            "end": 0,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 682,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 730,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 851,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 899,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 1020,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 1068,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 829,
-            "y": 1252,
-            "width": 158,
-            "height": 105
-          },
-          "role": "Button",
-          "cornerRadius": 20
-        }
-      ],
-      "section": ":app",
-      "group": "Previews",
-      "caption": "ThemePicker — MeshCore + System",
-      "wireframe": "wireframes/app-themepickermeshcoresystempreview.svg",
-      "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
-      "sourceModule": ":app",
-      "bodyLine": 160,
-      "sourceDirectory": "app",
-      "sourceFunction": "ThemePickerMeshcoreSystemPreview",
-      "parameters": [
-        {
-          "name": "current",
-          "type": "ThemeSettings"
-        },
-        {
-          "name": "onModeSelect",
-          "type": "(ThemeMode) -> Unit"
-        },
-        {
-          "name": "onPaletteSelect",
-          "type": "(ThemePalette) -> Unit"
-        },
-        {
-          "name": "onDismiss",
-          "type": "() -> Unit"
-        }
-      ]
-    },
-    {
-      "componentId": "app/ThemePickerDynamicDarkPreview",
-      "images": [
-        {
-          "variant": "ideal",
-          "path": "images/app-themepickerdynamicdarkpreview/ideal__default__dark.png",
-          "state": "default",
-          "width": 1050,
-          "height": 1430,
-          "theme": "dark",
-          "livePreview": "https://preview.coo.ee/meshcore-mobile/p/app-themepickerdynamicdarkpreview__ideal__default__dark",
-          "previewId": "ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker___Dynamic___Dark",
-          "previewParams": {
-            "showBackground": true
-          },
-          "density": 2.625
-        }
-      ],
-      "greenlines": [
-        {
-          "kind": "a11y",
-          "severity": "info",
-          "message": "button",
-          "detail": {
-            "role": "button",
-            "bounds": {
-              "x": 829,
-              "y": 1252,
-              "width": 158,
-              "height": 105
-            }
-          },
-          "bounds": {
-            "x": 829,
-            "y": 1252,
-            "width": 158,
-            "height": 105
-          }
-        }
-      ],
-      "redlines": [
-        {
-          "bounds": {
-            "x": 0,
-            "y": 0,
-            "width": 1050,
-            "height": 1430
-          },
-          "cornerRadius": 28
-        },
-        {
-          "bounds": {
-            "x": 74,
-            "y": 184,
-            "width": 122,
-            "height": 36
-          },
-          "label": "PALETTE",
-          "padding": {
-            "start": 4,
-            "top": 0,
-            "end": 0,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 236,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 284,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 405,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 453,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 74,
-            "y": 630,
-            "width": 188,
-            "height": 36
-          },
-          "label": "LIGHT / DARK",
-          "padding": {
-            "start": 4,
-            "top": 0,
-            "end": 0,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 682,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 730,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 851,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 899,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 63,
-            "y": 1020,
-            "width": 924,
-            "height": 158
-          },
-          "padding": {
-            "start": 0,
-            "top": 6,
-            "end": 0,
-            "bottom": 6
-          }
-        },
-        {
-          "bounds": {
-            "x": 95,
-            "y": 1068,
-            "width": 63,
-            "height": 63
-          },
-          "role": "RadioButton",
-          "padding": {
-            "start": 2,
-            "top": 2,
-            "end": 2,
-            "bottom": 2
-          }
-        },
-        {
-          "bounds": {
-            "x": 829,
-            "y": 1252,
-            "width": 158,
-            "height": 105
-          },
-          "role": "Button",
-          "cornerRadius": 20
-        }
-      ],
-      "section": ":app",
-      "group": "Previews",
-      "caption": "ThemePicker — Dynamic + Dark",
-      "wireframe": "wireframes/app-themepickerdynamicdarkpreview.svg",
-      "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
-      "sourceModule": ":app",
-      "bodyLine": 173,
-      "sourceDirectory": "app",
-      "sourceFunction": "ThemePickerDynamicDarkPreview",
-      "parameters": [
-        {
-          "name": "current",
-          "type": "ThemeSettings"
-        },
-        {
-          "name": "onModeSelect",
-          "type": "(ThemeMode) -> Unit"
-        },
-        {
-          "name": "onPaletteSelect",
-          "type": "(ThemePalette) -> Unit"
-        },
-        {
-          "name": "onDismiss",
-          "type": "() -> Unit"
-        }
-      ]
-    },
-    {
       "componentId": "app/DeviceInfoWidgetPopulatedPreview",
       "images": [
         {
@@ -14364,6 +14464,113 @@
       "wireframe": "wireframes/app-dynamic-light-theme.svg"
     },
     {
+      "componentId": "meshcore-components/ThemePickerMeshcoreSystemPreview",
+      "images": [
+        {
+          "variant": "ideal",
+          "path": "images/meshcore-components-themepickermeshcoresystempreview/ideal__default.png",
+          "state": "default",
+          "width": 1,
+          "height": 1,
+          "livePreview": "https://preview.coo.ee/meshcore-mobile/p/meshcore-components-themepickermeshcoresystempreview__ideal__default",
+          "previewId": "module_3a6d657368636f72652d636f6d706f6e656e7473__module_6d657368636f72652d636f6d706f6e656e7473__ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerMeshcoreSystemPreview_ThemePicker___MeshCore___System",
+          "previewParams": {
+            "showBackground": true
+          },
+          "density": 2.625,
+          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/meshcore-components-themepickermeshcoresystempreview__ideal__default.svg"
+        }
+      ],
+      "greenlines": [],
+      "redlines": [],
+      "section": ":meshcore-components",
+      "group": "Previews",
+      "caption": "ThemePicker — MeshCore + System",
+      "wireframe": "wireframes/meshcore-components-themepickermeshcoresystempreview.svg",
+      "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "sourceModule": ":meshcore-components",
+      "bodyLine": 162,
+      "sourceDirectory": "meshcore-components",
+      "sourceFunction": "ThemePickerMeshcoreSystemPreview",
+      "parameters": [
+        {
+          "name": "current",
+          "type": "ThemeSettings"
+        },
+        {
+          "name": "onModeSelect",
+          "type": "(ThemeMode) -> Unit"
+        },
+        {
+          "name": "onPaletteSelect",
+          "type": "(ThemePalette) -> Unit"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() -> Unit"
+        },
+        {
+          "name": "dynamicColorAvailable",
+          "type": "Boolean",
+          "hasDefault": true
+        }
+      ]
+    },
+    {
+      "componentId": "meshcore-components/ThemePickerDynamicDarkPreview",
+      "images": [
+        {
+          "variant": "ideal",
+          "path": "images/meshcore-components-themepickerdynamicdarkpreview/ideal__default__dark.png",
+          "state": "default",
+          "width": 1,
+          "height": 1,
+          "theme": "dark",
+          "livePreview": "https://preview.coo.ee/meshcore-mobile/p/meshcore-components-themepickerdynamicdarkpreview__ideal__default__dark",
+          "previewId": "module_3a6d657368636f72652d636f6d706f6e656e7473__module_6d657368636f72652d636f6d706f6e656e7473__ee.schimke.meshcore.app.ui.theme.ThemePickerKt.ThemePickerDynamicDarkPreview_ThemePicker___Dynamic___Dark",
+          "previewParams": {
+            "showBackground": true
+          },
+          "density": 2.625,
+          "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/meshcore-components-themepickerdynamicdarkpreview__ideal__default__dark.svg"
+        }
+      ],
+      "greenlines": [],
+      "redlines": [],
+      "section": ":meshcore-components",
+      "group": "Previews",
+      "caption": "ThemePicker — Dynamic + Dark",
+      "wireframe": "wireframes/meshcore-components-themepickerdynamicdarkpreview.svg",
+      "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "sourceModule": ":meshcore-components",
+      "bodyLine": 175,
+      "sourceDirectory": "meshcore-components",
+      "sourceFunction": "ThemePickerDynamicDarkPreview",
+      "parameters": [
+        {
+          "name": "current",
+          "type": "ThemeSettings"
+        },
+        {
+          "name": "onModeSelect",
+          "type": "(ThemeMode) -> Unit"
+        },
+        {
+          "name": "onPaletteSelect",
+          "type": "(ThemePalette) -> Unit"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() -> Unit"
+        },
+        {
+          "name": "dynamicColorAvailable",
+          "type": "Boolean",
+          "hasDefault": true
+        }
+      ]
+    },
+    {
       "componentId": "meshcore-components/ContactChatDarkPreview",
       "images": [
         {
@@ -14386,11 +14593,236 @@
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 942,
+              "y": 2250,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 22,
+              "y": 32,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 168,
+            "width": 1014,
+            "height": 2037
+          },
+          "padding": {
+            "start": 12,
+            "top": 0,
+            "end": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 366,
+            "y": 619,
+            "width": 680,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 398,
+            "y": 640,
+            "width": 616,
+            "height": 47
+          },
+          "label": "sounds good, sending a test ping",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 474,
+            "width": 750,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 495,
+            "width": 686,
+            "height": 47
+          },
+          "label": "nice — I'll relay through bob-repeater",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 454,
+            "y": 329,
+            "width": 592,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 486,
+            "y": 350,
+            "width": 528,
+            "height": 47
+          },
+          "label": "yeah, firing up the node now",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 184,
+            "width": 550,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 205,
+            "width": 486,
+            "height": 47
+          },
+          "label": "hey — are you on tonight?",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 21,
+            "y": 2226,
+            "width": 889,
+            "height": 152
+          },
+          "cornerRadius": 24
+        },
+        {
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 148,
+            "y": 37,
+            "width": 250,
+            "height": 94
+          },
+          "padding": {
+            "start": 4,
+            "top": 0,
+            "end": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 42,
+            "y": 0,
+            "width": 994,
+            "height": 63
+          },
+          "padding": {
+            "start": 16,
+            "top": 0,
+            "end": 16,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 397,
+            "y": 2368,
+            "width": 284,
+            "height": 11
+          },
+          "padding": {
+            "start": 0,
+            "top": 4,
+            "end": 0,
+            "bottom": 0
+          },
+          "cornerRadius": 2
+        }
+      ],
       "section": ":meshcore-components",
       "group": "Previews",
       "caption": "Contact chat — dark",
+      "wireframe": "wireframes/meshcore-components-contactchatdarkpreview.svg",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
       "sourceModule": ":meshcore-components",
       "bodyLine": 189,
@@ -14450,11 +14882,236 @@
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 942,
+              "y": 2250,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 22,
+              "y": 32,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 168,
+            "width": 1014,
+            "height": 2037
+          },
+          "padding": {
+            "start": 12,
+            "top": 0,
+            "end": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 433,
+            "y": 709,
+            "width": 613,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 465,
+            "y": 730,
+            "width": 549,
+            "height": 47
+          },
+          "label": "broadcasting weather update",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 516,
+            "y": 564,
+            "width": 530,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 548,
+            "y": 585,
+            "width": 466,
+            "height": 47
+          },
+          "label": "copy — net looks healthy",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 374,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 440,
+            "width": 532,
+            "height": 47
+          },
+          "label": "I've got line of sight, relaying",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 184,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 250,
+            "width": 542,
+            "height": 47
+          },
+          "label": "anyone near the north ridge?",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 21,
+            "y": 2226,
+            "width": 889,
+            "height": 152
+          },
+          "cornerRadius": 24
+        },
+        {
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 148,
+            "y": 37,
+            "width": 161,
+            "height": 94
+          },
+          "padding": {
+            "start": 4,
+            "top": 0,
+            "end": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 42,
+            "y": 0,
+            "width": 994,
+            "height": 63
+          },
+          "padding": {
+            "start": 16,
+            "top": 0,
+            "end": 16,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 397,
+            "y": 2368,
+            "width": 284,
+            "height": 11
+          },
+          "padding": {
+            "start": 0,
+            "top": 4,
+            "end": 0,
+            "bottom": 0
+          },
+          "cornerRadius": 2
+        }
+      ],
       "section": ":meshcore-components",
       "group": "Previews",
       "caption": "Channel chat — dark",
+      "wireframe": "wireframes/meshcore-components-channelchatdarkpreview.svg",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
       "sourceModule": ":meshcore-components",
       "bodyLine": 239,
@@ -14514,11 +15171,236 @@
           "density": 2.625
         }
       ],
-      "greenlines": [],
-      "redlines": [],
+      "greenlines": [
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 942,
+              "y": 2250,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          }
+        },
+        {
+          "kind": "a11y",
+          "severity": "info",
+          "message": "button",
+          "detail": {
+            "role": "button",
+            "bounds": {
+              "x": 22,
+              "y": 32,
+              "width": 105,
+              "height": 105
+            }
+          },
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          }
+        }
+      ],
+      "redlines": [
+        {
+          "bounds": {
+            "x": 32,
+            "y": 168,
+            "width": 1014,
+            "height": 2037
+          },
+          "padding": {
+            "start": 12,
+            "top": 0,
+            "end": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 664,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 730,
+            "width": 795,
+            "height": 47
+          },
+          "label": "freq: 869.525 MHz · BW 125 kHz · SF 10 · CR 5",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 636,
+            "y": 519,
+            "width": 410,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 668,
+            "y": 540,
+            "width": 152,
+            "height": 47
+          },
+          "label": "get freq",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 32,
+            "y": 329,
+            "width": 888,
+            "height": 179
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 64,
+            "y": 395,
+            "width": 426,
+            "height": 47
+          },
+          "label": "battery: 3980 mV (97%)",
+          "padding": {
+            "start": 0,
+            "top": 2,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 706,
+            "y": 184,
+            "width": 340,
+            "height": 134
+          },
+          "cornerRadius": 12
+        },
+        {
+          "bounds": {
+            "x": 738,
+            "y": 205,
+            "width": 137,
+            "height": 47
+          },
+          "label": "get bat",
+          "padding": {
+            "start": 0,
+            "top": 0,
+            "end": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 21,
+            "y": 2226,
+            "width": 889,
+            "height": 152
+          },
+          "cornerRadius": 24
+        },
+        {
+          "bounds": {
+            "x": 942,
+            "y": 2250,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 22,
+            "y": 32,
+            "width": 105,
+            "height": 105
+          },
+          "role": "Button",
+          "cornerRadius": 20
+        },
+        {
+          "bounds": {
+            "x": 148,
+            "y": 57,
+            "width": 227,
+            "height": 54
+          },
+          "padding": {
+            "start": 4,
+            "top": 0,
+            "end": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 42,
+            "y": 0,
+            "width": 994,
+            "height": 63
+          },
+          "padding": {
+            "start": 16,
+            "top": 0,
+            "end": 16,
+            "bottom": 0
+          }
+        },
+        {
+          "bounds": {
+            "x": 397,
+            "y": 2368,
+            "width": 284,
+            "height": 11
+          },
+          "padding": {
+            "start": 0,
+            "top": 4,
+            "end": 0,
+            "bottom": 0
+          },
+          "cornerRadius": 2
+        }
+      ],
       "section": ":meshcore-components",
       "group": "Previews",
       "caption": "Commands — dark",
+      "wireframe": "wireframes/meshcore-components-commandsdarkpreview.svg",
       "sourceFile": "src/commonMain/kotlin/ee/schimke/meshcore/components/ui/ChatBodyPreviews.kt",
       "sourceModule": ":meshcore-components",
       "bodyLine": 312,
@@ -16960,7 +17842,7 @@
       "wireframe": "wireframes/wear-statuswidgetconnectedpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 48,
+      "bodyLine": 49,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusWidgetConnectedPreview",
       "parameters": [
@@ -17024,7 +17906,7 @@
       "wireframe": "wireframes/wear-statuswidgetdisconnectedpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 60,
+      "bodyLine": 61,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusWidgetDisconnectedPreview",
       "parameters": [
@@ -17088,7 +17970,7 @@
       "wireframe": "wireframes/wear-statuswidgetlowbatterypreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 72,
+      "bodyLine": 73,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusWidgetLowBatteryPreview",
       "parameters": [
@@ -17152,7 +18034,7 @@
       "wireframe": "wireframes/wear-wearcomponentcatalogpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 84,
+      "bodyLine": 85,
       "sourceDirectory": "wear",
       "sourceFunction": "WearComponentCatalogPreview"
     },
@@ -17484,7 +18366,7 @@
       "wireframe": "wireframes/wear-wearcomponentgridpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 177,
+      "bodyLine": 178,
       "sourceDirectory": "wear",
       "sourceFunction": "WearComponentGridPreview",
       "parameters": [
@@ -17845,7 +18727,7 @@
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
   "renderer": "compose-preview 2.40.0",
-  "generatedAt": "2026-10-10T13:08:37.792Z",
+  "generatedAt": "2026-10-10T14:58:53.779Z",
   "display": {
     "hero": "Device/Populated"
   },

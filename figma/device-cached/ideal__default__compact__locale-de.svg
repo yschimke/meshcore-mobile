@@ -48,13 +48,13 @@
   <g id="Root">
     <g id="Box">
       <g id="Box">
-          <rect x="0" y="0" width="1078" height="2399" fill="#FFFFFF"/>
+        <rect x="0" y="0" width="1078" height="2399" fill="#FFFFFF"/>
         <g id="Box">
-            <rect x="0" y="0" width="1078" height="2399" fill="#F4FBF8"/>
+          <rect x="0" y="0" width="1078" height="2399" fill="#F4FBF8"/>
           <g id="LayoutNodeSubcompositionsState">
             <g id="Column">
               <g id="Box" filter="url(#shadow-3)">
-                  <rect x="42" y="189" width="994" height="449" rx="31.5" ry="31.5" fill="#E8EFEC"/>
+                <rect x="42" y="189" width="994" height="449" rx="31.5" ry="31.5" fill="#E8EFEC"/>
                 <g id="Column">
                   <g id="Empty">
                     <text x="84" y="285.86" font-size="52.5" font-family="Orbitron" font-weight="500" letter-spacing="0.53" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 500.0" fill="#161D1B">node-peak</text>
@@ -66,7 +66,6 @@
                       </g>
                     </g>
                     <g id="Empty">
-                      <image href="ideal__default__compact__locale-de.figma-raster/1330.png" x="126" y="323" width="21" height="47"/>
                     </g>
                     <g id="Empty">
                       <text x="147" y="363.92" font-size="36.75" font-family="Roboto Mono" font-weight="400" letter-spacing="0.66" fill="#3F4946">abababababababab</text>
@@ -79,7 +78,6 @@
                       </g>
                     </g>
                     <g id="Empty">
-                      <image href="ideal__default__compact__locale-de.figma-raster/1334.png" x="126" y="396" width="21" height="47"/>
                     </g>
                     <g id="Empty">
                       <text x="147" y="434.92" font-size="36.75" font-family="Space Grotesk" font-weight="400" letter-spacing="0.66" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#3F4946">869.525 MHz · BW 125 kHz · SF 10 · CR 5</text>
@@ -110,7 +108,6 @@
                         </g>
                       </g>
                       <g id="Empty">
-                        <image href="ideal__default__compact__locale-de.figma-raster/1343.png" x="126" y="549" width="21" height="47"/>
                       </g>
                       <g id="Empty">
                         <text x="147" y="584.86" font-size="31.5" font-family="Space Grotesk" font-weight="400" letter-spacing="1.05" style="font-variation-settings:&apos;ital&apos; 0.0,&apos;wght&apos; 400.0" fill="#3F4946">512 / 4096 kB</text>
@@ -281,7 +278,7 @@
               </g>
             </g>
             <g id="Box">
-              <image href="ideal__default__compact__locale-de.figma-raster/1301.png" x="0" y="0" width="1078" height="168"/>
+              <image href="ideal__default__compact__locale-de.figma-raster/1943.png" x="0" y="0" width="1078" height="168"/>
               <g id="TopAppBar">
                 <g id="Box">
                 </g>
@@ -312,10 +309,6 @@
                   </g>
                 </g>
               </g>
-            </g>
-            <g id="Box">
-            </g>
-            <g id="Box">
             </g>
           </g>
         </g>

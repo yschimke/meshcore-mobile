@@ -528,8 +528,8 @@
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:76"
       },
       "match": {
-        "percent": 98.21,
-        "changedPercent": 8.18,
+        "percent": 98.11,
+        "changedPercent": 8.25,
         "scoreVersion": 3
       }
     },
@@ -561,8 +561,8 @@
         "uri": "figma:gYzowY4cQ7rNr2gYoco1M6/87:99"
       },
       "match": {
-        "percent": 99.44,
-        "changedPercent": 7.87,
+        "percent": 99.32,
+        "changedPercent": 7.94,
         "scoreVersion": 3
       }
     },
@@ -859,7 +859,7 @@
       },
       "match": {
         "percent": 98.06,
-        "changedPercent": 8.28,
+        "changedPercent": 8.29,
         "scoreVersion": 3
       }
     },

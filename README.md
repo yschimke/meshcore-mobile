@@ -40,9 +40,9 @@ customising the live render are two ends of one workflow.
 | --- | --- |
 | Components | **88** |
 | Rendered images (PNG) | **147** |
-| Editable wireframes (SVG) | **78** |
-| Editable design vectors (figma-svg) | **6** |
-| Components with a11y greenlines | **45** |
+| Editable wireframes (SVG) | **82** |
+| Editable design vectors (figma-svg) | **14** |
+| Components with a11y greenlines | **49** |
 | Library | `androidx.compose.material3:material3`<br>`ee.schimke.meshcore:meshcore-components (MeshcoreTheme)` |
 | Renderer | compose-preview 2.40.0 |
 | Schema | `design-parity-catalog/v1` |

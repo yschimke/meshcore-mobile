@@ -6,7 +6,7 @@
     "repo": "yschimke/meshcore-mobile",
     "ref": "main"
   },
-  "generatedAt": "2026-10-10T13:08:38.482Z",
+  "generatedAt": "2026-10-10T14:58:55.006Z",
   "mappings": [
     {
       "componentId": "Theme/MeshCore-Light",
@@ -1609,162 +1609,20 @@
     {
       "componentId": "Device/StatusConnecting",
       "figmaLayerName": "Device/StatusConnecting",
-      "componentName": "DeviceStatusView",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceStatusViews.kt",
+      "componentName": "DeviceStatusConnectingPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "label": "Compose",
-      "confidence": "HIGH",
-      "previewName": "DeviceStatusConnectingPreview",
-      "codeSnippet": "DeviceStatusView(\n    title = TODO(\"String\"),\n    status = TODO(\"DeviceConnectStatus\"),\n    onCancel = TODO(\"() -> Unit\"),\n)",
-      "imports": [
-        "import ee.schimke.meshcore.app.ui.DeviceStatusView"
-      ],
-      "parameters": [
-        {
-          "name": "title",
-          "type": "String",
-          "typeFqn": "kotlin.String",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": null
-        },
-        {
-          "name": "status",
-          "type": "DeviceConnectStatus",
-          "typeFqn": "ee.schimke.meshcore.app.ui.DeviceConnectStatus",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": null
-        },
-        {
-          "name": "onCancel",
-          "type": "() -> Unit",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "onOpenThemePicker",
-          "type": "() -> Unit",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": true,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "nowMs",
-          "type": "() -> Long",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": true,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Long"
-        }
-      ]
+      "confidence": "preview-fallback",
+      "previewName": "DeviceStatusConnectingPreview"
     },
     {
       "componentId": "Device/StatusFailed",
       "figmaLayerName": "Device/StatusFailed",
-      "componentName": "DeviceStatusView",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceStatusViews.kt",
+      "componentName": "DeviceStatusFailedPreview",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "label": "Compose",
-      "confidence": "HIGH",
-      "previewName": "DeviceStatusFailedPreview",
-      "codeSnippet": "DeviceStatusView(\n    title = TODO(\"String\"),\n    status = TODO(\"DeviceConnectStatus\"),\n    onCancel = TODO(\"() -> Unit\"),\n)",
-      "imports": [
-        "import ee.schimke.meshcore.app.ui.DeviceStatusView"
-      ],
-      "parameters": [
-        {
-          "name": "title",
-          "type": "String",
-          "typeFqn": "kotlin.String",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": null
-        },
-        {
-          "name": "status",
-          "type": "DeviceConnectStatus",
-          "typeFqn": "ee.schimke.meshcore.app.ui.DeviceConnectStatus",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": null
-        },
-        {
-          "name": "onCancel",
-          "type": "() -> Unit",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "onOpenThemePicker",
-          "type": "() -> Unit",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": true,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "nowMs",
-          "type": "() -> Long",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": true,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Long"
-        }
-      ]
+      "confidence": "preview-fallback",
+      "previewName": "DeviceStatusFailedPreview"
     },
     {
       "componentId": "Device/Cached",
@@ -1886,7 +1744,8 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ]
+      ],
+      "figmaSvg": "figma/chat-contact.svg"
     },
     {
       "componentId": "Chat/Channel",
@@ -1979,7 +1838,8 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ]
+      ],
+      "figmaSvg": "figma/chat-channel.svg"
     },
     {
       "componentId": "Chat/Commands",
@@ -2072,7 +1932,8 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ]
+      ],
+      "figmaSvg": "figma/chat-commands.svg"
     },
     {
       "componentId": "Settings/Ready",
@@ -2498,140 +2359,6 @@
       ]
     },
     {
-      "componentId": "app/ThemePickerMeshcoreSystemPreview",
-      "figmaLayerName": "app/ThemePickerMeshcoreSystemPreview",
-      "componentName": "ThemePickerDialog",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
-      "label": "Compose",
-      "confidence": "HIGH",
-      "previewName": "ThemePickerMeshcoreSystemPreview",
-      "codeSnippet": "ThemePickerDialog(\n    current = TODO(\"ThemeSettings\"),\n    onModeSelect = TODO(\"(ThemeMode) -> Unit\"),\n    onPaletteSelect = TODO(\"(ThemePalette) -> Unit\"),\n    onDismiss = TODO(\"() -> Unit\"),\n)",
-      "imports": [
-        "import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog"
-      ],
-      "parameters": [
-        {
-          "name": "current",
-          "type": "ThemeSettings",
-          "typeFqn": "ee.schimke.meshcore.app.ui.theme.ThemeSettings",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": null
-        },
-        {
-          "name": "onModeSelect",
-          "type": "(ThemeMode) -> Unit",
-          "typeFqn": "kotlin.Function1",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "onPaletteSelect",
-          "type": "(ThemePalette) -> Unit",
-          "typeFqn": "kotlin.Function1",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "onDismiss",
-          "type": "() -> Unit",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        }
-      ]
-    },
-    {
-      "componentId": "app/ThemePickerDynamicDarkPreview",
-      "figmaLayerName": "app/ThemePickerDynamicDarkPreview",
-      "componentName": "ThemePickerDialog",
-      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/main/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
-      "label": "Compose",
-      "confidence": "HIGH",
-      "previewName": "ThemePickerDynamicDarkPreview",
-      "codeSnippet": "ThemePickerDialog(\n    current = TODO(\"ThemeSettings\"),\n    onModeSelect = TODO(\"(ThemeMode) -> Unit\"),\n    onPaletteSelect = TODO(\"(ThemePalette) -> Unit\"),\n    onDismiss = TODO(\"() -> Unit\"),\n)",
-      "imports": [
-        "import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog"
-      ],
-      "parameters": [
-        {
-          "name": "current",
-          "type": "ThemeSettings",
-          "typeFqn": "ee.schimke.meshcore.app.ui.theme.ThemeSettings",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": null
-        },
-        {
-          "name": "onModeSelect",
-          "type": "(ThemeMode) -> Unit",
-          "typeFqn": "kotlin.Function1",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "onPaletteSelect",
-          "type": "(ThemePalette) -> Unit",
-          "typeFqn": "kotlin.Function1",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        },
-        {
-          "name": "onDismiss",
-          "type": "() -> Unit",
-          "typeFqn": "kotlin.Function0",
-          "hasDefault": false,
-          "composableSlot": false,
-          "composableSlotReceiver": null,
-          "nullable": false,
-          "noArgConstructible": false,
-          "noArgFactory": null,
-          "scopeDslReceiver": null,
-          "lambdaReturnTypeFqn": "kotlin.Unit"
-        }
-      ]
-    },
-    {
       "componentId": "app/DeviceInfoWidgetPopulatedPreview",
       "figmaLayerName": "app/DeviceInfoWidgetPopulatedPreview",
       "componentName": "DeviceInfoWidgetContent",
@@ -3043,6 +2770,168 @@
       "previewName": "Dynamic Light theme"
     },
     {
+      "componentId": "meshcore-components/ThemePickerMeshcoreSystemPreview",
+      "figmaLayerName": "meshcore-components/ThemePickerMeshcoreSystemPreview",
+      "componentName": "ThemePickerDialog",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "ThemePickerMeshcoreSystemPreview",
+      "codeSnippet": "ThemePickerDialog(\n    current = TODO(\"ThemeSettings\"),\n    onModeSelect = TODO(\"(ThemeMode) -> Unit\"),\n    onPaletteSelect = TODO(\"(ThemePalette) -> Unit\"),\n    onDismiss = TODO(\"() -> Unit\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog"
+      ],
+      "parameters": [
+        {
+          "name": "current",
+          "type": "ThemeSettings",
+          "typeFqn": "ee.schimke.meshcore.app.ui.theme.ThemeSettings",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onModeSelect",
+          "type": "(ThemeMode) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        },
+        {
+          "name": "onPaletteSelect",
+          "type": "(ThemePalette) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        },
+        {
+          "name": "dynamicColorAvailable",
+          "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        }
+      ],
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/meshcore-components-themepickermeshcoresystempreview__ideal__default.svg"
+    },
+    {
+      "componentId": "meshcore-components/ThemePickerDynamicDarkPreview",
+      "figmaLayerName": "meshcore-components/ThemePickerDynamicDarkPreview",
+      "componentName": "ThemePickerDialog",
+      "source": "https://github.com/yschimke/meshcore-mobile/blob/main/src/commonMain/kotlin/ee/schimke/meshcore/app/ui/theme/ThemePicker.kt",
+      "label": "Compose",
+      "confidence": "HIGH",
+      "previewName": "ThemePickerDynamicDarkPreview",
+      "codeSnippet": "ThemePickerDialog(\n    current = TODO(\"ThemeSettings\"),\n    onModeSelect = TODO(\"(ThemeMode) -> Unit\"),\n    onPaletteSelect = TODO(\"(ThemePalette) -> Unit\"),\n    onDismiss = TODO(\"() -> Unit\"),\n)",
+      "imports": [
+        "import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog"
+      ],
+      "parameters": [
+        {
+          "name": "current",
+          "type": "ThemeSettings",
+          "typeFqn": "ee.schimke.meshcore.app.ui.theme.ThemeSettings",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        },
+        {
+          "name": "onModeSelect",
+          "type": "(ThemeMode) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        },
+        {
+          "name": "onPaletteSelect",
+          "type": "(ThemePalette) -> Unit",
+          "typeFqn": "kotlin.Function1",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() -> Unit",
+          "typeFqn": "kotlin.Function0",
+          "hasDefault": false,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": "kotlin.Unit"
+        },
+        {
+          "name": "dynamicColorAvailable",
+          "type": "Boolean",
+          "typeFqn": "kotlin.Boolean",
+          "hasDefault": true,
+          "composableSlot": false,
+          "composableSlotReceiver": null,
+          "nullable": false,
+          "noArgConstructible": false,
+          "noArgFactory": null,
+          "scopeDslReceiver": null,
+          "lambdaReturnTypeFqn": null
+        }
+      ],
+      "figmaSvg": "https://preview.coo.ee/meshcore-mobile/render/meshcore-components-themepickerdynamicdarkpreview__ideal__default__dark.svg"
+    },
+    {
       "componentId": "meshcore-components/ContactChatDarkPreview",
       "figmaLayerName": "meshcore-components/ContactChatDarkPreview",
       "componentName": "chatPreview",
@@ -3133,7 +3022,8 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ]
+      ],
+      "figmaSvg": "figma/meshcore-components-contactchatdarkpreview.svg"
     },
     {
       "componentId": "meshcore-components/ChannelChatDarkPreview",
@@ -3226,7 +3116,8 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ]
+      ],
+      "figmaSvg": "figma/meshcore-components-channelchatdarkpreview.svg"
     },
     {
       "componentId": "meshcore-components/CommandsDarkPreview",
@@ -3319,7 +3210,8 @@
           "scopeDslReceiver": null,
           "lambdaReturnTypeFqn": "kotlin.Unit"
         }
-      ]
+      ],
+      "figmaSvg": "figma/meshcore-components-commandsdarkpreview.svg"
     },
     {
       "componentId": "meshcore-components/DeviceBodyDarkPreview",
