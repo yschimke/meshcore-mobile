@@ -18,6 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
@@ -60,19 +61,43 @@ fun KeyScreen(
             ScreenColumn("$screen-list") {
               Text("MeshCore", style = MaterialTheme.typography.labelLarge)
               Text(spec.title, style = MaterialTheme.typography.headlineMedium)
-              Text(spec.summary, style = MaterialTheme.typography.bodyLarge)
-              InfoCard(spec.statusTitle, spec.status)
+              val unavailable = screen == "settings" && selected == 1
+              Text(
+                if (unavailable) "Settings could not be discovered." else spec.summary,
+                style = MaterialTheme.typography.bodyLarge,
+              )
+              InfoCard(
+                if (unavailable) "Discovery unavailable" else spec.statusTitle,
+                if (unavailable) "Reconnect and retry discovery. No settings can be changed."
+                else spec.status,
+              )
               spec.panels.forEachIndexed { index, panel ->
+                if (screen == "settings" && (unavailable || index == 1)) return@forEachIndexed
                 Button(
                   onClick = {
                     scope.launch { navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, index) }
                   },
-                  modifier = Modifier.fillMaxWidth().testTag("panel-$index"),
+                  modifier =
+                    Modifier.fillMaxWidth().testTag("panel-$index").semantics {
+                      this.selected = selected == index
+                    },
                 ) {
-                  Text(panel.title)
+                  Text(
+                    if (
+                      navigator.scaffoldValue[ListDetailPaneScaffoldRole.Detail] ==
+                        PaneAdaptedValue.Expanded && selected == index
+                    )
+                      "Selected · ${panel.title}"
+                    else panel.title
+                  )
                 }
               }
-              Text(spec.note, style = MaterialTheme.typography.bodyMedium)
+              if (unavailable)
+                Button(onClick = { onAction("discover", "retry") }) { Text("Retry discovery") }
+              Text(
+                if (unavailable) "No changes can be made until discovery succeeds." else spec.note,
+                style = MaterialTheme.typography.bodyMedium,
+              )
             }
           }
         },
@@ -157,7 +182,7 @@ fun KeyScreen(
                     style = MaterialTheme.typography.bodyLarge,
                   )
               }
-              Button(
+              TextButton(
                 onClick = {
                   scope.launch { navigator.navigateTo(ListDetailPaneScaffoldRole.List, selected) }
                 },

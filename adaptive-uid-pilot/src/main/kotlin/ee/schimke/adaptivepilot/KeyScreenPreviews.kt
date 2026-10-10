@@ -170,3 +170,15 @@ fun CachedDetailDarkPreview() = KeyScreen("cached", dark = true, initialDetail =
 @Composable
 fun CachedSecondaryDarkPreview() =
   KeyScreen("cached", dark = true, initialDetail = true, initialSelectedIndex = 1)
+
+@Preview(name = "TCP failure Phone Light", widthDp = 412, heightDp = 720)
+@Preview(name = "TCP failure Tablet Light", widthDp = 840, heightDp = 720)
+@Composable
+fun ScannerFailureLightPreview() =
+  KeyScreen("scanner", initialDetail = true, initialSelectedIndex = 1, failure = true)
+
+@Preview(name = "TCP failure Phone Dark", widthDp = 412, heightDp = 720)
+@Preview(name = "TCP failure Tablet Dark", widthDp = 840, heightDp = 720)
+@Composable
+fun ScannerFailureDarkPreview() =
+  KeyScreen("scanner", dark = true, initialDetail = true, initialSelectedIndex = 1, failure = true)

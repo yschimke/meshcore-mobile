@@ -553,6 +553,10 @@
         "enabled": {
           "type": "bool",
           "value": true
+        },
+        "style": {
+          "type": "enum",
+          "value": "text"
         }
       },
       "slots": {

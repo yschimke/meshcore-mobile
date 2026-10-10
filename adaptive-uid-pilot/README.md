@@ -8,13 +8,13 @@ connect a radio, change a real setting, or send a real message.
 
 | Route | UID design | Production screen | Compose proposal |
 | --- | --- | --- | --- |
-| Connect / scanner | [scanner.uid](ui-builder/designs/scanner.uid) | [ScannerScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ScannerScreen.kt) | [KeyScreens](src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt) |
-| Device overview | [device.uid](ui-builder/designs/device.uid) | [DeviceScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/DeviceScreen.kt) | KeyScreens |
-| Contact chat | [contacts.uid](ui-builder/designs/contacts.uid) | [ContactChatScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ContactChatScreen.kt) | [ContactBrowser](src/main/kotlin/ee/schimke/adaptivepilot/ContactBrowser.kt) |
-| Channel chat | [channels.uid](ui-builder/designs/channels.uid) | [ChannelChatScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ChannelChatScreen.kt) | KeyScreens |
-| Commands | [commands.uid](ui-builder/designs/commands.uid) | [CommandsScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/CommandsScreen.kt) | KeyScreens |
-| Device settings | [settings.uid](ui-builder/designs/settings.uid) | [DeviceSettingsScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/DeviceSettingsScreen.kt) | KeyScreens |
-| Cached / offline device | [cached.uid](ui-builder/designs/cached.uid) | [CachedDeviceScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/CachedDeviceScreen.kt) | KeyScreens |
+| Connect / scanner | [scanner.uid](ui-builder/designs/scanner.uid) | [ScannerScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt) | [KeyScreens](src/main/kotlin/ee/schimke/adaptivepilot/KeyScreens.kt) |
+| Device overview | [device.uid](ui-builder/designs/device.uid) | [DeviceScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreen.kt) | KeyScreens |
+| Contact chat | [contacts.uid](ui-builder/designs/contacts.uid) | [ContactChatScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/ContactChatScreen.kt) | [ContactBrowser](src/main/kotlin/ee/schimke/adaptivepilot/ContactBrowser.kt) |
+| Channel chat | [channels.uid](ui-builder/designs/channels.uid) | [ChannelChatScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/ChannelChatScreen.kt) | KeyScreens |
+| Commands | [commands.uid](ui-builder/designs/commands.uid) | [CommandsScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/CommandsScreen.kt) | KeyScreens |
+| Device settings | [settings.uid](ui-builder/designs/settings.uid) | [DeviceSettingsScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceSettingsScreen.kt) | KeyScreens |
+| Cached / offline device | [cached.uid](ui-builder/designs/cached.uid) | [CachedDeviceScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/CachedDeviceScreen.kt) | KeyScreens |
 
 Licenses and theme-picker overlays are outside this primary-route suite. Production permission
 dialogs, transport lifecycle, loading, delivery acknowledgements/retry, keyboard visibility and

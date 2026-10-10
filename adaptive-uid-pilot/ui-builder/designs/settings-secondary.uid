@@ -123,7 +123,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Settings discovered from the connected device."
+          "value": "Settings could not be discovered."
         },
         "style": {
           "type": "enum",
@@ -140,7 +140,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Trail radio \u00b7 Connected"
+          "value": "Discovery unavailable"
         },
         "style": {
           "type": "enum",
@@ -157,7 +157,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Only supported settings are shown."
+          "value": "Reconnect and retry discovery. No settings can be changed."
         },
         "style": {
           "type": "enum",
@@ -293,7 +293,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Changing a setting sends an update to your radio."
+          "value": "No changes can be made until discovery succeeds."
         },
         "style": {
           "type": "enum",
@@ -323,8 +323,7 @@
           "title",
           "summary",
           "status",
-          "panel-0",
-          "panel-1",
+          "retry",
           "note"
         ]
       },
@@ -494,6 +493,10 @@
         "enabled": {
           "type": "bool",
           "value": true
+        },
+        "style": {
+          "type": "enum",
+          "value": "text"
         }
       },
       "slots": {
@@ -538,6 +541,35 @@
           "type": "verticalScroll"
         }
       ],
+      "eventBindings": {}
+    },
+    "retry-text": {
+      "id": "retry-text",
+      "componentId": "m3/text",
+      "properties": {
+        "text": {
+          "type": "string",
+          "value": "Retry discovery"
+        },
+        "style": {
+          "type": "enum",
+          "value": "bodyLarge"
+        }
+      },
+      "slots": {},
+      "modifiers": [],
+      "eventBindings": {}
+    },
+    "retry": {
+      "id": "retry",
+      "componentId": "m3/button",
+      "properties": {},
+      "slots": {
+        "content": [
+          "retry-text"
+        ]
+      },
+      "modifiers": [],
       "eventBindings": {}
     }
   },

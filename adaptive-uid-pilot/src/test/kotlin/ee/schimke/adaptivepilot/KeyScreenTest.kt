@@ -53,6 +53,24 @@ class KeyScreenTest {
     }
 
   @Test
+  fun tcpRetryUsesEditedEndpoint() =
+    runDesktopComposeUiTest(width = 840, height = 800) {
+      var connection: Pair<String, String>? = null
+      setContent {
+        KeyScreen(
+          "scanner",
+          initialDetail = true,
+          initialSelectedIndex = 1,
+          failure = true,
+          onAction = { key, value -> connection = key to value },
+        )
+      }
+      onNodeWithTag("input").performTextReplacement("192.168.1.8:5000")
+      onNodeWithTag("action").performClick()
+      runOnIdle { assertEquals("connect" to "192.168.1.8:5000", connection) }
+    }
+
+  @Test
   fun buzzerChangesReachCallback() =
     runDesktopComposeUiTest(width = 840, height = 800) {
       var change: Pair<String, String>? = null

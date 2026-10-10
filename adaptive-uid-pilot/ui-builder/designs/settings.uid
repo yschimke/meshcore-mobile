@@ -324,7 +324,6 @@
           "summary",
           "status",
           "panel-0",
-          "panel-1",
           "note"
         ]
       },
@@ -507,6 +506,10 @@
         "enabled": {
           "type": "bool",
           "value": true
+        },
+        "style": {
+          "type": "enum",
+          "value": "text"
         }
       },
       "slots": {
