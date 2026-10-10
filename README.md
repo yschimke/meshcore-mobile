@@ -90,8 +90,6 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 | `ThemeFoundationMaterial3LightPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMaterial3LightPreview_Foundation_Material_3_light-5a8f24e4.png" width="150" /> |
 | `ThemeFoundationMeshcoreDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMeshcoreDarkPreview_Foundation_MeshCore_dark-2e48bd2e.png" width="150" /> |
 | `ThemeFoundationMeshcoreLightPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemeFoundationMeshcoreLightPreview_Foundation_MeshCore_light-bd0311bf.png" width="150" /> |
-| `ThemePickerDynamicDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark-4a40b5c7.png" width="150" /> |
-| `ThemePickerMeshcoreSystemPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System-f38cd3bb.png" width="150" /> |
 | `DeviceInfoWidgetEmptyPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.png" width="150" /> |
 | `DeviceInfoWidgetPopulatedPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.png" width="150" /> |
 | `DeviceInfoWidgetStalePreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.png" width="150" /> |
@@ -104,6 +102,8 @@ Auto-generated from `main`. Browse inline or compare against PR branches.
 
 | Preview | Image |
 |---------|-------|
+| `ThemePickerDynamicDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ThemePickerDynamicDarkPreview_ThemePicker_Dynamic_Dark-4a40b5c7.png" width="150" /> |
+| `ThemePickerMeshcoreSystemPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ThemePickerMeshcoreSystemPreview_ThemePicker_MeshCore_System-f38cd3bb.png" width="150" /> |
 | `ChannelChatArabicPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png" width="150" /> |
 | `ChannelChatDarkPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png" width="150" /> |
 | `ChannelChatPreview` | <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/main/renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.png" width="150" /> |
