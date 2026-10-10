@@ -245,6 +245,7 @@
       {
         "designId": "contacts",
         "componentId": "Contact browser",
+        "defaultState": "list",
         "sourceFile": "src/main/kotlin/ee/schimke/adaptivepilot/ContactBrowser.kt",
         "caption": "Adaptive stock Material 3 design proposal: phone and tablet, list and detail, light and dark."
       }
