@@ -1,0 +1,89 @@
+{
+  "schema": "compose-ui-builder-document/v1-candidate",
+  "id": "external-meshcore-chat",
+  "title": "External Meshcore ChatInput",
+  "revision": 0,
+  "catalogPin": {
+    "catalogId": "meshcore-mobile"
+  },
+  "environment": {
+    "theme": "light"
+  },
+  "stateVariables": {
+    "message": {
+      "type": "value",
+      "persistence": "preview",
+      "valueType": "string",
+      "initialValue": "Draft"
+    },
+    "sent": {
+      "type": "value",
+      "persistence": "preview",
+      "valueType": "string",
+      "initialValue": "Not sent"
+    }
+  },
+  "roots": [
+    "content"
+  ],
+  "nodes": {
+    "content": {
+      "id": "content",
+      "componentId": "layout/column",
+      "slots": {
+        "children": [
+          "input",
+          "echo",
+          "status"
+        ]
+      }
+    },
+    "input": {
+      "id": "input",
+      "componentId": "meshcore-mobile/chat-input",
+      "properties": {
+        "value": {
+          "type": "state",
+          "variable": "message"
+        },
+        "enabled": {
+          "type": "bool",
+          "value": true
+        },
+        "placeholder": {
+          "type": "string",
+          "value": "Message"
+        }
+      },
+      "eventBindings": {
+        "send": [
+          {
+            "type": "set",
+            "variable": "sent",
+            "value": "Sent from live adapter"
+          }
+        ]
+      }
+    },
+    "echo": {
+      "id": "echo",
+      "componentId": "m3/text",
+      "properties": {
+        "text": {
+          "type": "state",
+          "variable": "message"
+        }
+      }
+    },
+    "status": {
+      "id": "status",
+      "componentId": "m3/text",
+      "properties": {
+        "text": {
+          "type": "state",
+          "variable": "sent"
+        }
+      }
+    }
+  }
+}
