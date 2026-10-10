@@ -36,6 +36,7 @@ import androidx.wear.compose.remote.material3.RemoteButtonGroup
 import androidx.wear.compose.remote.material3.RemoteCard
 import androidx.wear.compose.remote.material3.RemoteCardDefaults
 import androidx.wear.compose.remote.material3.RemoteCircularProgressIndicator
+import androidx.compose.remote.creation.compose.capture.toRemoteImageVector
 import androidx.wear.compose.remote.material3.RemoteIcon
 import androidx.wear.compose.remote.material3.RemoteMaterialTheme
 import androidx.wear.compose.remote.material3.RemoteTextButton
@@ -239,7 +240,7 @@ fun WearComponentGridPreview() {
                 RemoteCircularProgressIndicator(progress = 0.75f.rf)
             }
             CatalogComponentPreview("RemoteIcon") {
-                RemoteIcon(imageVector = Icons.Rounded.Person, contentDescription = null)
+                RemoteIcon(imageVector = Icons.Rounded.Person.toRemoteImageVector(), contentDescription = null)
             }
         }
 

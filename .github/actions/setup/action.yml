@@ -26,3 +26,4 @@ runs:
       with:
         cache-read-only: ${{ inputs.cache-read-only }}
         gradle-home-cache-excludes: ${{ inputs.exclude-local-build-cache == 'true' && 'caches/build-cache-1' || '' }}
+    - uses: ./.github/actions/android-sdk

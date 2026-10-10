@@ -1,5 +1,11 @@
 # Agent notes
 
+- **Merge only when explicitly requested.** Only merge a PR or enable auto-merge
+  when the user specifically asks. If the request or intended PRs are unclear,
+  ask for clarification before merging. A request to implement, fix, review,
+  or open a PR does not by itself authorize merging. Honor required checks,
+  reviews, and branch protections.
+
 - Use `agent/...` for branch names, never `claude/...` or `copilot/...`
   (enforced by `.github/workflows/no-ai-coauthors.yml`).
 - Strip agent `Co-authored-by` trailers and AI bot emails from commits and PR
@@ -25,7 +31,7 @@
   --no-verify` / `git push --no-verify` bypass them locally — CI still won't.
   Change the detector only with `scripts/test-agent-attribution.sh` passing;
   CI runs it on every PR.
-- Project layout: `app/` (Android), Wear in `wear/`, plus several
+- Project layout: `app/` (Android), Wear in `wear/`, desktop in `desktop-app/`, plus several
   `meshcore-*` library modules (`meshcore-core`, `meshcore-data`,
   `meshcore-components`, `meshcore-mobile`, `meshcore-cli`,
   `meshcore-tui`, `meshcore-grpc-service`, and the
