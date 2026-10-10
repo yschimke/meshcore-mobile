@@ -84,9 +84,12 @@ jobs:
           if {p.name for p in root.iterdir()} != set(expected):
               raise SystemExit('Unexpected or missing assets')
           supplement=f'desktop-{tag}'
-          query=subprocess.run(['gh','api',f'repos/{repo}/releases/tags/{supplement}'],capture_output=True,text=True)
-          existing=json.loads(query.stdout) if query.returncode==0 else None
-          if query.returncode and '404' not in query.stderr: raise SystemExit(query.stderr)
+          def find_release():
+              pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/{repo}/releases?per_page=100']))
+              matches=[release for page in pages for release in page if release['tag_name']==supplement]
+              if len(matches)>1: raise SystemExit('Ambiguous release tag')
+              return matches[0] if matches else None
+          existing=find_release()
           if existing and existing['target_commitish']!=os.environ['SOURCE_SHA']:
               raise SystemExit('Release source does not match')
           if not existing:
@@ -94,7 +97,8 @@ jobs:
               subprocess.run(['gh','release','create',supplement,'--repo',repo,'--draft','--target',os.environ['SOURCE_SHA'],'--title',f'Desktop installers {tag}','--notes-file','desktop-notes.md'],check=True)
           if not existing or existing['draft']:
               subprocess.run(['gh','release','upload',supplement,'--repo',repo,'--clobber',*[str(root/n) for n in sorted(expected)]],check=True)
-          release=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/releases/tags/{supplement}']))
+          release=find_release()
+          if not release: raise SystemExit('Draft release was not created')
           assets={a['name']:a for a in release['assets']}
           if set(assets)!=set(expected): raise SystemExit('Uploaded asset set does not match')
           for name,digest in expected.items():
