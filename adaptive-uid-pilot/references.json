@@ -1,0 +1,206 @@
+{
+  "schema": "compose-ui-builder-references/v1",
+  "repository": "yschimke/meshcore-mobile",
+  "captures": [
+    {
+      "id": "contacts-412-list-light",
+      "previewId": "contacts-412-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-412-detail-light",
+      "previewId": "contacts-412-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-412-list-dark",
+      "previewId": "contacts-412-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-412-detail-dark",
+      "previewId": "contacts-412-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 412,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-840-list-light",
+      "previewId": "contacts-840-list-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-840-detail-light",
+      "previewId": "contacts-840-detail-light",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "light",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "detail-title": {
+          "text": {
+            "type": "string",
+            "value": "Bob"
+          }
+        },
+        "detail-subtitle": {
+          "text": {
+            "type": "string",
+            "value": "Camp coordination"
+          }
+        },
+        "detail-status": {
+          "text": {
+            "type": "string",
+            "value": "2 hops \u00b7 heard 5 minutes ago"
+          }
+        },
+        "detail-body": {
+          "text": {
+            "type": "string",
+            "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-840-list-dark",
+      "previewId": "contacts-840-list-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "list",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "contacts-840-detail-dark",
+      "previewId": "contacts-840-detail-dark",
+      "file": "adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+      "designId": "contacts",
+      "widthDp": 840,
+      "heightDp": 720,
+      "density": 2,
+      "theme": "dark",
+      "state": "detail",
+      "properties": {
+        "panes": {
+          "activePaneIndex": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "detail-title": {
+          "text": {
+            "type": "string",
+            "value": "Bob"
+          }
+        },
+        "detail-subtitle": {
+          "text": {
+            "type": "string",
+            "value": "Camp coordination"
+          }
+        },
+        "detail-status": {
+          "text": {
+            "type": "string",
+            "value": "2 hops \u00b7 heard 5 minutes ago"
+          }
+        },
+        "detail-body": {
+          "text": {
+            "type": "string",
+            "value": "Bob: Base camp is ready.\nYou: Bringing the spare battery."
+          }
+        }
+      }
+    }
+  ]
+}

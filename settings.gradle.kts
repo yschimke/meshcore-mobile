@@ -140,3 +140,8 @@ include(":app")
 include(":wear")
 
 include(":desktop-app")
+
+// Repository-owned UI Builder screen pilot; excluded from default catalog publication.
+if (providers.gradleProperty("adaptiveUidPilot").orNull == "true") {
+    include(":adaptive-uid-pilot")
+}

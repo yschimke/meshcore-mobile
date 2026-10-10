@@ -1,0 +1,10 @@
+{
+  "schema": "compose-ui-builder-design-index/v1",
+  "designs": [
+    {
+      "id": "contacts",
+      "title": "MeshCore \u00b7 Contacts",
+      "file": "contacts.uid"
+    }
+  ]
+}
