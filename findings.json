@@ -1068,7 +1068,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png",
       "findings": [],
       "functionName": "ChannelChatArabicPreview",
       "module": "meshcore-components",
@@ -1079,7 +1079,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png",
       "findings": [],
       "functionName": "ChannelChatDarkPreview",
       "module": "meshcore-components",
@@ -1090,7 +1090,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "ChannelChatPreview_Dark-32af4dfe.png",
       "findings": [],
       "functionName": "ChannelChatPreview",
       "module": "meshcore-components",
@@ -1101,7 +1101,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "CommandsArabicPreview_Commands_Arabic-d422501d.png",
       "findings": [],
       "functionName": "CommandsArabicPreview",
       "module": "meshcore-components",
@@ -1112,7 +1112,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "CommandsDarkPreview_Commands_dark-d93ca6b4.png",
       "findings": [],
       "functionName": "CommandsDarkPreview",
       "module": "meshcore-components",
@@ -1123,7 +1123,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "CommandsPreview_Dark-435b1f7d.png",
       "findings": [],
       "functionName": "CommandsPreview",
       "module": "meshcore-components",
@@ -1134,7 +1134,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png",
       "findings": [],
       "functionName": "ContactChatArabicPreview",
       "module": "meshcore-components",
@@ -1145,7 +1145,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png",
       "findings": [],
       "functionName": "ContactChatDarkPreview",
       "module": "meshcore-components",
@@ -1156,7 +1156,7 @@
     },
     {
       "annotatedBasename": "",
-      "cleanBasename": "",
+      "cleanBasename": "ContactChatPreview_Dark-a03644a3.png",
       "findings": [],
       "functionName": "ContactChatPreview",
       "module": "meshcore-components",
