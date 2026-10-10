@@ -1,6 +1,6 @@
 # Accessibility Report
 
-_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 38 error(s) · 19 warning(s) · 13 info._
+_Auto-generated from `compose-preview/a11y/main`. 88 preview(s) across 3 module(s) · 30 error(s) · 19 warning(s) · 15 info._
 
 Browse inline; image URLs are pinned to the commit SHA on the baseline branch so links keep resolving after merge.
 
@@ -129,25 +129,19 @@ _No findings._
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceInfoWidgetEmptyPreview_DeviceInfo_no_data-a1ee9178.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceInfoWidgetPopulatedPreview`
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceInfoWidgetPopulatedPreview_DeviceInfo_populated-516c989f.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceInfoWidgetStalePreview`
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/app/DeviceInfoWidgetStalePreview_DeviceInfo_stale-c6b8a433.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `DeviceStatusConnectingPreview` · `pixel_7`
 
@@ -436,55 +430,37 @@ _No findings._
 
 ### `ChannelChatArabicPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatArabicPreview_Channel_chat_Arabic-3c46d22d.png" width="400" />
-
 _No findings._
 
 ### `ChannelChatDarkPreview` · `pixel_7`
-
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatDarkPreview_Channel_chat_dark-ac13324b.png" width="400" />
 
 _No findings._
 
 ### `ChannelChatPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ChannelChatPreview_Dark-32af4dfe.png" width="400" />
-
 _No findings._
 
 ### `CommandsArabicPreview` · `pixel_7`
-
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsArabicPreview_Commands_Arabic-d422501d.png" width="400" />
 
 _No findings._
 
 ### `CommandsDarkPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsDarkPreview_Commands_dark-d93ca6b4.png" width="400" />
-
 _No findings._
 
 ### `CommandsPreview` · `pixel_7`
-
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/CommandsPreview_Dark-435b1f7d.png" width="400" />
 
 _No findings._
 
 ### `ContactChatArabicPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatArabicPreview_Contact_chat_Arabic-dda5d268.png" width="400" />
-
 _No findings._
 
 ### `ContactChatDarkPreview` · `pixel_7`
 
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatDarkPreview_Contact_chat_dark-1dbf3d70.png" width="400" />
-
 _No findings._
 
 ### `ContactChatPreview` · `pixel_7`
-
-<img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/meshcore-components/ContactChatPreview_Dark-a03644a3.png" width="400" />
 
 _No findings._
 
@@ -604,33 +580,25 @@ _No findings._
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusWidgetConnectedPreview_Status_connected-63591697.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `StatusWidgetDisconnectedPreview`
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusWidgetDisconnectedPreview_Status_disconnected-42695c0f.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `StatusWidgetLowBatteryPreview`
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/StatusWidgetLowBatteryPreview_Status_low_battery-149af881.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `WearComponentCatalogPreview`
 
 <img src="https://raw.githubusercontent.com/yschimke/meshcore-mobile/compose-preview/a11y/main/renders/wear/WearComponentCatalogPreview_Component_Catalog-ab535596.a11y.png" width="400" />
 
-| # | Level | Rule | Element | Message |
-|--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+_No findings._
 
 ### `WearComponentGridPreview`
 
@@ -638,4 +606,5 @@ _No findings._
 
 | # | Level | Rule | Element | Message |
 |--:|---|---|---|---|
-| 1 | ERROR | SpeakableTextPresentCheck | androidx.compose.remote.player.view.RemoteComposePlayer | This item may not have a label readable by screen readers. |
+| 1 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "Card Content" is identical to that of 1 other item(s). |
+| 2 | INFO | DuplicateSpeakableTextCheck | android.widget.TextView | This non-clickable item's speakable text: "Title" is identical to that of 1 other item(s). |
