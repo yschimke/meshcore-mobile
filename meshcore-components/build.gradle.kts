@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.androidKotlinMultiplatformLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  alias(libs.plugins.kotlinSerialization)
   // compose-preview (0.15.3) does NOT auto-inject into
   // com.android.kotlin.multiplatform.library modules — it skips them so a
   // non-renderable one (e.g. :meshcore-mobile) can't fail the desktop render —
@@ -16,15 +17,16 @@ kotlin {
 
   android {
     namespace = "ee.schimke.meshcore.components"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk {
+      version = release(libs.versions.android.compileSdk.get().toInt()) { minorApiLevel = 1 }
+    }
     minSdk = libs.versions.android.minSdk.get().toInt()
     // Generate R for the Google Fonts cert array used by the Android font actual.
     androidResources.enable = true
   }
 
-  // Desktop (JVM) target: lets the shared presentational composables render on
-  // the cheaper CMP/Skiko path (design-parity). Android-only deps (extended
-  // icons, transports, activity) stay in androidMain.
+  // Desktop (JVM) target for shared presentation and design-parity. Android
+  // activity and platform integrations stay in androidMain.
   jvm("desktop")
 
   sourceSets {
@@ -37,6 +39,13 @@ kotlin {
       api(libs.compose.material3)
       api(libs.compose.ui)
       api(libs.compose.uiToolingPreview)
+      api(libs.cmp.navigation3.runtime)
+      implementation(libs.kotlinx.serialization.json)
+      implementation(libs.cmp.material.icons.extended)
+      implementation(libs.cmp.navigation3.ui)
+      implementation(libs.cmp.adaptive)
+      implementation(libs.cmp.navigation.suite)
+      api(libs.rc.player.compose)
       // MeshCore's alternative themes are declared in shared code via @ThemeCatalog
       // (MeshcoreThemeCatalogs), so the annotations must be reachable from commonMain — hence the
       // KMP variant of preview-annotations (0.16.14+). Reflection-only markers, no runtime

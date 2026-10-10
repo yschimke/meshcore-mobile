@@ -9,10 +9,10 @@ android-compileSdk = "37"
 android-minSdk = "35"
 android-targetSdk = "37"
 androidx-activity = "1.13.0"
-androidx-core = "1.19.0"
+androidx-core = "1.19.1"
 androidx-lifecycle = "2.11.0"
 androidx-testExt = "1.3.0"
-composeMultiplatform = "1.12.0"
+composeMultiplatform = "1.13.0-alpha02"
 composePreviewAnnotations = "3.13.2"
 composePreviewPlugin = "2.40.0"
 # The data connector publishes from yschimke/compose-preview-daemon on that repository's own
@@ -25,12 +25,12 @@ composePreviewDaemonConnector = "3.14.1"
 # compose-preview-daemon 3.x the connector keeps it `compileOnly` and refuses the render
 # (RemoteComposeLinkageException) instead of falling back to the View player, so the consumer
 # must put it on the render classpath. 2.1.4 is what rc-players-bom 2.4.0 (the daemon 3.15.2
-# line) selects, and is built against androidx.compose.remote 1.0.0-alpha19, matching below.
+# line) selects, and is built against androidx.compose.remote 1.0.0-alpha19; the app now resolves alpha21.
 composePreviewRcEmbeddedPlayer = "2.1.4"
 core = "1.7.0"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 kotlinx-coroutines = "1.11.0"
-material3 = "1.10.0-alpha05"
+material3 = "1.13.0-alpha02"
 # Remote Compose, from Google Maven. Was an androidx-main post-submit snapshot until
 # the creation API this repo's remote cards need reached a release; `1.0.0-SNAPSHOT`
 # names no single build, so two consumers of "the same" version could hold two, which
@@ -40,41 +40,56 @@ material3 = "1.10.0-alpha05"
 #
 # Keep this in lockstep with `wear-compose-remote` below: the two layers are compiled
 # against each other, and a mismatched pair fails preview render with NoSuchMethodError
-# inside the creation API. remote-material3 alpha10 declares remote-creation* alpha18.
-androidx-remote-compose = "1.0.0-alpha19"
+# inside the creation API. remote-material3 alpha13 declares remote-creation* alpha21.
+androidx-remote-compose = "1.0.0-alpha21"
 androidx-datastore = "1.2.1"
-androidx-navigation3 = "1.1.7"
-wire = "6.4.7"
-ktor = "3.5.2"
-kable = "0.44.3"
+androidx-navigation3 = "1.2.0"
+wire = "7.1.0"
+ktor = "3.6.0"
+kable = "0.45.0"
 kotlinx-serialization = "1.11.0"
 mcarrUsb = "1.0.1"
 jserialcomm = "2.11.4"
 kotlinx-io = "0.9.1"
-metro = "1.4.3"
+metro = "1.4.5"
 clikt = "5.1.0"
 mordant = "3.1.0"
 graalvmNative = "1.1.14"
 robolectric = "4.17"
-androidx-appfunctions = "1.0.0-alpha11"
-androidx-work = "2.11.2"
+androidx-appfunctions = "1.0.0-alpha13"
+androidx-work = "2.12.0"
 room = "2.8.5"
 ksp = "2.3.12"
 sqlite = "2.7.1"
-grpc = "1.84.0"
+grpc = "1.84.2"
 grpcKotlin = "1.5.0"
-protobuf = "4.36.1"
+protobuf = "4.36.2"
 protobufPlugin = "0.10.0"
 horologist = "0.8.3-alpha"
-wear-compose = "1.6.2"
-wear-compose-material3 = "1.6.2"
-wear-compose-remote = "1.0.0-alpha11" # remote-material3; bump with `androidx-remote-compose` above, whose alpha18 its POM declares
+wear-compose = "1.7.1"
+wear-compose-material3 = "1.7.1"
+wear-compose-remote = "1.0.0-alpha13" # remote-material3; bump with `androidx-remote-compose` above, whose alpha21 its POM declares
 playservices-wearable = "20.0.1"
 aboutlibraries = "15.2.0"
 ktfmt = "0.26.0"
 tapmoc = "0.4.2"
 
+
+cmp-navigation3 = "1.2.0-rc01"
+cmp-icons = "1.7.3"
+cmp-adaptive = "1.3.0"
+rc-player = "2.4.0"
+
 [libraries]
+# CMP publishes icons on a separate version line from the Android-only 1.7.8 artifact.
+cmp-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "cmp-icons" }
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+cmp-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidx-navigation3" }
+cmp-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "cmp-navigation3" }
+cmp-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "cmp-adaptive" }
+rc-player-compose = { module = "ee.schimke.composeai:rc-player-compose", version.ref = "rc-player" }
+cmp-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3" }
+
 compose-uiTest = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "composeMultiplatform" }
 compose-uiTestJunit4 = { module = "org.jetbrains.compose.ui:ui-test-junit4", version.ref = "composeMultiplatform" }
 compose-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "composeAdaptive" }

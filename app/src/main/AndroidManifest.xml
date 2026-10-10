@@ -84,10 +84,17 @@
              The AppFunctionService action is API 36+; on older devices the service
              is harmlessly never bound. -->
         <service
-            android:name="androidx.appfunctions.PlatformAppFunctionService"
+            android:name=".appfunctions.MeshcoreAppFunctionService"
+            android:enabled="@bool/app_functions_enabled"
             android:exported="true"
             android:permission="android.permission.BIND_APP_FUNCTION_SERVICE"
             tools:targetApi="36">
+            <property
+                android:name="android.app.appfunctions.schema"
+                android:value="app_functions_schema.xsd" />
+            <property
+                android:name="android.app.appfunctions.v2"
+                android:value="meshcore_app_functions.xml" />
             <intent-filter>
                 <action android:name="android.app.appfunctions.AppFunctionService" />
             </intent-filter>

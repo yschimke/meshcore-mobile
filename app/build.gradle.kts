@@ -51,7 +51,9 @@ tapmoc {
 
 android {
   namespace = "ee.schimke.meshcore.app"
-  compileSdk = libs.versions.android.compileSdk.get().toInt()
+  compileSdk {
+    version = release(libs.versions.android.compileSdk.get().toInt()) { minorApiLevel = 1 }
+  }
   defaultConfig {
     applicationId = "ee.schimke.meshed"
     minSdk = libs.versions.android.minSdk.get().toInt()

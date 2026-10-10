@@ -26,7 +26,9 @@ tapmoc {
 
 android {
   namespace = "ee.schimke.meshcore.wear"
-  compileSdk = libs.versions.android.compileSdk.get().toInt()
+  compileSdk {
+    version = release(libs.versions.android.compileSdk.get().toInt()) { minorApiLevel = 1 }
+  }
   defaultConfig {
     applicationId = "ee.schimke.meshcore.wear"
     minSdk = libs.versions.android.minSdk.get().toInt()
