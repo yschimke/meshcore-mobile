@@ -1,7 +1,7 @@
 {
   "schema": "compose-ui-builder-document/v1-candidate",
   "id": "contacts",
-  "title": "MeshCore · Contacts",
+  "title": "MeshCore \u00b7 Contacts",
   "revision": 0,
   "catalogPin": {
     "systemId": "m3-catalog",
@@ -48,11 +48,7 @@
         },
         "paneSizing": {
           "type": "enum",
-          "value": "fixedStart"
-        },
-        "fixedPaneWidthDp": {
-          "type": "float",
-          "value": 360
+          "value": "preferred"
         },
         "activePaneIndex": {
           "type": "int",
@@ -360,7 +356,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Direct · heard 2 minutes ago"
+          "value": "Direct \u00b7 heard 2 minutes ago"
         },
         "style": {
           "type": "enum",
