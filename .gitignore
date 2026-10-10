@@ -46,3 +46,6 @@ app/project.info
 # and published to the design-parity/main branch — never committed, so they
 # can't drift from the HTML.
 /design/*.png
+
+# Staged desktop release installers.
+/_release-desktop/
