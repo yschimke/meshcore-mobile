@@ -947,10 +947,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -980,10 +980,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -1002,10 +1002,10 @@
       "previewId": "contact-browser__ideal__default__dark__412dp",
       "label": "UI Builder · 412dp · list · dark",
       "raster": {
-        "path": "references/contacts-412-list-dark-1c9ef8848d28e278af713c3bdac1c8be5eabf5e7fe044b515721eff09d5a3927.png",
+        "path": "references/contacts-412-list-dark-4c075dece11fe74f8716440c2d2c4de7610640df6020951de4bfd89c2082672c.png",
         "width": 824,
         "height": 1440,
-        "sha256": "1c9ef8848d28e278af713c3bdac1c8be5eabf5e7fe044b515721eff09d5a3927"
+        "sha256": "4c075dece11fe74f8716440c2d2c4de7610640df6020951de4bfd89c2082672c"
       },
       "artifact": {
         "kind": "uid",
@@ -1013,10 +1013,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -1035,10 +1035,10 @@
       "previewId": "contact-browser__ideal__detail__dark__412dp",
       "label": "UI Builder · 412dp · detail · dark",
       "raster": {
-        "path": "references/contacts-412-detail-dark-32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305.png",
+        "path": "references/contacts-412-detail-dark-5b4efcc251429e79c6b656ec5db8a50b805321a7879f63ade47b5b1545738007.png",
         "width": 824,
         "height": 1440,
-        "sha256": "32ef968c55e42f3cb0a3e4c192bf6e3cef04dc9d54ead1e51158911c6136a305"
+        "sha256": "5b4efcc251429e79c6b656ec5db8a50b805321a7879f63ade47b5b1545738007"
       },
       "artifact": {
         "kind": "uid",
@@ -1046,10 +1046,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -1079,10 +1079,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -1112,10 +1112,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -1134,10 +1134,10 @@
       "previewId": "contact-browser__ideal__default__dark__840dp",
       "label": "UI Builder · 840dp · list · dark",
       "raster": {
-        "path": "references/contacts-840-list-dark-419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853.png",
+        "path": "references/contacts-840-list-dark-83affcf1736c9dcf7a7a12f8a70ce09dab2d63fa540d193a9fade70e5a06dac2.png",
         "width": 1680,
         "height": 1440,
-        "sha256": "419e5fb35a486b825d23ea0ace40b01e44c619dd74158adc842f6e92f0b65853"
+        "sha256": "83affcf1736c9dcf7a7a12f8a70ce09dab2d63fa540d193a9fade70e5a06dac2"
       },
       "artifact": {
         "kind": "uid",
@@ -1145,10 +1145,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
@@ -1167,10 +1167,10 @@
       "previewId": "contact-browser__ideal__detail__dark__840dp",
       "label": "UI Builder · 840dp · detail · dark",
       "raster": {
-        "path": "references/contacts-840-detail-dark-307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af.png",
+        "path": "references/contacts-840-detail-dark-09cbbeef1727e9d00dc047e812672c6b0ef89283032eddf5ccde17718ec3b74c.png",
         "width": 1680,
         "height": 1440,
-        "sha256": "307544b5fed11d9c74fc0137e9836ce38e9548a78b74a2576f4cb638a58e83af"
+        "sha256": "09cbbeef1727e9d00dc047e812672c6b0ef89283032eddf5ccde17718ec3b74c"
       },
       "artifact": {
         "kind": "uid",
@@ -1178,10 +1178,10 @@
       },
       "source": {
         "provider": "ui-builder",
-        "revision": "744f9fcd5fea195c87d9154849d927839a04e1cf",
-        "uri": "https://github.com/yschimke/meshcore-mobile/blob/744f9fcd5fea195c87d9154849d927839a04e1cf/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
+        "revision": "03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d",
+        "uri": "https://github.com/yschimke/meshcore-mobile/blob/03b7e0d935d1a53199fb3d9fcb33b28ee2b9c70d/adaptive-uid-pilot/ui-builder/designs/contacts.uid",
         "attributes": {
-          "rendererBundleSha256": "420ba36df166f4c56b502b7757f3c484e5a588c4240752f5e66c29b545c2a162",
+          "rendererBundleSha256": "3e8b50626fa66081ddc6f33437a51cb93d62051803d0ab965b548ff93b856ddb",
           "componentsSha256": "dece3189c6e2d4b32f5442859b162527e947b442b27503e859fdd708e8694cd0",
           "designId": "contacts",
           "sourceSha256": "b14c286d6a2b3ca86a8655114bdedd6dfaadf8006403446021749eda2e3f7ed4",
