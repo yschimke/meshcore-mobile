@@ -19,67 +19,69 @@ import kotlin.time.Instant
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * Android bound service that exposes MeshCore functionality to other apps
- * via gRPC binder transport. Client apps holding the [PERMISSION]
- * (signature-level) can bind and make gRPC calls to query device state,
- * send messages, and subscribe to incoming messages.
+ * Android bound service that exposes MeshCore functionality to other apps via gRPC binder
+ * transport. Client apps holding the [PERMISSION] (signature-level) can bind and make gRPC calls to
+ * query device state, send messages, and subscribe to incoming messages.
  */
 class MeshcoreBinderService : LifecycleService() {
 
-    private var server: Server? = null
-    private val binderReceiver = IBinderReceiver()
+  private var server: Server? = null
+  private val binderReceiver = IBinderReceiver()
 
-    override fun onCreate() {
-        super.onCreate()
+  override fun onCreate() {
+    super.onCreate()
 
-        val app = (application as MeshcoreApp).appGraph
-        val bridge = object : MeshServiceBridge {
-            override val managerState: StateFlow<ManagerState>
-                get() = app.manager.state
-            override val client: MeshCoreClient?
-                get() = app.manager.client
+    val app = (application as MeshcoreApp).appGraph
+    val bridge =
+      object : MeshServiceBridge {
+        override val managerState: StateFlow<ManagerState>
+          get() = app.manager.state
 
-            override suspend fun persistSentDm(
-                contactKeyHex: String,
-                text: String,
-                timestamp: Instant,
-                ackHash: Int?,
-            ) {
-                val deviceId = app.connectionController.connectedDeviceId.value ?: return
-                app.repository.insertSentDm(deviceId, contactKeyHex, text, timestamp, ackHash)
-            }
+        override val client: MeshCoreClient?
+          get() = app.manager.client
 
+        override suspend fun persistSentDm(
+          contactKeyHex: String,
+          text: String,
+          timestamp: Instant,
+          ackHash: Int?,
+        ) {
+          val deviceId = app.connectionController.connectedDeviceId.value ?: return
+          app.repository.insertSentDm(deviceId, contactKeyHex, text, timestamp, ackHash)
         }
+      }
 
-        val address = AndroidComponentAddress.forContext(this)
-        val securityPolicy = ServerSecurityPolicy.newBuilder()
-            .servicePolicy(
-                MeshcoreServiceGrpc.SERVICE_NAME,
-                SecurityPolicies.hasPermissions(
-                    packageManager,
-                    com.google.common.collect.ImmutableSet.of(PERMISSION),
-                ),
-            )
-            .build()
+    val address = AndroidComponentAddress.forContext(this)
+    val securityPolicy =
+      ServerSecurityPolicy.newBuilder()
+        .servicePolicy(
+          MeshcoreServiceGrpc.SERVICE_NAME,
+          SecurityPolicies.hasPermissions(
+            packageManager,
+            com.google.common.collect.ImmutableSet.of(PERMISSION),
+          ),
+        )
+        .build()
 
-        server = BinderServerBuilder.forAddress(address, binderReceiver)
-            .securityPolicy(securityPolicy)
-            .addService(MeshcoreGrpcServiceImpl(bridge))
-            .build()
-            .start()
-    }
+    server =
+      BinderServerBuilder.forAddress(address, binderReceiver)
+        .securityPolicy(securityPolicy)
+        .addService(MeshcoreGrpcServiceImpl(bridge))
+        .build()
+        .start()
+  }
 
-    override fun onBind(intent: Intent): IBinder? {
-        super.onBind(intent)
-        return binderReceiver.get()
-    }
+  override fun onBind(intent: Intent): IBinder? {
+    super.onBind(intent)
+    return binderReceiver.get()
+  }
 
-    override fun onDestroy() {
-        server?.shutdownNow()
-        super.onDestroy()
-    }
+  override fun onDestroy() {
+    server?.shutdownNow()
+    super.onDestroy()
+  }
 
-    companion object {
-        const val PERMISSION = "ee.schimke.meshcore.permission.MESH_SERVICE"
-    }
+  companion object {
+    const val PERMISSION = "ee.schimke.meshcore.permission.MESH_SERVICE"
+  }
 }

@@ -384,10 +384,8 @@ class MeshCoreClient(
     for (i in 0 until maxCh) {
       val ev =
         runCatching {
-            requestOne(Frames.getChannel(i), perChannelTimeoutMs) {
-              it is MeshEvent.ChannelInfoEvent
-            }
-          }
+          requestOne(Frames.getChannel(i), perChannelTimeoutMs) { it is MeshEvent.ChannelInfoEvent }
+        }
           .getOrNull() as? MeshEvent.ChannelInfoEvent ?: continue
       val ch = ev.info
       val isEmpty = ch.name.isBlank() && ch.psk.toByteArray().all { it == 0.toByte() }
@@ -423,12 +421,12 @@ class MeshCoreClient(
     while (true) {
       val ev =
         runCatching {
-            requestOne(Frames.syncNextMessage(), perMessageTimeoutMs) {
-              it is MeshEvent.DirectMessage ||
-                it is MeshEvent.ChannelMessage ||
-                it is MeshEvent.NoMoreMessages
-            }
+          requestOne(Frames.syncNextMessage(), perMessageTimeoutMs) {
+            it is MeshEvent.DirectMessage ||
+              it is MeshEvent.ChannelMessage ||
+              it is MeshEvent.NoMoreMessages
           }
+        }
           .getOrNull() ?: break
       if (ev is MeshEvent.NoMoreMessages) break
       count++

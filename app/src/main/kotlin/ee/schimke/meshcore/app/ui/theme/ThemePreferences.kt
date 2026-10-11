@@ -104,9 +104,7 @@ class ThemePreferences(context: Context) {
   // --- Per-device section states ---
 
   fun sectionStates(deviceId: String): Flow<SectionStates> =
-    store.data.map { prefs ->
-      prefs.device_sections[deviceId]?.toDomain() ?: SectionStates()
-    }
+    store.data.map { prefs -> prefs.device_sections[deviceId]?.toDomain() ?: SectionStates() }
 
   suspend fun setSectionExpanded(deviceId: String, section: Section, expanded: Boolean) {
     store.updateData { prefs ->

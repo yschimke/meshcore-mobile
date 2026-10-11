@@ -41,9 +41,7 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
     val graph = appGraph()
-    setContent {
-      CompositionLocalProvider(LocalAppGraph provides graph) { MeshcoreAppUi() }
-    }
+    setContent { CompositionLocalProvider(LocalAppGraph provides graph) { MeshcoreAppUi() } }
   }
 }
 
@@ -81,12 +79,8 @@ private fun MeshcoreAppUi() {
                 onNavigateToContact = { contact ->
                   backStack.add(ContactRoute(contact.publicKey.toHex()))
                 },
-                onNavigateToChannel = { channel ->
-                  backStack.add(ChannelRoute(channel.index))
-                },
-                onNavigateToCommands = { channel ->
-                  backStack.add(CommandsRoute(channel.index))
-                },
+                onNavigateToChannel = { channel -> backStack.add(ChannelRoute(channel.index)) },
+                onNavigateToCommands = { channel -> backStack.add(CommandsRoute(channel.index)) },
                 onNavigateToSettings = { channel ->
                   backStack.add(DeviceSettingsRoute(channel.index))
                 },
@@ -143,9 +137,7 @@ private fun MeshcoreAppUi() {
       if (pickerVisible) {
         ThemePickerDialog(
           current = themeSettings,
-          onModeSelect = { mode ->
-            scope.launch { app.themePreferences.setThemeMode(mode) }
-          },
+          onModeSelect = { mode -> scope.launch { app.themePreferences.setThemeMode(mode) } },
           onPaletteSelect = { palette ->
             scope.launch { app.themePreferences.setThemePalette(palette) }
           },

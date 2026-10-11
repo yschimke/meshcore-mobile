@@ -19,37 +19,38 @@ import kotlinx.coroutines.flow.StateFlow
 /**
  * Phone-side gRPC service exposed over the Wearable Data Layer.
  *
- * Wraps the existing [MeshcoreGrpcServiceImpl] so the Wear OS companion
- * app can call the same 9 RPCs (connection status, contacts, channels,
- * battery, messaging) without any protocol duplication. Horologist's
- * [BaseGrpcDataService] handles the MessageClient transport; we just
+ * Wraps the existing [MeshcoreGrpcServiceImpl] so the Wear OS companion app can call the same 9
+ * RPCs (connection status, contacts, channels, battery, messaging) without any protocol
+ * duplication. Horologist's [BaseGrpcDataService] handles the MessageClient transport; we just
  * supply the bridge.
  *
- * This mirrors [MeshcoreBinderService] — same bridge pattern, different
- * transport (Data Layer instead of Android Binder).
+ * This mirrors [MeshcoreBinderService] — same bridge pattern, different transport (Data Layer
+ * instead of Android Binder).
  */
 class MeshcoreWearDataService : BaseGrpcDataService<MeshcoreGrpcServiceImpl>() {
 
-    private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
-    override val registry: WearDataLayerRegistry by lazy {
-        WearDataLayerRegistry(
-            dataClient = Wearable.getDataClient(this),
-            nodeClient = Wearable.getNodeClient(this),
-            messageClient = Wearable.getMessageClient(this),
-            capabilityClient = Wearable.getCapabilityClient(this),
-            coroutineScope = serviceScope,
-        )
-    }
+  override val registry: WearDataLayerRegistry by lazy {
+    WearDataLayerRegistry(
+      dataClient = Wearable.getDataClient(this),
+      nodeClient = Wearable.getNodeClient(this),
+      messageClient = Wearable.getMessageClient(this),
+      capabilityClient = Wearable.getCapabilityClient(this),
+      coroutineScope = serviceScope,
+    )
+  }
 
-    override fun buildService(): MeshcoreGrpcServiceImpl {
-        val app = (application as MeshcoreApp).appGraph
-        val bridge = object : MeshServiceBridge {
-            override val managerState: StateFlow<ManagerState>
-                get() = app.manager.state
-            override val client: MeshCoreClient?
-                get() = app.manager.client
-        }
-        return MeshcoreGrpcServiceImpl(bridge)
-    }
+  override fun buildService(): MeshcoreGrpcServiceImpl {
+    val app = (application as MeshcoreApp).appGraph
+    val bridge =
+      object : MeshServiceBridge {
+        override val managerState: StateFlow<ManagerState>
+          get() = app.manager.state
+
+        override val client: MeshCoreClient?
+          get() = app.manager.client
+      }
+    return MeshcoreGrpcServiceImpl(bridge)
+  }
 }

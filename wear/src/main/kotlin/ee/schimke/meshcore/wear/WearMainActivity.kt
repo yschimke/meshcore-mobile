@@ -7,12 +7,8 @@ import ee.schimke.meshcore.wear.ui.WearNavigation
 import ee.schimke.meshcore.wear.ui.theme.MeshcoreWearTheme
 
 class WearMainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MeshcoreWearTheme {
-                WearNavigation()
-            }
-        }
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent { MeshcoreWearTheme { WearNavigation() } }
+  }
 }

@@ -69,7 +69,8 @@ private val SurfaceContainerLow = Color(0xFF161D1B)
 private val SurfaceContainerMid = Color(0xFF1A211F)
 private val SurfaceContainerHigh = Color(0xFF242B29)
 
-val MeshcoreWearColors = ColorScheme(
+val MeshcoreWearColors =
+  ColorScheme(
     primary = TealPrimary,
     primaryDim = TealPrimaryDim,
     primaryContainer = TealPrimaryContainer,
@@ -99,123 +100,136 @@ val MeshcoreWearColors = ColorScheme(
     errorContainer = ErrorRedContainer,
     onError = OnErrorRed,
     onErrorContainer = OnErrorRedContainer,
-)
+  )
 
 // --- Fonts (same families as phone, scaled down for wrist) -----------------
 
-private val FontProvider = GoogleFont.Provider(
+private val FontProvider =
+  GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
     certificates = R.array.com_google_android_gms_fonts_certs,
-)
+  )
 
-private fun gfont(name: String, weight: FontWeight) = Font(
+private fun gfont(name: String, weight: FontWeight) =
+  Font(
     googleFont = GoogleFont(name),
     fontProvider = FontProvider,
     weight = weight,
     style = FontStyle.Normal,
-)
+  )
 
-private val Orbitron = FontFamily(
+private val Orbitron =
+  FontFamily(
     gfont("Orbitron", FontWeight.Medium),
     gfont("Orbitron", FontWeight.SemiBold),
-)
+  )
 
-private val SpaceGrotesk = FontFamily(
+private val SpaceGrotesk =
+  FontFamily(
     gfont("Space Grotesk", FontWeight.Normal),
     gfont("Space Grotesk", FontWeight.Medium),
     gfont("Space Grotesk", FontWeight.Bold),
-)
+  )
 
-private val JetBrainsMono = FontFamily(
-    gfont("JetBrains Mono", FontWeight.Normal),
-)
+private val JetBrainsMono = FontFamily(gfont("JetBrains Mono", FontWeight.Normal))
 
 /** Monospace body style for data values (pubkeys, frequencies, RSSI). */
-val WearMonoBody: TextStyle = TextStyle(
+val WearMonoBody: TextStyle =
+  TextStyle(
     fontFamily = JetBrainsMono,
     fontWeight = FontWeight.Normal,
     fontSize = 11.sp,
     lineHeight = 15.sp,
     letterSpacing = 0.2.sp,
-)
+  )
 
-private val WearTypography = Typography(
-    titleLarge = TextStyle(
+private val WearTypography =
+  Typography(
+    titleLarge =
+      TextStyle(
         fontFamily = Orbitron,
         fontWeight = FontWeight.Medium,
         fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.3.sp,
-    ),
-    titleMedium = TextStyle(
+      ),
+    titleMedium =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.15.sp,
-    ),
-    titleSmall = TextStyle(
+      ),
+    titleSmall =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.1.sp,
-    ),
-    bodyLarge = TextStyle(
+      ),
+    bodyLarge =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
-    ),
-    bodyMedium = TextStyle(
+      ),
+    bodyMedium =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.25.sp,
-    ),
-    bodySmall = TextStyle(
+      ),
+    bodySmall =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.4.sp,
-    ),
-    labelLarge = TextStyle(
+      ),
+    labelLarge =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp,
-    ),
-    labelMedium = TextStyle(
+      ),
+    labelMedium =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Bold,
         fontSize = 11.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.5.sp,
-    ),
-    labelSmall = TextStyle(
+      ),
+    labelSmall =
+      TextStyle(
         fontFamily = SpaceGrotesk,
         fontWeight = FontWeight.Bold,
         fontSize = 10.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.5.sp,
-    ),
-)
+      ),
+  )
 
 @Composable
 fun MeshcoreWearTheme(content: @Composable () -> Unit) {
-    if (LocalWearThemeCatalogOverride.current) {
-        content()
-        return
-    }
+  if (LocalWearThemeCatalogOverride.current) {
+    content()
+    return
+  }
 
-    MaterialTheme(
-        colorScheme = MeshcoreWearColors,
-        typography = WearTypography,
-        content = content,
-    )
+  MaterialTheme(
+    colorScheme = MeshcoreWearColors,
+    typography = WearTypography,
+    content = content,
+  )
 }

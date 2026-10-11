@@ -1,9 +1,9 @@
 package ee.schimke.meshcore.app.appfunctions
 
 import androidx.annotation.RequiresApi
+import androidx.appfunctions.AppFunctionDeclaration
 import androidx.appfunctions.AppFunctionService
 import androidx.appfunctions.AppFunctionServiceEntryPoint
-import androidx.appfunctions.AppFunctionDeclaration
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.appGraph
 import ee.schimke.meshcore.core.model.BatteryInfo
@@ -30,7 +30,6 @@ abstract class MeshcoreFunctions : AppFunctionService() {
   /**
    * Gets the status of the user's favorite mesh device, including battery level, radio frequency,
    * and storage usage.
-   *
    */
   @AppFunctionDeclaration(isDescribedByKDoc = true)
   suspend fun getDeviceStatus(): DeviceStatus? {
@@ -55,10 +54,7 @@ abstract class MeshcoreFunctions : AppFunctionService() {
     )
   }
 
-  /**
-   * Lists all contacts on the user's favorite mesh device.
-   *
-   */
+  /** Lists all contacts on the user's favorite mesh device. */
   @AppFunctionDeclaration(isDescribedByKDoc = true)
   suspend fun getContacts(): List<MeshContact>? {
     val repository = appGraph().repository
@@ -85,9 +81,7 @@ abstract class MeshcoreFunctions : AppFunctionService() {
    * @param limit Maximum number of messages to return (default 20).
    */
   @AppFunctionDeclaration(isDescribedByKDoc = true)
-  suspend fun getRecentMessages(
-        limit: Int = 20,
-  ): List<RecentMessage>? {
+  suspend fun getRecentMessages(limit: Int = 20): List<RecentMessage>? {
     val repository = appGraph().repository
     val favorite = repository.observeFavorite().first() ?: return null
     val messages = repository.getRecentMessages(favorite.id, limit)
@@ -104,10 +98,7 @@ abstract class MeshcoreFunctions : AppFunctionService() {
     }
   }
 
-  /**
-   * Lists all channels available on the user's favorite mesh device.
-   *
-   */
+  /** Lists all channels available on the user's favorite mesh device. */
   @AppFunctionDeclaration(isDescribedByKDoc = true)
   suspend fun getChannels(): List<MeshChannel>? {
     val repository = appGraph().repository
@@ -132,7 +123,7 @@ abstract class MeshcoreFunctions : AppFunctionService() {
    */
   @AppFunctionDeclaration(isDescribedByKDoc = true)
   suspend fun sendDirectMessage(
-        contactPublicKeyHex: String,
+    contactPublicKeyHex: String,
     message: String,
   ): SendResult {
     val graph = appGraph()
@@ -171,7 +162,7 @@ abstract class MeshcoreFunctions : AppFunctionService() {
    */
   @AppFunctionDeclaration(isDescribedByKDoc = true)
   suspend fun sendChannelMessage(
-        channelIndex: Int,
+    channelIndex: Int,
     message: String,
   ): SendResult {
     val graph = appGraph()

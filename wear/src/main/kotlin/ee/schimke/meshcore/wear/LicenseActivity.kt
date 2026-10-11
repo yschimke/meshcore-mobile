@@ -9,13 +9,13 @@ import com.mikepenz.aboutlibraries.ui.compose.wear.LibrariesContainer
 import ee.schimke.meshcore.wear.ui.theme.MeshcoreWearTheme
 
 class LicenseActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MeshcoreWearTheme {
-                val libraries by produceLibraries()
-                libraries?.let { LibrariesContainer(it) }
-            }
-        }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      MeshcoreWearTheme {
+        val libraries by produceLibraries()
+        libraries?.let { LibrariesContainer(it) }
+      }
     }
+  }
 }

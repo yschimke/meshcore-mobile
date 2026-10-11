@@ -32,12 +32,11 @@ private const val BASE_BACKOFF_MS = 2_000L
 private const val MAX_BACKOFF_MS = 60_000L
 
 /**
- * Owns connection state and the connect/retry policy, delegating
- * everything else: transports come from a shared [TransportFactory],
- * canonical device identity from [DeviceIdentityResolver], and OS-facing
- * work (service, persister, refresh scheduling, presence) to
- * [ConnectionSideEffects]. This keeps the class focused on producing a
- * correct [ConnectionUiState] / [connectedDeviceId] and easy to test.
+ * Owns connection state and the connect/retry policy, delegating everything else: transports come
+ * from a shared [TransportFactory], canonical device identity from [DeviceIdentityResolver], and
+ * OS-facing work (service, persister, refresh scheduling, presence) to [ConnectionSideEffects].
+ * This keeps the class focused on producing a correct [ConnectionUiState] / [connectedDeviceId] and
+ * easy to test.
  */
 class AppConnectionController(
   private val manager: MeshCoreManager,
@@ -115,16 +114,16 @@ class AppConnectionController(
     Log.d(TAG, "requestConnect: ${request.label} (state: ${_state.value::class.simpleName})")
     retryCount = 0
     inFlight?.cancel()
-    inFlight =
-      scope.launch {
-        val resolved =
-          runCatching { transportFactory.resolve(request) }
-            .getOrElse { cause ->
-              _state.value = ConnectionUiState.Failed(cause = cause, deviceLabel = request.label)
-              return@launch
-            }
-        doConnect(Attempt(request.label, resolved))
+    inFlight = scope.launch {
+      val resolved = runCatching {
+        transportFactory.resolve(request)
       }
+        .getOrElse { cause ->
+          _state.value = ConnectionUiState.Failed(cause = cause, deviceLabel = request.label)
+          return@launch
+        }
+      doConnect(Attempt(request.label, resolved))
+    }
   }
 
   fun requestReconnect(saved: SavedDevice) {
@@ -139,16 +138,16 @@ class AppConnectionController(
         )
       return
     }
-    inFlight =
-      scope.launch {
-        val resolved =
-          runCatching { transportFactory.resolve(saved.toConnectionRequest()) }
-            .getOrElse { cause ->
-              _state.value = ConnectionUiState.Failed(cause = cause, deviceLabel = saved.label)
-              return@launch
-            }
-        doConnect(Attempt(saved.label, resolved))
+    inFlight = scope.launch {
+      val resolved = runCatching {
+        transportFactory.resolve(saved.toConnectionRequest())
       }
+        .getOrElse { cause ->
+          _state.value = ConnectionUiState.Failed(cause = cause, deviceLabel = saved.label)
+          return@launch
+        }
+      doConnect(Attempt(saved.label, resolved))
+    }
   }
 
   fun cancel() {
@@ -213,9 +212,7 @@ class AppConnectionController(
         runCatching { manager.disconnect() }
           .onFailure { Log.d(TAG, "disconnect after timeout failed", it) }
         val cause =
-          TimeoutException(
-            "No response from ${attempt.label} within ${connectTimeoutMs / 1000}s."
-          )
+          TimeoutException("No response from ${attempt.label} within ${connectTimeoutMs / 1000}s.")
         maybeRetry(attempt, cause)
       }
       completed.isFailure -> {
@@ -230,7 +227,10 @@ class AppConnectionController(
       retryCount++
       val backoffMs =
         min(BASE_BACKOFF_MS shl (retryCount - 1), MAX_BACKOFF_MS) + Random.nextLong(0, 500)
-      Log.d(TAG, "Retrying ${attempt.label} (attempt $retryCount/$MAX_RETRY_COUNT) in ${backoffMs}ms")
+      Log.d(
+        TAG,
+        "Retrying ${attempt.label} (attempt $retryCount/$MAX_RETRY_COUNT) in ${backoffMs}ms",
+      )
       _state.value =
         ConnectionUiState.Retrying(
           attempt = retryCount,
