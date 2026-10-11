@@ -126,11 +126,24 @@ try:
             previous = current;
           }
         }""")
-        textbox.click(force=True)
-        page.wait_for_function("() => { let e=document.activeElement; while(e.shadowRoot?.activeElement) e=e.shadowRoot.activeElement; return e.classList.contains('compose-backing-field'); }")
-        page.keyboard.insert_text('Hello from Wasm')
         send = page.get_by_role('button', name='Send', exact=True)
-        expect(send).to_be_enabled()
+        # Focus can reach Compose's backing field a frame before its text input session listens,
+        # and text inserted in that window never reaches the composition, leaving Send disabled.
+        # A retry clears the field through the keyboard first, so whatever did arrive late is
+        # replaced rather than doubled.
+        for attempt in range(3):
+            textbox.click(force=True)
+            page.wait_for_function("() => { let e=document.activeElement; while(e.shadowRoot?.activeElement) e=e.shadowRoot.activeElement; return e.classList.contains('compose-backing-field'); }")
+            if attempt > 0:
+                page.keyboard.press('ControlOrMeta+a')
+                page.keyboard.press('Backspace')
+            page.keyboard.insert_text('Hello from Wasm')
+            try:
+                expect(send).to_be_enabled(timeout=5000)
+                break
+            except AssertionError:
+                if attempt == 2:
+                    raise
         page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
         send.dispatch_event('click')
         expect(page.get_by_text(re.compile('Hello from Wasm')).first).to_have_count(1)
