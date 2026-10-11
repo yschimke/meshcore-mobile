@@ -10,7 +10,7 @@
     "nativeRuntimeId": "candidate"
   },
   "environment": {
-    "widthDp": 840,
+    "widthDp": 412,
     "heightDp": 720,
     "density": 2,
     "theme": "light",
@@ -258,7 +258,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Selected · TCP"
+          "value": "TCP"
         },
         "style": {
           "type": "enum",
@@ -508,10 +508,6 @@
         "text": {
           "type": "string",
           "value": "Host and port"
-        },
-        "style": {
-          "type": "enum",
-          "value": "bodyLarge"
         }
       },
       "slots": {},

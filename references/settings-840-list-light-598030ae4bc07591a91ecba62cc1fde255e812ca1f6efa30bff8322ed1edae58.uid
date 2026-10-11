@@ -10,7 +10,7 @@
     "nativeRuntimeId": "candidate"
   },
   "environment": {
-    "widthDp": 412,
+    "widthDp": 840,
     "heightDp": 720,
     "density": 2,
     "theme": "light",
@@ -64,7 +64,7 @@
         },
         "activePaneIndex": {
           "type": "int",
-          "value": 1
+          "value": 0
         }
       },
       "slots": {
@@ -220,7 +220,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Notifications"
+          "value": "Selected · Notifications"
         },
         "style": {
           "type": "enum",
@@ -488,7 +488,12 @@
         }
       },
       "slots": {},
-      "modifiers": [],
+      "modifiers": [
+        {
+          "type": "height",
+          "heightDp": 48
+        }
+      ],
       "eventBindings": {}
     },
     "back-text": {

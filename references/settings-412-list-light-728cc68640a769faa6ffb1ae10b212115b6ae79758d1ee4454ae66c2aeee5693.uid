@@ -1,7 +1,7 @@
 {
   "schema": "compose-ui-builder-document/v1-candidate",
-  "id": "scanner",
-  "title": "MeshCore Connect",
+  "id": "settings",
+  "title": "MeshCore Device settings",
   "revision": 0,
   "catalogPin": {
     "systemId": "m3-catalog",
@@ -64,7 +64,7 @@
         },
         "activePaneIndex": {
           "type": "int",
-          "value": 1
+          "value": 0
         }
       },
       "slots": {
@@ -106,7 +106,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Connect"
+          "value": "Device settings"
         },
         "style": {
           "type": "enum",
@@ -123,7 +123,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Choose how to connect your MeshCore radio."
+          "value": "Settings discovered from the connected device."
         },
         "style": {
           "type": "enum",
@@ -140,7 +140,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Saved device"
+          "value": "Trail radio · Connected"
         },
         "style": {
           "type": "enum",
@@ -157,7 +157,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Trail radio · Last connected today"
+          "value": "Only supported settings are shown."
         },
         "style": {
           "type": "enum",
@@ -220,7 +220,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Bluetooth"
+          "value": "Notifications"
         },
         "style": {
           "type": "enum",
@@ -258,7 +258,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "TCP"
+          "value": "Unavailable settings"
         },
         "style": {
           "type": "enum",
@@ -290,51 +290,13 @@
       ],
       "eventBindings": {}
     },
-    "panel-2-text": {
-      "id": "panel-2-text",
-      "componentId": "m3/text",
-      "properties": {
-        "text": {
-          "type": "string",
-          "value": "USB"
-        },
-        "style": {
-          "type": "enum",
-          "value": "labelLarge"
-        }
-      },
-      "slots": {},
-      "modifiers": [],
-      "eventBindings": {}
-    },
-    "panel-2": {
-      "id": "panel-2",
-      "componentId": "m3/button",
-      "properties": {
-        "enabled": {
-          "type": "bool",
-          "value": true
-        }
-      },
-      "slots": {
-        "content": [
-          "panel-2-text"
-        ]
-      },
-      "modifiers": [
-        {
-          "type": "fillMaxWidth"
-        }
-      ],
-      "eventBindings": {}
-    },
     "note": {
       "id": "note",
       "componentId": "m3/text",
       "properties": {
         "text": {
           "type": "string",
-          "value": "Bluetooth needs permission. USB needs a connected radio. TCP uses a host and port."
+          "value": "Changing a setting sends an update to your radio."
         },
         "style": {
           "type": "enum",
@@ -365,8 +327,6 @@
           "summary",
           "status",
           "panel-0",
-          "panel-1",
-          "panel-2",
           "note"
         ]
       },
@@ -393,7 +353,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "TCP"
+          "value": "Notifications"
         },
         "style": {
           "type": "enum",
@@ -410,7 +370,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Connect over your network"
+          "value": "Supported device setting"
         },
         "style": {
           "type": "enum",
@@ -427,7 +387,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Network radio"
+          "value": "Buzzer"
         },
         "style": {
           "type": "enum",
@@ -444,7 +404,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Enter the radio's host and port.\nDefault port: 5000"
+          "value": "Play an audible alert for incoming messages."
         },
         "style": {
           "type": "enum",
@@ -501,97 +461,39 @@
       ],
       "eventBindings": {}
     },
-    "input-label": {
-      "id": "input-label",
+    "buzzer-title": {
+      "id": "buzzer-title",
       "componentId": "m3/text",
       "properties": {
         "text": {
           "type": "string",
-          "value": "Host and port"
+          "value": "Buzzer"
         },
         "style": {
           "type": "enum",
-          "value": "bodyLarge"
+          "value": "titleMedium"
         }
       },
       "slots": {},
       "modifiers": [],
       "eventBindings": {}
     },
-    "input": {
-      "id": "input",
-      "componentId": "m3/text-field",
+    "buzzer": {
+      "id": "buzzer",
+      "componentId": "m3/switch",
       "properties": {
-        "value": {
-          "type": "string",
-          "value": "mesh.local:5000"
-        },
-        "singleLine": {
+        "checked": {
           "type": "bool",
           "value": true
         }
       },
-      "slots": {
-        "label": [
-          "input-label"
-        ]
-      },
+      "slots": {},
       "modifiers": [
         {
-          "type": "fillMaxWidth"
+          "type": "height",
+          "heightDp": 48
         }
       ],
-      "eventBindings": {}
-    },
-    "failure": {
-      "id": "failure",
-      "componentId": "m3/text",
-      "properties": {
-        "text": {
-          "type": "string",
-          "value": "Connection failed. Check the device and try again."
-        },
-        "style": {
-          "type": "enum",
-          "value": "bodyLarge"
-        }
-      },
-      "slots": {},
-      "modifiers": [],
-      "eventBindings": {}
-    },
-    "action-text": {
-      "id": "action-text",
-      "componentId": "m3/text",
-      "properties": {
-        "text": {
-          "type": "string",
-          "value": "Try again"
-        },
-        "style": {
-          "type": "enum",
-          "value": "labelLarge"
-        }
-      },
-      "slots": {},
-      "modifiers": [],
-      "eventBindings": {}
-    },
-    "action": {
-      "id": "action",
-      "componentId": "m3/button",
-      "properties": {
-        "enabled": {
-          "type": "bool",
-          "value": true
-        }
-      },
-      "slots": {
-        "content": [
-          "action-text"
-        ]
-      },
-      "modifiers": [],
       "eventBindings": {}
     },
     "back-text": {
@@ -600,7 +502,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "Back to connect"
+          "value": "Back to device settings"
         },
         "style": {
           "type": "enum",
@@ -650,9 +552,8 @@
           "detail-title",
           "detail-subtitle",
           "detail-card",
-          "input",
-          "failure",
-          "action",
+          "buzzer-title",
+          "buzzer",
           "back"
         ]
       },

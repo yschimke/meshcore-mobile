@@ -13,7 +13,7 @@
     "widthDp": 840,
     "heightDp": 720,
     "density": 2,
-    "theme": "light",
+    "theme": "dark",
     "dynamicColor": false,
     "locale": "en-US",
     "fontScale": 1,
@@ -488,7 +488,12 @@
         }
       },
       "slots": {},
-      "modifiers": [],
+      "modifiers": [
+        {
+          "type": "height",
+          "heightDp": 48
+        }
+      ],
       "eventBindings": {}
     },
     "back-text": {

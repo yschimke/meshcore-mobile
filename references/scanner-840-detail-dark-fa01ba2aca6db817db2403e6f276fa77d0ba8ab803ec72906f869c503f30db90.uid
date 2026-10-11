@@ -10,7 +10,7 @@
     "nativeRuntimeId": "candidate"
   },
   "environment": {
-    "widthDp": 412,
+    "widthDp": 840,
     "heightDp": 720,
     "density": 2,
     "theme": "dark",
@@ -258,7 +258,7 @@
       "properties": {
         "text": {
           "type": "string",
-          "value": "TCP"
+          "value": "Selected · TCP"
         },
         "style": {
           "type": "enum",
@@ -508,10 +508,6 @@
         "text": {
           "type": "string",
           "value": "Host and port"
-        },
-        "style": {
-          "type": "enum",
-          "value": "bodyLarge"
         }
       },
       "slots": {},
@@ -543,30 +539,13 @@
       ],
       "eventBindings": {}
     },
-    "failure": {
-      "id": "failure",
-      "componentId": "m3/text",
-      "properties": {
-        "text": {
-          "type": "string",
-          "value": "Connection failed. Check the device and try again."
-        },
-        "style": {
-          "type": "enum",
-          "value": "bodyLarge"
-        }
-      },
-      "slots": {},
-      "modifiers": [],
-      "eventBindings": {}
-    },
     "action-text": {
       "id": "action-text",
       "componentId": "m3/text",
       "properties": {
         "text": {
           "type": "string",
-          "value": "Try again"
+          "value": "Connect"
         },
         "style": {
           "type": "enum",
@@ -651,7 +630,6 @@
           "detail-subtitle",
           "detail-card",
           "input",
-          "failure",
           "action",
           "back"
         ]
