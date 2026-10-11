@@ -24,6 +24,14 @@ fun discoverCatalogComponents(): ComponentRecordFile =
           "ee.schimke.meshcore.components.ui.theme.MeshcoreThemeKt",
           "MeshcoreTheme",
         ),
+        TypedAdapterDiscovery.Callable(
+          "ee.schimke.meshcore.components.ui.DeviceCardsKt",
+          "RadioLine",
+        ),
+        TypedAdapterDiscovery.Callable(
+          "ee.schimke.meshcore.components.ui.DeviceCardsKt",
+          "ChannelList",
+        ),
       ),
     )
     .let { records ->

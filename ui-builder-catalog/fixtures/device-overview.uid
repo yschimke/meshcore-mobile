@@ -35,6 +35,8 @@
       "slots": {
         "children": [
           "summary",
+          "radio",
+          "channels",
           "contacts"
         ]
       }
@@ -42,6 +44,79 @@
     "summary": {
       "id": "summary",
       "componentId": "meshcore-mobile/device-summary"
+    },
+    "radio": {
+      "id": "radio",
+      "componentId": "meshcore-mobile/radio-line",
+      "properties": {
+        "radio": {
+          "type": "object",
+          "fields": {
+            "frequencyHz": {
+              "type": "int",
+              "value": 869525000
+            },
+            "bandwidthHz": {
+              "type": "int",
+              "value": 250000
+            },
+            "spreadingFactor": {
+              "type": "int",
+              "value": 11
+            },
+            "codingRate": {
+              "type": "int",
+              "value": 5
+            }
+          }
+        }
+      }
+    },
+    "channels": {
+      "id": "channels",
+      "componentId": "meshcore-mobile/channel-list",
+      "properties": {
+        "channels": {
+          "type": "list",
+          "values": [
+            {
+              "type": "object",
+              "fields": {
+                "index": {
+                  "type": "int",
+                  "value": 0
+                },
+                "name": {
+                  "type": "string",
+                  "value": "Public"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "fields": {
+                "index": {
+                  "type": "int",
+                  "value": 1
+                },
+                "name": {
+                  "type": "string",
+                  "value": "Hiking"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "fields": {
+                "index": {
+                  "type": "int",
+                  "value": 2
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     "contacts": {
       "id": "contacts",

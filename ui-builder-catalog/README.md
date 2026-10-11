@@ -1,6 +1,6 @@
 # MeshCore typed component catalog
 
-This opt-in module wires four `:meshcore-components` composables into the typed UI-builder adapter
+This opt-in module wires six `:meshcore-components` composables into the typed UI-builder adapter
 API. It is excluded from normal application builds while the API and bridge are unreleased. Each
 definition publishes its own ID and properties/slots, and the registry invokes the actual component
 with compiled calls.
@@ -11,14 +11,27 @@ with compiled calls.
 | `ContactListEmpty` | `meshcore-mobile/empty-contacts` | — | — | — |
 | `MeshcoreTheme` | `meshcore-mobile/theme` | `darkTheme` | `content` | — |
 | `DeviceSummaryCard` | `meshcore-mobile/device-summary` | — | — | — |
+| `RadioLine` | `meshcore-mobile/radio-line` | `radio` (object: `RadioSettings`) | — | — |
+| `ChannelList` | `meshcore-mobile/channel-list` | `channels` (list of `ChannelInfo` objects) | — | — |
 
 `MeshcoreTheme` scopes the app's color scheme and type to whatever the design places in `content`;
 it takes no modifier, so its adapter wraps the call in a constraint-transparent `Box` carrying the
 node's own. `DeviceSummaryCard` is placed with every device detail null: the placeholder card shown
-before a device reports itself. Components that need a domain model (`Contact`, `ChatMessage`,
-`ChannelInfo`, `RadioSettings`) or a multi-argument callback (`TcpConnectPanel`) are not adapted:
-the typed API maps only string, boolean and integer properties, composable slots, `() -> Unit`
-events and single-value state changes.
+before a device reports itself.
+
+`RadioLine` and `ChannelList` take the real `meshcore-core` models through the typed API's list and
+object codecs (compose-ai-tools 2.49.0). `RadioSettingsCodec` names
+`ee.schimke.meshcore.core.model.RadioSettings` with all four `Int` fields required;
+`ChannelInfoCodec` names `ChannelInfo` with a required `index` and a `name` defaulting to empty (the
+row then shows its index label). A channel's pre-shared key is never displayed, so it is not a
+field: `ChannelInfo.psk` defaults to an empty `ByteString`, which keeps `ChannelInfo(index = …,
+name = …)` a valid constructor call. Stored values nest the document's wrappers,
+`{"type": "list", "values": [{"type": "object", "fields": {"index": {"type": "int", "value": 0}}}]}`,
+and the builder edits them structurally. `RadioLine` takes no modifier, so like `MeshcoreTheme` its
+adapter wraps the call in a `Box`. This catalog declares no `exportAs` projections, so the
+`listOf(ChannelInfo(…))` export lowering is not wired here. Components that need a model with fields
+these codecs cannot hold (`Contact`'s keys and instants, `ChatMessage`'s timestamp) or a
+multi-argument callback (`TcpConnectPanel`) remain unadapted.
 
 Check out compose-ai-tools and compose-ui-builder beside this repository at the immutable revisions
 in `.github/workflows/typed-catalog.yml`. The workflow validates the same source integration on
@@ -39,7 +52,8 @@ under `ui-builder-catalog/build/renders`; neither rendering test connects to a r
 The script also packages `build/distributions/meshcore-mobile-jvm-catalog.zip`: the generated pair,
 the tracked designs under `designs/`, and the adapter and runtime dependency JARs in `lib/`.
 `chat-input.uid` drives the external host test below; `device-overview.uid` places the theme,
-device summary and empty contact list together. The contract test checks that every tracked design
+device summary, radio line, channel list and empty contact list together, and the contract test
+decodes its stored radio object and channel list through the published adapters. The contract test checks that every tracked design
 places only published adapters and the host's `layout/column` / `m3/text` builtins. A third,
 separate builder process compiles without Meshcore classes, installs those JARs with a dedicated
 class loader, resolves the catalog provider through the JVM SDK service entry point, and renders
