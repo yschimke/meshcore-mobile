@@ -364,8 +364,8 @@
     <rect x="42" y="2483" width="992" height="150" fill="none" fill-opacity="0" stroke="#4F8A4A" stroke-width="1" stroke-opacity="0.5"/>
   </g>
   <g>
-    <path d="M73.5,2483 H1002.5 A31.5,31.5 0 0 1 1034,2514.5 V2601.5 A31.5,31.5 0 0 1 1002.5,2633 H73.5 A31.5,31.5 0 0 1 42,2601.5 V2514.5 A31.5,31.5 0 0 1 73.5,2483 Z" fill="#DBE4E0" fill-opacity="1" stroke="#7A7A33" stroke-width="1.5" stroke-opacity="1"/>
-    <text x="45" y="2495" font-family="system-ui, sans-serif" font-size="9" fill="#7A7A33">#FFDBE4E0</text>
+    <path d="M73.5,2483 H1002.5 A31.5,31.5 0 0 1 1034,2514.5 V2601.5 A31.5,31.5 0 0 1 1002.5,2633 H73.5 A31.5,31.5 0 0 1 42,2601.5 V2514.5 A31.5,31.5 0 0 1 73.5,2483 Z" fill="#EEF5F2" fill-opacity="1" stroke="#7A7A33" stroke-width="1.5" stroke-opacity="1"/>
+    <text x="45" y="2495" font-family="system-ui, sans-serif" font-size="9" fill="#7A7A33">#FFEEF5F2</text>
   </g>
   <g>
     <rect x="42" y="2483" width="992" height="150" fill="none" fill-opacity="0" stroke="#5B6470" stroke-width="1" stroke-opacity="0.5"/>
