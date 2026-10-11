@@ -1,8 +1,24 @@
 # MeshCore typed component catalog
 
-This opt-in module wires `ChatInput` and `ContactListEmpty` from `:meshcore-components` into the typed UI-builder adapter API. It is excluded from
-normal application builds while the API and bridge are unreleased. Each definition publishes its
-own ID and properties/slots, and the registry invokes the actual component with compiled calls.
+This opt-in module wires four `:meshcore-components` composables into the typed UI-builder adapter
+API. It is excluded from normal application builds while the API and bridge are unreleased. Each
+definition publishes its own ID and properties/slots, and the registry invokes the actual component
+with compiled calls.
+
+| Component | Adapter ID | Properties | Slots | Events |
+| --- | --- | --- | --- | --- |
+| `ChatInput` | `meshcore-mobile/chat-input` | `value` (two-way via `onValueChange`), `enabled`, `placeholder` | — | `send` |
+| `ContactListEmpty` | `meshcore-mobile/empty-contacts` | — | — | — |
+| `MeshcoreTheme` | `meshcore-mobile/theme` | `darkTheme` | `content` | — |
+| `DeviceSummaryCard` | `meshcore-mobile/device-summary` | — | — | — |
+
+`MeshcoreTheme` scopes the app's color scheme and type to whatever the design places in `content`;
+it takes no modifier, so its adapter wraps the call in a constraint-transparent `Box` carrying the
+node's own. `DeviceSummaryCard` is placed with every device detail null: the placeholder card shown
+before a device reports itself. Components that need a domain model (`Contact`, `ChatMessage`,
+`ChannelInfo`, `RadioSettings`) or a multi-argument callback (`TcpConnectPanel`) are not adapted:
+the typed API maps only string, boolean and integer properties, composable slots, `() -> Unit`
+events and single-value state changes.
 
 Check out compose-ai-tools and compose-ui-builder beside this repository at the immutable revisions
 in `.github/workflows/typed-catalog.yml`. The workflow validates the same source integration on
@@ -14,12 +30,17 @@ scripts/validate-typed-catalog.sh
 
 The script accepts optional tools and builder checkout paths. It scans current compiled app classes,
 generates only explicitly selected records, checks JSON readback and stale-record refusal, then
-compares native `ChatInput` with its typed adapter pixel for pixel, edits its actual text field and dispatches Send through the SDK. A separate builder process reads the resulting pair through
+compares each native component with its typed adapter pixel for pixel (`MeshcoreTheme` with a dark
+theme around light surroundings, so the decoded property and the `content` slot both show), edits
+`ChatInput`'s actual text field and dispatches Send through the SDK. A separate builder process reads the resulting pair through
 `PublishedUiBuilderCatalog` with no app implementation on its classpath. PNG comparisons are saved
 under `ui-builder-catalog/build/renders`; neither rendering test connects to a real device or server.
 
 The script also packages `build/distributions/meshcore-mobile-jvm-catalog.zip`: the generated pair,
-a tracked `designs/chat-input.uid`, and the adapter and runtime dependency JARs in `lib/`. A third,
+the tracked designs under `designs/`, and the adapter and runtime dependency JARs in `lib/`.
+`chat-input.uid` drives the external host test below; `device-overview.uid` places the theme,
+device summary and empty contact list together. The contract test checks that every tracked design
+places only published adapters and the host's `layout/column` / `m3/text` builtins. A third,
 separate builder process compiles without Meshcore classes, installs those JARs with a dedicated
 class loader, resolves the catalog provider through the JVM SDK service entry point, and renders
 the saved design with `UiBuilderSurface`. The test edits `enabled` and `placeholder` through the
@@ -66,8 +87,9 @@ artifact resolution and preview-server discovery remain separate work. The exist
 its live preview bundles are not replaced by this opt-in proof. General event capabilities and
 omitted-property default/export parity retain the limits documented in the authoring API.
 
-The committed `evidence/` images show the direct native call and the typed adapter from the parity
-test. Regenerate them from `build/renders` after component changes; CI uploads current renders.
+The committed `evidence/` images show the direct native `ChatInput` call and its typed adapter from
+the parity test. Regenerate them from `build/renders` after component changes; CI uploads current
+renders for every adapted component (`native-NAME.png` / `typed-NAME.png`).
 
 ### Publish a validated initial generation
 
