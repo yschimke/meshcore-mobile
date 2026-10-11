@@ -3,10 +3,14 @@ package ee.schimke.meshcore.catalog
 import androidx.compose.foundation.layout.Box
 import ee.schimke.composeai.discovery.*
 import ee.schimke.composeai.uibuilder.renderer.sdk.*
+import ee.schimke.meshcore.components.ui.ChannelList
 import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
+import ee.schimke.meshcore.components.ui.RadioLine
 import ee.schimke.meshcore.components.ui.theme.MeshcoreTheme
+import ee.schimke.meshcore.core.model.ChannelInfo
+import ee.schimke.meshcore.core.model.RadioSettings
 
 /** Catalog-owned authoring model; real component calls below check the library API. */
 data class ChatInputProps(
@@ -35,6 +39,68 @@ class MeshcoreThemeAdapter(record: ComponentRecord) :
   val content = slot("content")
 }
 
+/**
+ * The real core model as an object value: every field is required, so a stored radio states all
+ * four, and the codec names the class itself, as an export writes `RadioSettings(frequencyHz = …)`.
+ */
+val RadioSettingsCodec: AdapterObjectCodec<RadioSettings> =
+  AdapterValueCodecs.obj("ee.schimke.meshcore.core.model.RadioSettings") {
+    val frequencyHz = field(RadioSettings::frequencyHz, AdapterValueCodecs.Int)
+    val bandwidthHz = field(RadioSettings::bandwidthHz, AdapterValueCodecs.Int)
+    val spreadingFactor = field(RadioSettings::spreadingFactor, AdapterValueCodecs.Int)
+    val codingRate = field(RadioSettings::codingRate, AdapterValueCodecs.Int)
+    construct {
+      RadioSettings(
+        frequencyHz = it[frequencyHz],
+        bandwidthHz = it[bandwidthHz],
+        spreadingFactor = it[spreadingFactor],
+        codingRate = it[codingRate],
+      )
+    }
+  }
+
+/**
+ * A channel as the list shows it: its slot [ChannelInfo.index] and name. The pre-shared key is
+ * never displayed, so it is not a field and takes the class's own empty default.
+ */
+val ChannelInfoCodec: AdapterObjectCodec<ChannelInfo> =
+  AdapterValueCodecs.obj("ee.schimke.meshcore.core.model.ChannelInfo") {
+    val index = field(ChannelInfo::index, AdapterValueCodecs.Int)
+    val name = field(ChannelInfo::name, AdapterValueCodecs.String, default = "")
+    construct { ChannelInfo(index = it[index], name = it[name]) }
+  }
+
+data class RadioLineProps(val radio: RadioSettings)
+
+/** One object property: the radio parameters line from the device summary card. */
+class RadioLineAdapter(record: ComponentRecord) :
+  TypedComponentAdapter<RadioLineProps>("meshcore-mobile/radio-line", record) {
+  val radio =
+    property(
+      RadioLineProps::radio,
+      RadioSettingsCodec,
+      RadioSettings(
+        frequencyHz = 869_525_000,
+        bandwidthHz = 250_000,
+        spreadingFactor = 11,
+        codingRate = 5,
+      ),
+    )
+}
+
+data class ChannelListProps(val channels: List<ChannelInfo>)
+
+/** A list of objects: the device screen's channel list, one row per stored channel. */
+class ChannelListAdapter(record: ComponentRecord) :
+  TypedComponentAdapter<ChannelListProps>("meshcore-mobile/channel-list", record) {
+  val channels =
+    property(
+      ChannelListProps::channels,
+      AdapterValueCodecs.list(ChannelInfoCodec),
+      listOf(ChannelInfo(index = 0, name = "Public"), ChannelInfo(index = 1, name = "Hiking")),
+    )
+}
+
 class MeshcoreCatalog(records: ComponentRecordFile) {
   val input = ChatInputAdapter(records.components.single { it.symbol.name == "ChatInput" })
   val emptyContacts =
@@ -49,7 +115,9 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
       "meshcore-mobile/device-summary",
       records.components.single { it.symbol.name == "DeviceSummaryCard" },
     )
-  val definitions = listOf(input, emptyContacts, theme, deviceSummary)
+  val radio = RadioLineAdapter(records.components.single { it.symbol.name == "RadioLine" })
+  val channels = ChannelListAdapter(records.components.single { it.symbol.name == "ChannelList" })
+  val definitions = listOf(input, emptyContacts, theme, deviceSummary, radio, channels)
 
   fun generate(records: ComponentRecordFile): GeneratedAdapterCatalog =
     TypedAdapterCatalog.generate(
@@ -80,5 +148,10 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
     register(deviceSummary) {
       DeviceSummaryCard(self = null, radio = null, battery = null, modifier = modifier)
     }
+    // RadioLine takes no modifier either; the box carries the node's.
+    register(radio) {
+      Box(modifier, propagateMinConstraints = true) { RadioLine(radio = value(radio.radio)) }
+    }
+    register(channels) { ChannelList(channels = value(channels.channels), modifier = modifier) }
   }
 }

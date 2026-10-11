@@ -6,12 +6,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toAwtImage
 import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.test.*
+import ee.schimke.composeai.discovery.AdapterValueCodecs
 import ee.schimke.composeai.uibuilder.export.UiBuilderNode
 import ee.schimke.composeai.uibuilder.renderer.sdk.*
+import ee.schimke.meshcore.components.ui.ChannelList
 import ee.schimke.meshcore.components.ui.ChatInput
 import ee.schimke.meshcore.components.ui.ContactListEmpty
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
+import ee.schimke.meshcore.components.ui.RadioLine
 import ee.schimke.meshcore.components.ui.theme.MeshcoreTheme
+import ee.schimke.meshcore.core.model.ChannelInfo
+import ee.schimke.meshcore.core.model.RadioSettings
 import java.io.File
 import javax.imageio.ImageIO
 import kotlin.test.*
@@ -140,6 +145,71 @@ class CatalogRenderTest {
         }
       }
       assertSamePixels("device-summary") { adapted = true }
+    }
+
+  @Test
+  fun `native RadioLine and typed catalog draw the same pixels from an object property`() =
+    runDesktopComposeUiTest(width = 500, height = 120) {
+      val catalog = MeshcoreCatalog(discoverCatalogComponents())
+      val adapter = requireNotNull(catalog.registry()[catalog.radio.id])
+      // Not the adapter's default, so the line can only match if the stored object was decoded.
+      val radio = RadioSettings(915_000_000, 125_000, 10, 7)
+      var adapted by mutableStateOf(false)
+      setContent {
+        MeshcoreTheme(darkTheme = false) {
+          Surface {
+            if (!adapted) RadioLine(radio = radio)
+            else {
+              val node =
+                UiBuilderNode(
+                  id = "radio",
+                  componentId = catalog.radio.id,
+                  properties = buildJsonObject { put("radio", RadioSettingsCodec.wrap(radio)) },
+                )
+              adapter(canvasScope(node))
+            }
+          }
+        }
+      }
+      assertSamePixels("radio-line") { adapted = true }
+      onNodeWithText("915.000 MHz · BW 125 kHz · SF 10 · CR 7").assertExists()
+    }
+
+  @Test
+  fun `native ChannelList and typed catalog draw the same pixels from a list of objects`() =
+    runDesktopComposeUiTest(width = 500, height = 260) {
+      val catalog = MeshcoreCatalog(discoverCatalogComponents())
+      val adapter = requireNotNull(catalog.registry()[catalog.channels.id])
+      // The unnamed third channel shows the row's own index label in place of a name.
+      val channels =
+        listOf(
+          ChannelInfo(index = 0, name = "General"),
+          ChannelInfo(index = 1, name = "Emergency"),
+          ChannelInfo(index = 2, name = ""),
+        )
+      var adapted by mutableStateOf(false)
+      setContent {
+        MeshcoreTheme(darkTheme = false) {
+          Surface {
+            if (!adapted) ChannelList(channels = channels)
+            else {
+              val node =
+                UiBuilderNode(
+                  id = "channels",
+                  componentId = catalog.channels.id,
+                  properties =
+                    buildJsonObject {
+                      put("channels", AdapterValueCodecs.list(ChannelInfoCodec).wrap(channels))
+                    },
+                )
+              adapter(canvasScope(node))
+            }
+          }
+        }
+      }
+      assertSamePixels("channel-list") { adapted = true }
+      onNodeWithText("General").assertExists()
+      onNodeWithText("Emergency").assertExists()
     }
 
   /** The resolved node the SDK hands an adapter; no document interpreter or device is involved. */

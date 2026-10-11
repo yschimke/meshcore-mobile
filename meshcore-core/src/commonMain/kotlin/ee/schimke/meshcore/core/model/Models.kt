@@ -66,7 +66,12 @@ data class BatteryInfo(val millivolts: Int, val storageUsedKb: Long, val storage
 
 data class DeviceInfo(val protocolVersion: Int, val maxContacts: Int, val maxChannels: Int)
 
-data class ChannelInfo(val index: Int, val name: String, val psk: ByteString)
+/**
+ * A configured channel slot. [psk] defaults to empty, as the UI never shows it: a display-only
+ * value (a preview, or the typed catalog's `ChannelInfo(index = …, name = …)`) need not invent a
+ * key.
+ */
+data class ChannelInfo(val index: Int, val name: String, val psk: ByteString = ByteString())
 
 data class ReceivedDirectMessage(
   val snr: Int,
