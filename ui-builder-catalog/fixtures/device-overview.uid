@@ -1,0 +1,51 @@
+{
+  "schema": "compose-ui-builder-document/v1-candidate",
+  "id": "external-meshcore-device-overview",
+  "title": "External Meshcore device overview",
+  "revision": 0,
+  "catalogPin": {
+    "catalogId": "meshcore-mobile"
+  },
+  "environment": {
+    "theme": "light"
+  },
+  "stateVariables": {},
+  "roots": [
+    "theme"
+  ],
+  "nodes": {
+    "theme": {
+      "id": "theme",
+      "componentId": "meshcore-mobile/theme",
+      "properties": {
+        "darkTheme": {
+          "type": "bool",
+          "value": false
+        }
+      },
+      "slots": {
+        "content": [
+          "content"
+        ]
+      }
+    },
+    "content": {
+      "id": "content",
+      "componentId": "layout/column",
+      "slots": {
+        "children": [
+          "summary",
+          "contacts"
+        ]
+      }
+    },
+    "summary": {
+      "id": "summary",
+      "componentId": "meshcore-mobile/device-summary"
+    },
+    "contacts": {
+      "id": "contacts",
+      "componentId": "meshcore-mobile/empty-contacts"
+    }
+  }
+}

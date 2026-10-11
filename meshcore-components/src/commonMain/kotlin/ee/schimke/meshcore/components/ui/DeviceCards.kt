@@ -54,12 +54,15 @@ import org.jetbrains.compose.resources.stringResource
  * Elevated "hero" card showing identity + radio + battery for the currently connected MeshCore
  * device. This is the one card per screen that earns extra visual weight, hence
  * `surfaceContainer` + elevation.
+ *
+ * Each detail defaults to null, its not-yet-reported state: with none supplied the card is the
+ * placeholder shown before a device answers, which a design can place without device data.
  */
 @Composable
 fun DeviceSummaryCard(
-  self: SelfInfo?,
-  radio: RadioSettings?,
-  battery: BatteryInfo?,
+  self: SelfInfo? = null,
+  radio: RadioSettings? = null,
+  battery: BatteryInfo? = null,
   modifier: Modifier = Modifier,
 ) {
   Card(
