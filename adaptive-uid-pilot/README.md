@@ -41,9 +41,9 @@ resize, destination-aware send callbacks, read-only cached data and supported-se
 for the captured phone/tablet light/dark states. The exported catalog source link goes to the
 independent proposal; the table above links the real Android destination.
 
-UID references do not reproduce the navigator's runtime focus restoration. For example,
-the unavailable-settings Compose pane focuses its only detail action (Back), producing a
-focus highlight absent from the static UID reference. That visual difference remains advisory.
+Candidates are captured in touch input mode, as on a phone. A desktop scene otherwise starts in
+keyboard mode, where pane navigation focuses a button (such as Back) and draws a focus highlight
+that a touch user never sees and the static UID reference does not show.
 
 UID buttons are layout specimens. Use Compose previews/tests for behavior. The UI Builder's
 editing canvas unfolds panes; choose **Device view** to see adaptive layout at the capture size.
