@@ -388,7 +388,7 @@
     "functionName": "DeviceStatusFailedPreview",
     "module": "app",
     "renderBasename": "DeviceStatusFailedPreview_Dark-13c58e9f.png",
-    "sha256": "032063649e13b3d6383cf181917d1f6ebaf54f92b52364b59ba31762ee4a4c28",
+    "sha256": "1167a22c87a3fa8a443b5d9e2a77f94c08c231c102f672d059f42352c2ed8a45",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Light": {
@@ -396,7 +396,7 @@
     "functionName": "DeviceStatusFailedPreview",
     "module": "app",
     "renderBasename": "DeviceStatusFailedPreview_Light-9c07fce5.png",
-    "sha256": "4638d25f28c34ad97256a2775c2e61c9e1db2155fce5a22e69c4d0542666d0f0",
+    "sha256": "96122010c73d530866389e02dc397bcd467e641f5bd682613823abad044b68fa",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStoreBrandPreviewsKt.PlayStoreFeature_Play Store \u2014 feature graphic (1024x500)": {
