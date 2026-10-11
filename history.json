@@ -1,6 +1,6 @@
 {
     "formatVersion": "compose-preview-history/v1",
-    "generatedFrom": "a8d21a09f63e4eeee21fe5a4c50755eed5b2ab51",
+    "generatedFrom": "faa34ea5418c617aa5fdfec5f9fd51b9cc13ba5b",
     "previews": {
         "app/activity__MainActivity": {
             "path": "renders/app/activity__MainActivity.png",
@@ -951,6 +951,13 @@
             "path": "renders/app/PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home-d8faaa06.png",
             "versions": [
                 {
+                    "blob": "bf0f1ddabce3f39f008afa761ef5ebffa7ced993",
+                    "commit": "faa34ea5418c617aa5fdfec5f9fd51b9cc13ba5b",
+                    "date": "2026-10-11T12:07:54Z",
+                    "sourceSha": "85c56d27",
+                    "commits": 1
+                },
+                {
                     "blob": "7914fe27c6e3ce7ee432c8ab6e2e1c2bc06681d0",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
                     "date": "2026-08-15T17:29:13Z",
@@ -958,13 +965,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletTenHome_Play Store — 10-inch tablet home": {
             "path": "renders/app/PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home-592833d5.png",
             "versions": [
+                {
+                    "blob": "373bcf8196424d6402c18b2875d4c36b613261fd",
+                    "commit": "faa34ea5418c617aa5fdfec5f9fd51b9cc13ba5b",
+                    "date": "2026-10-11T12:07:54Z",
+                    "sourceSha": "85c56d27",
+                    "commits": 1
+                },
                 {
                     "blob": "371d588f13501bfc8f91c4f2c4f1def9d8588564",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -973,7 +987,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
