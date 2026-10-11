@@ -452,7 +452,7 @@
     "functionName": "PlayStoreTabletSevenHome",
     "module": "app",
     "renderBasename": "PlayStoreTabletSevenHome_Play_Store_7_inch_tablet_home-d8faaa06.png",
-    "sha256": "6380ab9c0b53faaa0a73002d477f30fb89b3f7eb997b3872af4cafe01f0f377e",
+    "sha256": "83210000e63aa0fb3cfc12254d31c1e0c49ec90719acc81d2c1ce77d66d82dd0",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.PlayStorePreviewsKt.PlayStoreTabletTenHome_Play Store \u2014 10-inch tablet home": {
@@ -460,7 +460,7 @@
     "functionName": "PlayStoreTabletTenHome",
     "module": "app",
     "renderBasename": "PlayStoreTabletTenHome_Play_Store_10_inch_tablet_home-592833d5.png",
-    "sha256": "b2c46aab109d6ab65bc0a7a538fa76d0c765be7bdd2a6d636ef8bd10ed5f5ca9",
+    "sha256": "24c85e1a756d1debc270aaf610408b22b993ebb50f38239846254a21f5a7f6a6",
     "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt"
   },
   "app/ee.schimke.meshcore.app.ui.SavedDevicesPanelKt.SavedDevicesEmptyPreview_Dark": {
