@@ -416,7 +416,9 @@ fun DeviceBody(
                 modifier = Modifier.padding(vertical = 8.dp),
               )
             } else {
-              visibleRepeaters.forEach { contact -> ContactRow(contact) }
+              visibleRepeaters.forEach { contact ->
+                ContactRow(contact, onClick = { onContactClick(contact) })
+              }
             }
           }
         }
