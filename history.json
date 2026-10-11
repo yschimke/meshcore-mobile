@@ -1,6 +1,6 @@
 {
     "formatVersion": "compose-preview-history/v1",
-    "generatedFrom": "fcdc05ce1065547e08281ae1f91a06b8d1f4b9c1",
+    "generatedFrom": "a8d21a09f63e4eeee21fe5a4c50755eed5b2ab51",
     "previews": {
         "app/activity__MainActivity": {
             "path": "renders/app/activity__MainActivity.png",
@@ -817,6 +817,13 @@
             "path": "renders/app/DeviceStatusFailedPreview_Dark-13c58e9f.png",
             "versions": [
                 {
+                    "blob": "c06243d04f4b9c461ac4938f6ac71c5aeaf69ed5",
+                    "commit": "a8d21a09f63e4eeee21fe5a4c50755eed5b2ab51",
+                    "date": "2026-10-11T08:03:10Z",
+                    "sourceSha": "caab062f",
+                    "commits": 1
+                },
+                {
                     "blob": "75fcdf5d08494057598590fb13a4d4540849b05b",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
                     "date": "2026-08-15T17:29:13Z",
@@ -824,13 +831,20 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
         "app/ee.schimke.meshcore.app.ui.DeviceScreenPreviewsKt.DeviceStatusFailedPreview_Light": {
             "path": "renders/app/DeviceStatusFailedPreview_Light-9c07fce5.png",
             "versions": [
+                {
+                    "blob": "72244f3b1aefe3a4d13c2c43fce35d18fbd0879c",
+                    "commit": "a8d21a09f63e4eeee21fe5a4c50755eed5b2ab51",
+                    "date": "2026-10-11T08:03:10Z",
+                    "sourceSha": "caab062f",
+                    "commits": 1
+                },
                 {
                     "blob": "a3f3d9c45066232881fd41508a4185dd7e70b320",
                     "commit": "f1c228e1cf7a3271219f76c51b2391cbd9f9843e",
@@ -839,7 +853,7 @@
                     "commits": 1
                 }
             ],
-            "observations": 1,
+            "observations": 2,
             "unstable": false,
             "flapCount": 0
         },
