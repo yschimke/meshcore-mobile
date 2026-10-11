@@ -45,280 +45,261 @@ private val StatusIconSize = 36.dp
 
 @Composable
 fun StatusScreen(
-    viewModel: WearViewModel = viewModel(),
-    onViewContacts: () -> Unit = {},
+  viewModel: WearViewModel = viewModel(),
+  onViewContacts: () -> Unit = {},
 ) {
-    val state by viewModel.state.collectAsState()
-    StatusBody(state = state, onViewContacts = onViewContacts)
+  val state by viewModel.state.collectAsState()
+  StatusBody(state = state, onViewContacts = onViewContacts)
 }
 
 // --- Stateless body (previewable) -------------------------------------------
 
 @Composable
 fun StatusBody(
-    state: WearUiState,
-    onViewContacts: () -> Unit = {},
+  state: WearUiState,
+  onViewContacts: () -> Unit = {},
 ) {
-    val columnState = rememberTransformingLazyColumnState()
-    val transformationSpec = rememberTransformationSpec()
-    val hasEdgeButton = state is WearUiState.Connected
+  val columnState = rememberTransformingLazyColumnState()
+  val transformationSpec = rememberTransformationSpec()
+  val hasEdgeButton = state is WearUiState.Connected
 
-    ScreenScaffold(
-        scrollState = columnState,
-        edgeButton = {
-            if (hasEdgeButton) {
-                EdgeButton(
-                    onClick = onViewContacts,
-                    buttonSize = EdgeButtonSize.Medium,
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.Send,
-                        contentDescription = "Send Message",
-                        modifier = Modifier.size(WearDimens.IconSize),
-                    )
-                    Text("Send")
-                }
-            }
-        },
-    ) { contentPadding ->
-        TransformingLazyColumn(
-            state = columnState,
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = contentPadding,
+  ScreenScaffold(
+    scrollState = columnState,
+    edgeButton = {
+      if (hasEdgeButton) {
+        EdgeButton(
+          onClick = onViewContacts,
+          buttonSize = EdgeButtonSize.Medium,
         ) {
-            when (state) {
-                is WearUiState.Loading -> {
-                    item {
-                        CircularProgressIndicator(
-                            modifier = Modifier
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumTopListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                    item {
-                        Text(
-                            text = "Connecting...",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumBottomListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                }
-
-                is WearUiState.PhoneDisconnected -> {
-                    item {
-                        Icon(
-                            imageVector = Icons.Rounded.PhoneAndroid,
-                            contentDescription = "Phone disconnected",
-                            tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier
-                                .size(StatusIconSize)
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumTopListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                    item {
-                        Text(
-                            text = "Phone not reachable",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.error,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumBottomListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                }
-
-                is WearUiState.RadioDisconnected -> {
-                    item {
-                        Icon(
-                            imageVector = Icons.Rounded.BluetoothDisabled,
-                            contentDescription = "Radio disconnected",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier
-                                .size(StatusIconSize)
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumTopListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                    item {
-                        Text(
-                            text = "Radio not connected",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumBottomListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                }
-
-                is WearUiState.Connected -> {
-                    // Connection indicator + device name
-                    item {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
-                            modifier = Modifier
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumTopListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.Bluetooth,
-                                contentDescription = "Connected",
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(WearDimens.IconSize),
-                            )
-                            Text(
-                                text = state.deviceName,
-                                style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onSurface,
-                            )
-                        }
-                    }
-
-                    // Battery
-                    if (state.batteryPercent != null) {
-                        item {
-                            val batteryColor = if (state.batteryPercent < 30) {
-                                MaterialTheme.colorScheme.tertiary
-                            } else {
-                                MaterialTheme.colorScheme.onSurface
-                            }
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
-                                modifier = Modifier
-                                    .minimumVerticalContentPadding(
-                                        ButtonDefaults.minimumVerticalListContentPadding
-                                    )
-                                    .transformedHeight(this, transformationSpec),
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.BatteryFull,
-                                    contentDescription = "Battery",
-                                    tint = batteryColor,
-                                    modifier = Modifier.size(WearDimens.IconSize),
-                                )
-                                Text(
-                                    text = "${state.batteryPercent}%",
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = batteryColor,
-                                )
-                            }
-                        }
-                    }
-
-                    // Radio info
-                    if (state.radioInfo != null) {
-                        item {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
-                                modifier = Modifier
-                                    .minimumVerticalContentPadding(
-                                        ButtonDefaults.minimumVerticalListContentPadding
-                                    )
-                                    .transformedHeight(this, transformationSpec),
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Sensors,
-                                    contentDescription = "Radio",
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.size(WearDimens.IconSize),
-                                )
-                                Text(
-                                    text = state.radioInfo,
-                                    style = WearMonoBody,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
-                            }
-                        }
-                    }
-
-                    // Contacts count (tappable)
-                    item {
-                        Button(
-                            onClick = onViewContacts,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .minimumVerticalContentPadding(
-                                    ButtonDefaults.minimumVerticalListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                            colors = ButtonDefaults.filledTonalButtonColors(),
-                            transformation = SurfaceTransformation(transformationSpec),
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Groups,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(WearDimens.IconSize),
-                                )
-                                Text(
-                                    text = "${state.contactCount} contacts",
-                                    style = MaterialTheme.typography.labelLarge,
-                                )
-                            }
-                        }
-                    }
-                }
-
-                is WearUiState.Error -> {
-                    item {
-                        Icon(
-                            imageVector = Icons.Rounded.BluetoothDisabled,
-                            contentDescription = "Error",
-                            tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier
-                                .size(StatusIconSize)
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumTopListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                    item {
-                        Text(
-                            text = state.message,
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.error,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .minimumVerticalContentPadding(
-                                    TextDefaults.minimumBottomListContentPadding
-                                )
-                                .transformedHeight(this, transformationSpec),
-                        )
-                    }
-                }
-            }
+          Icon(
+            imageVector = Icons.AutoMirrored.Rounded.Send,
+            contentDescription = "Send Message",
+            modifier = Modifier.size(WearDimens.IconSize),
+          )
+          Text("Send")
         }
+      }
+    },
+  ) { contentPadding ->
+    TransformingLazyColumn(
+      state = columnState,
+      modifier = Modifier.fillMaxSize(),
+      contentPadding = contentPadding,
+    ) {
+      when (state) {
+        is WearUiState.Loading -> {
+          item {
+            CircularProgressIndicator(
+              modifier =
+                Modifier.minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
+                  .transformedHeight(this, transformationSpec)
+            )
+          }
+          item {
+            Text(
+              text = "Connecting...",
+              style = MaterialTheme.typography.bodyMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              textAlign = TextAlign.Center,
+              modifier =
+                Modifier.fillMaxWidth()
+                  .minimumVerticalContentPadding(TextDefaults.minimumBottomListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+        }
+
+        is WearUiState.PhoneDisconnected -> {
+          item {
+            Icon(
+              imageVector = Icons.Rounded.PhoneAndroid,
+              contentDescription = "Phone disconnected",
+              tint = MaterialTheme.colorScheme.error,
+              modifier =
+                Modifier.size(StatusIconSize)
+                  .minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+          item {
+            Text(
+              text = "Phone not reachable",
+              style = MaterialTheme.typography.titleMedium,
+              color = MaterialTheme.colorScheme.error,
+              textAlign = TextAlign.Center,
+              modifier =
+                Modifier.fillMaxWidth()
+                  .minimumVerticalContentPadding(TextDefaults.minimumBottomListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+        }
+
+        is WearUiState.RadioDisconnected -> {
+          item {
+            Icon(
+              imageVector = Icons.Rounded.BluetoothDisabled,
+              contentDescription = "Radio disconnected",
+              tint = MaterialTheme.colorScheme.onSurfaceVariant,
+              modifier =
+                Modifier.size(StatusIconSize)
+                  .minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+          item {
+            Text(
+              text = "Radio not connected",
+              style = MaterialTheme.typography.titleMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              textAlign = TextAlign.Center,
+              modifier =
+                Modifier.fillMaxWidth()
+                  .minimumVerticalContentPadding(TextDefaults.minimumBottomListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+        }
+
+        is WearUiState.Connected -> {
+          // Connection indicator + device name
+          item {
+            Row(
+              verticalAlignment = Alignment.CenterVertically,
+              horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+              modifier =
+                Modifier.minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            ) {
+              Icon(
+                imageVector = Icons.Rounded.Bluetooth,
+                contentDescription = "Connected",
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(WearDimens.IconSize),
+              )
+              Text(
+                text = state.deviceName,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+              )
+            }
+          }
+
+          // Battery
+          if (state.batteryPercent != null) {
+            item {
+              val batteryColor =
+                if (state.batteryPercent < 30) {
+                  MaterialTheme.colorScheme.tertiary
+                } else {
+                  MaterialTheme.colorScheme.onSurface
+                }
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                modifier =
+                  Modifier.minimumVerticalContentPadding(
+                      ButtonDefaults.minimumVerticalListContentPadding
+                    )
+                    .transformedHeight(this, transformationSpec),
+              ) {
+                Icon(
+                  imageVector = Icons.Rounded.BatteryFull,
+                  contentDescription = "Battery",
+                  tint = batteryColor,
+                  modifier = Modifier.size(WearDimens.IconSize),
+                )
+                Text(
+                  text = "${state.batteryPercent}%",
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = batteryColor,
+                )
+              }
+            }
+          }
+
+          // Radio info
+          if (state.radioInfo != null) {
+            item {
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+                modifier =
+                  Modifier.minimumVerticalContentPadding(
+                      ButtonDefaults.minimumVerticalListContentPadding
+                    )
+                    .transformedHeight(this, transformationSpec),
+              ) {
+                Icon(
+                  imageVector = Icons.Rounded.Sensors,
+                  contentDescription = "Radio",
+                  tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                  modifier = Modifier.size(WearDimens.IconSize),
+                )
+                Text(
+                  text = state.radioInfo,
+                  style = WearMonoBody,
+                  color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+              }
+            }
+          }
+
+          // Contacts count (tappable)
+          item {
+            Button(
+              onClick = onViewContacts,
+              modifier =
+                Modifier.fillMaxWidth()
+                  .minimumVerticalContentPadding(ButtonDefaults.minimumVerticalListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+              colors = ButtonDefaults.filledTonalButtonColors(),
+              transformation = SurfaceTransformation(transformationSpec),
+            ) {
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+              ) {
+                Icon(
+                  imageVector = Icons.Rounded.Groups,
+                  contentDescription = null,
+                  modifier = Modifier.size(WearDimens.IconSize),
+                )
+                Text(
+                  text = "${state.contactCount} contacts",
+                  style = MaterialTheme.typography.labelLarge,
+                )
+              }
+            }
+          }
+        }
+
+        is WearUiState.Error -> {
+          item {
+            Icon(
+              imageVector = Icons.Rounded.BluetoothDisabled,
+              contentDescription = "Error",
+              tint = MaterialTheme.colorScheme.error,
+              modifier =
+                Modifier.size(StatusIconSize)
+                  .minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+          item {
+            Text(
+              text = state.message,
+              style = MaterialTheme.typography.titleMedium,
+              color = MaterialTheme.colorScheme.error,
+              textAlign = TextAlign.Center,
+              modifier =
+                Modifier.fillMaxWidth()
+                  .minimumVerticalContentPadding(TextDefaults.minimumBottomListContentPadding)
+                  .transformedHeight(this, transformationSpec),
+            )
+          }
+        }
+      }
     }
+  }
 }

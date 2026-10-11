@@ -19,13 +19,13 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
 /**
- * Single, explicit application object graph. Every app-scoped singleton
- * is constructed here and handed out via properties, replacing the old
- * `MeshcoreApp.get()` service locator and the half-finished Metro graph.
+ * Single, explicit application object graph. Every app-scoped singleton is constructed here and
+ * handed out via properties, replacing the old `MeshcoreApp.get()` service locator and the
+ * half-finished Metro graph.
  *
- * It is a plain class so dependencies are obvious, ordering is explicit,
- * and individual collaborators (repository, controller) can be built in
- * tests without standing up an [android.app.Application].
+ * It is a plain class so dependencies are obvious, ordering is explicit, and individual
+ * collaborators (repository, controller) can be built in tests without standing up an
+ * [android.app.Application].
  */
 class AppGraph(private val appContext: Context) {
 
@@ -36,8 +36,7 @@ class AppGraph(private val appContext: Context) {
 
   val usbPorts: AndroidUsbPortLister = AndroidUsbPortLister(appContext)
 
-  val transportFactory: TransportFactory =
-    DefaultTransportFactory(AndroidUsbPortResolver(usbPorts))
+  val transportFactory: TransportFactory = DefaultTransportFactory(AndroidUsbPortResolver(usbPorts))
 
   val database: MeshcoreDatabase by lazy { createMeshcoreDatabase(appContext) }
 
@@ -82,8 +81,10 @@ interface AppGraphHolder {
 fun Context.appGraph(): AppGraph = (applicationContext as AppGraphHolder).appGraph
 
 /**
- * CompositionLocal carrying the [AppGraph] to composables, provided once
- * at the activity root. Avoids screens reaching into the Application.
+ * CompositionLocal carrying the [AppGraph] to composables, provided once at the activity root.
+ * Avoids screens reaching into the Application.
  */
 val LocalAppGraph =
-  staticCompositionLocalOf<AppGraph> { error("AppGraph not provided. Wrap content in MeshcoreApp.") }
+  staticCompositionLocalOf<AppGraph> {
+    error("AppGraph not provided. Wrap content in MeshcoreApp.")
+  }

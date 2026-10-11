@@ -16,16 +16,14 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
 /**
- * Single, explicit object graph for the Wear app — the counterpart to
- * the phone's `AppGraph`. Constructs the data-layer registry and mesh
- * client once, off a cancellable app-scoped coroutine scope, replacing
- * the `MeshcoreWearApp.get()` service locator.
+ * Single, explicit object graph for the Wear app — the counterpart to the phone's `AppGraph`.
+ * Constructs the data-layer registry and mesh client once, off a cancellable app-scoped coroutine
+ * scope, replacing the `MeshcoreWearApp.get()` service locator.
  */
 /**
- * Are we running inside the Robolectric-backed `@Preview` renderer rather than on
- * a real watch? Robolectric stamps its own build fingerprint, which is the only
- * signal available this early — the graph is built from `Application.onCreate`,
- * before any test or preview hook could inject one.
+ * Are we running inside the Robolectric-backed `@Preview` renderer rather than on a real watch?
+ * Robolectric stamps its own build fingerprint, which is the only signal available this early — the
+ * graph is built from `Application.onCreate`, before any test or preview hook could inject one.
  */
 private val isRenderer: Boolean
   get() = Build.FINGERPRINT == "robolectric"
@@ -38,12 +36,11 @@ class WearAppGraph(context: Context) {
   /**
    * The Wearable Data Layer, or `null` when there is none to reach.
    *
-   * Play Services' Wearable API does not exist under Robolectric, so the
-   * `@Preview` renderer (which composes the real [WearMainActivity]) can only get
-   * as far as the first data-layer call before it fails with `ApiException: 17`.
-   * That throw lands on this scope, not the caller's, so the UI's own try/catch
-   * guards never see it — which is why `wear/activity__WearMainActivity` produced
-   * no PNG at all rather than an error frame.
+   * Play Services' Wearable API does not exist under Robolectric, so the `@Preview` renderer (which
+   * composes the real [WearMainActivity]) can only get as far as the first data-layer call before
+   * it fails with `ApiException: 17`. That throw lands on this scope, not the caller's, so the UI's
+   * own try/catch guards never see it — which is why `wear/activity__WearMainActivity` produced no
+   * PNG at all rather than an error frame.
    */
   private val registry: WearDataLayerRegistry? =
     if (isRenderer) {
@@ -58,8 +55,7 @@ class WearAppGraph(context: Context) {
       )
     }
 
-  val meshClient: WearClient =
-    registry?.let { MeshcoreWearClient(it) } ?: PreviewWearClient
+  val meshClient: WearClient = registry?.let { MeshcoreWearClient(it) } ?: PreviewWearClient
 
   fun close() {
     applicationScope.cancel()

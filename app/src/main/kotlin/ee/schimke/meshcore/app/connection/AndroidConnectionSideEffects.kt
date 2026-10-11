@@ -21,10 +21,9 @@ import kotlinx.coroutines.launch
 private const val TAG = "MeshConnect"
 
 /**
- * Android implementation of [ConnectionSideEffects]: seeds/persists Room
- * data on connect, runs the foreground service, message persister and
- * data refresh, and wires background refresh + presence observation when
- * the favorite changes.
+ * Android implementation of [ConnectionSideEffects]: seeds/persists Room data on connect, runs the
+ * foreground service, message persister and data refresh, and wires background refresh + presence
+ * observation when the favorite changes.
  */
 class AndroidConnectionSideEffects(
   private val appContext: Context,
@@ -43,51 +42,50 @@ class AndroidConnectionSideEffects(
   ) {
     // Seed the live client from Room so the UI shows cached data immediately.
     runCatching {
-        val state = repository.getDeviceState(deviceId)
-        val contacts = repository.getContacts(deviceId)
-        val channels = repository.getChannels(deviceId)
-        client.seedFromCache(
-          selfInfo = state?.toSelfInfo(),
-          contacts = contacts,
-          battery = state?.toBattery(),
-          radio = state?.toRadio(),
-          deviceInfo = state?.toDeviceInfo(),
-          channels = channels,
-        )
-      }
+      val state = repository.getDeviceState(deviceId)
+      val contacts = repository.getContacts(deviceId)
+      val channels = repository.getChannels(deviceId)
+      client.seedFromCache(
+        selfInfo = state?.toSelfInfo(),
+        contacts = contacts,
+        battery = state?.toBattery(),
+        radio = state?.toRadio(),
+        deviceInfo = state?.toDeviceInfo(),
+        channels = channels,
+      )
+    }
       .onFailure {
         Log.w(TAG, "seedFromCache failed for $deviceId", it)
         onWarning("Cached data may be stale")
       }
     runCatching {
-        repository.upsertDevice(
-          id = deviceId,
-          label = client.selfInfo.value?.name ?: label,
-          transport = savedTransport,
-        )
-      }
+      repository.upsertDevice(
+        id = deviceId,
+        label = client.selfInfo.value?.name ?: label,
+        transport = savedTransport,
+      )
+    }
       .onFailure { Log.w(TAG, "upsertDevice failed for $deviceId", it) }
 
     MeshcoreConnectionService.start(appContext, label)
 
     // Persist incoming messages in the background.
     persisterJob?.cancel()
-    persisterJob =
-      scope.launch {
-        val persister =
-          MessagePersister(
-            repository = repository,
-            deviceId = deviceId,
-            contactResolver = { prefix ->
-              val hex = prefix.toHex()
-              client.contacts.value
-                .firstOrNull { it.publicKey.toHex().startsWith(hex) }
-                ?.publicKey
-                ?.toHex()
-            },
-          )
-        persister.collect(client.events)
-      }
+    persisterJob = scope.launch {
+      val persister =
+        MessagePersister(
+          repository = repository,
+          deviceId = deviceId,
+          contactResolver = { prefix ->
+            val hex = prefix.toHex()
+            client.contacts.value
+              .firstOrNull { it.publicKey.toHex().startsWith(hex) }
+              ?.publicKey
+              ?.toHex()
+          },
+        )
+      persister.collect(client.events)
+    }
     // Fetch fresh data and persist to Room.
     scope.launch { fetchAndPersist(deviceId, client) }
   }
@@ -116,16 +114,16 @@ class AndroidConnectionSideEffects(
       repository.updateSelfInfo(deviceId, it, now)
     }
     runCatching {
-        val bat = client.getBatteryAndStorage()
-        Log.d(TAG, "fetchAndPersist: battery ${bat.millivolts}mV")
-        repository.updateBattery(deviceId, bat, now)
-      }
+      val bat = client.getBatteryAndStorage()
+      Log.d(TAG, "fetchAndPersist: battery ${bat.millivolts}mV")
+      repository.updateBattery(deviceId, bat, now)
+    }
       .onFailure { Log.w(TAG, "fetchAndPersist: battery fetch failed", it) }
     runCatching {
-        val radio = client.getRadioSettings()
-        Log.d(TAG, "fetchAndPersist: radio ${radio.frequencyHz}Hz")
-        repository.updateRadio(deviceId, radio, now)
-      }
+      val radio = client.getRadioSettings()
+      Log.d(TAG, "fetchAndPersist: radio ${radio.frequencyHz}Hz")
+      repository.updateRadio(deviceId, radio, now)
+    }
       .onFailure { Log.w(TAG, "fetchAndPersist: radio fetch failed", it) }
     client.device.value?.let { repository.updateDeviceInfo(deviceId, it, now) }
 

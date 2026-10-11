@@ -12,8 +12,7 @@ import ee.schimke.composeai.preview.WearThemeCatalog
 @WearThemeCatalog(name = "MeshCore", group = "Wear")
 class MeshcoreWearThemeCatalog : PreviewWrapperProvider {
   @Composable
-  override fun Wrap(content: @Composable () -> Unit) =
-    MeshcoreWearTheme {
-      CompositionLocalProvider(LocalWearThemeCatalogOverride provides true, content = content)
-    }
+  override fun Wrap(content: @Composable () -> Unit) = MeshcoreWearTheme {
+    CompositionLocalProvider(LocalWearThemeCatalogOverride provides true, content = content)
+  }
 }

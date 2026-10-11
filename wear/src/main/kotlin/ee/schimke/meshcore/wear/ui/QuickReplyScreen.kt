@@ -20,88 +20,85 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import androidx.wear.compose.material3.lazy.transformedHeight
 import com.google.protobuf.ByteString
-import ee.schimke.meshcore.wear.ui.theme.WearDimens
 import kotlinx.coroutines.launch
 
-private val QUICK_REPLIES = listOf(
+private val QUICK_REPLIES =
+  listOf(
     "OK",
     "On my way",
     "Copy",
     "Help needed",
     "Check in",
     "Standing by",
-)
+  )
 
 // --- Stateful entry point ---------------------------------------------------
 
 @Composable
 fun QuickReplyScreen(
-    pubkeyHex: String,
-    viewModel: WearViewModel = viewModel(),
-    onSent: () -> Unit = {},
+  pubkeyHex: String,
+  viewModel: WearViewModel = viewModel(),
+  onSent: () -> Unit = {},
 ) {
-    val scope = rememberCoroutineScope()
-    val recipientKey = ByteString.copyFrom(pubkeyHex.chunked(2).map { it.toInt(16).toByte() }.toByteArray())
+  val scope = rememberCoroutineScope()
+  val recipientKey =
+    ByteString.copyFrom(pubkeyHex.chunked(2).map { it.toInt(16).toByte() }.toByteArray())
 
-    QuickReplyBody(
-        onReply = { text ->
-            scope.launch {
-                viewModel.sendDirectMessage(recipientKey, text)
-                onSent()
-            }
-        },
-    )
+  QuickReplyBody(
+    onReply = { text ->
+      scope.launch {
+        viewModel.sendDirectMessage(recipientKey, text)
+        onSent()
+      }
+    }
+  )
 }
 
 // --- Stateless body (previewable) -------------------------------------------
 
 @Composable
 fun QuickReplyBody(
-    replies: List<String> = QUICK_REPLIES,
-    onReply: (String) -> Unit = {},
+  replies: List<String> = QUICK_REPLIES,
+  onReply: (String) -> Unit = {},
 ) {
-    val columnState = rememberTransformingLazyColumnState()
-    val transformationSpec = rememberTransformationSpec()
+  val columnState = rememberTransformingLazyColumnState()
+  val transformationSpec = rememberTransformationSpec()
 
-    ScreenScaffold(
-        scrollState = columnState,
-    ) { contentPadding ->
-        TransformingLazyColumn(
-            state = columnState,
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = contentPadding,
+  ScreenScaffold(scrollState = columnState) { contentPadding ->
+    TransformingLazyColumn(
+      state = columnState,
+      modifier = Modifier.fillMaxSize(),
+      contentPadding = contentPadding,
+    ) {
+      item {
+        ListHeader(
+          modifier =
+            Modifier.minimumVerticalContentPadding(
+                top = ListHeaderDefaults.minimumTopListContentPadding,
+                bottom = ListHeaderDefaults.minimumBottomListContentPadding,
+              )
+              .transformedHeight(this, transformationSpec)
         ) {
-            item {
-                ListHeader(
-                    modifier = Modifier
-                        .minimumVerticalContentPadding(
-                            top = ListHeaderDefaults.minimumTopListContentPadding,
-                            bottom = ListHeaderDefaults.minimumBottomListContentPadding,
-                        )
-                        .transformedHeight(this, transformationSpec),
-                ) {
-                    Text("Quick Reply")
-                }
-            }
-
-            items(replies) { reply ->
-                Button(
-                    onClick = { onReply(reply) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .minimumVerticalContentPadding(
-                            ButtonDefaults.minimumVerticalListContentPadding
-                        )
-                        .transformedHeight(this, transformationSpec),
-                    colors = ButtonDefaults.filledTonalButtonColors(),
-                    transformation = SurfaceTransformation(transformationSpec),
-                ) {
-                    Text(
-                        text = reply,
-                        style = MaterialTheme.typography.labelLarge,
-                    )
-                }
-            }
+          Text("Quick Reply")
         }
+      }
+
+      items(replies) { reply ->
+        Button(
+          onClick = { onReply(reply) },
+          modifier =
+            Modifier.fillMaxWidth()
+              .minimumVerticalContentPadding(ButtonDefaults.minimumVerticalListContentPadding)
+              .transformedHeight(this, transformationSpec),
+          colors = ButtonDefaults.filledTonalButtonColors(),
+          transformation = SurfaceTransformation(transformationSpec),
+        ) {
+          Text(
+            text = reply,
+            style = MaterialTheme.typography.labelLarge,
+          )
+        }
+      }
     }
+  }
 }

@@ -10,9 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.Lan
+import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.Usb
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,6 +41,10 @@ import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.cd_licenses
+import ee.schimke.meshcore.components.generated.resources.cd_theme
+import ee.schimke.meshcore.components.generated.resources.tab_saved
 import ee.schimke.meshcore.components.ui.BleDeviceList
 import ee.schimke.meshcore.components.ui.BleDeviceRow
 import ee.schimke.meshcore.components.ui.BlePermissionPanel
@@ -50,10 +54,6 @@ import ee.schimke.meshcore.components.ui.UsbPortCard
 import ee.schimke.meshcore.components.ui.UsbPortsPanel
 import ee.schimke.meshcore.mobile.ui.BleScannerPanel
 import ee.schimke.meshcore.session.ConnectionRequest
-import ee.schimke.meshcore.components.generated.resources.Res
-import ee.schimke.meshcore.components.generated.resources.cd_licenses
-import ee.schimke.meshcore.components.generated.resources.cd_theme
-import ee.schimke.meshcore.components.generated.resources.tab_saved
 import org.jetbrains.compose.resources.stringResource
 
 // Stateful entry point. All network side effects live in
@@ -67,485 +67,493 @@ import org.jetbrains.compose.resources.stringResource
 // by connection intent, not by screen click-handlers.
 @Composable
 fun ScannerScreen(
-    onConnect: () -> Unit,
-    onOpenThemePicker: () -> Unit,
-    onViewCachedDevice: (String) -> Unit = {},
-    onOpenLicenses: () -> Unit = {},
+  onConnect: () -> Unit,
+  onOpenThemePicker: () -> Unit,
+  onViewCachedDevice: (String) -> Unit = {},
+  onOpenLicenses: () -> Unit = {},
 ) {
-    val app = LocalAppGraph.current
-    val controller = app.connectionController
-    val uiState by controller.state.collectAsState()
-    val savedDevices by app.repository.observeDevicesWithState().collectAsState(initial = emptyList())
-    val connectedDeviceId by controller.connectedDeviceId.collectAsState()
-    val busy = uiState is ConnectionUiState.Connecting
+  val app = LocalAppGraph.current
+  val controller = app.connectionController
+  val uiState by controller.state.collectAsState()
+  val savedDevices by app.repository.observeDevicesWithState().collectAsState(initial = emptyList())
+  val connectedDeviceId by controller.connectedDeviceId.collectAsState()
+  val busy = uiState is ConnectionUiState.Connecting
 
-    LaunchedEffect(uiState) {
-        if (uiState is ConnectionUiState.Connecting || uiState is ConnectionUiState.Connected) {
-            onConnect()
-        }
+  LaunchedEffect(uiState) {
+    if (uiState is ConnectionUiState.Connecting || uiState is ConnectionUiState.Connected) {
+      onConnect()
     }
+  }
 
-    ScannerBody(
-        onOpenThemePicker = onOpenThemePicker,
-        onOpenLicenses = onOpenLicenses,
-        savedContent = {
-            SavedDevicesPanel(
-                devices = savedDevices,
-                busy = busy,
-                connectedDeviceId = connectedDeviceId,
-                onConnect = { device ->
-                    if (device.id == connectedDeviceId) {
-                        onConnect() // navigate to device screen
-                    } else if (!busy) {
-                        controller.requestReconnect(device)
-                    }
-                },
-                onForget = { device -> controller.forgetSavedDevice(device.id) },
-                onToggleFavorite = { device -> controller.toggleFavorite(device.id) },
-                onViewCached = { device -> onViewCachedDevice(device.id) },
-            )
+  ScannerBody(
+    onOpenThemePicker = onOpenThemePicker,
+    onOpenLicenses = onOpenLicenses,
+    savedContent = {
+      SavedDevicesPanel(
+        devices = savedDevices,
+        busy = busy,
+        connectedDeviceId = connectedDeviceId,
+        onConnect = { device ->
+          if (device.id == connectedDeviceId) {
+            onConnect() // navigate to device screen
+          } else if (!busy) {
+            controller.requestReconnect(device)
+          }
         },
-        bleContent = {
-            BleScannerPanel(
-                busy = busy,
-                onConnect = { row ->
-                    if (!busy) controller.requestConnect(ConnectionRequest.Ble(row.identifier, row.name))
-                },
-            )
+        onForget = { device -> controller.forgetSavedDevice(device.id) },
+        onToggleFavorite = { device -> controller.toggleFavorite(device.id) },
+        onViewCached = { device -> onViewCachedDevice(device.id) },
+      )
+    },
+    bleContent = {
+      BleScannerPanel(
+        busy = busy,
+        onConnect = { row ->
+          if (!busy) controller.requestConnect(ConnectionRequest.Ble(row.identifier, row.name))
         },
-        usbContent = {
-            UsbPortsPanel(
-                busy = busy,
-                listPorts = { app.usbPorts.descriptors() },
-                onConnect = { desc ->
-                    if (!busy) {
-                        controller.requestConnect(
-                            ConnectionRequest.Usb(desc.className, desc.vendorId, desc.productId),
-                        )
-                    }
-                },
+      )
+    },
+    usbContent = {
+      UsbPortsPanel(
+        busy = busy,
+        listPorts = { app.usbPorts.descriptors() },
+        onConnect = { desc ->
+          if (!busy) {
+            controller.requestConnect(
+              ConnectionRequest.Usb(desc.className, desc.vendorId, desc.productId)
             )
+          }
         },
-        tcpContent = {
-            TcpConnectPanel(
-                busy = busy,
-                onConnect = { host, p ->
-                    if (!busy) controller.requestConnect(ConnectionRequest.Tcp(host, p))
-                },
-            )
+      )
+    },
+    tcpContent = {
+      TcpConnectPanel(
+        busy = busy,
+        onConnect = { host, p ->
+          if (!busy) controller.requestConnect(ConnectionRequest.Tcp(host, p))
         },
-    )
-
+      )
+    },
+  )
 }
 
 /**
- * Stateless scanner screen body. Owns only the selected tab (trivial UI
- * state) and delegates all transport-specific content to slot lambdas.
+ * Stateless scanner screen body. Owns only the selected tab (trivial UI state) and delegates all
+ * transport-specific content to slot lambdas.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScannerBody(
-    savedContent: @Composable () -> Unit,
-    bleContent: @Composable () -> Unit,
-    usbContent: @Composable () -> Unit,
-    tcpContent: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-    onOpenThemePicker: () -> Unit = {},
-    onOpenLicenses: () -> Unit = {},
-    initialTab: Int = 0,
+  savedContent: @Composable () -> Unit,
+  bleContent: @Composable () -> Unit,
+  usbContent: @Composable () -> Unit,
+  tcpContent: @Composable () -> Unit,
+  modifier: Modifier = Modifier,
+  onOpenThemePicker: () -> Unit = {},
+  onOpenLicenses: () -> Unit = {},
+  initialTab: Int = 0,
 ) {
-    var tab by rememberSaveable { mutableIntStateOf(initialTab) }
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "MeshCore",
-                        style = MaterialTheme.typography.headlineSmall,
-                    )
-                },
-                actions = {
-                    IconButton(onClick = onOpenLicenses) {
-                        Icon(
-                            imageVector = Icons.Rounded.Policy,
-                            contentDescription = stringResource(Res.string.cd_licenses),
-                        )
-                    }
-                    IconButton(onClick = onOpenThemePicker) {
-                        Icon(
-                            imageVector = Icons.Rounded.Contrast,
-                            contentDescription = stringResource(Res.string.cd_theme),
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    titleContentColor = MaterialTheme.colorScheme.onSurface,
-                    actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                ),
-            )
+  var tab by rememberSaveable { mutableIntStateOf(initialTab) }
+  Scaffold(
+    topBar = {
+      TopAppBar(
+        title = {
+          Text(
+            text = "MeshCore",
+            style = MaterialTheme.typography.headlineSmall,
+          )
         },
+        actions = {
+          IconButton(onClick = onOpenLicenses) {
+            Icon(
+              imageVector = Icons.Rounded.Policy,
+              contentDescription = stringResource(Res.string.cd_licenses),
+            )
+          }
+          IconButton(onClick = onOpenThemePicker) {
+            Icon(
+              imageVector = Icons.Rounded.Contrast,
+              contentDescription = stringResource(Res.string.cd_theme),
+            )
+          }
+        },
+        colors =
+          TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+          ),
+      )
+    },
+    containerColor = MaterialTheme.colorScheme.surface,
+    modifier = modifier.fillMaxSize(),
+  ) { padding ->
+    Column(modifier = Modifier.padding(padding).fillMaxSize()) {
+      PrimaryTabRow(
+        selectedTabIndex = tab,
         containerColor = MaterialTheme.colorScheme.surface,
-        modifier = modifier.fillMaxSize(),
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize(),
+      ) {
+        TransportTab(
+          selected = tab == 0,
+          icon = Icons.Rounded.Star,
+          label = stringResource(Res.string.tab_saved),
         ) {
-            PrimaryTabRow(
-                selectedTabIndex = tab,
-                containerColor = MaterialTheme.colorScheme.surface,
-            ) {
-                TransportTab(selected = tab == 0, icon = Icons.Rounded.Star, label = stringResource(Res.string.tab_saved)) { tab = 0 }
-                TransportTab(selected = tab == 1, icon = Icons.Rounded.Bluetooth, label = "BLE") { tab = 1 }
-                TransportTab(selected = tab == 2, icon = Icons.Rounded.Usb, label = "USB") { tab = 2 }
-                TransportTab(selected = tab == 3, icon = Icons.Rounded.Lan, label = "TCP") { tab = 3 }
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(Dimens.ScreenPadding),
-                verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
-            ) {
-                when (tab) {
-                    0 -> savedContent()
-                    1 -> bleContent()
-                    2 -> usbContent()
-                    3 -> tcpContent()
-                }
-            }
+          tab = 0
         }
+        TransportTab(selected = tab == 1, icon = Icons.Rounded.Bluetooth, label = "BLE") { tab = 1 }
+        TransportTab(selected = tab == 2, icon = Icons.Rounded.Usb, label = "USB") { tab = 2 }
+        TransportTab(selected = tab == 3, icon = Icons.Rounded.Lan, label = "TCP") { tab = 3 }
+      }
+      Column(
+        modifier = Modifier.fillMaxSize().padding(Dimens.ScreenPadding),
+        verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
+      ) {
+        when (tab) {
+          0 -> savedContent()
+          1 -> bleContent()
+          2 -> usbContent()
+          3 -> tcpContent()
+        }
+      }
     }
+  }
 }
 
 @Composable
 private fun TransportTab(
-    selected: Boolean,
-    icon: ImageVector,
-    label: String,
-    onClick: () -> Unit,
+  selected: Boolean,
+  icon: ImageVector,
+  label: String,
+  onClick: () -> Unit,
 ) {
-    Tab(
-        selected = selected,
-        onClick = onClick,
-        text = { Text(label, style = MaterialTheme.typography.labelLarge) },
-        icon = { Icon(icon, contentDescription = null, modifier = Modifier.size(20.dp)) },
-    )
+  Tab(
+    selected = selected,
+    onClick = onClick,
+    text = { Text(label, style = MaterialTheme.typography.labelLarge) },
+    icon = { Icon(icon, contentDescription = null, modifier = Modifier.size(20.dp)) },
+  )
 }
 
 // --- Preview fixtures -----------------------------------------------------
 
 @Composable
 private fun PreviewBleEmpty() {
-    ScanStatusBar(shown = 0, meshOnly = true, onMeshOnlyChange = {})
-    BleDeviceList(rows = emptyList(), busy = false, onPick = {}, modifier = Modifier.fillMaxWidth())
+  ScanStatusBar(shown = 0, meshOnly = true, onMeshOnlyChange = {})
+  BleDeviceList(rows = emptyList(), busy = false, onPick = {}, modifier = Modifier.fillMaxWidth())
 }
 
 @Composable
 private fun PreviewBleFew() {
-    ScanStatusBar(shown = 2, meshOnly = true, onMeshOnlyChange = {})
-    BleDeviceList(
-        rows = listOf(
-            BleDeviceRow("C7:8D:8C:45:5F:78", "MeshCore-ABCD", -52),
-            BleDeviceRow("A1:B2:C3:D4:E5:F6", "MeshCore-1234", -74),
-        ),
-        busy = false,
-        onPick = {},
-        modifier = Modifier.fillMaxWidth(),
-    )
+  ScanStatusBar(shown = 2, meshOnly = true, onMeshOnlyChange = {})
+  BleDeviceList(
+    rows =
+      listOf(
+        BleDeviceRow("C7:8D:8C:45:5F:78", "MeshCore-ABCD", -52),
+        BleDeviceRow("A1:B2:C3:D4:E5:F6", "MeshCore-1234", -74),
+      ),
+    busy = false,
+    onPick = {},
+    modifier = Modifier.fillMaxWidth(),
+  )
 }
 
 @Composable
 private fun PreviewBleMany() {
-    ScanStatusBar(shown = 10, meshOnly = true, onMeshOnlyChange = {})
-    BleDeviceList(
-        rows = (0 until 10).map { i ->
-            BleDeviceRow(
-                identifier = "AA:BB:CC:DD:EE:%02X".format(i),
-                name = if (i == 3) null else "MeshCore-%04X".format(0xA000 + i),
-                rssi = -40 - i * 5,
-            )
-        },
-        busy = false,
-        onPick = {},
-        modifier = Modifier.fillMaxWidth().height(560.dp),
-    )
+  ScanStatusBar(shown = 10, meshOnly = true, onMeshOnlyChange = {})
+  BleDeviceList(
+    rows =
+      (0 until 10).map { i ->
+        BleDeviceRow(
+          identifier = "AA:BB:CC:DD:EE:%02X".format(i),
+          name = if (i == 3) null else "MeshCore-%04X".format(0xA000 + i),
+          rssi = -40 - i * 5,
+        )
+      },
+    busy = false,
+    onPick = {},
+    modifier = Modifier.fillMaxWidth().height(560.dp),
+  )
 }
 
 @Composable
 private fun PreviewBlePermission() {
-    BlePermissionPanel(lastResult = null, onRequest = {})
+  BlePermissionPanel(lastResult = null, onRequest = {})
 }
 
 @Composable
 private fun PreviewUsbEmpty() {
-    UsbPortsPanel(busy = false, listPorts = { emptyList() }, onConnect = {})
+  UsbPortsPanel(busy = false, listPorts = { emptyList() }, onConnect = {})
 }
 
 @Composable
 private fun PreviewUsbFew() {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Row {
-            Text(
-                text = "USB serial",
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-        UsbPortCard(label = "CdcAcmSerialPortWrapper", busy = false, onConnect = {})
-        UsbPortCard(label = "FtdiSerialPortWrapper", busy = false, onConnect = {})
+  Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row {
+      Text(
+        text = "USB serial",
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.onSurface,
+      )
     }
+    UsbPortCard(label = "CdcAcmSerialPortWrapper", busy = false, onConnect = {})
+    UsbPortCard(label = "FtdiSerialPortWrapper", busy = false, onConnect = {})
+  }
 }
 
 @Composable
 private fun PreviewTcpIdle() {
-    TcpConnectPanel(busy = false, onConnect = { _, _ -> })
+  TcpConnectPanel(busy = false, onConnect = { _, _ -> })
 }
 
 @Composable
 private fun PreviewEmpty() {
-    Text("(preview slot)")
+  Text("(preview slot)")
 }
 
 @Composable
 private fun PreviewSavedEmpty() {
-    SavedDevicesPanel(
-        devices = emptyList(),
-        busy = false,
-        onConnect = {},
-        onForget = {},
-        onToggleFavorite = {},
-    )
+  SavedDevicesPanel(
+    devices = emptyList(),
+    busy = false,
+    onConnect = {},
+    onForget = {},
+    onToggleFavorite = {},
+  )
 }
 
 @Composable
 private fun PreviewSavedPopulated() {
-    SavedDevicesPanel(
-        devices = listOf(
-            ee.schimke.meshcore.data.repository.SavedDeviceWithState(
-                device = ee.schimke.meshcore.data.repository.SavedDevice(
-                    id = "ble:C7:8D:8C:45:5F:78",
-                    label = "MeshCore-ABCD",
-                    transport = ee.schimke.meshcore.data.repository.SavedTransport.Ble(
-                        "C7:8D:8C:45:5F:78", "MeshCore-ABCD",
-                    ),
-                    favorite = true,
-                    lastConnectedAtMs = 1_700_100_000_000,
+  SavedDevicesPanel(
+    devices =
+      listOf(
+        ee.schimke.meshcore.data.repository.SavedDeviceWithState(
+          device =
+            ee.schimke.meshcore.data.repository.SavedDevice(
+              id = "ble:C7:8D:8C:45:5F:78",
+              label = "MeshCore-ABCD",
+              transport =
+                ee.schimke.meshcore.data.repository.SavedTransport.Ble(
+                  "C7:8D:8C:45:5F:78",
+                  "MeshCore-ABCD",
                 ),
-                batteryMillivolts = 3980,
-                contactsCount = 5,
+              favorite = true,
+              lastConnectedAtMs = 1_700_100_000_000,
             ),
-            ee.schimke.meshcore.data.repository.SavedDeviceWithState(
-                device = ee.schimke.meshcore.data.repository.SavedDevice(
-                    id = "tcp:192.168.1.10:5000",
-                    label = "192.168.1.10:5000",
-                    transport = ee.schimke.meshcore.data.repository.SavedTransport.Tcp("192.168.1.10", 5000),
-                    favorite = false,
-                    lastConnectedAtMs = 1_700_050_000_000,
-                ),
-            ),
+          batteryMillivolts = 3980,
+          contactsCount = 5,
         ),
-        busy = false,
-        onConnect = {},
-        onForget = {},
-        onToggleFavorite = {},
-    )
+        ee.schimke.meshcore.data.repository.SavedDeviceWithState(
+          device =
+            ee.schimke.meshcore.data.repository.SavedDevice(
+              id = "tcp:192.168.1.10:5000",
+              label = "192.168.1.10:5000",
+              transport =
+                ee.schimke.meshcore.data.repository.SavedTransport.Tcp("192.168.1.10", 5000),
+              favorite = false,
+              lastConnectedAtMs = 1_700_050_000_000,
+            )
+        ),
+      ),
+    busy = false,
+    onConnect = {},
+    onForget = {},
+    onToggleFavorite = {},
+  )
 }
 
 // --- Saved tab previews ---------------------------------------------------
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerSavedEmptyPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewSavedEmpty() },
-            bleContent = { PreviewEmpty() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 0,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewSavedEmpty() },
+      bleContent = { PreviewEmpty() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 0,
+    )
+  }
 }
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerSavedPopulatedPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewSavedPopulated() },
-            bleContent = { PreviewEmpty() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 0,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewSavedPopulated() },
+      bleContent = { PreviewEmpty() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 0,
+    )
+  }
 }
 
 // --- BLE tab previews -----------------------------------------------------
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerBlePermissionPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewBlePermission() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 1,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewBlePermission() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 1,
+    )
+  }
 }
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerBleEmptyPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewBleEmpty() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 1,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewBleEmpty() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 1,
+    )
+  }
 }
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerBleFewPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewBleFew() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 1,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewBleFew() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 1,
+    )
+  }
 }
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerBleManyPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewBleMany() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 1,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewBleMany() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 1,
+    )
+  }
 }
 
 // --- USB tab previews -----------------------------------------------------
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerUsbEmptyPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewEmpty() },
-            usbContent = { PreviewUsbEmpty() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 2,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewEmpty() },
+      usbContent = { PreviewUsbEmpty() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 2,
+    )
+  }
 }
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerUsbFewPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewEmpty() },
-            usbContent = { PreviewUsbFew() },
-            tcpContent = { PreviewEmpty() },
-            initialTab = 2,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewEmpty() },
+      usbContent = { PreviewUsbFew() },
+      tcpContent = { PreviewEmpty() },
+      initialTab = 2,
+    )
+  }
 }
 
 // --- TCP tab previews -----------------------------------------------------
 
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
 @Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = Devices.PIXEL_7,
-    name = "Dark",
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+  showBackground = true,
+  showSystemUi = true,
+  device = Devices.PIXEL_7,
+  name = "Dark",
+  uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 fun ScannerTcpPreview() {
-    MeshcoreTheme {
-        ScannerBody(
-            savedContent = { PreviewEmpty() },
-            bleContent = { PreviewEmpty() },
-            usbContent = { PreviewEmpty() },
-            tcpContent = { PreviewTcpIdle() },
-            initialTab = 3,
-        )
-    }
+  MeshcoreTheme {
+    ScannerBody(
+      savedContent = { PreviewEmpty() },
+      bleContent = { PreviewEmpty() },
+      usbContent = { PreviewEmpty() },
+      tcpContent = { PreviewTcpIdle() },
+      initialTab = 3,
+    )
+  }
 }

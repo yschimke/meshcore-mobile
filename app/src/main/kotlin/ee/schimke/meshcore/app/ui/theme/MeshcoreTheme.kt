@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.app.ui.theme
 
+import android.graphics.Color as AndroidColor
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
@@ -7,17 +8,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
-import ee.schimke.meshcore.components.ui.theme.MeshcoreBrandedTypography
-import ee.schimke.meshcore.components.ui.theme.MeshcoreDarkColors
-import ee.schimke.meshcore.components.ui.theme.MeshcoreLightColors
-import ee.schimke.meshcore.components.ui.theme.MeshcoreShapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
-import android.graphics.Color as AndroidColor
+import ee.schimke.meshcore.components.ui.theme.MeshcoreBrandedTypography
+import ee.schimke.meshcore.components.ui.theme.MeshcoreDarkColors
+import ee.schimke.meshcore.components.ui.theme.MeshcoreLightColors
+import ee.schimke.meshcore.components.ui.theme.MeshcoreShapes
 
 // ---------------------------------------------------------------------------
 // MeshCore Material 3 theme.
@@ -43,85 +43,92 @@ private val DefaultTypography: Typography = Typography()
 internal val LocalThemeCatalogOverride = staticCompositionLocalOf { false }
 
 /**
- * Top-level theme wrapper. All previews and the MainActivity content
- * should be wrapped in this — never in a bare MaterialTheme {} — so
- * the design is applied consistently.
+ * Top-level theme wrapper. All previews and the MainActivity content should be wrapped in this —
+ * never in a bare MaterialTheme {} — so the design is applied consistently.
  *
- * [darkTheme] / [palette] are low-level switches; prefer the
- * [ThemeSettings] overload in application code so the user's persisted
- * preferences are honored.
+ * [darkTheme] / [palette] are low-level switches; prefer the [ThemeSettings] overload in
+ * application code so the user's persisted preferences are honored.
  */
 @Composable
 fun MeshcoreTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    palette: ThemePalette = ThemePalette.Meshcore,
-    content: @Composable () -> Unit,
+  darkTheme: Boolean = isSystemInDarkTheme(),
+  palette: ThemePalette = ThemePalette.Meshcore,
+  content: @Composable () -> Unit,
 ) {
-    // Theme catalog providers wrap the preview function. Most MeshCore previews also install their
-    // normal default theme in their body; without this guard that inner theme would shadow the
-    // selected provider and every theme override would render identical pixels.
-    if (LocalThemeCatalogOverride.current) {
-        content()
-        return
-    }
+  // Theme catalog providers wrap the preview function. Most MeshCore previews also install their
+  // normal default theme in their body; without this guard that inner theme would shadow the
+  // selected provider and every theme override would render identical pixels.
+  if (LocalThemeCatalogOverride.current) {
+    content()
+    return
+  }
 
-    val useDynamic = palette == ThemePalette.Dynamic
-    val scheme = when {
-        useDynamic && darkTheme -> dynamicDarkColorScheme(LocalContext.current)
-        useDynamic && !darkTheme -> dynamicLightColorScheme(LocalContext.current)
-        darkTheme -> MeshcoreDarkColors
-        else -> MeshcoreLightColors
+  val useDynamic = palette == ThemePalette.Dynamic
+  val scheme =
+    when {
+      useDynamic && darkTheme -> dynamicDarkColorScheme(LocalContext.current)
+      useDynamic && !darkTheme -> dynamicLightColorScheme(LocalContext.current)
+      darkTheme -> MeshcoreDarkColors
+      else -> MeshcoreLightColors
     }
-    val typography = when (palette) {
-        ThemePalette.Meshcore -> MeshcoreBrandedTypography
-        ThemePalette.Dynamic -> DefaultTypography
+  val typography =
+    when (palette) {
+      ThemePalette.Meshcore -> MeshcoreBrandedTypography
+      ThemePalette.Dynamic -> DefaultTypography
     }
-    // Keep system bar icons legible regardless of the user's chosen theme:
-    // enableEdgeToEdge in MainActivity only samples the system setting once,
-    // so re-apply it here against the app's effective darkTheme.
-    val activity = LocalActivity.current as? ComponentActivity
-    if (activity != null) {
-        DisposableEffect(activity, darkTheme) {
-            activity.enableEdgeToEdge(
-                statusBarStyle = SystemBarStyle.auto(
-                    AndroidColor.TRANSPARENT,
-                    AndroidColor.TRANSPARENT,
-                ) { darkTheme },
-                navigationBarStyle = SystemBarStyle.auto(
-                    AndroidColor.WHITE,
-                    AndroidColor.BLACK,
-                ) { darkTheme },
-            )
-            onDispose {}
-        }
+  // Keep system bar icons legible regardless of the user's chosen theme:
+  // enableEdgeToEdge in MainActivity only samples the system setting once,
+  // so re-apply it here against the app's effective darkTheme.
+  val activity = LocalActivity.current as? ComponentActivity
+  if (activity != null) {
+    DisposableEffect(activity, darkTheme) {
+      activity.enableEdgeToEdge(
+        statusBarStyle =
+          SystemBarStyle.auto(
+            AndroidColor.TRANSPARENT,
+            AndroidColor.TRANSPARENT,
+          ) {
+            darkTheme
+          },
+        navigationBarStyle =
+          SystemBarStyle.auto(
+            AndroidColor.WHITE,
+            AndroidColor.BLACK,
+          ) {
+            darkTheme
+          },
+      )
+      onDispose {}
     }
-    MaterialTheme(
-        colorScheme = scheme,
-        typography = typography,
-        shapes = MeshcoreShapes,
-        content = content,
-    )
+  }
+  MaterialTheme(
+    colorScheme = scheme,
+    typography = typography,
+    shapes = MeshcoreShapes,
+    content = content,
+  )
 }
 
 /** Resolve a [ThemeMode] against the current system dark setting. */
 @Composable
 fun MeshcoreTheme(
-    mode: ThemeMode,
-    palette: ThemePalette = ThemePalette.Meshcore,
-    content: @Composable () -> Unit,
+  mode: ThemeMode,
+  palette: ThemePalette = ThemePalette.Meshcore,
+  content: @Composable () -> Unit,
 ) {
-    val dark = when (mode) {
-        ThemeMode.System -> isSystemInDarkTheme()
-        ThemeMode.Light -> false
-        ThemeMode.Dark -> true
+  val dark =
+    when (mode) {
+      ThemeMode.System -> isSystemInDarkTheme()
+      ThemeMode.Light -> false
+      ThemeMode.Dark -> true
     }
-    MeshcoreTheme(darkTheme = dark, palette = palette, content = content)
+  MeshcoreTheme(darkTheme = dark, palette = palette, content = content)
 }
 
 @Composable
 fun MeshcoreTheme(
-    settings: ThemeSettings,
-    content: @Composable () -> Unit,
+  settings: ThemeSettings,
+  content: @Composable () -> Unit,
 ) {
-    MeshcoreTheme(mode = settings.mode, palette = settings.palette, content = content)
+  MeshcoreTheme(mode = settings.mode, palette = settings.palette, content = content)
 }

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.remote.creation.compose.action.Action
+import androidx.compose.remote.creation.compose.capture.toRemoteImageVector
 import androidx.compose.remote.creation.compose.layout.RemoteAlignment
 import androidx.compose.remote.creation.compose.layout.RemoteArrangement
 import androidx.compose.remote.creation.compose.layout.RemoteBox
@@ -36,7 +37,6 @@ import androidx.wear.compose.remote.material3.RemoteButtonGroup
 import androidx.wear.compose.remote.material3.RemoteCard
 import androidx.wear.compose.remote.material3.RemoteCardDefaults
 import androidx.wear.compose.remote.material3.RemoteCircularProgressIndicator
-import androidx.compose.remote.creation.compose.capture.toRemoteImageVector
 import androidx.wear.compose.remote.material3.RemoteIcon
 import androidx.wear.compose.remote.material3.RemoteMaterialTheme
 import androidx.wear.compose.remote.material3.RemoteTextButton
@@ -47,236 +47,202 @@ import androidx.wear.compose.remote.material3.RemoteTitleCard
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun StatusWidgetConnectedPreview() {
-    StatusWidgetContent(
-        deviceName = "node-ridge",
-        connected = true,
-        batteryPercent = 81,
-        contactCount = 3,
-    )
+  StatusWidgetContent(
+    deviceName = "node-ridge",
+    connected = true,
+    batteryPercent = 81,
+    contactCount = 3,
+  )
 }
 
 @Preview(name = "Status — disconnected", widthDp = 192, heightDp = 192)
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun StatusWidgetDisconnectedPreview() {
-    StatusWidgetContent(
-        deviceName = "node-peak",
-        connected = false,
-        batteryPercent = null,
-        contactCount = 0,
-    )
+  StatusWidgetContent(
+    deviceName = "node-peak",
+    connected = false,
+    batteryPercent = null,
+    contactCount = 0,
+  )
 }
 
 @Preview(name = "Status — low battery", widthDp = 192, heightDp = 192)
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun StatusWidgetLowBatteryPreview() {
-    StatusWidgetContent(
-        deviceName = "node-peak",
-        connected = true,
-        batteryPercent = 15,
-        contactCount = 5,
-    )
+  StatusWidgetContent(
+    deviceName = "node-peak",
+    connected = true,
+    batteryPercent = 15,
+    contactCount = 5,
+  )
 }
 
 @Preview(name = "Component Catalog", widthDp = 192, heightDp = 192)
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun WearComponentCatalogPreview() {
-    val surfaceContainer = Color(0xFF1A211F).rc
-    val onSurface = Color(0xFFDDE4E1).rc
-    val onSurfaceVariant = Color(0xFFBEC9C5).rc
-    val primary = Color(0xFF53DBC9).rc
-    val tertiary = Color(0xFFE0C38C).rc
-    val errorRed = Color(0xFFFFB4AB).rc
+  val surfaceContainer = Color(0xFF1A211F).rc
+  val onSurface = Color(0xFFDDE4E1).rc
+  val onSurfaceVariant = Color(0xFFBEC9C5).rc
+  val primary = Color(0xFF53DBC9).rc
+  val tertiary = Color(0xFFE0C38C).rc
+  val errorRed = Color(0xFFFFB4AB).rc
 
-    RemoteColumn(
-        modifier = RemoteModifier
-            .fillMaxSize()
-            .background(surfaceContainer)
-            .padding(12.rdp),
-        verticalArrangement = RemoteArrangement.spacedBy(4.rdp)
-    ) {
-        RemoteText(
-            text = "Wear Catalog".rs,
-            color = primary,
-            fontSize = 14.rsp
-        )
+  RemoteColumn(
+    modifier = RemoteModifier.fillMaxSize().background(surfaceContainer).padding(12.rdp),
+    verticalArrangement = RemoteArrangement.spacedBy(4.rdp),
+  ) {
+    RemoteText(
+      text = "Wear Catalog".rs,
+      color = primary,
+      fontSize = 14.rsp,
+    )
 
-        RemoteText(
-            text = "Typography & Colors".rs,
-            color = onSurface,
-            fontSize = 12.rsp
-        )
+    RemoteText(
+      text = "Typography & Colors".rs,
+      color = onSurface,
+      fontSize = 12.rsp,
+    )
 
-        RemoteRow(
-            horizontalArrangement = RemoteArrangement.spacedBy(4.rdp)
-        ) {
-            RemoteBox(
-                modifier = RemoteModifier
-                    .fillMaxWidth(0.2f)
-                    .height(10.rdp)
-                    .background(primary)
-            ) {}
-            RemoteBox(
-                modifier = RemoteModifier
-                    .fillMaxWidth(0.25f)
-                    .height(10.rdp)
-                    .background(tertiary)
-            ) {}
-            RemoteBox(
-                modifier = RemoteModifier
-                    .fillMaxWidth(0.33f)
-                    .height(10.rdp)
-                    .background(errorRed)
-            ) {}
-            RemoteBox(
-                modifier = RemoteModifier
-                    .fillMaxWidth(0.5f)
-                    .height(10.rdp)
-                    .background(onSurfaceVariant)
-            ) {}
-        }
-
-        RemoteText(
-            text = "Connected \u2B24".rs,
-            color = primary,
-            fontSize = 10.rsp
-        )
-
-        RemoteText(
-            text = "Disconnected \u2B24".rs,
-            color = errorRed,
-            fontSize = 10.rsp
-        )
+    RemoteRow(horizontalArrangement = RemoteArrangement.spacedBy(4.rdp)) {
+      RemoteBox(modifier = RemoteModifier.fillMaxWidth(0.2f).height(10.rdp).background(primary)) {}
+      RemoteBox(
+        modifier = RemoteModifier.fillMaxWidth(0.25f).height(10.rdp).background(tertiary)
+      ) {}
+      RemoteBox(
+        modifier = RemoteModifier.fillMaxWidth(0.33f).height(10.rdp).background(errorRed)
+      ) {}
+      RemoteBox(
+        modifier = RemoteModifier.fillMaxWidth(0.5f).height(10.rdp).background(onSurfaceVariant)
+      ) {}
     }
+
+    RemoteText(
+      text = "Connected \u2B24".rs,
+      color = primary,
+      fontSize = 10.rsp,
+    )
+
+    RemoteText(
+      text = "Disconnected \u2B24".rs,
+      color = errorRed,
+      fontSize = 10.rsp,
+    )
+  }
 }
 
 @Composable
 @RemoteComposable
 private fun CatalogComponentPreview(
-    label: String,
-    content: @Composable @RemoteComposable () -> Unit
+  label: String,
+  content: @Composable @RemoteComposable () -> Unit,
 ) {
-    RemoteColumn(
-        horizontalAlignment = RemoteAlignment.CenterHorizontally,
-        modifier = RemoteModifier.size(150.rdp)
+  RemoteColumn(
+    horizontalAlignment = RemoteAlignment.CenterHorizontally,
+    modifier = RemoteModifier.size(150.rdp),
+  ) {
+    RemoteBox(
+      modifier = RemoteModifier.size(135.rdp),
+      contentAlignment = RemoteAlignment.Center,
     ) {
-        RemoteBox(
-            modifier = RemoteModifier.size(135.rdp),
-            contentAlignment = RemoteAlignment.Center
-        ) {
-            content()
-        }
-        RemoteText(label.rs, fontSize = 10.rsp, color = Color.White.rc)
+      content()
     }
+    RemoteText(label.rs, fontSize = 10.rsp, color = Color.White.rc)
+  }
 }
 
 @Preview(name = "Component Grid", widthDp = 500, heightDp = 500)
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun WearComponentGridPreview() {
-    val action = Action.Empty
+  val action = Action.Empty
 
-    RemoteColumn(
-        modifier = RemoteModifier
-            .fillMaxSize()
-            .background(Color.Black.rc)
-            .padding(8.rdp),
-        verticalArrangement = RemoteArrangement.spacedBy(16.rdp)
+  RemoteColumn(
+    modifier = RemoteModifier.fillMaxSize().background(Color.Black.rc).padding(8.rdp),
+    verticalArrangement = RemoteArrangement.spacedBy(16.rdp),
+  ) {
+    // Row 1
+    RemoteRow(
+      modifier = RemoteModifier.fillMaxWidth(),
+      horizontalArrangement = RemoteArrangement.SpaceEvenly,
     ) {
-        // Row 1
-        RemoteRow(
-            modifier = RemoteModifier.fillMaxWidth(),
-            horizontalArrangement = RemoteArrangement.SpaceEvenly
+      CatalogComponentPreview("RemoteAppCard") {
+        RemoteAppCard(
+          onClick = action,
+          appName = { RemoteText("App".rs) },
+          time = { RemoteText("Now".rs) },
+          title = { RemoteText("Title".rs) },
         ) {
-            CatalogComponentPreview("RemoteAppCard") {
-                RemoteAppCard(
-                    onClick = action,
-                    appName = { RemoteText("App".rs) },
-                    time = { RemoteText("Now".rs) },
-                    title = { RemoteText("Title".rs) }
-                ) {
-                    RemoteText("Content".rs)
-                }
-            }
-            CatalogComponentPreview("RemoteButton") {
-                RemoteButton(onClick = action) {
-                    RemoteText("B".rs)
-                }
-            }
-            CatalogComponentPreview("RemoteButtonGroup") {
-                RemoteButtonGroup {
-                    RemoteButton(onClick = action) {
-                        RemoteText(
-                            "1".rs
-                        )
-                    }
-                    RemoteButton(onClick = action) {
-                        RemoteText(
-                            "2".rs
-                        )
-                    }
-                    RemoteButton(onClick = action) {
-                        RemoteText(
-                            "3".rs
-                        )
-                    }
-                }
-            }
+          RemoteText("Content".rs)
         }
-
-        // Row 2
-        RemoteRow(
-            modifier = RemoteModifier.fillMaxWidth(),
-            horizontalArrangement = RemoteArrangement.SpaceEvenly
-        ) {
-            CatalogComponentPreview("RemoteCard") {
-                RemoteCard(onClick = action) {
-                    RemoteText("Card Content".rs, color = RemoteCardDefaults.cardColors().contentColor)
-                }
-            }
-            CatalogComponentPreview("RemoteCircularProgressIndicator") {
-                RemoteCircularProgressIndicator(progress = 0.75f.rf)
-            }
-            CatalogComponentPreview("RemoteIcon") {
-                RemoteIcon(imageVector = Icons.Rounded.Person.toRemoteImageVector(), contentDescription = null)
-            }
+      }
+      CatalogComponentPreview("RemoteButton") {
+        RemoteButton(onClick = action) { RemoteText("B".rs) }
+      }
+      CatalogComponentPreview("RemoteButtonGroup") {
+        RemoteButtonGroup {
+          RemoteButton(onClick = action) { RemoteText("1".rs) }
+          RemoteButton(onClick = action) { RemoteText("2".rs) }
+          RemoteButton(onClick = action) { RemoteText("3".rs) }
         }
-
-        // Row 3
-        RemoteRow(
-            modifier = RemoteModifier.fillMaxWidth(),
-            horizontalArrangement = RemoteArrangement.SpaceEvenly
-        ) {
-            CatalogComponentPreview("RemoteText") {
-                RemoteText("Text".rs)
-            }
-            CatalogComponentPreview("RemoteTextButton") {
-                RemoteTextButton(onClick = action,
-                        colors = filledTonalColor()) {
-                    RemoteText(
-                        "Button".rs
-                    )
-                }
-            }
-            CatalogComponentPreview("RemoteTitleCard") {
-                RemoteTitleCard(onClick = action, title = {
-                    RemoteText("Title".rs, color = RemoteCardDefaults.cardColors().titleColor)
-                }) {
-                    RemoteText("Card Content".rs, color = RemoteCardDefaults.cardColors().contentColor)
-                }
-            }
-        }
+      }
     }
+
+    // Row 2
+    RemoteRow(
+      modifier = RemoteModifier.fillMaxWidth(),
+      horizontalArrangement = RemoteArrangement.SpaceEvenly,
+    ) {
+      CatalogComponentPreview("RemoteCard") {
+        RemoteCard(onClick = action) {
+          RemoteText("Card Content".rs, color = RemoteCardDefaults.cardColors().contentColor)
+        }
+      }
+      CatalogComponentPreview("RemoteCircularProgressIndicator") {
+        RemoteCircularProgressIndicator(progress = 0.75f.rf)
+      }
+      CatalogComponentPreview("RemoteIcon") {
+        RemoteIcon(
+          imageVector = Icons.Rounded.Person.toRemoteImageVector(),
+          contentDescription = null,
+        )
+      }
+    }
+
+    // Row 3
+    RemoteRow(
+      modifier = RemoteModifier.fillMaxWidth(),
+      horizontalArrangement = RemoteArrangement.SpaceEvenly,
+    ) {
+      CatalogComponentPreview("RemoteText") { RemoteText("Text".rs) }
+      CatalogComponentPreview("RemoteTextButton") {
+        RemoteTextButton(
+          onClick = action,
+          colors = filledTonalColor(),
+        ) {
+          RemoteText("Button".rs)
+        }
+      }
+      CatalogComponentPreview("RemoteTitleCard") {
+        RemoteTitleCard(
+          onClick = action,
+          title = { RemoteText("Title".rs, color = RemoteCardDefaults.cardColors().titleColor) },
+        ) {
+          RemoteText("Card Content".rs, color = RemoteCardDefaults.cardColors().contentColor)
+        }
+      }
+    }
+  }
 }
 
 @Composable
 private fun filledTonalColor() =
-    RemoteTextButtonDefaults.textButtonColors()
-        .copy(
-            containerColor = RemoteMaterialTheme.colorScheme.primary,
-            contentColor = RemoteMaterialTheme.colorScheme.onPrimary,
-            disabledContainerColor = RemoteMaterialTheme.colorScheme.primary.copy(alpha = 0.12f.rf),
-            disabledContentColor = RemoteMaterialTheme.colorScheme.primary.copy(0.38f.rf),
-        )
+  RemoteTextButtonDefaults.textButtonColors()
+    .copy(
+      containerColor = RemoteMaterialTheme.colorScheme.primary,
+      contentColor = RemoteMaterialTheme.colorScheme.onPrimary,
+      disabledContainerColor = RemoteMaterialTheme.colorScheme.primary.copy(alpha = 0.12f.rf),
+      disabledContentColor = RemoteMaterialTheme.colorScheme.primary.copy(0.38f.rf),
+    )

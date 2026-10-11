@@ -39,105 +39,97 @@ import ee.schimke.meshcore.wear.ui.theme.WearDimens
 
 @Composable
 fun ContactsScreen(
-    viewModel: WearViewModel = viewModel(),
-    onContactSelected: (ContactMsg) -> Unit = {},
+  viewModel: WearViewModel = viewModel(),
+  onContactSelected: (ContactMsg) -> Unit = {},
 ) {
-    val state by viewModel.state.collectAsState()
-    val contacts = (state as? WearUiState.Connected)?.contacts
-        ?.filter { it.type == ContactType.CHAT }
-        ?: emptyList()
+  val state by viewModel.state.collectAsState()
+  val contacts =
+    (state as? WearUiState.Connected)?.contacts?.filter { it.type == ContactType.CHAT }
+      ?: emptyList()
 
-    ContactsBody(contacts = contacts, onContactSelected = onContactSelected)
+  ContactsBody(contacts = contacts, onContactSelected = onContactSelected)
 }
 
 // --- Stateless body (previewable) -------------------------------------------
 
 @Composable
 fun ContactsBody(
-    contacts: List<ContactMsg>,
-    onContactSelected: (ContactMsg) -> Unit = {},
+  contacts: List<ContactMsg>,
+  onContactSelected: (ContactMsg) -> Unit = {},
 ) {
-    val columnState = rememberTransformingLazyColumnState()
-    val transformationSpec = rememberTransformationSpec()
+  val columnState = rememberTransformingLazyColumnState()
+  val transformationSpec = rememberTransformationSpec()
 
-    ScreenScaffold(
-        scrollState = columnState,
-    ) { contentPadding ->
-        TransformingLazyColumn(
-            state = columnState,
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = contentPadding,
-        ) {
-            if (contacts.isEmpty()) {
-                item {
-                    Icon(
-                        imageVector = Icons.Rounded.GroupOff,
-                        contentDescription = "No contacts",
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier
-                            .size(36.dp)
-                            .minimumVerticalContentPadding(
-                                TextDefaults.minimumTopListContentPadding
-                            )
-                            .transformedHeight(this, transformationSpec),
-                    )
-                }
-                item {
-                    Text(
-                        text = "No chat contacts",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .minimumVerticalContentPadding(
-                                TextDefaults.minimumBottomListContentPadding
-                            )
-                            .transformedHeight(this, transformationSpec),
-                    )
-                }
-            } else {
-                item {
-                    ListHeader(
-                        modifier = Modifier
-                            .minimumVerticalContentPadding(
-                                top = ListHeaderDefaults.minimumTopListContentPadding,
-                                bottom = ListHeaderDefaults.minimumBottomListContentPadding,
-                            )
-                            .transformedHeight(this, transformationSpec),
-                    ) {
-                        Text("Contacts")
-                    }
-                }
-                items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
-                    Button(
-                        onClick = { onContactSelected(contact) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .minimumVerticalContentPadding(
-                                ButtonDefaults.minimumVerticalListContentPadding
-                            )
-                            .transformedHeight(this, transformationSpec),
-                        colors = ButtonDefaults.filledTonalButtonColors(),
-                        transformation = SurfaceTransformation(transformationSpec),
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.Person,
-                                contentDescription = null,
-                                modifier = Modifier.size(WearDimens.IconSize),
-                            )
-                            Text(
-                                text = contact.name.ifEmpty { "Unknown" },
-                                style = MaterialTheme.typography.labelLarge,
-                            )
-                        }
-                    }
-                }
-            }
+  ScreenScaffold(scrollState = columnState) { contentPadding ->
+    TransformingLazyColumn(
+      state = columnState,
+      modifier = Modifier.fillMaxSize(),
+      contentPadding = contentPadding,
+    ) {
+      if (contacts.isEmpty()) {
+        item {
+          Icon(
+            imageVector = Icons.Rounded.GroupOff,
+            contentDescription = "No contacts",
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier =
+              Modifier.size(36.dp)
+                .minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
+                .transformedHeight(this, transformationSpec),
+          )
         }
+        item {
+          Text(
+            text = "No chat contacts",
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier =
+              Modifier.fillMaxWidth()
+                .minimumVerticalContentPadding(TextDefaults.minimumBottomListContentPadding)
+                .transformedHeight(this, transformationSpec),
+          )
+        }
+      } else {
+        item {
+          ListHeader(
+            modifier =
+              Modifier.minimumVerticalContentPadding(
+                  top = ListHeaderDefaults.minimumTopListContentPadding,
+                  bottom = ListHeaderDefaults.minimumBottomListContentPadding,
+                )
+                .transformedHeight(this, transformationSpec)
+          ) {
+            Text("Contacts")
+          }
+        }
+        items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
+          Button(
+            onClick = { onContactSelected(contact) },
+            modifier =
+              Modifier.fillMaxWidth()
+                .minimumVerticalContentPadding(ButtonDefaults.minimumVerticalListContentPadding)
+                .transformedHeight(this, transformationSpec),
+            colors = ButtonDefaults.filledTonalButtonColors(),
+            transformation = SurfaceTransformation(transformationSpec),
+          ) {
+            Row(
+              verticalAlignment = Alignment.CenterVertically,
+              horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
+            ) {
+              Icon(
+                imageVector = Icons.Rounded.Person,
+                contentDescription = null,
+                modifier = Modifier.size(WearDimens.IconSize),
+              )
+              Text(
+                text = contact.name.ifEmpty { "Unknown" },
+                style = MaterialTheme.typography.labelLarge,
+              )
+            }
+          }
+        }
+      }
     }
+  }
 }

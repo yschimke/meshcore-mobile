@@ -217,7 +217,8 @@ fun ContactRow(contact: Contact, onClick: (() -> Unit)? = null, modifier: Modifi
     modifier = modifier.fillMaxWidth(),
     onClick = onClick ?: {},
     enabled = onClick != null,
-    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+    colors =
+      CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
   ) {
     Row(
       modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
@@ -325,7 +326,8 @@ fun ChannelRow(channel: ChannelInfo, onClick: (() -> Unit)? = null, modifier: Mo
     modifier = modifier.fillMaxWidth(),
     onClick = onClick ?: {},
     enabled = onClick != null,
-    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+    colors =
+      CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
   ) {
     Row(
       modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),

@@ -5,19 +5,18 @@ import ee.schimke.meshcore.app.MeshcoreApp
 import java.io.PrintWriter
 
 /**
- * Debug-build implementation of [DebugBridge]. Single event ring buffer
- * shared across dumpsys calls so `--events` reflects activity the
- * caller didn't necessarily observe live.
+ * Debug-build implementation of [DebugBridge]. Single event ring buffer shared across dumpsys calls
+ * so `--events` reflects activity the caller didn't necessarily observe live.
  */
 internal class DebugBridgeImpl(private val app: MeshcoreApp) : DebugBridge {
 
-    private val events = DebugEventBuffer()
+  private val events = DebugEventBuffer()
 
-    override fun onAppReady() {
-        events.attach(app)
-    }
+  override fun onAppReady() {
+    events.attach(app)
+  }
 
-    override fun dumpService(service: Service, writer: PrintWriter, args: Array<String>?) {
-        DebugDump.dispatch(app, writer, args, events)
-    }
+  override fun dumpService(service: Service, writer: PrintWriter, args: Array<String>?) {
+    DebugDump.dispatch(app, writer, args, events)
+  }
 }
