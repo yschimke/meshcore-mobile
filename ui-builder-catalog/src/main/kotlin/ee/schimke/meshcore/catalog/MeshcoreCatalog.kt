@@ -1,6 +1,8 @@
 package ee.schimke.meshcore.catalog
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.ui.unit.dp
 import ee.schimke.composeai.discovery.*
 import ee.schimke.composeai.uibuilder.renderer.sdk.*
 import ee.schimke.meshcore.components.ui.ChannelList
@@ -152,6 +154,17 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
     register(radio) {
       Box(modifier, propagateMinConstraints = true) { RadioLine(radio = value(radio.radio)) }
     }
-    register(channels) { ChannelList(channels = value(channels.channels), modifier = modifier) }
+    // ChannelList keys its lazy rows by slot index, so a design that repeats an index draws the
+    // first channel in that slot rather than failing composition. It is a lazy column, so it is
+    // bounded here: a document column measures its children with unbounded height.
+    register(channels) {
+      ChannelList(
+        channels = value(channels.channels).distinctBy { it.index },
+        modifier = modifier.heightIn(max = CHANNEL_LIST_MAX_HEIGHT),
+      )
+    }
   }
 }
+
+/** The tallest the channel list draws on the canvas: about eight rows, then it scrolls. */
+private val CHANNEL_LIST_MAX_HEIGHT = 480.dp

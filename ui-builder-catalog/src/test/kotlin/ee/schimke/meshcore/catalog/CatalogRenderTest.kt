@@ -212,6 +212,33 @@ class CatalogRenderTest {
       onNodeWithText("Emergency").assertExists()
     }
 
+  @Test
+  fun `a channel list that repeats an index draws its first channel instead of failing`() =
+    runDesktopComposeUiTest(width = 500, height = 260) {
+      val catalog = MeshcoreCatalog(discoverCatalogComponents())
+      val adapter = requireNotNull(catalog.registry()[catalog.channels.id])
+      val channels =
+        listOf(ChannelInfo(index = 0, name = "General"), ChannelInfo(index = 0, name = "Repeat"))
+      setContent {
+        MeshcoreTheme(darkTheme = false) {
+          Surface {
+            val node =
+              UiBuilderNode(
+                id = "channels",
+                componentId = catalog.channels.id,
+                properties =
+                  buildJsonObject {
+                    put("channels", AdapterValueCodecs.list(ChannelInfoCodec).wrap(channels))
+                  },
+              )
+            adapter(canvasScope(node))
+          }
+        }
+      }
+      onNodeWithText("General").assertExists()
+      onNodeWithText("Repeat").assertDoesNotExist()
+    }
+
   /** The resolved node the SDK hands an adapter; no document interpreter or device is involved. */
   private fun canvasScope(
     node: UiBuilderNode,
