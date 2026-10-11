@@ -2,7 +2,11 @@
 
 package ee.schimke.adaptivepilot
 
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.ImageComposeScene
+import androidx.compose.ui.input.InputMode
+import androidx.compose.ui.input.InputModeManager
+import androidx.compose.ui.platform.LocalInputModeManager
 import androidx.compose.ui.unit.Density
 import java.io.File
 import javax.swing.SwingUtilities
@@ -32,18 +36,23 @@ fun main(args: Array<String>) {
         capture.getValue("candidateState").jsonObject.getValue("selectedIndex").jsonPrimitive.int
       val scene =
         ImageComposeScene((width * density).toInt(), (height * density).toInt(), Density(density)) {
-          val design = capture.getValue("designId").jsonPrimitive.content
-          if (design == "contacts") ContactBrowser(dark, detail, initialSelectedIndex = selected)
-          else
-            KeyScreen(
-              design,
-              dark,
-              detail,
-              selected,
-              failure =
-                capture["candidateState"]?.jsonObject?.get("failure")?.jsonPrimitive?.content ==
-                  "true",
-            )
+          // A desktop scene starts in keyboard mode, where pane navigation focuses a button and
+          // draws its focus state layer. Capture what a phone user sees instead: in touch mode
+          // clickables are not focusable, as on Android.
+          CompositionLocalProvider(LocalInputModeManager provides TouchInputModeManager) {
+            val design = capture.getValue("designId").jsonPrimitive.content
+            if (design == "contacts") ContactBrowser(dark, detail, initialSelectedIndex = selected)
+            else
+              KeyScreen(
+                design,
+                dark,
+                detail,
+                selected,
+                failure =
+                  capture["candidateState"]?.jsonObject?.get("failure")?.jsonPrimitive?.content ==
+                    "true",
+              )
+          }
         }
       try {
         // Let layout and pane-expansion effects settle; capture at a fixed animation time.
@@ -59,4 +68,10 @@ fun main(args: Array<String>) {
       }
     }
   }
+}
+
+private object TouchInputModeManager : InputModeManager {
+  override val inputMode: InputMode = InputMode.Touch
+
+  override fun requestInputMode(inputMode: InputMode): Boolean = inputMode == InputMode.Touch
 }

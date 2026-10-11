@@ -488,7 +488,12 @@
         }
       },
       "slots": {},
-      "modifiers": [],
+      "modifiers": [
+        {
+          "type": "height",
+          "heightDp": 48
+        }
+      ],
       "eventBindings": {}
     },
     "back-text": {
