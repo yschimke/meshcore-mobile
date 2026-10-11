@@ -629,7 +629,7 @@
       "wireframe": "wireframes/devicesummarycard-populated.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 84,
+      "bodyLine": 100,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceSummaryCardPopulatedPreview"
     },
@@ -699,7 +699,7 @@
       "wireframe": "wireframes/devicesummarycard-loading.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 110,
+      "bodyLine": 127,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceSummaryCardLoadingPreview"
     },
@@ -783,7 +783,7 @@
       "wireframe": "wireframes/devicesummarycard-lowbattery.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 123,
+      "bodyLine": 141,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceSummaryCardLowBatteryPreview"
     },
@@ -849,7 +849,7 @@
       "wireframe": "wireframes/contactrow-chat.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 156,
+      "bodyLine": 180,
       "sourceDirectory": "app",
       "sourceFunction": "ContactRowChatPreview"
     },
@@ -915,7 +915,7 @@
       "wireframe": "wireframes/contactrow-repeater.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 167,
+      "bodyLine": 196,
       "sourceDirectory": "app",
       "sourceFunction": "ContactRowRepeaterPreview"
     },
@@ -981,7 +981,7 @@
       "wireframe": "wireframes/contactrow-room.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 178,
+      "bodyLine": 212,
       "sourceDirectory": "app",
       "sourceFunction": "ContactRowRoomPreview"
     },
@@ -1047,7 +1047,7 @@
       "wireframe": "wireframes/contactrow-sensor.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 189,
+      "bodyLine": 228,
       "sourceDirectory": "app",
       "sourceFunction": "ContactRowSensorPreview"
     },
@@ -1094,7 +1094,7 @@
       "wireframe": "wireframes/contactlist-empty.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 200,
+      "bodyLine": 244,
       "sourceDirectory": "app",
       "sourceFunction": "ContactListEmptyPreview"
     },
@@ -1178,7 +1178,7 @@
       "wireframe": "wireframes/contactlist-few.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 215,
+      "bodyLine": 264,
       "sourceDirectory": "app",
       "sourceFunction": "ContactListFewPreview"
     },
@@ -1298,7 +1298,7 @@
       "wireframe": "wireframes/contactlist-many.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 233,
+      "bodyLine": 288,
       "sourceDirectory": "app",
       "sourceFunction": "ContactListManyPreview"
     },
@@ -1345,7 +1345,7 @@
       "wireframe": "wireframes/bledevicelist-empty.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 250,
+      "bodyLine": 310,
       "sourceDirectory": "app",
       "sourceFunction": "BleDeviceListEmptyPreview"
     },
@@ -1472,7 +1472,7 @@
       "wireframe": "wireframes/bledevicelist-few.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 267,
+      "bodyLine": 332,
       "sourceDirectory": "app",
       "sourceFunction": "BleDeviceListFewPreview"
     },
@@ -1716,7 +1716,7 @@
       "wireframe": "wireframes/bledevicelist-many.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 286,
+      "bodyLine": 357,
       "sourceDirectory": "app",
       "sourceFunction": "BleDeviceListManyPreview"
     },
@@ -1850,7 +1850,7 @@
       "wireframe": "wireframes/tcpconnectpanel-idle.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 310,
+      "bodyLine": 387,
       "sourceDirectory": "app",
       "sourceFunction": "TcpConnectPanelIdlePreview"
     },
@@ -1984,7 +1984,7 @@
       "wireframe": "wireframes/tcpconnectpanel-busy.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 321,
+      "bodyLine": 403,
       "sourceDirectory": "app",
       "sourceFunction": "TcpConnectPanelBusyPreview"
     },
@@ -2072,7 +2072,7 @@
       "wireframe": "wireframes/blepermissionpanel-first.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 334,
+      "bodyLine": 421,
       "sourceDirectory": "app",
       "sourceFunction": "BlePermissionPanelFirstPreview"
     },
@@ -2160,7 +2160,7 @@
       "wireframe": "wireframes/blepermissionpanel-denied.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ComponentPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 345,
+      "bodyLine": 437,
       "sourceDirectory": "app",
       "sourceFunction": "BlePermissionPanelDeniedPreview"
     },
@@ -2378,7 +2378,7 @@
       "wireframe": "wireframes/scanner-savedempty.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 367,
+      "bodyLine": 375,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerSavedEmptyPreview",
       "parameters": [
@@ -2836,7 +2836,7 @@
       "wireframe": "wireframes/scanner-savedpopulated.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 388,
+      "bodyLine": 396,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerSavedPopulatedPreview",
       "parameters": [
@@ -3135,7 +3135,7 @@
       "wireframe": "wireframes/scanner-blepermission.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 411,
+      "bodyLine": 419,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerBlePermissionPreview",
       "parameters": [
@@ -3434,7 +3434,7 @@
       "wireframe": "wireframes/scanner-bleempty.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 432,
+      "bodyLine": 440,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerBleEmptyPreview",
       "parameters": [
@@ -3811,7 +3811,7 @@
       "wireframe": "wireframes/scanner-blefew.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 453,
+      "bodyLine": 461,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerBleFewPreview",
       "parameters": [
@@ -4422,7 +4422,7 @@
       "wireframe": "wireframes/scanner-blemany.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 474,
+      "bodyLine": 482,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerBleManyPreview",
       "parameters": [
@@ -4712,7 +4712,7 @@
       "wireframe": "wireframes/scanner-usbempty.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 497,
+      "bodyLine": 505,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerUsbEmptyPreview",
       "parameters": [
@@ -5050,7 +5050,7 @@
       "wireframe": "wireframes/scanner-usbfew.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 518,
+      "bodyLine": 526,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerUsbFewPreview",
       "parameters": [
@@ -5395,7 +5395,7 @@
       "wireframe": "wireframes/scanner-tcp.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/ScannerScreen.kt",
       "sourceModule": ":app",
-      "bodyLine": 541,
+      "bodyLine": 549,
       "sourceDirectory": "app",
       "sourceFunction": "ScannerTcpPreview",
       "parameters": [
@@ -5692,7 +5692,7 @@
       "wireframe": "wireframes/device-loading.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 65,
+      "bodyLine": 69,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceBodyLoadingPreview"
     },
@@ -5961,7 +5961,7 @@
       "wireframe": "wireframes/device-nocontacts.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 88,
+      "bodyLine": 91,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceBodyNoContactsPreview"
     },
@@ -6939,7 +6939,7 @@
       "wireframe": "wireframes/device-lowbattery.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 111,
+      "bodyLine": 113,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceBodyLowBatteryPreview"
     },
@@ -7419,7 +7419,7 @@
       "wireframe": "wireframes/device-manycontacts.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 136,
+      "bodyLine": 138,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceBodyManyContactsPreview"
     },
@@ -7601,7 +7601,7 @@
       "wireframe": "wireframes/device-statusconnecting.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 183,
+      "bodyLine": 197,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceStatusConnectingPreview"
     },
@@ -7778,7 +7778,7 @@
       "wireframe": "wireframes/device-statusfailed.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceScreenPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 211,
+      "bodyLine": 226,
       "sourceDirectory": "app",
       "sourceFunction": "DeviceStatusFailedPreview"
     },
@@ -9911,7 +9911,7 @@
       "wireframe": "wireframes/saveddevices-populated.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt",
       "sourceModule": ":app",
-      "bodyLine": 312,
+      "bodyLine": 323,
       "sourceDirectory": "app",
       "sourceFunction": "SavedDevicesPopulatedPreview",
       "parameters": [
@@ -9993,7 +9993,7 @@
       "wireframe": "wireframes/saveddevices-empty.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/SavedDevicesPanel.kt",
       "sourceModule": ":app",
-      "bodyLine": 334,
+      "bodyLine": 345,
       "sourceDirectory": "app",
       "sourceFunction": "SavedDevicesEmptyPreview",
       "parameters": [
@@ -10062,7 +10062,7 @@
       "wireframe": "wireframes/app-playstoreicon.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 139,
+      "bodyLine": 136,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStoreIcon"
     },
@@ -10094,7 +10094,7 @@
       "wireframe": "wireframes/app-playstorefeature.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStoreBrandPreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 158,
+      "bodyLine": 155,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStoreFeature"
     },
@@ -10612,7 +10612,7 @@
       "wireframe": "wireframes/app-playstorephonehomelight.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 220,
+      "bodyLine": 217,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStorePhoneHomeLight",
       "parameters": [
@@ -11137,7 +11137,7 @@
       "wireframe": "wireframes/app-playstorephonehomedark.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 232,
+      "bodyLine": 229,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStorePhoneHomeDark",
       "parameters": [
@@ -11539,7 +11539,7 @@
       "wireframe": "wireframes/app-playstorephonescannersaved.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 243,
+      "bodyLine": 240,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStorePhoneScannerSaved"
     },
@@ -11932,7 +11932,7 @@
       "wireframe": "wireframes/app-playstorephonescannerble.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 254,
+      "bodyLine": 251,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStorePhoneScannerBle"
     },
@@ -12449,7 +12449,7 @@
       "wireframe": "wireframes/app-playstoretabletsevenhome.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 267,
+      "bodyLine": 264,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStoreTabletSevenHome",
       "parameters": [
@@ -12972,7 +12972,7 @@
       "wireframe": "wireframes/app-playstoretablettenhome.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/app/ui/PlayStorePreviews.kt",
       "sourceModule": ":app",
-      "bodyLine": 280,
+      "bodyLine": 277,
       "sourceDirectory": "app",
       "sourceFunction": "PlayStoreTabletTenHome",
       "parameters": [
@@ -16681,7 +16681,7 @@
       "wireframe": "wireframes/wear-statusbodyloadingpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 45,
+      "bodyLine": 43,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyLoadingPreview",
       "parameters": [
@@ -16743,7 +16743,7 @@
       "wireframe": "wireframes/wear-statusbodyphonedisconnectedpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 55,
+      "bodyLine": 49,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyPhoneDisconnectedPreview",
       "parameters": [
@@ -16805,7 +16805,7 @@
       "wireframe": "wireframes/wear-statusbodyradiodisconnectedpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 65,
+      "bodyLine": 55,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyRadioDisconnectedPreview",
       "parameters": [
@@ -16940,7 +16940,7 @@
       "wireframe": "wireframes/wear-statusbodyconnectedpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 75,
+      "bodyLine": 61,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyConnectedPreview",
       "parameters": [
@@ -17075,7 +17075,7 @@
       "wireframe": "wireframes/wear-statusbodyconnectedlowbatterypreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 92,
+      "bodyLine": 79,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyConnectedLowBatteryPreview",
       "parameters": [
@@ -17210,7 +17210,7 @@
       "wireframe": "wireframes/wear-statusbodyconnectedmediumbatterypreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 114,
+      "bodyLine": 102,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyConnectedMediumBatteryPreview",
       "parameters": [
@@ -17272,7 +17272,7 @@
       "wireframe": "wireframes/wear-statusbodyerrorpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 131,
+      "bodyLine": 120,
       "sourceDirectory": "wear",
       "sourceFunction": "StatusBodyErrorPreview",
       "parameters": [
@@ -17334,7 +17334,7 @@
       "wireframe": "wireframes/wear-contactsbodyemptypreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 143,
+      "bodyLine": 130,
       "sourceDirectory": "wear",
       "sourceFunction": "ContactsBodyEmptyPreview",
       "parameters": [
@@ -17520,7 +17520,7 @@
       "wireframe": "wireframes/wear-contactsbodyfewpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 153,
+      "bodyLine": 136,
       "sourceDirectory": "wear",
       "sourceFunction": "ContactsBodyFewPreview",
       "parameters": [
@@ -17706,7 +17706,7 @@
       "wireframe": "wireframes/wear-quickreplybodypreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 171,
+      "bodyLine": 155,
       "sourceDirectory": "wear",
       "sourceFunction": "QuickReplyBodyPreview",
       "parameters": [
@@ -17789,7 +17789,7 @@
       "wireframe": "wireframes/wear-interactivetogglechippreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/ui/WearPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 186,
+      "bodyLine": 166,
       "sourceDirectory": "wear",
       "sourceFunction": "InteractiveToggleChipPreview",
       "parameters": [
@@ -18366,7 +18366,7 @@
       "wireframe": "wireframes/wear-wearcomponentgridpreview.svg",
       "sourceFile": "src/main/kotlin/ee/schimke/meshcore/wear/widget/WidgetPreviews.kt",
       "sourceModule": ":wear",
-      "bodyLine": 178,
+      "bodyLine": 159,
       "sourceDirectory": "wear",
       "sourceFunction": "WearComponentGridPreview",
       "parameters": [
@@ -19411,7 +19411,7 @@
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
   "renderer": "compose-preview 2.42.0",
-  "generatedAt": "2026-10-11T08:44:24.872Z",
+  "generatedAt": "2026-10-11T10:00:54.068Z",
   "display": {
     "hero": "Device/Populated"
   },
@@ -19442,7 +19442,7 @@
   "componentsFile": "components.json",
   "source": {
     "repo": "yschimke/meshcore-mobile",
-    "ref": "2bf1c9a614cf5e64b7ed50387a8b48fe1cbccaf3",
+    "ref": "caab062fea0fafce48a8abe250215bc1ef449476",
     "module": ""
   }
 }
