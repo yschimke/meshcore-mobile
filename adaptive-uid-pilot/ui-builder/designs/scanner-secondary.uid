@@ -508,10 +508,6 @@
         "text": {
           "type": "string",
           "value": "Host and port"
-        },
-        "style": {
-          "type": "enum",
-          "value": "bodyLarge"
         }
       },
       "slots": {},
