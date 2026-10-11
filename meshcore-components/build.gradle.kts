@@ -59,6 +59,7 @@ kotlin {
       dependencies { implementation(libs.compose.preview.annotations) }
     }
     getByName("desktopMain").dependsOn(catalogMain)
+    getByName("desktopTest").dependencies { implementation(libs.kotlin.test) }
     val androidMain by getting {
       dependsOn(catalogMain)
       dependencies {

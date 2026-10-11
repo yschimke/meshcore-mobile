@@ -310,6 +310,7 @@ private fun MeshcoreChat(
 ) {
   val direct by client.directMessages.collectAsState()
   val channel by client.channelMessages.collectAsState()
+  val self by client.selfInfo.collectAsState()
   var draft by rememberSaveable(contactKey, channelIndex) { mutableStateOf("") }
   val sending = sent.any { it.status == MessageStatus.Sending }
   val received =
@@ -329,7 +330,13 @@ private fun MeshcoreChat(
     }
   ChatBody(
     title = title,
-    messages = (received + sent).sortedBy { it.timestamp },
+    messages =
+      mergeChatHistory(
+        received,
+        sent,
+        selfName = self?.name,
+        dedupeEchoes = channelIndex != null,
+      ),
     draft = draft,
     onDraftChange = { draft = it },
     onBack = onBack,
