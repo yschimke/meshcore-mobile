@@ -19421,7 +19421,7 @@
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
   "renderer": "compose-preview 2.52.0",
-  "generatedAt": "2026-10-12T10:16:48.588Z",
+  "generatedAt": "2026-10-12T10:40:33.179Z",
   "display": {
     "hero": "Device/Populated"
   },
@@ -19452,7 +19452,7 @@
   "componentsFile": "components.json",
   "source": {
     "repo": "yschimke/meshcore-mobile",
-    "ref": "157ca507b14776d0bcafd811f773c5d7d327e7d6",
+    "ref": "7ba6c5c1c9e64f3d5cb65dabb4bb737fa90c6c6d",
     "module": ""
   }
 }
