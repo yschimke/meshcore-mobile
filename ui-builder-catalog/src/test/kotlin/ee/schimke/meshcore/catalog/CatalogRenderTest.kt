@@ -5,21 +5,48 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toAwtImage
 import androidx.compose.ui.graphics.toPixelMap
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.test.*
 import ee.schimke.composeai.discovery.AdapterValueCodecs
 import ee.schimke.composeai.uibuilder.export.UiBuilderNode
 import ee.schimke.composeai.uibuilder.renderer.sdk.*
+import ee.schimke.meshcore.app.ui.DeviceConnectStatus
+import ee.schimke.meshcore.app.ui.DeviceStatusView
+import ee.schimke.meshcore.app.ui.LoginDialog
+import ee.schimke.meshcore.app.ui.LoginDialogState
+import ee.schimke.meshcore.app.ui.theme.ThemeMode
+import ee.schimke.meshcore.app.ui.theme.ThemePalette
+import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
+import ee.schimke.meshcore.app.ui.theme.ThemeSettings
+import ee.schimke.meshcore.components.ui.BatterySection
 import ee.schimke.meshcore.components.ui.ChannelList
+import ee.schimke.meshcore.components.ui.ChannelRow
+import ee.schimke.meshcore.components.ui.ChatBody
+import ee.schimke.meshcore.components.ui.ChatBubble
 import ee.schimke.meshcore.components.ui.ChatInput
+import ee.schimke.meshcore.components.ui.ChatMessage
+import ee.schimke.meshcore.components.ui.ChatMessageList
+import ee.schimke.meshcore.components.ui.ContactList
 import ee.schimke.meshcore.components.ui.ContactListEmpty
+import ee.schimke.meshcore.components.ui.ContactRow
+import ee.schimke.meshcore.components.ui.DeviceBody
+import ee.schimke.meshcore.components.ui.DeviceSettingsBody
+import ee.schimke.meshcore.components.ui.DeviceSettingsUiState
 import ee.schimke.meshcore.components.ui.DeviceSummaryCard
+import ee.schimke.meshcore.components.ui.LastMessageInfo
+import ee.schimke.meshcore.components.ui.MessageStatus
 import ee.schimke.meshcore.components.ui.RadioLine
+import ee.schimke.meshcore.components.ui.TcpConnectPanel
 import ee.schimke.meshcore.components.ui.theme.MeshcoreTheme
+import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
+import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.RadioSettings
+import ee.schimke.meshcore.core.model.byteStringOfHex
 import java.io.File
 import javax.imageio.ImageIO
 import kotlin.test.*
+import kotlin.time.Instant
 import kotlinx.serialization.json.*
 
 @OptIn(ExperimentalTestApi::class)
@@ -191,7 +218,7 @@ class CatalogRenderTest {
       setContent {
         MeshcoreTheme(darkTheme = false) {
           Surface {
-            if (!adapted) ChannelList(channels = channels)
+            if (!adapted) ChannelList(channels = channels, onChannelClick = {})
             else {
               val node =
                 UiBuilderNode(
@@ -239,6 +266,383 @@ class CatalogRenderTest {
       onNodeWithText("Repeat").assertDoesNotExist()
     }
 
+  @Test
+  fun `native DeviceSummaryCard and typed catalog draw the same pixels from nullable objects`() {
+    val self = MeshcoreSamples.self.copy(name = "ridge-node", publicKey = MeshcoreSamples.key(0x5C))
+    val radio = RadioSettings(915_000_000, 250_000, 9, 6)
+    val battery = BatteryInfo(3650, 2048, 8192)
+    parity(
+      "device-summary-filled",
+      catalog.deviceSummary.id,
+      props(
+        "self" to SelfInfoCodec.wrap(self),
+        "radio" to RadioSettingsCodec.wrap(radio),
+        "battery" to BatteryInfoCodec.wrap(battery),
+      ),
+      height = 260,
+      native = { DeviceSummaryCard(self = self, radio = radio, battery = battery) },
+    ) {
+      onNodeWithText("ridge-node").assertExists()
+      onNodeWithText("5c5c5c5c5c5c5c5c").assertExists()
+    }
+  }
+
+  @Test
+  fun `native BatterySection and typed catalog draw the same pixels from Long fields`() {
+    val battery = BatteryInfo(3300, 3_000_000_000L, 4_000_000_000L)
+    parity(
+      "battery",
+      catalog.battery.id,
+      props("battery" to BatteryInfoCodec.wrap(battery)),
+      height = 120,
+      native = { BatterySection(battery = battery) },
+    )
+  }
+
+  @Test
+  fun `native ContactRow and typed catalog draw the same pixels and dispatch its click`() {
+    val contact =
+      MeshcoreSamples.contact("hilltop", 4, 0x7E, ContactType.REPEATER)
+        .copy(path = byteStringOfHex("a1b2c3d4"))
+    parity(
+      "contact-row",
+      catalog.contactRow.id,
+      props("contact" to ContactCodec.wrap(contact)),
+      height = 120,
+      native = { ContactRow(contact = contact, onClick = {}) },
+    ) { events ->
+      onNodeWithText("hilltop").performClick()
+      runOnIdle { assertEquals(listOf("click"), events) }
+    }
+  }
+
+  @Test
+  fun `native ContactList and typed catalog draw the same pixels and dispatch a payload click`() {
+    val contacts = MeshcoreSamples.contacts.take(3)
+    parity(
+      "contact-list",
+      catalog.contacts.id,
+      props("contacts" to AdapterValueCodecs.list(ContactCodec).wrap(contacts)),
+      height = 300,
+      native = { ContactList(contacts = contacts, onContactClick = {}) },
+    ) { events ->
+      onNodeWithText("common-room").performClick()
+      runOnIdle { assertEquals(listOf("contactClick"), events) }
+    }
+  }
+
+  @Test
+  fun `native ChannelRow and typed catalog draw the same pixels and dispatch its click`() {
+    val channel = ChannelInfo(index = 4, name = "Search & rescue")
+    parity(
+      "channel-row",
+      catalog.channelRow.id,
+      props("channel" to ChannelInfoCodec.wrap(channel)),
+      height = 120,
+      native = { ChannelRow(channel = channel, onClick = {}) },
+    ) { events ->
+      onNodeWithText("Search & rescue").performClick()
+      runOnIdle { assertEquals(listOf("click"), events) }
+    }
+  }
+
+  @Test
+  fun `native ChatBubble and typed catalog draw the same pixels and dispatch retry`() {
+    val failed =
+      ChatMessage(
+        id = "f1",
+        senderName = null,
+        text = "anyone copy?",
+        timestamp = Instant.parse("2026-10-12T08:00:00Z"),
+        snr = 5,
+        isMine = true,
+        status = MessageStatus.Failed,
+      )
+    parity(
+      "chat-bubble",
+      catalog.bubble.id,
+      props("message" to ChatMessageCodec.wrap(failed)),
+      height = 120,
+      native = { ChatBubble(message = failed, onRetry = {}) },
+    ) { events ->
+      onNodeWithText("Failed — tap to retry").performClick()
+      runOnIdle { assertEquals(listOf("retry"), events) }
+    }
+  }
+
+  @Test
+  fun `native ChatMessageList and typed catalog draw the same pixels and dispatch a payload retry`() {
+    val messages =
+      MeshcoreSamples.contactMessages.take(2) +
+        MeshcoreSamples.channelMessage +
+        MeshcoreSamples.contactMessages[3].copy(id = "f2", status = MessageStatus.Failed)
+    parity(
+      "chat-message-list",
+      catalog.messages.id,
+      props("messages" to AdapterValueCodecs.list(ChatMessageCodec).wrap(messages)),
+      height = 420,
+      native = { ChatMessageList(messages = messages, onRetry = {}) },
+    ) { events ->
+      onNodeWithText("alice").assertExists()
+      onNodeWithText("Failed — tap to retry").performClick()
+      runOnIdle { assertEquals(listOf("retry"), events) }
+    }
+  }
+
+  @Test
+  fun `native ChatBody and typed catalog draw the same screen and dispatch back`() {
+    val messages = listOf(MeshcoreSamples.channelMessage)
+    parity(
+      "chat-body",
+      catalog.chat.id,
+      props(
+        "title" to AdapterValueCodecs.String.wrap("General"),
+        "subtitle" to AdapterValueCodecs.nullable(AdapterValueCodecs.String).wrap("Channel 0"),
+        "messages" to AdapterValueCodecs.list(ChatMessageCodec).wrap(messages),
+        "draft" to AdapterValueCodecs.String.wrap("on my way"),
+        "inputPlaceholder" to AdapterValueCodecs.String.wrap("Message General"),
+      ),
+      width = 420,
+      height = 640,
+      native = {
+        ChatBody(
+          title = "General",
+          subtitle = "Channel 0",
+          messages = messages,
+          draft = "on my way",
+          onDraftChange = {},
+          onSend = {},
+          onBack = {},
+          inputPlaceholder = "Message General",
+          onRetry = {},
+        )
+      },
+    ) { events ->
+      onNodeWithContentDescription("Back").performClick()
+      onNodeWithContentDescription("Send").performClick()
+      runOnIdle { assertEquals(listOf("back", "send"), events) }
+    }
+  }
+
+  @Test
+  fun `native TcpConnectPanel and typed catalog draw the same pixels and dispatch a two-argument connect`() =
+    parity(
+      "tcp-connect",
+      catalog.tcp.id,
+      props(
+        "defaultHost" to AdapterValueCodecs.String.wrap("10.0.0.42"),
+        "defaultPort" to AdapterValueCodecs.Int.wrap(4403),
+      ),
+      height = 340,
+      native = {
+        TcpConnectPanel(
+          busy = false,
+          onConnect = { _, _ -> },
+          defaultHost = "10.0.0.42",
+          defaultPort = 4403,
+        )
+      },
+    ) { events ->
+      onNodeWithText("Connect").performClick()
+      runOnIdle { assertEquals(listOf("connect"), events) }
+    }
+
+  @Test
+  fun `native DeviceSettingsBody and typed catalog draw each union case`() {
+    val states =
+      listOf(
+        "error" to DeviceSettingsUiState.Error("No response from /help"),
+        "ready" to DeviceSettingsUiState.Ready(hasBuzzer = true, buzzerMode = "off"),
+      )
+    for ((case, state) in states) {
+      parity(
+        "device-settings-$case",
+        catalog.settings.id,
+        props("state" to DeviceSettingsUiStateCodec.wrap(state)),
+        height = 300,
+        native = { DeviceSettingsBody(state = state, onToggleBuzzer = {}, onBack = {}) },
+      ) { events ->
+        if (state is DeviceSettingsUiState.Ready) {
+          onNode(isToggleable()).performClick()
+          runOnIdle { assertEquals(listOf("toggleBuzzer"), events) }
+        } else onNodeWithText("No response from /help").assertExists()
+      }
+    }
+  }
+
+  @Test
+  fun `native ThemePickerDialog and typed catalog draw the same dialog and dispatch payload events`() {
+    val current = ThemeSettings(mode = ThemeMode.Dark, palette = ThemePalette.Dynamic)
+    parity(
+      "theme-picker",
+      catalog.themePicker.id,
+      props("current" to ThemeSettingsCodec.wrap(current)),
+      height = 720,
+      native = {
+        ThemePickerDialog(
+          current = current,
+          onModeSelect = {},
+          onPaletteSelect = {},
+          onDismiss = {},
+        )
+      },
+    ) { events ->
+      onNodeWithText("Dynamic (system)").performClick()
+      onNodeWithText("Dark").performClick()
+      runOnIdle { assertEquals(listOf("paletteSelect", "modeSelect"), events) }
+    }
+  }
+
+  @Test
+  fun `native LoginDialog and typed catalog draw the same dialog for a prompting case`() {
+    val state = LoginDialogState.Prompting(errorMessage = "Wrong password")
+    parity(
+      "login-dialog",
+      catalog.login.id,
+      props(
+        "contactName" to AdapterValueCodecs.String.wrap("bob-repeater"),
+        "contactType" to AdapterValueCodecs.String.wrap("repeater"),
+        "state" to LoginDialogStateCodec.wrap(state),
+      ),
+      height = 520,
+      native = {
+        LoginDialog(
+          contactName = "bob-repeater",
+          contactType = "repeater",
+          state = state,
+          onLogin = {},
+          onDismiss = {},
+        )
+      },
+    ) { events ->
+      onNodeWithText("Wrong password").assertExists()
+      onNodeWithText("Join").performClick()
+      runOnIdle { assertEquals(listOf("login"), events) }
+    }
+  }
+
+  @Test
+  fun `native DeviceStatusView and typed catalog draw the same connecting card at the pinned clock`() {
+    val status = DeviceConnectStatus.Connecting(startedAtMs = 1_000L, timeoutMs = 30_000L)
+    parity(
+      "device-status",
+      catalog.status.id,
+      props(
+        "title" to AdapterValueCodecs.String.wrap("ridge-node"),
+        "status" to DeviceConnectStatusCodec.wrap(status),
+      ),
+      height = 420,
+      native = {
+        DeviceStatusView(
+          title = "ridge-node",
+          status = status,
+          onCancel = {},
+          onOpenThemePicker = {},
+          nowMs = { 8_000L },
+        )
+      },
+    ) { events ->
+      // 7 s into a 30 s attempt: 23 s remain.
+      onNodeWithText("Waiting for the radio to respond — 23s").assertExists()
+      onNodeWithText("Cancel").performClick()
+      runOnIdle { assertEquals(listOf("cancel"), events) }
+    }
+  }
+
+  @Test
+  fun `native DeviceBody and typed catalog draw the same screen and dispatch payload clicks`() {
+    val lastMessage =
+      LastMessageInfo.Channel(
+        channelIndex = 0,
+        channelName = "General",
+        sender = "carol",
+        text = "anyone near the north ridge?",
+        snr = 7,
+      )
+    val contacts = MeshcoreSamples.contacts.take(2)
+    val channels = MeshcoreSamples.channels.take(2)
+    parity(
+      "device-body",
+      catalog.device.id,
+      props(
+        "self" to SelfInfoCodec.wrap(MeshcoreSamples.self.copy(name = "ridge-node")),
+        "contacts" to AdapterValueCodecs.list(ContactCodec).wrap(contacts),
+        "channels" to AdapterValueCodecs.list(ChannelInfoCodec).wrap(channels),
+        "lastMessage" to LastMessageInfoCodec.wrap(lastMessage),
+        "contactedKeys" to
+          SetCodec(AdapterValueCodecs.String).wrap(setOf(contacts[0].publicKey.toHex())),
+        "contactedChannelIndices" to SetCodec(AdapterValueCodecs.Int).wrap(setOf(1)),
+        "warnings" to
+          AdapterValueCodecs.list(AdapterValueCodecs.String).wrap(listOf("Clock drift")),
+      ),
+      width = 420,
+      height = 780,
+      native = {
+        DeviceBody(
+          self = MeshcoreSamples.self.copy(name = "ridge-node"),
+          battery = MeshcoreSamples.battery,
+          radio = MeshcoreSamples.radio,
+          contacts = contacts,
+          channels = channels,
+          contactedKeys = setOf(contacts[0].publicKey.toHex()),
+          contactedChannelIndices = setOf(1),
+          lastMessage = lastMessage,
+          warnings = listOf("Clock drift"),
+          onDisconnect = {},
+        )
+      },
+    ) { events ->
+      onAllNodesWithText("ridge-node").onFirst().assertExists()
+      // Only the contacted channel is listed; General is filtered out of its section.
+      onNodeWithText("Emergency").assertExists()
+      onNodeWithText("alice").performClick()
+      runOnIdle { assertEquals(listOf("contactClick"), events) }
+    }
+  }
+
+  /** The default catalog, discovered once per test class. */
+  private val catalog = MeshcoreCatalog(discoverCatalogComponents())
+
+  private fun props(vararg values: Pair<String, JsonObject>) = JsonObject(values.toMap())
+
+  /**
+   * Draw [native] and then the typed adapter [id] with the stored [properties] in the same light
+   * theme, require identical pixels, and hand [check] the events the adapter dispatched. Inspection
+   * mode is on, as in a preview render, so frame-driven animations hold still.
+   */
+  private fun parity(
+    name: String,
+    id: String,
+    properties: JsonObject,
+    width: Int = 500,
+    height: Int = 180,
+    native: @Composable () -> Unit,
+    check: ComposeUiTest.(List<String>) -> Unit = {},
+  ) =
+    runDesktopComposeUiTest(width = width, height = height) {
+      val adapter = requireNotNull(catalog.registry()[id])
+      var adapted by mutableStateOf(false)
+      val events = mutableListOf<String>()
+      setContent {
+        CompositionLocalProvider(LocalInspectionMode provides true) {
+          MeshcoreTheme(darkTheme = false) {
+            Surface {
+              if (!adapted) native()
+              else
+                adapter(
+                  canvasScope(
+                    UiBuilderNode(id = name, componentId = id, properties = properties),
+                    dispatch = events::add,
+                  )
+                )
+            }
+          }
+        }
+      }
+      assertSamePixels(name) { adapted = true }
+      check(events)
+    }
+
   /** The resolved node the SDK hands an adapter; no document interpreter or device is involved. */
   private fun canvasScope(
     node: UiBuilderNode,
@@ -259,15 +663,18 @@ class CatalogRenderTest {
       {},
     )
 
-  /** Save the native render, switch to the typed adapter, and require identical pixels. */
+  /**
+   * Save the native render, switch to the typed adapter, and require identical pixels. A dialog
+   * draws in a layer of its own, a second root: the visible root (the largest) is compared.
+   */
   private fun ComposeUiTest.assertSamePixels(name: String, adapt: () -> Unit) {
     val directory =
       File(requireNotNull(System.getProperty("typedCatalogRenders"))).also { it.mkdirs() }
-    val directImage = onRoot().captureToImage()
+    val directImage = visibleRoot().captureToImage()
     ImageIO.write(directImage.toAwtImage(), "png", directory.resolve("native-$name.png"))
     val direct = directImage.toPixelMap()
     runOnIdle(adapt)
-    val typedImage = onRoot().captureToImage()
+    val typedImage = visibleRoot().captureToImage()
     ImageIO.write(typedImage.toAwtImage(), "png", directory.resolve("typed-$name.png"))
     val typed = typedImage.toPixelMap()
     assertEquals(direct.width, typed.width)
@@ -277,5 +684,11 @@ class CatalogRenderTest {
       typed[x, y],
       "$name pixel $x,$y",
     )
+  }
+
+  private fun ComposeUiTest.visibleRoot(): SemanticsNodeInteraction {
+    val roots = onAllNodes(isRoot())
+    val areas = roots.fetchSemanticsNodes().map { it.boundsInRoot.width * it.boundsInRoot.height }
+    return roots[areas.indices.maxBy { areas[it] }]
   }
 }

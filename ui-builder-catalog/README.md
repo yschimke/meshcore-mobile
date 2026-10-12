@@ -1,37 +1,102 @@
 # MeshCore typed component catalog
 
-This opt-in module wires six `:meshcore-components` composables into the typed UI-builder adapter
+This opt-in module wires 19 `:meshcore-components` composables into the typed UI-builder adapter
 API. It is excluded from normal application builds while the API and bridge are unreleased. Each
 definition publishes its own ID and properties/slots, and the registry invokes the actual component
-with compiled calls.
+with compiled calls. Every property has an insertion default taken from the library's own preview
+fixtures (`MeshcoreSamples`: the `node-peak` device, alice / bob-repeater / common-room /
+soil-sensor-1, the General / Emergency channels, the alice chat), so a freshly placed component looks
+like the app's previews.
 
 | Component | Adapter ID | Properties | Slots | Events |
 | --- | --- | --- | --- | --- |
 | `ChatInput` | `meshcore-mobile/chat-input` | `value` (two-way via `onValueChange`), `enabled`, `placeholder` | — | `send` |
-| `ContactListEmpty` | `meshcore-mobile/empty-contacts` | — | — | — |
+| `ChatBubble` | `meshcore-mobile/chat-bubble` | `message` (`ChatMessage`) | — | `retry` |
+| `ChatMessageList` | `meshcore-mobile/chat-message-list` | `messages` (list of `ChatMessage`) | — | `retry` (`(ChatMessage)`) |
+| `ChatBody` | `meshcore-mobile/chat-body` | `title`, `subtitle` (nullable), `messages`, `draft` (two-way via `onDraftChange`), `inputEnabled`, `inputPlaceholder` | — (`actions` keeps its default) | `send`, `back`, `retry` (`(ChatMessage)`) |
+| `TcpConnectPanel` | `meshcore-mobile/tcp-connect` | `busy`, `defaultHost`, `defaultPort` | — | `connect` (`(String, Int)`) |
 | `MeshcoreTheme` | `meshcore-mobile/theme` | `darkTheme` | `content` | — |
-| `DeviceSummaryCard` | `meshcore-mobile/device-summary` | — | — | — |
-| `RadioLine` | `meshcore-mobile/radio-line` | `radio` (object: `RadioSettings`) | — | — |
-| `ChannelList` | `meshcore-mobile/channel-list` | `channels` (list of `ChannelInfo` objects) | — | — |
+| `DeviceSummaryCard` | `meshcore-mobile/device-summary` | `self` (`SelfInfo?`), `radio` (`RadioSettings?`), `battery` (`BatteryInfo?`) | — | — |
+| `RadioLine` | `meshcore-mobile/radio-line` | `radio` (`RadioSettings`) | — | — |
+| `BatterySection` | `meshcore-mobile/battery` | `battery` (`BatteryInfo`) | — | — |
+| `ContactRow` | `meshcore-mobile/contact-row` | `contact` (`Contact`) | — | `click` |
+| `ContactList` | `meshcore-mobile/contact-list` | `contacts` (list of `Contact`) | — | `contactClick` (`(Contact)`) |
+| `ContactListEmpty` | `meshcore-mobile/empty-contacts` | — | — | — |
+| `ChannelRow` | `meshcore-mobile/channel-row` | `channel` (`ChannelInfo`) | — | `click` |
+| `ChannelList` | `meshcore-mobile/channel-list` | `channels` (list of `ChannelInfo`) | — | `channelClick` (`(ChannelInfo)`) |
+| `DeviceSettingsBody` | `meshcore-mobile/device-settings` | `state` (union `DeviceSettingsUiState`: `discovering` / `error` / `ready`) | — | `toggleBuzzer` (`(Boolean)`), `back` |
+| `ThemePickerDialog` | `meshcore-mobile/theme-picker` | `current` (`ThemeSettings`, enums `ThemeMode` / `ThemePalette`), `dynamicColorAvailable` | — | `modeSelect` (`(ThemeMode)`), `paletteSelect` (`(ThemePalette)`), `dismiss` |
+| `LoginDialog` | `meshcore-mobile/login-dialog` | `contactName`, `contactType`, `state` (union `LoginDialogState`: `prompting` / `authenticating`) | — | `login` (`(String)`), `dismiss` |
+| `DeviceStatusView` | `meshcore-mobile/device-status` | `title`, `status` (union `DeviceConnectStatus`: `connecting` only) | — | `cancel`, `openThemePicker` |
+| `DeviceBody` | `meshcore-mobile/device-body` | `self`, `battery`, `radio` (nullable), `contacts`, `contactsLoading`, `contactsRefreshing`, `channels`, `contactedKeys`, `contactedChannelIndices`, `sectionStates` (`SectionStates`), `lastMessage` (nullable union `LastMessageInfo`: `dm` / `channel`), `warnings` (list of `String`) | — | `disconnect`, `sectionExpandedChange` / `sectionShowAllChange` (`(Section, Boolean)`), `lastMessageClick`, `contactClick`, `channelClick`, `dismissWarning` (payload), `commandsClick`, `settingsClick`, `openThemePicker` |
 
-`MeshcoreTheme` scopes the app's color scheme and type to whatever the design places in `content`;
-it takes no modifier, so its adapter wraps the call in a constraint-transparent `Box` carrying the
-node's own. `DeviceSummaryCard` is placed with every device detail null: the placeholder card shown
-before a device reports itself.
+### Model codecs
 
-`RadioLine` and `ChannelList` take the real `meshcore-core` models through the typed API's list and
-object codecs (compose-ai-tools 2.49.0). `RadioSettingsCodec` names
-`ee.schimke.meshcore.core.model.RadioSettings` with all four `Int` fields required;
-`ChannelInfoCodec` names `ChannelInfo` with a required `index` and a `name` defaulting to empty (the
-row then shows its index label). A channel's pre-shared key is never displayed, so it is not a
-field: `ChannelInfo.psk` defaults to an empty `ByteString`, which keeps `ChannelInfo(index = …,
-name = …)` a valid constructor call. Stored values nest the document's wrappers,
-`{"type": "list", "values": [{"type": "object", "fields": {"index": {"type": "int", "value": 0}}}]}`,
-and the builder edits them structurally. `RadioLine` takes no modifier, so like `MeshcoreTheme` its
-adapter wraps the call in a `Box`. This catalog declares no `exportAs` projections, so the
-`listOf(ChannelInfo(…))` export lowering is not wired here. Components that need a model with fields
-these codecs cannot hold (`Contact`'s keys and instants, `ChatMessage`'s timestamp) or a
-multi-argument callback (`TcpConnectPanel`) remain unadapted.
+The adapters take the real `meshcore-core` and component models through the typed API's codecs
+(`MeshcoreCodecs.kt`); stored values nest the document's wrappers, and the builder edits them
+structurally.
+
+- `RadioSettings`: all four `Int` fields required. `ChannelInfo`: a required `index` and a `name`
+  defaulting to empty; the pre-shared key is never displayed, so it is not a field and keeps the
+  class's empty default.
+- `SelfInfo`: `name`, `publicKey` and `radio` required, the advert/power/location/policy fields
+  defaulted (the coordinates are `Double`s). `BatteryInfo`: `millivolts` required, the `Long`
+  storage sizes defaulted to zero.
+- `Contact`: `name` and `publicKey` required; `type` (`ContactType` members), `pathLength`, `path`,
+  `flags`, the two `Instant`s (ISO-8601 text) and the `Double` coordinates defaulted.
+- `ChatMessage`: `id`, `text` and `timestamp` (`Instant`) required; `senderName` and `snr` nullable,
+  `isMine` and `status` (`MessageStatus` members) defaulted.
+- `PublicKey` is parsed hex text exported as `PublicKey.fromHex("…")`. A `ByteString` (a contact's
+  route) is parsed hex text through the small public `byteStringOfHex` helper added to
+  `meshcore-core` for this purpose (`ByteString.toHex()` is its inverse).
+- `EnumCodec` turns the API's string `enumOf` codec into one that decodes to the enum member, so an
+  enum can be an object field. `SetCodec` edits a `Set` (`DeviceBody`'s `contactedKeys` and
+  `contactedChannelIndices`) as a list; the API has no set codec, and it has no export spelling.
+- Unions: `DeviceSettingsUiState` (a `discovering` singleton, `error`, `ready`), `LoginDialogState`
+  (`prompting`, an `authenticating` singleton), `LastMessageInfo` (`dm`, `channel`) and
+  `DeviceConnectStatus`, which holds only `connecting`: `DeviceConnectStatus.Failed(cause:
+  Throwable)` carries an exception, which no stored value can describe, so it is not a case and the
+  failure card cannot be placed.
+
+Top-level nullable properties default to null where the component's own parameter does (a stored
+null is the property left unset): a new `DeviceSummaryCard` is the placeholder card shown before a
+device reports itself until the design fills in its details, and `ChatBody.subtitle` and
+`DeviceBody.lastMessage` start empty. `DeviceBody`'s `self`, `battery` and `radio` are required
+nullable parameters, so they insert as the sample device.
+
+### Canvas behaviour
+
+- Every event is always passed, so optional handlers (`ContactRow.onClick`, `ChatBubble.onRetry`, the
+  lists' click and retry callbacks) are non-null on the canvas: rows draw enabled and a failed own
+  message reads "Failed — tap to retry". Payload callbacks run the design's action and drop their
+  arguments, as the SDK does.
+- The lazy lists (`ChannelList`, `ContactList`, `ChatMessageList`) keep their `LazyListState`
+  default and are bounded to 480 dp, and the scaffold screens (`ChatBody`, `DeviceSettingsBody`,
+  `DeviceStatusView`, `DeviceBody`) to 800 dp: a document column measures children with unbounded
+  height. Each list draws the first row of a repeated key (channel index, contact key, message id)
+  rather than failing composition.
+- `MeshcoreTheme` and the two dialogs take no modifier, so their adapters wrap the call in a
+  constraint-transparent `Box` carrying the node's own. The dialogs open over the canvas as they do
+  in the app.
+- `DeviceStatusView` pins its card's clock 7 s after the stored `startedAtMs`, as the app's
+  `DeviceStatusConnectingPreview` does, so a design draws one deterministic moment of the attempt;
+  an exported call keeps the component's real clock.
+- This catalog declares no `exportAs` projections, so payload events, the set codec and the
+  `listOf(…)` export lowering are not wired for source export here.
+
+### Not adapted
+
+The eligible public composables are the 21 in `commonMain` (desktop adds none of its own). Two are
+left out:
+
+- `RemoteComposeCard(bytes: ByteArray, …)`: its input is a binary RemoteCompose wire document, which
+  is not authorable as a property value; a design has nothing meaningful to type into it.
+- `MeshcoreClientApp`: the stateful application root (it owns transports, a manager and navigation),
+  not a reusable component.
+
+The `androidMain` BLE/USB components (`BleScannerContent`, `ScanStatusBar`, `BlePermissionPanel`,
+`BleDeviceList`, `BlePairingTipBanner`, `UsbPortsPanel`, `UsbPortCard`) are Android-only and out of
+scope for this desktop catalog.
 
 Check out compose-ai-tools and compose-ui-builder beside this repository at the immutable revisions
 in `.github/workflows/typed-catalog.yml`. The workflow validates the same source integration on
@@ -44,7 +109,9 @@ scripts/validate-typed-catalog.sh
 The script accepts optional tools and builder checkout paths. It scans current compiled app classes,
 generates only explicitly selected records, checks JSON readback and stale-record refusal, then
 compares each native component with its typed adapter pixel for pixel (`MeshcoreTheme` with a dark
-theme around light surroundings, so the decoded property and the `content` slot both show), edits
+theme around light surroundings, so the decoded property and the `content` slot both show; every
+other adapter from stored values that differ from its defaults, then dispatching its events,
+payload callbacks included), edits
 `ChatInput`'s actual text field and dispatches Send through the SDK. A separate builder process reads the resulting pair through
 `PublishedUiBuilderCatalog` with no app implementation on its classpath. PNG comparisons are saved
 under `ui-builder-catalog/build/renders`; neither rendering test connects to a real device or server.
@@ -53,7 +120,9 @@ The script also packages `build/distributions/meshcore-mobile-jvm-catalog.zip`: 
 the tracked designs under `designs/`, and the adapter and runtime dependency JARs in `lib/`.
 `chat-input.uid` drives the external host test below; `device-overview.uid` places the theme,
 device summary, radio line, channel list and empty contact list together, and the contract test
-decodes its stored radio object and channel list through the published adapters. The contract test checks that every tracked design
+decodes its stored radio object and channel list through the published adapters.
+`component-sheet.uid` places every other adapter, with stored contact, chat message, battery and
+union values the contract test decodes. The contract test checks that every tracked design
 places only published adapters and the host's `layout/column` / `m3/text` builtins. A third,
 separate builder process compiles without Meshcore classes, installs those JARs with a dedicated
 class loader, resolves the catalog provider through the JVM SDK service entry point, and renders

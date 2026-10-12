@@ -2,17 +2,26 @@ package ee.schimke.meshcore.catalog
 
 import ee.schimke.composeai.discovery.*
 import ee.schimke.composeai.uibuilder.export.UiBuilderDocument
+import ee.schimke.meshcore.app.ui.DeviceConnectStatus
+import ee.schimke.meshcore.app.ui.LoginDialogState
+import ee.schimke.meshcore.components.ui.DeviceSettingsUiState
+import ee.schimke.meshcore.components.ui.MessageStatus
+import ee.schimke.meshcore.core.model.BatteryInfo
 import ee.schimke.meshcore.core.model.ChannelInfo
+import ee.schimke.meshcore.core.model.ContactType
 import ee.schimke.meshcore.core.model.RadioSettings
+import ee.schimke.meshcore.core.model.byteStringOfHex
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.*
+import kotlin.time.Instant
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
 
 class CatalogContractTest {
@@ -37,6 +46,19 @@ class CatalogContractTest {
         "meshcore-mobile/device-summary",
         "meshcore-mobile/radio-line",
         "meshcore-mobile/channel-list",
+        "meshcore-mobile/channel-row",
+        "meshcore-mobile/battery",
+        "meshcore-mobile/contact-row",
+        "meshcore-mobile/contact-list",
+        "meshcore-mobile/chat-bubble",
+        "meshcore-mobile/chat-message-list",
+        "meshcore-mobile/chat-body",
+        "meshcore-mobile/tcp-connect",
+        "meshcore-mobile/device-settings",
+        "meshcore-mobile/theme-picker",
+        "meshcore-mobile/login-dialog",
+        "meshcore-mobile/device-status",
+        "meshcore-mobile/device-body",
       ),
       pair.catalog.statusSemantics.components.keys,
     )
@@ -179,6 +201,119 @@ class CatalogContractTest {
     )
   }
 
+  @Test
+  fun `every adapter publishes its declared properties and an insertion default that decodes`() {
+    val records = discoverCatalogComponents()
+    val catalog = MeshcoreCatalog(records)
+    val published = catalog.generate(records).catalog.statusSemantics.components
+    for (definition in catalog.definitions) {
+      val component = published.getValue(definition.id)
+      assertEquals(
+        definition.properties.map { JsonPrimitive(it.name) },
+        component.propertyCapabilities.orEmpty().map { it.jsonObject["name"] },
+        definition.id,
+      )
+      definition.properties.forEach { assertDefaultRoundTrips(it) }
+    }
+  }
+
+  @Test
+  fun `parsed, nullable, enum and union values publish their shapes and refuse malformed text`() {
+    val records = discoverCatalogComponents()
+    val components = MeshcoreCatalog(records).generate(records).catalog.statusSemantics.components
+    fun capability(id: String, name: String) =
+      components
+        .getValue(id)
+        .propertyCapabilities!!
+        .single { it.jsonObject["name"] == JsonPrimitive(name) }
+        .jsonObject
+    // A nullable object: the summary card's details are each optional.
+    assertEquals(
+      JsonPrimitive(true),
+      capability("meshcore-mobile/device-summary", "self")["nullable"],
+    )
+    // A union publishes its cases; the connecting status holds only the case a value can describe.
+    val status = capability("meshcore-mobile/device-status", "status").getValue("editor").jsonObject
+    assertEquals(JsonPrimitive("union"), status["control"])
+    assertEquals(
+      listOf(JsonPrimitive("connecting")),
+      status.getValue("cases").jsonArray.map { it.jsonObject["name"] },
+    )
+    val settings =
+      capability("meshcore-mobile/device-settings", "state").getValue("editor").jsonObject
+    assertEquals(
+      listOf("discovering", "error", "ready").map(::JsonPrimitive),
+      settings.getValue("cases").jsonArray.map { it.jsonObject["name"] },
+    )
+    // A contact's key and route are hex text, its type a closed set of members.
+    val contactFields =
+      capability("meshcore-mobile/contact-row", "contact")
+        .getValue("editor")
+        .jsonObject
+        .getValue("fields")
+        .jsonArray
+        .associateBy { it.jsonObject.getValue("name").jsonPrimitive.content }
+    assertEquals(JsonPrimitive("hex"), contactFields.getValue("publicKey").jsonObject["format"])
+    assertEquals(JsonPrimitive("hex"), contactFields.getValue("path").jsonObject["format"])
+    assertEquals(
+      ContactType.entries.map { JsonPrimitive(it.name) }.sortedBy { it.content },
+      contactFields.getValue("type").jsonObject.getValue("allowedValues").jsonArray.toList(),
+    )
+    assertFailsWith<IllegalArgumentException> { PublicKeyCodec.decode(JsonPrimitive("abcd")) }
+    assertFailsWith<IllegalArgumentException> { ByteStringHexCodec.decode(JsonPrimitive("xyz")) }
+    assertFailsWith<IllegalArgumentException> { ContactTypeCodec.decode(JsonPrimitive("PHONE")) }
+    assertFailsWith<IllegalArgumentException> {
+      AdapterValueCodecs.Instant.decode(JsonPrimitive("yesterday"))
+    }
+    // A failure carries a Throwable, which no stored value can describe: it is not a case.
+    assertFailsWith<IllegalArgumentException> {
+      DeviceConnectStatusCodec.wrap(DeviceConnectStatus.Failed(IllegalStateException("timeout")))
+    }
+  }
+
+  @Test
+  fun `the tracked component sheet decodes its stored model values`() {
+    val catalog = MeshcoreCatalog(discoverCatalogComponents())
+    val document =
+      Json.decodeFromString(
+        UiBuilderDocument.serializer(),
+        File("fixtures/component-sheet.uid").readText(),
+      )
+    fun stored(node: String, name: String) =
+      document.nodes.getValue(node).properties.getValue(name).jsonObject
+    val contact = catalog.contactRow.contact.unwrap(stored("contact-row", "contact"))
+    assertEquals("hilltop", contact.name)
+    assertEquals(ContactType.REPEATER, contact.type)
+    assertEquals("7e".repeat(32), contact.publicKey.toHex())
+    assertEquals(byteStringOfHex("a1b2c3d4"), contact.path)
+    assertEquals(Instant.parse("2026-10-12T08:00:00Z"), contact.advertTimestamp)
+    assertEquals(Instant.fromEpochSeconds(1_700_000_000), contact.lastModified)
+    val message = catalog.bubble.message.unwrap(stored("chat-bubble", "message"))
+    assertEquals("alice", message.senderName)
+    assertNull(message.snr)
+    assertEquals(MessageStatus.Sent, message.status)
+    assertFalse(message.isMine)
+    assertEquals(
+      DeviceSettingsUiState.Error("No response from /help"),
+      catalog.settings.state.unwrap(stored("device-settings", "state")),
+    )
+    assertEquals(
+      LoginDialogState.Authenticating,
+      catalog.login.state.unwrap(stored("login-dialog", "state")),
+    )
+    assertEquals(
+      BatteryInfo(3650, 2048L, 8192L),
+      catalog.battery.battery.unwrap(stored("battery", "battery")),
+    )
+  }
+
+  private fun <T> assertDefaultRoundTrips(property: AdapterProperty<*, T>) =
+    assertEquals(
+      property.default,
+      property.unwrap(property.codec.wrap(property.default)),
+      property.name,
+    )
+
   private fun intWrapper(value: Int) = buildJsonObject {
     put("type", "int")
     put("value", value)
@@ -206,7 +341,10 @@ class CatalogContractTest {
     val published = MeshcoreCatalog(discoverCatalogComponents()).definitions.map { it.id }.toSet()
     val placeable = published + setOf("layout/column", "m3/text")
     val designs = File("fixtures").listFiles { file -> file.extension == "uid" }.orEmpty()
-    assertEquals(setOf("chat-input.uid", "device-overview.uid"), designs.map { it.name }.toSet())
+    assertEquals(
+      setOf("chat-input.uid", "device-overview.uid", "component-sheet.uid"),
+      designs.map { it.name }.toSet(),
+    )
     val placed = mutableSetOf<String>()
     for (design in designs) {
       val document = Json.decodeFromString(UiBuilderDocument.serializer(), design.readText())
