@@ -69,10 +69,12 @@ fun DeviceStatusView(
   title: String,
   status: DeviceConnectStatus,
   onCancel: () -> Unit,
+  modifier: Modifier = Modifier,
   onOpenThemePicker: () -> Unit = {},
   nowMs: () -> Long = { kotlin.time.Clock.System.now().toEpochMilliseconds() },
 ) {
   Scaffold(
+    modifier = modifier,
     topBar = {
       TopAppBar(
         title = { Text(title, style = MaterialTheme.typography.titleLarge) },

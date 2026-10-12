@@ -112,6 +112,8 @@ fun DeviceBody(
   battery: BatteryInfo?,
   radio: RadioSettings?,
   contacts: List<Contact>,
+  onDisconnect: () -> Unit,
+  modifier: Modifier = Modifier,
   contactsLoading: Boolean = false,
   contactsRefreshing: Boolean = false,
   channels: List<ChannelInfo> = emptyList(),
@@ -126,7 +128,6 @@ fun DeviceBody(
   onChannelClick: (ChannelInfo) -> Unit = {},
   onCommandsClick: () -> Unit = {},
   onSettingsClick: () -> Unit = {},
-  onDisconnect: () -> Unit,
   onOpenThemePicker: () -> Unit = {},
   warnings: List<String> = emptyList(),
   onDismissWarning: (String) -> Unit = {},
@@ -134,6 +135,7 @@ fun DeviceBody(
   val scroll = rememberScrollState()
 
   Scaffold(
+    modifier = modifier,
     topBar = {
       TopAppBar(
         title = {
