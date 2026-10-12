@@ -65,7 +65,7 @@ private fun previewSelf(name: String = "node-peak") =
  *
  * Checked against its design reference `design/DeviceScreen.light.html` via design-parity, rendered
  * on the CMP desktop target. The rendered reference | candidate | diff is published to the
- * [`design-parity/main`](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
+ * [`design-parity/main`](https://github.com/yschimke/meshcore-mobile-out/tree/design-parity/main)
  * branch (regenerated on every push to main); see `docs/design-parity.md`.
  */
 @Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_7, name = "Light")
