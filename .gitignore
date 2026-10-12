@@ -43,8 +43,8 @@ app/project.info
 
 # design-parity reference renders are generated from the design/*.html source of
 # truth (locally via the documented Chrome command, in CI by design-parity.yml)
-# and published to the design-parity/main branch — never committed, so they
-# can't drift from the HTML.
+# and published to the design-parity/main branch of yschimke/meshcore-mobile-out
+# — never committed, so they can't drift from the HTML.
 /design/*.png
 
 # Staged desktop release installers.

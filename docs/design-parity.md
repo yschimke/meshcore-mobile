@@ -51,8 +51,8 @@ synthetic OS **status bar** that the CMP desktop ones omit — the same offset t
 The **[MeshCore Mobile design file](https://www.figma.com/design/gYzowY4cQ7rNr2gYoco1M6)**
 (`fileKey` `gYzowY4cQ7rNr2gYoco1M6`) is the emerging primary reference. It is
 **seeded from the published editable figma-SVGs** on the
-[`design-artifacts/meshcore-mobile`](https://github.com/yschimke/meshcore-mobile/tree/design-artifacts/meshcore-mobile)
-branch (`figma/<slug>.svg` — the "ideal render" as native Figma vectors, not
+[`design-artifacts/meshcore-mobile`](https://github.com/yschimke/meshcore-mobile-out/tree/design-artifacts/meshcore-mobile)
+branch of the output repository `yschimke/meshcore-mobile-out` (`figma/<slug>.svg` — the "ideal render" as native Figma vectors, not
 raster), then **refined by hand in Figma**. Code is judged against it; the
 committed HTML references stay as the lower-precedence fallback for the variants
 Figma doesn't cover yet.
@@ -140,8 +140,10 @@ so `figma.createNodeFromSvg` needs the SVG text embedded in the call — which
 means reading it from a checkout of the artifacts branch:
 
 ```sh
-git fetch origin design-artifacts/meshcore-mobile
-git worktree add /tmp/mesh-figma-svgs origin/design-artifacts/meshcore-mobile
+# Generated branches live in the output repository, not in this one.
+git remote add out https://github.com/yschimke/meshcore-mobile-out.git  # once
+git fetch out design-artifacts/meshcore-mobile
+git worktree add /tmp/mesh-figma-svgs out/design-artifacts/meshcore-mobile
 ```
 
 Three gotchas, all hit during the first seed:
@@ -198,8 +200,8 @@ The reference PNGs the manifests' `src` point to (`design/*.png`) are **generate
 from the HTML, not committed** (they would drift from it) — gitignored and
 rendered on demand (see below). The current renders, plus the candidate bundle
 and `report.html` triptychs, live on the
-[`design-parity/main`](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
-branch, regenerated on every push to `main`.
+[`design-parity/main`](https://github.com/yschimke/meshcore-mobile-out/tree/design-parity/main)
+branch of `yschimke/meshcore-mobile-out`, regenerated on every push to `main`.
 
 ## Synced design-system tokens (`/design-sync`)
 
@@ -362,9 +364,12 @@ offset, then typography until the fonts were installed.
 ## Continuous artifacts (`design-parity/main` branch)
 
 `.github/workflows/design-parity.yml` regenerates the artifacts on every push to
-`main` and force-pushes them to the long-lived **`design-parity/main`** branch
-(the candidate bundle, the `report.html` triptychs, and a `SOURCE_COMMIT`
-stamp). That branch always reflects the current parity state of `main` without
+`main` and force-pushes them to the long-lived **`design-parity/main`** branch of
+the public output repository
+[`yschimke/meshcore-mobile-out`](https://github.com/yschimke/meshcore-mobile-out)
+(using the `ARTIFACTS_TOKEN` secret, which has Contents write there only) — the
+candidate bundle, the `report.html` triptychs, and a `SOURCE_COMMIT`
+stamp. That branch always reflects the current parity state of `main` without
 committing generated PNGs/HTML onto `main` itself — browse it to see the latest
 reference | candidate | diff without re-rendering locally.
 
@@ -383,7 +388,7 @@ on compose-ai-tools' `apply` baseline branch).
 `design-map.json` now feeds a second consumer. The `Publish design references`
 step of compose-ai-tools' `design-artifacts-reusable.yml` reads it during the
 catalog render and writes a `compose-preview-references/v1` manifest to
-`references/` on the [`design-artifacts/meshcore-mobile`](https://github.com/yschimke/meshcore-mobile/tree/design-artifacts/meshcore-mobile)
+`references/` on the [`design-artifacts/meshcore-mobile`](https://github.com/yschimke/meshcore-mobile-out/tree/design-artifacts/meshcore-mobile)
 delivery branch — which turns on the **PNG ↔ Design reference** lane at
 <https://preview.coo.ee/meshcore-mobile/compare> and the Reference / Diff /
 Actual page behind it. Before that producer existed the server had read that
