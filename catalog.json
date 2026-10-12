@@ -6509,6 +6509,15 @@
           "type": "List<Contact>"
         },
         {
+          "name": "onDisconnect",
+          "type": "() -> Unit"
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
           "name": "contactsLoading",
           "type": "Boolean",
           "hasDefault": true
@@ -6577,10 +6586,6 @@
           "name": "onSettingsClick",
           "type": "() -> Unit",
           "hasDefault": true
-        },
-        {
-          "name": "onDisconnect",
-          "type": "() -> Unit"
         },
         {
           "name": "onOpenThemePicker",
@@ -15877,6 +15882,15 @@
           "type": "List<Contact>"
         },
         {
+          "name": "onDisconnect",
+          "type": "() -> Unit"
+        },
+        {
+          "name": "modifier",
+          "type": "Modifier",
+          "hasDefault": true
+        },
+        {
           "name": "contactsLoading",
           "type": "Boolean",
           "hasDefault": true
@@ -15945,10 +15959,6 @@
           "name": "onSettingsClick",
           "type": "() -> Unit",
           "hasDefault": true
-        },
-        {
-          "name": "onDisconnect",
-          "type": "() -> Unit"
         },
         {
           "name": "onOpenThemePicker",
@@ -19410,8 +19420,8 @@
     "androidx.compose.material3:material3",
     "ee.schimke.meshcore:meshcore-components (MeshcoreTheme)"
   ],
-  "renderer": "compose-preview 2.51.0",
-  "generatedAt": "2026-10-12T03:16:57.665Z",
+  "renderer": "compose-preview 2.52.0",
+  "generatedAt": "2026-10-12T10:16:48.588Z",
   "display": {
     "hero": "Device/Populated"
   },
@@ -19442,7 +19452,7 @@
   "componentsFile": "components.json",
   "source": {
     "repo": "yschimke/meshcore-mobile",
-    "ref": "2183699f493959c17cc3792bc381d8a2c6deccbd",
+    "ref": "157ca507b14776d0bcafd811f773c5d7d327e7d6",
     "module": ""
   }
 }
