@@ -14,7 +14,7 @@ permissions:
 # Shared setup: https://github.com/yschimke/compose-ai-tools/pull/5787
 jobs:
   audit:
-    uses: yschimke/compose-ai-tools/.github/workflows/uid-design-audit-reusable.yml@5941dcd33bfac4965fe350463a15c13ab7659202 # main
+    uses: yschimke/compose-ai-tools/.github/workflows/uid-design-audit-reusable.yml@962ce1ae32fba49d145b207e1c71b39619d2ab20 # main
     with:
       enabled: true
       pilot-directory: adaptive-uid-pilot
