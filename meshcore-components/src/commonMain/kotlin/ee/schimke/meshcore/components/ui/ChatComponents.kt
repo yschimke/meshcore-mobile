@@ -233,9 +233,9 @@ fun ChatInput(
   value: String,
   onValueChange: (String) -> Unit,
   onSend: () -> Unit,
+  modifier: Modifier = Modifier,
   enabled: Boolean = true,
   placeholder: String = stringResource(Res.string.chat_hint_message),
-  modifier: Modifier = Modifier,
 ) {
   Row(
     modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),

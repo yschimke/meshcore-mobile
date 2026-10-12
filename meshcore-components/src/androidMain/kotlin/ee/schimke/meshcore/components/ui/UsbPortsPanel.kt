@@ -231,9 +231,9 @@ fun UsbPortsPanel(
 fun UsbPortCard(
     label: String,
     busy: Boolean,
-    subtitle: String? = null,
-    modifier: Modifier = Modifier,
     onConnect: () -> Unit,
+    modifier: Modifier = Modifier,
+    subtitle: String? = null,
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
