@@ -53,8 +53,13 @@ The rendered artifacts (reference | candidate | diff `report.html` triptychs and
 the candidate bundle) are **not committed** — they're regenerated on every push
 to `main` by [`.github/workflows/design-parity.yml`](./.github/workflows/design-parity.yml)
 and published to the
-[**`design-parity/main`**](https://github.com/yschimke/meshcore-mobile/tree/design-parity/main)
-branch, which always reflects the current parity state of `main`.
+[**`design-parity/main`**](https://github.com/yschimke/meshcore-mobile-out/tree/design-parity/main)
+branch of the public output repository
+[`yschimke/meshcore-mobile-out`](https://github.com/yschimke/meshcore-mobile-out),
+which always reflects the current parity state of `main`. Every other generated
+branch (`compose-preview/*` render baselines and PR renders,
+`design-artifacts/meshcore-mobile`) lives there too, so this repository's
+history only carries source.
 
 ---
 
