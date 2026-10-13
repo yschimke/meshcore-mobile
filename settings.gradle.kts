@@ -155,7 +155,7 @@ if (builderSource.isPresent || providers.gradleProperty("typedAdapterCatalog").o
         "composeUiBuilderDir must point to a compose-ui-builder checkout"
     }
     includeBuild(builderSource.get())
-    include(":ui-builder-catalog", ":ui-builder-catalog-renderer")
+    include(":ui-builder-catalog", ":ui-builder-catalog-renderer", ":ui-builder-catalog-consumer")
 }
 
 include(":web-app", ":meshcore-transport-webserial")

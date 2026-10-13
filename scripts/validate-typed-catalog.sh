@@ -10,11 +10,6 @@ run_gradle() {
 run_gradle "$app_root/gradlew" -p "$app_root" --max-workers=2 \
   "-PcomposeUiBuilderDir=$builder_root" \
   :ui-builder-catalog:ktfmtCheck :ui-builder-catalog:test :ui-builder-catalog:unpackJvmCatalogBundle
-# This host classpath contains no application classes.
-run_gradle "$builder_root/gradlew" -p "$builder_root" --max-workers=2 \
-    "-PtypedCatalogSmokeDirectory=$app_root/ui-builder-catalog/build/catalog" \
-  :ui-builder-runtime:test --tests '*ExternalTypedCatalogSmokeTest' :ui-builder-runtime:ktfmtCheck
-# A second, executable host test compiles without app classes and loads the staged JAR bundle.
-run_gradle "$builder_root/gradlew" -p "$builder_root" --max-workers=2 \
-    "-PtypedCatalogJvmBundle=$app_root/ui-builder-catalog/build/installed-jvm-catalog" \
-  :ui-builder:jvmTest --tests '*ExternalJvmCatalogEndToEndTest' :ui-builder:ktfmtCheck
+# Public service reader in an independent consumer; no app classes enter its classpath.
+run_gradle "$app_root/gradlew" -p "$app_root" --max-workers=2 \
+  "-PcomposeUiBuilderDir=$builder_root" :ui-builder-catalog-consumer:test :ui-builder-catalog-consumer:ktfmtCheck

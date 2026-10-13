@@ -115,87 +115,28 @@ payload callbacks included), edits
 `PublishedUiBuilderCatalog` with no app implementation on its classpath. PNG comparisons are saved
 under `ui-builder-catalog/build/renders`; neither rendering test connects to a real device or server.
 
-The script also packages `build/distributions/meshcore-mobile-jvm-catalog.zip`: the generated pair,
-the tracked designs under `designs/`, and the adapter and runtime dependency JARs in `lib/`.
-`chat-input.uid` drives the external host test below; `device-overview.uid` places the theme,
-device summary, radio line, channel list and empty contact list together, and the contract test
-decodes its stored radio object and channel list through the published adapters.
-`component-sheet.uid` places every other adapter, with stored contact, chat message, battery and
-union values the contract test decodes. The contract test checks that every tracked design
-places only published adapters and the host's `layout/column` / `m3/text` builtins. A third,
-separate builder process compiles without Meshcore classes, installs those JARs with a dedicated
-class loader, resolves the catalog provider through the JVM SDK service entry point, and renders
-the saved design with `UiBuilderSurface`. The test edits `enabled` and `placeholder` through the
-editor reducer, types into the actual ChatInput, checks its two-way state against a sibling text
-node, and clicks Send to execute the design's event action. It then saves and reopens the edited
-`.uid`, checking that property edits persist and interaction state resets. It saves screenshots and
-the edited `.uid` under the builder's `ui-builder/build/typed-catalog/e2e`; CI uploads these and the ZIP.
-Send writes preview state only; it does not send a radio message.
-
-To replay a packaged artifact independently, unzip it into a directory and run in the matching
-builder checkout (no app checkout or source dependency is needed by this command):
-
-```sh
-./gradlew -PtypedAdapterCatalog=true -PlocalBuilds=tools \
-  -PlocalBuild.tools=../compose-ai-tools -PtypedCatalogJvmBundle=/absolute/path/to/unzipped-bundle \
-  :ui-builder:jvmTest --tests '*ExternalJvmCatalogEndToEndTest'
-```
-
-Only install a bundle whose code you trust. JVM providers execute in the host process. The test
-keeps the loader open for the lifetime of the rendered composition and closes it afterward.
+The script also packages `build/distributions/meshcore-mobile-jvm-catalog.zip` as a native-host
+validation artifact: the generated pair, tracked designs and adapter/dependency JARs. An independent
+`:ui-builder-catalog-consumer` links only the released builder service, composes the actual published
+pair (including the declared structural helpers), verifies the component/runtime claims and seed
+paths, and checks that no app implementation is on its classpath.
 
 To generate the standard pair directly:
 
 ```sh
-./gradlew -PtypedAdapterCatalog=true -PlocalBuilds=tools \
-  -PlocalBuild.tools=../compose-ai-tools -PuiBuilderSource=../compose-ui-builder \
-  :ui-builder-catalog:exportTypedCatalog
+./gradlew -PcomposeUiBuilderDir=../compose-ui-builder :ui-builder-catalog:exportTypedCatalog
 ```
 
-Output: `ui-builder-catalog/build/catalog/components.json` and `ui-builder.json`. The JVM export
-entry point scans the current compiled classes. Task-owned previous output is
-replaced on regeneration; the underlying pair writer refuses arbitrary existing destinations.
+`chat-input.uid` exercises two-way state and Send. `device-overview.uid` places the theme and device
+summary together; `component-sheet.uid` supplies the stored contact, message, battery and union
+values. `scripts/typed-renderer-smoke.py` loads the packaged Wasm runtime in a sandboxed Chromium
+iframe, renders both ChatInput and the complete sheet, checks node/text measurements and clicks the
+actual Send button. Send updates preview state only. The full sheet opens both real app dialogs,
+so they overlap in its screenshot.
 
-To stage this in a catalog delivery generation, copy both files together and set the delivery
-`catalog.json` fields `componentsFile` and `uiBuilderFile` to those relative paths. Do not combine
-records from one source revision with policy from another. Keep the executable renderer from the
-same revision with the catalog when installing it in a native host. CI uploads the generated pair
-and comparison renders as review artifacts; this module does not push a delivery branch.
-
-These app libraries currently target Android/JVM, not Wasm. Records explicitly declare `nativeOnly`,
-so a browser editor must show its existing native placeholder until a compatible runtime is
-packaged. This is a JVM bundle/host proof; desktop editor installation UI, IDE integration, public
-artifact resolution and preview-server discovery remain separate work. The existing sticker-sheet catalog and
-its live preview bundles are not replaced by this opt-in proof. General event capabilities and
-omitted-property default/export parity retain the limits documented in the authoring API.
-
-The committed `evidence/` images show the direct native `ChatInput` call and its typed adapter from
-the parity test. Regenerate them from `build/renders` after component changes; CI uploads current
-renders for every adapted component (`native-NAME.png` / `typed-NAME.png`).
-
-### Publish a validated initial generation
-
-A manual dispatch can publish the tested ZIP and standard catalog pair as a GitHub prerelease:
-
-```sh
-gh workflow run typed-catalog.yml --ref YOUR_SOURCE_BRANCH -f publish=true
-```
-
-The separate publication job runs only after validation succeeds, reuses its uploaded artifact,
-and records full app/tools/builder commits and SHA-256 hashes in `bundle.json`. The prerelease tag
-is `typed-catalog-preview-FULL_SOURCE_SHA`; an existing generation is never replaced. Normal PR
-runs have read-only permissions, and production preview delivery branches remain unchanged.
-
-From the matching UI Builder checkout, download the exact published generation into a new directory:
-
-```sh
-scripts/download-typed-catalog.sh yschimke/meshcore-mobile FULL_SOURCE_SHA jvm-linux-x64 /tmp/published-mesh
-```
-
-Run `ExternalJvmCatalogEndToEndTest` with `-PtypedCatalogJvmBundle=/tmp/published-mesh` to repeat the
-proof using downloaded artifacts. The installer refuses a mismatched source, runtime, checksum,
-or catalog pair. This initial executable archive targets Linux x64; it is an explicit trusted-code
-opt-in, not a browser renderer or a general desktop installation UI.
+The former upstream JVM fixture assumed every component was native-only and no helpers were
+published. The consumer here validates the app's actual delivery contract instead. General IDE
+installation UI and omitted-property source-export parity remain separate work.
 
 ## Delivery and browser runtime
 

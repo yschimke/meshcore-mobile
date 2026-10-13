@@ -62,6 +62,8 @@ on:
       # the previous reference until the weekly cron or an unrelated change.
       - 'design-map.json'
       - 'design/**'
+      - 'meshcore-components/**'
+      - 'meshcore-core/**'
       - 'ui-builder-catalog/**'
       - 'ui-builder-catalog-renderer/**'
       - '.github/workflows/design-artifacts.yml'

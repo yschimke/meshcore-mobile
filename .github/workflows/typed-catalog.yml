@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'ui-builder-catalog/**'
+      - 'ui-builder-catalog-consumer/**'
       - 'ui-builder-catalog-renderer/**'
       - 'scripts/validate-typed-catalog.sh'
       - 'scripts/typed-renderer-smoke.py'
@@ -18,6 +19,7 @@ on:
     branches: [main]
     paths:
       - 'ui-builder-catalog/**'
+      - 'ui-builder-catalog-consumer/**'
       - 'ui-builder-catalog-renderer/**'
       - 'scripts/validate-typed-catalog.sh'
       - 'scripts/typed-renderer-smoke.py'
@@ -94,6 +96,7 @@ jobs:
           path: |
             meshcore-mobile/ui-builder-catalog-renderer/build/ui-builder-runtime.zip
             meshcore-mobile/ui-builder-catalog-renderer/build/smoke
+            meshcore-mobile/ui-builder-catalog-consumer/build/test-results
             meshcore-mobile/ui-builder-catalog/build/catalog
             meshcore-mobile/ui-builder-catalog/build/renders
             meshcore-mobile/ui-builder-catalog/build/test-results
