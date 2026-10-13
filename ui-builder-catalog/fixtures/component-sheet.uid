@@ -1,0 +1,204 @@
+{
+  "schema": "compose-ui-builder-document/v1-candidate",
+  "id": "external-meshcore-component-sheet",
+  "title": "External Meshcore component sheet",
+  "revision": 0,
+  "catalogPin": {
+    "catalogId": "meshcore-mobile"
+  },
+  "environment": {
+    "theme": "light"
+  },
+  "stateVariables": {},
+  "roots": [
+    "theme"
+  ],
+  "nodes": {
+    "theme": {
+      "id": "theme",
+      "componentId": "meshcore-mobile/theme",
+      "properties": {
+        "darkTheme": {
+          "type": "bool",
+          "value": false
+        }
+      },
+      "slots": {
+        "content": [
+          "content"
+        ]
+      }
+    },
+    "content": {
+      "id": "content",
+      "componentId": "layout/column",
+      "slots": {
+        "children": [
+          "chat-bubble",
+          "chat-message-list",
+          "chat-body",
+          "contact-row",
+          "contact-list",
+          "channel-row",
+          "battery",
+          "tcp-connect",
+          "device-settings",
+          "theme-picker",
+          "login-dialog",
+          "device-status",
+          "device-body"
+        ]
+      }
+    },
+    "chat-bubble": {
+      "id": "chat-bubble",
+      "componentId": "meshcore-mobile/chat-bubble",
+      "properties": {
+        "message": {
+          "type": "object",
+          "fields": {
+            "id": {
+              "type": "string",
+              "value": "m1"
+            },
+            "text": {
+              "type": "string",
+              "value": "anyone near the north ridge?"
+            },
+            "timestamp": {
+              "type": "string",
+              "value": "2026-10-12T08:00:00Z"
+            },
+            "senderName": {
+              "type": "string",
+              "value": "alice"
+            },
+            "snr": {
+              "type": "null"
+            },
+            "status": {
+              "type": "string",
+              "value": "Sent"
+            }
+          }
+        }
+      }
+    },
+    "chat-message-list": {
+      "id": "chat-message-list",
+      "componentId": "meshcore-mobile/chat-message-list"
+    },
+    "chat-body": {
+      "id": "chat-body",
+      "componentId": "meshcore-mobile/chat-body"
+    },
+    "contact-row": {
+      "id": "contact-row",
+      "componentId": "meshcore-mobile/contact-row",
+      "properties": {
+        "contact": {
+          "type": "object",
+          "fields": {
+            "name": {
+              "type": "string",
+              "value": "hilltop"
+            },
+            "publicKey": {
+              "type": "string",
+              "value": "7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e"
+            },
+            "type": {
+              "type": "string",
+              "value": "REPEATER"
+            },
+            "pathLength": {
+              "type": "int",
+              "value": 4
+            },
+            "path": {
+              "type": "string",
+              "value": "a1b2c3d4"
+            },
+            "advertTimestamp": {
+              "type": "string",
+              "value": "2026-10-12T08:00:00Z"
+            }
+          }
+        }
+      }
+    },
+    "contact-list": {
+      "id": "contact-list",
+      "componentId": "meshcore-mobile/contact-list"
+    },
+    "channel-row": {
+      "id": "channel-row",
+      "componentId": "meshcore-mobile/channel-row"
+    },
+    "battery": {
+      "id": "battery",
+      "componentId": "meshcore-mobile/battery",
+      "properties": {
+        "battery": {
+          "type": "object",
+          "fields": {
+            "millivolts": {
+              "type": "int",
+              "value": 3650
+            },
+            "storageUsedKb": {
+              "type": "int",
+              "value": 2048
+            },
+            "storageTotalKb": {
+              "type": "int",
+              "value": 8192
+            }
+          }
+        }
+      }
+    },
+    "tcp-connect": {
+      "id": "tcp-connect",
+      "componentId": "meshcore-mobile/tcp-connect"
+    },
+    "device-settings": {
+      "id": "device-settings",
+      "componentId": "meshcore-mobile/device-settings",
+      "properties": {
+        "state": {
+          "type": "union",
+          "case": "error",
+          "fields": {
+            "message": {
+              "type": "string",
+              "value": "No response from /help"
+            }
+          }
+        }
+      }
+    },
+    "theme-picker": {
+      "id": "theme-picker",
+      "componentId": "meshcore-mobile/theme-picker"
+    },
+    "login-dialog": {
+      "id": "login-dialog",
+      "componentId": "meshcore-mobile/login-dialog",
+      "properties": {
+        "state": {
+          "type": "union",
+          "case": "authenticating"
+        }
+      }
+    },
+    "device-status": {
+      "id": "device-status",
+      "componentId": "meshcore-mobile/device-status"
+    },
+    "device-body": {
+      "id": "device-body",
+      "componentId": "meshcore-mobile/device-body"
+    }
+  }
+}

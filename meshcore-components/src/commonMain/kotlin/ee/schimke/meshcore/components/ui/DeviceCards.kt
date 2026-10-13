@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -190,7 +191,9 @@ private fun IconLabelRow(
       tint = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = Modifier.size(16.dp),
     )
-    Text("  ", style = MaterialTheme.typography.bodyMedium)
+    // Layout spacing carries no glyphs. Resolving a font for an invisible two-space Text
+    // recorded Space Grotesk even when the SVG contained only the title and key faces.
+    Spacer(Modifier.width(8.dp))
     content()
   }
 }
