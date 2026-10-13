@@ -129,8 +129,9 @@ jobs:
       # discovery as the preferred module, so the authored entries still resolve
       # there and equal function names keep their historical winner.
       modules: all
-      cli-version: catalog
-      catalog-key: composePreviewPlugin
+      # The CLI owns bundle export and its daemon sidecars. Track its released fixes
+      # independently of the app plugin so font-audit corrections reach publication.
+      cli-version: latest
       commit-user-name: Yuri Schimke
       commit-user-email: yuri@schimke.ee
       timeout-minutes: 90
