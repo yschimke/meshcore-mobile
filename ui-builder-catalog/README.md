@@ -1,7 +1,7 @@
 # MeshCore typed component catalog
 
 This opt-in module wires 19 `:meshcore-components` composables into the typed UI-builder adapter
-API. It is excluded from normal application builds while the API and bridge are unreleased. Each
+API. It is excluded from normal application builds unless a pinned renderer SDK checkout is supplied. Each
 definition publishes its own ID and properties/slots, and the registry invokes the actual component
 with compiled calls. Every property has an insertion default taken from the library's own preview
 fixtures (`MeshcoreSamples`: the `node-peak` device, alice / bob-repeater / common-room /
@@ -49,9 +49,8 @@ structurally.
 - `PublicKey` is parsed hex text exported as `PublicKey.fromHex("…")`. A `ByteString` (a contact's
   route) is parsed hex text through the small public `byteStringOfHex` helper added to
   `meshcore-core` for this purpose (`ByteString.toHex()` is its inverse).
-- `EnumCodec` turns the API's string `enumOf` codec into one that decodes to the enum member, so an
-  enum can be an object field. `SetCodec` edits a `Set` (`DeviceBody`'s `contactedKeys` and
-  `contactedChannelIndices`) as a list; the API has no set codec, and it has no export spelling.
+- `AdapterValueCodecs.enumValue` decodes the enum member, including inside object fields.
+  `AdapterValueCodecs.set` edits `contactedKeys` and `contactedChannelIndices` as lists and refuses duplicates.
 - Unions: `DeviceSettingsUiState` (a `discovering` singleton, `error`, `ready`), `LoginDialogState`
   (`prompting`, an `authenticating` singleton), `LastMessageInfo` (`dm`, `channel`) and
   `DeviceConnectStatus`, which holds only `connecting`: `DeviceConnectStatus.Failed(cause:
@@ -197,3 +196,22 @@ Run `ExternalJvmCatalogEndToEndTest` with `-PtypedCatalogJvmBundle=/tmp/publishe
 proof using downloaded artifacts. The installer refuses a mismatched source, runtime, checksum,
 or catalog pair. This initial executable archive targets Linux x64; it is an explicit trusted-code
 opt-in, not a browser renderer or a general desktop installation UI.
+
+## Delivery and browser runtime
+
+The catalog uses the released discovery API 2.54.0 and the renderer SDK from the builder's
+`v3.111.0` source checkout (the SDK is not a Maven artifact). Supply
+`-PcomposeUiBuilderDir=/path/to/compose-ui-builder` to include the catalog and renderer modules.
+
+`design-artifacts.yml` is the publication path: it publishes the matching `ui-builder.json`,
+`ui-builder/components.json`, three seed designs, and `ui-builder/runtime.zip` to
+`yschimke/meshcore-mobile-out` beside the sticker sheet. `typed-catalog.yml` validates the JVM
+host and builds the Wasm package; it no longer creates a separate experimental prerelease.
+
+The browser compiles the same `MeshcoreCatalog`, codecs and samples against the real Wasm
+`:meshcore-components` variant. Its registry is hosted by `CanvasDocumentHost` and the sandbox
+protocol, with ordinary Column and Text adapters for the seeds. No editor code ships in the ZIP.
+The runtime ID includes the complete asset-tree digest, so changed bytes cannot reuse an ID.
+MeshCore's existing Wasm font implementations currently use platform generic families; native
+parity tests use the branded desktop faces. The two platforms therefore share components and
+values but do not promise identical font pixels.

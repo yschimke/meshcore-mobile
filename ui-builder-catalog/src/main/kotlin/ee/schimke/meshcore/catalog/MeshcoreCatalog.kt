@@ -387,14 +387,18 @@ class DeviceBodyAdapter(record: ComponentRecord) :
   val contactedKeys =
     property(
       DeviceBodyProps::contactedKeys,
-      SetCodec(AdapterValueCodecs.String),
+      AdapterValueCodecs.set(AdapterValueCodecs.String),
       setOf(
         MeshcoreSamples.contacts[0].publicKey.toHex(),
         MeshcoreSamples.contacts[2].publicKey.toHex(),
       ),
     )
   val contactedChannelIndices =
-    property(DeviceBodyProps::contactedChannelIndices, SetCodec(AdapterValueCodecs.Int), setOf(0))
+    property(
+      DeviceBodyProps::contactedChannelIndices,
+      AdapterValueCodecs.set(AdapterValueCodecs.Int),
+      setOf(0),
+    )
   val sectionStates = property(DeviceBodyProps::sectionStates, SectionStatesCodec, SectionStates())
   val lastMessage =
     property(DeviceBodyProps::lastMessage, AdapterValueCodecs.nullable(LastMessageInfoCodec), null)
@@ -469,7 +473,21 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
     TypedAdapterCatalog.generate(
       records,
       UiBuilderCatalogs.CoverSheet("meshcore-mobile", "MeshCore live components"),
-      UiBuilderPolicyFile.Builder(UI_BUILDER_POLICY_SCHEMA, "mobile").build(),
+      kotlinx.serialization.json.Json.decodeFromString(
+        UiBuilderPolicyFile.serializer(),
+        """{
+          "schema":"$UI_BUILDER_POLICY_SCHEMA", "platform":"mobile",
+          "templates":[
+            {"path":"ui-builder/designs/chat-input.json","id":"chat-input","label":"Chat input","default":true},
+            {"path":"ui-builder/designs/device-overview.json","id":"device-overview","label":"Device overview"},
+            {"path":"ui-builder/designs/component-sheet.json","id":"component-sheet","label":"Component sheet"}
+          ],
+          "builtins":{
+            "layout/column":{"role":"container","canvas":"layout/column","slots":{"children":{"ordered":true}}},
+            "m3/text":{"role":"decoration","canvas":"m3/text","properties":[{"name":"text","jsonType":["string","object"]}]}
+          }
+        }""",
+      ),
       definitions,
     )
 

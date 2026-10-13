@@ -570,8 +570,9 @@ class CatalogRenderTest {
         "channels" to AdapterValueCodecs.list(ChannelInfoCodec).wrap(channels),
         "lastMessage" to LastMessageInfoCodec.wrap(lastMessage),
         "contactedKeys" to
-          SetCodec(AdapterValueCodecs.String).wrap(setOf(contacts[0].publicKey.toHex())),
-        "contactedChannelIndices" to SetCodec(AdapterValueCodecs.Int).wrap(setOf(1)),
+          AdapterValueCodecs.set(AdapterValueCodecs.String)
+            .wrap(setOf(contacts[0].publicKey.toHex())),
+        "contactedChannelIndices" to AdapterValueCodecs.set(AdapterValueCodecs.Int).wrap(setOf(1)),
         "warnings" to
           AdapterValueCodecs.list(AdapterValueCodecs.String).wrap(listOf("Clock drift")),
       ),

@@ -22,50 +22,6 @@ import ee.schimke.meshcore.core.model.byteStringOfHex
 import ee.schimke.meshcore.core.model.toHex
 import kotlin.time.Instant
 import kotlinx.io.bytestring.ByteString
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
-
-/**
- * A Kotlin enum stored as the typed API's [AdapterValueCodecs.enumOf] stores one, by member name,
- * but decoding to the member itself so it can be an object field (`Contact.type`) or a value passed
- * straight to the component. Its export names each member, `ContactType.ROOM`.
- */
-class EnumCodec<E : Enum<E>>(typeFqn: String, private val entries: List<E>) : AdapterValueCodec<E> {
-  private val wire =
-    AdapterValueCodecs.enumOf(typeFqn, entries.associate { it.name to "$typeFqn.${it.name}" })
-  override val jsonType: String = wire.jsonType
-  override val kotlinType: String = typeFqn
-  override val stateType: String? = null
-  override val exportCodec: ExportProjection.Codec? = wire.exportCodec
-  override val allowedValues: Set<String>? = wire.allowedValues
-
-  override fun encode(value: E): JsonElement = wire.encode(value.name)
-
-  override fun decode(value: JsonElement): E =
-    wire.decode(value).let { name -> entries.single { it.name == name } }
-}
-
-/**
- * A `Set` edited and stored as the typed API's list of [element] values (`{"type": "list", …}`),
- * since the API has no set codec; a repeated element collapses. It has no export spelling, which
- * this catalog does not declare in any case (it has no `exportAs` projections).
- */
-class SetCodec<E>(element: AdapterValueCodec<E>) : AdapterValueCodec<Set<E>> {
-  private val list = AdapterValueCodecs.list(element)
-  override val jsonType: String = list.jsonType
-  override val kotlinType: String = "kotlin.collections.Set"
-  override val literalType: String = list.literalType
-  override val stateType: String? = null
-  override val editor: JsonObject? = list.editor
-
-  override fun encode(value: Set<E>): JsonElement = list.encode(value.toList())
-
-  override fun decode(value: JsonElement): Set<E> = list.decode(value).toSet()
-
-  override fun wrap(value: Set<E>): JsonObject = list.wrap(value.toList())
-
-  override fun unwrap(wrapper: JsonObject): Set<E> = list.unwrap(wrapper).toSet()
-}
 
 private const val MODEL = "ee.schimke.meshcore.core.model"
 private const val UI = "ee.schimke.meshcore.components.ui"
@@ -91,10 +47,11 @@ val ByteStringHexCodec: AdapterValueCodec<ByteString> =
     { it.toHex() },
   )
 
-val ContactTypeCodec = EnumCodec("$MODEL.ContactType", ContactType.entries)
-val MessageStatusCodec = EnumCodec("$UI.MessageStatus", MessageStatus.entries)
-val ThemeModeCodec = EnumCodec("$APP_UI.theme.ThemeMode", ThemeMode.entries)
-val ThemePaletteCodec = EnumCodec("$APP_UI.theme.ThemePalette", ThemePalette.entries)
+val ContactTypeCodec = AdapterValueCodecs.enumValue("$MODEL.ContactType", ContactType.entries)
+val MessageStatusCodec = AdapterValueCodecs.enumValue("$UI.MessageStatus", MessageStatus.entries)
+val ThemeModeCodec = AdapterValueCodecs.enumValue("$APP_UI.theme.ThemeMode", ThemeMode.entries)
+val ThemePaletteCodec =
+  AdapterValueCodecs.enumValue("$APP_UI.theme.ThemePalette", ThemePalette.entries)
 
 /**
  * The real core model as an object value: every field is required, so a stored radio states all

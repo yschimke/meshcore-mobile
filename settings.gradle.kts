@@ -146,17 +146,16 @@ if (providers.gradleProperty("adaptiveUidPilot").orNull == "true") {
     include(":adaptive-uid-pilot")
 }
 
-// Unreleased typed catalog API: opt in explicitly and build against pinned source checkouts.
-if (providers.gradleProperty("typedAdapterCatalog").orNull == "true") {
-    require(providers.gradleProperty("localBuilds").orNull?.split(",")?.contains("tools") == true) {
-        "typedAdapterCatalog requires -PlocalBuilds=tools"
+// Discovery resolves from Maven Central; the unpublished renderer SDK uses a pinned checkout.
+val builderSource = providers.gradleProperty("composeUiBuilderDir")
+    .orElse(providers.gradleProperty("uiBuilderSource"))
+if (builderSource.isPresent || providers.gradleProperty("typedAdapterCatalog").orNull == "true") {
+    require(builderSource.isPresent) { "Catalog tasks require -PcomposeUiBuilderDir=<pinned checkout>" }
+    require(file(builderSource.get()).resolve("settings.gradle.kts").isFile) {
+        "composeUiBuilderDir must point to a compose-ui-builder checkout"
     }
-    val builderSource = providers.gradleProperty("uiBuilderSource").orElse("../compose-ui-builder").get()
-    require(file(builderSource).resolve("settings.gradle.kts").isFile) {
-        "uiBuilderSource must point to the matching compose-ui-builder checkout"
-    }
-    includeBuild(builderSource)
-    include(":ui-builder-catalog")
+    includeBuild(builderSource.get())
+    include(":ui-builder-catalog", ":ui-builder-catalog-renderer")
 }
 
 include(":web-app", ":meshcore-transport-webserial")
