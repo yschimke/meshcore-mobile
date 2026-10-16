@@ -70,7 +70,7 @@ wear-compose = "1.7.1"
 wear-compose-material3 = "1.7.1"
 wear-compose-remote = "1.0.0-alpha13" # remote-material3; bump with `androidx-remote-compose` above, whose alpha21 its POM declares
 playservices-wearable = "20.0.1"
-aboutlibraries = "15.2.0"
+aboutlibraries = "15.3.0"
 ktfmt = "0.27.0"
 tapmoc = "0.4.2"
 
