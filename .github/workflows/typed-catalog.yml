@@ -5,7 +5,10 @@ on:
     branches: [main]
     paths:
       - 'ui-builder-catalog/**'
+      - 'ui-builder-catalog-consumer/**'
+      - 'ui-builder-catalog-renderer/**'
       - 'scripts/validate-typed-catalog.sh'
+      - 'scripts/typed-renderer-smoke.py'
       - 'scripts/publish-typed-catalog.sh'
       - '.github/workflows/typed-catalog.yml'
       - '**/*.gradle.kts'
@@ -16,7 +19,10 @@ on:
     branches: [main]
     paths:
       - 'ui-builder-catalog/**'
+      - 'ui-builder-catalog-consumer/**'
+      - 'ui-builder-catalog-renderer/**'
       - 'scripts/validate-typed-catalog.sh'
+      - 'scripts/typed-renderer-smoke.py'
       - 'scripts/publish-typed-catalog.sh'
       - '.github/workflows/typed-catalog.yml'
       - '**/*.gradle.kts'
@@ -24,11 +30,6 @@ on:
       - 'meshcore-components/**'
       - 'meshcore-core/**'
   workflow_dispatch:
-    inputs:
-      publish:
-        description: Publish this validated generation as an experimental catalog prerelease
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -58,13 +59,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: yschimke/compose-ai-tools
-          ref: 9513e93ceade788e05aa200466c87656e589f046 # v2.49.0
+          ref: v2.54.0
           path: compose-ai-tools
           persist-credentials: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: yschimke/compose-ui-builder
-          ref: 84809b636d795a763d2264f95d2f0353bb0b5fa9 # main, list/object properties (#717)
+          ref: v3.111.0
           path: compose-ui-builder
           persist-credentials: false
       - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
@@ -73,18 +74,29 @@ jobs:
           java-version: |
             21
             17
-      - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+      - uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
         with:
           cache-provider: basic
       - name: Install Android platform used by the app
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0"'
       - name: Generate, render and validate in a separate catalog consumer
         run: scripts/validate-typed-catalog.sh "$GITHUB_WORKSPACE/compose-ai-tools" "$GITHUB_WORKSPACE/compose-ui-builder"
+      - name: Package the typed Wasm renderer
+        run: ./gradlew -PcomposeUiBuilderDir="$GITHUB_WORKSPACE/compose-ui-builder" :ui-builder-catalog-renderer:rendererArchive
+      - name: Install browser smoke dependencies
+        run: |
+          python -m pip install playwright==1.62.0
+          python -m playwright install chromium --with-deps
+      - name: Render and interact through the packaged sandbox protocol
+        run: python scripts/typed-renderer-smoke.py
       - if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: meshcore-mobile-typed-catalog
           path: |
+            meshcore-mobile/ui-builder-catalog-renderer/build/ui-builder-runtime.zip
+            meshcore-mobile/ui-builder-catalog-renderer/build/smoke
+            meshcore-mobile/ui-builder-catalog-consumer/build/test-results
             meshcore-mobile/ui-builder-catalog/build/catalog
             meshcore-mobile/ui-builder-catalog/build/renders
             meshcore-mobile/ui-builder-catalog/build/test-results
@@ -93,38 +105,3 @@ jobs:
             compose-ui-builder/ui-builder/build/test-results/jvmTest
             compose-ui-builder/ui-builder/build/typed-catalog/e2e
           if-no-files-found: warn
-
-  publish:
-    if: github.event_name == 'workflow_dispatch' && inputs.publish
-    needs: catalog
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    defaults:
-      run:
-        working-directory: meshcore-mobile
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          path: meshcore-mobile
-          persist-credentials: false
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          repository: yschimke/compose-ai-tools
-          ref: 9513e93ceade788e05aa200466c87656e589f046 # v2.49.0
-          path: compose-ai-tools
-          persist-credentials: false
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          repository: yschimke/compose-ui-builder
-          ref: 84809b636d795a763d2264f95d2f0353bb0b5fa9 # main, list/object properties (#717)
-          path: compose-ui-builder
-          persist-credentials: false
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: meshcore-mobile-typed-catalog
-          path: ${{ github.workspace }}
-      - name: Publish the tested artifact without rebuilding it
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: scripts/publish-typed-catalog.sh "$GITHUB_WORKSPACE/compose-ai-tools" "$GITHUB_WORKSPACE/compose-ui-builder"

@@ -2,7 +2,9 @@ name: Design Artifacts
 
 # Render the MeshCore design catalog and publish its importable bundle to a clean
 # `design-artifacts/meshcore-mobile` branch, which the public preview server
-# (preview.coo.ee) serves at /meshcore-mobile/.
+# (preview.coo.ee) serves at /meshcore-mobile/. That branch lives in the public
+# output repository yschimke/meshcore-mobile-out (`artifact-repository` below),
+# not in this repository, so generated history doesn't bloat source clones.
 #
 # The common render → validate → generate → publish is delegated to the shared
 # reusable workflow in compose-ai-tools; MeshCore only keeps its two bespoke
@@ -60,6 +62,10 @@ on:
       # the previous reference until the weekly cron or an unrelated change.
       - 'design-map.json'
       - 'design/**'
+      - 'meshcore-components/**'
+      - 'meshcore-core/**'
+      - 'ui-builder-catalog/**'
+      - 'ui-builder-catalog-renderer/**'
       - '.github/workflows/design-artifacts.yml'
       - '.github/workflows/compose-preview.yml'
   # No `allow_incomplete` input any more: the publish job now passes
@@ -81,8 +87,8 @@ jobs:
   # ───────────────────────────────────────────────────────────────────────────
   # Common lane: render every preview-enabled module — :app (Android),
   # :meshcore-components (CMP desktop) and :wear — validate the spec, generate,
-  # and publish to design-artifacts/meshcore-mobile — all in the shared reusable
-  # workflow.
+  # and publish to design-artifacts/meshcore-mobile in yschimke/meshcore-mobile-out
+  # — all in the shared reusable workflow.
   # ───────────────────────────────────────────────────────────────────────────
   publish:
     needs: uid-references
@@ -90,10 +96,22 @@ jobs:
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     permissions:
       contents: write
-    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@8f5c801144a7f482b44afb8e9f3e34a4871b9d7e
+    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@v2.67.0
     with:
       system: meshcore-mobile
+      ui-builder-catalog-task: ':ui-builder-catalog:exportTypedCatalog'
+      ui-builder-catalog-dir: ui-builder-catalog/build/catalog
+      ui-builder-runtime-task: ':ui-builder-catalog-renderer:rendererArchive'
+      ui-builder-runtime-archive: ui-builder-catalog-renderer/build/ui-builder-runtime.zip
+      ui-builder-runtime-source-ref: v3.111.0
       ref: ${{ github.sha }}
+      # Generated branches go to the public output repository. Only the reusable
+      # workflow's isolated publish job (which runs no project Gradle) receives
+      # artifacts_token; render jobs read the -out branches anonymously, which is
+      # why that repository must stay public. The source marker
+      # refs/design-artifacts/source/meshcore-mobile stays here (it names a source
+      # commit), which is why this job keeps `contents: write`.
+      artifact-repository: yschimke/meshcore-mobile-out
       catalog-section-artifact: adaptive-uid-catalog
       catalog-section: Screens
       publish: ${{ github.ref == 'refs/heads/main' }}
@@ -158,6 +176,8 @@ jobs:
       # gaps come back as warnings in the run log and job summary.
       allow-incomplete: true
     secrets:
+      # Contents write on yschimke/meshcore-mobile-out only (see artifact-repository).
+      artifacts_token: ${{ secrets.ARTIFACTS_TOKEN }}
       buildfetch_ro_token: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
       # Lets the reusable workflow publish the `figma:` entries in design-map.json
       # as design references on the delivery branch, so the preview server's

@@ -70,6 +70,15 @@ jobs:
                 continue;
               }
               try {
+                // Inspect dependency files before merging: GITHUB_TOKEN suppresses push events,
+                // and a version pin can change under a title such as fix(catalog).
+                const changedFiles = await github.paginate(github.rest.pulls.listFiles, {
+                  owner, repo, pull_number: pr.number, per_page: 100,
+                });
+                const changesDependencyFiles = changedFiles.some(({ filename }) =>
+                  ['gradle/libs.versions.toml', 'gradle/wrapper/gradle-wrapper.properties',
+                    'settings.gradle.kts', 'build.gradle.kts'].includes(filename) ||
+                  filename.endsWith('/build.gradle.kts'));
                 // sha guard: reject the merge if the head moved after the
                 // mergeable_state check (race with a new push).
                 await github.rest.pulls.merge({
@@ -85,7 +94,7 @@ jobs:
                 // Renovate labels its PRs `dependencies` and titles them
                 // `<type>(deps): …` — match either, so a hand-relabelled or
                 // hand-retitled bump still counts.
-                const isDependencyBump =
+                const isDependencyBump = changesDependencyFiles ||
                   (pr.labels || []).some((l) => l.name === 'dependencies') ||
                   /\(deps[^)]*\)/i.test(pr.title) ||
                   `${pr.head.ref} ${pr.title}`.toLowerCase().includes('compose-ai-tools');

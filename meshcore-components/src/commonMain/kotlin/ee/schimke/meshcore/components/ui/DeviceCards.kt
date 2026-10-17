@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -60,10 +61,10 @@ import org.jetbrains.compose.resources.stringResource
  */
 @Composable
 fun DeviceSummaryCard(
+  modifier: Modifier = Modifier,
   self: SelfInfo? = null,
   radio: RadioSettings? = null,
   battery: BatteryInfo? = null,
-  modifier: Modifier = Modifier,
 ) {
   Card(
     modifier = modifier.fillMaxWidth(),
@@ -101,8 +102,12 @@ private fun PubkeyLine(hex: String?) {
 }
 
 @Composable
-fun RadioLine(radio: RadioSettings) {
-  IconLabelRow(icon = MeshIcons.Wifi, contentDescription = stringResource(Res.string.cd_radio)) {
+fun RadioLine(radio: RadioSettings, modifier: Modifier = Modifier) {
+  IconLabelRow(
+    icon = MeshIcons.Wifi,
+    contentDescription = stringResource(Res.string.cd_radio),
+    modifier = modifier,
+  ) {
     Text(
       text =
         buildString {
@@ -125,7 +130,7 @@ fun RadioLine(radio: RadioSettings) {
 }
 
 @Composable
-fun BatterySection(battery: BatteryInfo) {
+fun BatterySection(battery: BatteryInfo, modifier: Modifier = Modifier) {
   val percent = battery.estimatePercent().coerceIn(0, 100)
   val warn = percent < 30
   val tint =
@@ -137,7 +142,7 @@ fun BatterySection(battery: BatteryInfo) {
       percent >= 25 -> MeshIcons.Battery3Bar
       else -> MeshIcons.Battery1Bar
     }
-  Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+  Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
     Row(verticalAlignment = Alignment.CenterVertically) {
       Icon(
         icon,
@@ -176,16 +181,19 @@ fun BatterySection(battery: BatteryInfo) {
 private fun IconLabelRow(
   icon: ImageVector,
   contentDescription: String,
+  modifier: Modifier = Modifier,
   content: @Composable () -> Unit,
 ) {
-  Row(verticalAlignment = Alignment.CenterVertically) {
+  Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
     Icon(
       imageVector = icon,
       contentDescription = contentDescription,
       tint = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = Modifier.size(16.dp),
     )
-    Text("  ", style = MaterialTheme.typography.bodyMedium)
+    // Layout spacing carries no glyphs. Resolving a font for an invisible two-space Text
+    // recorded Space Grotesk even when the SVG contained only the title and key faces.
+    Spacer(Modifier.width(8.dp))
     content()
   }
 }
@@ -214,7 +222,7 @@ private fun Contact.typeLabel(): String =
  * circle so contact kinds are distinguishable at a glance.
  */
 @Composable
-fun ContactRow(contact: Contact, onClick: (() -> Unit)? = null, modifier: Modifier = Modifier) {
+fun ContactRow(contact: Contact, modifier: Modifier = Modifier, onClick: (() -> Unit)? = null) {
   val typeLabel = contact.typeLabel()
   Card(
     modifier = modifier.fillMaxWidth(),
@@ -275,8 +283,8 @@ fun ContactRow(contact: Contact, onClick: (() -> Unit)? = null, modifier: Modifi
 @Composable
 fun ContactList(
   contacts: List<Contact>,
-  onContactClick: ((Contact) -> Unit)? = null,
   modifier: Modifier = Modifier,
+  onContactClick: ((Contact) -> Unit)? = null,
   state: LazyListState = rememberLazyListState(),
 ) {
   LazyColumn(
@@ -323,7 +331,7 @@ fun ContactListEmpty(modifier: Modifier = Modifier) {
 // --- Channels ----------------------------------------------------------------
 
 @Composable
-fun ChannelRow(channel: ChannelInfo, onClick: (() -> Unit)? = null, modifier: Modifier = Modifier) {
+fun ChannelRow(channel: ChannelInfo, modifier: Modifier = Modifier, onClick: (() -> Unit)? = null) {
   val channelLabel = stringResource(Res.string.channel_index, channel.index)
   Card(
     modifier = modifier.fillMaxWidth(),
@@ -375,8 +383,8 @@ fun ChannelRow(channel: ChannelInfo, onClick: (() -> Unit)? = null, modifier: Mo
 @Composable
 fun ChannelList(
   channels: List<ChannelInfo>,
-  onChannelClick: ((ChannelInfo) -> Unit)? = null,
   modifier: Modifier = Modifier,
+  onChannelClick: ((ChannelInfo) -> Unit)? = null,
   state: LazyListState = rememberLazyListState(),
 ) {
   LazyColumn(

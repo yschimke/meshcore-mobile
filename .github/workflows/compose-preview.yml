@@ -6,6 +6,20 @@ name: Compose Preview
 # serial (a shared Gradle build lock + `.git` in one workspace) disappears
 # on separate runners. Wall time drops from the sum of the two renders to
 # the slower one. The notifications pipeline stays skipped (see below).
+#
+# Generated branches live in the public output repository
+# yschimke/meshcore-mobile-out, not here, so this repository's history stops
+# growing with renders. Both apply steps pass `artifact-repository` +
+# `artifacts-token`: the action pushes compose-preview/{main,pr},
+# compose-preview/resources/{main,pr} and compose-preview/a11y/pr there, and in
+# comment mode fetches the baselines it diffs against from there too (through a
+# named remote it removes again at the end of the step). ARTIFACTS_TOKEN only
+# has Contents write on the -out repository.
+#
+# Fork PRs get no secrets, so ARTIFACTS_TOKEN is empty there and the action
+# falls back to the read-only GITHUB_TOKEN: the render runs, the push and the
+# sticky comment fail — exactly as they did before the move (this workflow has
+# never used the action's fork-safe `phase: render` / `publish` split).
 
 on:
   push:
@@ -69,7 +83,7 @@ jobs:
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v2.50.0
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v2.67.0
         with:
           # Pin the render CLI to the Gradle plugin version (single source of
           # truth: composePreviewPlugin in libs.versions.toml) instead of the
@@ -86,6 +100,9 @@ jobs:
           # a renderer limitation unrelated to the Compose previews themselves.
           missing-renders: warn
           only: compose,resources
+          # See the header: generated branches go to the -out repository.
+          artifact-repository: yschimke/meshcore-mobile-out
+          artifacts-token: ${{ secrets.ARTIFACTS_TOKEN }}
 
   a11y:
     name: A11y previews
@@ -113,7 +130,7 @@ jobs:
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v2.50.0
+      - uses: yschimke/compose-ai-tools/.github/actions/apply@v2.67.0
         with:
           cli-version: catalog
           catalog-key: composePreviewPlugin
@@ -123,3 +140,5 @@ jobs:
           # module scanned by the notifications pipeline — which hard-fails when
           # no module produces a *Notification*.png. Only a11y runs here.
           only: a11y
+          artifact-repository: yschimke/meshcore-mobile-out
+          artifacts-token: ${{ secrets.ARTIFACTS_TOKEN }}
