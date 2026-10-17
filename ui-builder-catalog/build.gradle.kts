@@ -9,7 +9,7 @@ kotlin { jvmToolchain(21) }
 dependencies {
   implementation(project(":meshcore-components"))
   implementation("ee.schimke.composeai:ui-builder-renderer-sdk:0.0.0")
-  implementation("ee.schimke.composeai:preview-discovery:2.66.0")
+  implementation("ee.schimke.composeai:preview-discovery:2.68.2")
   implementation(compose.desktop.currentOs)
   implementation(libs.compose.material3)
   testImplementation(kotlin("test"))
