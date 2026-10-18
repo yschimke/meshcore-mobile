@@ -1,0 +1,360 @@
+{
+  "faces": [
+    "Orbitron 400 900 normal: loaded",
+    "Space Grotesk 300 700 normal: loaded",
+    "JetBrains Mono 100 800 normal: loaded"
+  ],
+  "text": [
+    {
+      "text": "9:30",
+      "family": "Space Grotesk",
+      "weight": "600",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "text": "node-peak",
+      "family": "Orbitron",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Orbitron",
+          "postScriptName": "Orbitron-Regular",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ]
+    },
+    {
+      "text": "node-peak",
+      "family": "Orbitron",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Orbitron",
+          "postScriptName": "Orbitron-Regular",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ]
+    },
+    {
+      "text": "abababababababab",
+      "family": "JetBrains Mono",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "JetBrains Mono",
+          "postScriptName": "JetBrainsMono-Regular",
+          "isCustomFont": true,
+          "glyphCount": 16
+        }
+      ]
+    },
+    {
+      "text": "869.525 MHz \u00b7 BW 125 kHz \u00b7 SF 10 \u00b7 CR 5",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 39
+        }
+      ]
+    },
+    {
+      "text": "81% \u00b7 3980 mV",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 13
+        }
+      ]
+    },
+    {
+      "text": "512 / 4096 kB",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 13
+        }
+      ]
+    },
+    {
+      "text": "alice",
+      "family": "Space Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ]
+    },
+    {
+      "text": "hey \u2014 are you on tonight?",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 25
+        }
+      ]
+    },
+    {
+      "text": "Channels (1)",
+      "family": "Space Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ]
+    },
+    {
+      "text": "Favourited",
+      "family": "Space Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ]
+    },
+    {
+      "text": "General",
+      "family": "Space Grotesk",
+      "weight": "600",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ]
+    },
+    {
+      "text": "Channel 0",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ]
+    },
+    {
+      "text": "Contacts (1)",
+      "family": "Space Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ]
+    },
+    {
+      "text": "Favourited",
+      "family": "Space Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ]
+    },
+    {
+      "text": "alice",
+      "family": "Space Grotesk",
+      "weight": "600",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ]
+    },
+    {
+      "text": "Contact \u00b7 flood",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 14
+        }
+      ]
+    },
+    {
+      "text": "Rooms (1)",
+      "family": "Space Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 9
+        }
+      ]
+    },
+    {
+      "text": "Joined",
+      "family": "Space Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ]
+    },
+    {
+      "text": "common-room",
+      "family": "Space Grotesk",
+      "weight": "600",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 11
+        }
+      ]
+    },
+    {
+      "text": "Room \u00b7 0 hops",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 13
+        }
+      ]
+    },
+    {
+      "text": "Repeaters (0)",
+      "family": "Space Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 13
+        }
+      ]
+    },
+    {
+      "text": "Joined",
+      "family": "Space Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ]
+    },
+    {
+      "text": "No repeaters joined yet",
+      "family": "Space Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 23
+        }
+      ]
+    },
+    {
+      "text": "Sensors (1)",
+      "family": "Space Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "painted": [
+        {
+          "familyName": "Space Grotesk Light",
+          "postScriptName": "SpaceGrotesk-Light",
+          "isCustomFont": true,
+          "glyphCount": 11
+        }
+      ]
+    }
+  ],
+  "sha256": "1c7b90f2b6b66779810343cd9b2eb6a9e3cb50ae068a086845a4aee5fb715a7e"
+}

@@ -42,10 +42,11 @@ app/project.info
 /.design-parity/out/
 
 # design-parity reference renders are generated from the design/*.html source of
-# truth (locally via the documented Chrome command, in CI by design-parity.yml)
+# truth (locally via scripts/render-design-references.py, in CI by design-parity.yml)
 # and published to the design-parity/main branch of yschimke/meshcore-mobile-out
 # — never committed, so they can't drift from the HTML.
 /design/*.png
+/design/reference-fonts.json
 
 # Staged desktop release installers.
 /_release-desktop/

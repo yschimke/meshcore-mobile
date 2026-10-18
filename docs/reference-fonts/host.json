@@ -1,0 +1,10 @@
+{
+  "fonts": [
+    {
+      "familyName": "DejaVu Sans",
+      "postScriptName": "DejaVuSans",
+      "isCustomFont": false,
+      "glyphCount": 9
+    }
+  ]
+}

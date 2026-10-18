@@ -1,0 +1,21 @@
+/* Reference-only: use the exact committed variable fonts the app already ships.
+ * No local() sources: a host-installed face must never override these bytes.
+ */
+@font-face {
+  font-family: "Orbitron";
+  src: url("../meshcore-components/src/desktopMain/resources/fonts/Orbitron.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../meshcore-components/src/desktopMain/resources/fonts/SpaceGrotesk.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../meshcore-components/src/desktopMain/resources/fonts/JetBrainsMono.ttf") format("truetype");
+  font-weight: 100 800;
+  font-style: normal;
+}

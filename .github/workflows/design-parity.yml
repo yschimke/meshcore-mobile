@@ -136,18 +136,10 @@ jobs:
           pack app build/design-parity/candidates.app.bundle.png \
             'startswith("app/")'
 
-      # Reference images are generated from the design/*.html source of truth
-      # (not committed — they'd drift from the HTML). The claude-design adapter's
-      # built-in rasterizer renders at Chrome's default viewport, which would clip
-      # the 411x914 design, so render them ourselves at the right size/scale (the
-      # Pixel 7 the @Preview targets: 411x914 dp @ 2.625). google-chrome-stable
-      # is preinstalled on ubuntu-latest.
-      # The references name the branded faces (Space Grotesk / Orbitron /
-      # JetBrains Mono) but can't @font-face them portably, so install the same
-      # bundled .ttf the desktop candidate loads. Without this, headless Chrome
-      # falls back to a system sans and every glyph drifts vs the candidate —
-      # the dominant residual in the visual diff. fontconfig resolves them by
-      # the families the HTML already declares; no reference edits needed.
+      # Capture the HTML references at the Pixel 7 preview's 411x914 dp @ 2.625.
+      # Explicit webfont sources now make these portable. Retain the existing
+      # branded-font installation until each consuming lane has been verified;
+      # this change does not remove the upstream workaround or staging inputs.
       - name: Install branded fonts for reference rendering
         run: |
           set -euo pipefail
@@ -156,18 +148,20 @@ jobs:
             "$HOME/.local/share/fonts/"
           fc-cache -f >/dev/null
 
-      # Only the `claude-design` entries have an HTML source to rasterize. The
-      # `figma` entries resolve through @design-parity/adapter-figma, which
-      # renders the node itself over the REST API — skip them here.
-      - name: Render reference images from HTML
+      # Explicit reference webfonts are checked for readiness and painted identity.
+      # Keep the existing fontconfig installation above until the hosted and local
+      # lanes have both been verified independently.
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.15.0'
+      - name: Install reference capture tooling
         run: |
-          set -euo pipefail
-          for ref in $(jq -r '.components[] | select(.source == "claude-design") | .ref' design-map.json); do
-            png="${ref%.html}.png"
-            google-chrome-stable --headless=new --no-sandbox --disable-gpu \
-              --hide-scrollbars --force-device-scale-factor=2.625 \
-              --window-size=411,914 --screenshot="$png" "file://$PWD/$ref"
-          done
+          python -m pip install playwright==1.62.0
+          python -m playwright install --with-deps chromium
+      - name: Verify reference fonts and render images
+        run: |
+          python scripts/test-reference-fonts.py
+          python scripts/render-design-references.py --repeat 2
 
       - uses: actions/setup-node@v7.1.0
         with:
@@ -256,6 +250,7 @@ jobs:
           fi
           art="$(mktemp -d)"
           cp -a build/design-parity/out/. "$art/"
+          cp design/reference-fonts.json "$art/reference-fonts.json"
           cp build/design-parity/candidates.bundle.png "$art/" || true
           cp build/design-parity/candidates.app.bundle.png "$art/" || true
           printf '%s\n' "$GITHUB_SHA" > "$art/SOURCE_COMMIT"
