@@ -43,5 +43,10 @@ jobs:
         uses: actions/upload-artifact@v7.0.2
         with:
           name: cache-diagnostics-logs
-          path: ${{ runner.temp }}/cache-diag/
+          path: |
+            ${{ runner.temp }}/cache-diag/*.raw
+            ${{ runner.temp }}/cache-diag/*.keys
+            ${{ runner.temp }}/cache-diag/*.txt
+            ${{ runner.temp }}/cache-diag/*.md
+            ${{ runner.temp }}/cache-diag/*.seconds
           if-no-files-found: ignore

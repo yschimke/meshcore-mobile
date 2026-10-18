@@ -16,9 +16,19 @@ class DiagnosticsTest(unittest.TestCase):
             root = Path(tmp) / 'repo'
             (root / 'scripts').mkdir(parents=True)
             shutil.copy(SCRIPT, root / 'scripts' / SCRIPT.name)
+            (root / 'gradle' / 'wrapper').mkdir(parents=True)
+            (root / 'gradle' / 'libs.versions.toml').write_text('agp = "fixture"\n')
+            (root / 'gradle' / 'wrapper' / 'gradle-wrapper.properties').write_text(
+                'distributionUrl=fixture\n')
             wrapper = root / 'gradlew'
             wrapper.write_text('''#!/usr/bin/env bash
 set -eu
+# The driver must isolate every probe from ambient remote-cache credentials.
+[ -z "${BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN:-}" ]
+[ -z "${BUILDFETCH_MESHCORE_GRADLE_REMOTE_CACHE_TOKEN:-}" ]
+[ -z "${ON_CI:-}" ]
+[[ "$*" == *-PBUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN=* ]]
+[[ "$*" == *-PBUILDFETCH_MESHCORE_GRADLE_REMOTE_CACHE_TOKEN=* ]]
 if [[ "$*" == *org.gradle.caching.debug* ]]; then
   key=aaaa
   if [[ "$PWD" == *long-path* && "$RELOCATED" == true ]]; then key=bbbb; fi
@@ -37,6 +47,9 @@ exit "$WARM_STATUS"
                 subprocess.run(['git', '-C', str(root), *args], check=True,
                                stdout=subprocess.DEVNULL)
             env = dict(os.environ, RUNNER_TEMP=str(Path(tmp) / 'runner'),
+                       BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN='synthetic-only',
+                       BUILDFETCH_MESHCORE_GRADLE_REMOTE_CACHE_TOKEN='synthetic-only',
+                       ON_CI='true',
                        WARM_STATUS=str(warm_status), COLD_STATUS=str(cold_status),
                        RELOCATED=str(relocated).lower())
             result = subprocess.run(['bash', str(root / 'scripts' / SCRIPT.name), ':compile'],
