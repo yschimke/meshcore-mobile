@@ -20,6 +20,7 @@ CASES = [
     ('main-absent', 'true', None, None, {}, False, False),
     ('main-empty', 'true', None, '', {}, False, False),
     ('main-whitespace', 'true', None, ' \t\n ', {}, False, False),
+    ('main-unicode-blank', 'true', None, '\u00a0\u2007\u202f\u3000', {}, False, False),
     ('pr-present', 'false', None, 'fixture', {}, True, False),
     ('pr-absent', 'false', None, None, {}, False, False),
     ('developer-present', None, None, 'fixture', {}, True, False),
