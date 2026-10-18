@@ -150,6 +150,7 @@ def render(theme_name, t, title, subtitle, msgs, placeholder, terminal, inset, c
     <meta charset="utf-8" />
     <meta name="viewport" content="width=411, initial-scale=1" />
     <title>{html.escape(title)} · MeshCore ({theme_name})</title>
+    <link rel="stylesheet" href="reference-fonts.css" />
     <style>
       :root {{
         --primary: {t['primary']};

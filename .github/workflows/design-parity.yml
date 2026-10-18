@@ -156,18 +156,20 @@ jobs:
             "$HOME/.local/share/fonts/"
           fc-cache -f >/dev/null
 
-      # Only the `claude-design` entries have an HTML source to rasterize. The
-      # `figma` entries resolve through @design-parity/adapter-figma, which
-      # renders the node itself over the REST API — skip them here.
-      - name: Render reference images from HTML
+      # Explicit reference webfonts are checked for readiness and painted identity.
+      # Keep the existing fontconfig installation above until the hosted and local
+      # lanes have both been verified independently.
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.15.0'
+      - name: Install reference capture tooling
         run: |
-          set -euo pipefail
-          for ref in $(jq -r '.components[] | select(.source == "claude-design") | .ref' design-map.json); do
-            png="${ref%.html}.png"
-            google-chrome-stable --headless=new --no-sandbox --disable-gpu \
-              --hide-scrollbars --force-device-scale-factor=2.625 \
-              --window-size=411,914 --screenshot="$png" "file://$PWD/$ref"
-          done
+          python -m pip install playwright==1.62.0
+          python -m playwright install --with-deps chromium
+      - name: Verify reference fonts and render images
+        run: |
+          python scripts/test-reference-fonts.py
+          python scripts/render-design-references.py --repeat 2
 
       - uses: actions/setup-node@v7.1.0
         with:

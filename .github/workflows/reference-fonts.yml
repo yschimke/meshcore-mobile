@@ -1,0 +1,36 @@
+name: Reference fonts
+
+on:
+  pull_request:
+    paths:
+      - 'design/**'
+      - 'scripts/*reference*.py'
+      - 'meshcore-components/src/desktopMain/resources/fonts/**'
+      - '.github/workflows/reference-fonts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'design/**'
+      - 'scripts/*reference*.py'
+      - 'meshcore-components/src/desktopMain/resources/fonts/**'
+      - '.github/workflows/reference-fonts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  reference-fonts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.15.0'
+      - run: python -m pip install playwright==1.62.0
+      - run: python -m playwright install --with-deps chromium
+      - run: python scripts/test-reference-fonts.py
+      - run: python scripts/render-design-references.py --output build/reference-fonts --repeat 2
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: reference-font-evidence
+          path: build/reference-fonts/

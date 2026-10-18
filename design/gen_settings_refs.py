@@ -97,6 +97,7 @@ def render(theme, t, fn, png):
     <meta charset="utf-8" />
     <meta name="viewport" content="width=411, initial-scale=1" />
     <title>Device Settings · MeshCore ({theme})</title>
+    <link rel="stylesheet" href="reference-fonts.css" />
     <style>
       :root {{
         --primary: {t['primary']};
