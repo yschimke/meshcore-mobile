@@ -24,7 +24,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21.0.12+101.0.LTS'
-      - name: Verify independent build and relocation failure propagation
-        run: python3 scripts/test-cache-diagnostics.py
       - name: Verify setup and actual Gradle cache configuration with synthetic tokens
         run: python3 scripts/test-cache-mode.py --gradle
+      - name: Verify independent build and relocation failure propagation, including real Gradle
+        run: python3 scripts/test-cache-diagnostics.py --gradle
