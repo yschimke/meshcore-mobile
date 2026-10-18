@@ -11,8 +11,7 @@
 #      paths means the task encoded an absolute path (or other machine-local
 #      state) into its inputs, so it can NEVER hit across machines or checkouts.
 #      These are the tasks dragging the cross-machine hit rate down; fix them
-#      (e.g. the org.gradle.android.cache-fix plugin, or making the offending
-#      input path-relative).
+#      (e.g. making the offending input path-relative after measuring it).
 #
 #   2. cacheability (the general per-task breakdown)
 #      Build cold (populate) then warm (consume) at one path, and list every
@@ -22,6 +21,7 @@
 # Usage:  scripts/cache-diagnostics.sh [gradle tasks...]
 # Default tasks mirror the ci.yml cache consumers.
 set -euo pipefail
+export LC_ALL=C
 
 TASKS=("$@")
 if [ ${#TASKS[@]} -eq 0 ]; then
@@ -59,18 +59,24 @@ printf 'sdk.dir=%s\n' "$SDK" > "$LONG/local.properties"
 # satisfy the other, so every task executes and logs its key).
 GH_S="$WORK/gh-s"
 GH_L="$WORK/gh-l"
+# Blank command-line properties also override tokens inherited through Gradle
+# project properties. Never send diagnostic builds to the shared remote cache.
+CACHE_ARGS=(-PBUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN=
+            -PBUILDFETCH_MESHCORE_GRADLE_REMOTE_CACHE_TOKEN=)
 
 # Clean build that prints each task's computed build-cache key.
 build_keys() { # <srcdir> <gradle-home> <label>
   local src="$1" gh="$2" label="$3" raw="$WORK/$3.raw" keys="$WORK/$3.keys"
   echo ">>> building at $src ($label)"
+  local started=$SECONDS
   if ! ( cd "$src" && ./gradlew --no-daemon --build-cache -g "$gh" \
-           -Dorg.gradle.caching.debug=true --console=plain "${TASKS[@]}" ) \
+           -Dorg.gradle.caching.debug=true --console=plain "${CACHE_ARGS[@]}" "${TASKS[@]}" ) \
          > "$raw" 2>&1; then
     echo "!!! build failed ($label); tail of log:"
     tail -n 60 "$raw"
     return 1
   fi
+  echo "$((SECONDS - started))" > "$WORK/$label.seconds"
   # "Build cache key for task ':m:t' is <hash>" -> "<task> <hash>"
   grep -E "Build cache key for task '" "$raw" \
     | sed -E "s/.*task '([^']+)' is ([0-9a-f]+).*/\1 \2/" \
@@ -97,8 +103,15 @@ rm -rf "$SHORT"
 mkdir -p "$SHORT"
 git -C "$REPO_ROOT" archive --format=tar HEAD | tar -x -C "$SHORT"
 printf 'sdk.dir=%s\n' "$SDK" > "$SHORT/local.properties"
+warm_status=0
+warm_started=$SECONDS
 ( cd "$SHORT" && ./gradlew --no-daemon --build-cache -g "$GH_S" \
-    --console=plain "${TASKS[@]}" ) > "$WORK/warm.raw" 2>&1 || true
+    --console=plain "${CACHE_ARGS[@]}" "${TASKS[@]}" ) > "$WORK/warm.raw" 2>&1 || warm_status=$?
+echo "$((SECONDS - warm_started))" > "$WORK/warm.seconds"
+if [ "$warm_status" -ne 0 ]; then
+  echo "!!! warm rebuild failed (exit $warm_status); tail of log:"
+  tail -n 60 "$WORK/warm.raw"
+fi
 # Task lines with no reuse suffix re-executed despite a warm cache.
 grep -E '^> Task :' "$WORK/warm.raw" \
   | grep -vE '(FROM-CACHE|UP-TO-DATE|NO-SOURCE|SKIPPED)$' \
@@ -113,6 +126,14 @@ total_keys=$(wc -l < "$WORK/short.keys" | tr -d ' ')
   echo "# Build-cache diagnostics"
   echo
   echo "Tasks probed: \`${TASKS[*]}\`"
+  echo
+  echo "Revision: $(git -C "$REPO_ROOT" rev-parse HEAD)"
+  echo "Versions (from the probed revision):"
+  grep -E '^(agp|kotlin|androidCacheFix) = ' "$SHORT/gradle/libs.versions.toml" || true
+  grep '^distributionUrl=' "$SHORT/gradle/wrapper/gradle-wrapper.properties" || true
+  echo
+  echo "Elapsed seconds: short=$(cat "$WORK/short.seconds"), long=$(cat "$WORK/long.seconds"), warm=$(cat "$WORK/warm.seconds")"
+  echo "Warm FROM-CACHE tasks: $(grep -cE '^> Task :.* FROM-CACHE$' "$WORK/warm.raw" || true)"
   echo
   echo "## 1. Relocatability (cross-machine hit killers)"
   echo
@@ -130,6 +151,12 @@ total_keys=$(wc -l < "$WORK/short.keys" | tr -d ' ')
   echo
   echo "## 2. Cacheability (re-ran despite a warm local cache)"
   echo
+  echo "Warm rebuild exit status: $warm_status"
+  echo
+  if [ "$warm_status" -ne 0 ]; then
+    echo "**Warm rebuild failed. Counts below are partial; unvisited tasks were not measured.**"
+    echo
+  fi
   if [ "$uncached_count" -gt 0 ]; then
     echo "$uncached_count tasks were not reused FROM-CACHE/UP-TO-DATE on a warm"
     echo "rebuild — non-cacheable or unstable-key:"
@@ -137,8 +164,10 @@ total_keys=$(wc -l < "$WORK/short.keys" | tr -d ' ')
     echo '```'
     cat "$WORK/uncached.txt"
     echo '```'
-  else
+  elif [ "$warm_status" -eq 0 ]; then
     echo "_All probed tasks were reused on the warm rebuild._"
+  else
+    echo "_No re-executed tasks observed before the build failed._"
   fi
   echo
   echo "Raw Gradle logs: \`$WORK/{short,long,warm}.raw\` (uploaded as an artifact in CI)."
@@ -149,5 +178,9 @@ if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
   cat "$WORK/summary.md" >> "$GITHUB_STEP_SUMMARY"
 fi
 
-# Non-zero exit if any relocatability offender was found, so the job flags it.
+# Build failures take precedence; relocation findings independently fail a
+# successful build. Always write the report before returning either failure.
+if [ "$warm_status" -ne 0 ]; then
+  exit "$warm_status"
+fi
 [ "$reloc_count" -eq 0 ]
