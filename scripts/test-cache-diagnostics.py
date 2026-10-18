@@ -46,10 +46,11 @@ exit "$WARM_STATUS"
 ''')
             if real_gradle:
                 # The configuration matrix installs this pinned wrapper first.
-                distribution = Path(__file__).resolve().parent.parent / '.gradle/cache-mode-test/wrapper/dists'
-                binaries = list(distribution.glob('*/**/bin/gradle'))
-                self.assertEqual(len(binaries), 1, 'Run test-cache-mode.py --gradle first')
-                wrapper.write_text('#!/usr/bin/env bash\nexec "' + str(binaries[0]) + '" "$@"\n')
+                installation = Path(__file__).resolve().parent.parent / '.gradle/cache-mode-test/gradle-home.txt'
+                self.assertTrue(installation.is_file(), 'Run test-cache-mode.py --gradle first')
+                binary = Path(installation.read_text()) / 'bin/gradle'
+                self.assertTrue(binary.is_file(), 'Recorded Gradle installation must exist')
+                wrapper.write_text('#!/usr/bin/env bash\nexec "' + str(binary) + '" "$@"\n')
                 (root / 'settings.gradle').write_text('rootProject.name = "cache-failure-fixture"\n')
                 (root / 'build.gradle').write_text('''@CacheableTask
 abstract class CacheProbe extends DefaultTask {

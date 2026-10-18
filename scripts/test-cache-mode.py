@@ -60,6 +60,7 @@ check(buildCache.local.isEnabled == {str(not push).lower()}) {{ "{name}: local" 
 val configuredRemote = buildCache.remote!!
 check(configuredRemote.isEnabled == {str(remote).lower()}) {{ "{name}: remote" }}
 check((configuredRemote.isEnabled && configuredRemote.isPush) == {str(push).lower()}) {{ "{name}: push" }}
+file("gradle-home.txt").writeText(gradle.gradleHomeDir!!.absolutePath)
 ''')
                 (path / 'gradle.properties').write_text(
                     '\n'.join(key + '=' + value for key, value in props.items()))
@@ -72,6 +73,9 @@ check((configuredRemote.isEnabled && configuredRemote.isPush) == {str(push).lowe
                     # All injected credentials are synthetic; still avoid logging
                     # Gradle output so this test cannot accidentally reveal one.
                     raise AssertionError(name + ': Gradle settings evaluation failed')
+                installation = ROOT / '.gradle/cache-mode-test/gradle-home.txt'
+                installation.parent.mkdir(parents=True, exist_ok=True)
+                installation.write_text((path / 'gradle-home.txt').read_text())
         if props and not use_gradle:
             print(name + ': deferred to --gradle (property-only case)')
         else:
