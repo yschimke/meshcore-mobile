@@ -31,12 +31,22 @@ jobs:
           java-version: '21.0.12+101.0.LTS'
 
       - name: Run cache diagnostics
-        run: scripts/cache-diagnostics.sh ${{ inputs.tasks }}
+        env:
+          PROBE_TASKS: ${{ inputs.tasks }}
+        shell: bash
+        run: |
+          read -r -a tasks <<< "$PROBE_TASKS"
+          scripts/cache-diagnostics.sh "${tasks[@]}"
 
       - name: Upload raw Gradle logs
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
           name: cache-diagnostics-logs
-          path: ${{ runner.temp }}/cache-diag/*.raw
+          path: |
+            ${{ runner.temp }}/cache-diag/*.raw
+            ${{ runner.temp }}/cache-diag/*.keys
+            ${{ runner.temp }}/cache-diag/*.txt
+            ${{ runner.temp }}/cache-diag/*.md
+            ${{ runner.temp }}/cache-diag/*.seconds
           if-no-files-found: ignore

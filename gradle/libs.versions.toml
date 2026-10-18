@@ -3,7 +3,6 @@ composeAdaptive = "1.3.0"
 # Stock M3 vocabulary pinned to the UID renderer; production keeps its branded M3 pin.
 uidPilotMaterial3 = "1.12.0-alpha03"
 agp = "9.4.1"
-androidCacheFix = "3.0.3"
 playPublisher = "4.1.1"
 android-compileSdk = "37"
 android-minSdk = "35"
@@ -172,7 +171,6 @@ aboutlibraries-compose-wear-m3 = { module = "com.mikepenz:aboutlibraries-compose
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
-androidCacheFix = { id = "org.gradle.android.cache-fix", version.ref = "androidCacheFix" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
