@@ -1,5 +1,47 @@
 # Changelog
 
+## [0.1.4](https://github.com/yschimke/meshcore-mobile/compare/v0.1.3...v0.1.4) (2026-10-19)
+
+
+### Features
+
+* add a Wasm MeshCore app with browser USB serial ([#515](https://github.com/yschimke/meshcore-mobile/issues/515)) ([37655bb](https://github.com/yschimke/meshcore-mobile/commit/37655bb8ba5084ed6fb1db7cb8e25ef13adb5c78))
+* design primary MeshCore routes with adaptive UID references ([#519](https://github.com/yschimke/meshcore-mobile/issues/519)) ([805795f](https://github.com/yschimke/meshcore-mobile/commit/805795fc10130d80d0043178bdd88ed24d8e6a46))
+* list and object components in the typed catalog ([#539](https://github.com/yschimke/meshcore-mobile/issues/539)) ([2d7cd8e](https://github.com/yschimke/meshcore-mobile/commit/2d7cd8e8c64f19dd887273a4621c23aad88011c4))
+* publish validated initial typed catalog generations ([#516](https://github.com/yschimke/meshcore-mobile/issues/516)) ([9eaa92f](https://github.com/yschimke/meshcore-mobile/commit/9eaa92fbe2f7ba5ce8c9ff5312cab69fa0ebe5a1))
+* **ui-builder:** publish the typed catalog and real Wasm renderer ([#557](https://github.com/yschimke/meshcore-mobile/issues/557)) ([8056304](https://github.com/yschimke/meshcore-mobile/commit/805630443988e07f17f058e2314ee93e7154cb55))
+* widen the typed catalog with MeshcoreTheme and DeviceSummaryCard ([#528](https://github.com/yschimke/meshcore-mobile/issues/528)) ([2e4abb1](https://github.com/yschimke/meshcore-mobile/commit/2e4abb1009d232ccf578a3aa47371a62ae8a729d))
+
+
+### Bug Fixes
+
+* **agents:** wire Figma and GitHub MCP permissions correctly ([#575](https://github.com/yschimke/meshcore-mobile/issues/575)) ([a4e2fc5](https://github.com/yschimke/meshcore-mobile/commit/a4e2fc532a2c8587821c4d8526888de4bcc53a9f))
+* **cache:** make cache selection and diagnostics trustworthy ([#578](https://github.com/yschimke/meshcore-mobile/issues/578)) ([0444705](https://github.com/yschimke/meshcore-mobile/commit/04447057f12f6234dd59b299d86e28aab36a0307))
+* **catalog:** export with the latest released CLI daemon ([#558](https://github.com/yschimke/meshcore-mobile/issues/558)) ([41bcf1d](https://github.com/yschimke/meshcore-mobile/commit/41bcf1db87c5631f3fdd76c6d80c30ddf7b52bca))
+* **catalog:** publish with 2.57.0 and detect automerged dependency changes ([#560](https://github.com/yschimke/meshcore-mobile/issues/560)) ([f85d415](https://github.com/yschimke/meshcore-mobile/commit/f85d41530dc291efc7827807230064c2796e2fdf))
+* **catalog:** publish with the font-audit fixed capture daemon ([#559](https://github.com/yschimke/meshcore-mobile/issues/559)) ([b866c6b](https://github.com/yschimke/meshcore-mobile/commit/b866c6b094d475170e8de72082cc2a5250d81c54))
+* **deps:** update aboutlibraries to v15.3.0 ([#565](https://github.com/yschimke/meshcore-mobile/issues/565)) ([0f50fdf](https://github.com/yschimke/meshcore-mobile/commit/0f50fdfb1d57a4a2fbeae3f528958ed515448450))
+* **deps:** update compose-ai-tools ([#517](https://github.com/yschimke/meshcore-mobile/issues/517)) ([b6231b6](https://github.com/yschimke/meshcore-mobile/commit/b6231b6a19f6278a2968dd1cc5573f139e4c00d9))
+* **deps:** update compose-ai-tools ([#530](https://github.com/yschimke/meshcore-mobile/issues/530)) ([a72b4a6](https://github.com/yschimke/meshcore-mobile/commit/a72b4a6b87cf2b4e1eba8cedb443ed8827242679))
+* **deps:** update compose-ai-tools ([#547](https://github.com/yschimke/meshcore-mobile/issues/547)) ([157ca50](https://github.com/yschimke/meshcore-mobile/commit/157ca507b14776d0bcafd811f773c5d7d327e7d6))
+* **deps:** update compose-ai-tools ([#553](https://github.com/yschimke/meshcore-mobile/issues/553)) ([30b2723](https://github.com/yschimke/meshcore-mobile/commit/30b272364d89c33d8e301f6228ef5f7f216f9112))
+* **deps:** update compose-ai-tools ([#556](https://github.com/yschimke/meshcore-mobile/issues/556)) ([d00bd40](https://github.com/yschimke/meshcore-mobile/commit/d00bd40e689aa2be933f034dd7043017a1262245))
+* **deps:** update compose-ai-tools ([#563](https://github.com/yschimke/meshcore-mobile/issues/563)) ([e90d91f](https://github.com/yschimke/meshcore-mobile/commit/e90d91ffa869c887205a1f13b39ae33b0a15ff89))
+* **deps:** update compose-ai-tools ([#566](https://github.com/yschimke/meshcore-mobile/issues/566)) ([1869b4b](https://github.com/yschimke/meshcore-mobile/commit/1869b4bc5dc0b53afed08f503ac31110870b8332))
+* **deps:** update compose-ai-tools ([#574](https://github.com/yschimke/meshcore-mobile/issues/574)) ([dfb55fa](https://github.com/yschimke/meshcore-mobile/commit/dfb55facf329a1af56a14113c200e181d63d4f9a))
+* **deps:** update compose-ai-tools ([#576](https://github.com/yschimke/meshcore-mobile/issues/576)) ([8a22cc7](https://github.com/yschimke/meshcore-mobile/commit/8a22cc7df287eccca7733be25b4e3716d8d3a5f4))
+* **deps:** update compose-ai-tools ([#580](https://github.com/yschimke/meshcore-mobile/issues/580)) ([afd4b31](https://github.com/yschimke/meshcore-mobile/commit/afd4b31596428a8a9fae7260502e3955313afb2d))
+* **deps:** update compose-ai-tools ([#581](https://github.com/yschimke/meshcore-mobile/issues/581)) ([3f6dab0](https://github.com/yschimke/meshcore-mobile/commit/3f6dab0aa5ff5f8dbc5648047061b84081e4a759))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-runtime to v3.120.0 ([#569](https://github.com/yschimke/meshcore-mobile/issues/569)) ([02f59e3](https://github.com/yschimke/meshcore-mobile/commit/02f59e3b34fe920112e66ca5a003ca9b24eb7930))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-runtime to v3.122.0 ([#583](https://github.com/yschimke/meshcore-mobile/issues/583)) ([bc71241](https://github.com/yschimke/meshcore-mobile/commit/bc712416a7d8b061dc8f93abe4398666ccd98d46))
+* **deps:** update grpc to v1.85.0 ([#567](https://github.com/yschimke/meshcore-mobile/issues/567)) ([71e86e0](https://github.com/yschimke/meshcore-mobile/commit/71e86e09513e1d7a874b55219dde25efdcfff3e9))
+* lock ws@8.20.1 for the Wasm build ([#532](https://github.com/yschimke/meshcore-mobile/issues/532)) ([21eb115](https://github.com/yschimke/meshcore-mobile/commit/21eb115cdf6829707ba14aca94f94b3cf6cde5cc))
+* open repeaters from the device list and drop echoed channel sends ([#524](https://github.com/yschimke/meshcore-mobile/issues/524)) ([85c56d2](https://github.com/yschimke/meshcore-mobile/commit/85c56d27afc9b8dfcb82578f3803125137bfbd96))
+* pin and verify reference capture fonts ([#579](https://github.com/yschimke/meshcore-mobile/issues/579)) ([677764b](https://github.com/yschimke/meshcore-mobile/commit/677764b7dfd4add273784e457332583521505e3a))
+* pin desktop build checkouts to immutable commits ([#518](https://github.com/yschimke/meshcore-mobile/issues/518)) ([8e0c184](https://github.com/yschimke/meshcore-mobile/commit/8e0c18491b3ba87bf0bb8a24e03e070c1c4c3b4e))
+* remove the three causes of MeshCore UID parity diffs ([#522](https://github.com/yschimke/meshcore-mobile/issues/522)) ([2bf1c9a](https://github.com/yschimke/meshcore-mobile/commit/2bf1c9a614cf5e64b7ed50387a8b48fe1cbccaf3))
+* upload release assets before immutable publication ([#521](https://github.com/yschimke/meshcore-mobile/issues/521)) ([1a2644c](https://github.com/yschimke/meshcore-mobile/commit/1a2644cd51d2f4d78a224b73864a46426463e27f))
+
 ## [0.1.3](https://github.com/yschimke/meshcore-mobile/compare/v0.1.2...v0.1.3) (2026-10-10)
 
 
