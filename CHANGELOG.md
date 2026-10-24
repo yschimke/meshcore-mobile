@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.5](https://github.com/yschimke/meshcore-mobile/compare/v0.1.4...v0.1.5) (2026-10-24)
+
+
+### Bug Fixes
+
+* **deps:** update androidx ([#589](https://github.com/yschimke/meshcore-mobile/issues/589)) ([b5d625c](https://github.com/yschimke/meshcore-mobile/commit/b5d625c7b84b1d1db1876bfe0465a9abaafdca3a))
+* **deps:** update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.12.0 ([#596](https://github.com/yschimke/meshcore-mobile/issues/596)) ([a707ca5](https://github.com/yschimke/meshcore-mobile/commit/a707ca539b9288bbd2c20f16676b8ac245c4f2a0))
+* **deps:** update grpc to v1.85.1 ([#592](https://github.com/yschimke/meshcore-mobile/issues/592)) ([6f82952](https://github.com/yschimke/meshcore-mobile/commit/6f82952792aeca7d30b8d86b73bf85043671c0a5))
+* **deps:** update remote compose ([#593](https://github.com/yschimke/meshcore-mobile/issues/593)) ([f88e637](https://github.com/yschimke/meshcore-mobile/commit/f88e6379fc04521237e18b4c721724dfede35ae3))
+
 ## [0.1.4](https://github.com/yschimke/meshcore-mobile/compare/v0.1.3...v0.1.4) (2026-10-19)
 
 
