@@ -40,7 +40,7 @@ material3 = "1.13.0-alpha02"
 # Keep this in lockstep with `wear-compose-remote` below: the two layers are compiled
 # against each other, and a mismatched pair fails preview render with NoSuchMethodError
 # inside the creation API. remote-material3 alpha13 declares remote-creation* alpha21.
-androidx-remote-compose = "1.0.0-alpha21"
+androidx-remote-compose = "1.0.0-alpha22"
 androidx-datastore = "1.3.0"
 androidx-navigation3 = "1.2.0"
 wire = "7.1.0"
@@ -67,7 +67,7 @@ protobufPlugin = "0.10.0"
 horologist = "0.8.3-alpha"
 wear-compose = "1.7.1"
 wear-compose-material3 = "1.7.1"
-wear-compose-remote = "1.0.0-alpha13" # remote-material3; bump with `androidx-remote-compose` above, whose alpha21 its POM declares
+wear-compose-remote = "1.0.0-alpha14" # remote-material3; bump with `androidx-remote-compose` above, whose alpha21 its POM declares
 playservices-wearable = "20.0.1"
 aboutlibraries = "15.3.0"
 ktfmt = "0.27.0"
