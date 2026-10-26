@@ -26,10 +26,19 @@ plugins {
   alias(libs.plugins.composePreview)
 }
 
+// Configuration is injected before Gradle starts in release CI. Firebase's
+// provider initializes Analytics and uncaught-crash reporting automatically.
+val firebaseEnabled = file("google-services.json").isFile
+
+if (firebaseEnabled) {
+  apply(plugin = "com.google.gms.google-services")
+  apply(plugin = "com.google.firebase.crashlytics")
+}
+
 play {
   track.set("internal")
   defaultToAppBundles.set(true)
-  releaseStatus.set(ReleaseStatus.DRAFT)
+  releaseStatus.set(ReleaseStatus.COMPLETED)
   // Skip API calls in CI runs that build but don't publish (e.g. PRs).
   enabled.set(System.getenv("ANDROID_PUBLISHER_CREDENTIALS") != null)
 }
@@ -83,6 +92,12 @@ android {
 }
 
 dependencies {
+  if (firebaseEnabled) {
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+  }
+
   implementation(projects.meshcoreGrpcService)
   implementation(libs.grpc.binder)
   implementation(libs.androidx.lifecycle.service)

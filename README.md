@@ -82,3 +82,6 @@ Local build: `./gradlew :web-app:wasmJsBrowserDistribution`. Serve `web-app/buil
 MeshCore connects directly to USB companion radios through Web Serial at 115200 baud, using the same framing as Android USB. Use desktop Chrome or Edge and choose a port when prompted. Firefox and Safari can load the UI but do not provide Web Serial. Raw TCP sockets, Android BLE permissions and persistent message storage are not available in the browser. Browser typography uses platform font families.
 
 Browser checks: `python -m pip install playwright==1.62.0`, `python -m playwright install chromium`, then `python scripts/test-wasm-browser.py web-app/build/dist/wasmJs/productionExecutable`. Set `CHROMIUM_PATH` to use an existing Chromium installation.
+
+Android internal-track releases, store listings, and Firebase setup are documented in
+[Play publishing](docs/play-publishing.md).

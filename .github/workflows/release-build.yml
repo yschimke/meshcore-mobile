@@ -8,12 +8,25 @@ on:
       tag:
         description: 'Tag to build (e.g. v0.1.1)'
         required: true
+        type: string
+      publish_play:
+        description: 'Publish bundle and listing to Play internal testing'
+        type: boolean
+        default: false
   workflow_call:
     inputs:
       tag:
         description: 'Tag to build (e.g. v0.1.1)'
         required: true
         type: string
+      publish_play:
+        description: 'Publish bundle and listing to Play internal testing'
+        type: boolean
+        default: true
+      publish_release:
+        description: 'Attach assets to the GitHub release'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -22,14 +35,15 @@ concurrency:
   group: release-${{ inputs.tag || github.ref_name }}
   cancel-in-progress: false
 
-# Required secrets (workflow no-ops them when absent so re-running an
-# old release without secrets still works):
+# Build-only dispatches work without secrets; publishing validates them first.
 #   SIGNING_KEYSTORE              base64 of the upload keystore (.jks)
 #   MESHCORE_KEYSTORE_PASSWORD    keystore password
 #   MESHCORE_KEY_ALIAS            key alias inside the keystore
 #   MESHCORE_KEY_PASSWORD         key password
 #   PLAY_SERVICE_ACCOUNT_JSON     service account JSON contents; presence
 #                                 also gates the Play upload step
+# GOOGLE_SERVICES_JSON: base64 of app/google-services.json (required for Play).
+# PLAY_PUBLISH_LISTING=false disables listing uploads; enabled by default.
 jobs:
   desktop:
     name: Desktop release assets
@@ -38,7 +52,7 @@ jobs:
       contents: write
     with:
       tag: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
-      publish: ${{ github.event_name == 'push' || github.event_name == 'workflow_call' }}
+      publish: ${{ github.event_name == 'push' || inputs.publish_release == true }}
 
   release:
     name: Build & publish release
@@ -51,6 +65,9 @@ jobs:
       TAG_NAME: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
       HAS_SIGNING_KEYSTORE: ${{ secrets.SIGNING_KEYSTORE != '' }}
       HAS_PLAY_CREDENTIALS: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON != '' }}
+      HAS_GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES_JSON != '' }}
+      PUBLISH_PLAY: ${{ format('{0}', inputs.publish_play) != 'false' }}
+      PUBLISH_LISTING: ${{ vars.PLAY_PUBLISH_LISTING != 'false' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -59,6 +76,37 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: 'true'
+
+      - name: Check publishing configuration
+        if: env.PUBLISH_PLAY == 'true'
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.MESHCORE_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.MESHCORE_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.MESHCORE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for flag in HAS_SIGNING_KEYSTORE HAS_PLAY_CREDENTIALS HAS_GOOGLE_SERVICES; do
+            if [[ "${!flag}" != "true" ]]; then
+              echo "::error::Missing publishing configuration: $flag (see docs/play-publishing.md)"
+              missing=1
+            fi
+          done
+          for key in KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            if [[ -z "${!key}" ]]; then
+              echo "::error::Missing signing configuration: $key"
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Configure Firebase Analytics and Crashlytics
+        if: env.HAS_GOOGLE_SERVICES == 'true'
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          set -euo pipefail
+          printf '%s' "$GOOGLE_SERVICES_JSON" | base64 -d > app/google-services.json
 
       - name: Decode signing keystore
         if: env.HAS_SIGNING_KEYSTORE == 'true'
@@ -78,13 +126,36 @@ jobs:
         run: ./gradlew :app:assembleRelease :app:bundleRelease --stacktrace
 
       - name: Publish to Play (internal track)
-        if: env.HAS_PLAY_CREDENTIALS == 'true' && env.HAS_SIGNING_KEYSTORE == 'true'
+        if: env.PUBLISH_PLAY == 'true'
         env:
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
           MESHCORE_KEYSTORE_PASSWORD: ${{ secrets.MESHCORE_KEYSTORE_PASSWORD }}
           MESHCORE_KEY_ALIAS: ${{ secrets.MESHCORE_KEY_ALIAS }}
           MESHCORE_KEY_PASSWORD: ${{ secrets.MESHCORE_KEY_PASSWORD }}
-        run: ./gradlew :app:publishBundle --stacktrace
+        run: ./gradlew :app:publishReleaseBundle --stacktrace
+
+      - name: Publish store listing to Play
+        if: env.PUBLISH_PLAY == 'true' && env.PUBLISH_LISTING == 'true'
+        env:
+          ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          MESHCORE_KEYSTORE_PASSWORD: ${{ secrets.MESHCORE_KEYSTORE_PASSWORD }}
+          MESHCORE_KEY_ALIAS: ${{ secrets.MESHCORE_KEY_ALIAS }}
+          MESHCORE_KEY_PASSWORD: ${{ secrets.MESHCORE_KEY_PASSWORD }}
+        run: ./gradlew :app:publishReleaseListing --stacktrace
+
+      - name: Publishing summary
+        if: always()
+        run: |
+          {
+            echo "## Android publishing"
+            echo "- Tag: $TAG_NAME"
+            echo "- Internal rollout requested: $PUBLISH_PLAY"
+            echo "- Listing enabled: $PUBLISH_LISTING"
+            echo "- Signing configured: $HAS_SIGNING_KEYSTORE"
+            echo "- Play credentials configured: $HAS_PLAY_CREDENTIALS"
+            echo "- Firebase configured: $HAS_GOOGLE_SERVICES"
+            echo "- Job status: ${{ job.status }}"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Stage release assets
         id: stage
@@ -106,7 +177,7 @@ jobs:
           echo "version=${version}" >> "$GITHUB_OUTPUT"
 
       - name: Attach assets to GitHub release
-        if: (github.event_name == 'push' || github.event_name == 'workflow_call') && env.HAS_SIGNING_KEYSTORE == 'true'
+        if: (github.event_name == 'push' || inputs.publish_release == true) && env.HAS_SIGNING_KEYSTORE == 'true'
         uses: softprops/action-gh-release@v3.0.3
         with:
           tag_name: ${{ env.TAG_NAME }}
@@ -127,7 +198,7 @@ jobs:
   publish:
     name: Publish completed release
     needs: [desktop, release]
-    if: github.event_name == 'push' || github.event_name == 'workflow_call'
+    if: github.event_name == 'push' || inputs.publish_release == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
