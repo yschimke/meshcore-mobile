@@ -62,6 +62,7 @@ dependencies {
   implementation(libs.androidx.remote.creation)
   implementation(libs.androidx.remote.creation.compose)
   implementation(libs.androidx.remote.tooling.preview)
+  implementation(libs.rc.widget.wear)
   // Wear Remote Compose Material 3 components
   implementation(libs.wear.compose.remote.material3)
 

@@ -9,11 +9,11 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
-import androidx.compose.remote.creation.compose.capture.captureSingleRemoteDocument
-import androidx.compose.remote.creation.profile.RcPlatformProfiles
 import androidx.compose.runtime.Composable
+import ee.schimke.composeai.rcwidget.launcher.RcLauncherWidgets
+import ee.schimke.composeai.rcwidget.launcher.RcWidgetSizing
+import ee.schimke.composeai.rcwidget.launcher.captureLauncherWidget
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState
 import ee.schimke.meshcore.core.manager.MeshCoreManager
@@ -213,19 +213,15 @@ object WidgetStateBridge {
     val wm = AppWidgetManager.getInstance(context)
 
     suspend fun setPreview(cls: Class<*>, content: @Composable () -> Unit) {
-      val bytes =
+      // The picker shows the provider's default 4 × 2 slot (widget_battery_info.xml).
+      val capture =
         withContext(Dispatchers.Main) {
-          captureSingleRemoteDocument(
-            context = context,
-            profile = RcPlatformProfiles.WIDGETS_V6,
-            content = content,
-          )
+          captureLauncherWidget(context, RcWidgetSizing.cells(4, 2), content = content)
         }
-      val di = RemoteViews.DrawInstructions.Builder(listOf(bytes.bytes)).build()
       wm.setWidgetPreview(
         ComponentName(context, cls),
         AppWidgetProviderInfo.WIDGET_CATEGORY_HOME_SCREEN,
-        RemoteViews(di),
+        RcLauncherWidgets.remoteViews(capture.bytes),
       )
     }
 

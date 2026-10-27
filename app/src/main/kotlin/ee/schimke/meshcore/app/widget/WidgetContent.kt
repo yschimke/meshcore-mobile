@@ -11,6 +11,7 @@ import androidx.compose.material.icons.rounded.BatteryFull
 import androidx.compose.material.icons.rounded.Fingerprint
 import androidx.compose.material.icons.rounded.Storage
 import androidx.compose.material.icons.rounded.Wifi
+import androidx.compose.remote.creation.compose.action.Action
 import androidx.compose.remote.creation.compose.capture.toRemoteImageVector
 import androidx.compose.remote.creation.compose.layout.RemoteArrangement
 import androidx.compose.remote.creation.compose.layout.RemoteBox
@@ -21,6 +22,7 @@ import androidx.compose.remote.creation.compose.layout.RemoteRow
 import androidx.compose.remote.creation.compose.layout.RemoteText
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
 import androidx.compose.remote.creation.compose.modifier.background
+import androidx.compose.remote.creation.compose.modifier.clickable
 import androidx.compose.remote.creation.compose.modifier.drawWithContent
 import androidx.compose.remote.creation.compose.modifier.fillMaxSize
 import androidx.compose.remote.creation.compose.modifier.fillMaxWidth
@@ -139,8 +141,9 @@ private fun RemoteDrawScope.drawSolidColorShape(
   }
 }
 
-fun cardModifier() =
+fun cardModifier(onTap: Action? = null) =
   RemoteModifier.fillMaxSize()
+    .let { if (onTap != null) it.clickable(onTap) else it }
     .drawWithContent {
       drawShapedBackground(
         shape = RemoteRoundedCornerShape(16.rdp),
@@ -168,9 +171,10 @@ fun DeviceInfoWidgetContent(
   batteryWarn: Boolean = false,
   storageLine: String?,
   staleLabel: String? = null,
+  onTap: Action? = null,
 ) {
   RemoteColumn(
-    modifier = cardModifier(),
+    modifier = cardModifier(onTap),
     verticalArrangement = RemoteArrangement.spacedBy(10.rdp),
   ) {
     RemoteText(deviceName.rs, color = OnSurface, fontSize = 20.rsp)

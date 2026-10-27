@@ -36,5 +36,25 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!--
+          The status widget (StatusWidgetService). Bound by the system's widget host only: it
+          requires BIND_TILE_PROVIDER, which Wear OS holds when it binds a widget or tile provider.
+          The tile-provider action lets older watch faces see the same provider.
+        -->
+        <service
+            android:name=".widget.StatusWidgetService"
+            android:exported="true"
+            android:enabled="@bool/wear_widget_enabled"
+            android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER"
+            android:label="MeshCore status">
+            <intent-filter>
+                <action android:name="androidx.glance.wear.action.BIND_WIDGET_PROVIDER" />
+                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+            </intent-filter>
+            <meta-data
+                android:name="androidx.glance.wear.widget.provider"
+                android:resource="@xml/wear_status_widget_provider" />
+        </service>
     </application>
 </manifest>
