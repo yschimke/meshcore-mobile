@@ -1,0 +1,102 @@
+{
+  "captures": {
+    "phone-screenshots/01-saved-devices.png": {
+      "capturedAt": "2026-10-27T20:41:45.015590+00:00",
+      "device": "sdk_gphone64_x86_64",
+      "dimensions": [
+        1008,
+        1792
+      ],
+      "package": "ee.schimke.meshed",
+      "scenario": "Running Saved devices screen with anonymous sample cached radio; no hardware connected.",
+      "sdk": "35",
+      "sha256": "5cc78ae1fbb00e960432fda7ceaaf0090b3008ccf032ad33ce22898a38c23acd",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    },
+    "phone-screenshots/02-cached-radio.png": {
+      "capturedAt": "2026-10-27T20:42:02.360502+00:00",
+      "device": "sdk_gphone64_x86_64",
+      "dimensions": [
+        1008,
+        1792
+      ],
+      "package": "ee.schimke.meshed",
+      "scenario": "Running cached radio details with anonymous sample data and visible offline warning; no hardware connected.",
+      "sdk": "35",
+      "sha256": "39e9d35edb26721f574da02ded3250a0019721446f7b49262a230398f4057736",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    },
+    "seven-inch-screenshots/01-saved-devices.png": {
+      "capturedAt": "2026-10-27T20:42:17.091913+00:00",
+      "device": "sdk_gphone64_x86_64",
+      "dimensions": [
+        1000,
+        1600
+      ],
+      "package": "ee.schimke.meshed",
+      "scenario": "Running Saved devices screen with anonymous sample cached radio; no hardware connected.",
+      "sdk": "35",
+      "sha256": "52a7f93f0e348945f4330f55c409c1b3efd1303cca45bf0d5bdc7a0f9b195774",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    },
+    "seven-inch-screenshots/02-cached-radio.png": {
+      "capturedAt": "2026-10-27T20:42:31.214019+00:00",
+      "device": "sdk_gphone64_x86_64",
+      "dimensions": [
+        1000,
+        1600
+      ],
+      "package": "ee.schimke.meshed",
+      "scenario": "Running cached radio details with anonymous sample data and visible offline warning; no hardware connected.",
+      "sdk": "35",
+      "sha256": "aa0327c9f01946ae1cd58e36791015ba85a13b91afcb5b38e9573f8183c95e17",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    },
+    "ten-inch-screenshots/01-saved-devices.png": {
+      "capturedAt": "2026-10-27T19:40:36.608226+00:00",
+      "device": "sdk_gphone64_x86_64",
+      "dimensions": [
+        1120,
+        1792
+      ],
+      "package": "ee.schimke.meshed",
+      "scenario": "Running Saved devices screen with anonymous sample cached radio; no hardware connected.",
+      "sdk": "35",
+      "sha256": "1eec0c1a6caddb54866fc820adc02cf2e864226e5a375db2b08e03af571d897a",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    },
+    "ten-inch-screenshots/02-cached-radio.png": {
+      "capturedAt": "2026-10-27T19:40:59.057338+00:00",
+      "device": "sdk_gphone64_x86_64",
+      "dimensions": [
+        1120,
+        1792
+      ],
+      "package": "ee.schimke.meshed",
+      "scenario": "Running cached radio details with labeled anonymous sample data and visible offline warning; no hardware connected.",
+      "sdk": "35",
+      "sha256": "68428d5a75ce5320f3a8077b2b6f725d02360acca34d675afe4cd0798ec73743",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    },
+    "wear-screenshots/01-phone-unreachable.png": {
+      "capturedAt": "2026-10-27T20:47:53.595804+00:00",
+      "device": "sdk_gwear_x86_64",
+      "dimensions": [
+        480,
+        480
+      ],
+      "package": "ee.schimke.meshcore.wear",
+      "scenario": "Running Meshed Up Wear without a paired phone: actual Phone not reachable state; no radio or phone connection simulated.",
+      "sdk": "36",
+      "sha256": "c9b0c507755d6e677aad95bd52e4f56d7615d4cc7f4c14f54547696d9e850c8e",
+      "source": "adb-screencap",
+      "sourceRevision": "ff07f448a759b823cd90ae60d93a1c3f52a4ff41"
+    }
+  }
+}
