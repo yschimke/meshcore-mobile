@@ -43,6 +43,9 @@ config resolve neither the Firebase plugins nor SDKs. A configured build
 uses Firebase's startup provider for Analytics and uncaught-crash reporting;
 Crashlytics' Gradle plugin handles mapping upload for minified releases.
 No custom event payloads or nonfatal exception forwarding are added.
+Advertising-ID and ad-attribution permissions are removed, matching Terrazzo.
+Firebase installation/app-instance identifiers remain and must still be
+disclosed under Device or other IDs in Data safety.
 
 ## Firebase and Console setup
 
