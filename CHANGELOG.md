@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.1.5](https://github.com/yschimke/meshcore-mobile/compare/v0.1.4...v0.1.5) (2026-10-27)
+
+
+### Features
+
+* automate internal Play releases with Firebase telemetry ([#605](https://github.com/yschimke/meshcore-mobile/issues/605)) ([78eb621](https://github.com/yschimke/meshcore-mobile/commit/78eb6212cb42629b2d949fa317aa51f8b7f836c4))
+* publish widgets with rc-players' rc-widget libraries ([#610](https://github.com/yschimke/meshcore-mobile/issues/610)) ([76530cc](https://github.com/yschimke/meshcore-mobile/commit/76530cc30d09ac10a241f7e7ebd48b53c0ba6f61))
+
+
+### Bug Fixes
+
+* **deps:** update androidx ([#589](https://github.com/yschimke/meshcore-mobile/issues/589)) ([b5d625c](https://github.com/yschimke/meshcore-mobile/commit/b5d625c7b84b1d1db1876bfe0465a9abaafdca3a))
+* **deps:** update compose-ai-tools ([#595](https://github.com/yschimke/meshcore-mobile/issues/595)) ([371e2ac](https://github.com/yschimke/meshcore-mobile/commit/371e2aca80f2e524b9c0095987e59d8e5793ff52))
+* **deps:** update compose-ai-tools ([#599](https://github.com/yschimke/meshcore-mobile/issues/599)) ([f2d3fb1](https://github.com/yschimke/meshcore-mobile/commit/f2d3fb19222d431e51a7925bbe0cd1380966da48))
+* **deps:** update compose-ai-tools ([#600](https://github.com/yschimke/meshcore-mobile/issues/600)) ([e866ee7](https://github.com/yschimke/meshcore-mobile/commit/e866ee7f1d8d0433c92278a9ebc4aff0c55e0713))
+* **deps:** update compose-ai-tools ([#602](https://github.com/yschimke/meshcore-mobile/issues/602)) ([2f64a0d](https://github.com/yschimke/meshcore-mobile/commit/2f64a0d50a3875b42318b551e7911c79d8860646))
+* **deps:** update compose-ai-tools ([#606](https://github.com/yschimke/meshcore-mobile/issues/606)) ([4b1fff0](https://github.com/yschimke/meshcore-mobile/commit/4b1fff0a5a0baeff7916cfd69510b9c6222632f8))
+* **deps:** update compose-ai-tools to v3.25.0 ([#598](https://github.com/yschimke/meshcore-mobile/issues/598)) ([829aa29](https://github.com/yschimke/meshcore-mobile/commit/829aa2905ef5e04f68914d2d9dac18df30919902))
+* **deps:** update dependency ee.schimke.composeai:data-remotecompose-connector to v3.26.0 ([#607](https://github.com/yschimke/meshcore-mobile/issues/607)) ([ce31f41](https://github.com/yschimke/meshcore-mobile/commit/ce31f416ef385686c1ec28ac90321814e14e02cf))
+* **deps:** update dependency ee.schimke.composeai:third-party-rc-embedded-player to v2.20.1 ([#611](https://github.com/yschimke/meshcore-mobile/issues/611)) ([77522f0](https://github.com/yschimke/meshcore-mobile/commit/77522f070252559e9c9f4b21c87736810e422241))
+* **deps:** update dependency org.jetbrains.androidx.navigation3:navigation3-ui to v1.2.0 ([#591](https://github.com/yschimke/meshcore-mobile/issues/591)) ([307521a](https://github.com/yschimke/meshcore-mobile/commit/307521ab36abb66c018b59a10cb853581ee5c047))
+* **deps:** update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.12.0 ([#596](https://github.com/yschimke/meshcore-mobile/issues/596)) ([a707ca5](https://github.com/yschimke/meshcore-mobile/commit/a707ca539b9288bbd2c20f16676b8ac245c4f2a0))
+* **deps:** update grpc to v1.85.1 ([#592](https://github.com/yschimke/meshcore-mobile/issues/592)) ([6f82952](https://github.com/yschimke/meshcore-mobile/commit/6f82952792aeca7d30b8d86b73bf85043671c0a5))
+* **deps:** update metro to v1.5.0 ([#604](https://github.com/yschimke/meshcore-mobile/issues/604)) ([e176319](https://github.com/yschimke/meshcore-mobile/commit/e176319b4af6daf6cb40562bc24ec3318f372c33))
+* **deps:** update remote compose ([#593](https://github.com/yschimke/meshcore-mobile/issues/593)) ([f88e637](https://github.com/yschimke/meshcore-mobile/commit/f88e6379fc04521237e18b4c721724dfede35ae3))
+* **deps:** update wire to v7.1.2 ([#613](https://github.com/yschimke/meshcore-mobile/issues/613)) ([a743d7e](https://github.com/yschimke/meshcore-mobile/commit/a743d7ebaddc56724d96b7ea294f2188422c41a6))
+* **play:** replace preview screenshots with real app captures ([#612](https://github.com/yschimke/meshcore-mobile/issues/612)) ([f1b8fe9](https://github.com/yschimke/meshcore-mobile/commit/f1b8fe95be9aec58dffa7ed41e093cb22d1fdafc))
+* remove advertising permissions from Firebase builds ([#608](https://github.com/yschimke/meshcore-mobile/issues/608)) ([ff07f44](https://github.com/yschimke/meshcore-mobile/commit/ff07f448a759b823cd90ae60d93a1c3f52a4ff41))
+
 ## [0.1.4](https://github.com/yschimke/meshcore-mobile/compare/v0.1.3...v0.1.4) (2026-10-19)
 
 
