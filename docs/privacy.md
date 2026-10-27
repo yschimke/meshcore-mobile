@@ -1,57 +1,53 @@
 ---
-title: MeshCore — Privacy Policy
+title: Meshed Up — Privacy Policy
 permalink: /privacy/
 ---
 
-# MeshCore — Privacy Policy
+# Meshed Up — Privacy Policy
 
-_Last updated: 2026-04-28_
+_Last updated: 2026-10-26_
 
-MeshCore for Android (`ee.schimke.meshed`) is built and maintained by
-Yuri Schimke (`yuri@schimke.ee`). Source code:
-<https://github.com/yschimke/meshcore-mobile>.
+Meshed Up for Android (`ee.schimke.meshed`) is built and maintained by Yuri Schimke
+(`yuri@schimke.ee`). Source: <https://github.com/yschimke/meshcore-mobile>.
 
-## Data we collect
+## App data
 
-**The developer collects nothing.** MeshCore is a peer-to-peer mesh
-networking app: communication happens directly with mesh nodes you
-connect to (via Bluetooth, USB, or TCP). No traffic is routed through
-servers operated by us, and no telemetry is sent to us or to any third
-party.
+Meshed Up connects your Android phone to MeshCore mesh-networking radios.
+Pair a node over Bluetooth, USB, or TCP to exchange messages with other
+nodes on the mesh. An optional Wear OS companion mirrors recent activity
+to a paired watch.
 
-## How MeshCore communicates
+Settings and cached app state are stored on your device. Data needed for
+features you choose is exchanged with the devices, feeds, or services you
+connect to. We do not add message contents, contacts, audio files, file
+contents, or account credentials to analytics events or crash reports.
 
-- **Mesh nodes (Bluetooth / USB / TCP).** The app talks to the mesh
-  hardware you pair with. Messages, contacts, and node configuration
-  stay between your device and the nodes you choose to connect to.
-- **Wear OS companion (optional).** If you use the Wear app on a
-  paired watch, data is exchanged between your phone and watch via
-  the standard Google Wear Data Layer; it does not transit any
-  developer-operated server.
-- **No third-party services.** The app does not contact any servers
-  operated by the developer or by analytics, advertising, or
-  crash-reporting providers.
+## Crash reports and analytics
+
+Android Google Play builds configured with Firebase use Google Firebase
+Analytics and Crashlytics. These services send app interactions, installation
+identifiers, app and device information, and diagnostic information such as
+crash stack traces to Google to help us understand usage and fix failures.
+Analytics events can also appear as breadcrumbs in crash reports. We do not
+include advertising SDKs. Source builds without Firebase configuration do
+not include these SDKs. This integration applies to the Android phone app;
+it does not add Firebase to desktop, browser, or Wear OS builds.
+
+See [Google's Firebase privacy information](https://firebase.google.com/support/privacy)
+for details about how Firebase handles data and retention.
 
 ## Permissions
 
-The app requests the Android permissions it needs for the features
-listed above (Bluetooth, location for BLE scanning per Android
-requirements, USB host, network, etc.). None of these permissions are
-used to send data to the developer.
+Android permissions support the features you use, including Bluetooth,
+USB access, notifications, and background device operations. Those
+permissions are not used to attach your content to analytics or crash reports.
 
 ## Children
 
-The app is not directed at children under 13 and does not knowingly
-collect data from them.
+The app is not directed at children under 13.
 
-## Contact
+## Contact and changes
 
-- Questions: `yuri@schimke.ee`
-- Issues: <https://github.com/yschimke/meshcore-mobile/issues>
-
-## Changes
-
-This policy may be updated from time to time. Material changes will be
-reflected by an updated "Last updated" date above and will be visible
-in the file's
+For privacy questions contact `yuri@schimke.ee`, or report an issue at
+<https://github.com/yschimke/meshcore-mobile/issues>. Policy changes are recorded in
 [git history](https://github.com/yschimke/meshcore-mobile/commits/main/docs/privacy.md).

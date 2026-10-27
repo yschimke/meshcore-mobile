@@ -1,3 +1,19 @@
+// Match the app module's root-relative check, including when Gradle starts elsewhere.
+// Builds without Firebase configuration resolve neither its tooling nor SDKs.
+buildscript {
+  if (rootDir.resolve("app/google-services.json").isFile) {
+    repositories {
+      google()
+      mavenCentral()
+      gradlePluginPortal()
+    }
+    dependencies {
+      classpath("com.google.gms:google-services:4.5.0")
+      classpath("com.google.firebase:firebase-crashlytics-gradle:3.0.8")
+    }
+  }
+}
+
 plugins {
     // this is necessary to avoid the plugins to be loaded multiple times
     // in each subproject's classloader

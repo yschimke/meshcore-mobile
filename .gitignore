@@ -57,3 +57,7 @@ app/project.info
 /_wasm-test/
 
 __pycache__/
+
+# Local Firebase app configuration (injected from a secret in release CI).
+google-services.json
+firebase-debug.log*
