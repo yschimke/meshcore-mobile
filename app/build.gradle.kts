@@ -133,6 +133,7 @@ dependencies {
   implementation(libs.androidx.remote.creation)
   implementation(libs.androidx.remote.creation.compose)
   implementation(libs.androidx.remote.tooling.preview)
+  implementation(libs.rc.widget.launcher)
   implementation(libs.androidx.work.runtime)
   implementation(libs.wear.compose.remote.material3)
   implementation(libs.androidx.appfunctions)

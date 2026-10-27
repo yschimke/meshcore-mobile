@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Glance Wear widget provider for StatusWidgetService: the companion radio's status, read from the
+  phone over the Data Layer when the widget renders. Parsed by
+  androidx.glance.wear.core.WearWidgetProviderInfoXmlParser.
+-->
+<wearwidget-provider
+    label="MeshCore status"
+    description="Your radio's connection, battery and contacts."
+    preferredType="@integer/glance_wear_container_type_large"
+    previewImage="@drawable/ic_launcher_foreground">
+    <container
+        type="@integer/glance_wear_container_type_large"
+        previewImage="@drawable/ic_launcher_foreground" />
+</wearwidget-provider>

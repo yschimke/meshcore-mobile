@@ -7,18 +7,21 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.Bundle
 import android.widget.RemoteViews
-import androidx.compose.remote.creation.compose.capture.captureSingleRemoteDocument
-import androidx.compose.remote.creation.profile.RcPlatformProfiles
+import androidx.annotation.RequiresApi
+import ee.schimke.composeai.rcwidget.creation.RcWidgetCaptureSize
+import ee.schimke.composeai.rcwidget.creation.rcWidgetHostAction
+import ee.schimke.composeai.rcwidget.launcher.RcLauncherWidgets
+import ee.schimke.composeai.rcwidget.launcher.RcWidgetSizing
+import ee.schimke.composeai.rcwidget.launcher.captureLauncherWidget
 import ee.schimke.meshcore.app.di.appGraph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
-private fun drawInstructions(bytes: ByteArray): RemoteViews.DrawInstructions =
-  RemoteViews.DrawInstructions.Builder(listOf(bytes)).build()
 
 private const val STALE_THRESHOLD_MS = 60 * 60 * 1000L // 1 hour
 
@@ -76,37 +79,77 @@ private suspend fun currentSnapshot(context: Context): WidgetSnapshot {
 
 // --- Device Info Widget -----------------------------------------------------
 
+/** The payload of a tap on the card: open the app. */
+private const val OPEN_APP = "open"
+
+/**
+ * The device info widget for [snap] at [size], published as a launcher widget: captured at the
+ * widget's own slot for this launcher ([RcLauncherWidgets.profileFor]), a tap on the card opening
+ * the app.
+ */
+@RequiresApi(RcLauncherWidgets.MIN_HOST_API)
+internal suspend fun deviceInfoRemoteViews(
+  context: Context,
+  widgetId: Int,
+  size: RcWidgetCaptureSize,
+  snap: WidgetSnapshot,
+): RemoteViews {
+  val capture =
+    withContext(Dispatchers.Main) {
+      captureLauncherWidget(context, size) {
+        val pct = snap.batteryPercent
+        DeviceInfoWidgetContent(
+          deviceName = snap.deviceName ?: "No device",
+          pubkeyPrefix = snap.pubkeyPrefix,
+          radioInfo = snap.radioLine,
+          batteryLine =
+            pct?.let {
+              val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
+              "$it%$mv"
+            },
+          batteryProgress = pct?.let { it / 100f },
+          batteryWarn = pct != null && pct < 30,
+          storageLine = snap.storageLine,
+          staleLabel = staleLabel(snap),
+          onTap = rcWidgetHostAction(name = OPEN_APP, payload = OPEN_APP),
+        )
+      }
+    }
+  val launch = context.packageManager.getLaunchIntentForPackage(context.packageName)
+  val taps =
+    if (launch == null) emptyMap()
+    else
+      capture.actions.mapValues { (actionId, _) ->
+        RcLauncherWidgets.actionActivity(context, Intent(launch), widgetId, actionId)
+      }
+  return RcLauncherWidgets.remoteViews(capture.bytes, taps)
+}
+
 class DeviceInfoWidgetReceiver : AppWidgetProvider() {
   override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
+    update(context, wm, widgetIds)
+  }
+
+  /** Resized: its breakpoints and fill follow the new slot, so capture it again. */
+  override fun onAppWidgetOptionsChanged(
+    context: Context,
+    wm: AppWidgetManager,
+    widgetId: Int,
+    newOptions: Bundle,
+  ) {
+    update(context, wm, intArrayOf(widgetId))
+  }
+
+  private fun update(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
+    // The receiver is only enabled where the launcher plays Remote Compose (values-v37).
+    if (Build.VERSION.SDK_INT < RcLauncherWidgets.MIN_HOST_API) return
     goAsync {
       val snap = currentSnapshot(context)
       coroutineScope {
         widgetIds.forEach { id ->
           launch {
-            val bytes =
-              withContext(Dispatchers.Main) {
-                captureSingleRemoteDocument(
-                  context = context,
-                  profile = RcPlatformProfiles.WIDGETS_V6,
-                ) {
-                  val pct = snap.batteryPercent
-                  DeviceInfoWidgetContent(
-                    deviceName = snap.deviceName ?: "No device",
-                    pubkeyPrefix = snap.pubkeyPrefix,
-                    radioInfo = snap.radioLine,
-                    batteryLine =
-                      pct?.let {
-                        val mv = snap.batteryMv?.let { " · $it mV" } ?: ""
-                        "$it%$mv"
-                      },
-                    batteryProgress = pct?.let { it / 100f },
-                    batteryWarn = pct != null && pct < 30,
-                    storageLine = snap.storageLine,
-                    staleLabel = staleLabel(snap),
-                  )
-                }
-              }
-            wm.updateAppWidget(id, RemoteViews(drawInstructions(bytes.bytes)))
+            val size = RcWidgetSizing.slotOf(wm, id)
+            wm.updateAppWidget(id, deviceInfoRemoteViews(context, id, size, snap))
           }
         }
       }

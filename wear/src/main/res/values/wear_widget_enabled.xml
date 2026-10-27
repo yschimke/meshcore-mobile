@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Wear widgets are hosted from Wear OS 7 (API 37); see values-v37. -->
+    <bool name="wear_widget_enabled">false</bool>
+</resources>

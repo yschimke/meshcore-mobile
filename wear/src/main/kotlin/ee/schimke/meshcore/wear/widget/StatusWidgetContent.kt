@@ -3,6 +3,7 @@
 package ee.schimke.meshcore.wear.widget
 
 import android.annotation.SuppressLint
+import androidx.compose.remote.creation.compose.action.Action
 import androidx.compose.remote.creation.compose.layout.RemoteArrangement
 import androidx.compose.remote.creation.compose.layout.RemoteBox
 import androidx.compose.remote.creation.compose.layout.RemoteColumn
@@ -11,6 +12,7 @@ import androidx.compose.remote.creation.compose.layout.RemoteRow
 import androidx.compose.remote.creation.compose.layout.RemoteText
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
 import androidx.compose.remote.creation.compose.modifier.background
+import androidx.compose.remote.creation.compose.modifier.clickable
 import androidx.compose.remote.creation.compose.modifier.fillMaxSize
 import androidx.compose.remote.creation.compose.modifier.fillMaxWidth
 import androidx.compose.remote.creation.compose.modifier.height
@@ -22,8 +24,11 @@ import androidx.compose.remote.creation.compose.state.rsp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
+/** The widget's surface: the container fill [StatusWidget] frames the content in. */
+internal val StatusWidgetSurface = Color(0xFF1A211F)
+
 // Dark theme colors (same as phone widget and MeshcoreWearTheme)
-private val SurfaceContainer = Color(0xFF1A211F).rc
+private val SurfaceContainer = StatusWidgetSurface.rc
 private val OnSurface = Color(0xFFDDE4E1).rc
 private val OnSurfaceVariant = Color(0xFFBEC9C5).rc
 private val Primary = Color(0xFF53DBC9).rc
@@ -31,8 +36,14 @@ private val Tertiary = Color(0xFFE0C38C).rc
 private val SurfaceContainerHighest = Color(0xFF2F3634).rc
 private val ErrorRed = Color(0xFFFFB4AB).rc
 
-private fun widgetModifier() =
-  RemoteModifier.fillMaxSize().background(SurfaceContainer).padding(12.rdp)
+/**
+ * The content's own surface and padding, or none when [framed]: a widget's container draws the fill
+ * and insets the content by the watch's own host padding.
+ */
+private fun widgetModifier(framed: Boolean, onTap: Action?) =
+  RemoteModifier.fillMaxSize()
+    .let { if (onTap != null) it.clickable(onTap) else it }
+    .let { if (framed) it else it.background(SurfaceContainer).padding(12.rdp) }
 
 /**
  * Remote Compose content for the Wear OS status widget. Non-scrollable, single page. Mirrors the
@@ -45,9 +56,11 @@ fun StatusWidgetContent(
   connected: Boolean,
   batteryPercent: Int?,
   contactCount: Int,
+  framed: Boolean = false,
+  onTap: Action? = null,
 ) {
   RemoteColumn(
-    modifier = widgetModifier(),
+    modifier = widgetModifier(framed, onTap),
     verticalArrangement = RemoteArrangement.spacedBy(6.rdp),
   ) {
     // Connection indicator + device name
