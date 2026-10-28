@@ -221,11 +221,13 @@ fun DeviceBody(
 
       lastMessage?.let { LastMessageBanner(it, onClick = { onLastMessageClick(it) }) }
 
-      // Split contacts by type
-      val chatContacts = contacts.filter { it.type == ContactType.CHAT }
-      val rooms = contacts.filter { it.type == ContactType.ROOM }
-      val repeaters = contacts.filter { it.type == ContactType.REPEATER }
-      val sensors = contacts.filter { it.type == ContactType.SENSOR }
+      // Split contacts by type. Remembered on the list: battery/radio updates recompose this body
+      // without the contacts changing, and shouldn't re-scan the whole list each time.
+      val contactsByType = remember(contacts) { contacts.groupBy { it.type } }
+      val chatContacts = contactsByType[ContactType.CHAT].orEmpty()
+      val rooms = contactsByType[ContactType.ROOM].orEmpty()
+      val repeaters = contactsByType[ContactType.REPEATER].orEmpty()
+      val sensors = contactsByType[ContactType.SENSOR].orEmpty()
 
       // Subtle progress bar while refreshing with cached data visible
       AnimatedVisibility(

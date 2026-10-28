@@ -292,7 +292,8 @@ fun ContactList(
     state = state,
     verticalArrangement = Arrangement.spacedBy(8.dp),
   ) {
-    items(contacts, key = { it.publicKey.hashCode() }) { contact ->
+    // Hex rather than hashCode(): a hash collision between two keys would be a duplicate-key crash.
+    items(contacts, key = { it.publicKey.toHex() }, contentType = { "contact" }) { contact ->
       ContactRow(
         contact = contact,
         onClick = onContactClick?.let { { it(contact) } },
@@ -392,7 +393,7 @@ fun ChannelList(
     state = state,
     verticalArrangement = Arrangement.spacedBy(8.dp),
   ) {
-    items(channels, key = { it.index }) { channel ->
+    items(channels, key = { it.index }, contentType = { "channel" }) { channel ->
       ChannelRow(
         channel = channel,
         onClick = onChannelClick?.let { { it(channel) } },

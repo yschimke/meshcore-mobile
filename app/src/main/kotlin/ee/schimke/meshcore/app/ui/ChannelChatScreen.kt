@@ -3,7 +3,6 @@ package ee.schimke.meshcore.app.ui
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,35 +41,36 @@ fun ChannelChatScreen(
   val channelName = channel?.name?.ifBlank { null } ?: "Channel $channelIndex"
   val selfName = client?.selfInfo?.collectAsState()?.value?.name
 
-  // Read messages from Room
+  // Read messages from Room. The Flow is remembered: a new Room Flow per recomposition restarts
+  // collectAsState's collector and re-runs the query on every draft keystroke.
   val dbMessages by
-    (deviceId?.let { repository.observeChannelMessages(it, channelIndex) }
-        ?: kotlinx.coroutines.flow.flowOf(emptyList()))
+    remember(repository, deviceId, channelIndex) {
+        deviceId?.let { repository.observeChannelMessages(it, channelIndex) }
+          ?: kotlinx.coroutines.flow.flowOf(emptyList())
+      }
       .collectAsState(initial = emptyList())
 
-  val messages by
+  val messages =
     remember(dbMessages, selfName) {
-      derivedStateOf {
-        dbMessages.map { entity ->
-          val isMine =
-            entity.direction == MessageDirection.SENT ||
-              (selfName != null && entity.senderName == selfName)
-          ChatMessage(
-            id = "msg-${entity.rowId}",
-            senderName = if (!isMine) entity.senderName else null,
-            text = entity.text,
-            timestamp = Instant.fromEpochMilliseconds(entity.timestampEpochMs),
-            snr = entity.snr,
-            isMine = isMine,
-            status =
-              when (entity.status) {
-                DbMessageStatus.SENDING -> MessageStatus.Sending
-                DbMessageStatus.SENT -> MessageStatus.Sent
-                DbMessageStatus.CONFIRMED -> MessageStatus.Confirmed
-                DbMessageStatus.FAILED -> MessageStatus.Failed
-              },
-          )
-        }
+      dbMessages.map { entity ->
+        val isMine =
+          entity.direction == MessageDirection.SENT ||
+            (selfName != null && entity.senderName == selfName)
+        ChatMessage(
+          id = "msg-${entity.rowId}",
+          senderName = if (!isMine) entity.senderName else null,
+          text = entity.text,
+          timestamp = Instant.fromEpochMilliseconds(entity.timestampEpochMs),
+          snr = entity.snr,
+          isMine = isMine,
+          status =
+            when (entity.status) {
+              DbMessageStatus.SENDING -> MessageStatus.Sending
+              DbMessageStatus.SENT -> MessageStatus.Sent
+              DbMessageStatus.CONFIRMED -> MessageStatus.Confirmed
+              DbMessageStatus.FAILED -> MessageStatus.Failed
+            },
+        )
       }
     }
 

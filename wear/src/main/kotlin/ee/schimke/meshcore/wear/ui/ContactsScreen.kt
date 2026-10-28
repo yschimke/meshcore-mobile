@@ -103,7 +103,12 @@ fun ContactsBody(
             Text("Contacts")
           }
         }
-        items(contacts, key = { it.publicKey.toByteArray().contentHashCode() }) { contact ->
+        // Hex rather than a content hash: a hash collision would be a duplicate-key crash.
+        items(
+          contacts,
+          key = { it.publicKey.toByteArray().toHexString() },
+          contentType = { "contact" },
+        ) { contact ->
           Button(
             onClick = { onContactSelected(contact) },
             modifier =

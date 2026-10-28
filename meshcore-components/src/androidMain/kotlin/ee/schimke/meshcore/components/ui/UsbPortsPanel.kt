@@ -213,7 +213,11 @@ fun UsbPortsPanel(
             UsbEmptyState()
         } else {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(portInfos, key = { "${it.vendorId}:${it.productId}" }) { info ->
+                items(
+                    portInfos,
+                    key = { "${it.vendorId}:${it.productId}" },
+                    contentType = { "usb-port" },
+                ) { info ->
                     UsbPortCard(
                         label = info.displayLabel,
                         subtitle = info.subtitle,
