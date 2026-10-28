@@ -70,6 +70,9 @@ enum class MessageStatus {
  */
 internal expect fun formatChatTimestamp(instant: Instant): String
 
+private const val ChatBubbleMine = 0
+private const val ChatBubbleReceived = 1
+
 /** Scrollable message list with auto-scroll to newest message. */
 @Composable
 fun ChatMessageList(
@@ -97,7 +100,13 @@ fun ChatMessageList(
       verticalArrangement = Arrangement.spacedBy(4.dp),
       contentPadding = PaddingValues(vertical = 8.dp),
     ) {
-      items(reversed, key = { it.id }) { msg ->
+      items(
+        reversed,
+        key = { it.id },
+        // Own and received bubbles lay out differently (sender header vs. delivery status), so
+        // only reuse compositions between bubbles of the same side.
+        contentType = { if (it.isMine) ChatBubbleMine else ChatBubbleReceived },
+      ) { msg ->
         ChatBubble(
           msg,
           modifier = Modifier.animateItem(),

@@ -3,6 +3,7 @@ package ee.schimke.meshcore.app.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.warning_cached_data
@@ -23,9 +24,17 @@ fun CachedDeviceScreen(
   onOpenThemePicker: () -> Unit = {},
 ) {
   val repository = LocalAppGraph.current.repository
-  val state by repository.observeDeviceState(deviceId).collectAsState(initial = null)
-  val contacts by repository.observeContacts(deviceId).collectAsState(initial = emptyList())
-  val channels by repository.observeChannels(deviceId).collectAsState(initial = emptyList())
+  // Each observe* call builds a new Room Flow; remember them so a recomposition doesn't restart
+  // the collectors and re-run the queries.
+  val state by
+    remember(repository, deviceId) { repository.observeDeviceState(deviceId) }
+      .collectAsState(initial = null)
+  val contacts by
+    remember(repository, deviceId) { repository.observeContacts(deviceId) }
+      .collectAsState(initial = emptyList())
+  val channels by
+    remember(repository, deviceId) { repository.observeChannels(deviceId) }
+      .collectAsState(initial = emptyList())
 
   val selfInfo = state?.toSelfInfo()
   val battery = state?.toBattery()

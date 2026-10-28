@@ -5,14 +5,12 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
 // ---------------------------------------------------------------------------
@@ -35,11 +33,8 @@ private const val MinThumbFraction = 0.08f
 fun Modifier.verticalScrollbar(
   state: ScrollState,
   color: Color = MaterialTheme.colorScheme.outlineVariant,
-): Modifier {
-  val density = LocalDensity.current
-  val widthPx = with(density) { ThumbWidth.toPx() }
-  val insetPx = with(density) { ThumbInset.toPx() }
-  return this.drawWithContent {
+): Modifier =
+  this.drawWithContent {
     drawContent()
     val max = state.maxValue
     if (max == 0) return@drawWithContent
@@ -50,24 +45,18 @@ fun Modifier.verticalScrollbar(
     val track = viewport - thumbHeight
     val progress = state.value.toFloat() / max
     val top = track * progress
-    drawRoundedThumb(
-      color = color,
-      topLeft = Offset(x = size.width - widthPx - insetPx, y = top),
-      size = Size(width = widthPx, height = thumbHeight),
-      radius = widthPx,
-    )
+    drawRoundedThumb(color = color, top = top, thumbHeight = thumbHeight)
   }
-}
 
 @Composable
 fun Modifier.verticalScrollbar(
   state: LazyListState,
   color: Color = MaterialTheme.colorScheme.outlineVariant,
-): Modifier = composed {
-  val density = LocalDensity.current
-  val widthPx = with(density) { ThumbWidth.toPx() }
-  val insetPx = with(density) { ThumbInset.toPx() }
-  drawWithContent {
+): Modifier =
+  // Every read happens in the draw lambda, so scrolling only invalidates draw. No `composed {}`
+  // wrapper: this factory is already @Composable (for the theme default), and density comes from
+  // the DrawScope.
+  this.drawWithContent {
     drawContent()
     val info = state.layoutInfo
     val totalItems = info.totalItemsCount
@@ -84,7 +73,10 @@ fun Modifier.verticalScrollbar(
     val firstVisible = visibleItems.first()
     // Approximate content extents assuming items are roughly uniform
     // (which is the case for our card-based lists).
-    val itemHeight = visibleItems.map { it.size.toFloat() }.average().toFloat().coerceAtLeast(1f)
+    // Summed in place rather than `map {}.average()`, which allocated a list on every draw frame.
+    var sizeSum = 0.0
+    for (i in visibleItems.indices) sizeSum += visibleItems[i].size
+    val itemHeight = (sizeSum / visibleItems.size).toFloat().coerceAtLeast(1f)
     val total = itemHeight * totalItems
     val visibleFraction = (viewport / total).coerceIn(MinThumbFraction, 1f)
     val thumbHeight = viewport * visibleFraction
@@ -93,20 +85,16 @@ fun Modifier.verticalScrollbar(
     val denom = (total - viewport).coerceAtLeast(1f)
     val progress = (offset / denom).coerceIn(0f, 1f)
     val top = track * progress
-    drawRoundedThumb(
-      color = color,
-      topLeft = Offset(x = size.width - widthPx - insetPx, y = top),
-      size = Size(width = widthPx, height = thumbHeight),
-      radius = widthPx,
-    )
+    drawRoundedThumb(color = color, top = top, thumbHeight = thumbHeight)
   }
-}
 
-private fun DrawScope.drawRoundedThumb(color: Color, topLeft: Offset, size: Size, radius: Float) {
+private fun DrawScope.drawRoundedThumb(color: Color, top: Float, thumbHeight: Float) {
+  val widthPx = ThumbWidth.toPx()
+  val insetPx = ThumbInset.toPx()
   drawRoundRect(
     color = color,
-    topLeft = topLeft,
-    size = size,
-    cornerRadius = CornerRadius(radius, radius),
+    topLeft = Offset(x = size.width - widthPx - insetPx, y = top),
+    size = Size(width = widthPx, height = thumbHeight),
+    cornerRadius = CornerRadius(widthPx, widthPx),
   )
 }

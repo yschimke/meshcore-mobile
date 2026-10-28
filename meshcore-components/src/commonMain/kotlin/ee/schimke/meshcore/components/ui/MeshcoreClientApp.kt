@@ -313,30 +313,37 @@ private fun MeshcoreChat(
   val self by client.selfInfo.collectAsState()
   var draft by rememberSaveable(contactKey, channelIndex) { mutableStateOf("") }
   val sending = sent.any { it.status == MessageStatus.Sending }
+  // Cached so a draft keystroke doesn't rebuild and re-sort the whole history: rebuilding also
+  // gives every ChatMessage a new identity, so each visible bubble would recompose per keystroke.
   val received =
-    if (channelIndex != null) {
-      channel[channelIndex].orEmpty().mapIndexed { index, m ->
-        ChatMessage("channel-$index-${m.timestamp}", m.sender, m.text, m.timestamp, m.snr, false)
+    remember(channel, direct, channelIndex, contactKey, title) {
+      if (channelIndex != null) {
+        channel[channelIndex].orEmpty().mapIndexed { index, m ->
+          ChatMessage("channel-$index-${m.timestamp}", m.sender, m.text, m.timestamp, m.snr, false)
+        }
+      } else {
+        direct.entries
+          .filter { (key, _) ->
+            contactKey?.startsWith(key) == true || key.startsWith(contactKey.orEmpty())
+          }
+          .flatMap { it.value }
+          .mapIndexed { index, m ->
+            ChatMessage("direct-$index-${m.timestamp}", title, m.text, m.timestamp, m.snr, false)
+          }
       }
-    } else {
-      direct.entries
-        .filter { (key, _) ->
-          contactKey?.startsWith(key) == true || key.startsWith(contactKey.orEmpty())
-        }
-        .flatMap { it.value }
-        .mapIndexed { index, m ->
-          ChatMessage("direct-$index-${m.timestamp}", title, m.text, m.timestamp, m.snr, false)
-        }
+    }
+  val selfName = self?.name
+  // derivedStateOf because `sent` is a snapshot list mutated in place: the merge re-runs when it
+  // changes, but not when only the draft does.
+  val messages by
+    remember(received, sent, selfName, channelIndex) {
+      derivedStateOf {
+        mergeChatHistory(received, sent, selfName = selfName, dedupeEchoes = channelIndex != null)
+      }
     }
   ChatBody(
     title = title,
-    messages =
-      mergeChatHistory(
-        received,
-        sent,
-        selfName = self?.name,
-        dedupeEchoes = channelIndex != null,
-      ),
+    messages = messages,
     draft = draft,
     onDraftChange = { draft = it },
     onBack = onBack,

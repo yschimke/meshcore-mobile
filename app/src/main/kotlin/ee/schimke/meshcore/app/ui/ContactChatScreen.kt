@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,7 +40,12 @@ fun ContactChatScreen(
   val client = (uiState as? ConnectionUiState.Connected)?.client
 
   val contacts by client?.contacts?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
-  val contact = contacts.firstOrNull { it.publicKey.toHex() == publicKeyHex }
+  // toHex() allocates per contact, so only re-run the lookup when the list or key changes, not on
+  // every draft keystroke.
+  val contact =
+    remember(contacts, publicKeyHex) {
+      contacts.firstOrNull { it.publicKey.toHex() == publicKeyHex }
+    }
   val contactName = contact?.name ?: publicKeyHex.take(12)
   val requiresLogin = contact?.type == ContactType.ROOM || contact?.type == ContactType.REPEATER
 
@@ -101,32 +105,34 @@ fun ContactChatScreen(
     )
   }
 
-  // Read messages from Room (includes both sent and received, persisted across restarts)
+  // Read messages from Room (includes both sent and received, persisted across restarts). The Flow
+  // is remembered: a new Room Flow per recomposition restarts collectAsState's collector and
+  // re-runs the query on every draft keystroke.
   val dbMessages by
-    (deviceId?.let { repository.observeDms(it, publicKeyHex) }
-        ?: kotlinx.coroutines.flow.flowOf(emptyList()))
+    remember(repository, deviceId, publicKeyHex) {
+        deviceId?.let { repository.observeDms(it, publicKeyHex) }
+          ?: kotlinx.coroutines.flow.flowOf(emptyList())
+      }
       .collectAsState(initial = emptyList())
 
-  val messages by
-    remember(dbMessages) {
-      derivedStateOf {
-        dbMessages.map { entity ->
-          ChatMessage(
-            id = "msg-${entity.rowId}",
-            senderName = if (entity.direction == MessageDirection.RECEIVED) contactName else null,
-            text = entity.text,
-            timestamp = Instant.fromEpochMilliseconds(entity.timestampEpochMs),
-            snr = entity.snr,
-            isMine = entity.direction == MessageDirection.SENT,
-            status =
-              when (entity.status) {
-                DbMessageStatus.SENDING -> MessageStatus.Sending
-                DbMessageStatus.SENT -> MessageStatus.Sent
-                DbMessageStatus.CONFIRMED -> MessageStatus.Confirmed
-                DbMessageStatus.FAILED -> MessageStatus.Failed
-              },
-          )
-        }
+  val messages =
+    remember(dbMessages, contactName) {
+      dbMessages.map { entity ->
+        ChatMessage(
+          id = "msg-${entity.rowId}",
+          senderName = if (entity.direction == MessageDirection.RECEIVED) contactName else null,
+          text = entity.text,
+          timestamp = Instant.fromEpochMilliseconds(entity.timestampEpochMs),
+          snr = entity.snr,
+          isMine = entity.direction == MessageDirection.SENT,
+          status =
+            when (entity.status) {
+              DbMessageStatus.SENDING -> MessageStatus.Sending
+              DbMessageStatus.SENT -> MessageStatus.Sent
+              DbMessageStatus.CONFIRMED -> MessageStatus.Confirmed
+              DbMessageStatus.FAILED -> MessageStatus.Failed
+            },
+        )
       }
     }
 

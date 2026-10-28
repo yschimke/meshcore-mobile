@@ -234,7 +234,9 @@ fun BleDeviceList(
         state = state,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(rows, key = { it.identifier }) { d -> BleDeviceRowCard(d, busy, onPick, Modifier.animateItem()) }
+        items(rows, key = { it.identifier }, contentType = { "ble-device" }) { d ->
+            BleDeviceRowCard(d, busy, onPick, Modifier.animateItem())
+        }
     }
 }
 

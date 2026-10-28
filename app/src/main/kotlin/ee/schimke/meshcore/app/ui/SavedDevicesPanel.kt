@@ -87,7 +87,7 @@ fun SavedDevicesPanel(
     modifier = modifier.fillMaxWidth(),
     verticalArrangement = Arrangement.spacedBy(8.dp),
   ) {
-    items(devices, key = { it.device.id }) { item ->
+    items(devices, key = { it.device.id }, contentType = { "saved-device" }) { item ->
       val device = item.device
       val itemModifier = Modifier.animateItem()
       val dismissState = rememberSwipeToDismissBoxState()

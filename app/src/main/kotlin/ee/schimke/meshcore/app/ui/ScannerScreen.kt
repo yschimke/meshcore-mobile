@@ -30,6 +30,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -75,7 +76,11 @@ fun ScannerScreen(
   val app = LocalAppGraph.current
   val controller = app.connectionController
   val uiState by controller.state.collectAsState()
-  val savedDevices by app.repository.observeDevicesWithState().collectAsState(initial = emptyList())
+  // observeDevicesWithState() builds a new combined Room Flow per call; remember it so a
+  // recomposition (connection state change, etc.) doesn't restart the collector and its queries.
+  val savedDevices by
+    remember(app.repository) { app.repository.observeDevicesWithState() }
+      .collectAsState(initial = emptyList())
   val connectedDeviceId by controller.connectedDeviceId.collectAsState()
   val busy = uiState is ConnectionUiState.Connecting
 
