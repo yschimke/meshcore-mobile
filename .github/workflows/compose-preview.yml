@@ -83,7 +83,10 @@ jobs:
           mkdir -p "$HOME/.local/share/fonts"
           cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v2.74.1
+      - name: Record render start
+        run: echo "RENDER_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - id: apply
+        uses: yschimke/compose-ai-tools/.github/actions/apply@v2.74.1
         with:
           # Pin the render CLI to the Gradle plugin version (single source of
           # truth: composePreviewPlugin in libs.versions.toml) instead of the
@@ -100,9 +103,42 @@ jobs:
           # a renderer limitation unrelated to the Compose previews themselves.
           missing-renders: warn
           only: compose,resources
+          # Post "No visual changes detected" rather than nothing, so a clean
+          # UI PR is distinguishable from one whose render never reported.
+          comment-on-empty-diff: 'true'
           # See the header: generated branches go to the -out repository.
           artifact-repository: yschimke/meshcore-mobile-out
           artifacts-token: ${{ secrets.ARTIFACTS_TOKEN }}
+
+      # A render that dies before the comparison (a Gradle or AGP break, as on
+      # the AGP 9.5 bumps) leaves only a red check: the action posts nothing,
+      # and a stale diff from an earlier push can still sit on the PR. Say so
+      # in the sticky comment, unless this run already updated it. The next
+      # successful run overwrites it through the same marker.
+      - name: Report a failed render on the PR
+        if: failure() && steps.apply.outcome == 'failure' && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          read -r id updated < <(gh api --paginate "repos/$REPO/issues/$PR/comments" \
+            --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | startswith("<!-- preview-diff -->"))) | [.id, .updated_at] | @tsv' | tail -1) || true
+          if [ -n "${updated:-}" ] && [[ ! "$updated" < "$RENDER_STARTED" ]]; then
+            echo "This run already updated the preview-diff comment; leaving it."
+            exit 0
+          fi
+          body=$(printf '%s\n' "<!-- preview-diff -->" "## Preview Changes" "" \
+            "> [!CAUTION]" \
+            "> The preview render failed at ${SHA:0:8}, so this PR has no preview diff for that commit. See [the run]($RUN_URL); \`/rerun previews\` retries it.")
+          if [ -n "${id:-}" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" >/dev/null
+          else
+            gh api "repos/$REPO/issues/$PR/comments" -f body="$body" >/dev/null
+          fi
 
   a11y:
     name: A11y previews
