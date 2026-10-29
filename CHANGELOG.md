@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.7](https://github.com/yschimke/meshcore-mobile/compare/v0.1.6...v0.1.7) (2026-10-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ee.schimke.composeai:rc-widget-launcher to v2.21.0 ([#620](https://github.com/yschimke/meshcore-mobile/issues/620)) ([e82edfe](https://github.com/yschimke/meshcore-mobile/commit/e82edfe036750899122aab528496a547b5189b06))
+* **deps:** update dependency ee.schimke.composeai:third-party-rc-embedded-player to v2.21.0 ([#621](https://github.com/yschimke/meshcore-mobile/issues/621)) ([0cfff72](https://github.com/yschimke/meshcore-mobile/commit/0cfff727248922e97fcc93f4b8b608eb8fec0c6d))
+
+
+### Performance Improvements
+
+* **compose:** stop per-recomposition Flow churn and cache chat derivations ([#618](https://github.com/yschimke/meshcore-mobile/issues/618)) ([c835463](https://github.com/yschimke/meshcore-mobile/commit/c8354634db196fa843322c19387e4aa05d065de2))
+
 ## [0.1.6](https://github.com/yschimke/meshcore-mobile/compare/v0.1.5...v0.1.6) (2026-10-27)
 
 
