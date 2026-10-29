@@ -1,11 +1,12 @@
 name: Compose Preview
 
-# The pipelines run as two parallel jobs (compose+resources / a11y) instead
-# of one serial `apply` invocation — they push to disjoint baseline/PR
-# branches and post disjoint sticky comments, so the only reason they were
-# serial (a shared Gradle build lock + `.git` in one workspace) disappears
-# on separate runners. Wall time drops from the sum of the two renders to
-# the slower one. The notifications pipeline stays skipped (see below).
+# One job runs the compose, resources and a11y pipelines. a11y used to run as
+# its own parallel job, but a job with no compose pipeline has no visual diff
+# to scope by, so the action checked (and commented on) every preview of the
+# catalog on every PR: ~25 KB and the same findings each time, even on CI-only
+# bumps. Run after compose in the same job, a11y checks only the previews this
+# PR changed, which is usually none or a few, so the serial cost is small. The
+# notifications pipeline stays skipped (see below).
 #
 # Generated branches live in the public output repository
 # yschimke/meshcore-mobile-out, not here, so this repository's history stops
@@ -49,7 +50,7 @@ concurrency:
 
 jobs:
   # Keeps the historical job id + check name so an existing required check
-  # keeps matching; the a11y job below is a new check name.
+  # keeps matching.
   apply:
     name: Render previews (baseline or PR comment, auto-selected)
     # Skip on release-please PRs: they only bump the manifest, CHANGELOG and
@@ -102,7 +103,8 @@ jobs:
           # warning (still surfaced in the PR comment) so the check isn't red on
           # a renderer limitation unrelated to the Compose previews themselves.
           missing-renders: warn
-          only: compose,resources
+          # a11y after compose, so it is scoped to the previews this PR changed.
+          only: compose,resources,a11y
           # Post "No visual changes detected" rather than nothing, so a clean
           # UI PR is distinguishable from one whose render never reported.
           comment-on-empty-diff: 'true'
@@ -139,42 +141,3 @@ jobs:
           else
             gh api "repos/$REPO/issues/$PR/comments" -f body="$body" >/dev/null
           fi
-
-  a11y:
-    name: A11y previews
-    # Release-please guard: see the first job in this file.
-    if: ${{ !(startsWith(github.head_ref || github.ref_name, 'release-please--') && (github.event.pull_request.user.login || github.actor) == 'github-actions[bot]') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    env:
-      # Dedicated read-only BuildFetch cache token (see settings.gradle.kts):
-      # pull task outputs instead of building cold. Read-only, so safe at job
-      # scope; ci.yml holds the read-write token and stays the sole cache writer.
-      BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN: ${{ secrets.BUILDFETCH_GRADLE_REMOTE_CACHE_TOKEN_RO }}
-    steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: ./.github/actions/setup
-        with:
-          cache-read-only: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
-      # See the apply job: make the app's bundled Noto subsets visible to
-      # fontconfig so the Skiko a11y render resolves CJK too.
-      - name: Stage bundled fallback fonts for the Skiko render
-        run: |
-          # fontconfig ships on ubuntu-latest, but guard so a leaner image can't
-          # fail this step with `fc-cache: command not found` before the render.
-          command -v fc-cache >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y --no-install-recommends fontconfig; }
-          mkdir -p "$HOME/.local/share/fonts"
-          cp meshcore-components/src/desktopMain/resources/fonts/noto/*.ttf "$HOME/.local/share/fonts/"
-          fc-cache -f "$HOME/.local/share/fonts" >/dev/null
-      - uses: yschimke/compose-ai-tools/.github/actions/apply@v2.74.1
-        with:
-          cli-version: catalog
-          catalog-key: composePreviewPlugin
-          missing-renders: warn
-          # The repo has no notification previews, and :meshcore-components (a
-          # desktop preview module for design-parity) would otherwise be the only
-          # module scanned by the notifications pipeline — which hard-fails when
-          # no module produces a *Notification*.png. Only a11y runs here.
-          only: a11y
-          artifact-repository: yschimke/meshcore-mobile-out
-          artifacts-token: ${{ secrets.ARTIFACTS_TOKEN }}

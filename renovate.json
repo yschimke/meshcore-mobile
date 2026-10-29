@@ -24,6 +24,11 @@
       "schedule": ["at any time"],
       "automerge": true,
       "automergeSchedule": ["at any time"]
+    },
+    {
+      "description": "third-party-rc-embedded-player is the player data-remotecompose-connector draws every RemotePreview with. The connector keeps it compileOnly, so the version here must match the one the connector was compiled against, or every widget preview fails with RemoteComposeLinkageException and renders no PNG, which `missing-renders: warn` leaves green and the group above then automerges (#621: 2.21.0 changed RcPlayer's signature under connector 3.26.0). Hold it below 2.21.0 until a connector release links against the 2.21 player, then lift this together with that connector bump and re-render the widget previews.",
+      "matchPackageNames": ["ee.schimke.composeai:third-party-rc-embedded-player"],
+      "allowedVersions": "<2.21.0"
     }
   ]
 }
