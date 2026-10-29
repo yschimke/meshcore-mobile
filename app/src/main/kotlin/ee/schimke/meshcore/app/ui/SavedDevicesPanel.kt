@@ -309,7 +309,7 @@ private fun sampleDevices(): List<SavedDeviceWithState> =
           transport = SavedTransport.Tcp("192.168.1.10", 5000),
           favorite = false,
           lastConnectedAtMs = 1_700_000_000_000,
-        )
+        ),
     ),
   )
 

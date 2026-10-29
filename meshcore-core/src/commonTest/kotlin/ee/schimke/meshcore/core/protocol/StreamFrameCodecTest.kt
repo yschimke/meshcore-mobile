@@ -165,7 +165,7 @@ class StreamFrameCodecTest {
           payload.size.toByte(),
           0,
           *payload.toByteArray(),
-        )
+        ),
       )
     assertEquals(1, pkts.size)
     assertEquals(payload, pkts[0].payload)

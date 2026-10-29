@@ -68,7 +68,7 @@ internal actual val Orbitron: FontFamily =
       ttf("fonts/Orbitron.ttf", FontWeight.Medium),
       ttf("fonts/Orbitron.ttf", FontWeight.SemiBold),
       ttf("fonts/Orbitron.ttf", FontWeight.Bold),
-    ) + NotoFallback
+    ) + NotoFallback,
   )
 
 internal actual val SpaceGrotesk: FontFamily =
@@ -78,7 +78,7 @@ internal actual val SpaceGrotesk: FontFamily =
       ttf("fonts/SpaceGrotesk.ttf", FontWeight.Medium),
       ttf("fonts/SpaceGrotesk.ttf", FontWeight.SemiBold),
       ttf("fonts/SpaceGrotesk.ttf", FontWeight.Bold),
-    ) + NotoFallback
+    ) + NotoFallback,
   )
 
 internal actual val JetBrainsMono: FontFamily =
@@ -86,5 +86,5 @@ internal actual val JetBrainsMono: FontFamily =
     listOf(
       ttf("fonts/JetBrainsMono.ttf", FontWeight.Normal),
       ttf("fonts/JetBrainsMono.ttf", FontWeight.Medium),
-    ) + NotoFallback
+    ) + NotoFallback,
   )

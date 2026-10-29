@@ -113,10 +113,10 @@ fun DeviceInfoWidgetContentDynamic(
         RemoteModifier.fillMaxWidth()
           .height(4.rdp)
           .background(SurfaceContainerHighest)
-          .visibility(batteryProgress.isGreaterThanOrEqualTo(0.rf).toVisibility())
+          .visibility(batteryProgress.isGreaterThanOrEqualTo(0.rf).toVisibility()),
     ) {
       RemoteBox(
-        modifier = RemoteModifier.fillMaxWidth(batteryProgress).height(4.rdp).background(barColor)
+        modifier = RemoteModifier.fillMaxWidth(batteryProgress).height(4.rdp).background(barColor),
       ) {}
     }
 

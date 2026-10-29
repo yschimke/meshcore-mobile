@@ -64,7 +64,7 @@ class PeriodicRefreshWorker(
             TimeUnit.MINUTES,
           )
           .setConstraints(
-            Constraints.Builder().setRequiredNetworkType(NetworkType.NOT_REQUIRED).build()
+            Constraints.Builder().setRequiredNetworkType(NetworkType.NOT_REQUIRED).build(),
           )
           .build()
 

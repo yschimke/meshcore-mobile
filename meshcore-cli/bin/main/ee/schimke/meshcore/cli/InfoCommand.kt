@@ -31,7 +31,7 @@ class InfoCommand : SessionCommand("info", "Show device self info, radio and bat
             row("storage", "${it.storageUsedKb} / ${it.storageTotalKb} kB")
           }
         }
-      }
+      },
     )
     if (self == null) {
       terminal.println(gray("No SELF_INFO received yet — try a longer --warmup."))

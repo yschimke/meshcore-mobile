@@ -93,7 +93,7 @@ fun ContactChatScreen(
             )
             loginDialogState =
               LoginDialogState.Prompting(
-                errorMessage = "Login failed. Check the password and try again."
+                errorMessage = "Login failed. Check the password and try again.",
               )
           }
         }

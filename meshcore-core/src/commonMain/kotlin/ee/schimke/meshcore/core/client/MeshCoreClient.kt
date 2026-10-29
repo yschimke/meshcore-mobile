@@ -291,13 +291,13 @@ class MeshCoreClient(
       }
       is MeshEvent.Battery -> {
         log(
-          "event: Battery ${event.info.millivolts}mV storage=${event.info.storageUsedKb}/${event.info.storageTotalKb}kB"
+          "event: Battery ${event.info.millivolts}mV storage=${event.info.storageUsedKb}/${event.info.storageTotalKb}kB",
         )
         _battery.value = event.info
       }
       is MeshEvent.Device -> {
         log(
-          "event: DeviceInfo proto=${event.info.protocolVersion} contacts=${event.info.maxContacts} channels=${event.info.maxChannels}"
+          "event: DeviceInfo proto=${event.info.protocolVersion} contacts=${event.info.maxContacts} channels=${event.info.maxChannels}",
         )
         _device.value = event.info
       }
@@ -342,7 +342,7 @@ class MeshCoreClient(
         // or a framing bug, and a silent drop hides both.
         logger.warn(
           "[MeshCoreClient] unexpected frame: code=0x${event.code.toString(16)} " +
-            "size=${event.body.size} (no parser matched or decode failed)"
+            "size=${event.body.size} (no parser matched or decode failed)",
         )
       else -> Unit
     }

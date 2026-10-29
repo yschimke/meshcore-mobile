@@ -46,261 +46,276 @@ import androidx.compose.ui.unit.dp
 private const val ACTION_USB_PERMISSION = "ee.schimke.meshcore.USB_PERMISSION"
 
 /**
- * Transport-agnostic descriptor of a USB serial port. Carries only the
- * identifying triple (wrapper [className] plus vendor/product ids) so
- * this UI module never has to depend on `meshcore-transport-usb`; the
- * concrete serial port is resolved at the integration layer.
+ * Transport-agnostic descriptor of a USB serial port. Carries only the identifying triple (wrapper
+ * [className] plus vendor/product ids) so this UI module never has to depend on
+ * `meshcore-transport-usb`; the concrete serial port is resolved at the integration layer.
  */
 data class UsbPortDescriptor(
-    val className: String,
-    val vendorId: Int,
-    val productId: Int,
+  val className: String,
+  val vendorId: Int,
+  val productId: Int,
 )
 
 /** Display-friendly wrapper pairing a port descriptor with its USB device metadata. */
 data class UsbPortInfo(
-    val descriptor: UsbPortDescriptor,
-    val deviceName: String?,
-    val manufacturerName: String?,
-    val productName: String?,
-    val deviceAddress: String,
-    val vendorId: Int,
-    val productId: Int,
+  val descriptor: UsbPortDescriptor,
+  val deviceName: String?,
+  val manufacturerName: String?,
+  val productName: String?,
+  val deviceAddress: String,
+  val vendorId: Int,
+  val productId: Int,
 ) {
-    val displayLabel: String
-        get() = productName
-            ?: deviceName?.takeIf { !it.startsWith("/dev/") }
-            ?: "USB ${vendorId.vid()}:${productId.pid()}"
+  val displayLabel: String
+    get() =
+      productName
+        ?: deviceName?.takeIf { !it.startsWith("/dev/") }
+        ?: "USB ${vendorId.vid()}:${productId.pid()}"
 
-    val subtitle: String
-        get() = buildString {
-            manufacturerName?.let { append(it); append(" · ") }
-            append(deviceAddress)
-            append(" · ${vendorId.vid()}:${productId.pid()}")
-        }
+  val subtitle: String
+    get() = buildString {
+      manufacturerName?.let {
+        append(it)
+        append(" · ")
+      }
+      append(deviceAddress)
+      append(" · ${vendorId.vid()}:${productId.pid()}")
+    }
 }
 
 private fun Int.vid() = "%04X".format(this)
+
 private fun Int.pid() = "%04X".format(this)
 
 /**
- * Lists USB serial ports and connects to the one picked by the user.
- * Automatically requests Android USB permission when needed.
+ * Lists USB serial ports and connects to the one picked by the user. Automatically requests Android
+ * USB permission when needed.
  *
- * The enumeration function is injected so the caller can route it
- * through the integration layer; it yields transport-agnostic
- * [UsbPortDescriptor]s, keeping this UI module free of any
+ * The enumeration function is injected so the caller can route it through the integration layer; it
+ * yields transport-agnostic [UsbPortDescriptor]s, keeping this UI module free of any
  * `meshcore-transport-usb` dependency.
  */
 @Composable
 fun UsbPortsPanel(
-    busy: Boolean,
-    listPorts: () -> List<UsbPortDescriptor>,
-    onConnect: (UsbPortDescriptor) -> Unit,
-    modifier: Modifier = Modifier,
+  busy: Boolean,
+  listPorts: () -> List<UsbPortDescriptor>,
+  onConnect: (UsbPortDescriptor) -> Unit,
+  modifier: Modifier = Modifier,
 ) {
-    val context = LocalContext.current
-    val usbManager = remember { context.getSystemService(Context.USB_SERVICE) as UsbManager }
-    val portInfos = remember { mutableStateListOf<UsbPortInfo>() }
-    // Descriptor waiting for permission grant
-    var pendingPort by remember { mutableStateOf<UsbPortDescriptor?>(null) }
+  val context = LocalContext.current
+  val usbManager = remember { context.getSystemService(Context.USB_SERVICE) as UsbManager }
+  val portInfos = remember { mutableStateListOf<UsbPortInfo>() }
+  // Descriptor waiting for permission grant
+  var pendingPort by remember { mutableStateOf<UsbPortDescriptor?>(null) }
 
-    fun refreshPorts() {
-        val rawPorts = listPorts()
-        val sysDevices = usbManager.deviceList.values
-        portInfos.clear()
-        portInfos.addAll(rawPorts.map { descriptor ->
-            val dev = sysDevices.firstOrNull { d ->
-                d.vendorId == descriptor.vendorId && d.productId == descriptor.productId
+  fun refreshPorts() {
+    val rawPorts = listPorts()
+    val sysDevices = usbManager.deviceList.values
+    portInfos.clear()
+    portInfos.addAll(
+      rawPorts.map { descriptor ->
+        val dev = sysDevices.firstOrNull { d ->
+          d.vendorId == descriptor.vendorId && d.productId == descriptor.productId
+        }
+        UsbPortInfo(
+          descriptor = descriptor,
+          deviceName = dev?.deviceName,
+          manufacturerName = dev?.manufacturerName,
+          productName = dev?.productName,
+          deviceAddress = dev?.deviceName ?: "unknown",
+          vendorId = descriptor.vendorId,
+          productId = descriptor.productId,
+        )
+      },
+    )
+  }
+
+  LaunchedEffect(Unit) { refreshPorts() }
+
+  // Listen for USB permission results AND device attach/detach
+  DisposableEffect(Unit) {
+    val receiver =
+      object : BroadcastReceiver() {
+        override fun onReceive(ctx: Context, intent: Intent) {
+          when (intent.action) {
+            ACTION_USB_PERMISSION -> {
+              val wasGranted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
+              if (wasGranted) {
+                pendingPort?.let(onConnect)
+              }
+              pendingPort = null
             }
-            UsbPortInfo(
-                descriptor = descriptor,
-                deviceName = dev?.deviceName,
-                manufacturerName = dev?.manufacturerName,
-                productName = dev?.productName,
-                deviceAddress = dev?.deviceName ?: "unknown",
-                vendorId = descriptor.vendorId,
-                productId = descriptor.productId,
-            )
-        })
+            UsbManager.ACTION_USB_DEVICE_ATTACHED,
+            UsbManager.ACTION_USB_DEVICE_DETACHED -> {
+              refreshPorts()
+            }
+          }
+        }
+      }
+    val filter =
+      IntentFilter().apply {
+        addAction(ACTION_USB_PERMISSION)
+        addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED)
+        addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
+      }
+    context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED)
+    onDispose { context.unregisterReceiver(receiver) }
+  }
+
+  fun connectWithPermission(info: UsbPortInfo) {
+    val device: UsbDevice? =
+      usbManager.deviceList.values.firstOrNull { d ->
+        d.vendorId == info.vendorId && d.productId == info.productId
+      }
+    android.util.Log.d(
+      "UsbConnect",
+      "connectWithPermission: device=$device hasPermission=${device?.let { usbManager.hasPermission(it) }}",
+    )
+    if (device != null && !usbManager.hasPermission(device)) {
+      pendingPort = info.descriptor
+      // FLAG_MUTABLE is required so the system can attach EXTRA_PERMISSION_GRANTED.
+      // FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT is needed on API 34+ because the
+      // broadcast goes to a dynamically registered receiver (no component).
+      val intent =
+        Intent(ACTION_USB_PERMISSION).apply {
+          setPackage(context.packageName)
+        }
+      @SuppressLint("UnspecifiedImmutableFlag")
+      val flags =
+        PendingIntent.FLAG_UPDATE_CURRENT or
+          PendingIntent.FLAG_MUTABLE or
+          PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT
+      val pi = PendingIntent.getBroadcast(context, 0, intent, flags)
+      usbManager.requestPermission(device, pi)
+    } else if (device != null) {
+      android.util.Log.d("UsbConnect", "Permission granted, calling onConnect")
+      onConnect(info.descriptor)
+    } else {
+      android.util.Log.w(
+        "UsbConnect",
+        "Device not found in system list for vid=${info.vendorId} pid=${info.productId}",
+      )
     }
+  }
 
-    LaunchedEffect(Unit) { refreshPorts() }
-
-    // Listen for USB permission results AND device attach/detach
-    DisposableEffect(Unit) {
-        val receiver = object : BroadcastReceiver() {
-            override fun onReceive(ctx: Context, intent: Intent) {
-                when (intent.action) {
-                    ACTION_USB_PERMISSION -> {
-                        val wasGranted = intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
-                        if (wasGranted) {
-                            pendingPort?.let(onConnect)
-                        }
-                        pendingPort = null
-                    }
-                    UsbManager.ACTION_USB_DEVICE_ATTACHED,
-                    UsbManager.ACTION_USB_DEVICE_DETACHED -> {
-                        refreshPorts()
-                    }
-                }
-            }
-        }
-        val filter = IntentFilter().apply {
-            addAction(ACTION_USB_PERMISSION)
-            addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED)
-            addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
-        }
-        context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED)
-        onDispose { context.unregisterReceiver(receiver) }
+  Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+      Icon(
+        imageVector = Icons.Rounded.Usb,
+        contentDescription = null,
+        tint = MaterialTheme.colorScheme.primary,
+      )
+      Spacer(Modifier.size(8.dp))
+      Text(
+        text = "USB serial",
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier.weight(1f),
+      )
+      OutlinedButton(
+        enabled = !busy,
+        onClick = { refreshPorts() },
+      ) {
+        Icon(
+          imageVector = Icons.Rounded.Refresh,
+          contentDescription = null,
+          modifier = Modifier.size(18.dp),
+        )
+        Spacer(Modifier.size(6.dp))
+        Text("Refresh")
+      }
     }
-
-    fun connectWithPermission(info: UsbPortInfo) {
-        val device: UsbDevice? = usbManager.deviceList.values.firstOrNull { d ->
-            d.vendorId == info.vendorId && d.productId == info.productId
+    if (portInfos.isEmpty()) {
+      UsbEmptyState()
+    } else {
+      LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(
+          portInfos,
+          key = { "${it.vendorId}:${it.productId}" },
+          contentType = { "usb-port" },
+        ) { info ->
+          UsbPortCard(
+            label = info.displayLabel,
+            subtitle = info.subtitle,
+            busy = busy || pendingPort == info.descriptor,
+            onConnect = { connectWithPermission(info) },
+            modifier = Modifier.animateItem(),
+          )
         }
-        android.util.Log.d("UsbConnect", "connectWithPermission: device=$device hasPermission=${device?.let { usbManager.hasPermission(it) }}")
-        if (device != null && !usbManager.hasPermission(device)) {
-            pendingPort = info.descriptor
-            // FLAG_MUTABLE is required so the system can attach EXTRA_PERMISSION_GRANTED.
-            // FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT is needed on API 34+ because the
-            // broadcast goes to a dynamically registered receiver (no component).
-            val intent = Intent(ACTION_USB_PERMISSION).apply {
-                setPackage(context.packageName)
-            }
-            @SuppressLint("UnspecifiedImmutableFlag")
-            val flags = PendingIntent.FLAG_UPDATE_CURRENT or
-                PendingIntent.FLAG_MUTABLE or
-                PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT
-            val pi = PendingIntent.getBroadcast(context, 0, intent, flags)
-            usbManager.requestPermission(device, pi)
-        } else if (device != null) {
-            android.util.Log.d("UsbConnect", "Permission granted, calling onConnect")
-            onConnect(info.descriptor)
-        } else {
-            android.util.Log.w("UsbConnect", "Device not found in system list for vid=${info.vendorId} pid=${info.productId}")
-        }
+      }
     }
-
-    Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                imageVector = Icons.Rounded.Usb,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-            )
-            Spacer(Modifier.size(8.dp))
-            Text(
-                text = "USB serial",
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.weight(1f),
-            )
-            OutlinedButton(
-                enabled = !busy,
-                onClick = { refreshPorts() },
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Refresh,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp),
-                )
-                Spacer(Modifier.size(6.dp))
-                Text("Refresh")
-            }
-        }
-        if (portInfos.isEmpty()) {
-            UsbEmptyState()
-        } else {
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(
-                    portInfos,
-                    key = { "${it.vendorId}:${it.productId}" },
-                    contentType = { "usb-port" },
-                ) { info ->
-                    UsbPortCard(
-                        label = info.displayLabel,
-                        subtitle = info.subtitle,
-                        busy = busy || pendingPort == info.descriptor,
-                        onConnect = { connectWithPermission(info) },
-                        modifier = Modifier.animateItem(),
-                    )
-                }
-            }
-        }
-    }
+  }
 }
 
 @Composable
 fun UsbPortCard(
-    label: String,
-    busy: Boolean,
-    onConnect: () -> Unit,
-    modifier: Modifier = Modifier,
-    subtitle: String? = null,
+  label: String,
+  busy: Boolean,
+  onConnect: () -> Unit,
+  modifier: Modifier = Modifier,
+  subtitle: String? = null,
 ) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
-        ),
+  Card(
+    modifier = modifier.fillMaxWidth(),
+    colors =
+      CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+  ) {
+    Row(
+      modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+      verticalAlignment = Alignment.CenterVertically,
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Icon(
-                imageVector = Icons.Rounded.Cable,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(24.dp),
-            )
-            Column(
-                modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(2.dp),
-            ) {
-                Text(
-                    text = label,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                if (subtitle != null) {
-                    Text(
-                        text = subtitle,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-            FilledTonalButton(enabled = !busy, onClick = onConnect) { Text("Connect") }
+      Icon(
+        imageVector = Icons.Rounded.Cable,
+        contentDescription = null,
+        tint = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.size(24.dp),
+      )
+      Column(
+        modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp),
+      ) {
+        Text(
+          text = label,
+          style = MaterialTheme.typography.titleMedium,
+          color = MaterialTheme.colorScheme.onSurface,
+        )
+        if (subtitle != null) {
+          Text(
+            text = subtitle,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+          )
         }
+      }
+      FilledTonalButton(enabled = !busy, onClick = onConnect) { Text("Connect") }
     }
+  }
 }
 
 @Composable
 private fun UsbEmptyState() {
-    Box(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                imageVector = Icons.Rounded.Usb,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.size(36.dp),
-            )
-            Spacer(Modifier.height(6.dp))
-            Text(
-                text = "No USB serial ports detected",
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            Text(
-                text = "Plug in a MeshCore device to get started.",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
+  Box(
+    modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+    contentAlignment = Alignment.Center,
+  ) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+      Icon(
+        imageVector = Icons.Rounded.Usb,
+        contentDescription = null,
+        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.size(36.dp),
+      )
+      Spacer(Modifier.height(6.dp))
+      Text(
+        text = "No USB serial ports detected",
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.onSurface,
+      )
+      Text(
+        text = "Plug in a MeshCore device to get started.",
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
     }
+  }
 }

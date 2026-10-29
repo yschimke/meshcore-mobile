@@ -7,9 +7,9 @@ import ee.schimke.meshcore.components.ui.UsbPortDescriptor
 import ee.schimke.meshcore.session.UsbPortResolver
 
 /**
- * Android USB port enumeration, wrapping `kotlin-usb-client-library`'s
- * [UsfaPortList]. Exposes both transport-agnostic [descriptors] for the
- * UI and the concrete [ISerialPortWrapper]s used when opening a port.
+ * Android USB port enumeration, wrapping `kotlin-usb-client-library`'s [UsfaPortList]. Exposes both
+ * transport-agnostic [descriptors] for the UI and the concrete [ISerialPortWrapper]s used when
+ * opening a port.
  */
 class AndroidUsbPortLister(private val context: Context) {
   /** Concrete attached USB serial ports (used when opening a connection). */
@@ -27,8 +27,8 @@ class AndroidUsbPortLister(private val context: Context) {
 }
 
 /**
- * [UsbPortResolver] backed by [AndroidUsbPortLister]: matches a saved
- * descriptor back to a live port by vendor/product id at connect time.
+ * [UsbPortResolver] backed by [AndroidUsbPortLister]: matches a saved descriptor back to a live
+ * port by vendor/product id at connect time.
  */
 class AndroidUsbPortResolver(private val lister: AndroidUsbPortLister) : UsbPortResolver {
   override fun resolve(className: String, vendorId: Int, productId: Int): ISerialPortWrapper? =

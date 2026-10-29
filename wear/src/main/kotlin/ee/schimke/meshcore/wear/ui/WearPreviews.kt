@@ -68,7 +68,7 @@ fun StatusBodyConnectedPreview() {
             batteryPercent = 72,
             contactCount = 5,
             radioInfo = "915.000 MHz · SF11 · BW250k · CR4/8 · telemetry uplink active",
-          )
+          ),
       )
     }
   }
@@ -86,7 +86,7 @@ fun StatusBodyConnectedLowBatteryPreview() {
             batteryPercent = 18,
             contactCount = 12,
             radioInfo = "868.300 MHz · SF12 · BW125k",
-          )
+          ),
       )
     }
   }
@@ -109,7 +109,7 @@ fun StatusBodyConnectedMediumBatteryPreview() {
             batteryPercent = 25,
             contactCount = 7,
             radioInfo = "869.525 MHz · SF10 · BW250k",
-          )
+          ),
       )
     }
   }
@@ -142,7 +142,7 @@ fun ContactsBodyFewPreview() {
             fakeContact("Alice"),
             fakeContact("Bob"),
             fakeContact("Charlie"),
-          )
+          ),
       )
     }
   }
@@ -214,7 +214,7 @@ private fun fakeContact(name: String): ContactMsg =
     .setType(ContactType.CHAT)
     .setPublicKey(
       com.google.protobuf.ByteString.copyFrom(
-        ByteArray(32) { name.hashCode().ushr(it % 4 * 8).toByte() }
-      )
+        ByteArray(32) { name.hashCode().ushr(it % 4 * 8).toByte() },
+      ),
     )
     .build()

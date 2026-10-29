@@ -127,7 +127,7 @@ internal object DebugDump {
 
         --help                            this text
       """
-        .trimIndent()
+        .trimIndent(),
     )
   }
 }

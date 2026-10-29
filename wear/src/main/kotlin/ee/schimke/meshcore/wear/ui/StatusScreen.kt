@@ -92,7 +92,7 @@ fun StatusBody(
             CircularProgressIndicator(
               modifier =
                 Modifier.minimumVerticalContentPadding(TextDefaults.minimumTopListContentPadding)
-                  .transformedHeight(this, transformationSpec)
+                  .transformedHeight(this, transformationSpec),
             )
           }
           item {
@@ -199,7 +199,7 @@ fun StatusBody(
                 horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
                 modifier =
                   Modifier.minimumVerticalContentPadding(
-                      ButtonDefaults.minimumVerticalListContentPadding
+                      ButtonDefaults.minimumVerticalListContentPadding,
                     )
                     .transformedHeight(this, transformationSpec),
               ) {
@@ -226,7 +226,7 @@ fun StatusBody(
                 horizontalArrangement = Arrangement.spacedBy(WearDimens.S),
                 modifier =
                   Modifier.minimumVerticalContentPadding(
-                      ButtonDefaults.minimumVerticalListContentPadding
+                      ButtonDefaults.minimumVerticalListContentPadding,
                     )
                     .transformedHeight(this, transformationSpec),
               ) {

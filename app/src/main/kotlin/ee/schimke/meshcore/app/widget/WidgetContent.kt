@@ -105,7 +105,7 @@ private fun RemoteDrawScope.drawBorder(
       androidx.compose.remote.creation.compose.layout.RemoteSize(w, h),
       layoutDirection,
       remoteDensity,
-    )
+    ),
   ) {
     drawOutline(
       this,
@@ -129,7 +129,7 @@ private fun RemoteDrawScope.drawSolidColorShape(
       androidx.compose.remote.creation.compose.layout.RemoteSize(w, h),
       layoutDirection,
       remoteDensity,
-    )
+    ),
   ) {
     drawOutline(
       this,
@@ -235,11 +235,11 @@ fun DeviceInfoWidgetContent(
         if (batteryProgress != null) {
           RemoteBox(
             modifier =
-              RemoteModifier.fillMaxWidth().height(4.rdp).background(SurfaceContainerHighest)
+              RemoteModifier.fillMaxWidth().height(4.rdp).background(SurfaceContainerHighest),
           ) {
             RemoteBox(
               modifier =
-                RemoteModifier.fillMaxWidth(batteryProgress).height(4.rdp).background(barColor)
+                RemoteModifier.fillMaxWidth(batteryProgress).height(4.rdp).background(barColor),
             ) {}
           }
         }

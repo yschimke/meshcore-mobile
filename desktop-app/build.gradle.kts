@@ -27,7 +27,7 @@ val desktopVersion =
       providers
         .fileContents(rootProject.layout.projectDirectory.file("app/build.gradle.kts"))
         .asText
-        .map { Regex("""val appVersionName = "([^"]+)"""").find(it)!!.groupValues[1] }
+        .map { Regex("""val appVersionName = "([^"]+)"""").find(it)!!.groupValues[1] },
     )
     .get()
 

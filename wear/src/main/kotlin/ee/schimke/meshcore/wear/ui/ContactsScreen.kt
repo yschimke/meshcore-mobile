@@ -98,7 +98,7 @@ fun ContactsBody(
                   top = ListHeaderDefaults.minimumTopListContentPadding,
                   bottom = ListHeaderDefaults.minimumBottomListContentPadding,
                 )
-                .transformedHeight(this, transformationSpec)
+                .transformedHeight(this, transformationSpec),
           ) {
             Text("Contacts")
           }

@@ -109,13 +109,13 @@ fun WearComponentCatalogPreview() {
     RemoteRow(horizontalArrangement = RemoteArrangement.spacedBy(4.rdp)) {
       RemoteBox(modifier = RemoteModifier.fillMaxWidth(0.2f).height(10.rdp).background(primary)) {}
       RemoteBox(
-        modifier = RemoteModifier.fillMaxWidth(0.25f).height(10.rdp).background(tertiary)
+        modifier = RemoteModifier.fillMaxWidth(0.25f).height(10.rdp).background(tertiary),
       ) {}
       RemoteBox(
-        modifier = RemoteModifier.fillMaxWidth(0.33f).height(10.rdp).background(errorRed)
+        modifier = RemoteModifier.fillMaxWidth(0.33f).height(10.rdp).background(errorRed),
       ) {}
       RemoteBox(
-        modifier = RemoteModifier.fillMaxWidth(0.5f).height(10.rdp).background(onSurfaceVariant)
+        modifier = RemoteModifier.fillMaxWidth(0.5f).height(10.rdp).background(onSurfaceVariant),
       ) {}
     }
 

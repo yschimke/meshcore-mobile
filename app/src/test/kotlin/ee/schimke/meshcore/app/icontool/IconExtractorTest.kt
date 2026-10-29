@@ -76,7 +76,7 @@ class IconExtractorTest {
     sb.appendLine("// Faithful copies of the Rounded icons used by the shared composables,")
     sb.appendLine("// so they render on the CMP desktop target (extended icons are Android-only).")
     sb.appendLine(
-      "// Regenerate via REGENERATE_ICONS=true :app:testDebugUnitTest --tests *IconExtractorTest."
+      "// Regenerate via REGENERATE_ICONS=true :app:testDebugUnitTest --tests *IconExtractorTest.",
     )
     sb.appendLine("package ee.schimke.meshcore.components.ui.icons")
     sb.appendLine()
@@ -97,7 +97,7 @@ class IconExtractorTest {
     val out =
       File(
         "../meshcore-components/src/commonMain/kotlin/" +
-          "ee/schimke/meshcore/components/ui/icons/MeshIcons.kt"
+          "ee/schimke/meshcore/components/ui/icons/MeshIcons.kt",
       )
     out.parentFile.mkdirs()
     out.writeText(sb.toString())

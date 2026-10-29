@@ -34,7 +34,7 @@ val generateRuntimeCatalog =
       output.get().file("RuntimeCatalog.kt").asFile.apply {
         parentFile.mkdirs()
         writeText(
-          "package ee.schimke.meshcore.catalog\ninternal const val RUNTIME_RECORD = \"$literal\"\n"
+          "package ee.schimke.meshcore.catalog\ninternal const val RUNTIME_RECORD = \"$literal\"\n",
         )
       }
     }
@@ -162,7 +162,7 @@ val assembleRuntime =
       target
         .resolve("runtime-manifest.json")
         .writeText(
-          """{"schema":"compose-ui-builder-runtime/v1","runtimeId":"meshcore-mobile-p2-${integrity.take(16)}","protocolVersion":2,"entrypoint":"index.html","integritySha256":"$integrity"}"""
+          """{"schema":"compose-ui-builder-runtime/v1","runtimeId":"meshcore-mobile-p2-${integrity.take(16)}","protocolVersion":2,"entrypoint":"index.html","integritySha256":"$integrity"}""",
         )
     }
   }

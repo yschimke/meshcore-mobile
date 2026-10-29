@@ -123,7 +123,7 @@ object Parsers {
         manualAddContacts = manualAdd,
         radio = RadioSettings(freq, bw, sf, cr),
         name = name,
-      )
+      ),
     )
   }
 
@@ -141,7 +141,7 @@ object Parsers {
     val lon = src.readIntLe() / 1_000_000.0
     val lastMod = readEpochSeconds(src)
     return MeshEvent.ContactEvent(
-      Contact(pub, ContactType.fromRaw(type), flags, pathLen, path, name, ts, lat, lon, lastMod)
+      Contact(pub, ContactType.fromRaw(type), flags, pathLen, path, name, ts, lat, lon, lastMod),
     )
   }
 
@@ -212,7 +212,7 @@ object Parsers {
     val ts = readEpochSeconds(src)
     val body = src.readCStringRemaining()
     return MeshEvent.ChannelMessage(
-      ReceivedChannelMessage(snr, channelIdx, pathLen, ts, txtType, body)
+      ReceivedChannelMessage(snr, channelIdx, pathLen, ts, txtType, body),
     )
   }
 }

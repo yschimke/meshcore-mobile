@@ -47,7 +47,7 @@ fun KeyScreen(
                 if (initialDetail) ListDetailPaneScaffoldRole.Detail
                 else ListDetailPaneScaffoldRole.List,
                 initialSelectedIndex,
-              )
+              ),
             ),
         )
       val selected = navigator.currentDestination?.contentKey ?: 0
@@ -88,7 +88,7 @@ fun KeyScreen(
                         PaneAdaptedValue.Expanded && selected == index
                     )
                       "Selected · ${panel.title}"
-                    else panel.title
+                    else panel.title,
                   )
                 }
               }

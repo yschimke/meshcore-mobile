@@ -242,7 +242,7 @@ private fun FailureCard(cause: Throwable, onRetry: () -> Unit) {
         text = stack,
         style =
           MaterialTheme.typography.bodySmall.copy(
-            fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace
+            fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
           ),
         color = MaterialTheme.colorScheme.onSurface,
         modifier = Modifier.fillMaxWidth().height(280.dp).verticalScroll(scroll),

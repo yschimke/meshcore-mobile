@@ -106,7 +106,7 @@ private fun ConnectedMeshcoreApp(
         contactsShowAll = true,
         roomsShowAll = true,
         repeatersShowAll = true,
-      )
+      ),
     )
   }
   val backStack = remember { mutableStateListOf<NavKey>(DeviceDestination) }
@@ -253,7 +253,7 @@ private fun ConnectedMeshcoreApp(
         icon = { Icon(MeshIcons.Settings, contentDescription = null) },
         label = { Text("Radio") },
       )
-    }
+    },
   ) {
     BoxWithConstraints(Modifier.fillMaxSize()) {
       val showMaster = maxWidth >= 840.dp && backStack.lastOrNull() != DeviceDestination

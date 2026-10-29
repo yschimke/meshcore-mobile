@@ -58,7 +58,7 @@ fun ContactBrowser(
                 if (initialDetail) ListDetailPaneScaffoldRole.Detail
                 else ListDetailPaneScaffoldRole.List,
                 initialSelectedIndex,
-              )
+              ),
             ),
         )
       val selected = navigator.currentDestination?.contentKey ?: 0
@@ -95,7 +95,7 @@ fun ContactBrowser(
                         PaneAdaptedValue.Expanded && selected == index
                     )
                       "Selected · ${entry.title}"
-                    else entry.title
+                    else entry.title,
                   )
                 }
               }

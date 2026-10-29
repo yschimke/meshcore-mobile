@@ -118,8 +118,8 @@ private fun BrandBackground(modifier: Modifier = Modifier, content: @Composable 
           0f to BrandTealDeep,
           0.45f to BrandMidBlue,
           1f to BrandNavy,
-        )
-      )
+        ),
+      ),
   ) {
     content()
   }

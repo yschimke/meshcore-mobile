@@ -27,22 +27,22 @@ internal object DebugDumpRead {
     client.selfInfo.value?.let {
       w.println(
         "selfInfo: name='${it.name}' pubkey=${it.publicKey.toHex().take(12)} " +
-          "tx=${it.txPowerDbm}dBm lat=${it.latitude} lon=${it.longitude}"
+          "tx=${it.txPowerDbm}dBm lat=${it.latitude} lon=${it.longitude}",
       )
     }
     client.device.value?.let {
       w.println(
-        "device: proto=${it.protocolVersion} maxContacts=${it.maxContacts} maxChannels=${it.maxChannels}"
+        "device: proto=${it.protocolVersion} maxContacts=${it.maxContacts} maxChannels=${it.maxChannels}",
       )
     }
     client.radio.value?.let {
       w.println(
-        "radio: ${it.frequencyHz}Hz bw=${it.bandwidthHz} sf=${it.spreadingFactor} cr=${it.codingRate}"
+        "radio: ${it.frequencyHz}Hz bw=${it.bandwidthHz} sf=${it.spreadingFactor} cr=${it.codingRate}",
       )
     }
     client.battery.value?.let {
       w.println(
-        "battery: ${it.millivolts}mV (~${it.estimatePercent()}%) storage=${it.storageUsedKb}/${it.storageTotalKb}kB"
+        "battery: ${it.millivolts}mV (~${it.estimatePercent()}%) storage=${it.storageUsedKb}/${it.storageTotalKb}kB",
       )
     }
     val counts = client.contacts.value.groupingBy { it.type }.eachCount()
@@ -54,7 +54,7 @@ internal object DebugDumpRead {
         "sendChannels=${DebugAllowlists.sendChannelNames.size} " +
         "selfNames=${DebugAllowlists.selfNames.size} " +
         "ble=${DebugAllowlists.bleIdentifiers.size} " +
-        "tcp=${DebugAllowlists.tcpTargets.size}"
+        "tcp=${DebugAllowlists.tcpTargets.size}",
     )
     w.println()
     w.println("Run with --help for more options.")
@@ -148,7 +148,7 @@ internal object DebugDumpRead {
     devices.forEach { d ->
       val star = if (d.favorite) "★" else " "
       w.println(
-        "  $star  ${d.id}  '${d.label}'  via=${d.transport::class.simpleName}  lastSeen=${d.lastConnectedAtMs}"
+        "  $star  ${d.id}  '${d.label}'  via=${d.transport::class.simpleName}  lastSeen=${d.lastConnectedAtMs}",
       )
     }
   }

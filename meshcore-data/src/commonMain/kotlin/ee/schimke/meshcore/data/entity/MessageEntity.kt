@@ -31,7 +31,7 @@ enum class MessageStatus {
         parentColumns = ["id"],
         childColumns = ["deviceId"],
         onDelete = ForeignKey.CASCADE,
-      )
+      ),
     ],
   indices =
     [

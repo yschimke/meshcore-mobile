@@ -96,7 +96,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
    * otherwise. Used to merge devices connected via different transports (BLE vs USB).
    */
   suspend fun findDeviceIdByPublicKey(
-    publicKey: ee.schimke.meshcore.core.model.PublicKey
+    publicKey: ee.schimke.meshcore.core.model.PublicKey,
   ): String? = db.deviceStateDao().findDeviceIdByPublicKey(publicKey.bytes.toByteArray())
 
   /**
@@ -119,7 +119,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           usbVendorId = (transport as? SavedTransport.Usb)?.vendorId ?: into.usbVendorId,
           usbProductId = (transport as? SavedTransport.Usb)?.productId ?: into.usbProductId,
           lastConnectedAtMs = System.currentTimeMillis(),
-        )
+        ),
       )
     // Delete the transport-specific entry (CASCADE removes its state/contacts/etc)
     if (fromId != intoId) {
@@ -152,7 +152,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           usbClassName = (transport as? SavedTransport.Usb)?.className,
           usbVendorId = (transport as? SavedTransport.Usb)?.vendorId,
           usbProductId = (transport as? SavedTransport.Usb)?.productId,
-        )
+        ),
       )
   }
 
@@ -187,7 +187,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           selfLatitude = selfInfo.latitude,
           selfLongitude = selfInfo.longitude,
           selfInfoFetchedAtMs = fetchedAtMs,
-        )
+        ),
       )
     // Also update the device label with the actual name
     db.deviceDao().getById(deviceId)?.let { device ->
@@ -206,7 +206,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           storageUsedKb = battery.storageUsedKb,
           storageTotalKb = battery.storageTotalKb,
           batteryFetchedAtMs = fetchedAtMs,
-        )
+        ),
       )
   }
 
@@ -222,7 +222,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           radioSpreadingFactor = radio.spreadingFactor,
           radioCodingRate = radio.codingRate,
           radioFetchedAtMs = fetchedAtMs,
-        )
+        ),
       )
   }
 
@@ -237,7 +237,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           maxContacts = deviceInfo.maxContacts,
           maxChannels = deviceInfo.maxChannels,
           deviceInfoFetchedAtMs = fetchedAtMs,
-        )
+        ),
       )
   }
 
@@ -305,7 +305,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           textType = msg.textType.raw.toInt(),
           snr = msg.snr,
           pathLength = msg.pathLength,
-        )
+        ),
       )
   }
 
@@ -327,7 +327,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           textType = msg.textType.raw.toInt(),
           snr = msg.snr,
           pathLength = msg.pathLength,
-        )
+        ),
       )
   }
 
@@ -351,7 +351,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           timestampEpochMs = timestamp.toEpochMilliseconds(),
           ackHash = ackHash,
           status = status,
-        )
+        ),
       )
   }
 
@@ -377,7 +377,7 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
           timestampEpochMs = timestamp.toEpochMilliseconds(),
           ackHash = ackHash,
           status = status,
-        )
+        ),
       )
 
   suspend fun updateMessageStatus(rowId: Long, status: MessageStatus) {

@@ -33,7 +33,7 @@ class CatalogContractTest {
       assertEquals(
         emptyList(),
         definition.validateAgainst(
-          records.components.single { it.canonicalId == definition.component.canonicalId }
+          records.components.single { it.canonicalId == definition.component.canonicalId },
         ),
       )
     }
@@ -158,7 +158,7 @@ class CatalogContractTest {
               put("spreadingFactor", intWrapper(11))
             },
           )
-        }
+        },
       )
     }
     // A channel may omit its name, which the row then labels by index.
@@ -171,7 +171,7 @@ class CatalogContractTest {
             buildJsonObject {
               put("type", "object")
               put("fields", buildJsonObject { put("index", intWrapper(3)) })
-            }
+            },
           )
         },
       )
