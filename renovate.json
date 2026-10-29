@@ -1,6 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>yschimke/renovate-config"],
+  "description": "`platformAutomerge` hands the merge of an automerging PR to GitHub's native auto-merge, which lands it the moment the Protect Main ruleset's required checks pass, instead of on Renovate's next run (about hourly). Safe because the required set builds, tests and renders previews (yschimke/renovate-config repo-policy: assemble, Unit tests and Render previews); native auto-merge waits only on required checks, so it would not be safe on a repository whose ruleset required nothing.",
+  "platformAutomerge": true,
   "packageRules": [
     {
       "description": "Remote Compose (`androidx.compose.remote`) and its Wear widget layer (`androidx.wear.compose.remote`) are released alphas from Google Maven again, so Renovate tracks them — but only as ONE PR. The two layers are compiled against each other (remote-material3 alpha10 declares remote-creation* alpha18), and a pair that moves apart fails preview render with NoSuchMethodError inside the creation API. They were pinned to an androidx-main snapshot until the creation API these cards need reached a release; `1.0.0-SNAPSHOT` names no single build, which is how two consumers of \"the same\" version ended up holding two and killed this catalog's live render lane on the preview server (yschimke/compose-preview-server#187). Re-render the previews when this moves: an alpha bump has changed creation-API signatures before.",
