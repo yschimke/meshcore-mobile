@@ -24,9 +24,14 @@ composePreviewDaemonConnector = "3.26.0"
 # The embedded Remote Compose player the connector draws every RemotePreview with. Since
 # compose-preview-daemon 3.x the connector keeps it `compileOnly` and refuses the render
 # (RemoteComposeLinkageException) instead of falling back to the View player, so the consumer
-# must put it on the render classpath. 2.1.4 is what rc-players-bom 2.4.0 (the daemon 3.15.2
-# line) selects, and is built against androidx.compose.remote 1.0.0-alpha19; the app now resolves alpha21.
-composePreviewRcEmbeddedPlayer = "2.21.0"
+# must put it on the render classpath, at the version the connector was compiled against.
+# Pinned to 2.20.1, NOT 2.21.0: 2.21.0 changed `RcPlayer`'s binary signature (the
+# `(String) -> Boolean` parameter became a Boolean and androidx's TypefaceResolver became
+# RcTypefaceResolver), and data-remotecompose-connector 3.26.0 links against the 2.20.x one, so
+# every widget preview fails with RemoteComposeLinkageException and renders no PNG. Move this
+# only together with a connector release built against the newer player (renovate.json holds it).
+# Independent of `rc-player` below: rc-widget-* do not pull this artifact in.
+composePreviewRcEmbeddedPlayer = "2.20.1"
 core = "1.7.0"
 kotlin = "2.4.21"
 kotlinx-coroutines = "1.11.0"
