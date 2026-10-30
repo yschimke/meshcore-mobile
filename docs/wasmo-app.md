@@ -21,6 +21,8 @@ meshcore.wasmo/
   www/                     # the wasmJsBrowserDistribution output, served to the owner only
     app.html               # the dist's index.html, renamed; + wasm-mime-fallback.js and the
                            #   manifest/icon links
+    meshcore-backend.js    # shares the radios list through the install's kv service, then loads
+                           #   meshcore.js
     bootstrap.js, meshcore.js, wasm-mime-fallback.js, *.wasm
     assets/icon.png        # launcher icon
   www-public/              # web-app/wasmo/www-public/, served to everyone
@@ -40,10 +42,11 @@ so it connects the same way:
 | Transport | From the Wasmo page | Why |
 | --- | --- | --- |
 | USB serial | Works, on desktop Chrome or Edge | Web Serial (`meshcore-transport-webserial`), 115200 baud. Each install is a top-level HTTPS page on its own origin, which Web Serial requires. Firefox and Safari have no Web Serial. |
-| Bluetooth LE | Not available | The web build has no Web Bluetooth transport; `meshcore-transport-ble` is Android-only. |
+| Bluetooth LE | Not built yet | Possible in principle with Web Bluetooth (desktop Chrome/Edge, Chrome on Android), but the web build has no Web Bluetooth transport; `meshcore-transport-ble` uses Kable on Android and the JVM only. |
 | TCP (Wi-Fi companion) | Not available | Browsers can't open raw TCP sockets, and Wasmo has no socket proxy for static apps. |
 
-Messages and contacts aren't persisted in the browser build, so they don't survive a reload.
+Messages and contacts aren't persisted in the browser build, so they don't survive a reload. The
+list of radios is (see below).
 
 ## Public landing page and installing to a device
 
@@ -58,9 +61,37 @@ The app page links `manifest.webmanifest`, so once open the owner can **Install 
 browser. The manifest and its icons sit in `www-public/` because browsers fetch a manifest without
 credentials, which the owner-only `www/` would answer with 404. There is no service worker.
 
-MeshCore doesn't use Wasmo's per-install services (`/api/wasmo/v1/kv` and so on), so any install
-name works and nothing needs adding to the operator's `WASMO_SERVICE_APPS` list. As in the static
-web build, nothing is stored: theme choices reset on reload.
+## Sharing radios across browsers
+
+The connect screen lists **Your radios**: every radio this owner has connected, by name and public
+key, with its USB vendor and product ids. The web app keeps the list in `localStorage`
+(`meshcore-radios-v1`). On a Wasmo that enables its per-install services for this install name
+(the fork's `WASMO_SERVICE_APPS` allow-list, as for Terrazzo and Cadence), the list follows the
+owner to every browser they open MeshCore in. The `.wasmo` build's `app.html` loads
+`web-app/wasmo/meshcore-backend.js` in place of `meshcore.js`:
+
+1. It probes `/api/wasmo/v1/capabilities` (one longer retry if the Wasmo doesn't answer).
+2. With `kv` and `kvImport`, it reads the install's radios and seeds `localStorage` with them
+   before the app starts. Each radio is its own value, `radio.` plus the first 56 hex digits of its
+   public key, so browsers changing different radios at the same time can't overwrite each other. The first browser on an empty install uploads what it has with
+   `POST kv/import`, which only an empty install accepts; if another browser got there first, its
+   list wins.
+3. Each time the connect screen shows, and before each change, the app calls
+   `globalThis.meshcoreStorage.refresh`, which re-reads the install's radios. The app applies a
+   change (a radio connected or forgotten) to that fresh list, and `meshcoreStorage.changed` turns
+   the difference into a `PUT` or `DELETE` of just the radios that changed. A failed write stays queued, is retried with the next
+   change or when the browser reconnects, and shows a notice.
+4. If the install's list can't be read at startup, the page offers a reload rather than starting
+   from this browser's copy.
+
+What is shared is the list, not the connection. Web Serial grants a port to one browser only, so
+in a new browser **Connect** opens the port picker, narrowed to the radio's USB ids. Once granted
+there, a radio connects without the picker when exactly one granted port matches its ids and no
+other saved radio shares them (two radios on the same USB chip always go through the picker). A radio
+forgotten in one browser while another adds it again keeps the later change.
+
+Without the service (hosted wasmo.com, or an install name not on the list) the list stays in the
+browser, as in the static web build, and a dismissible notice says so. Theme choices aren't stored.
 
 ## Installing
 
@@ -73,7 +104,9 @@ choice.
    `https://github.com/yschimke/meshcore-mobile/releases/latest/download/meshcore.wasmo`.
    To host it yourself instead, serve `web-app/build/wasmo/meshcore.wasmo` from any HTTPS URL
    Wasmo can reach.
-2. In Wasmo, choose **Install App**, paste the URL, and name it `meshcore`.
+2. In Wasmo, choose **Install App**, paste the URL, and name it `meshcore` (or whichever name the
+   operator lists in `WASMO_SERVICE_APPS`; other names work but keep the radios list in the
+   browser).
 3. Open it from the launcher, or `https://meshcore-<computer>.wasmo.com/`.
 
 The **Wasmo server**, not your browser, fetches the URL, so it must be reachable from wherever
