@@ -38,7 +38,7 @@ jobs:
         with:
           cache-read-only: 'true'
       - name: Build production Wasm
-        run: ./gradlew :web-app:wasmJsBrowserDistribution :meshcore-transport-webserial:jvmTest :meshcore-core:jvmTest --stacktrace
+        run: ./gradlew :web-app:wasmJsBrowserDistribution :web-app:wasmoApp :meshcore-transport-webserial:jvmTest :meshcore-core:jvmTest --stacktrace
       - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.15.2'

@@ -123,7 +123,7 @@ jobs:
           MESHCORE_KEYSTORE_PASSWORD: ${{ secrets.MESHCORE_KEYSTORE_PASSWORD }}
           MESHCORE_KEY_ALIAS: ${{ secrets.MESHCORE_KEY_ALIAS }}
           MESHCORE_KEY_PASSWORD: ${{ secrets.MESHCORE_KEY_PASSWORD }}
-        run: ./gradlew :app:assembleRelease :app:bundleRelease --stacktrace
+        run: ./gradlew :app:assembleRelease :app:bundleRelease :web-app:wasmoApp --stacktrace
 
       - name: Publish to Play (internal track)
         if: env.PUBLISH_PLAY == 'true'
@@ -173,6 +173,10 @@ jobs:
           for f in app/build/outputs/bundle/release/*.aab; do
             cp "$f" "_release/meshcore-${version}.aab"
           done
+          # The browser build as an installable Wasmo app. Unversioned so
+          # releases/latest/download/meshcore.wasmo is a stable install URL;
+          # see docs/wasmo-app.md.
+          cp web-app/build/wasmo/meshcore.wasmo _release/meshcore.wasmo
           ls -la _release/
           echo "version=${version}" >> "$GITHUB_OUTPUT"
 
@@ -185,6 +189,7 @@ jobs:
           files: |
             _release/*.apk
             _release/*.aab
+            _release/meshcore.wasmo
           fail_on_unmatched_files: true
 
       - name: Upload workflow artifact

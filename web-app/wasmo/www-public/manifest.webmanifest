@@ -1,0 +1,15 @@
+{
+  "id": "/app.html",
+  "name": "MeshCore",
+  "short_name": "MeshCore",
+  "description": "Chat over a MeshCore companion radio connected by USB.",
+  "start_url": "/app.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#00201c",
+  "theme_color": "#006a60",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
