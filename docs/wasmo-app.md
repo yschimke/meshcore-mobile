@@ -71,21 +71,23 @@ owner to every browser they open MeshCore in. The `.wasmo` build's `app.html` lo
 `web-app/wasmo/meshcore-backend.js` in place of `meshcore.js`:
 
 1. It probes `/api/wasmo/v1/capabilities` (one longer retry if the Wasmo doesn't answer).
-2. With `kv` and `kvImport`, it reads the install's `radios` value and seeds `localStorage` with it
-   before the app starts. The first browser on an empty install uploads what it has with
+2. With `kv` and `kvImport`, it reads the install's radios and seeds `localStorage` with them
+   before the app starts. Each radio is its own value, `radio.` plus the first 56 hex digits of its
+   public key, so browsers changing different radios at the same time can't overwrite each other. The first browser on an empty install uploads what it has with
    `POST kv/import`, which only an empty install accepts; if another browser got there first, its
    list wins.
 3. Each time the connect screen shows, and before each change, the app calls
-   `globalThis.meshcoreStorage.refresh`, which re-reads the install's list. A change (a radio
-   connected or forgotten) is applied to that fresh list, so another browser's additions survive,
-   and `meshcoreStorage.changed` `PUT`s it. A failed write stays queued, is retried with the next
+   `globalThis.meshcoreStorage.refresh`, which re-reads the install's radios. The app applies a
+   change (a radio connected or forgotten) to that fresh list, and `meshcoreStorage.changed` turns
+   the difference into a `PUT` or `DELETE` of just the radios that changed. A failed write stays queued, is retried with the next
    change or when the browser reconnects, and shows a notice.
 4. If the install's list can't be read at startup, the page offers a reload rather than starting
    from this browser's copy.
 
 What is shared is the list, not the connection. Web Serial grants a port to one browser only, so
-in a new browser **Connect** opens the port picker, narrowed to the radio's USB ids; once granted
-there, a radio whose ids match exactly one granted port connects without the picker. A radio
+in a new browser **Connect** opens the port picker, narrowed to the radio's USB ids. Once granted
+there, a radio connects without the picker when exactly one granted port matches its ids and no
+other saved radio shares them (two radios on the same USB chip always go through the picker). A radio
 forgotten in one browser while another adds it again keeps the later change.
 
 Without the service (hosted wasmo.com, or an install name not on the list) the list stays in the

@@ -129,16 +129,20 @@ private fun SerialConnectPanel(
           radio = radio,
           enabled = enabled,
           onConnect = {
-            // A port this browser already granted with the same USB ids opens without a picker;
-            // otherwise the picker is narrowed to them. Port grants never leave the browser.
-            val match =
-              granted
-                .filter {
-                  radio.usbVendorId != null &&
-                    it.usbVendorId == radio.usbVendorId &&
-                    it.usbProductId == radio.usbProductId
-                }
-                .singleOrNull()
+            // A port this browser already granted with the same USB ids opens without a picker,
+            // but only when no other saved radio shares those ids: otherwise the port could be
+            // the other radio. Every other case uses the picker, narrowed to the ids. Port grants
+            // never leave the browser.
+            fun SerialPort.matches(r: SavedRadio) =
+              r.usbVendorId != null &&
+                usbVendorId == r.usbVendorId &&
+                usbProductId == r.usbProductId
+            val ambiguous = radios.any {
+              it.publicKey != radio.publicKey &&
+                it.usbVendorId == radio.usbVendorId &&
+                it.usbProductId == radio.usbProductId
+            }
+            val match = if (ambiguous) null else granted.filter { it.matches(radio) }.singleOrNull()
             connect(match) { WebSerial.requestPort(radio.usbVendorId, radio.usbProductId) }
           },
           onForget = {
