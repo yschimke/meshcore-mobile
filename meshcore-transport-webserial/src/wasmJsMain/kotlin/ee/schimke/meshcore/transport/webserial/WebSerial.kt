@@ -10,13 +10,36 @@ object WebSerial {
   val isSupported: Boolean
     get() = supported()
 
-  // Call synchronously from the click handler, before any coroutine suspension.
-  fun requestPort(): SerialPortRequest = SerialPortRequest(request())
+  /**
+   * Call synchronously from the click handler, before any coroutine suspension. A USB vendor (and
+   * product) id narrows the browser's picker to matching ports.
+   */
+  fun requestPort(usbVendorId: Int? = null, usbProductId: Int? = null): SerialPortRequest =
+    SerialPortRequest(request(usbVendorId ?: -1, usbProductId ?: -1))
+
+  /** Ports this browser already granted to the page; they connect without a picker. */
+  suspend fun grantedPorts(): List<SerialPort> {
+    if (!isSupported) return emptyList()
+    val ports = grantedPortsArray().await<JsAny>()
+    return List(portCount(ports)) { SerialPort(portAt(ports, it)) }
+  }
 }
 
 class SerialPortRequest internal constructor(private val promise: Promise<JsAny>) {
-  suspend fun awaitConnection(): SerialConnection =
-    BrowserSerialConnection(session(promise.await()))
+  suspend fun awaitPort(): SerialPort = SerialPort(promise.await())
+
+  suspend fun awaitConnection(): SerialConnection = awaitPort().connection()
+}
+
+/** A browser serial port the page may open; its USB ids are absent for non-USB ports. */
+class SerialPort internal constructor(private val port: JsAny) {
+  val usbVendorId: Int?
+    get() = usbVendorId(port).takeIf { it >= 0 }
+
+  val usbProductId: Int?
+    get() = usbProductId(port).takeIf { it >= 0 }
+
+  fun connection(): SerialConnection = BrowserSerialConnection(session(port))
 }
 
 private class BrowserSerialConnection(private val handle: JsAny) : SerialConnection {
@@ -42,7 +65,22 @@ private class BrowserSerialConnection(private val handle: JsAny) : SerialConnect
 
 private fun supported(): Boolean = js("globalThis.isSecureContext && 'serial' in navigator")
 
-private fun request(): Promise<JsAny> = js("navigator.serial.requestPort()")
+private fun request(vendorId: Int, productId: Int): Promise<JsAny> =
+  js(
+    """navigator.serial.requestPort(vendorId < 0 ? {} : {filters: [productId < 0
+      ? {usbVendorId: vendorId} : {usbVendorId: vendorId, usbProductId: productId}]})"""
+  )
+
+private fun grantedPortsArray(): Promise<JsAny> =
+  js("navigator.serial.getPorts ? navigator.serial.getPorts() : Promise.resolve([])")
+
+private fun portCount(ports: JsAny): Int = js("ports.length")
+
+private fun portAt(ports: JsAny, index: Int): JsAny = js("ports[index]")
+
+private fun usbVendorId(port: JsAny): Int = js("port.getInfo?.().usbVendorId ?? -1")
+
+private fun usbProductId(port: JsAny): Int = js("port.getInfo?.().usbProductId ?? -1")
 
 private fun session(port: JsAny): JsAny =
   js("({port, reader: null, writer: null, opening: null, closing: null, closed: false})")

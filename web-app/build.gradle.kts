@@ -5,6 +5,7 @@ plugins {
   alias(libs.plugins.kotlinMultiplatform)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -19,6 +20,7 @@ kotlin {
       implementation(projects.meshcoreComponents)
       implementation(projects.meshcoreTransportWebserial)
       implementation(libs.kotlinx.coroutines.core)
+      implementation(libs.kotlinx.serialization.json)
     }
   }
 }
@@ -40,11 +42,18 @@ val wasmoAppDirectory =
     // visitor (Wasmo serves www-public/ first) and sends the owner on to app.html.
     into("www") {
       from(tasks.named("wasmJsBrowserDistribution"))
-      from("wasmo/wasm-mime-fallback.js")
+      from("wasmo/wasm-mime-fallback.js", "wasmo/meshcore-backend.js")
       filesMatching("index.html") {
         filter { line ->
           line
-            // Runs before the deferred meshcore.js, so its streaming compile sees the fallback.
+            // meshcore-backend.js seeds the radios list from the Wasmo install, then loads
+            // meshcore.js.
+            .replace(
+              "<script src=\"meshcore.js\" defer></script>",
+              "<script src=\"meshcore-backend.js\" defer></script>",
+            )
+            // Runs before the deferred scripts, so meshcore.js's streaming compile sees the
+            // fallback.
             .replace(
               "<script src=\"bootstrap.js\" defer></script>",
               "<script src=\"wasm-mime-fallback.js\"></script>\n" +
