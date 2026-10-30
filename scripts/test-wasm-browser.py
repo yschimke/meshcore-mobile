@@ -170,6 +170,17 @@ try:
         page.evaluate('serialFixture.unplug()')
         expect(button).to_be_enabled()
         assert page.evaluate('serialFixture.closes') == 3
+        # The connected radio is remembered, and reconnects from its own row.
+        expect(page.get_by_text('Your radios', exact=True)).to_have_count(1)
+        assert page.evaluate("JSON.parse(localStorage.getItem('meshcore-radios-v1'))[0].name") == 'browser-radio'
+        page.get_by_role('button', name='Connect', exact=True).click(force=True)
+        expect(disconnect).to_have_count(1)
+        disconnect.dispatch_event('click')
+        forget = page.get_by_role('button', name='Forget', exact=True)
+        expect(forget).to_have_count(1)
+        forget.dispatch_event('click')
+        expect(page.get_by_text('Your radios', exact=True)).to_have_count(0)
+        assert page.evaluate("localStorage.getItem('meshcore-radios-v1')") == '[]'
         assert not errors, errors
         context.close()
         # Unsupported browsers still load the shared app and explain the missing API.
@@ -180,6 +191,6 @@ try:
         expect(page.get_by_role('button', name='Connect USB radio', exact=True)).to_be_disabled()
         expect(page.get_by_text(re.compile('USB connections require Chrome or Edge'))).to_have_count(1)
         browser.close()
-        print('Wasm browser: project path, permission gesture, cancel/retry, failed handshake cleanup, companion handshake, chat send/history, disconnect/reconnect, unplug and unsupported browser passed')
+        print('Wasm browser: project path, permission gesture, cancel/retry, failed handshake cleanup, companion handshake, chat send/history, disconnect/reconnect, unplug, saved radios and unsupported browser passed')
 finally:
     server.shutdown()
