@@ -151,9 +151,9 @@ jobs:
       # Explicit reference webfonts are checked for readiness and painted identity.
       # Keep the existing fontconfig installation above until the hosted and local
       # lanes have both been verified independently.
-      - uses: actions/setup-python@v7.0.0
+      - uses: actions/setup-python@v7.1.0
         with:
-          python-version: '3.15.0'
+          python-version: '3.15.2'
       - name: Install reference capture tooling
         run: |
           python -m pip install playwright==1.62.0
@@ -165,7 +165,7 @@ jobs:
 
       - uses: actions/setup-node@v7.1.0
         with:
-          node-version: 26.11.1
+          node-version: 26.13.0
 
       - name: Run design-parity
         env:

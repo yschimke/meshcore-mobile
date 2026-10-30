@@ -12,12 +12,12 @@ runs:
     - uses: actions/setup-java@v6.1.0
       with:
         distribution: temurin
-        java-version: '21.0.12+101.0.LTS'
+        java-version: '21.0.13+9.0.LTS'
     # CI supplies tokens through the environment, matching settings.gradle.kts.
     - id: cache-mode
       shell: bash
       run: echo "remote-push-enabled=$(bash scripts/cache-mode.sh)" >> "$GITHUB_OUTPUT"
-    - uses: gradle/actions/setup-gradle@v6.4.0
+    - uses: gradle/actions/setup-gradle@v6.4.1
       with:
         cache-read-only: ${{ inputs.cache-read-only }}
         gradle-home-cache-excludes: ${{ steps.cache-mode.outputs.remote-push-enabled == 'true' && 'caches/build-cache-1' || '' }}
