@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.8](https://github.com/yschimke/meshcore-mobile/compare/v0.1.7...v0.1.8) (2026-10-30)
+
+
+### Features
+
+* **web:** package the web app as an installable Wasmo app ([#637](https://github.com/yschimke/meshcore-mobile/issues/637)) ([b9b0535](https://github.com/yschimke/meshcore-mobile/commit/b9b0535104dc099430a80d857535752e51b6e87e))
+* **web:** remember radios and share them across browsers on Wasmo ([#639](https://github.com/yschimke/meshcore-mobile/issues/639)) ([2ac3465](https://github.com/yschimke/meshcore-mobile/commit/2ac3465d92d136e9a06c0e19d573deb0b9659d50))
+
+
+### Bug Fixes
+
+* **deps:** update compose-ai-tools ([#632](https://github.com/yschimke/meshcore-mobile/issues/632)) ([3375bd8](https://github.com/yschimke/meshcore-mobile/commit/3375bd8d9f3c861216f2cd737e6341e80e0badc8))
+* **deps:** update compose-ai-tools ([#642](https://github.com/yschimke/meshcore-mobile/issues/642)) ([cccd612](https://github.com/yschimke/meshcore-mobile/commit/cccd61210415c24d65b9a2d93bbe85d20d4e35f8))
+* **deps:** update dependency io.ktor:ktor-network to v3.6.1 ([#633](https://github.com/yschimke/meshcore-mobile/issues/633)) ([880c91d](https://github.com/yschimke/meshcore-mobile/commit/880c91dabe66d011be29d72b3f52f4f381305bef))
+* **deps:** update metro to v1.5.1 ([#635](https://github.com/yschimke/meshcore-mobile/issues/635)) ([7855064](https://github.com/yschimke/meshcore-mobile/commit/78550642378205cfa036ca002da977a4d8e4ecea))
+* **previews:** restore widget preview renders and scope a11y to changed previews ([#626](https://github.com/yschimke/meshcore-mobile/issues/626)) ([2143346](https://github.com/yschimke/meshcore-mobile/commit/214334676374078ae1abcb243763078dee6460e2))
+
 ## [0.1.7](https://github.com/yschimke/meshcore-mobile/compare/v0.1.6...v0.1.7) (2026-10-28)
 
 
