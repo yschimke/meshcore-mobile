@@ -1,0 +1,134 @@
+<!doctype html>
+<!--
+  The public face of a MeshCore Wasmo app. Wasmo serves www-public/ to everyone, ahead of the
+  owner-only www/, so this page answers "/" for every visitor. The owner is sent on to the app
+  (www/app.html); anyone else, or an owner who is signed out of Wasmo, gets install instructions
+  instead of a bare 404. See docs/wasmo-app.md.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeshCore</title>
+  <meta name="description" content="Chat over a MeshCore companion radio connected by USB.">
+  <meta name="theme-color" content="#006a60">
+  <link rel="icon" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    // Only the owner can load www/app.html; Wasmo answers 404 to everyone else.
+    document.documentElement.classList.add('probing');
+    fetch('/app.html', { method: 'GET', cache: 'no-store', credentials: 'same-origin' })
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        location.replace(`/app.html${location.search}${location.hash}`);
+      })
+      .catch(() => document.documentElement.classList.remove('probing'));
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4fbf8;
+      --fg: #161d1c;
+      --muted: #4a635f;
+      --accent: #006a60;
+      --card: #ffffff;
+      --border: #cce8e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1513;
+        --fg: #dde4e1;
+        --muted: #b1ccc6;
+        --accent: #53dbc9;
+        --card: #1a2120;
+        --border: #2b3533;
+      }
+    }
+    html.probing body { visibility: hidden; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.5 system-ui, sans-serif;
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 32px 16px 48px; }
+    header { display: flex; align-items: center; gap: 16px; }
+    header img { width: 72px; height: 72px; border-radius: 18px; }
+    h1 { margin: 0; font-size: 28px; }
+    header p { margin: 0; color: var(--muted); }
+    h2 { font-size: 18px; margin: 0 0 8px; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    ol, ul { margin: 0; padding-left: 20px; }
+    p { margin: 0 0 8px; }
+    a { color: var(--accent); }
+    code { font-size: 14px; }
+    .address {
+      display: block;
+      overflow-wrap: anywhere;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 8px;
+      background: var(--bg);
+    }
+    .note { color: var(--muted); font-size: 14px; }
+    ol + .note, ul + .note { margin-top: 8px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="/icon-192.png" alt="">
+    <div>
+      <h1>MeshCore</h1>
+      <p>Chat over a MeshCore companion radio connected by USB.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Is this your Wasmo?</h2>
+    <p>This app only opens for its owner. Sign in to your Wasmo, then open
+      <strong>MeshCore</strong> from your launcher.</p>
+    <p class="note">Once it's open you can install it to your desktop: use your browser's
+      <em>Install app</em>.</p>
+  </section>
+
+  <section>
+    <h2>Install MeshCore on your own Wasmo</h2>
+    <ol>
+      <li>In your Wasmo, open the computer menu and choose <strong>Install App</strong>.</li>
+      <li>Paste this address:
+        <code class="address">https://github.com/yschimke/meshcore-mobile/releases/latest/download/meshcore.wasmo</code>
+      </li>
+      <li>Name it <code>meshcore</code> and open it.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Connecting a radio</h2>
+    <ul>
+      <li><strong>USB:</strong> works. Plug in a companion radio and choose its serial port.
+        Needs desktop Chrome or Edge (Web Serial).</li>
+      <li><strong>Bluetooth</strong> and <strong>Wi-Fi (TCP)</strong>: not available in the
+        browser. Use the Android or desktop app.</li>
+    </ul>
+    <p class="note">Messages and contacts aren't saved between visits in the browser.</p>
+  </section>
+
+  <section>
+    <h2>Other ways to use MeshCore</h2>
+    <ol>
+      <li><a href="https://yschimke.github.io/meshcore-mobile/">In your browser</a>, with nothing
+        to install.</li>
+      <li>On Android and the desktop:
+        <a href="https://github.com/yschimke/meshcore-mobile/releases/latest">releases</a>.</li>
+    </ol>
+  </section>
+</main>
+</body>
+</html>

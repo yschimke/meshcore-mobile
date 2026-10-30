@@ -1,0 +1,11 @@
+# MeshCore as a Wasmo app (https://github.com/wasmcomputercompany/wasmo): the Wasm web build served
+# as static owner-only resources from www/, with a public landing page and the web app manifest in
+# www-public/. There is no app.wasm; everything runs in the browser. Built by `:web-app:wasmoApp`;
+# see docs/wasmo-app.md.
+target = 'https://wasmo.com/sdk/1'
+version = ${version}
+
+[launcher]
+label = 'MeshCore'
+maskable_icon_path = '/assets/icon.png'
+home_path = '/app.html'
