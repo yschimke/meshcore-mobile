@@ -96,7 +96,7 @@ jobs:
     if: ${{ github.repository == 'yschimke/meshcore-mobile' }}
     permissions:
       contents: write
-    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@v2.78.0
+    uses: yschimke/compose-ai-tools/.github/workflows/design-artifacts-reusable.yml@v2.79.0
     with:
       system: meshcore-mobile
       ui-builder-catalog-task: ':ui-builder-catalog:exportTypedCatalog'
