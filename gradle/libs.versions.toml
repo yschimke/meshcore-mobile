@@ -12,7 +12,7 @@ androidx-activity = "1.13.0"
 androidx-core = "1.19.1"
 androidx-lifecycle = "2.11.0"
 androidx-testExt = "1.3.0"
-composeMultiplatform = "1.13.0-alpha02"
+composeMultiplatform = "1.13.0-beta01"
 composePreviewAnnotations = "3.26.0"
 composePreviewPlugin = "2.75.0"
 # The data connector publishes from yschimke/compose-preview-daemon on that repository's own
@@ -35,7 +35,7 @@ composePreviewRcEmbeddedPlayer = "2.20.1"
 core = "1.7.0"
 kotlin = "2.4.21"
 kotlinx-coroutines = "1.11.0"
-material3 = "1.13.0-alpha02"
+material3 = "1.13.0-beta01"
 # Remote Compose, from Google Maven. Was an androidx-main post-submit snapshot until
 # the creation API this repo's remote cards need reached a release; `1.0.0-SNAPSHOT`
 # names no single build, so two consumers of "the same" version could hold two, which
