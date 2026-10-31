@@ -87,7 +87,7 @@ jobs:
       - name: Record render start
         run: echo "RENDER_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
       - id: apply
-        uses: yschimke/compose-ai-tools/.github/actions/apply@v2.77.0
+        uses: yschimke/compose-ai-tools/.github/actions/apply@v2.78.0
         with:
           # Pin the render CLI to the Gradle plugin version (single source of
           # truth: composePreviewPlugin in libs.versions.toml) instead of the
