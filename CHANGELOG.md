@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.9](https://github.com/yschimke/meshcore-mobile/compare/v0.1.8...v0.1.9) (2026-10-31)
+
+
+### Bug Fixes
+
+* **deps:** update compose-ai-tools ([#649](https://github.com/yschimke/meshcore-mobile/issues/649)) ([d633710](https://github.com/yschimke/meshcore-mobile/commit/d6337100432c30d811fd7972295f0f442712bbeb))
+* **deps:** update kotlinx to v0.9.2 ([#646](https://github.com/yschimke/meshcore-mobile/issues/646)) ([237fcf3](https://github.com/yschimke/meshcore-mobile/commit/237fcf33056f7f8d1e12eaf02ab755d4f7312802))
+
 ## [0.1.8](https://github.com/yschimke/meshcore-mobile/compare/v0.1.7...v0.1.8) (2026-10-30)
 
 
