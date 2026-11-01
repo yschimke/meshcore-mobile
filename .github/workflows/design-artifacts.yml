@@ -129,6 +129,10 @@ jobs:
       # discovery as the preferred module, so the authored entries still resolve
       # there and equal function names keep their historical winner.
       modules: all
+      # Render the debug variant explicitly. AGP 9.5 turns unit tests off for release
+      # variants, and Compose Preview packages Android resources through the variant's
+      # unit-test APK, so a release render fails before it starts (compose-ai-tools #6382).
+      variant: debug
       cli-version: catalog
       catalog-key: composePreviewPlugin
       commit-user-name: Yuri Schimke
