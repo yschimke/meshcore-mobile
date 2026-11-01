@@ -175,7 +175,9 @@ fun DeviceInfoWidgetContent(
 ) {
   RemoteColumn(
     modifier = cardModifier(onTap),
-    verticalArrangement = RemoteArrangement.spacedBy(10.rdp),
+    // 4dp, not 10dp: five rows plus the battery bar must fit the 2-row (160dp) widget
+    // after the card's 16dp padding; at 10dp the storage row was clipped off the bottom.
+    verticalArrangement = RemoteArrangement.spacedBy(4.rdp),
   ) {
     RemoteText(deviceName.rs, color = OnSurface, fontSize = 20.rsp)
 
@@ -200,7 +202,9 @@ fun DeviceInfoWidgetContent(
           tint = OnSurfaceVariant,
           modifier = RemoteModifier.size(12.rdp),
         )
-        RemoteText(radioInfo.rs, color = OnSurfaceVariant, fontSize = 14.rsp, maxLines = 1)
+        // 12sp: the full "freq · BW · SF · CR" line is wider than the widget at 14sp, and
+        // maxLines = 1 cut the coding rate off mid-token.
+        RemoteText(radioInfo.rs, color = OnSurfaceVariant, fontSize = 12.rsp, maxLines = 1)
       }
     }
 
@@ -242,22 +246,23 @@ fun DeviceInfoWidgetContent(
       }
     }
 
-    // Storage — icon + bodySmall ~12sp
-    if (storageLine != null) {
+    // Storage — icon + bodySmall ~12sp. The stale indicator shares this row rather than
+    // adding a sixth one, which the 160dp widget has no height for.
+    if (storageLine != null || staleLabel != null) {
       RemoteRow(horizontalArrangement = RemoteArrangement.spacedBy(4.rdp)) {
-        RemoteIcon(
-          imageVector = Icons.Rounded.Storage.toRemoteImageVector(),
-          contentDescription = null,
-          tint = OnSurfaceVariant,
-          modifier = RemoteModifier.size(12.rdp),
-        )
-        RemoteText(storageLine.rs, color = OnSurfaceVariant, fontSize = 12.rsp)
+        if (storageLine != null) {
+          RemoteIcon(
+            imageVector = Icons.Rounded.Storage.toRemoteImageVector(),
+            contentDescription = null,
+            tint = OnSurfaceVariant,
+            modifier = RemoteModifier.size(12.rdp),
+          )
+          RemoteText(storageLine.rs, color = OnSurfaceVariant, fontSize = 12.rsp)
+        }
+        if (staleLabel != null) {
+          RemoteText(staleLabel.rs, color = Warning, fontSize = 12.rsp, maxLines = 1)
+        }
       }
-    }
-
-    // Stale indicator
-    if (staleLabel != null) {
-      RemoteText(staleLabel.rs, color = Warning, fontSize = 12.rsp)
     }
   }
 }
