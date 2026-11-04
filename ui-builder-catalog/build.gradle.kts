@@ -42,6 +42,7 @@ tasks.register<JavaExec>("exportTypedCatalog") {
 val stageJvmCatalogBundle =
   tasks.register<Sync>("stageJvmCatalogBundle") {
     dependsOn("exportTypedCatalog")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     into(layout.buildDirectory.dir("jvm-catalog-bundle"))
     from(layout.buildDirectory.dir("catalog"))
     from("fixtures") { into("designs") }

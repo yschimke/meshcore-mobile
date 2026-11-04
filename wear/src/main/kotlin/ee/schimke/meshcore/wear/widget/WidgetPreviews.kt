@@ -5,7 +5,7 @@ package ee.schimke.meshcore.wear.widget
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Person
-import androidx.compose.remote.creation.compose.action.Action
+import androidx.compose.remote.creation.compose.action.RemoteAction
 import androidx.compose.remote.creation.compose.capture.toRemoteImageVector
 import androidx.compose.remote.creation.compose.layout.RemoteAlignment
 import androidx.compose.remote.creation.compose.layout.RemoteArrangement
@@ -157,7 +157,7 @@ private fun CatalogComponentPreview(
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun WearComponentGridPreview() {
-  val action = Action.Empty
+  val action = RemoteAction.Empty
 
   RemoteColumn(
     modifier = RemoteModifier.fillMaxSize().background(Color.Black.rc).padding(8.rdp),

@@ -11,7 +11,7 @@ import androidx.compose.material.icons.rounded.BatteryFull
 import androidx.compose.material.icons.rounded.Fingerprint
 import androidx.compose.material.icons.rounded.Storage
 import androidx.compose.material.icons.rounded.Wifi
-import androidx.compose.remote.creation.compose.action.Action
+import androidx.compose.remote.creation.compose.action.RemoteAction
 import androidx.compose.remote.creation.compose.capture.toRemoteImageVector
 import androidx.compose.remote.creation.compose.layout.RemoteArrangement
 import androidx.compose.remote.creation.compose.layout.RemoteBox
@@ -103,8 +103,8 @@ private fun RemoteDrawScope.drawBorder(
   with(
     shape.createOutline(
       androidx.compose.remote.creation.compose.layout.RemoteSize(w, h),
-      remoteDensity,
       layoutDirection,
+      remoteDensity,
     )
   ) {
     drawOutline(
@@ -127,8 +127,8 @@ private fun RemoteDrawScope.drawSolidColorShape(
   with(
     shape.createOutline(
       androidx.compose.remote.creation.compose.layout.RemoteSize(w, h),
-      remoteDensity,
       layoutDirection,
+      remoteDensity,
     )
   ) {
     drawOutline(
@@ -141,7 +141,7 @@ private fun RemoteDrawScope.drawSolidColorShape(
   }
 }
 
-fun cardModifier(onTap: Action? = null) =
+fun cardModifier(onTap: RemoteAction? = null) =
   RemoteModifier.fillMaxSize()
     .let { if (onTap != null) it.clickable(onTap) else it }
     .drawWithContent {
@@ -171,7 +171,7 @@ fun DeviceInfoWidgetContent(
   batteryWarn: Boolean = false,
   storageLine: String?,
   staleLabel: String? = null,
-  onTap: Action? = null,
+  onTap: RemoteAction? = null,
 ) {
   RemoteColumn(
     modifier = cardModifier(onTap),
