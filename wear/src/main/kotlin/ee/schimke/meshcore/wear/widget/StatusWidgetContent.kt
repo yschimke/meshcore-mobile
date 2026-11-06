@@ -3,7 +3,7 @@
 package ee.schimke.meshcore.wear.widget
 
 import android.annotation.SuppressLint
-import androidx.compose.remote.creation.compose.action.Action
+import androidx.compose.remote.creation.compose.action.RemoteAction
 import androidx.compose.remote.creation.compose.layout.RemoteArrangement
 import androidx.compose.remote.creation.compose.layout.RemoteBox
 import androidx.compose.remote.creation.compose.layout.RemoteColumn
@@ -40,7 +40,7 @@ private val ErrorRed = Color(0xFFFFB4AB).rc
  * The content's own surface and padding, or none when [framed]: a widget's container draws the fill
  * and insets the content by the watch's own host padding.
  */
-private fun widgetModifier(framed: Boolean, onTap: Action?) =
+private fun widgetModifier(framed: Boolean, onTap: RemoteAction?) =
   RemoteModifier.fillMaxSize()
     .let { if (onTap != null) it.clickable(onTap) else it }
     .let { if (framed) it else it.background(SurfaceContainer).padding(12.rdp) }
@@ -57,7 +57,7 @@ fun StatusWidgetContent(
   batteryPercent: Int?,
   contactCount: Int,
   framed: Boolean = false,
-  onTap: Action? = null,
+  onTap: RemoteAction? = null,
 ) {
   RemoteColumn(
     modifier = widgetModifier(framed, onTap),
