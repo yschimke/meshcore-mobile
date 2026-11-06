@@ -182,7 +182,7 @@ jobs:
 
       - name: Attach assets to GitHub release
         if: (github.event_name == 'push' || inputs.publish_release == true) && env.HAS_SIGNING_KEYSTORE == 'true'
-        uses: softprops/action-gh-release@v3.0.3
+        uses: softprops/action-gh-release@v3.0.4
         with:
           tag_name: ${{ env.TAG_NAME }}
           draft: true
