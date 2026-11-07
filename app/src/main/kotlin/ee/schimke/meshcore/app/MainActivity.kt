@@ -8,12 +8,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -29,10 +24,7 @@ import ee.schimke.meshcore.app.ui.DeviceScreen
 import ee.schimke.meshcore.app.ui.DeviceSettingsScreen
 import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
-import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
-import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
   // Runtime BLE permissions are requested from the BLE tab on demand, not here;
@@ -48,11 +40,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun MeshcoreAppUi() {
   val app = LocalAppGraph.current
-  val themeSettings by app.themePreferences.settings.collectAsState(initial = ThemeSettings())
-  val scope = rememberCoroutineScope()
-  var pickerVisible by remember { mutableStateOf(false) }
 
-  MeshcoreTheme(settings = themeSettings) {
+  MeshcoreTheme {
     Surface {
       val backStack = rememberNavBackStack(DeviceRoute)
 
@@ -75,7 +64,6 @@ private fun MeshcoreAppUi() {
                   // Push scanner on top so user can reconnect
                   if (backStack.lastOrNull() !is ScannerRoute) backStack.add(ScannerRoute)
                 },
-                onOpenThemePicker = { pickerVisible = true },
                 onNavigateToContact = { contact ->
                   backStack.add(ContactRoute(contact.publicKey.toHex()))
                 },
@@ -92,7 +80,6 @@ private fun MeshcoreAppUi() {
                   // Pop back to device screen
                   while (backStack.lastOrNull() is ScannerRoute) backStack.removeLastOrNull()
                 },
-                onOpenThemePicker = { pickerVisible = true },
                 onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
                 onOpenLicenses = { backStack.add(LicensesRoute) },
               )
@@ -125,7 +112,6 @@ private fun MeshcoreAppUi() {
               CachedDeviceScreen(
                 deviceId = route.deviceId,
                 onBack = { backStack.removeLastOrNull() },
-                onOpenThemePicker = { pickerVisible = true },
               )
             }
             entry<LicensesRoute> {
@@ -134,16 +120,6 @@ private fun MeshcoreAppUi() {
             }
           },
       )
-      if (pickerVisible) {
-        ThemePickerDialog(
-          current = themeSettings,
-          onModeSelect = { mode -> scope.launch { app.themePreferences.setThemeMode(mode) } },
-          onPaletteSelect = { palette ->
-            scope.launch { app.themePreferences.setThemePalette(palette) }
-          },
-          onDismiss = { pickerVisible = false },
-        )
-      }
     }
   }
 }

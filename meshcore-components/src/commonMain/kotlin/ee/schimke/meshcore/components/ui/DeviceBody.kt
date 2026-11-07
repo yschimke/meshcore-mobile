@@ -48,7 +48,6 @@ import ee.schimke.meshcore.components.generated.resources.cd_disconnect
 import ee.schimke.meshcore.components.generated.resources.cd_dismiss
 import ee.schimke.meshcore.components.generated.resources.cd_expand
 import ee.schimke.meshcore.components.generated.resources.cd_new_message
-import ee.schimke.meshcore.components.generated.resources.cd_theme
 import ee.schimke.meshcore.components.generated.resources.cd_tools
 import ee.schimke.meshcore.components.generated.resources.device_loading
 import ee.schimke.meshcore.components.generated.resources.empty_channels
@@ -128,7 +127,6 @@ fun DeviceBody(
   onChannelClick: (ChannelInfo) -> Unit = {},
   onCommandsClick: () -> Unit = {},
   onSettingsClick: () -> Unit = {},
-  onOpenThemePicker: () -> Unit = {},
   warnings: List<String> = emptyList(),
   onDismissWarning: (String) -> Unit = {},
 ) {
@@ -180,12 +178,6 @@ fun DeviceBody(
                 },
               )
             }
-          }
-          IconButton(onClick = onOpenThemePicker) {
-            Icon(
-              imageVector = MeshIcons.Contrast,
-              contentDescription = stringResource(Res.string.cd_theme),
-            )
           }
           IconButton(onClick = onDisconnect) {
             Icon(

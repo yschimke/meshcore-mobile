@@ -16,7 +16,6 @@
   <string name="cd_tools">ツール</string>
   <string name="menu_commands">コマンド</string>
   <string name="label_device_settings">デバイス設定</string>
-  <string name="cd_theme">テーマ</string>
   <string name="cd_disconnect">切断</string>
   <string name="label_contacts">連絡先</string>
   <string name="label_rooms">ルーム</string>
@@ -66,19 +65,6 @@
   <string name="title_disconnecting">切断中</string>
   <string name="cd_licenses">ライセンス</string>
   <string name="tab_saved">保存済み</string>
-  <string name="theme_title">テーマ</string>
-  <string name="theme_palette">パレット</string>
-  <string name="theme_light_dark">ライト / ダーク</string>
-  <string name="theme_done">完了</string>
-  <string name="theme_light">ライト</string>
-  <string name="theme_dark">ダーク</string>
-  <string name="theme_follow_system">システムに従う</string>
-  <string name="theme_dynamic">ダイナミック (システム)</string>
-  <string name="theme_meshcore_desc">手作業で調整したティール系のブランドパレット</string>
-  <string name="theme_dynamic_desc">壁紙から取得した Material You の色</string>
-  <string name="theme_follow_system_desc">デバイスのライト/ダーク設定に合わせます</string>
-  <string name="theme_light_desc">常にライトパレットを使用します</string>
-  <string name="theme_dark_desc">常にダークパレットを使用します</string>
   <string name="login_join">%1$sに参加</string>
   <string name="login_enter_password">「%1$s」のパスワードを入力してください。</string>
   <string name="login_defaults_hint">多くのルームやリピーターは、デフォルトで空のパスワードまたは「hello」を使用します。</string>

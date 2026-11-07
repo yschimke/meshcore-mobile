@@ -63,7 +63,6 @@ private suspend fun ensureCommandsChannel(
 @Composable
 fun DeviceScreen(
   onDisconnected: () -> Unit,
-  onOpenThemePicker: () -> Unit = {},
   onNavigateToContact: (Contact) -> Unit = {},
   onNavigateToChannel: (ChannelInfo) -> Unit = {},
   onNavigateToCommands: (ChannelInfo) -> Unit = {},
@@ -92,7 +91,6 @@ fun DeviceScreen(
       ConnectedDevice(
         client = s.client,
         onDisconnect = { controller.cancel() },
-        onOpenThemePicker = onOpenThemePicker,
         onNavigateToContact = onNavigateToContact,
         onNavigateToChannel = onNavigateToChannel,
         onNavigateToCommands = onNavigateToCommands,
@@ -102,7 +100,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.title_connecting),
         onCancel = { controller.cancel() },
-        onOpenThemePicker = onOpenThemePicker,
         status =
           DeviceConnectStatus.Connecting(
             startedAtMs = s.startedAtMs,
@@ -113,7 +110,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.title_retrying, s.attempt, s.maxAttempts),
         onCancel = { controller.cancel() },
-        onOpenThemePicker = onOpenThemePicker,
         status =
           DeviceConnectStatus.Connecting(
             startedAtMs = System.currentTimeMillis(),
@@ -124,7 +120,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.status_connection_failed),
         onCancel = { controller.dismissError() },
-        onOpenThemePicker = onOpenThemePicker,
         status = DeviceConnectStatus.Failed(s.cause),
       )
     ConnectionUiState.Idle -> {
@@ -134,7 +129,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.title_disconnecting),
         onCancel = { onDisconnected() },
-        onOpenThemePicker = onOpenThemePicker,
         status =
           DeviceConnectStatus.Connecting(
             startedAtMs = System.currentTimeMillis() - 20_000L,
@@ -150,7 +144,6 @@ fun DeviceScreen(
 private fun ConnectedDevice(
   client: ee.schimke.meshcore.core.client.MeshCoreClient,
   onDisconnect: () -> Unit,
-  onOpenThemePicker: () -> Unit,
   onNavigateToContact: (Contact) -> Unit,
   onNavigateToChannel: (ChannelInfo) -> Unit,
   onNavigateToCommands: (ChannelInfo) -> Unit,
@@ -291,7 +284,6 @@ private fun ConnectedDevice(
       }
     },
     onDisconnect = onDisconnect,
-    onOpenThemePicker = onOpenThemePicker,
     warnings = warnings,
     onDismissWarning = { controller.dismissWarning(it) },
   )

@@ -16,7 +16,7 @@ connect a radio, change a real setting, or send a real message.
 | Device settings | [settings.uid](ui-builder/designs/settings.uid) | [DeviceSettingsScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/DeviceSettingsScreen.kt) | KeyScreens |
 | Cached / offline device | [cached.uid](ui-builder/designs/cached.uid) | [CachedDeviceScreen](../app/src/main/kotlin/ee/schimke/meshcore/app/ui/CachedDeviceScreen.kt) | KeyScreens |
 
-Licenses and theme-picker overlays are outside this primary-route suite. Production permission
+Licenses and Settings overlays are outside this primary-route suite. Production permission
 dialogs, transport lifecycle, loading, delivery acknowledgements/retry, keyboard visibility and
 screen-reader traversal still need device validation. This workbench is not evidence of parity
 with the current production screen bodies.

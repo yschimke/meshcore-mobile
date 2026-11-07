@@ -21,7 +21,6 @@ import org.jetbrains.compose.resources.stringResource
 fun CachedDeviceScreen(
   deviceId: String,
   onBack: () -> Unit,
-  onOpenThemePicker: () -> Unit = {},
 ) {
   val repository = LocalAppGraph.current.repository
   // Each observe* call builds a new Room Flow; remember them so a recomposition doesn't restart
@@ -47,7 +46,6 @@ fun CachedDeviceScreen(
     contacts = contacts,
     channels = channels,
     onDisconnect = onBack,
-    onOpenThemePicker = onOpenThemePicker,
     warnings =
       if (state != null) listOf(stringResource(Res.string.warning_cached_data)) else emptyList(),
   )

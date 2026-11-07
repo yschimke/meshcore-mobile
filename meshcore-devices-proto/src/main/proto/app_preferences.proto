@@ -5,10 +5,12 @@ package ee.schimke.meshcore.app.data.proto;
 option java_package = "ee.schimke.meshcore.app.data.proto";
 
 // Top-level DataStore record for app-wide UI preferences.
-// Theme settings are global; section states are per-device.
+// Section states are per-device.
 message AppPreferencesPb {
-  string theme_mode = 1;     // ThemeMode enum name: "System", "Light", "Dark"
-  string theme_palette = 2;  // ThemePalette enum name: "Meshcore", "Dynamic"
+  // Formerly the user-selected theme mode / palette. The app now has a single theme that follows
+  // the system light/dark setting; the numbers stay reserved so old files still decode.
+  reserved 1, 2;
+  reserved "theme_mode", "theme_palette";
 
   // Per-device section collapse/filter states, keyed by device ID.
   map<string, DeviceSectionStatesPb> device_sections = 3;

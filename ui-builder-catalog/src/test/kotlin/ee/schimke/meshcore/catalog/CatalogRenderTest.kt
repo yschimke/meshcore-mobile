@@ -14,10 +14,6 @@ import ee.schimke.meshcore.app.ui.DeviceConnectStatus
 import ee.schimke.meshcore.app.ui.DeviceStatusView
 import ee.schimke.meshcore.app.ui.LoginDialog
 import ee.schimke.meshcore.app.ui.LoginDialogState
-import ee.schimke.meshcore.app.ui.theme.ThemeMode
-import ee.schimke.meshcore.app.ui.theme.ThemePalette
-import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
-import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import ee.schimke.meshcore.components.ui.BatterySection
 import ee.schimke.meshcore.components.ui.ChannelList
 import ee.schimke.meshcore.components.ui.ChannelRow
@@ -471,29 +467,6 @@ class CatalogRenderTest {
   }
 
   @Test
-  fun `native ThemePickerDialog and typed catalog draw the same dialog and dispatch payload events`() {
-    val current = ThemeSettings(mode = ThemeMode.Dark, palette = ThemePalette.Dynamic)
-    parity(
-      "theme-picker",
-      catalog.themePicker.id,
-      props("current" to ThemeSettingsCodec.wrap(current)),
-      height = 720,
-      native = {
-        ThemePickerDialog(
-          current = current,
-          onModeSelect = {},
-          onPaletteSelect = {},
-          onDismiss = {},
-        )
-      },
-    ) { events ->
-      onNodeWithText("Dynamic (system)").performClick()
-      onNodeWithText("Dark").performClick()
-      runOnIdle { assertEquals(listOf("paletteSelect", "modeSelect"), events) }
-    }
-  }
-
-  @Test
   fun `native LoginDialog and typed catalog draw the same dialog for a prompting case`() {
     val state = LoginDialogState.Prompting(errorMessage = "Wrong password")
     parity(
@@ -537,7 +510,6 @@ class CatalogRenderTest {
           title = "ridge-node",
           status = status,
           onCancel = {},
-          onOpenThemePicker = {},
           nowMs = { 8_000L },
         )
       },

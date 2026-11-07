@@ -1,6 +1,6 @@
 # MeshCore typed component catalog
 
-This opt-in module wires 19 `:meshcore-components` composables into the typed UI-builder adapter
+This opt-in module wires 18 `:meshcore-components` composables into the typed UI-builder adapter
 API. It is excluded from normal application builds unless a pinned renderer SDK checkout is supplied. Each
 definition publishes its own ID and properties/slots, and the registry invokes the actual component
 with compiled calls. Every property has an insertion default taken from the library's own preview
@@ -25,10 +25,9 @@ like the app's previews.
 | `ChannelRow` | `meshcore-mobile/channel-row` | `channel` (`ChannelInfo`) | — | `click` |
 | `ChannelList` | `meshcore-mobile/channel-list` | `channels` (list of `ChannelInfo`) | — | `channelClick` (`(ChannelInfo)`) |
 | `DeviceSettingsBody` | `meshcore-mobile/device-settings` | `state` (union `DeviceSettingsUiState`: `discovering` / `error` / `ready`) | — | `toggleBuzzer` (`(Boolean)`), `back` |
-| `ThemePickerDialog` | `meshcore-mobile/theme-picker` | `current` (`ThemeSettings`, enums `ThemeMode` / `ThemePalette`), `dynamicColorAvailable` | — | `modeSelect` (`(ThemeMode)`), `paletteSelect` (`(ThemePalette)`), `dismiss` |
 | `LoginDialog` | `meshcore-mobile/login-dialog` | `contactName`, `contactType`, `state` (union `LoginDialogState`: `prompting` / `authenticating`) | — | `login` (`(String)`), `dismiss` |
-| `DeviceStatusView` | `meshcore-mobile/device-status` | `title`, `status` (union `DeviceConnectStatus`: `connecting` only) | — | `cancel`, `openThemePicker` |
-| `DeviceBody` | `meshcore-mobile/device-body` | `self`, `battery`, `radio` (nullable), `contacts`, `contactsLoading`, `contactsRefreshing`, `channels`, `contactedKeys`, `contactedChannelIndices`, `sectionStates` (`SectionStates`), `lastMessage` (nullable union `LastMessageInfo`: `dm` / `channel`), `warnings` (list of `String`) | — | `disconnect`, `sectionExpandedChange` / `sectionShowAllChange` (`(Section, Boolean)`), `lastMessageClick`, `contactClick`, `channelClick`, `dismissWarning` (payload), `commandsClick`, `settingsClick`, `openThemePicker` |
+| `DeviceStatusView` | `meshcore-mobile/device-status` | `title`, `status` (union `DeviceConnectStatus`: `connecting` only) | — | `cancel` |
+| `DeviceBody` | `meshcore-mobile/device-body` | `self`, `battery`, `radio` (nullable), `contacts`, `contactsLoading`, `contactsRefreshing`, `channels`, `contactedKeys`, `contactedChannelIndices`, `sectionStates` (`SectionStates`), `lastMessage` (nullable union `LastMessageInfo`: `dm` / `channel`), `warnings` (list of `String`) | — | `disconnect`, `sectionExpandedChange` / `sectionShowAllChange` (`(Section, Boolean)`), `lastMessageClick`, `contactClick`, `channelClick`, `dismissWarning` (payload), `commandsClick`, `settingsClick` |
 
 ### Model codecs
 
@@ -74,8 +73,8 @@ nullable parameters, so they insert as the sample device.
   `DeviceStatusView`, `DeviceBody`) to 800 dp: a document column measures children with unbounded
   height. Each list draws the first row of a repeated key (channel index, contact key, message id)
   rather than failing composition.
-- `MeshcoreTheme` and the two dialogs take no modifier, so their adapters wrap the call in a
-  constraint-transparent `Box` carrying the node's own. The dialogs open over the canvas as they do
+- `MeshcoreTheme` and the login dialog take no modifier, so their adapters wrap the call in a
+  constraint-transparent `Box` carrying the node's own. The dialog opens over the canvas as it does
   in the app.
 - `DeviceStatusView` pins its card's clock 7 s after the stored `startedAtMs`, as the app's
   `DeviceStatusConnectingPreview` does, so a design draws one deterministic moment of the attempt;
@@ -131,8 +130,8 @@ To generate the standard pair directly:
 summary together; `component-sheet.uid` supplies the stored contact, message, battery and union
 values. `scripts/typed-renderer-smoke.py` loads the packaged Wasm runtime in a sandboxed Chromium
 iframe, renders both ChatInput and the complete sheet, checks node/text measurements and clicks the
-actual Send button. Send updates preview state only. The full sheet opens both real app dialogs,
-so they overlap in its screenshot.
+actual Send button. Send updates preview state only. The full sheet opens the real login dialog over
+the other components in its screenshot.
 
 The former upstream JVM fixture assumed every component was native-only and no helpers were
 published. The consumer here validates the app's actual delivery contract instead. General IDE

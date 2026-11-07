@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.Lan
 import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.Star
@@ -44,7 +43,6 @@ import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.cd_licenses
-import ee.schimke.meshcore.components.generated.resources.cd_theme
 import ee.schimke.meshcore.components.generated.resources.tab_saved
 import ee.schimke.meshcore.components.ui.BleDeviceList
 import ee.schimke.meshcore.components.ui.BleDeviceRow
@@ -69,7 +67,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun ScannerScreen(
   onConnect: () -> Unit,
-  onOpenThemePicker: () -> Unit,
   onViewCachedDevice: (String) -> Unit = {},
   onOpenLicenses: () -> Unit = {},
 ) {
@@ -91,7 +88,6 @@ fun ScannerScreen(
   }
 
   ScannerBody(
-    onOpenThemePicker = onOpenThemePicker,
     onOpenLicenses = onOpenLicenses,
     savedContent = {
       SavedDevicesPanel(
@@ -154,7 +150,6 @@ fun ScannerBody(
   usbContent: @Composable () -> Unit,
   tcpContent: @Composable () -> Unit,
   modifier: Modifier = Modifier,
-  onOpenThemePicker: () -> Unit = {},
   onOpenLicenses: () -> Unit = {},
   initialTab: Int = 0,
 ) {
@@ -173,12 +168,6 @@ fun ScannerBody(
             Icon(
               imageVector = Icons.Rounded.Policy,
               contentDescription = stringResource(Res.string.cd_licenses),
-            )
-          }
-          IconButton(onClick = onOpenThemePicker) {
-            Icon(
-              imageVector = Icons.Rounded.Contrast,
-              contentDescription = stringResource(Res.string.cd_theme),
             )
           }
         },

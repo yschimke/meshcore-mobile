@@ -2,14 +2,12 @@
 
 package ee.schimke.meshcore.web
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ComposeViewport
-import ee.schimke.meshcore.app.ui.theme.*
 import ee.schimke.meshcore.components.ui.MeshcoreClientApp
 import ee.schimke.meshcore.components.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.core.manager.ManagerState
@@ -51,26 +49,10 @@ fun main() {
         }
       }
     }
-    var settings by remember { mutableStateOf(ThemeSettings()) }
-    var picker by remember { mutableStateOf(false) }
-    val dark =
-      when (settings.mode) {
-        ThemeMode.System -> isSystemInDarkTheme()
-        ThemeMode.Light -> false
-        ThemeMode.Dark -> true
-      }
-    MeshcoreTheme(darkTheme = dark) {
-      MeshcoreClientApp(manager, onOpenThemePicker = { picker = true }) { busy ->
+    MeshcoreTheme {
+      MeshcoreClientApp(manager) { busy ->
         SerialConnectPanel(manager, busy, onPort = { port = it })
       }
-      if (picker)
-        ThemePickerDialog(
-          settings,
-          onModeSelect = { settings = settings.copy(mode = it) },
-          onPaletteSelect = { settings = settings.copy(palette = it) },
-          onDismiss = { picker = false },
-          dynamicColorAvailable = false,
-        )
     }
   }
 }

@@ -3,9 +3,6 @@ package ee.schimke.meshcore.catalog
 import ee.schimke.composeai.discovery.*
 import ee.schimke.meshcore.app.ui.DeviceConnectStatus
 import ee.schimke.meshcore.app.ui.LoginDialogState
-import ee.schimke.meshcore.app.ui.theme.ThemeMode
-import ee.schimke.meshcore.app.ui.theme.ThemePalette
-import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import ee.schimke.meshcore.components.ui.ChatMessage
 import ee.schimke.meshcore.components.ui.DeviceSettingsUiState
 import ee.schimke.meshcore.components.ui.LastMessageInfo
@@ -49,9 +46,6 @@ val ByteStringHexCodec: AdapterValueCodec<ByteString> =
 
 val ContactTypeCodec = AdapterValueCodecs.enumValue("$MODEL.ContactType", ContactType.entries)
 val MessageStatusCodec = AdapterValueCodecs.enumValue("$UI.MessageStatus", MessageStatus.entries)
-val ThemeModeCodec = AdapterValueCodecs.enumValue("$APP_UI.theme.ThemeMode", ThemeMode.entries)
-val ThemePaletteCodec =
-  AdapterValueCodecs.enumValue("$APP_UI.theme.ThemePalette", ThemePalette.entries)
 
 /**
  * The real core model as an object value: every field is required, so a stored radio states all
@@ -371,12 +365,4 @@ val DeviceConnectStatusCodec: AdapterValueCodec<DeviceConnectStatus> =
         }
       },
     )
-  }
-
-/** The theme picker's current selection; both default as [ThemeSettings] itself does. */
-val ThemeSettingsCodec: AdapterObjectCodec<ThemeSettings> =
-  AdapterValueCodecs.obj("$APP_UI.theme.ThemeSettings") {
-    val mode = field(ThemeSettings::mode, ThemeModeCodec, default = ThemeMode.System)
-    val palette = field(ThemeSettings::palette, ThemePaletteCodec, default = ThemePalette.Meshcore)
-    construct { ThemeSettings(mode = it[mode], palette = it[palette]) }
   }

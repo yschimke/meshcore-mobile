@@ -16,7 +16,6 @@
   <string name="cd_tools">工具</string>
   <string name="menu_commands">指令</string>
   <string name="label_device_settings">裝置設定</string>
-  <string name="cd_theme">主題</string>
   <string name="cd_disconnect">中斷連線</string>
   <string name="label_contacts">聯絡人</string>
   <string name="label_rooms">房間</string>
@@ -66,19 +65,6 @@
   <string name="title_disconnecting">正在中斷連線</string>
   <string name="cd_licenses">授權</string>
   <string name="tab_saved">已儲存</string>
-  <string name="theme_title">主題</string>
-  <string name="theme_palette">調色盤</string>
-  <string name="theme_light_dark">淺色 / 深色</string>
-  <string name="theme_done">完成</string>
-  <string name="theme_light">淺色</string>
-  <string name="theme_dark">深色</string>
-  <string name="theme_follow_system">跟隨系統</string>
-  <string name="theme_dynamic">動態 (系統)</string>
-  <string name="theme_meshcore_desc">手工調校的青色品牌調色盤</string>
-  <string name="theme_dynamic_desc">來自桌布的 Material You 配色</string>
-  <string name="theme_follow_system_desc">與裝置的淺色/深色設定保持一致</string>
-  <string name="theme_light_desc">一律使用淺色調色盤</string>
-  <string name="theme_dark_desc">一律使用深色調色盤</string>
   <string name="login_join">加入%1$s</string>
   <string name="login_enter_password">輸入「%1$s」的密碼。</string>
   <string name="login_defaults_hint">許多房間和中繼器預設使用空密碼或「hello」。</string>

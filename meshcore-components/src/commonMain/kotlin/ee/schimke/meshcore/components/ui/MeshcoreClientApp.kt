@@ -45,7 +45,6 @@ private data class ChannelDestination(val index: Int, val name: String) : NavKey
 fun MeshcoreClientApp(
   manager: MeshCoreManager,
   connect: (suspend (String, Int) -> Unit)? = null,
-  onOpenThemePicker: () -> Unit = {},
   connectionContent: (@Composable (Boolean) -> Unit)? = null,
 ) {
   require(connect != null || connectionContent != null) { "A connection panel is required" }
@@ -85,14 +84,13 @@ fun MeshcoreClientApp(
     }
     return
   }
-  key(client) { ConnectedMeshcoreApp(client, manager::requestDisconnect, onOpenThemePicker) }
+  key(client) { ConnectedMeshcoreApp(client, manager::requestDisconnect) }
 }
 
 @Composable
 private fun ConnectedMeshcoreApp(
   client: MeshCoreClient,
   disconnect: () -> Unit,
-  onOpenThemePicker: () -> Unit,
 ) {
   val self by client.selfInfo.collectAsState()
   val battery by client.battery.collectAsState()
@@ -229,7 +227,6 @@ private fun ConnectedMeshcoreApp(
       onDisconnect = disconnect,
       warnings = listOfNotNull(error),
       onDismissWarning = { error = null },
-      onOpenThemePicker = onOpenThemePicker,
       onContactClick = { contact ->
         if (
           contact.type in setOf(ContactType.ROOM, ContactType.REPEATER) &&

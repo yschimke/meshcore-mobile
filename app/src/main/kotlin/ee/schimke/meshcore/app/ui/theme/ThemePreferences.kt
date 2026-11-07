@@ -75,31 +75,11 @@ private val Context.appPrefsDataStore: DataStore<AppPreferencesPb> by
 // --- Repository ---
 
 /**
- * Typed DataStore repository backed by Wire-generated proto classes. Theme settings are global;
- * section collapse/filter states are per-device.
+ * Typed DataStore repository backed by Wire-generated proto classes. Section collapse/filter states
+ * are per-device.
  */
 class ThemePreferences(context: Context) {
   private val store: DataStore<AppPreferencesPb> = context.applicationContext.appPrefsDataStore
-
-  val settings: Flow<ThemeSettings> =
-    store.data.map { prefs ->
-      ThemeSettings(
-        mode = runCatching { ThemeMode.valueOf(prefs.theme_mode) }.getOrDefault(ThemeMode.System),
-        palette =
-          runCatching { ThemePalette.valueOf(prefs.theme_palette) }
-            .getOrDefault(ThemePalette.Meshcore),
-      )
-    }
-
-  val themeMode: Flow<ThemeMode> = settings.map { it.mode }
-
-  suspend fun setThemeMode(mode: ThemeMode) {
-    store.updateData { it.copy(theme_mode = mode.name) }
-  }
-
-  suspend fun setThemePalette(palette: ThemePalette) {
-    store.updateData { it.copy(theme_palette = palette.name) }
-  }
 
   // --- Per-device section states ---
 

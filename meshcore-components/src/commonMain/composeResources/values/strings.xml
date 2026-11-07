@@ -22,7 +22,6 @@
   <string name="cd_tools">Tools</string>
   <string name="menu_commands">Commands</string>
   <string name="label_device_settings">Device Settings</string>
-  <string name="cd_theme">Theme</string>
   <string name="cd_disconnect">Disconnect</string>
   <string name="label_contacts">Contacts</string>
   <string name="label_rooms">Rooms</string>
@@ -72,19 +71,6 @@
   <string name="title_disconnecting">Disconnecting</string>
   <string name="cd_licenses">Licenses</string>
   <string name="tab_saved">Saved</string>
-  <string name="theme_title">Theme</string>
-  <string name="theme_palette">Palette</string>
-  <string name="theme_light_dark">Light / dark</string>
-  <string name="theme_done">Done</string>
-  <string name="theme_light">Light</string>
-  <string name="theme_dark">Dark</string>
-  <string name="theme_follow_system">Follow system</string>
-  <string name="theme_dynamic">Dynamic (system)</string>
-  <string name="theme_meshcore_desc">Hand-tuned teal brand palette</string>
-  <string name="theme_dynamic_desc">Material You colors from your wallpaper</string>
-  <string name="theme_follow_system_desc">Match your device’s light/dark setting</string>
-  <string name="theme_light_desc">Always use the light palette</string>
-  <string name="theme_dark_desc">Always use the dark palette</string>
   <string name="login_join">Join %1$s</string>
   <string name="login_enter_password">Enter the password for “%1$s”.</string>
   <string name="login_defaults_hint">Many rooms and repeaters use an empty password or “hello” as defaults.</string>
