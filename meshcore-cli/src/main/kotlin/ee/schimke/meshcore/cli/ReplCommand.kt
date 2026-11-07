@@ -88,7 +88,7 @@ class ReplCommand :
         buildJsonObject {
           put("connection", label)
           if (state is TransportState.Error) put("cause", state.cause.message)
-        }
+        },
       )
     } else {
       val msg =
@@ -110,10 +110,10 @@ class ReplCommand :
     val self = client.selfInfo.value
     val conn = describe(client.connection.value)
     terminal.println(
-      bold("MeshCore REPL") + gray(" — ") + (self?.name ?: "(unknown)") + gray(" [$conn]")
+      bold("MeshCore REPL") + gray(" — ") + (self?.name ?: "(unknown)") + gray(" [$conn]"),
     )
     terminal.println(
-      gray("Type 'help' for commands, 'status' for connection info, 'quit' to exit.")
+      gray("Type 'help' for commands, 'status' for connection info, 'quit' to exit."),
     )
   }
 
@@ -126,12 +126,12 @@ class ReplCommand :
           put("connection", conn)
           put("self_info_received", self != null)
           put("name", self?.name)
-        }
+        },
       )
     } else {
       terminal.println("Connection: $conn")
       terminal.println(
-        "SelfInfo   : " + if (self != null) "received (${self.name})" else gray("(none yet)")
+        "SelfInfo   : " + if (self != null) "received (${self.name})" else gray("(none yet)"),
       )
     }
   }
@@ -248,7 +248,7 @@ class ReplCommand :
             put("storage_used_kb", it.storageUsedKb)
             put("storage_total_kb", it.storageTotalKb)
           }
-        }
+        },
       )
       return
     }
@@ -271,7 +271,7 @@ class ReplCommand :
             row("storage", "${it.storageUsedKb} / ${it.storageTotalKb} kB")
           }
         }
-      }
+      },
     )
   }
 
@@ -288,10 +288,10 @@ class ReplCommand :
                 put("pubkey", c.publicKey.toString())
                 put("is_flood", c.isFlood)
                 put("path_length", c.pathLength)
-              }
+              },
             )
           }
-        }
+        },
       )
       return
     }
@@ -306,7 +306,7 @@ class ReplCommand :
             row(c.name, c.type.name, path, c.publicKey.toString().take(12) + "…")
           }
         }
-      }
+      },
     )
   }
 
@@ -320,7 +320,7 @@ class ReplCommand :
           put("percent", pct)
           put("storage_used_kb", b.storageUsedKb)
           put("storage_total_kb", b.storageTotalKb)
-        }
+        },
       )
       return
     }
@@ -356,7 +356,7 @@ class ReplCommand :
           put("bw_hz", r.bandwidthHz)
           put("sf", r.spreadingFactor)
           put("cr", r.codingRate)
-        }
+        },
       )
       return
     }
@@ -380,7 +380,7 @@ class ReplCommand :
           put("sent", true)
           put("flood", ack.isFlood)
           put("timeout_ms", ack.timeoutMs)
-        }
+        },
       )
     } else {
       terminal.println(green("sent.") + " flood=${ack.isFlood} timeout=${ack.timeoutMs}ms")
@@ -416,7 +416,7 @@ class ReplCommand :
                       put("from_prefix", prefix)
                       put("text", m.text)
                       put("timestamp", m.timestamp.toString())
-                    }
+                    },
                   )
                 }
               }
@@ -432,13 +432,13 @@ class ReplCommand :
                       put("channel", idx)
                       put("text", m.text)
                       put("timestamp", m.timestamp.toString())
-                    }
+                    },
                   )
                 }
               }
             },
           )
-        }
+        },
       )
       return
     }

@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
         parentColumns = ["id"],
         childColumns = ["deviceId"],
         onDelete = ForeignKey.CASCADE,
-      )
+      ),
     ],
 )
 data class DeviceStateEntity(

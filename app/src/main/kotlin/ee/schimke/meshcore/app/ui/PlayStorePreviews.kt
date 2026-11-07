@@ -163,7 +163,7 @@ private fun PlayStoreSavedDevicesBody() {
                     transport = SavedTransport.Tcp("192.168.1.10", 5000),
                     favorite = false,
                     lastConnectedAtMs = 1_700_050_000_000,
-                  )
+                  ),
               ),
             ),
           busy = false,

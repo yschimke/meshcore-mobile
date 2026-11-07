@@ -95,7 +95,7 @@ class CatalogRenderTest {
                     writes += key to value
                     message = value.orEmpty()
                   },
-                )
+                ),
               )
             }
           }
@@ -144,7 +144,7 @@ class CatalogRenderTest {
                     slots += name
                     Surface(modifier = next) { ContactListEmpty() }
                   },
-                )
+                ),
               )
             }
           }
@@ -166,7 +166,7 @@ class CatalogRenderTest {
             if (!adapted) DeviceSummaryCard(self = null, radio = null, battery = null)
             else
               adapter(
-                canvasScope(UiBuilderNode(id = "summary", componentId = catalog.deviceSummary.id))
+                canvasScope(UiBuilderNode(id = "summary", componentId = catalog.deviceSummary.id)),
               )
           }
         }
@@ -634,7 +634,7 @@ class CatalogRenderTest {
                   canvasScope(
                     UiBuilderNode(id = name, componentId = id, properties = properties),
                     dispatch = events::add,
-                  )
+                  ),
                 )
             }
           }

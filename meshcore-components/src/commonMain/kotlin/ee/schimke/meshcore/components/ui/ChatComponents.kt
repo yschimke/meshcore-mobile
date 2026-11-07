@@ -178,7 +178,7 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier, onRetry: (()
           color = textColor,
           modifier =
             Modifier.padding(
-              top = if (!message.isMine && message.senderName != null) 2.dp else 0.dp
+              top = if (!message.isMine && message.senderName != null) 2.dp else 0.dp,
             ),
         )
 

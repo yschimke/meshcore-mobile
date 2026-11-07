@@ -125,7 +125,7 @@ fun ScannerScreen(
         onConnect = { desc ->
           if (!busy) {
             controller.requestConnect(
-              ConnectionRequest.Usb(desc.className, desc.vendorId, desc.productId)
+              ConnectionRequest.Usb(desc.className, desc.vendorId, desc.productId),
             )
           }
         },
@@ -356,7 +356,7 @@ private fun PreviewSavedPopulated() {
                 ee.schimke.meshcore.data.repository.SavedTransport.Tcp("192.168.1.10", 5000),
               favorite = false,
               lastConnectedAtMs = 1_700_050_000_000,
-            )
+            ),
         ),
       ),
     busy = false,

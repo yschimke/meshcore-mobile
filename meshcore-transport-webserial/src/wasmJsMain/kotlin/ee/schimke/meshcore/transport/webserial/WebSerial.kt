@@ -68,7 +68,7 @@ private fun supported(): Boolean = js("globalThis.isSecureContext && 'serial' in
 private fun request(vendorId: Int, productId: Int): Promise<JsAny> =
   js(
     """navigator.serial.requestPort(vendorId < 0 ? {} : {filters: [productId < 0
-      ? {usbVendorId: vendorId} : {usbVendorId: vendorId, usbProductId: productId}]})"""
+      ? {usbVendorId: vendorId} : {usbVendorId: vendorId, usbProductId: productId}]})""",
   )
 
 private fun grantedPortsArray(): Promise<JsAny> =
@@ -99,7 +99,7 @@ private fun open(handle: JsAny): Promise<JsAny?> =
       return null;
     });
     return handle.opening;
-  })()"""
+  })()""",
   )
 
 private fun read(handle: JsAny): Promise<JsAny?> =
@@ -130,7 +130,7 @@ private fun close(handle: JsAny): Promise<JsAny?> =
       return null;
     })();
     return handle.closing;
-  })()"""
+  })()""",
   )
 
 private fun array(size: Int): JsAny = js("new Uint8Array(size)")

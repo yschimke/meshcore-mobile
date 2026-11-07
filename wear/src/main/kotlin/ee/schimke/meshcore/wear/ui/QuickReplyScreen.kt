@@ -50,7 +50,7 @@ fun QuickReplyScreen(
         viewModel.sendDirectMessage(recipientKey, text)
         onSent()
       }
-    }
+    },
   )
 }
 
@@ -77,7 +77,7 @@ fun QuickReplyBody(
                 top = ListHeaderDefaults.minimumTopListContentPadding,
                 bottom = ListHeaderDefaults.minimumBottomListContentPadding,
               )
-              .transformedHeight(this, transformationSpec)
+              .transformedHeight(this, transformationSpec),
         ) {
           Text("Quick Reply")
         }

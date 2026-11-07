@@ -58,12 +58,12 @@ class MeshcoreWearClient(registry: WearDataLayerRegistry) : WearClient {
       SendDirectMessageRequest.newBuilder()
         .setRecipientPublicKey(recipientPublicKey)
         .setText(text)
-        .build()
+        .build(),
     )
 
   override suspend fun sendChannelMessage(channelIndex: Int, text: String) =
     stub.sendChannelMessage(
-      SendChannelMessageRequest.newBuilder().setChannelIndex(channelIndex).setText(text).build()
+      SendChannelMessageRequest.newBuilder().setChannelIndex(channelIndex).setText(text).build(),
     )
 
   override fun subscribeConnectionStatus(): Flow<ee.schimke.meshcore.grpc.ConnectionStatus> =

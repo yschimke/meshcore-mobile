@@ -23,13 +23,12 @@ import ee.schimke.meshcore.transport.ble.BleAdvertisement
 import ee.schimke.meshcore.transport.ble.BleScanner
 
 /**
- * Stateful BLE connect panel: owns the runtime permission flow and the
- * Kable [BleScanner], and renders the live device list via the
- * transport-free [BleScannerContent] from `meshcore-components`.
+ * Stateful BLE connect panel: owns the runtime permission flow and the Kable [BleScanner], and
+ * renders the live device list via the transport-free [BleScannerContent] from
+ * `meshcore-components`.
  *
- * This lives in the Android integration layer (not in the reusable UI
- * module) so that the BLE transport dependency stays out of
- * `meshcore-components`. Callers receive a transport-agnostic
+ * This lives in the Android integration layer (not in the reusable UI module) so that the BLE
+ * transport dependency stays out of `meshcore-components`. Callers receive a transport-agnostic
  * [BleDeviceRow] to connect to.
  */
 @Composable
@@ -48,22 +47,21 @@ fun BleScannerPanel(
   }
   val requestedPerms = remember {
     buildList {
-        addAll(blePerms)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-          add(Manifest.permission.POST_NOTIFICATIONS)
-        }
+      addAll(blePerms)
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        add(Manifest.permission.POST_NOTIFICATIONS)
       }
+    }
       .toTypedArray()
   }
-  fun checkGranted(): Boolean =
-    blePerms.all {
-      ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
-    }
+  fun checkGranted(): Boolean = blePerms.all {
+    ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+  }
   var granted by remember { mutableStateOf(checkGranted()) }
   var lastResult by remember { mutableStateOf<Map<String, Boolean>?>(null) }
   val launcher =
-    rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-      result ->
+    rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result
+      ->
       lastResult = result
       granted = blePerms.all { result[it] == true }
     }

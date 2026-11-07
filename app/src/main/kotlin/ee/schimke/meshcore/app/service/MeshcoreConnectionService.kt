@@ -138,7 +138,7 @@ class MeshcoreConnectionService : Service() {
             "Disconnect",
             disconnectIntent,
           )
-          .build()
+          .build(),
       )
       .build()
   }

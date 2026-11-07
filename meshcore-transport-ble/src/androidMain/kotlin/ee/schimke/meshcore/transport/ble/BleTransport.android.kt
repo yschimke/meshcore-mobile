@@ -10,32 +10,33 @@ import com.juul.kable.ScannerBuilder
 import com.juul.kable.logs.Logging
 
 internal actual fun PeripheralBuilder.applyMeshCoreDefaults(autoConnect: Boolean) {
-    if (autoConnect) autoConnectIf { true }
-    logging {
-        level = Logging.Level.Warnings
-        identifier = "meshcore-ble"
-    }
+  if (autoConnect) autoConnectIf { true }
+  logging {
+    level = Logging.Level.Warnings
+    identifier = "meshcore-ble"
+  }
 }
 
 internal actual suspend fun requestLargerMtu(peripheral: Peripheral) {
-    val ap = peripheral as? AndroidPeripheral ?: return
-    try {
-        val mtu = ap.requestMtu(185)
-        Log.d("meshcore-ble", "MTU negotiated: $mtu")
-    } catch (e: Exception) {
-        Log.w("meshcore-ble", "MTU request failed: ${e.message}")
-    }
+  val ap = peripheral as? AndroidPeripheral ?: return
+  try {
+    val mtu = ap.requestMtu(185)
+    Log.d("meshcore-ble", "MTU negotiated: $mtu")
+  } catch (e: Exception) {
+    Log.w("meshcore-ble", "MTU request failed: ${e.message}")
+  }
 }
 
 @OptIn(ObsoleteKableApi::class)
 internal actual fun ScannerBuilder.applyMeshCoreScannerDefaults() {
-    scanSettings = ScanSettings.Builder()
-        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
-        .setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
-        .build()
-    logging {
-        level = Logging.Level.Warnings
-        identifier = "meshcore-scan"
-    }
+  scanSettings =
+    ScanSettings.Builder()
+      .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+      .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+      .setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
+      .build()
+  logging {
+    level = Logging.Level.Warnings
+    identifier = "meshcore-scan"
+  }
 }

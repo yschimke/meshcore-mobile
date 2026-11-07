@@ -27,7 +27,11 @@ object DeviceProximityCheck {
    * - TCP/USB devices: always true
    * - BLE devices: runs a short scan and checks if the MAC appears
    */
-  suspend fun isNearby(context: Context, device: SavedDevice, scanTimeoutMs: Long = 5_000): Boolean {
+  suspend fun isNearby(
+    context: Context,
+    device: SavedDevice,
+    scanTimeoutMs: Long = 5_000,
+  ): Boolean {
     val ble = device.transport as? SavedTransport.Ble ?: return true // TCP/USB — assume reachable
 
     val btManager = context.getSystemService(BluetoothManager::class.java)

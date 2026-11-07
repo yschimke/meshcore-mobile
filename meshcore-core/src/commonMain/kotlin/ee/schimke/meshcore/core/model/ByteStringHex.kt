@@ -13,7 +13,7 @@ fun byteStringOfHex(hex: String): ByteString {
   return ByteString(
     *ByteArray(clean.length / 2) { i ->
       ((hexDigit(clean[i * 2]) shl 4) or hexDigit(clean[i * 2 + 1])).toByte()
-    }
+    },
   )
 }
 

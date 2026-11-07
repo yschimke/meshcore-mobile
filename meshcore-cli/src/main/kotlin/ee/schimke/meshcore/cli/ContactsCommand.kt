@@ -19,7 +19,7 @@ class ContactsCommand : SessionCommand("contacts", "List contacts known to the d
             row(c.name, c.type.name, path, c.publicKey.toString().take(12) + "…")
           }
         }
-      }
+      },
     )
   }
 }

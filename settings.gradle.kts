@@ -85,8 +85,10 @@ buildCache {
   // re-uploads a *local* build-cache hit to the remote; it pushes to the remote only when a task
   // actually executes. setup-gradle restores a warm local build cache (caches/build-cache-1) from
   // the GitHub Actions cache, so with it in place every task resolves as FROM-CACHE (local),
-  // nothing is pushed, and the remote stays empty (dev machines then see 0 remote hits). Disabling the
-  // local cache on the pushing runs forces tasks to execute-and-push, or to hit the remote directly, so
+  // nothing is pushed, and the remote stays empty (dev machines then see 0 remote hits). Disabling
+  // the
+  // local cache on the pushing runs forces tasks to execute-and-push, or to hit the remote
+  // directly, so
   // BuildFetch actually gets seeded.
   //
   // Gate this on remotePushEnabled, not just ON_CI: if the token is unprovisioned/blank the remote
@@ -143,19 +145,24 @@ include(":desktop-app")
 
 // Repository-owned UI Builder screen pilot; excluded from default catalog publication.
 if (providers.gradleProperty("adaptiveUidPilot").orNull == "true") {
-    include(":adaptive-uid-pilot")
+  include(":adaptive-uid-pilot")
 }
 
 // Discovery resolves from Maven Central; the unpublished renderer SDK uses a pinned checkout.
-val builderSource = providers.gradleProperty("composeUiBuilderDir")
+val builderSource =
+  providers
+    .gradleProperty("composeUiBuilderDir")
     .orElse(providers.gradleProperty("uiBuilderSource"))
+
 if (builderSource.isPresent || providers.gradleProperty("typedAdapterCatalog").orNull == "true") {
-    require(builderSource.isPresent) { "Catalog tasks require -PcomposeUiBuilderDir=<pinned checkout>" }
-    require(file(builderSource.get()).resolve("settings.gradle.kts").isFile) {
-        "composeUiBuilderDir must point to a compose-ui-builder checkout"
-    }
-    includeBuild(builderSource.get())
-    include(":ui-builder-catalog", ":ui-builder-catalog-renderer", ":ui-builder-catalog-consumer")
+  require(builderSource.isPresent) {
+    "Catalog tasks require -PcomposeUiBuilderDir=<pinned checkout>"
+  }
+  require(file(builderSource.get()).resolve("settings.gradle.kts").isFile) {
+    "composeUiBuilderDir must point to a compose-ui-builder checkout"
+  }
+  includeBuild(builderSource.get())
+  include(":ui-builder-catalog", ":ui-builder-catalog-renderer", ":ui-builder-catalog-consumer")
 }
 
 include(":web-app", ":meshcore-transport-webserial")

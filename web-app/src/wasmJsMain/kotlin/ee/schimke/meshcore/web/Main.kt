@@ -42,7 +42,7 @@ fun main() {
               usbVendorId = port?.usbVendorId,
               usbProductId = port?.usbProductId,
               lastConnectedMs = nowMs(),
-            )
+            ),
           )
         } catch (e: CancellationException) {
           throw e

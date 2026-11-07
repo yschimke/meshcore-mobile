@@ -15,7 +15,7 @@ interface MessageDao {
         SELECT * FROM message
         WHERE deviceId = :deviceId AND kind = 'DM' AND contactPublicKeyHex = :contactKeyHex
         ORDER BY timestampEpochMs ASC
-    """
+    """,
   )
   fun observeDms(deviceId: String, contactKeyHex: String): Flow<List<MessageEntity>>
 
@@ -24,7 +24,7 @@ interface MessageDao {
         SELECT * FROM message
         WHERE deviceId = :deviceId AND kind = 'CHANNEL' AND channelIndex = :channelIndex
         ORDER BY timestampEpochMs ASC
-    """
+    """,
   )
   fun observeChannelMessages(deviceId: String, channelIndex: Int): Flow<List<MessageEntity>>
 
@@ -45,7 +45,7 @@ interface MessageDao {
         WHERE deviceId = :deviceId
         ORDER BY timestampEpochMs DESC
         LIMIT :limit
-    """
+    """,
   )
   suspend fun getRecentMessages(deviceId: String, limit: Int): List<MessageEntity>
 
@@ -55,7 +55,7 @@ interface MessageDao {
         WHERE deviceId = :deviceId
         ORDER BY timestampEpochMs DESC
         LIMIT 1
-    """
+    """,
   )
   fun observeLatestMessage(deviceId: String): Flow<MessageEntity?>
 
@@ -63,7 +63,7 @@ interface MessageDao {
     """
         SELECT DISTINCT contactPublicKeyHex FROM message
         WHERE deviceId = :deviceId AND kind = 'DM' AND contactPublicKeyHex IS NOT NULL
-    """
+    """,
   )
   fun observeContactedKeys(deviceId: String): Flow<List<String>>
 
@@ -71,7 +71,7 @@ interface MessageDao {
     """
         SELECT DISTINCT channelIndex FROM message
         WHERE deviceId = :deviceId AND kind = 'CHANNEL' AND channelIndex IS NOT NULL
-    """
+    """,
   )
   fun observeContactedChannelIndices(deviceId: String): Flow<List<Int>>
 
@@ -80,7 +80,7 @@ interface MessageDao {
         SELECT COUNT(*) FROM message
         WHERE deviceId = :deviceId AND kind = :kind
           AND timestampEpochMs = :timestampMs AND text = :text
-    """
+    """,
   )
   suspend fun countDuplicates(
     deviceId: String,

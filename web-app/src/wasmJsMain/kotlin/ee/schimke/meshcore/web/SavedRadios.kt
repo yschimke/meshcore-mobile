@@ -68,7 +68,7 @@ private fun store(key: String, value: String): Unit =
     """{
     try { localStorage.setItem(key, value); } catch (_) {}
     globalThis.meshcoreStorage?.changed(key, value);
-  }"""
+  }""",
   )
 
 private fun refresh(key: String): Promise<JsAny?> =

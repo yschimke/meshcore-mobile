@@ -361,7 +361,7 @@ val DeviceConnectStatusCodec: AdapterValueCodec<DeviceConnectStatus> =
     case(
       "connecting",
       AdapterValueCodecs.obj<DeviceConnectStatus.Connecting>(
-        "$APP_UI.DeviceConnectStatus.Connecting"
+        "$APP_UI.DeviceConnectStatus.Connecting",
       ) {
         val startedAtMs =
           field(DeviceConnectStatus.Connecting::startedAtMs, AdapterValueCodecs.Long)

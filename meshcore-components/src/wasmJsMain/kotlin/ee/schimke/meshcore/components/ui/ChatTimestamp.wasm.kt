@@ -16,5 +16,5 @@ private fun localTime(epochMs: Double): String =
     const time = pad(date.getHours()) + ':' + pad(date.getMinutes());
     return date.toDateString() === now.toDateString() ? time :
       pad(date.getDate()) + '/' + pad(date.getMonth() + 1) + ' ' + time;
-  })()"""
+  })()""",
   )

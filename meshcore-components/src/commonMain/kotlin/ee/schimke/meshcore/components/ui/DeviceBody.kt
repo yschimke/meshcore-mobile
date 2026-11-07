@@ -261,7 +261,7 @@ fun DeviceBody(
             label = {
               Text(
                 if (sectionStates.channelsShowAll) stringResource(Res.string.filter_all)
-                else stringResource(Res.string.filter_favourited)
+                else stringResource(Res.string.filter_favourited),
               )
             },
           )
@@ -308,7 +308,7 @@ fun DeviceBody(
             label = {
               Text(
                 if (sectionStates.contactsShowAll) stringResource(Res.string.filter_all)
-                else stringResource(Res.string.filter_favourited)
+                else stringResource(Res.string.filter_favourited),
               )
             },
           )
@@ -351,7 +351,7 @@ fun DeviceBody(
               label = {
                 Text(
                   if (sectionStates.roomsShowAll) stringResource(Res.string.filter_all)
-                  else stringResource(Res.string.filter_joined)
+                  else stringResource(Res.string.filter_joined),
                 )
               },
             )
@@ -401,7 +401,7 @@ fun DeviceBody(
             label = {
               Text(
                 if (sectionStates.repeatersShowAll) stringResource(Res.string.filter_all)
-                else stringResource(Res.string.filter_joined)
+                else stringResource(Res.string.filter_joined),
               )
             },
           )

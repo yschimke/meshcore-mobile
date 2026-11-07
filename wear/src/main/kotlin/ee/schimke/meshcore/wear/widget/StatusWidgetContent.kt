@@ -88,11 +88,11 @@ fun StatusWidgetContent(
         RemoteText("${batteryPercent}%".rs, fontSize = 12.rsp, color = batteryColor)
       }
       RemoteBox(
-        modifier = RemoteModifier.fillMaxWidth().height(3.rdp).background(SurfaceContainerHighest)
+        modifier = RemoteModifier.fillMaxWidth().height(3.rdp).background(SurfaceContainerHighest),
       ) {
         RemoteBox(
           modifier =
-            RemoteModifier.fillMaxWidth(batteryPercent / 100f).height(3.rdp).background(barColor)
+            RemoteModifier.fillMaxWidth(batteryPercent / 100f).height(3.rdp).background(barColor),
         ) {}
       }
     }
