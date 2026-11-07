@@ -127,6 +127,11 @@ dependencies {
   implementation(libs.androidx.lifecycle.viewmodelCompose)
   implementation(libs.androidx.navigation3.runtime)
   implementation(libs.androidx.navigation3.ui)
+  // List-detail scene for large screens and foldables: Device lists beside the open conversation.
+  implementation(libs.compose.adaptive)
+  implementation(libs.compose.adaptive.layout)
+  implementation(libs.compose.adaptive.navigation)
+  implementation(libs.compose.adaptive.navigation3)
   implementation(projects.meshcoreDevicesProto)
   implementation(libs.androidx.datastore)
   implementation(libs.androidx.remote.core)

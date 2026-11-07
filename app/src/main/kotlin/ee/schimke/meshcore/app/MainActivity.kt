@@ -59,9 +59,12 @@ private fun MeshcoreAppUi() {
       NavDisplay(
         backStack = backStack,
         onBack = { if (backStack.size > 1) backStack.removeLastOrNull() },
+        // On large screens and foldables the Device lists and the open conversation show side by
+        // side; compact windows keep single-pane navigation. See ConversationListDetail.kt.
+        sceneStrategies = listOf(rememberConversationSceneStrategy()),
         entryProvider =
           entryProvider {
-            entry<DeviceRoute> {
+            entry<DeviceRoute>(metadata = DeviceListPaneMetadata) {
               DeviceScreen(
                 onDisconnected = {
                   // Push scanner on top so user can reconnect
@@ -69,9 +72,11 @@ private fun MeshcoreAppUi() {
                 },
                 developerMode = developerMode,
                 onNavigateToContact = { contact ->
-                  backStack.add(ContactRoute(contact.publicKey.toHex()))
+                  backStack.openConversation(ContactRoute(contact.publicKey.toHex()))
                 },
-                onNavigateToChannel = { channel -> backStack.add(ChannelRoute(channel.index)) },
+                onNavigateToChannel = { channel ->
+                  backStack.openConversation(ChannelRoute(channel.index))
+                },
                 onNavigateToCommands = { channel -> backStack.add(CommandsRoute(channel.index)) },
                 onNavigateToSettings = { channel ->
                   backStack.add(DeviceSettingsRoute(channel.index))
@@ -95,13 +100,13 @@ private fun MeshcoreAppUi() {
                 onOpenLicenses = { backStack.add(LicensesRoute) },
               )
             }
-            entry<ContactRoute> { route ->
+            entry<ContactRoute>(metadata = ConversationPaneMetadata) { route ->
               ContactChatScreen(
                 publicKeyHex = route.publicKeyHex,
                 onBack = { backStack.removeLastOrNull() },
               )
             }
-            entry<ChannelRoute> { route ->
+            entry<ChannelRoute>(metadata = ConversationPaneMetadata) { route ->
               ChannelChatScreen(
                 channelIndex = route.channelIndex,
                 onBack = { backStack.removeLastOrNull() },
