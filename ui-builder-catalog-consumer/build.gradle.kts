@@ -3,7 +3,7 @@ plugins { alias(libs.plugins.kotlinJvm) }
 kotlin { jvmToolchain(21) }
 
 dependencies {
-  implementation("ee.schimke.composeai:compose-preview-ui-builder-runtime:3.127.0")
+  implementation("ee.schimke.composeai:compose-preview-ui-builder-runtime:3.128.0")
   testImplementation(kotlin("test"))
 }
 
