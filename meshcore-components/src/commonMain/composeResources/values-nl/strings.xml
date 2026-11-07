@@ -24,11 +24,7 @@
   <string name="section_rooms">Ruimtes (%1$d)</string>
   <string name="section_repeaters">Repeaters (%1$d)</string>
   <string name="section_sensors">Sensoren (%1$d)</string>
-  <string name="filter_all">Alle</string>
-  <string name="filter_favourited">Favorieten</string>
-  <string name="filter_joined">Deelgenomen</string>
   <string name="empty_channels">Geen kanalen geconfigureerd</string>
-  <string name="empty_channels_favourited">Geen favoriete kanalen</string>
   <string name="empty_rooms">Nog geen ruimtes betreden</string>
   <string name="empty_repeaters">Nog geen repeaters</string>
   <string name="loading_contacts">Contacten ophalen…</string>

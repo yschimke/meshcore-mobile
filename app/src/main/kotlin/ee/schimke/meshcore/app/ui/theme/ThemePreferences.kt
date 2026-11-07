@@ -24,32 +24,23 @@ typealias SectionStates = ee.schimke.meshcore.components.ui.theme.SectionStates
 // Proto3 defaults bools to false, but we want "true" as the UI
 // default for expansion (sections start expanded). The proto stores
 // the *inverted* sense: a field being true means the section is
-// collapsed / filtered. When no entry exists for a device, expansion
-// defaults to true; showAll defaults to false (filtered view).
+// collapsed. When no entry exists for a device, expansion defaults to true.
 
 private fun DeviceSectionStatesPb.toDomain(): SectionStates =
   SectionStates(
     channelsExpanded = !channels_expanded,
-    channelsShowAll = !channels_show_all,
     contactsExpanded = !contacts_expanded,
-    contactsShowAll = !contacts_show_all,
     roomsExpanded = !rooms_expanded,
-    roomsShowAll = !rooms_show_all,
     repeatersExpanded = !repeaters_expanded,
-    repeatersShowAll = !repeaters_show_all,
     sensorsExpanded = !sensors_expanded,
   )
 
 private fun SectionStates.toProto(): DeviceSectionStatesPb =
   DeviceSectionStatesPb(
     channels_expanded = !channelsExpanded,
-    channels_show_all = !channelsShowAll,
     contacts_expanded = !contactsExpanded,
-    contacts_show_all = !contactsShowAll,
     rooms_expanded = !roomsExpanded,
-    rooms_show_all = !roomsShowAll,
     repeaters_expanded = !repeatersExpanded,
-    repeaters_show_all = !repeatersShowAll,
     sensors_expanded = !sensorsExpanded,
   )
 
@@ -75,8 +66,8 @@ private val Context.appPrefsDataStore: DataStore<AppPreferencesPb> by
 // --- Repository ---
 
 /**
- * Typed DataStore repository backed by Wire-generated proto classes. Section collapse/filter states
- * are per-device.
+ * Typed DataStore repository backed by Wire-generated proto classes. Section collapse states are
+ * per-device.
  */
 class ThemePreferences(context: Context) {
   private val store: DataStore<AppPreferencesPb> = context.applicationContext.appPrefsDataStore
@@ -96,21 +87,6 @@ class ThemePreferences(context: Context) {
           Section.ROOMS -> current.copy(roomsExpanded = expanded)
           Section.REPEATERS -> current.copy(repeatersExpanded = expanded)
           Section.SENSORS -> current.copy(sensorsExpanded = expanded)
-        }
-      prefs.copy(device_sections = prefs.device_sections + (deviceId to updated.toProto()))
-    }
-  }
-
-  suspend fun setSectionShowAll(deviceId: String, section: Section, showAll: Boolean) {
-    store.updateData { prefs ->
-      val current = prefs.device_sections[deviceId]?.toDomain() ?: SectionStates()
-      val updated =
-        when (section) {
-          Section.CHANNELS -> current.copy(channelsShowAll = showAll)
-          Section.CONTACTS -> current.copy(contactsShowAll = showAll)
-          Section.ROOMS -> current.copy(roomsShowAll = showAll)
-          Section.REPEATERS -> current.copy(repeatersShowAll = showAll)
-          else -> return@updateData prefs
         }
       prefs.copy(device_sections = prefs.device_sections + (deviceId to updated.toProto()))
     }

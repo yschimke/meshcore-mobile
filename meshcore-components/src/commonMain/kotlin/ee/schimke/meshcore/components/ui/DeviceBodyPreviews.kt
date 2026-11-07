@@ -98,8 +98,6 @@ fun DeviceBodyPreview() {
           ChannelInfo(1, "Emergency", ByteString()),
           ChannelInfo(2, COMMANDS_CHANNEL_NAME, ByteString()),
         ),
-      contactedKeys = setOf(alice.publicKey.toHex(), room.publicKey.toHex()),
-      contactedChannelIndices = setOf(0),
       lastMessage =
         LastMessageInfo.Dm(
           contactKeyHex = "112233445566778899aabbcc",
@@ -165,8 +163,6 @@ private fun cachedDevicePreview(dark: Boolean = isSystemInDarkTheme()) {
           previewContact("common-room", 0, 0x33, ContactType.ROOM),
         ),
       channels = listOf(ChannelInfo(0, "General", ByteString())),
-      contactedKeys = setOf(alice.publicKey.toHex()),
-      contactedChannelIndices = setOf(0),
       warnings = listOf(stringResource(Res.string.warning_cached_data)),
       onDisconnect = {},
     )
@@ -203,7 +199,7 @@ fun CachedDeviceBodyDarkPreview() = cachedDevicePreview(dark = true)
 /**
  * German (`de`) locale variant of [CachedDeviceBodyPreview] — the `catalog.spec.json`
  * `Device/Cached` `props:{locale:"de"}` variant. `DeviceBody`'s section headers (Channels /
- * Contacts / Rooms → Kanäle / Kontakte / Räume), filter chips, and empty/warning copy come from
+ * Contacts / Rooms → Kanäle / Kontakte / Räume) and empty/warning copy come from
  * `stringResource(...)`, so this renders them in German via a `localeTag` override — which requires
  * the desktop render-engine locale fix (compose-preview plugin ≥ 0.17.1). Contact/channel names
  * stay literal.
@@ -219,11 +215,11 @@ fun CachedDeviceBodyDarkPreview() = cachedDevicePreview(dark = true)
 fun CachedDeviceBodyGermanPreview() = cachedDevicePreview()
 
 /**
- * Japanese (`ja`) locale variant of [CachedDeviceBodyPreview] — the section headers, filter chips,
- * and warning copy come from `stringResource(...)`, so a `localeTag` override renders them in
- * Japanese. MeshCore's branded faces (Orbitron / Space Grotesk) are Latin-only, so this exercises
- * the bundled **Noto** CJK fallback appended to those families (see `MeshcoreFonts.desktop.kt`):
- * the Kana/Han resolve within the app's own typography instead of rendering tofu.
+ * Japanese (`ja`) locale variant of [CachedDeviceBodyPreview] — the section headers and warning
+ * copy come from `stringResource(...)`, so a `localeTag` override renders them in Japanese.
+ * MeshCore's branded faces (Orbitron / Space Grotesk) are Latin-only, so this exercises the bundled
+ * **Noto** CJK fallback appended to those families (see `MeshcoreFonts.desktop.kt`): the Kana/Han
+ * resolve within the app's own typography instead of rendering tofu.
  */
 @Preview(
   showBackground = true,

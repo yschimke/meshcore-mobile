@@ -113,11 +113,6 @@ private fun PlayStoreHomeBody(darkTheme: Boolean) {
       radio = RadioSettings(869_525_000, 125_000, 10, 5),
       contacts = contacts,
       channels = playStoreChannels(),
-      // Favour every contact + channel so each section in the screenshot
-      // has a populated "Favourited"/"Joined" view — empty rows look
-      // weak in the listing.
-      contactedKeys = contacts.map { it.publicKey.toHex() }.toSet(),
-      contactedChannelIndices = setOf(0, 1),
       lastMessage =
         LastMessageInfo.Dm(
           contactKeyHex = alice.publicKey.toHex(),

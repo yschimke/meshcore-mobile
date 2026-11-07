@@ -24,11 +24,7 @@
   <string name="section_rooms">रूम (%1$d)</string>
   <string name="section_repeaters">रिपीटर (%1$d)</string>
   <string name="section_sensors">सेंसर (%1$d)</string>
-  <string name="filter_all">सभी</string>
-  <string name="filter_favourited">पसंदीदा</string>
-  <string name="filter_joined">शामिल</string>
   <string name="empty_channels">कोई चैनल कॉन्फ़िगर नहीं</string>
-  <string name="empty_channels_favourited">कोई पसंदीदा चैनल नहीं</string>
   <string name="empty_rooms">अभी तक किसी रूम में शामिल नहीं</string>
   <string name="empty_repeaters">अभी तक कोई रिपीटर नहीं</string>
   <string name="loading_contacts">संपर्क प्राप्त हो रहे हैं…</string>

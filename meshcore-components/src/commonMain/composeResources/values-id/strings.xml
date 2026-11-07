@@ -24,11 +24,7 @@
   <string name="section_rooms">Ruang (%1$d)</string>
   <string name="section_repeaters">Pengulang (%1$d)</string>
   <string name="section_sensors">Sensor (%1$d)</string>
-  <string name="filter_all">Semua</string>
-  <string name="filter_favourited">Favorit</string>
-  <string name="filter_joined">Bergabung</string>
   <string name="empty_channels">Tidak ada saluran yang dikonfigurasi</string>
-  <string name="empty_channels_favourited">Tidak ada saluran favorit</string>
   <string name="empty_rooms">Belum bergabung dengan ruang mana pun</string>
   <string name="empty_repeaters">Belum ada pengulang</string>
   <string name="loading_contacts">Mengambil kontak…</string>

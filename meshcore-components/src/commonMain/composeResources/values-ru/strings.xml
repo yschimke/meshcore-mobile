@@ -24,11 +24,7 @@
   <string name="section_rooms">Комнаты (%1$d)</string>
   <string name="section_repeaters">Ретрансляторы (%1$d)</string>
   <string name="section_sensors">Датчики (%1$d)</string>
-  <string name="filter_all">Все</string>
-  <string name="filter_favourited">Избранные</string>
-  <string name="filter_joined">Присоединённые</string>
   <string name="empty_channels">Нет настроенных каналов</string>
-  <string name="empty_channels_favourited">Нет избранных каналов</string>
   <string name="empty_rooms">Вы пока не вошли ни в одну комнату</string>
   <string name="empty_repeaters">Ретрансляторов пока нет</string>
   <string name="loading_contacts">Загрузка контактов…</string>

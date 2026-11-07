@@ -12,19 +12,19 @@ message AppPreferencesPb {
   reserved 1, 2;
   reserved "theme_mode", "theme_palette";
 
-  // Per-device section collapse/filter states, keyed by device ID.
+  // Per-device section collapse states, keyed by device ID.
   map<string, DeviceSectionStatesPb> device_sections = 3;
 }
 
-// Collapse and filter states for the device-screen sections.
+// Collapse states for the device-screen sections.
 message DeviceSectionStatesPb {
   bool channels_expanded = 1;
   bool contacts_expanded = 2;
-  bool contacts_show_all = 3;
   bool rooms_expanded = 4;
-  bool rooms_show_all = 5;
   bool repeaters_expanded = 6;
-  bool repeaters_show_all = 7;
   bool sensors_expanded = 8;
-  bool channels_show_all = 9;
+
+  // Formerly the per-section "show all" filter toggles; the sections now always list everything.
+  reserved 3, 5, 7, 9;
+  reserved "contacts_show_all", "rooms_show_all", "repeaters_show_all", "channels_show_all";
 }

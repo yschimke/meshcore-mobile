@@ -24,11 +24,7 @@
   <string name="section_rooms">Odalar (%1$d)</string>
   <string name="section_repeaters">Yineleyiciler (%1$d)</string>
   <string name="section_sensors">Sensörler (%1$d)</string>
-  <string name="filter_all">Tümü</string>
-  <string name="filter_favourited">Favoriler</string>
-  <string name="filter_joined">Katılınanlar</string>
   <string name="empty_channels">Yapılandırılmış kanal yok</string>
-  <string name="empty_channels_favourited">Favori kanal yok</string>
   <string name="empty_rooms">Henüz odaya katılmadınız</string>
   <string name="empty_repeaters">Henüz yineleyici yok</string>
   <string name="loading_contacts">Kişiler alınıyor…</string>

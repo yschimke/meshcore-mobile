@@ -24,11 +24,7 @@
   <string name="section_rooms">Räume (%1$d)</string>
   <string name="section_repeaters">Repeater (%1$d)</string>
   <string name="section_sensors">Sensoren (%1$d)</string>
-  <string name="filter_all">Alle</string>
-  <string name="filter_favourited">Favoriten</string>
-  <string name="filter_joined">Beigetreten</string>
   <string name="empty_channels">Keine Kanäle konfiguriert</string>
-  <string name="empty_channels_favourited">Keine favorisierten Kanäle</string>
   <string name="empty_rooms">Noch keinen Räumen beigetreten</string>
   <string name="empty_repeaters">Noch keine Repeater</string>
   <string name="loading_contacts">Kontakte werden abgerufen…</string>

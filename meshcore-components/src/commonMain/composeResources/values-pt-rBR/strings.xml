@@ -24,11 +24,7 @@
   <string name="section_rooms">Salas (%1$d)</string>
   <string name="section_repeaters">Repetidores (%1$d)</string>
   <string name="section_sensors">Sensores (%1$d)</string>
-  <string name="filter_all">Todos</string>
-  <string name="filter_favourited">Favoritos</string>
-  <string name="filter_joined">Ingressados</string>
   <string name="empty_channels">Nenhum canal configurado</string>
-  <string name="empty_channels_favourited">Nenhum canal favorito</string>
   <string name="empty_rooms">Nenhuma sala ingressada ainda</string>
   <string name="empty_repeaters">Nenhum repetidor ainda</string>
   <string name="loading_contacts">Buscando contatos…</string>

@@ -24,11 +24,7 @@
   <string name="section_rooms">房間 (%1$d)</string>
   <string name="section_repeaters">中繼器 (%1$d)</string>
   <string name="section_sensors">感測器 (%1$d)</string>
-  <string name="filter_all">全部</string>
-  <string name="filter_favourited">我的最愛</string>
-  <string name="filter_joined">已加入</string>
   <string name="empty_channels">未設定頻道</string>
-  <string name="empty_channels_favourited">無我的最愛頻道</string>
   <string name="empty_rooms">尚未加入任何房間</string>
   <string name="empty_repeaters">尚無中繼器</string>
   <string name="loading_contacts">正在取得聯絡人…</string>

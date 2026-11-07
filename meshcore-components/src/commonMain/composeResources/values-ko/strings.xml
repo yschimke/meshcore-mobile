@@ -24,11 +24,7 @@
   <string name="section_rooms">채팅방 (%1$d)</string>
   <string name="section_repeaters">중계기 (%1$d)</string>
   <string name="section_sensors">센서 (%1$d)</string>
-  <string name="filter_all">전체</string>
-  <string name="filter_favourited">즐겨찾기</string>
-  <string name="filter_joined">참여함</string>
   <string name="empty_channels">구성된 채널이 없습니다</string>
-  <string name="empty_channels_favourited">즐겨찾는 채널이 없습니다</string>
   <string name="empty_rooms">아직 참여한 채팅방이 없습니다</string>
   <string name="empty_repeaters">아직 중계기가 없습니다</string>
   <string name="loading_contacts">연락처를 가져오는 중…</string>

@@ -24,11 +24,7 @@
   <string name="section_rooms">الغرف (%1$d)</string>
   <string name="section_repeaters">المكرِّرات (%1$d)</string>
   <string name="section_sensors">المستشعرات (%1$d)</string>
-  <string name="filter_all">الكل</string>
-  <string name="filter_favourited">المفضلة</string>
-  <string name="filter_joined">المنضم إليها</string>
   <string name="empty_channels">لا توجد قنوات مُهيأة</string>
-  <string name="empty_channels_favourited">لا توجد قنوات مفضلة</string>
   <string name="empty_rooms">لم تنضم إلى أي غرفة بعد</string>
   <string name="empty_repeaters">لم تنضم إلى أي مكرِّر بعد</string>
   <string name="loading_contacts">جارٍ جلب جهات الاتصال…</string>

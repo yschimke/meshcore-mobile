@@ -301,14 +301,11 @@ data class DeviceBodyProps(
   val contactsLoading: Boolean,
   val contactsRefreshing: Boolean,
   val channels: List<ChannelInfo>,
-  val contactedKeys: Set<String>,
-  val contactedChannelIndices: Set<Int>,
   val sectionStates: SectionStates,
   val lastMessage: LastMessageInfo?,
   val warnings: List<String>,
   val onDisconnect: () -> Unit,
   val onSectionExpandedChange: (Section, Boolean) -> Unit,
-  val onSectionShowAllChange: (Section, Boolean) -> Unit,
   val onLastMessageClick: (LastMessageInfo) -> Unit,
   val onContactClick: (Contact) -> Unit,
   val onChannelClick: (ChannelInfo) -> Unit,
@@ -319,9 +316,7 @@ data class DeviceBodyProps(
 
 /**
  * The Device screen. `self`, `battery` and `radio` are required, nullable parameters (null is the
- * still-loading state), so they insert as the previews' sample device rather than null. The
- * sections list only contacted peers and channels unless "show all" is on, so `contactedKeys` (hex
- * keys) and `contactedChannelIndices` are [SetCodec] lists, seeded as the preview seeds them.
+ * still-loading state), so they insert as the previews' sample device rather than null.
  */
 class DeviceBodyAdapter(record: ComponentRecord) :
   TypedComponentAdapter<DeviceBodyProps>("meshcore-mobile/device-body", record) {
@@ -359,21 +354,6 @@ class DeviceBodyAdapter(record: ComponentRecord) :
       AdapterValueCodecs.list(ChannelInfoCodec),
       MeshcoreSamples.channels,
     )
-  val contactedKeys =
-    property(
-      DeviceBodyProps::contactedKeys,
-      AdapterValueCodecs.set(AdapterValueCodecs.String),
-      setOf(
-        MeshcoreSamples.contacts[0].publicKey.toHex(),
-        MeshcoreSamples.contacts[2].publicKey.toHex(),
-      ),
-    )
-  val contactedChannelIndices =
-    property(
-      DeviceBodyProps::contactedChannelIndices,
-      AdapterValueCodecs.set(AdapterValueCodecs.Int),
-      setOf(0),
-    )
   val sectionStates = property(DeviceBodyProps::sectionStates, SectionStatesCodec, SectionStates())
   val lastMessage =
     property(DeviceBodyProps::lastMessage, AdapterValueCodecs.nullable(LastMessageInfoCodec), null)
@@ -385,7 +365,6 @@ class DeviceBodyAdapter(record: ComponentRecord) :
     )
   val disconnect = event(DeviceBodyProps::onDisconnect)
   val sectionExpandedChange = event(DeviceBodyProps::onSectionExpandedChange)
-  val sectionShowAllChange = event(DeviceBodyProps::onSectionShowAllChange)
   val lastMessageClick = event(DeviceBodyProps::onLastMessageClick)
   val contactClick = event(DeviceBodyProps::onContactClick)
   val channelClick = event(DeviceBodyProps::onChannelClick)
@@ -602,11 +581,8 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
         contactsLoading = value(device.contactsLoading),
         contactsRefreshing = value(device.contactsRefreshing),
         channels = value(device.channels).distinctBy { it.index },
-        contactedKeys = value(device.contactedKeys),
-        contactedChannelIndices = value(device.contactedChannelIndices),
         sectionStates = value(device.sectionStates),
         onSectionExpandedChange = callback(device.sectionExpandedChange),
-        onSectionShowAllChange = callback(device.sectionShowAllChange),
         lastMessage = value(device.lastMessage),
         onLastMessageClick = callback(device.lastMessageClick),
         onContactClick = callback(device.contactClick),

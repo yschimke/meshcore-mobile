@@ -24,11 +24,7 @@
   <string name="section_rooms">ห้อง (%1$d)</string>
   <string name="section_repeaters">รีพีทเตอร์ (%1$d)</string>
   <string name="section_sensors">เซนเซอร์ (%1$d)</string>
-  <string name="filter_all">ทั้งหมด</string>
-  <string name="filter_favourited">รายการโปรด</string>
-  <string name="filter_joined">เข้าร่วมแล้ว</string>
   <string name="empty_channels">ยังไม่ได้กำหนดค่าช่อง</string>
-  <string name="empty_channels_favourited">ไม่มีช่องที่ชื่นชอบ</string>
   <string name="empty_rooms">ยังไม่ได้เข้าร่วมห้อง</string>
   <string name="empty_repeaters">ยังไม่มีรีพีทเตอร์</string>
   <string name="loading_contacts">กำลังดึงรายชื่อติดต่อ…</string>

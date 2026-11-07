@@ -541,10 +541,6 @@ class CatalogRenderTest {
         "contacts" to AdapterValueCodecs.list(ContactCodec).wrap(contacts),
         "channels" to AdapterValueCodecs.list(ChannelInfoCodec).wrap(channels),
         "lastMessage" to LastMessageInfoCodec.wrap(lastMessage),
-        "contactedKeys" to
-          AdapterValueCodecs.set(AdapterValueCodecs.String)
-            .wrap(setOf(contacts[0].publicKey.toHex())),
-        "contactedChannelIndices" to AdapterValueCodecs.set(AdapterValueCodecs.Int).wrap(setOf(1)),
         "warnings" to
           AdapterValueCodecs.list(AdapterValueCodecs.String).wrap(listOf("Clock drift")),
       ),
@@ -557,8 +553,6 @@ class CatalogRenderTest {
           radio = MeshcoreSamples.radio,
           contacts = contacts,
           channels = channels,
-          contactedKeys = setOf(contacts[0].publicKey.toHex()),
-          contactedChannelIndices = setOf(1),
           lastMessage = lastMessage,
           warnings = listOf("Clock drift"),
           onDisconnect = {},
@@ -566,7 +560,8 @@ class CatalogRenderTest {
       },
     ) { events ->
       onAllNodesWithText("ridge-node").onFirst().assertExists()
-      // Only the contacted channel is listed; General is filtered out of its section.
+      // Every channel is listed.
+      onAllNodesWithText("General").onFirst().assertExists()
       onNodeWithText("Emergency").assertExists()
       onNodeWithText("alice").performClick()
       runOnIdle { assertEquals(listOf("contactClick"), events) }

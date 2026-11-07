@@ -24,11 +24,7 @@
   <string name="section_rooms">Stanze (%1$d)</string>
   <string name="section_repeaters">Ripetitori (%1$d)</string>
   <string name="section_sensors">Sensori (%1$d)</string>
-  <string name="filter_all">Tutti</string>
-  <string name="filter_favourited">Preferiti</string>
-  <string name="filter_joined">Iscritti</string>
   <string name="empty_channels">Nessun canale configurato</string>
-  <string name="empty_channels_favourited">Nessun canale preferito</string>
   <string name="empty_rooms">Ancora nessuna stanza</string>
   <string name="empty_repeaters">Ancora nessun ripetitore</string>
   <string name="loading_contacts">Recupero contatti…</string>

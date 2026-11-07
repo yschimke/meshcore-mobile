@@ -27,7 +27,7 @@ like the app's previews.
 | `DeviceSettingsBody` | `meshcore-mobile/device-settings` | `state` (union `DeviceSettingsUiState`: `discovering` / `error` / `ready`) | — | `toggleBuzzer` (`(Boolean)`), `back` |
 | `LoginDialog` | `meshcore-mobile/login-dialog` | `contactName`, `contactType`, `state` (union `LoginDialogState`: `prompting` / `authenticating`) | — | `login` (`(String)`), `dismiss` |
 | `DeviceStatusView` | `meshcore-mobile/device-status` | `title`, `status` (union `DeviceConnectStatus`: `connecting` only) | — | `cancel` |
-| `DeviceBody` | `meshcore-mobile/device-body` | `self`, `battery`, `radio` (nullable), `contacts`, `contactsLoading`, `contactsRefreshing`, `channels`, `contactedKeys`, `contactedChannelIndices`, `sectionStates` (`SectionStates`), `lastMessage` (nullable union `LastMessageInfo`: `dm` / `channel`), `warnings` (list of `String`) | — | `disconnect`, `sectionExpandedChange` / `sectionShowAllChange` (`(Section, Boolean)`), `lastMessageClick`, `contactClick`, `channelClick`, `dismissWarning` (payload), `commandsClick`, `settingsClick` |
+| `DeviceBody` | `meshcore-mobile/device-body` | `self`, `battery`, `radio` (nullable), `contacts`, `contactsLoading`, `contactsRefreshing`, `channels`, `sectionStates` (`SectionStates`), `lastMessage` (nullable union `LastMessageInfo`: `dm` / `channel`), `warnings` (list of `String`) | — | `disconnect`, `sectionExpandedChange` (`(Section, Boolean)`), `lastMessageClick`, `contactClick`, `channelClick`, `dismissWarning` (payload), `commandsClick`, `settingsClick` |
 
 ### Model codecs
 
@@ -49,7 +49,6 @@ structurally.
   route) is parsed hex text through the small public `byteStringOfHex` helper added to
   `meshcore-core` for this purpose (`ByteString.toHex()` is its inverse).
 - `AdapterValueCodecs.enumValue` decodes the enum member, including inside object fields.
-  `AdapterValueCodecs.set` edits `contactedKeys` and `contactedChannelIndices` as lists and refuses duplicates.
 - Unions: `DeviceSettingsUiState` (a `discovering` singleton, `error`, `ready`), `LoginDialogState`
   (`prompting`, an `authenticating` singleton), `LastMessageInfo` (`dm`, `channel`) and
   `DeviceConnectStatus`, which holds only `connecting`: `DeviceConnectStatus.Failed(cause:

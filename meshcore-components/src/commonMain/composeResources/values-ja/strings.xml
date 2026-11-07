@@ -24,11 +24,7 @@
   <string name="section_rooms">ルーム (%1$d)</string>
   <string name="section_repeaters">リピーター (%1$d)</string>
   <string name="section_sensors">センサー (%1$d)</string>
-  <string name="filter_all">すべて</string>
-  <string name="filter_favourited">お気に入り</string>
-  <string name="filter_joined">参加済み</string>
   <string name="empty_channels">設定されたチャンネルはありません</string>
-  <string name="empty_channels_favourited">お気に入りのチャンネルはありません</string>
   <string name="empty_rooms">まだルームに参加していません</string>
   <string name="empty_repeaters">まだリピーターがありません</string>
   <string name="loading_contacts">連絡先を取得中…</string>

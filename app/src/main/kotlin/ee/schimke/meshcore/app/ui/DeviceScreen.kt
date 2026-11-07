@@ -166,20 +166,6 @@ private fun ConnectedDevice(
         deviceId?.let { prefs.sectionStates(it) } ?: kotlinx.coroutines.flow.flowOf(SectionStates())
       }
       .collectAsState(initial = SectionStates())
-  // Track which contacts we've exchanged messages with
-  val contactedKeys by
-    remember(deviceId) {
-        deviceId?.let { repository.observeContactedKeys(it) }
-          ?: kotlinx.coroutines.flow.flowOf(emptyList())
-      }
-      .collectAsState(initial = emptyList())
-  // Track which channels have messages
-  val contactedChannelIndices by
-    remember(deviceId) {
-        deviceId?.let { repository.observeContactedChannelIndices(it) }
-          ?: kotlinx.coroutines.flow.flowOf(emptyList())
-      }
-      .collectAsState(initial = emptyList())
 
   // If the client was seeded with cached data, contacts won't be empty
   // even before the fresh fetch — show a "refreshing" indicator instead
@@ -245,16 +231,10 @@ private fun ConnectedDevice(
     contactsLoading = contactsRefreshing && contacts.isEmpty(),
     contactsRefreshing = contactsRefreshing && contacts.isNotEmpty(),
     channels = channels,
-    contactedKeys = contactedKeys.toSet(),
-    contactedChannelIndices = contactedChannelIndices.toSet(),
     sectionStates = sectionStates,
     onSectionExpandedChange = { section, expanded ->
       val id = deviceId ?: return@DeviceBody
       scope.launch { prefs.setSectionExpanded(id, section, expanded) }
-    },
-    onSectionShowAllChange = { section, showAll ->
-      val id = deviceId ?: return@DeviceBody
-      scope.launch { prefs.setSectionShowAll(id, section, showAll) }
     },
     lastMessage = lastMessage,
     onLastMessageClick = { info ->

@@ -24,11 +24,7 @@
   <string name="section_rooms">房间 (%1$d)</string>
   <string name="section_repeaters">中继器 (%1$d)</string>
   <string name="section_sensors">传感器 (%1$d)</string>
-  <string name="filter_all">全部</string>
-  <string name="filter_favourited">收藏</string>
-  <string name="filter_joined">已加入</string>
   <string name="empty_channels">未配置频道</string>
-  <string name="empty_channels_favourited">无收藏频道</string>
   <string name="empty_rooms">尚未加入任何房间</string>
   <string name="empty_repeaters">尚无中继器</string>
   <string name="loading_contacts">正在获取联系人…</string>

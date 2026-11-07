@@ -192,42 +192,30 @@ val ChatMessageCodec: AdapterObjectCodec<ChatMessage> =
     }
   }
 
-/** Which Device-screen sections are open and filtered; every flag has the class's own default. */
+/** Which Device-screen sections are open; every flag has the class's own default. */
 val SectionStatesCodec: AdapterObjectCodec<SectionStates> =
   AdapterValueCodecs.obj("$UI.theme.SectionStates") {
     val defaults = SectionStates()
     val channelsExpanded =
       field(SectionStates::channelsExpanded, AdapterValueCodecs.Boolean, defaults.channelsExpanded)
-    val channelsShowAll =
-      field(SectionStates::channelsShowAll, AdapterValueCodecs.Boolean, defaults.channelsShowAll)
     val contactsExpanded =
       field(SectionStates::contactsExpanded, AdapterValueCodecs.Boolean, defaults.contactsExpanded)
-    val contactsShowAll =
-      field(SectionStates::contactsShowAll, AdapterValueCodecs.Boolean, defaults.contactsShowAll)
     val roomsExpanded =
       field(SectionStates::roomsExpanded, AdapterValueCodecs.Boolean, defaults.roomsExpanded)
-    val roomsShowAll =
-      field(SectionStates::roomsShowAll, AdapterValueCodecs.Boolean, defaults.roomsShowAll)
     val repeatersExpanded =
       field(
         SectionStates::repeatersExpanded,
         AdapterValueCodecs.Boolean,
         defaults.repeatersExpanded,
       )
-    val repeatersShowAll =
-      field(SectionStates::repeatersShowAll, AdapterValueCodecs.Boolean, defaults.repeatersShowAll)
     val sensorsExpanded =
       field(SectionStates::sensorsExpanded, AdapterValueCodecs.Boolean, defaults.sensorsExpanded)
     construct {
       SectionStates(
         channelsExpanded = it[channelsExpanded],
-        channelsShowAll = it[channelsShowAll],
         contactsExpanded = it[contactsExpanded],
-        contactsShowAll = it[contactsShowAll],
         roomsExpanded = it[roomsExpanded],
-        roomsShowAll = it[roomsShowAll],
         repeatersExpanded = it[repeatersExpanded],
-        repeatersShowAll = it[repeatersShowAll],
         sensorsExpanded = it[sensorsExpanded],
       )
     }

@@ -97,16 +97,7 @@ private fun ConnectedMeshcoreApp(
   val radio by client.radio.collectAsState()
   val contacts by client.contacts.collectAsState()
   val channels by client.channels.collectAsState()
-  var sections by remember {
-    mutableStateOf(
-      SectionStates(
-        channelsShowAll = true,
-        contactsShowAll = true,
-        roomsShowAll = true,
-        repeatersShowAll = true,
-      ),
-    )
-  }
+  var sections by remember { mutableStateOf(SectionStates()) }
   val backStack = remember { mutableStateListOf<NavKey>(DeviceDestination) }
   var error by remember { mutableStateOf<String?>(null) }
   var notice by remember { mutableStateOf<String?>(null) }
@@ -203,16 +194,6 @@ private fun ConnectedMeshcoreApp(
             Section.ROOMS -> sections.copy(roomsExpanded = expanded)
             Section.REPEATERS -> sections.copy(repeatersExpanded = expanded)
             Section.SENSORS -> sections.copy(sensorsExpanded = expanded)
-          }
-      },
-      onSectionShowAllChange = { section, all ->
-        sections =
-          when (section) {
-            Section.CHANNELS -> sections.copy(channelsShowAll = all)
-            Section.CONTACTS -> sections.copy(contactsShowAll = all)
-            Section.ROOMS -> sections.copy(roomsShowAll = all)
-            Section.REPEATERS -> sections.copy(repeatersShowAll = all)
-            Section.SENSORS -> sections
           }
       },
       onCommandsClick = {

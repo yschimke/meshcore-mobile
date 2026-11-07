@@ -30,11 +30,7 @@
   <string name="section_rooms">Rooms (%1$d)</string>
   <string name="section_repeaters">Repeaters (%1$d)</string>
   <string name="section_sensors">Sensors (%1$d)</string>
-  <string name="filter_all">All</string>
-  <string name="filter_favourited">Favourited</string>
-  <string name="filter_joined">Joined</string>
   <string name="empty_channels">No channels configured</string>
-  <string name="empty_channels_favourited">No favourited channels</string>
   <string name="empty_rooms">No rooms joined yet</string>
   <string name="empty_repeaters">No repeaters joined yet</string>
   <string name="loading_contacts">Fetching contacts…</string>
