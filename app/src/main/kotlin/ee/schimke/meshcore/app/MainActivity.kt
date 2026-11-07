@@ -10,10 +10,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -21,6 +17,7 @@ import com.mikepenz.aboutlibraries.ui.compose.android.produceLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.di.appGraph
+import ee.schimke.meshcore.app.ui.AppSettingsScreen
 import ee.schimke.meshcore.app.ui.CachedDeviceScreen
 import ee.schimke.meshcore.app.ui.ChannelChatScreen
 import ee.schimke.meshcore.app.ui.CommandsScreen
@@ -29,10 +26,7 @@ import ee.schimke.meshcore.app.ui.DeviceScreen
 import ee.schimke.meshcore.app.ui.DeviceSettingsScreen
 import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
-import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
-import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
   // Runtime BLE permissions are requested from the BLE tab on demand, not here;
@@ -48,11 +42,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun MeshcoreAppUi() {
   val app = LocalAppGraph.current
-  val themeSettings by app.themePreferences.settings.collectAsState(initial = ThemeSettings())
-  val scope = rememberCoroutineScope()
-  var pickerVisible by remember { mutableStateOf(false) }
+  val developerMode by app.themePreferences.developerMode.collectAsState(initial = false)
 
-  MeshcoreTheme(settings = themeSettings) {
+  MeshcoreTheme {
     Surface {
       val backStack = rememberNavBackStack(DeviceRoute)
 
@@ -75,7 +67,7 @@ private fun MeshcoreAppUi() {
                   // Push scanner on top so user can reconnect
                   if (backStack.lastOrNull() !is ScannerRoute) backStack.add(ScannerRoute)
                 },
-                onOpenThemePicker = { pickerVisible = true },
+                developerMode = developerMode,
                 onNavigateToContact = { contact ->
                   backStack.add(ContactRoute(contact.publicKey.toHex()))
                 },
@@ -92,8 +84,14 @@ private fun MeshcoreAppUi() {
                   // Pop back to device screen
                   while (backStack.lastOrNull() is ScannerRoute) backStack.removeLastOrNull()
                 },
-                onOpenThemePicker = { pickerVisible = true },
+                developerMode = developerMode,
                 onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
+                onOpenSettings = { backStack.add(AppSettingsRoute) },
+              )
+            }
+            entry<AppSettingsRoute> {
+              AppSettingsScreen(
+                onBack = { backStack.removeLastOrNull() },
                 onOpenLicenses = { backStack.add(LicensesRoute) },
               )
             }
@@ -125,7 +123,6 @@ private fun MeshcoreAppUi() {
               CachedDeviceScreen(
                 deviceId = route.deviceId,
                 onBack = { backStack.removeLastOrNull() },
-                onOpenThemePicker = { pickerVisible = true },
               )
             }
             entry<LicensesRoute> {
@@ -134,16 +131,6 @@ private fun MeshcoreAppUi() {
             }
           },
       )
-      if (pickerVisible) {
-        ThemePickerDialog(
-          current = themeSettings,
-          onModeSelect = { mode -> scope.launch { app.themePreferences.setThemeMode(mode) } },
-          onPaletteSelect = { palette ->
-            scope.launch { app.themePreferences.setThemePalette(palette) }
-          },
-          onDismiss = { pickerVisible = false },
-        )
-      }
     }
   }
 }

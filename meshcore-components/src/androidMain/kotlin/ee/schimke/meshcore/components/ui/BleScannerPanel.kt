@@ -57,13 +57,16 @@ data class BleDeviceRow(val identifier: String, val name: String?, val rssi: Int
  * and the device list. It owns no scanning or permission state — the integration layer (which
  * depends on `meshcore-transport-ble`) drives those and hands neutral [BleDeviceRow]s in. Keeping
  * it transport-free means a TCP-only consumer of this module never pulls in BLE/USB transports.
+ *
+ * The "MeshCore only" switch is shown only when [onMeshOnlyChange] is non-null (developer options);
+ * otherwise the list is always MeshCore radios only.
  */
 @Composable
 fun BleScannerContent(
   rows: List<BleDeviceRow>,
   busy: Boolean,
   meshOnly: Boolean,
-  onMeshOnlyChange: (Boolean) -> Unit,
+  onMeshOnlyChange: ((Boolean) -> Unit)?,
   onPick: (BleDeviceRow) -> Unit,
   modifier: Modifier = Modifier,
   scanError: String? = null,
@@ -117,11 +120,12 @@ fun BleScannerContent(
 fun isMeshCoreName(name: String?): Boolean =
   name != null && MeshCoreConstants.BLE_NAME_PREFIXES.any { name.startsWith(it) }
 
+/** Scan status row; the "MeshCore only" switch appears only when [onMeshOnlyChange] is non-null. */
 @Composable
 fun ScanStatusBar(
   shown: Int,
   meshOnly: Boolean,
-  onMeshOnlyChange: (Boolean) -> Unit,
+  onMeshOnlyChange: ((Boolean) -> Unit)?,
   modifier: Modifier = Modifier,
 ) {
   Row(
@@ -147,13 +151,15 @@ fun ScanStatusBar(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
     }
-    Text(
-      text = "MeshCore only",
-      style = MaterialTheme.typography.labelMedium,
-      color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
-    Spacer(Modifier.size(8.dp))
-    Switch(checked = meshOnly, onCheckedChange = onMeshOnlyChange)
+    if (onMeshOnlyChange != null) {
+      Text(
+        text = "MeshCore only",
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      Spacer(Modifier.size(8.dp))
+      Switch(checked = meshOnly, onCheckedChange = onMeshOnlyChange)
+    }
   }
 }
 

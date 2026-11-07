@@ -36,7 +36,6 @@ import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.btn_back_to_scanner
 import ee.schimke.meshcore.components.generated.resources.btn_cancel
 import ee.schimke.meshcore.components.generated.resources.cd_back
-import ee.schimke.meshcore.components.generated.resources.cd_theme
 import ee.schimke.meshcore.components.generated.resources.label_details
 import ee.schimke.meshcore.components.generated.resources.status_connecting
 import ee.schimke.meshcore.components.generated.resources.status_connection_failed
@@ -70,7 +69,6 @@ fun DeviceStatusView(
   status: DeviceConnectStatus,
   onCancel: () -> Unit,
   modifier: Modifier = Modifier,
-  onOpenThemePicker: () -> Unit = {},
   nowMs: () -> Long = { kotlin.time.Clock.System.now().toEpochMilliseconds() },
 ) {
   Scaffold(
@@ -79,9 +77,6 @@ fun DeviceStatusView(
       TopAppBar(
         title = { Text(title, style = MaterialTheme.typography.titleLarge) },
         actions = {
-          IconButton(onClick = onOpenThemePicker) {
-            Icon(Icons.Rounded.Contrast, contentDescription = stringResource(Res.string.cd_theme))
-          }
           IconButton(onClick = onCancel) {
             Icon(
               Icons.AutoMirrored.Rounded.Logout,

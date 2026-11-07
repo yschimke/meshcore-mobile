@@ -9,10 +9,6 @@ import ee.schimke.meshcore.app.ui.DeviceConnectStatus
 import ee.schimke.meshcore.app.ui.DeviceStatusView
 import ee.schimke.meshcore.app.ui.LoginDialog
 import ee.schimke.meshcore.app.ui.LoginDialogState
-import ee.schimke.meshcore.app.ui.theme.ThemeMode
-import ee.schimke.meshcore.app.ui.theme.ThemePalette
-import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
-import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import ee.schimke.meshcore.components.ui.BatterySection
 import ee.schimke.meshcore.components.ui.ChannelList
 import ee.schimke.meshcore.components.ui.ChannelRow
@@ -256,24 +252,6 @@ class DeviceSettingsBodyAdapter(record: ComponentRecord) :
   val back = event(DeviceSettingsBodyProps::onBack)
 }
 
-data class ThemePickerDialogProps(
-  val current: ThemeSettings,
-  val dynamicColorAvailable: Boolean,
-  val onModeSelect: (ThemeMode) -> Unit,
-  val onPaletteSelect: (ThemePalette) -> Unit,
-  val onDismiss: () -> Unit,
-)
-
-class ThemePickerDialogAdapter(record: ComponentRecord) :
-  TypedComponentAdapter<ThemePickerDialogProps>("meshcore-mobile/theme-picker", record) {
-  val current = property(ThemePickerDialogProps::current, ThemeSettingsCodec, ThemeSettings())
-  val dynamicColorAvailable =
-    property(ThemePickerDialogProps::dynamicColorAvailable, AdapterValueCodecs.Boolean, true)
-  val modeSelect = event(ThemePickerDialogProps::onModeSelect)
-  val paletteSelect = event(ThemePickerDialogProps::onPaletteSelect)
-  val dismiss = event(ThemePickerDialogProps::onDismiss)
-}
-
 data class LoginDialogProps(
   val contactName: String,
   val contactType: String,
@@ -296,7 +274,6 @@ data class DeviceStatusViewProps(
   val title: String,
   val status: DeviceConnectStatus,
   val onCancel: () -> Unit,
-  val onOpenThemePicker: () -> Unit,
 )
 
 /**
@@ -314,7 +291,6 @@ class DeviceStatusViewAdapter(record: ComponentRecord) :
       DeviceConnectStatus.Connecting(startedAtMs = 0L, timeoutMs = 20_000L),
     )
   val cancel = event(DeviceStatusViewProps::onCancel)
-  val openThemePicker = event(DeviceStatusViewProps::onOpenThemePicker)
 }
 
 data class DeviceBodyProps(
@@ -325,28 +301,22 @@ data class DeviceBodyProps(
   val contactsLoading: Boolean,
   val contactsRefreshing: Boolean,
   val channels: List<ChannelInfo>,
-  val contactedKeys: Set<String>,
-  val contactedChannelIndices: Set<Int>,
   val sectionStates: SectionStates,
   val lastMessage: LastMessageInfo?,
   val warnings: List<String>,
   val onDisconnect: () -> Unit,
   val onSectionExpandedChange: (Section, Boolean) -> Unit,
-  val onSectionShowAllChange: (Section, Boolean) -> Unit,
   val onLastMessageClick: (LastMessageInfo) -> Unit,
   val onContactClick: (Contact) -> Unit,
   val onChannelClick: (ChannelInfo) -> Unit,
   val onCommandsClick: () -> Unit,
   val onSettingsClick: () -> Unit,
-  val onOpenThemePicker: () -> Unit,
   val onDismissWarning: (String) -> Unit,
 )
 
 /**
  * The Device screen. `self`, `battery` and `radio` are required, nullable parameters (null is the
- * still-loading state), so they insert as the previews' sample device rather than null. The
- * sections list only contacted peers and channels unless "show all" is on, so `contactedKeys` (hex
- * keys) and `contactedChannelIndices` are [SetCodec] lists, seeded as the preview seeds them.
+ * still-loading state), so they insert as the previews' sample device rather than null.
  */
 class DeviceBodyAdapter(record: ComponentRecord) :
   TypedComponentAdapter<DeviceBodyProps>("meshcore-mobile/device-body", record) {
@@ -384,21 +354,6 @@ class DeviceBodyAdapter(record: ComponentRecord) :
       AdapterValueCodecs.list(ChannelInfoCodec),
       MeshcoreSamples.channels,
     )
-  val contactedKeys =
-    property(
-      DeviceBodyProps::contactedKeys,
-      AdapterValueCodecs.set(AdapterValueCodecs.String),
-      setOf(
-        MeshcoreSamples.contacts[0].publicKey.toHex(),
-        MeshcoreSamples.contacts[2].publicKey.toHex(),
-      ),
-    )
-  val contactedChannelIndices =
-    property(
-      DeviceBodyProps::contactedChannelIndices,
-      AdapterValueCodecs.set(AdapterValueCodecs.Int),
-      setOf(0),
-    )
   val sectionStates = property(DeviceBodyProps::sectionStates, SectionStatesCodec, SectionStates())
   val lastMessage =
     property(DeviceBodyProps::lastMessage, AdapterValueCodecs.nullable(LastMessageInfoCodec), null)
@@ -410,13 +365,11 @@ class DeviceBodyAdapter(record: ComponentRecord) :
     )
   val disconnect = event(DeviceBodyProps::onDisconnect)
   val sectionExpandedChange = event(DeviceBodyProps::onSectionExpandedChange)
-  val sectionShowAllChange = event(DeviceBodyProps::onSectionShowAllChange)
   val lastMessageClick = event(DeviceBodyProps::onLastMessageClick)
   val contactClick = event(DeviceBodyProps::onContactClick)
   val channelClick = event(DeviceBodyProps::onChannelClick)
   val commandsClick = event(DeviceBodyProps::onCommandsClick)
   val settingsClick = event(DeviceBodyProps::onSettingsClick)
-  val openThemePicker = event(DeviceBodyProps::onOpenThemePicker)
   val dismissWarning = event(DeviceBodyProps::onDismissWarning)
 }
 
@@ -442,7 +395,6 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
   val chat = ChatBodyAdapter(record("ChatBody"))
   val tcp = TcpConnectPanelAdapter(record("TcpConnectPanel"))
   val settings = DeviceSettingsBodyAdapter(record("DeviceSettingsBody"))
-  val themePicker = ThemePickerDialogAdapter(record("ThemePickerDialog"))
   val login = LoginDialogAdapter(record("LoginDialog"))
   val status = DeviceStatusViewAdapter(record("DeviceStatusView"))
   val device = DeviceBodyAdapter(record("DeviceBody"))
@@ -463,7 +415,6 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
       chat,
       tcp,
       settings,
-      themePicker,
       login,
       status,
       device,
@@ -598,18 +549,7 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
         modifier = modifier.heightIn(max = SCREEN_MAX_HEIGHT),
       )
     }
-    // The dialogs take no modifier; the box carries the node's while the dialog opens over it.
-    register(themePicker) {
-      Box(modifier, propagateMinConstraints = true) {
-        ThemePickerDialog(
-          current = value(themePicker.current),
-          onModeSelect = callback(themePicker.modeSelect),
-          onPaletteSelect = callback(themePicker.paletteSelect),
-          onDismiss = callback(themePicker.dismiss),
-          dynamicColorAvailable = value(themePicker.dynamicColorAvailable),
-        )
-      }
-    }
+    // The dialog takes no modifier; the box carries the node's while the dialog opens over it.
     register(login) {
       Box(modifier, propagateMinConstraints = true) {
         LoginDialog(
@@ -627,7 +567,6 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
         title = value(status.title),
         status = connecting,
         onCancel = callback(status.cancel),
-        onOpenThemePicker = callback(status.openThemePicker),
         nowMs = { canvasNowMs(connecting) },
         modifier = modifier.heightIn(max = SCREEN_MAX_HEIGHT),
       )
@@ -642,18 +581,14 @@ class MeshcoreCatalog(records: ComponentRecordFile) {
         contactsLoading = value(device.contactsLoading),
         contactsRefreshing = value(device.contactsRefreshing),
         channels = value(device.channels).distinctBy { it.index },
-        contactedKeys = value(device.contactedKeys),
-        contactedChannelIndices = value(device.contactedChannelIndices),
         sectionStates = value(device.sectionStates),
         onSectionExpandedChange = callback(device.sectionExpandedChange),
-        onSectionShowAllChange = callback(device.sectionShowAllChange),
         lastMessage = value(device.lastMessage),
         onLastMessageClick = callback(device.lastMessageClick),
         onContactClick = callback(device.contactClick),
         onChannelClick = callback(device.channelClick),
         onCommandsClick = callback(device.commandsClick),
         onSettingsClick = callback(device.settingsClick),
-        onOpenThemePicker = callback(device.openThemePicker),
         warnings = value(device.warnings),
         onDismissWarning = callback(device.dismissWarning),
         modifier = modifier.heightIn(max = SCREEN_MAX_HEIGHT),

@@ -63,7 +63,7 @@ private suspend fun ensureCommandsChannel(
 @Composable
 fun DeviceScreen(
   onDisconnected: () -> Unit,
-  onOpenThemePicker: () -> Unit = {},
+  developerMode: Boolean = false,
   onNavigateToContact: (Contact) -> Unit = {},
   onNavigateToChannel: (ChannelInfo) -> Unit = {},
   onNavigateToCommands: (ChannelInfo) -> Unit = {},
@@ -92,7 +92,7 @@ fun DeviceScreen(
       ConnectedDevice(
         client = s.client,
         onDisconnect = { controller.cancel() },
-        onOpenThemePicker = onOpenThemePicker,
+        developerMode = developerMode,
         onNavigateToContact = onNavigateToContact,
         onNavigateToChannel = onNavigateToChannel,
         onNavigateToCommands = onNavigateToCommands,
@@ -102,7 +102,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.title_connecting),
         onCancel = { controller.cancel() },
-        onOpenThemePicker = onOpenThemePicker,
         status =
           DeviceConnectStatus.Connecting(
             startedAtMs = s.startedAtMs,
@@ -113,7 +112,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.title_retrying, s.attempt, s.maxAttempts),
         onCancel = { controller.cancel() },
-        onOpenThemePicker = onOpenThemePicker,
         status =
           DeviceConnectStatus.Connecting(
             startedAtMs = System.currentTimeMillis(),
@@ -124,7 +122,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.status_connection_failed),
         onCancel = { controller.dismissError() },
-        onOpenThemePicker = onOpenThemePicker,
         status = DeviceConnectStatus.Failed(s.cause),
       )
     ConnectionUiState.Idle -> {
@@ -134,7 +131,6 @@ fun DeviceScreen(
       DeviceStatusView(
         title = stringResource(Res.string.title_disconnecting),
         onCancel = { onDisconnected() },
-        onOpenThemePicker = onOpenThemePicker,
         status =
           DeviceConnectStatus.Connecting(
             startedAtMs = System.currentTimeMillis() - 20_000L,
@@ -150,7 +146,7 @@ fun DeviceScreen(
 private fun ConnectedDevice(
   client: ee.schimke.meshcore.core.client.MeshCoreClient,
   onDisconnect: () -> Unit,
-  onOpenThemePicker: () -> Unit,
+  developerMode: Boolean,
   onNavigateToContact: (Contact) -> Unit,
   onNavigateToChannel: (ChannelInfo) -> Unit,
   onNavigateToCommands: (ChannelInfo) -> Unit,
@@ -173,20 +169,6 @@ private fun ConnectedDevice(
         deviceId?.let { prefs.sectionStates(it) } ?: kotlinx.coroutines.flow.flowOf(SectionStates())
       }
       .collectAsState(initial = SectionStates())
-  // Track which contacts we've exchanged messages with
-  val contactedKeys by
-    remember(deviceId) {
-        deviceId?.let { repository.observeContactedKeys(it) }
-          ?: kotlinx.coroutines.flow.flowOf(emptyList())
-      }
-      .collectAsState(initial = emptyList())
-  // Track which channels have messages
-  val contactedChannelIndices by
-    remember(deviceId) {
-        deviceId?.let { repository.observeContactedChannelIndices(it) }
-          ?: kotlinx.coroutines.flow.flowOf(emptyList())
-      }
-      .collectAsState(initial = emptyList())
 
   // If the client was seeded with cached data, contacts won't be empty
   // even before the fresh fetch — show a "refreshing" indicator instead
@@ -252,16 +234,10 @@ private fun ConnectedDevice(
     contactsLoading = contactsRefreshing && contacts.isEmpty(),
     contactsRefreshing = contactsRefreshing && contacts.isNotEmpty(),
     channels = channels,
-    contactedKeys = contactedKeys.toSet(),
-    contactedChannelIndices = contactedChannelIndices.toSet(),
     sectionStates = sectionStates,
     onSectionExpandedChange = { section, expanded ->
       val id = deviceId ?: return@DeviceBody
       scope.launch { prefs.setSectionExpanded(id, section, expanded) }
-    },
-    onSectionShowAllChange = { section, showAll ->
-      val id = deviceId ?: return@DeviceBody
-      scope.launch { prefs.setSectionShowAll(id, section, showAll) }
     },
     lastMessage = lastMessage,
     onLastMessageClick = { info ->
@@ -291,7 +267,7 @@ private fun ConnectedDevice(
       }
     },
     onDisconnect = onDisconnect,
-    onOpenThemePicker = onOpenThemePicker,
+    developerMode = developerMode,
     warnings = warnings,
     onDismissWarning = { controller.dismissWarning(it) },
   )

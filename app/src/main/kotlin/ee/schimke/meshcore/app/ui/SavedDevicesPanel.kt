@@ -77,7 +77,8 @@ fun SavedDevicesPanel(
   onToggleFavorite: (SavedDevice) -> Unit,
   modifier: Modifier = Modifier,
   connectedDeviceId: String? = null,
-  onViewCached: (SavedDevice) -> Unit = {},
+  // Developer option: null hides the "View cached" action.
+  onViewCached: ((SavedDevice) -> Unit)? = null,
 ) {
   if (devices.isEmpty()) {
     SavedDevicesEmpty(modifier)
@@ -125,7 +126,7 @@ fun SavedDevicesPanel(
           isConnected = device.id == connectedDeviceId,
           onConnect = { onConnect(device) },
           onToggleFavorite = { onToggleFavorite(device) },
-          onViewCached = { onViewCached(device) },
+          onViewCached = onViewCached?.let { view -> { view(device) } },
         )
       }
     }
@@ -141,7 +142,7 @@ private fun SavedDeviceRow(
   isConnected: Boolean,
   onConnect: () -> Unit,
   onToggleFavorite: () -> Unit,
-  onViewCached: () -> Unit,
+  onViewCached: (() -> Unit)?,
 ) {
   val icon: ImageVector =
     when (device.transport) {
@@ -227,7 +228,7 @@ private fun SavedDeviceRow(
       if (isConnected) {
         Button(onClick = onConnect) { Text(stringResource(Res.string.btn_view)) }
       } else {
-        if (contactsCount > 0) {
+        if (onViewCached != null && contactsCount > 0) {
           IconButton(onClick = onViewCached) {
             Icon(
               imageVector = Icons.Rounded.Info,

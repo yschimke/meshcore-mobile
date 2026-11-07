@@ -55,7 +55,6 @@ class CatalogContractTest {
         "meshcore-mobile/chat-body",
         "meshcore-mobile/tcp-connect",
         "meshcore-mobile/device-settings",
-        "meshcore-mobile/theme-picker",
         "meshcore-mobile/login-dialog",
         "meshcore-mobile/device-status",
         "meshcore-mobile/device-body",

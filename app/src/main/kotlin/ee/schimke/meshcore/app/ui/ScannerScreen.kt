@@ -10,9 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material.icons.rounded.Contrast
 import androidx.compose.material.icons.rounded.Lan
-import androidx.compose.material.icons.rounded.Policy
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.Usb
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,8 +42,7 @@ import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.ui.theme.Dimens
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
 import ee.schimke.meshcore.components.generated.resources.Res
-import ee.schimke.meshcore.components.generated.resources.cd_licenses
-import ee.schimke.meshcore.components.generated.resources.cd_theme
+import ee.schimke.meshcore.components.generated.resources.cd_settings
 import ee.schimke.meshcore.components.generated.resources.tab_saved
 import ee.schimke.meshcore.components.ui.BleDeviceList
 import ee.schimke.meshcore.components.ui.BleDeviceRow
@@ -69,9 +67,9 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun ScannerScreen(
   onConnect: () -> Unit,
-  onOpenThemePicker: () -> Unit,
+  developerMode: Boolean = false,
   onViewCachedDevice: (String) -> Unit = {},
-  onOpenLicenses: () -> Unit = {},
+  onOpenSettings: () -> Unit = {},
 ) {
   val app = LocalAppGraph.current
   val controller = app.connectionController
@@ -91,8 +89,8 @@ fun ScannerScreen(
   }
 
   ScannerBody(
-    onOpenThemePicker = onOpenThemePicker,
-    onOpenLicenses = onOpenLicenses,
+    onOpenSettings = onOpenSettings,
+    developerMode = developerMode,
     savedContent = {
       SavedDevicesPanel(
         devices = savedDevices,
@@ -107,12 +105,13 @@ fun ScannerScreen(
         },
         onForget = { device -> controller.forgetSavedDevice(device.id) },
         onToggleFavorite = { device -> controller.toggleFavorite(device.id) },
-        onViewCached = { device -> onViewCachedDevice(device.id) },
+        onViewCached = if (developerMode) ({ device -> onViewCachedDevice(device.id) }) else null,
       )
     },
     bleContent = {
       BleScannerPanel(
         busy = busy,
+        developerMode = developerMode,
         onConnect = { row ->
           if (!busy) controller.requestConnect(ConnectionRequest.Ble(row.identifier, row.name))
         },
@@ -144,7 +143,8 @@ fun ScannerScreen(
 
 /**
  * Stateless scanner screen body. Owns only the selected tab (trivial UI state) and delegates all
- * transport-specific content to slot lambdas.
+ * transport-specific content to slot lambdas. The USB and TCP tabs are developer options: without
+ * [developerMode] only Saved and BLE are offered.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -154,11 +154,13 @@ fun ScannerBody(
   usbContent: @Composable () -> Unit,
   tcpContent: @Composable () -> Unit,
   modifier: Modifier = Modifier,
-  onOpenThemePicker: () -> Unit = {},
-  onOpenLicenses: () -> Unit = {},
+  onOpenSettings: () -> Unit = {},
+  developerMode: Boolean = false,
   initialTab: Int = 0,
 ) {
-  var tab by rememberSaveable { mutableIntStateOf(initialTab) }
+  var selectedTab by rememberSaveable { mutableIntStateOf(initialTab) }
+  // USB / TCP are tabs 2 and 3; fall back to Saved if developer options are turned off.
+  val tab = if (!developerMode && selectedTab > 1) 0 else selectedTab
   Scaffold(
     topBar = {
       TopAppBar(
@@ -169,16 +171,10 @@ fun ScannerBody(
           )
         },
         actions = {
-          IconButton(onClick = onOpenLicenses) {
+          IconButton(onClick = onOpenSettings) {
             Icon(
-              imageVector = Icons.Rounded.Policy,
-              contentDescription = stringResource(Res.string.cd_licenses),
-            )
-          }
-          IconButton(onClick = onOpenThemePicker) {
-            Icon(
-              imageVector = Icons.Rounded.Contrast,
-              contentDescription = stringResource(Res.string.cd_theme),
+              imageVector = Icons.Rounded.Settings,
+              contentDescription = stringResource(Res.string.cd_settings),
             )
           }
         },
@@ -203,11 +199,19 @@ fun ScannerBody(
           icon = Icons.Rounded.Star,
           label = stringResource(Res.string.tab_saved),
         ) {
-          tab = 0
+          selectedTab = 0
         }
-        TransportTab(selected = tab == 1, icon = Icons.Rounded.Bluetooth, label = "BLE") { tab = 1 }
-        TransportTab(selected = tab == 2, icon = Icons.Rounded.Usb, label = "USB") { tab = 2 }
-        TransportTab(selected = tab == 3, icon = Icons.Rounded.Lan, label = "TCP") { tab = 3 }
+        TransportTab(selected = tab == 1, icon = Icons.Rounded.Bluetooth, label = "BLE") {
+          selectedTab = 1
+        }
+        if (developerMode) {
+          TransportTab(selected = tab == 2, icon = Icons.Rounded.Usb, label = "USB") {
+            selectedTab = 2
+          }
+          TransportTab(selected = tab == 3, icon = Icons.Rounded.Lan, label = "TCP") {
+            selectedTab = 3
+          }
+        }
       }
       Column(
         modifier = Modifier.fillMaxSize().padding(Dimens.ScreenPadding),
@@ -514,6 +518,7 @@ fun ScannerUsbEmptyPreview() {
       bleContent = { PreviewEmpty() },
       usbContent = { PreviewUsbEmpty() },
       tcpContent = { PreviewEmpty() },
+      developerMode = true,
       initialTab = 2,
     )
   }
@@ -535,6 +540,7 @@ fun ScannerUsbFewPreview() {
       bleContent = { PreviewEmpty() },
       usbContent = { PreviewUsbFew() },
       tcpContent = { PreviewEmpty() },
+      developerMode = true,
       initialTab = 2,
     )
   }
@@ -558,6 +564,7 @@ fun ScannerTcpPreview() {
       bleContent = { PreviewEmpty() },
       usbContent = { PreviewEmpty() },
       tcpContent = { PreviewTcpIdle() },
+      developerMode = true,
       initialTab = 3,
     )
   }

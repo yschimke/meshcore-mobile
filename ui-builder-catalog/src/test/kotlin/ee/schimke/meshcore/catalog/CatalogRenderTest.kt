@@ -14,10 +14,6 @@ import ee.schimke.meshcore.app.ui.DeviceConnectStatus
 import ee.schimke.meshcore.app.ui.DeviceStatusView
 import ee.schimke.meshcore.app.ui.LoginDialog
 import ee.schimke.meshcore.app.ui.LoginDialogState
-import ee.schimke.meshcore.app.ui.theme.ThemeMode
-import ee.schimke.meshcore.app.ui.theme.ThemePalette
-import ee.schimke.meshcore.app.ui.theme.ThemePickerDialog
-import ee.schimke.meshcore.app.ui.theme.ThemeSettings
 import ee.schimke.meshcore.components.ui.BatterySection
 import ee.schimke.meshcore.components.ui.ChannelList
 import ee.schimke.meshcore.components.ui.ChannelRow
@@ -471,29 +467,6 @@ class CatalogRenderTest {
   }
 
   @Test
-  fun `native ThemePickerDialog and typed catalog draw the same dialog and dispatch payload events`() {
-    val current = ThemeSettings(mode = ThemeMode.Dark, palette = ThemePalette.Dynamic)
-    parity(
-      "theme-picker",
-      catalog.themePicker.id,
-      props("current" to ThemeSettingsCodec.wrap(current)),
-      height = 720,
-      native = {
-        ThemePickerDialog(
-          current = current,
-          onModeSelect = {},
-          onPaletteSelect = {},
-          onDismiss = {},
-        )
-      },
-    ) { events ->
-      onNodeWithText("Dynamic (system)").performClick()
-      onNodeWithText("Dark").performClick()
-      runOnIdle { assertEquals(listOf("paletteSelect", "modeSelect"), events) }
-    }
-  }
-
-  @Test
   fun `native LoginDialog and typed catalog draw the same dialog for a prompting case`() {
     val state = LoginDialogState.Prompting(errorMessage = "Wrong password")
     parity(
@@ -537,7 +510,6 @@ class CatalogRenderTest {
           title = "ridge-node",
           status = status,
           onCancel = {},
-          onOpenThemePicker = {},
           nowMs = { 8_000L },
         )
       },
@@ -569,10 +541,6 @@ class CatalogRenderTest {
         "contacts" to AdapterValueCodecs.list(ContactCodec).wrap(contacts),
         "channels" to AdapterValueCodecs.list(ChannelInfoCodec).wrap(channels),
         "lastMessage" to LastMessageInfoCodec.wrap(lastMessage),
-        "contactedKeys" to
-          AdapterValueCodecs.set(AdapterValueCodecs.String)
-            .wrap(setOf(contacts[0].publicKey.toHex())),
-        "contactedChannelIndices" to AdapterValueCodecs.set(AdapterValueCodecs.Int).wrap(setOf(1)),
         "warnings" to
           AdapterValueCodecs.list(AdapterValueCodecs.String).wrap(listOf("Clock drift")),
       ),
@@ -585,8 +553,6 @@ class CatalogRenderTest {
           radio = MeshcoreSamples.radio,
           contacts = contacts,
           channels = channels,
-          contactedKeys = setOf(contacts[0].publicKey.toHex()),
-          contactedChannelIndices = setOf(1),
           lastMessage = lastMessage,
           warnings = listOf("Clock drift"),
           onDisconnect = {},
@@ -594,7 +560,8 @@ class CatalogRenderTest {
       },
     ) { events ->
       onAllNodesWithText("ridge-node").onFirst().assertExists()
-      // Only the contacted channel is listed; General is filtered out of its section.
+      // Every channel is listed.
+      onAllNodesWithText("General").onFirst().assertExists()
       onNodeWithText("Emergency").assertExists()
       onNodeWithText("alice").performClick()
       runOnIdle { assertEquals(listOf("contactClick"), events) }

@@ -69,10 +69,6 @@ fun discoverCatalogComponents(): ComponentRecordFile =
         "ee.schimke.meshcore.components.ui.DeviceBodyKt",
         "DeviceBody",
       ),
-      TypedAdapterDiscovery.Callable(
-        "ee.schimke.meshcore.app.ui.theme.ThemePickerKt",
-        "ThemePickerDialog",
-      ),
       TypedAdapterDiscovery.Callable("ee.schimke.meshcore.app.ui.LoginDialogKt", "LoginDialog"),
       TypedAdapterDiscovery.Callable(
         "ee.schimke.meshcore.app.ui.DeviceStatusViewsKt",

@@ -43,7 +43,6 @@
           "battery",
           "tcp-connect",
           "device-settings",
-          "theme-picker",
           "login-dialog",
           "device-status",
           "device-body"
@@ -177,10 +176,6 @@
           }
         }
       }
-    },
-    "theme-picker": {
-      "id": "theme-picker",
-      "componentId": "meshcore-mobile/theme-picker"
     },
     "login-dialog": {
       "id": "login-dialog",
