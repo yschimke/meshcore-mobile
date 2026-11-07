@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.1.9](https://github.com/yschimke/meshcore-mobile/compare/v0.1.8...v0.1.9) (2026-11-07)
+
+
+### Bug Fixes
+
+* **deps:** update androidx ([#675](https://github.com/yschimke/meshcore-mobile/issues/675)) ([3663568](https://github.com/yschimke/meshcore-mobile/commit/3663568621a24913e679c2a7abd0d4a30a860a87))
+* **deps:** update compose-ai-tools ([#649](https://github.com/yschimke/meshcore-mobile/issues/649)) ([d633710](https://github.com/yschimke/meshcore-mobile/commit/d6337100432c30d811fd7972295f0f442712bbeb))
+* **deps:** update compose-ai-tools ([#654](https://github.com/yschimke/meshcore-mobile/issues/654)) ([7da1b0c](https://github.com/yschimke/meshcore-mobile/commit/7da1b0c13ace6ba77731e7d805a2f9062bbd9cc5))
+* **deps:** update compose-ai-tools ([#659](https://github.com/yschimke/meshcore-mobile/issues/659)) ([6815eab](https://github.com/yschimke/meshcore-mobile/commit/6815eab60797bc1b4b29e64437eee57232adeb08))
+* **deps:** update compose-ai-tools ([#664](https://github.com/yschimke/meshcore-mobile/issues/664)) ([95181fa](https://github.com/yschimke/meshcore-mobile/commit/95181fa5d56ef839d96b5e878ab98419ccaa608a))
+* **deps:** update compose-ai-tools ([#667](https://github.com/yschimke/meshcore-mobile/issues/667)) ([cec4a74](https://github.com/yschimke/meshcore-mobile/commit/cec4a74fb8b96c346f91d252afafe5bc478b8187))
+* **deps:** update compose-ai-tools ([#680](https://github.com/yschimke/meshcore-mobile/issues/680)) ([83860dd](https://github.com/yschimke/meshcore-mobile/commit/83860ddf47edf69dd6f2b246fb6d929898ee7fbf))
+* **deps:** update compose-ai-tools to v2.26.0 ([#687](https://github.com/yschimke/meshcore-mobile/issues/687)) ([c95d804](https://github.com/yschimke/meshcore-mobile/commit/c95d804310851ff73c18547903d23502c58e788f))
+* **deps:** update compose-multiplatform to v1.13.0-beta01 ([#590](https://github.com/yschimke/meshcore-mobile/issues/590)) ([7017873](https://github.com/yschimke/meshcore-mobile/commit/70178738e1b0e2d554d3f987db3532ac6b239d10))
+* **deps:** update compose-multiplatform to v1.13.0-beta02 ([#676](https://github.com/yschimke/meshcore-mobile/issues/676)) ([c0a6f0a](https://github.com/yschimke/meshcore-mobile/commit/c0a6f0afe3d3a8299665a6ed9b372990eb6ea022))
+* **deps:** update dependency ee.schimke.composeai:data-remotecompose-connector to v3.27.1 ([#660](https://github.com/yschimke/meshcore-mobile/issues/660)) ([fd6727e](https://github.com/yschimke/meshcore-mobile/commit/fd6727e1953f5f9e9af3f2e93bfdb0ac850949c5))
+* **deps:** update kotlinx to v0.9.2 ([#646](https://github.com/yschimke/meshcore-mobile/issues/646)) ([237fcf3](https://github.com/yschimke/meshcore-mobile/commit/237fcf33056f7f8d1e12eaf02ab755d4f7312802))
+* **deps:** update metro to v1.5.2 ([#677](https://github.com/yschimke/meshcore-mobile/issues/677)) ([6f796ae](https://github.com/yschimke/meshcore-mobile/commit/6f796ae0678286beb9bf72f659c4d87e89aeb98e))
+* **deps:** update mordant to v3.1.1 ([#678](https://github.com/yschimke/meshcore-mobile/issues/678)) ([e6e461c](https://github.com/yschimke/meshcore-mobile/commit/e6e461c5f6ad3f16b67114c52955f04a78bc09a9))
+* **deps:** update remote compose ([#679](https://github.com/yschimke/meshcore-mobile/issues/679)) ([2d76a42](https://github.com/yschimke/meshcore-mobile/commit/2d76a427c3d99f89cf434847e6ca66c727dcc3ed))
+* **previews:** render the widget previews again and stop the device widget clipping ([#657](https://github.com/yschimke/meshcore-mobile/issues/657)) ([be8183b](https://github.com/yschimke/meshcore-mobile/commit/be8183b28c84336e29984bd366771cc089f88378))
+
 ## [0.1.8](https://github.com/yschimke/meshcore-mobile/compare/v0.1.7...v0.1.8) (2026-10-30)
 
 
