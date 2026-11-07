@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=MeshCore
+GenericName=Mesh radio messenger
+Comment=Desktop client for MeshCore LoRa mesh radios
+Exec=meshcore-desktop
+Icon=meshcore-desktop
+Terminal=false
+Categories=Network;Chat;
+Keywords=MeshCore;LoRa;mesh;radio;
+StartupWMClass=meshcore-desktop

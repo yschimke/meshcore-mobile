@@ -1,0 +1,47 @@
+# Maintainer: Yuri Schimke <yuri at schimke dot ee>
+#
+# Source of truth: packaging/aur/meshcore-desktop-bin in https://github.com/yschimke/meshcore-mobile.
+# The release workflow (.github/workflows/arch-packages.yml) sets pkgver and the checksum, publishes
+# the package to the pacman-repo release and pushes this to the AUR; edit it here, not in the AUR
+# repository.
+
+pkgname=meshcore-desktop-bin
+_appname=meshcore
+pkgver=0.1.8
+pkgrel=1
+pkgdesc='MeshCore LoRa mesh radio client (desktop)'
+arch=('x86_64')
+url='https://github.com/yschimke/meshcore-mobile'
+license=('Apache-2.0')
+# The jpackage image bundles its own Java runtime; these are what that runtime and Skia load
+# (the .deb's Depends:, mapped to Arch packages).
+depends=('alsa-lib' 'brotli' 'bzip2' 'expat' 'fontconfig' 'freetype2' 'gcc-libs' 'glibc'
+         'libglvnd' 'libpng' 'libx11' 'libxau' 'libxcb' 'libxdmcp' 'libxext' 'libxi' 'libxrender'
+         'libxtst' 'xdg-utils' 'zlib')
+# Not 'meshcore', which the AUR's meshcore-bin (the closed-source reference companion app) uses
+# for /usr/bin/meshcore, meshcore.desktop and its hicolor icon. This package installs its files as
+# meshcore-desktop, so the two can be installed side by side.
+_name=meshcore-desktop
+provides=("$_name")
+conflicts=("$_name")
+# Stripping breaks the bundled runtime's libraries.
+options=('!strip' '!debug')
+source=("$_name-$pkgver.deb::$url/releases/download/v$pkgver/$_name-$pkgver-linux-x64.deb"
+        "$_name.desktop")
+sha256sums=('b21a90a52f7b62a586d9856bac5c4b8d66d71d53fcb84ad1d02b2b72d8320d01'
+            '3ae43cb8797d8f82caa8f0d3f09e92851f2da1543cb52d24d7322042c44dae76')
+
+package() {
+  # data.tar.zst from CI's dpkg-deb; a local build may write .xz.
+  bsdtar -xf data.tar.* -C "$pkgdir"
+
+  # The .deb registers its menu entry from a post-install script, which pacman never runs:
+  # install the entry and icon where desktops look, and drop the copy jpackage left in /opt.
+  rm "$pkgdir/opt/$_appname/lib/$_appname-MeshCore.desktop"
+  install -Dm644 "$_name.desktop" "$pkgdir/usr/share/applications/$_name.desktop"
+  install -Dm644 "$pkgdir/opt/$_appname/lib/MeshCore.png" \
+    "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_name.png"
+
+  install -dm755 "$pkgdir/usr/bin"
+  ln -s "/opt/$_appname/bin/MeshCore" "$pkgdir/usr/bin/$_name"
+}

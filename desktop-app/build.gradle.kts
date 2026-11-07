@@ -42,6 +42,11 @@ val installerVersion = desktopVersion.split(".").let { "${it[0].toInt() + 1}.${i
 compose.desktop {
   application {
     mainClass = "ee.schimke.meshcore.desktop.MainKt"
+    if (System.getProperty("os.name").contains("Linux")) {
+      // Main.kt names the X11 window class (WM_CLASS) so docks match it to
+      // meshcore-desktop.desktop.
+      jvmArgs += "--add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED"
+    }
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "MeshCore"
@@ -49,13 +54,21 @@ compose.desktop {
       includeAllModules = true
       description = "MeshCore desktop client"
       vendor = "Yuri Schimke"
-      macOS { bundleID = "ee.schimke.meshcore.desktop" }
+      // Icons come from scripts/generate-desktop-icons.py; never hand-edit them.
+      macOS {
+        bundleID = "ee.schimke.meshcore.desktop"
+        iconFile.set(project.file("icons/meshcore.icns"))
+      }
       windows {
+        iconFile.set(project.file("icons/meshcore.ico"))
         menu = true
         shortcut = true
         upgradeUuid = "cc07e2ce-0ef4-4359-b51e-e662e345cb03"
       }
-      linux { menuGroup = "Network" }
+      linux {
+        iconFile.set(project.file("src/jvmMain/resources/meshcore.png"))
+        menuGroup = "Network"
+      }
     }
   }
 }

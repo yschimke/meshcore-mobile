@@ -213,3 +213,20 @@ jobs:
     steps:
       - name: Publish only after every asset job succeeds
         run: gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --draft=false
+
+  # Arch users get the release from the `meshcore` pacman repository on the `pacman-repo` release,
+  # and through the AUR's meshcore-desktop-bin once AUR_PUBLISH is 'true' (arch-packages.yml says
+  # how to set it up). Both download the .deb from the release, so they wait until it is public.
+  arch:
+    name: Arch packages
+    needs: publish
+    if: ${{ !cancelled() && needs.publish.result == 'success' }}
+    uses: ./.github/workflows/arch-packages.yml
+    permissions:
+      contents: write
+    with:
+      tag: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
+      push_repo: true
+      push_aur: ${{ vars.AUR_PUBLISH == 'true' }}
+    secrets:
+      AUR_SSH_PRIVATE_KEY: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
