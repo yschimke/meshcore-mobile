@@ -105,7 +105,6 @@ private fun ConnectedMeshcoreApp(
   var sections by remember { mutableStateOf(SectionStates()) }
   val backStack = remember { mutableStateListOf<NavKey>(DeviceDestination) }
   var error by remember { mutableStateOf<String?>(null) }
-  var notice by remember { mutableStateOf<String?>(null) }
   fun openChat(route: NavKey) {
     // Replacing the active conversation keeps wide master/detail navigation bounded.
     while (backStack.size > 1) backStack.removeLastOrNull()
@@ -118,14 +117,6 @@ private fun ConnectedMeshcoreApp(
   var loginState by
     remember(client) { mutableStateOf<LoginDialogState>(LoginDialogState.Prompting()) }
   val scope = rememberCoroutineScope()
-  notice?.let { message ->
-    AlertDialog(
-      onDismissRequest = { notice = null },
-      title = { Text("Device settings") },
-      text = { Text(message) },
-      confirmButton = { TextButton(onClick = { notice = null }) { Text("OK") } },
-    )
-  }
   loginContact?.let { contact ->
     key(contact.publicKey) {
       LoginDialog(
@@ -206,10 +197,8 @@ private fun ConnectedMeshcoreApp(
         if (commands == null) error = "The companion radio has no commands channel."
         else openChat(ChannelDestination(commands.index, "Commands"))
       },
-      onSettingsClick = {
-        notice =
-          "Device settings are currently available in the Android app. Use Commands for radio configuration."
-      },
+      // Device settings (buzzer) are Android-only; there is no desktop/web settings screen.
+      onSettingsClick = null,
       onDisconnect = disconnect,
       developerMode = developerMode,
       warnings = listOfNotNull(error),
