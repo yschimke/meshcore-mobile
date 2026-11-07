@@ -80,11 +80,15 @@ suspend fun ThreePaneScaffoldNavigator<ChatDestination>.closeChat() {
   navigateBack(BackNavigationBehavior.PopLatest)
 }
 
+/**
+ * What the detail pane shows before a conversation is picked. Shared with the phone app, whose
+ * Navigation 3 list-detail scene shows it as the detail placeholder.
+ */
 @Composable
-private fun ListDetailPlaceholder() {
+fun ListDetailPlaceholder(modifier: Modifier = Modifier) {
   Surface(
     color = MaterialTheme.colorScheme.surfaceContainerLow,
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
   ) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(Dimens.ScreenPadding)) {
       Text(
