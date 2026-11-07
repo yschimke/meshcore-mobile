@@ -1,17 +1,17 @@
 {
   "name": "getting-started",
-  "description": "Cold launch lands on the scanner (no favourite device), open the TCP transport tab, then the BLE tab with its runtime-permission gate.",
+  "description": "Cold launch lands on the scanner (no favourite device), open the BLE transport tab with its runtime-permission gate, then go back to the saved devices tab. USB and TCP are developer options, so the tour stays on the tabs everyone sees.",
   "steps": [
-    {
-      "label": "tcp transport tab",
-      "click": {
-        "text": "TCP"
-      }
-    },
     {
       "label": "ble transport tab",
       "click": {
         "text": "BLE"
+      }
+    },
+    {
+      "label": "saved devices tab",
+      "click": {
+        "text": "Saved"
       }
     }
   ]
