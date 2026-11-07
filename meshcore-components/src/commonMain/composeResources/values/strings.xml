@@ -93,4 +93,5 @@
   <string name="app_settings_developer_unlocked">Developer options unlocked</string>
   <string name="app_settings_developer_mode">Developer options</string>
   <string name="app_settings_developer_mode_desc">USB and TCP transports, all BLE devices, the Commands console and cached device views</string>
+  <string name="list_detail_placeholder">Select a channel or contact to start chatting</string>
 </resources>

@@ -22,10 +22,10 @@ import org.jetbrains.compose.resources.stringResource
 // render path. The other Device previews (status views, extra DeviceBody states)
 // stay in :app for the Android preview baseline.
 
-private fun previewPubKey(fill: Byte): PublicKey =
+internal fun previewPubKey(fill: Byte): PublicKey =
   PublicKey.fromBytes(ByteString(*ByteArray(32) { fill }))
 
-private fun previewContact(
+internal fun previewContact(
   name: String,
   pathLen: Int,
   fill: Byte,
@@ -44,7 +44,7 @@ private fun previewContact(
     lastModified = Instant.fromEpochSeconds(1_700_000_000),
   )
 
-private fun previewSelf(name: String = "node-peak") =
+internal fun previewSelf(name: String = "node-peak") =
   SelfInfo(
     advertType = 1,
     txPowerDbm = 14,
