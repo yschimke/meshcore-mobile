@@ -109,6 +109,9 @@ compose-uiTestJunit4 = { module = "org.jetbrains.compose.ui:ui-test-junit4", ver
 compose-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "composeAdaptive" }
 compose-adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "composeAdaptive" }
 compose-adaptive-navigation = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation", version.ref = "composeAdaptive" }
+# Navigation 3 scene strategies (ListDetailSceneStrategy) for the phone app's list-detail layout.
+# Same version line as the adaptive artifacts above; needs navigation3-ui 1.0.0 or later.
+compose-adaptive-navigation3 = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation3", version.ref = "composeAdaptive" }
 uidPilot-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "uidPilotMaterial3" }
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

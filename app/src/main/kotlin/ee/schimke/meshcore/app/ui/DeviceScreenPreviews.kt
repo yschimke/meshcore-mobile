@@ -21,7 +21,7 @@ import kotlinx.io.bytestring.ByteString
 private fun previewPubKey(fill: Byte): PublicKey =
   PublicKey.fromBytes(ByteString(*ByteArray(32) { fill }))
 
-private fun previewContact(
+internal fun previewContact(
   name: String,
   pathLen: Int,
   fill: Byte,
@@ -40,7 +40,7 @@ private fun previewContact(
     lastModified = Instant.fromEpochSeconds(1_700_000_000),
   )
 
-private fun previewSelf(name: String = "node-peak") =
+internal fun previewSelf(name: String = "node-peak") =
   SelfInfo(
     advertType = 1,
     txPowerDbm = 14,
