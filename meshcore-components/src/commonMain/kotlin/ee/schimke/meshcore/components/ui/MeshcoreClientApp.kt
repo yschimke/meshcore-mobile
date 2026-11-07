@@ -4,7 +4,6 @@ package ee.schimke.meshcore.components.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -14,7 +13,6 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import ee.schimke.meshcore.app.ui.LoginDialog
 import ee.schimke.meshcore.app.ui.LoginDialogState
-import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import ee.schimke.meshcore.components.ui.theme.Section
 import ee.schimke.meshcore.components.ui.theme.SectionStates
 import ee.schimke.meshcore.core.client.MeshCoreClient
@@ -215,58 +213,43 @@ private fun ConnectedMeshcoreApp(
       onChannelClick = { openChat(ChannelDestination(it.index, it.name)) },
     )
   }
-  NavigationSuiteScaffold(
-    navigationSuiteItems = {
-      item(
-        selected = true,
-        onClick = {
-          backStack.clear()
-          backStack.add(DeviceDestination)
-        },
-        icon = { Icon(MeshIcons.Settings, contentDescription = null) },
-        label = { Text("Radio") },
-      )
-    },
-  ) {
-    BoxWithConstraints(Modifier.fillMaxSize()) {
-      val showMaster = maxWidth >= 840.dp && backStack.lastOrNull() != DeviceDestination
-      Row(Modifier.fillMaxSize()) {
-        if (showMaster) {
-          Box(Modifier.width(360.dp).fillMaxHeight()) { device() }
-          VerticalDivider()
-        }
-        NavDisplay(
-          modifier = Modifier.weight(1f),
-          backStack = backStack,
-          onBack = { if (backStack.size > 1) backStack.removeLastOrNull() },
-          entryProvider =
-            entryProvider {
-              entry<DeviceDestination> { device() }
-              entry<ContactDestination> { route ->
-                MeshcoreChat(
-                  client,
-                  route.name,
-                  sendScope = scope,
-                  contactKey = route.key,
-                  sent =
-                    sentByConversation.getOrPut("contact-${route.key}") { mutableStateListOf() },
-                  onBack = { backStack.removeLastOrNull() },
-                )
-              }
-              entry<ChannelDestination> { route ->
-                MeshcoreChat(
-                  client,
-                  route.name,
-                  sendScope = scope,
-                  channelIndex = route.index,
-                  sent =
-                    sentByConversation.getOrPut("channel-${route.index}") { mutableStateListOf() },
-                  onBack = { backStack.removeLastOrNull() },
-                )
-              }
-            },
-        )
+  BoxWithConstraints(Modifier.fillMaxSize()) {
+    val showMaster = maxWidth >= 840.dp && backStack.lastOrNull() != DeviceDestination
+    Row(Modifier.fillMaxSize()) {
+      if (showMaster) {
+        Box(Modifier.width(360.dp).fillMaxHeight()) { device() }
+        VerticalDivider()
       }
+      NavDisplay(
+        modifier = Modifier.weight(1f),
+        backStack = backStack,
+        onBack = { if (backStack.size > 1) backStack.removeLastOrNull() },
+        entryProvider =
+          entryProvider {
+            entry<DeviceDestination> { device() }
+            entry<ContactDestination> { route ->
+              MeshcoreChat(
+                client,
+                route.name,
+                sendScope = scope,
+                contactKey = route.key,
+                sent = sentByConversation.getOrPut("contact-${route.key}") { mutableStateListOf() },
+                onBack = { backStack.removeLastOrNull() },
+              )
+            }
+            entry<ChannelDestination> { route ->
+              MeshcoreChat(
+                client,
+                route.name,
+                sendScope = scope,
+                channelIndex = route.index,
+                sent =
+                  sentByConversation.getOrPut("channel-${route.index}") { mutableStateListOf() },
+                onBack = { backStack.removeLastOrNull() },
+              )
+            }
+          },
+      )
     }
   }
 }

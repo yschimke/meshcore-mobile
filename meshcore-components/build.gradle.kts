@@ -45,7 +45,6 @@ kotlin {
       implementation(libs.cmp.material.icons.extended)
       implementation(libs.cmp.navigation3.ui)
       implementation(libs.cmp.adaptive)
-      implementation(libs.cmp.navigation.suite)
       api(libs.rc.player.compose)
       // Compose Multiplatform string resources: UI copy resolves from the shared
       // commonMain/composeResources/values*/strings.xml, so the daemon localizes per locale.
