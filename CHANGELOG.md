@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.10](https://github.com/yschimke/meshcore-mobile/compare/v0.1.9...v0.1.10) (2026-11-07)
+
+
+### Features
+
+* **app:** list-detail layout for large screens and foldables ([#694](https://github.com/yschimke/meshcore-mobile/issues/694)) ([d95dd21](https://github.com/yschimke/meshcore-mobile/commit/d95dd215b709f71d690bad6a6007605449a40176))
+
+
+### Bug Fixes
+
+* **deps:** update compose-ai-tools ([#695](https://github.com/yschimke/meshcore-mobile/issues/695)) ([e70b785](https://github.com/yschimke/meshcore-mobile/commit/e70b78572809b76331320aea71439f25990ff977))
+
 ## [0.1.9](https://github.com/yschimke/meshcore-mobile/compare/v0.1.8...v0.1.9) (2026-11-07)
 
 
