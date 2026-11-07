@@ -63,6 +63,7 @@ private suspend fun ensureCommandsChannel(
 @Composable
 fun DeviceScreen(
   onDisconnected: () -> Unit,
+  developerMode: Boolean = false,
   onNavigateToContact: (Contact) -> Unit = {},
   onNavigateToChannel: (ChannelInfo) -> Unit = {},
   onNavigateToCommands: (ChannelInfo) -> Unit = {},
@@ -91,6 +92,7 @@ fun DeviceScreen(
       ConnectedDevice(
         client = s.client,
         onDisconnect = { controller.cancel() },
+        developerMode = developerMode,
         onNavigateToContact = onNavigateToContact,
         onNavigateToChannel = onNavigateToChannel,
         onNavigateToCommands = onNavigateToCommands,
@@ -144,6 +146,7 @@ fun DeviceScreen(
 private fun ConnectedDevice(
   client: ee.schimke.meshcore.core.client.MeshCoreClient,
   onDisconnect: () -> Unit,
+  developerMode: Boolean,
   onNavigateToContact: (Contact) -> Unit,
   onNavigateToChannel: (ChannelInfo) -> Unit,
   onNavigateToCommands: (ChannelInfo) -> Unit,
@@ -264,6 +267,7 @@ private fun ConnectedDevice(
       }
     },
     onDisconnect = onDisconnect,
+    developerMode = developerMode,
     warnings = warnings,
     onDismissWarning = { controller.dismissWarning(it) },
   )

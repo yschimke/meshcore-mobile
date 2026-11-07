@@ -59,7 +59,6 @@
   <string name="title_connecting">Подключение</string>
   <string name="title_retrying">Повтор (%1$d/%2$d)</string>
   <string name="title_disconnecting">Отключение</string>
-  <string name="cd_licenses">Лицензии</string>
   <string name="tab_saved">Сохранённые</string>
   <string name="login_join">Присоединиться к %1$s</string>
   <string name="login_enter_password">Введите пароль для «%1$s».</string>

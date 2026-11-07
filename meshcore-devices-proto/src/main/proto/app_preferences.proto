@@ -14,6 +14,9 @@ message AppPreferencesPb {
 
   // Per-device section collapse states, keyed by device ID.
   map<string, DeviceSectionStatesPb> device_sections = 3;
+
+  // Developer options, unlocked by tapping the version row in Settings 7 times.
+  bool developer_mode = 4;
 }
 
 // Collapse states for the device-screen sections.

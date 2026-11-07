@@ -59,7 +59,6 @@
   <string name="title_connecting">कनेक्ट हो रहा है</string>
   <string name="title_retrying">पुनः प्रयास (%1$d/%2$d)</string>
   <string name="title_disconnecting">डिस्कनेक्ट हो रहा है</string>
-  <string name="cd_licenses">लाइसेंस</string>
   <string name="tab_saved">सहेजे गए</string>
   <string name="login_join">%1$s में शामिल हों</string>
   <string name="login_enter_password">“%1$s” के लिए पासवर्ड दर्ज करें।</string>

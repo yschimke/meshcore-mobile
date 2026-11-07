@@ -8,6 +8,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -16,6 +17,7 @@ import com.mikepenz.aboutlibraries.ui.compose.android.produceLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.di.appGraph
+import ee.schimke.meshcore.app.ui.AppSettingsScreen
 import ee.schimke.meshcore.app.ui.CachedDeviceScreen
 import ee.schimke.meshcore.app.ui.ChannelChatScreen
 import ee.schimke.meshcore.app.ui.CommandsScreen
@@ -40,6 +42,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun MeshcoreAppUi() {
   val app = LocalAppGraph.current
+  val developerMode by app.themePreferences.developerMode.collectAsState(initial = false)
 
   MeshcoreTheme {
     Surface {
@@ -64,6 +67,7 @@ private fun MeshcoreAppUi() {
                   // Push scanner on top so user can reconnect
                   if (backStack.lastOrNull() !is ScannerRoute) backStack.add(ScannerRoute)
                 },
+                developerMode = developerMode,
                 onNavigateToContact = { contact ->
                   backStack.add(ContactRoute(contact.publicKey.toHex()))
                 },
@@ -80,7 +84,14 @@ private fun MeshcoreAppUi() {
                   // Pop back to device screen
                   while (backStack.lastOrNull() is ScannerRoute) backStack.removeLastOrNull()
                 },
+                developerMode = developerMode,
                 onViewCachedDevice = { deviceId -> backStack.add(CachedDeviceRoute(deviceId)) },
+                onOpenSettings = { backStack.add(AppSettingsRoute) },
+              )
+            }
+            entry<AppSettingsRoute> {
+              AppSettingsScreen(
+                onBack = { backStack.removeLastOrNull() },
                 onOpenLicenses = { backStack.add(LicensesRoute) },
               )
             }

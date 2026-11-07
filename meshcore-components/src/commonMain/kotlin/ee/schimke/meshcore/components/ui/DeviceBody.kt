@@ -100,6 +100,10 @@ sealed class LastMessageInfo {
   ) : LastMessageInfo()
 }
 
+/**
+ * The Device screen. The top bar's Tools menu holds "Commands" (only with [developerMode]) and
+ * "Device settings" (only when [onSettingsClick] is non-null); with neither it is not shown.
+ */
 @Composable
 fun DeviceBody(
   self: SelfInfo?,
@@ -118,7 +122,8 @@ fun DeviceBody(
   onContactClick: (Contact) -> Unit = {},
   onChannelClick: (ChannelInfo) -> Unit = {},
   onCommandsClick: () -> Unit = {},
-  onSettingsClick: () -> Unit = {},
+  onSettingsClick: (() -> Unit)? = {},
+  developerMode: Boolean = false,
   warnings: List<String> = emptyList(),
   onDismissWarning: (String) -> Unit = {},
 ) {
@@ -145,32 +150,37 @@ fun DeviceBody(
         },
         actions = {
           var toolsMenuOpen by remember { mutableStateOf(false) }
-          Box {
-            IconButton(onClick = { toolsMenuOpen = true }) {
-              Icon(
-                imageVector = MeshIcons.Terminal,
-                contentDescription = stringResource(Res.string.cd_tools),
-              )
+          if (developerMode || onSettingsClick != null)
+            Box {
+              IconButton(onClick = { toolsMenuOpen = true }) {
+                Icon(
+                  imageVector = MeshIcons.Terminal,
+                  contentDescription = stringResource(Res.string.cd_tools),
+                )
+              }
+              DropdownMenu(expanded = toolsMenuOpen, onDismissRequest = { toolsMenuOpen = false }) {
+                if (developerMode) {
+                  DropdownMenuItem(
+                    text = { Text(stringResource(Res.string.menu_commands)) },
+                    leadingIcon = { Icon(MeshIcons.Terminal, contentDescription = null) },
+                    onClick = {
+                      toolsMenuOpen = false
+                      onCommandsClick()
+                    },
+                  )
+                }
+                if (onSettingsClick != null) {
+                  DropdownMenuItem(
+                    text = { Text(stringResource(Res.string.label_device_settings)) },
+                    leadingIcon = { Icon(MeshIcons.Settings, contentDescription = null) },
+                    onClick = {
+                      toolsMenuOpen = false
+                      onSettingsClick()
+                    },
+                  )
+                }
+              }
             }
-            DropdownMenu(expanded = toolsMenuOpen, onDismissRequest = { toolsMenuOpen = false }) {
-              DropdownMenuItem(
-                text = { Text(stringResource(Res.string.menu_commands)) },
-                leadingIcon = { Icon(MeshIcons.Terminal, contentDescription = null) },
-                onClick = {
-                  toolsMenuOpen = false
-                  onCommandsClick()
-                },
-              )
-              DropdownMenuItem(
-                text = { Text(stringResource(Res.string.label_device_settings)) },
-                leadingIcon = { Icon(MeshIcons.Settings, contentDescription = null) },
-                onClick = {
-                  toolsMenuOpen = false
-                  onSettingsClick()
-                },
-              )
-            }
-          }
           IconButton(onClick = onDisconnect) {
             Icon(
               imageVector = MeshIcons.Logout,

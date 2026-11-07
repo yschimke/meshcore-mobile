@@ -59,7 +59,6 @@
   <string name="title_connecting">Menghubungkan</string>
   <string name="title_retrying">Mencoba lagi (%1$d/%2$d)</string>
   <string name="title_disconnecting">Memutuskan</string>
-  <string name="cd_licenses">Lisensi</string>
   <string name="tab_saved">Tersimpan</string>
   <string name="login_join">Gabung %1$s</string>
   <string name="login_enter_password">Masukkan kata sandi untuk “%1$s”.</string>

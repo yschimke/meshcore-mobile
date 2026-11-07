@@ -59,7 +59,6 @@
   <string name="title_connecting">Verbindung wird hergestellt</string>
   <string name="title_retrying">Erneuter Versuch (%1$d/%2$d)</string>
   <string name="title_disconnecting">Verbindung wird getrennt</string>
-  <string name="cd_licenses">Lizenzen</string>
   <string name="tab_saved">Gespeichert</string>
   <string name="login_join">%1$s beitreten</string>
   <string name="login_enter_password">Gib das Passwort für „%1$s“ ein.</string>

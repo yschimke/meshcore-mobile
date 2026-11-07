@@ -40,11 +40,15 @@ private data class ContactDestination(val key: String, val name: String) : NavKe
 
 private data class ChannelDestination(val index: Int, val name: String) : NavKey
 
-/** Shared application content. Hosts supply permission-aware transport construction. */
+/**
+ * Shared application content. Hosts supply permission-aware transport construction. [developerMode]
+ * enables the developer-only tools (the Commands console).
+ */
 @Composable
 fun MeshcoreClientApp(
   manager: MeshCoreManager,
   connect: (suspend (String, Int) -> Unit)? = null,
+  developerMode: Boolean = false,
   connectionContent: (@Composable (Boolean) -> Unit)? = null,
 ) {
   require(connect != null || connectionContent != null) { "A connection panel is required" }
@@ -84,13 +88,14 @@ fun MeshcoreClientApp(
     }
     return
   }
-  key(client) { ConnectedMeshcoreApp(client, manager::requestDisconnect) }
+  key(client) { ConnectedMeshcoreApp(client, manager::requestDisconnect, developerMode) }
 }
 
 @Composable
 private fun ConnectedMeshcoreApp(
   client: MeshCoreClient,
   disconnect: () -> Unit,
+  developerMode: Boolean,
 ) {
   val self by client.selfInfo.collectAsState()
   val battery by client.battery.collectAsState()
@@ -206,6 +211,7 @@ private fun ConnectedMeshcoreApp(
           "Device settings are currently available in the Android app. Use Commands for radio configuration."
       },
       onDisconnect = disconnect,
+      developerMode = developerMode,
       warnings = listOfNotNull(error),
       onDismissWarning = { error = null },
       onContactClick = { contact ->

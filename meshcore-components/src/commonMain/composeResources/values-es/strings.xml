@@ -59,7 +59,6 @@
   <string name="title_connecting">Conectando</string>
   <string name="title_retrying">Reintentando (%1$d/%2$d)</string>
   <string name="title_disconnecting">Desconectando</string>
-  <string name="cd_licenses">Licencias</string>
   <string name="tab_saved">Guardados</string>
   <string name="login_join">Unirse a %1$s</string>
   <string name="login_enter_password">Introduce la contraseña de «%1$s».</string>

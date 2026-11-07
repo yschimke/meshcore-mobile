@@ -59,7 +59,6 @@
   <string name="title_connecting">Łączenie</string>
   <string name="title_retrying">Ponawianie (%1$d/%2$d)</string>
   <string name="title_disconnecting">Rozłączanie</string>
-  <string name="cd_licenses">Licencje</string>
   <string name="tab_saved">Zapisane</string>
   <string name="login_join">Dołącz do: %1$s</string>
   <string name="login_enter_password">Wprowadź hasło do „%1$s”.</string>

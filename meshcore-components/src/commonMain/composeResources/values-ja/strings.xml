@@ -59,7 +59,6 @@
   <string name="title_connecting">接続中</string>
   <string name="title_retrying">再試行中 (%1$d/%2$d)</string>
   <string name="title_disconnecting">切断中</string>
-  <string name="cd_licenses">ライセンス</string>
   <string name="tab_saved">保存済み</string>
   <string name="login_join">%1$sに参加</string>
   <string name="login_enter_password">「%1$s」のパスワードを入力してください。</string>

@@ -59,7 +59,6 @@
   <string name="title_connecting">연결 중</string>
   <string name="title_retrying">재시도 중 (%1$d/%2$d)</string>
   <string name="title_disconnecting">연결 해제 중</string>
-  <string name="cd_licenses">라이선스</string>
   <string name="tab_saved">저장됨</string>
   <string name="login_join">%1$s 참여</string>
   <string name="login_enter_password">“%1$s”의 비밀번호를 입력하세요.</string>

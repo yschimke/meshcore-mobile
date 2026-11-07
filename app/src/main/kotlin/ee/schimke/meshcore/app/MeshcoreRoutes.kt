@@ -18,3 +18,5 @@ import kotlinx.serialization.Serializable
 @Serializable internal data class CachedDeviceRoute(val deviceId: String) : NavKey
 
 @Serializable internal data object LicensesRoute : NavKey
+
+@Serializable internal data object AppSettingsRoute : NavKey

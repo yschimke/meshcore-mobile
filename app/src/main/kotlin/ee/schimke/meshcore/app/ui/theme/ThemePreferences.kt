@@ -66,11 +66,18 @@ private val Context.appPrefsDataStore: DataStore<AppPreferencesPb> by
 // --- Repository ---
 
 /**
- * Typed DataStore repository backed by Wire-generated proto classes. Section collapse states are
- * per-device.
+ * Typed DataStore repository backed by Wire-generated proto classes. The developer-options flag is
+ * global; section collapse states are per-device.
  */
 class ThemePreferences(context: Context) {
   private val store: DataStore<AppPreferencesPb> = context.applicationContext.appPrefsDataStore
+
+  /** Developer options (unlocked from Settings): extra transports, tools and diagnostics. */
+  val developerMode: Flow<Boolean> = store.data.map { it.developer_mode }
+
+  suspend fun setDeveloperMode(enabled: Boolean) {
+    store.updateData { it.copy(developer_mode = enabled) }
+  }
 
   // --- Per-device section states ---
 

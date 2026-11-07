@@ -30,12 +30,16 @@ import ee.schimke.meshcore.transport.ble.BleScanner
  * This lives in the Android integration layer (not in the reusable UI module) so that the BLE
  * transport dependency stays out of `meshcore-components`. Callers receive a transport-agnostic
  * [BleDeviceRow] to connect to.
+ *
+ * Only MeshCore radios are listed unless [developerMode] is on, which adds the "MeshCore only"
+ * switch to show every BLE device.
  */
 @Composable
 fun BleScannerPanel(
   busy: Boolean,
   onConnect: (BleDeviceRow) -> Unit,
   modifier: Modifier = Modifier,
+  developerMode: Boolean = false,
 ) {
   val context = LocalContext.current
   // BLE perms gate the scanner UI. POST_NOTIFICATIONS (Android 13+) is
@@ -89,7 +93,8 @@ fun BleScannerPanel(
   val scanner = remember { BleScanner() }
   val devices = remember { mutableStateListOf<BleAdvertisement>() }
   var scanError by remember { mutableStateOf<String?>(null) }
-  var meshOnly by remember { mutableStateOf(true) }
+  var meshOnlyChoice by remember { mutableStateOf(true) }
+  val meshOnly = meshOnlyChoice || !developerMode
 
   LaunchedEffect(granted, meshOnly) {
     devices.clear()
@@ -119,7 +124,7 @@ fun BleScannerPanel(
     rows = devices.map { BleDeviceRow(it.identifier, it.name, it.rssi) },
     busy = busy,
     meshOnly = meshOnly,
-    onMeshOnlyChange = { meshOnly = it },
+    onMeshOnlyChange = if (developerMode) ({ meshOnlyChoice = it }) else null,
     onPick = onConnect,
     modifier = modifier,
     scanError = scanError,

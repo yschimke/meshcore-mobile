@@ -59,7 +59,6 @@
   <string name="title_connecting">جارٍ الاتصال</string>
   <string name="title_retrying">إعادة المحاولة (%1$d/%2$d)</string>
   <string name="title_disconnecting">جارٍ قطع الاتصال</string>
-  <string name="cd_licenses">التراخيص</string>
   <string name="tab_saved">المحفوظة</string>
   <string name="login_join">الانضمام إلى %1$s</string>
   <string name="login_enter_password">أدخل كلمة المرور لـ ”%1$s“.</string>

@@ -59,7 +59,6 @@
   <string name="title_connecting">Verbinden</string>
   <string name="title_retrying">Opnieuw proberen (%1$d/%2$d)</string>
   <string name="title_disconnecting">Verbinding verbreken</string>
-  <string name="cd_licenses">Licenties</string>
   <string name="tab_saved">Opgeslagen</string>
   <string name="login_join">Deelnemen aan %1$s</string>
   <string name="login_enter_password">Voer het wachtwoord voor “%1$s” in.</string>
