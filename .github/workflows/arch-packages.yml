@@ -79,6 +79,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     container: archlinux:base-devel
+    # Draft releases are visible only to tokens with push access, and the release workflow runs this
+    # before publishing.
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
     outputs:
       tag: ${{ steps.release.outputs.tag }}
       version: ${{ steps.release.outputs.version }}
@@ -160,7 +167,7 @@ jobs:
         run: |
           set -euo pipefail
           # shellcheck disable=SC1091,SC2154
-          src="$(source PKGBUILD && echo "${source[0]%%::*}")"
+          src="$(source ./PKGBUILD && echo "${source[0]%%::*}")"
           gh release download "$TAG" -p "meshcore-desktop-$VERSION-linux-x64.deb" -O "$src"
           ls -l "$src"
       # makepkg refuses to run as root, and the builder can't sudo: install the dependencies first.
