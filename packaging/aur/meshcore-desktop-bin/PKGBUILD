@@ -1,9 +1,9 @@
 # Maintainer: Yuri Schimke <yuri at schimke dot ee>
 #
 # Source of truth: packaging/aur/meshcore-desktop-bin in https://github.com/yschimke/meshcore-mobile.
-# The release workflow (.github/workflows/arch-packages.yml) sets pkgver and the checksum, publishes
-# the package to the pacman-repo release and pushes this to the AUR; edit it here, not in the AUR
-# repository.
+# The release workflow (.github/workflows/arch-packages.yml) sets pkgver and the checksum, attaches
+# the package and the pacman repository to each release and pushes this to the AUR; edit it here,
+# not in the AUR repository.
 
 pkgname=meshcore-desktop-bin
 _appname=meshcore
