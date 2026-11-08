@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/yschimke/meshcore-mobile/compare/v0.1.10...v0.1.11) (2026-11-08)
+
+
+### Bug Fixes
+
+* attach the Arch pacman repo to each draft release ([#708](https://github.com/yschimke/meshcore-mobile/issues/708)) ([49aafa0](https://github.com/yschimke/meshcore-mobile/commit/49aafa0b3f7de462269b4771666f4be03951a251))
+
 ## [0.1.10](https://github.com/yschimke/meshcore-mobile/compare/v0.1.9...v0.1.10) (2026-11-08)
 
 
