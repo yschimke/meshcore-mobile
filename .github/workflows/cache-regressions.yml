@@ -31,6 +31,7 @@ jobs:
       - name: Verify setup and actual Gradle cache configuration with synthetic tokens
         run: |
           python3 scripts/test-prepare-gradle.py
+          python3 scripts/test-ci-artifacts.py
           python3 scripts/test-cache-mode.py --gradle
       - name: Verify independent build and relocation failure propagation, including real Gradle
         run: python3 scripts/test-cache-diagnostics.py --gradle

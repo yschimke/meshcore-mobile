@@ -8,6 +8,15 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
 }
 
+// CI may stage the same verified distribution locally when GitHub release URLs are unavailable.
+providers.environmentVariable("BINARYEN_DOWNLOAD_BASE_URL").orNull?.let { baseUrl ->
+  plugins.withType<org.jetbrains.kotlin.gradle.targets.wasm.binaryen.BinaryenPlugin> {
+    extensions.configure<org.jetbrains.kotlin.gradle.targets.wasm.binaryen.BinaryenEnvSpec> {
+      downloadBaseUrl.set(baseUrl)
+    }
+  }
+}
+
 kotlin {
   @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
   wasmJs {

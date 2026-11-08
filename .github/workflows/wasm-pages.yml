@@ -37,6 +37,10 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: 'true'
+      - name: Prepare the pinned Binaryen through the release API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/prepare-ci-artifacts.py binaryen
       - name: Build production Wasm
         env:
           USE_SYSTEM_YARN: 'true'

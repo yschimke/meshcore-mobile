@@ -27,7 +27,7 @@ dependencyResolutionManagement {
         includeGroupAndSubgroups("com.google")
       }
     }
-    mavenCentral { url = uri("https://repo1.maven.org/maven2") }
+    mavenCentral()
     maven("https://jitpack.io")
   }
 }

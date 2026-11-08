@@ -28,7 +28,7 @@ jobs:
       artifact-prefix: adaptive-uid
       bundle-name: key-screens
       build-command: >-
-        python3 scripts/prepare-gradle.py && ./gradlew -PadaptiveUidPilot=true
+        python3 scripts/prepare-gradle.py && python3 scripts/prepare-ci-artifacts.py maven && ./gradlew -PadaptiveUidPilot=true
         :adaptive-uid-pilot:ktfmtCheck
         :adaptive-uid-pilot:test
         :adaptive-uid-pilot:renderPilot

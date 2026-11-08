@@ -84,6 +84,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python scripts/prepare-gradle.py
+          python scripts/prepare-ci-artifacts.py maven
           scripts/validate-typed-catalog.sh "$GITHUB_WORKSPACE/compose-ai-tools" "$GITHUB_WORKSPACE/compose-ui-builder"
       - name: Package the typed Wasm renderer
         run: ./gradlew -PcomposeUiBuilderDir="$GITHUB_WORKSPACE/compose-ui-builder" :ui-builder-catalog-renderer:rendererArchive
