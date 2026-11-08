@@ -13,8 +13,16 @@ kotlin {
     jvmMain.dependencies {
       implementation(projects.meshcoreComponents)
       implementation(projects.meshcoreTransportTcp)
+      implementation(projects.meshcoreData)
+      implementation(libs.room.runtime)
       implementation(compose.desktop.currentOs)
       implementation(libs.kotlinx.coroutines.swing)
+    }
+    jvmTest.dependencies {
+      implementation(libs.kotlin.test)
+      implementation(libs.kotlinx.coroutines.test)
+      implementation(libs.room.runtime)
+      implementation(libs.sqlite.bundled)
     }
   }
 }

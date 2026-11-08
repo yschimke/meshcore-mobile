@@ -19,6 +19,43 @@ interface MessageDao {
   )
   fun observeDms(deviceId: String, contactKeyHex: String): Flow<List<MessageEntity>>
 
+  // Received DMs carry a public-key prefix when the contact is not yet known.
+  @Query(
+    """
+    SELECT * FROM message WHERE deviceId = :deviceId AND kind = 'DM'
+      AND (contactPublicKeyHex = :contactKeyHex OR
+        (direction = 'RECEIVED' AND :contactKeyHex LIKE contactPublicKeyHex || '%'))
+    ORDER BY timestampEpochMs ASC, rowId ASC
+  """,
+  )
+  fun observeDesktopDms(deviceId: String, contactKeyHex: String): Flow<List<MessageEntity>>
+
+  @Query(
+    """
+    SELECT COUNT(*) FROM message WHERE deviceId = :deviceId AND direction = 'RECEIVED'
+      AND kind = :kind AND contactPublicKeyHex IS :contactKeyHex
+      AND channelIndex IS :channelIndex AND senderName IS :senderName
+      AND timestampEpochMs = :timestampMs AND text = :text
+  """,
+  )
+  suspend fun countReceivedDuplicates(
+    deviceId: String,
+    kind: MessageKind,
+    contactKeyHex: String?,
+    channelIndex: Int?,
+    senderName: String?,
+    timestampMs: Long,
+    text: String,
+  ): Int
+
+  @Query(
+    """
+    UPDATE message SET status = 'FAILED'
+    WHERE deviceId = :deviceId AND direction = 'SENT' AND status = 'SENDING'
+  """,
+  )
+  suspend fun failInterruptedSends(deviceId: String)
+
   @Query(
     """
         SELECT * FROM message
