@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.1.10](https://github.com/yschimke/meshcore-mobile/compare/v0.1.9...v0.1.10) (2026-11-08)
+
+
+### Features
+
+* **app:** list-detail layout for large screens and foldables ([#694](https://github.com/yschimke/meshcore-mobile/issues/694)) ([d95dd21](https://github.com/yschimke/meshcore-mobile/commit/d95dd215b709f71d690bad6a6007605449a40176))
+* **desktop:** add icons and an Arch package on a pacman repository ([#702](https://github.com/yschimke/meshcore-mobile/issues/702)) ([df7df3b](https://github.com/yschimke/meshcore-mobile/commit/df7df3be06e3029c263eb949bc1555c3d144a8d6))
+
+
+### Bug Fixes
+
+* **deps:** update compose-ai-tools ([#695](https://github.com/yschimke/meshcore-mobile/issues/695)) ([e70b785](https://github.com/yschimke/meshcore-mobile/commit/e70b78572809b76331320aea71439f25990ff977))
+* **deps:** update compose-ai-tools ([#698](https://github.com/yschimke/meshcore-mobile/issues/698)) ([1f85063](https://github.com/yschimke/meshcore-mobile/commit/1f8506394bd78c4b5439e522898fa5e59f3a69eb))
+* **deps:** update compose-ai-tools ([#699](https://github.com/yschimke/meshcore-mobile/issues/699)) ([ef8006f](https://github.com/yschimke/meshcore-mobile/commit/ef8006f80ba642b72d46f5974aaa9226e7c805fd))
+* **deps:** update compose-ai-tools ([#700](https://github.com/yschimke/meshcore-mobile/issues/700)) ([28740f0](https://github.com/yschimke/meshcore-mobile/commit/28740f0cbc335e7af3cc7e71434b3525530ad8c5))
+* **deps:** update compose-ai-tools to v2.28.0 ([#701](https://github.com/yschimke/meshcore-mobile/issues/701)) ([b63d10d](https://github.com/yschimke/meshcore-mobile/commit/b63d10da64a3de7bbc29026c52099999429c5b75))
+* **deps:** update compose-ai-tools to v2.29.0 ([#705](https://github.com/yschimke/meshcore-mobile/issues/705)) ([042a2c5](https://github.com/yschimke/meshcore-mobile/commit/042a2c5b40e60ebac4798740bcba564d74184cad))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-runtime to v3.130.0 ([#704](https://github.com/yschimke/meshcore-mobile/issues/704)) ([e3885ca](https://github.com/yschimke/meshcore-mobile/commit/e3885ca646d227bfa445d3ed755fd1882adf3e92))
+
 ## [0.1.9](https://github.com/yschimke/meshcore-mobile/compare/v0.1.8...v0.1.9) (2026-11-07)
 
 
