@@ -54,4 +54,26 @@ class ChatHistoryTest {
     val merged = mergeChatHistory(listOf(echo()), listOf(local), "me", dedupeEchoes = false)
     assertEquals(2, merged.size)
   }
+
+  @Test
+  fun persistedEchoUsesTheNameWhenTheMessageWasSent() {
+    val saved = local.copy(senderName = "old radio name")
+    val merged =
+      mergeChatHistory(
+        listOf(echo(sender = "old radio name")),
+        listOf(saved),
+        "new radio name",
+        dedupeEchoes = true,
+      )
+    assertEquals(listOf(saved), merged)
+  }
+
+  @Test
+  fun currentNameDoesNotAbsorbAnotherHistoricalSendersMessage() {
+    val saved = local.copy(senderName = "old radio name")
+    val other = echo(sender = "new radio name")
+    val merged =
+      mergeChatHistory(listOf(other), listOf(saved), "new radio name", dedupeEchoes = true)
+    assertEquals(listOf(other, saved), merged)
+  }
 }

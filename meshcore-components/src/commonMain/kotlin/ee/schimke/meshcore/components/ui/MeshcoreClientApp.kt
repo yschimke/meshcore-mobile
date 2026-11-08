@@ -28,6 +28,8 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -42,6 +44,9 @@ fun MeshcoreClientApp(
   manager: MeshCoreManager,
   connect: (suspend (String, Int) -> Unit)? = null,
   developerMode: Boolean = false,
+  history: ChatHistoryStore? = null,
+  defaultHost: String = "192.168.1.10",
+  defaultPort: Int = 5000,
   connectionContent: (@Composable (Boolean) -> Unit)? = null,
 ) {
   require(connect != null || connectionContent != null) { "A connection panel is required" }
@@ -60,6 +65,8 @@ fun MeshcoreClientApp(
         else
           TcpConnectPanel(
             busy = state is ManagerState.Connecting,
+            defaultHost = defaultHost,
+            defaultPort = defaultPort,
             onConnect = { host, port ->
               scope.launch {
                 error = null
@@ -81,7 +88,7 @@ fun MeshcoreClientApp(
     }
     return
   }
-  key(client) { ConnectedMeshcoreApp(client, manager::requestDisconnect, developerMode) }
+  key(client) { ConnectedMeshcoreApp(client, manager::requestDisconnect, developerMode, history) }
 }
 
 @Composable
@@ -89,6 +96,7 @@ private fun ConnectedMeshcoreApp(
   client: MeshCoreClient,
   disconnect: () -> Unit,
   developerMode: Boolean,
+  history: ChatHistoryStore?,
 ) {
   val self by client.selfInfo.collectAsState()
   val battery by client.battery.collectAsState()
@@ -105,6 +113,22 @@ private fun ConnectedMeshcoreApp(
   var loginState by
     remember(client) { mutableStateOf<LoginDialogState>(LoginDialogState.Prompting()) }
   val scope = rememberCoroutineScope()
+  LaunchedEffect(client, history) {
+    if (history == null) return@LaunchedEffect
+    try {
+      combine(client.directMessages, client.channelMessages) { direct, channel ->
+          direct to channel
+        }
+        .collect { (direct, channel) ->
+          direct.values.flatten().forEach { history.receive(it) }
+          channel.values.flatten().forEach { history.receive(it) }
+        }
+    } catch (e: CancellationException) {
+      throw e
+    } catch (e: Exception) {
+      error = "Could not save conversation history. Reconnect to try again."
+    }
+  }
   fun openChat(destination: ChatDestination) {
     scope.launch { navigator.openChat(destination) }
   }
@@ -221,6 +245,7 @@ private fun ConnectedMeshcoreApp(
             sent =
               sentByConversation.getOrPut("contact-${destination.key}") { mutableStateListOf() },
             onBack = closeChat,
+            history = history,
           )
         is ChatDestination.Channel ->
           MeshcoreChat(
@@ -231,6 +256,7 @@ private fun ConnectedMeshcoreApp(
             sent =
               sentByConversation.getOrPut("channel-${destination.index}") { mutableStateListOf() },
             onBack = closeChat,
+            history = history,
           )
       }
     },
@@ -246,17 +272,40 @@ private fun MeshcoreChat(
   contactKey: String? = null,
   channelIndex: Int? = null,
   onBack: () -> Unit,
+  history: ChatHistoryStore?,
 ) {
   val direct by client.directMessages.collectAsState()
   val channel by client.channelMessages.collectAsState()
   val self by client.selfInfo.collectAsState()
   var draft by rememberSaveable(contactKey, channelIndex) { mutableStateOf("") }
-  val sending = sent.any { it.status == MessageStatus.Sending }
+  val destination =
+    remember(contactKey, channelIndex, title) {
+      if (channelIndex != null) ChatDestination.Channel(channelIndex, title)
+      else ChatDestination.Contact(requireNotNull(contactKey), title)
+    }
+  var persistingSend by remember { mutableStateOf(false) }
+  var sendError by remember { mutableStateOf<String?>(null) }
+  val stored =
+    remember(history, destination) {
+        history?.messages(destination)?.catch { error ->
+          if (error is CancellationException) throw error
+          sendError = "Could not load conversation history. Reconnect to try again."
+          emit(emptyList())
+        }
+      }
+      ?.collectAsState(emptyList())
+      ?.value
+      .orEmpty()
+  val sending =
+    persistingSend ||
+      sent.any { it.status == MessageStatus.Sending } ||
+      stored.any { it.status == MessageStatus.Sending }
   // Cached so a draft keystroke doesn't rebuild and re-sort the whole history: rebuilding also
   // gives every ChatMessage a new identity, so each visible bubble would recompose per keystroke.
   val received =
-    remember(channel, direct, channelIndex, contactKey, title) {
-      if (channelIndex != null) {
+    remember(channel, direct, channelIndex, contactKey, title, history, stored) {
+      if (history != null) stored.filter { !it.isMine }
+      else if (channelIndex != null) {
         channel[channelIndex].orEmpty().mapIndexed { index, m ->
           ChatMessage("channel-$index-${m.timestamp}", m.sender, m.text, m.timestamp, m.snr, false)
         }
@@ -275,9 +324,14 @@ private fun MeshcoreChat(
   // derivedStateOf because `sent` is a snapshot list mutated in place: the merge re-runs when it
   // changes, but not when only the draft does.
   val messages by
-    remember(received, sent, selfName, channelIndex) {
+    remember(received, sent, selfName, channelIndex, history, stored) {
       derivedStateOf {
-        mergeChatHistory(received, sent, selfName = selfName, dedupeEchoes = channelIndex != null)
+        mergeChatHistory(
+          received,
+          if (history == null) sent else stored.filter { it.isMine },
+          selfName = selfName,
+          dedupeEchoes = channelIndex != null,
+        )
       }
     }
   ChatBody(
@@ -287,6 +341,7 @@ private fun MeshcoreChat(
     onDraftChange = { draft = it },
     onBack = onBack,
     inputEnabled = !sending,
+    subtitle = sendError,
     onSend = {
       if (draft.isNotBlank() && !sending) {
         val text = draft.trim()
@@ -300,19 +355,28 @@ private fun MeshcoreChat(
             isMine = true,
             status = MessageStatus.Sending,
           )
-        sent.add(message)
-        draft = ""
+        if (history == null) sent.add(message)
+        persistingSend = true
+        sendError = null
         sendScope.launch {
+          var storedId: Long? = null
           try {
+            storedId = history?.sending(destination, message)
+            draft = ""
             if (channelIndex != null) client.sendChannelText(channelIndex, text, timestamp)
             else client.sendText(PublicKey.fromHex(requireNotNull(contactKey)), text, timestamp)
+            storedId?.let { history?.updateStatus(it, MessageStatus.Sent) }
             val index = sent.indexOfFirst { it.id == message.id }
             if (index >= 0) sent[index] = message.copy(status = MessageStatus.Sent)
           } catch (e: CancellationException) {
             throw e
           } catch (e: Exception) {
+            storedId?.let { runCatching { history?.updateStatus(it, MessageStatus.Failed) } }
+            sendError = "Message could not be sent."
             val index = sent.indexOfFirst { it.id == message.id }
             if (index >= 0) sent[index] = message.copy(status = MessageStatus.Failed)
+          } finally {
+            persistingSend = false
           }
         }
       }

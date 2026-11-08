@@ -23,8 +23,15 @@ jobs:
       - uses: actions/setup-java@v6.2.0
         with:
           distribution: temurin
-          java-version: '21.0.13+9.0.LTS'
+          java-version: '21'
+      - name: Prepare Gradle distribution
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/prepare-gradle.py
       - name: Verify setup and actual Gradle cache configuration with synthetic tokens
-        run: python3 scripts/test-cache-mode.py --gradle
+        run: |
+          python3 scripts/test-prepare-gradle.py
+          python3 scripts/test-ci-artifacts.py
+          python3 scripts/test-cache-mode.py --gradle
       - name: Verify independent build and relocation failure propagation, including real Gradle
         run: python3 scripts/test-cache-diagnostics.py --gradle

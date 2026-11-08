@@ -86,6 +86,10 @@ jobs:
           fc-cache -f "$HOME/.local/share/fonts" >/dev/null
       - name: Record render start
         run: echo "RENDER_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - name: Install the pinned preview CLI through the release API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/install-preview-cli.py
       - id: apply
         uses: yschimke/compose-ai-tools/.github/actions/apply@v2.89.0
         with:
@@ -99,8 +103,8 @@ jobs:
           # against the older applied plugin breaks preview discovery ("no
           # modules have the plugin applied" — the 0.15.9 CLI vs 0.15.8 plugin
           # skew); keying the CLI off the same catalog entry keeps them lockstep.
-          cli-version: catalog
-          catalog-key: composePreviewPlugin
+          # Already installed above from the catalog version, with its release digest verified.
+          cli-version: none
           # The renderer can't rasterise our adaptive launcher icons
           # (mipmap/ic_launcher[_round]) to PNG, so those resource captures
           # produce no output. Downgrade missing renders from a hard error to a

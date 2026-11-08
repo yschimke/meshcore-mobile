@@ -37,11 +37,19 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: 'true'
+      - name: Prepare the pinned Binaryen through the release API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/prepare-ci-artifacts.py binaryen
       - name: Build production Wasm
-        run: ./gradlew :web-app:wasmJsBrowserDistribution :web-app:wasmoApp :meshcore-transport-webserial:jvmTest :meshcore-core:jvmTest --stacktrace
+        env:
+          USE_SYSTEM_YARN: 'true'
+        run: |
+          npm install --global yarn@1.22.22
+          ./gradlew :web-app:wasmJsBrowserDistribution :web-app:wasmoApp :meshcore-transport-webserial:jvmTest :meshcore-core:jvmTest --stacktrace
       - uses: actions/setup-python@v7.1.0
         with:
-          python-version: '3.15.2'
+          python-version: '3.13'
       - name: Install browser test tools
         run: |
           python -m pip install playwright==1.62.0

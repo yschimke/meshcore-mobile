@@ -153,7 +153,7 @@ jobs:
       # lanes have both been verified independently.
       - uses: actions/setup-python@v7.1.0
         with:
-          python-version: '3.15.2'
+          python-version: '3.13'
       - name: Install reference capture tooling
         run: |
           python -m pip install playwright==1.62.0

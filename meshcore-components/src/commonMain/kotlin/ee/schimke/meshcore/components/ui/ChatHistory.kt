@@ -11,9 +11,9 @@ package ee.schimke.meshcore.components.ui
  * An echo is matched to a local send on the fields the wire round-trips unchanged: the channel is
  * implied by the per-conversation [sent] list, the text must be equal, and the timestamp must be in
  * the same epoch second (`Frames.sendChannelTextMessage` writes `epochSeconds`, so the echo carries
- * the send's timestamp truncated to the second). When [selfName] is known, the echo's sender must
- * also be this device. Each local send absorbs at most one echo; the local entry is kept because it
- * carries the delivery status.
+ * the send's timestamp truncated to the second). The saved sender name identifies historical sends
+ * even after the radio is renamed; [selfName] is the fallback for transient sends. Each local send
+ * absorbs at most one echo; the local entry is kept because it carries the delivery status.
  *
  * Only pass [dedupeEchoes] for channel conversations: direct messages are not echoed.
  */
@@ -26,9 +26,11 @@ internal fun mergeChatHistory(
   if (!dedupeEchoes || sent.isEmpty()) return (received + sent).sortedBy { it.timestamp }
   val unmatched = sent.filter { it.isMine }.toMutableList()
   val kept = received.filter { message ->
-    if (selfName != null && message.senderName != selfName) return@filter true
     val echoed = unmatched.indexOfFirst {
-      it.text == message.text && it.timestamp.epochSeconds == message.timestamp.epochSeconds
+      val sender = it.senderName ?: selfName
+      (sender == null || message.senderName == sender) &&
+        it.text == message.text &&
+        it.timestamp.epochSeconds == message.timestamp.epochSeconds
     }
     if (echoed >= 0) {
       unmatched.removeAt(echoed)

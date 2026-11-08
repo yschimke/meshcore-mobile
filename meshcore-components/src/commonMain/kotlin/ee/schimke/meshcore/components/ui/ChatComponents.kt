@@ -20,6 +20,9 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -27,9 +30,16 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.cd_send
@@ -172,15 +182,17 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier, onRetry: (()
         }
 
         // Message text
-        Text(
-          text = message.text,
-          style = MaterialTheme.typography.bodyMedium,
-          color = textColor,
-          modifier =
-            Modifier.padding(
-              top = if (!message.isMine && message.senderName != null) 2.dp else 0.dp,
-            ),
-        )
+        SelectionContainer {
+          Text(
+            text = message.text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = textColor,
+            modifier =
+              Modifier.padding(
+                top = if (!message.isMine && message.senderName != null) 2.dp else 0.dp,
+              ),
+          )
+        }
 
         // Footer: timestamp + status
         Row(
@@ -246,6 +258,8 @@ fun ChatInput(
   enabled: Boolean = true,
   placeholder: String = stringResource(Res.string.chat_hint_message),
 ) {
+  var enterPressed by remember { mutableStateOf(false) }
+  var enterMaySubmit by remember { mutableStateOf(false) }
   Row(
     modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
@@ -258,7 +272,40 @@ fun ChatInput(
         Text(if (enabled) placeholder else stringResource(Res.string.chat_not_connected))
       },
       singleLine = true,
-      modifier = Modifier.weight(1f),
+      keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
+      keyboardActions = KeyboardActions(onSend = { if (enabled && value.isNotBlank()) onSend() }),
+      modifier =
+        Modifier.weight(1f)
+          .onFocusChanged {
+            if (!it.isFocused) {
+              enterPressed = false
+              enterMaySubmit = false
+            }
+          }
+          .onPreviewKeyEvent { event ->
+            // Consume both halves of a hardware Enter gesture; submit on release so holding
+            // Enter cannot send repeated messages. Consume modified Enter too: this single-line
+            // editor otherwise forwards it to the IME Send action.
+            val modified =
+              event.isShiftPressed ||
+                event.isCtrlPressed ||
+                event.isAltPressed ||
+                event.isMetaPressed
+            if (enterPressed && modified) enterMaySubmit = false
+            if (event.key == Key.Enter) {
+              if (event.type == KeyEventType.KeyDown && !enterPressed) {
+                enterPressed = true
+                enterMaySubmit = !modified && enabled && value.isNotBlank()
+              } else if (event.type == KeyEventType.KeyUp) {
+                val submit =
+                  enterPressed && enterMaySubmit && !modified && enabled && value.isNotBlank()
+                enterPressed = false
+                enterMaySubmit = false
+                if (submit) onSend()
+              }
+              true
+            } else false
+          },
       shape = RoundedCornerShape(24.dp),
     )
     Spacer(Modifier.size(8.dp))

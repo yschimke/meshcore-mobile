@@ -9,10 +9,19 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Use the preinstalled Apple Silicon JDK
+      if: runner.os == 'macOS' && runner.arch == 'ARM64'
+      shell: bash
+      run: |
+        "${JAVA_HOME_21_arm64:?}/bin/java" -version
+        echo "JAVA_HOME=$JAVA_HOME_21_arm64" >> "$GITHUB_ENV"
+        echo "$JAVA_HOME_21_arm64/bin" >> "$GITHUB_PATH"
     - uses: actions/setup-java@v6.2.0
+      if: runner.os != 'macOS' || runner.arch != 'ARM64'
       with:
         distribution: temurin
-        java-version: '21.0.13+9.0.LTS'
+        # Match the runner's cached JDK 21 instead of forcing an exact release-asset download.
+        java-version: '21'
     # CI supplies tokens through the environment, matching settings.gradle.kts.
     - id: cache-mode
       shell: bash
@@ -21,4 +30,11 @@ runs:
       with:
         cache-read-only: ${{ inputs.cache-read-only }}
         gradle-home-cache-excludes: ${{ steps.cache-mode.outputs.remote-push-enabled == 'true' && 'caches/build-cache-1' || '' }}
+    - name: Prepare Gradle distribution
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        python scripts/prepare-gradle.py
+        python scripts/prepare-ci-artifacts.py maven
     - uses: ./.github/actions/android-sdk
