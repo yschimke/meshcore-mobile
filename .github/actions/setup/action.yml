@@ -12,7 +12,8 @@ runs:
     - uses: actions/setup-java@v6.2.0
       with:
         distribution: temurin
-        java-version: '21.0.13+9.0.LTS'
+        # Match the runner's cached JDK 21 instead of forcing an exact release-asset download.
+        java-version: '21'
     # CI supplies tokens through the environment, matching settings.gradle.kts.
     - id: cache-mode
       shell: bash
