@@ -200,9 +200,23 @@ jobs:
           path: _release/
           if-no-files-found: ignore
 
+  # Arch users get the release from the `meshcore` pacman repository, which every release carries
+  # as assets (pacman reads it through releases/latest/download; docs/desktop-linux.md). Published
+  # releases are immutable, so it is built from the draft's .deb and attached before `publish`.
+  arch-repo:
+    name: Arch pacman repository
+    needs: desktop
+    if: github.event_name == 'push' || inputs.publish_release == true
+    uses: ./.github/workflows/arch-packages.yml
+    permissions:
+      contents: write
+    with:
+      tag: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
+      push_repo: true
+
   publish:
     name: Publish completed release
-    needs: [desktop, release]
+    needs: [desktop, release, arch-repo]
     if: github.event_name == 'push' || inputs.publish_release == true
     runs-on: ubuntu-latest
     permissions:
@@ -214,19 +228,18 @@ jobs:
       - name: Publish only after every asset job succeeds
         run: gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --draft=false
 
-  # Arch users get the release from the `meshcore` pacman repository on the `pacman-repo` release,
-  # and through the AUR's meshcore-desktop-bin once AUR_PUBLISH is 'true' (arch-packages.yml says
-  # how to set it up). Both download the .deb from the release, so they wait until it is public.
-  arch:
-    name: Arch packages
+  # The AUR's meshcore-desktop-bin builds from the .deb's public URL, so it waits until the release
+  # is published. Off until AUR_PUBLISH is 'true' (arch-packages.yml says how to set it up).
+  aur:
+    name: AUR
     needs: publish
-    if: ${{ !cancelled() && needs.publish.result == 'success' }}
+    if: ${{ !cancelled() && needs.publish.result == 'success' && vars.AUR_PUBLISH == 'true' }}
     uses: ./.github/workflows/arch-packages.yml
+    # contents: write only because the called workflow's repo job (skipped here) declares it.
     permissions:
       contents: write
     with:
       tag: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
-      push_repo: true
-      push_aur: ${{ vars.AUR_PUBLISH == 'true' }}
+      push_aur: true
     secrets:
       AUR_SSH_PRIVATE_KEY: ${{ secrets.AUR_SSH_PRIVATE_KEY }}

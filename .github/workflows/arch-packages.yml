@@ -1,11 +1,18 @@
 name: Arch packages
 
-# Builds packaging/aur/meshcore-desktop-bin for a published release and ships it two ways:
+# Builds packaging/aur/meshcore-desktop-bin for a release and ships it two ways:
 #
-# - pacman repository: the package and the `meshcore` repo database live as assets on the
-#   `pacman-repo` prerelease of this repository, so `pacman -Syu` updates MeshCore once a machine
-#   adds the repo (docs/desktop-linux.md). Needs no account; on for every release.
+# - pacman repository: each release carries the `meshcore` repo database and its own package as
+#   assets, so `Server = .../releases/latest/download` always serves the newest one and
+#   `pacman -Syu` updates MeshCore once a machine adds the repo (docs/desktop-linux.md). Releases
+#   here are immutable once published, so this runs while the release is still a draft: the
+#   release workflow calls it after the desktop installers are attached and publishes the release
+#   only once it has succeeded. Drafts' download URLs aren't public, so the .deb is downloaded with
+#   the API and handed to makepkg instead of fetched from the PKGBUILD's public URL. The previous
+#   release's package is attached too, outside the database, so a `pacman -Syu` that read the old
+#   database just before the switch still finds its package under latest/download.
 # - AUR: pushes the PKGBUILD to aur.archlinux.org/packages/meshcore-desktop-bin for paru/yay users.
+#   The AUR builds from the public .deb URL, so the release workflow runs this after publishing.
 #   Off until the repository variable AUR_PUBLISH is 'true' and the secret AUR_SSH_PRIVATE_KEY
 #   holds a key registered to an AUR account (registration was paused when this was written).
 #   Setup, once: create an AUR account (https://aur.archlinux.org/register), add an SSH public key
@@ -13,9 +20,9 @@ name: Arch packages
 #   push creates the AUR package; later pushes update it.
 #
 # The PKGBUILD's pkgver comes from the tag and the .deb checksum from the release's
-# SHA256SUMS-desktop-linux-x64.txt. release-build.yml calls this once it publishes the release. On
-# pull requests that touch the packaging it only builds, against the newest release with a .deb, so
-# a broken package fails here rather than on users' machines.
+# SHA256SUMS-desktop-linux-x64.txt. On pull requests that touch the packaging it only builds (the
+# package and a throwaway repo database), against the newest release with a .deb, so a broken
+# package fails here rather than on users' machines.
 
 on:
   pull_request:
@@ -25,15 +32,15 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Published release tag to package (e.g. v0.1.8)'
+        description: 'Release tag to package (e.g. v0.1.8)'
         required: true
         type: string
       push_repo:
-        description: 'Publish to the pacman repository (the pacman-repo release)'
+        description: 'Attach the pacman repository to the release (it must still be a draft)'
         type: boolean
-        default: true
+        default: false
       push_aur:
-        description: 'Push to the AUR'
+        description: 'Push to the AUR (the release must be published)'
         type: boolean
         default: false
   workflow_call:
@@ -43,7 +50,7 @@ on:
         type: string
       push_repo:
         type: boolean
-        default: true
+        default: false
       push_aur:
         type: boolean
         default: false
@@ -55,14 +62,16 @@ permissions:
   contents: read
 
 concurrency:
-  group: arch-${{ inputs.tag || github.ref }}
+  group: arch-${{ inputs.tag || github.ref }}${{ inputs.push_repo && '-repo' || '' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   PKG: meshcore-desktop-bin
   DESKTOP_FILE: meshcore-desktop.desktop
   PACMAN_REPO: meshcore
-  PACMAN_REPO_TAG: pacman-repo
+  # The release workflow calls this twice in one run (repo before publishing, AUR after), and
+  # artifact names must be unique within a run.
+  ARTIFACT: arch-package${{ inputs.push_repo && '-repo' || '' }}
 
 jobs:
   build:
@@ -70,8 +79,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     container: archlinux:base-devel
+    # Draft releases are visible only to tokens with push access, and the release workflow runs this
+    # before publishing.
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
     outputs:
+      tag: ${{ steps.release.outputs.tag }}
       version: ${{ steps.release.outputs.version }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Install tools
@@ -79,9 +99,9 @@ jobs:
       - name: Resolve the release
         id: release
         env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
           TAG: ${{ inputs.tag }}
+          PUSH_REPO: ${{ inputs.push_repo == true }}
+          PUSH_AUR: ${{ inputs.push_aur == true }}
         run: |
           set -euo pipefail
           if [[ -n "$TAG" ]]; then
@@ -100,14 +120,26 @@ jobs:
           fi
           version="${tag#v}"
           [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::$tag is not vMAJOR.MINOR.PATCH"; exit 1; }
-          [[ "$(gh release view "$tag" --json isDraft --jq .isDraft)" == "false" ]] \
-            || { echo "::error::$tag is still a draft; its download URLs are not public yet"; exit 1; }
+          draft="$(gh release view "$tag" --json isDraft --jq .isDraft)"
+          # Published releases are immutable: the repository can only be attached to a draft.
+          if [[ "$PUSH_REPO" == "true" && "$draft" != "true" ]]; then
+            echo "::error::$tag is already published (immutable); the pacman repository can only be attached to a draft"
+            exit 1
+          fi
+          # The AUR fetches the .deb from its public URL, which a draft doesn't have.
+          if [[ "$PUSH_AUR" == "true" && "$draft" != "false" ]]; then
+            echo "::error::$tag is still a draft; the AUR needs its public download URL"
+            exit 1
+          fi
           deb="meshcore-desktop-$version-linux-x64.deb"
           sum="$(gh release download "$tag" -p SHA256SUMS-desktop-linux-x64.txt -O - | awk -v f="$deb" '$2 == f { print $1 }')"
           [[ "$sum" =~ ^[0-9a-f]{64}$ ]] || { echo "::error::no checksum for $deb in $tag"; exit 1; }
-          echo "Packaging $deb from $tag (sha256 $sum)"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "sha256=$sum" >> "$GITHUB_OUTPUT"
+          echo "Packaging $deb from $tag (sha256 $sum, draft $draft)"
+          {
+            echo "tag=$tag"
+            echo "version=$version"
+            echo "sha256=$sum"
+          } >> "$GITHUB_OUTPUT"
       - name: Stamp the PKGBUILD
         working-directory: packaging/aur/meshcore-desktop-bin
         env:
@@ -123,6 +155,21 @@ jobs:
             PKGBUILD
           grep -E '^(pkgver|pkgrel)=' PKGBUILD
           grep -A1 '^sha256sums=' PKGBUILD
+      # A draft's download URL isn't public, so fetch the .deb with the API and leave it where
+      # makepkg looks for the PKGBUILD's first source (`<name>::<url>`): makepkg then uses it, and
+      # still checks it against sha256sums, instead of downloading. The PKGBUILD keeps its public
+      # URL for the AUR.
+      - name: Download the .deb
+        working-directory: packaging/aur/meshcore-desktop-bin
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          set -euo pipefail
+          # shellcheck disable=SC1091,SC2154
+          src="$(source ./PKGBUILD && echo "${source[0]%%::*}")"
+          gh release download "$TAG" -p "meshcore-desktop-$VERSION-linux-x64.deb" -O "$src"
+          ls -l "$src"
       # makepkg refuses to run as root, and the builder can't sudo: install the dependencies first.
       - name: Build the package
         run: |
@@ -139,71 +186,80 @@ jobs:
           desktop-file-validate /home/builder/pkg/pkg/"$PKG"/usr/share/applications/"$DESKTOP_FILE"
           mkdir -p "$GITHUB_WORKSPACE/_arch"
           cp /home/builder/pkg/{PKGBUILD,.SRCINFO,"$DESKTOP_FILE"} /home/builder/pkg/"$PKG"-*.pkg.tar.zst "$GITHUB_WORKSPACE/_arch/"
-      - uses: actions/upload-artifact@v7.0.2
-        with:
-          name: arch-package
-          path: _arch/
-          include-hidden-files: true
-          if-no-files-found: error
-
-  pacman-repo:
-    name: Publish to the pacman repository
-    needs: build
-    if: inputs.push_repo == true
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    container: archlinux:base-devel
-    permissions:
-      contents: write
-    # One writer at a time: each run rewrites the repo database from the last one's.
-    concurrency:
-      group: pacman-repo
-      cancel-in-progress: false
-    env:
-      GH_TOKEN: ${{ github.token }}
-      GH_REPO: ${{ github.repository }}
-      VERSION: ${{ needs.build.outputs.version }}
-    steps:
-      - name: Install tools
-        run: pacman -Syu --noconfirm --needed github-cli
-      - uses: actions/download-artifact@v8.0.2
-        with:
-          name: arch-package
-          path: _arch
-      - name: Update the repository
+      # A fresh database holding just this version: each release carries its own, and pacman reads
+      # the newest one through latest/download.
+      - name: Build the repository database
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
         run: |
           set -euo pipefail
-          pkg="$(basename _arch/"$PKG"-*.pkg.tar.zst)"
-          if ! gh release view "$PACMAN_REPO_TAG" >/dev/null 2>&1; then
-            gh release create "$PACMAN_REPO_TAG" --prerelease --latest=false --title 'pacman repository' \
-              --notes 'Arch Linux package repository for the MeshCore desktop app, rewritten by every release. See docs/desktop-linux.md to add it to pacman.conf; nothing here is meant to be downloaded by hand.'
-          fi
-          assets="$(gh release view "$PACMAN_REPO_TAG" --json assets --jq '.assets[].name')"
-          mkdir repo
-          cd repo
-          for f in db files; do
-            if grep -qx "$PACMAN_REPO.$f.tar.zst" <<<"$assets"; then
-              gh release download "$PACMAN_REPO_TAG" -p "$PACMAN_REPO.$f.tar.zst"
-            fi
-          done
-          cp "../_arch/$pkg" .
-          repo-add "$PACMAN_REPO.db.tar.zst" "$pkg"
+          mkdir _arch/repo
+          cp _arch/"$PKG"-*.pkg.tar.zst _arch/repo/
+          cd _arch/repo
+          repo-add "$PACMAN_REPO.db.tar.zst" "$PKG"-*.pkg.tar.zst
           # repo-add links $PACMAN_REPO.db -> .db.tar.zst; release assets can't be links.
           for f in db files; do
             rm "$PACMAN_REPO.$f"
             cp "$PACMAN_REPO.$f.tar.zst" "$PACMAN_REPO.$f"
           done
-          # The package first, so the database never names a file that isn't there yet.
-          gh release upload "$PACMAN_REPO_TAG" "$pkg" --clobber
-          gh release upload "$PACMAN_REPO_TAG" \
+          # Read it back the way pacman will.
+          mkdir -p ../check/sync
+          cp "$PACMAN_REPO.db" ../check/sync/
+          printf '[options]\nArchitecture = auto\n[%s]\nSigLevel = Optional TrustAll\nServer = file:///nonexistent\n' "$PACMAN_REPO" > ../check/pacman.conf
+          pacman --config ../check/pacman.conf --dbpath ../check -Si "$PKG" | tee ../check/si.txt
+          grep -Eq "^Version +: $VERSION-1\$" ../check/si.txt \
+            || { echo "::error::the $PACMAN_REPO database doesn't list $PKG $VERSION-1"; exit 1; }
+          rm -r ../check
+          ls -l
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: ${{ env.ARTIFACT }}
+          path: _arch/
+          include-hidden-files: true
+          if-no-files-found: error
+
+  repo:
+    name: Attach the pacman repository
+    needs: build
+    if: inputs.push_repo == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TAG: ${{ needs.build.outputs.tag }}
+    steps:
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: ${{ env.ARTIFACT }}
+          path: _arch
+      - name: Attach to the draft
+        run: |
+          set -euo pipefail
+          [[ "$(gh release view "$TAG" --json isDraft --jq .isDraft)" == "true" ]] \
+            || { echo "::error::$TAG was published before the pacman repository was attached"; exit 1; }
+          cd _arch/repo
+          pkg="$(basename "$PKG"-*.pkg.tar.zst)"
+          # Grace period: the previous release's package, outside the database. A pacman -Syu that
+          # read that release's database just before this one was published still finds the package
+          # it names under latest/download.
+          extra=()
+          prev="$(gh api "repos/$GH_REPO/releases/latest" --jq .tag_name 2>/dev/null || true)"
+          if [[ -n "$prev" && "$prev" != "$TAG" ]]; then
+            if gh release download "$prev" -p "$PKG-${prev#v}-*.pkg.tar.zst" -D ../prev 2>/dev/null; then
+              extra=(../prev/*.pkg.tar.zst)
+              echo "Also attaching $(basename "${extra[0]}") from $prev"
+            else
+              echo "::notice::$prev has no $PKG package to carry over"
+            fi
+          fi
+          # The packages first, so the database never names a file that isn't there yet.
+          gh release upload "$TAG" "$pkg" "${extra[@]}" --clobber
+          gh release upload "$TAG" \
             "$PACMAN_REPO.db" "$PACMAN_REPO.db.tar.zst" "$PACMAN_REPO.files" "$PACMAN_REPO.files.tar.zst" --clobber
-          # Keep the previous version too: a pacman -Syu that read the old database just before this
-          # run is still downloading (or waiting at its prompt for) that package. Older ones go.
-          { grep -E "^$PKG-.*\.pkg\.tar\.zst$" <<<"$assets" || true; } | { grep -vxF "$pkg" || true; } \
-            | sort -V | head -n -1 | while read -r old; do
-            gh release delete-asset "$PACMAN_REPO_TAG" "$old" --yes
-          done
-          echo "Published $pkg to the $PACMAN_REPO pacman repository" >> "$GITHUB_STEP_SUMMARY"
+          echo "Attached $pkg and the $PACMAN_REPO pacman repository to $TAG" >> "$GITHUB_STEP_SUMMARY"
 
   aur:
     name: Push to the AUR
@@ -216,7 +272,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8.0.2
         with:
-          name: arch-package
+          name: ${{ env.ARTIFACT }}
           path: _arch
       - name: Push
         env:
