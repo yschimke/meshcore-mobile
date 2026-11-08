@@ -22,4 +22,9 @@ runs:
       with:
         cache-read-only: ${{ inputs.cache-read-only }}
         gradle-home-cache-excludes: ${{ steps.cache-mode.outputs.remote-push-enabled == 'true' && 'caches/build-cache-1' || '' }}
+    - name: Prepare Gradle distribution
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: python scripts/prepare-gradle.py
     - uses: ./.github/actions/android-sdk

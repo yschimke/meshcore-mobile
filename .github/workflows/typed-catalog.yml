@@ -80,7 +80,11 @@ jobs:
       - name: Install Android platform used by the app
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0"'
       - name: Generate, render and validate in a separate catalog consumer
-        run: scripts/validate-typed-catalog.sh "$GITHUB_WORKSPACE/compose-ai-tools" "$GITHUB_WORKSPACE/compose-ui-builder"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/prepare-gradle.py
+          scripts/validate-typed-catalog.sh "$GITHUB_WORKSPACE/compose-ai-tools" "$GITHUB_WORKSPACE/compose-ui-builder"
       - name: Package the typed Wasm renderer
         run: ./gradlew -PcomposeUiBuilderDir="$GITHUB_WORKSPACE/compose-ui-builder" :ui-builder-catalog-renderer:rendererArchive
       - name: Install browser smoke dependencies
