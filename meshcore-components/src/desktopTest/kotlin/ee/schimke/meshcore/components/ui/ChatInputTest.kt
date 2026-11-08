@@ -46,4 +46,21 @@ class ChatInputTest {
     compose.onNode(hasSetTextAction()).performClick().performKeyInput { pressKey(Key.Enter) }
     compose.runOnIdle { assertEquals(0, sends) }
   }
+
+  @Test
+  fun releasingModifierBeforeEnterDoesNotSubmit() {
+    var sends = 0
+    compose.setContent { MaterialTheme { ChatInput("hello", {}, { sends++ }) } }
+    for (modifier in listOf(Key.ShiftLeft, Key.CtrlLeft, Key.AltLeft, Key.MetaLeft)) {
+      compose.onNode(hasSetTextAction()).performClick().performKeyInput {
+        keyDown(modifier)
+        keyDown(Key.Enter)
+        keyUp(modifier)
+        keyUp(Key.Enter)
+      }
+    }
+    compose.runOnIdle { assertEquals(0, sends) }
+    compose.onNode(hasSetTextAction()).performKeyInput { pressKey(Key.Enter) }
+    compose.runOnIdle { assertEquals(1, sends) }
+  }
 }

@@ -30,8 +30,13 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -253,6 +258,8 @@ fun ChatInput(
   enabled: Boolean = true,
   placeholder: String = stringResource(Res.string.chat_hint_message),
 ) {
+  var enterPressed by remember { mutableStateOf(false) }
+  var enterMaySubmit by remember { mutableStateOf(false) }
   Row(
     modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
@@ -268,24 +275,37 @@ fun ChatInput(
       keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
       keyboardActions = KeyboardActions(onSend = { if (enabled && value.isNotBlank()) onSend() }),
       modifier =
-        Modifier.weight(1f).onPreviewKeyEvent { event ->
-          // Consume both halves of a hardware Enter gesture; submit on release so holding
-          // Enter cannot send repeated messages. Consume modified Enter too: this single-line
-          // editor otherwise forwards it to the IME Send action.
-          if (event.key == Key.Enter) {
-            if (
-              event.type == KeyEventType.KeyUp &&
-                enabled &&
-                value.isNotBlank() &&
-                !event.isShiftPressed &&
-                !event.isCtrlPressed &&
-                !event.isAltPressed &&
-                !event.isMetaPressed
-            )
-              onSend()
-            true
-          } else false
-        },
+        Modifier.weight(1f)
+          .onFocusChanged {
+            if (!it.isFocused) {
+              enterPressed = false
+              enterMaySubmit = false
+            }
+          }
+          .onPreviewKeyEvent { event ->
+            // Consume both halves of a hardware Enter gesture; submit on release so holding
+            // Enter cannot send repeated messages. Consume modified Enter too: this single-line
+            // editor otherwise forwards it to the IME Send action.
+            val modified =
+              event.isShiftPressed ||
+                event.isCtrlPressed ||
+                event.isAltPressed ||
+                event.isMetaPressed
+            if (enterPressed && modified) enterMaySubmit = false
+            if (event.key == Key.Enter) {
+              if (event.type == KeyEventType.KeyDown && !enterPressed) {
+                enterPressed = true
+                enterMaySubmit = !modified && enabled && value.isNotBlank()
+              } else if (event.type == KeyEventType.KeyUp) {
+                val submit =
+                  enterPressed && enterMaySubmit && !modified && enabled && value.isNotBlank()
+                enterPressed = false
+                enterMaySubmit = false
+                if (submit) onSend()
+              }
+              true
+            } else false
+          },
       shape = RoundedCornerShape(24.dp),
     )
     Spacer(Modifier.size(8.dp))
