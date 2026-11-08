@@ -1,9 +1,11 @@
 import hashlib
 import importlib.util
+import os
 from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location("prepare_gradle", Path(__file__).with_name("prepare-gradle.py"))
 bootstrap = importlib.util.module_from_spec(spec)
@@ -23,7 +25,7 @@ class PrepareGradleTest(unittest.TestCase):
 
     def test_fallback_checks_archive_before_using_it(self):
         for valid in [True, False]:
-            with self.subTest(valid=valid), tempfile.TemporaryDirectory() as directory:
+            with self.subTest(valid=valid), tempfile.TemporaryDirectory() as directory, patch.dict(os.environ, {"GH_TOKEN": "synthetic"}):
                 root = Path(directory)
                 properties = root / "gradle/wrapper/gradle-wrapper.properties"
                 properties.parent.mkdir(parents=True)
@@ -49,6 +51,12 @@ class PrepareGradleTest(unittest.TestCase):
                         bootstrap.prepare(root, root, run)
                     self.assertEqual(original, properties.read_text())
                     self.assertEqual(2, len(calls))
+
+    def test_windows_uses_native_wrapper_without_wsl(self):
+        command = bootstrap.wrapper_command(Path("checkout"), windows=True)
+        self.assertEqual(["cmd.exe", "/d", "/c"], command[:3])
+        self.assertTrue(command[3].endswith("gradlew.bat"))
+        self.assertEqual("bash", bootstrap.wrapper_command(Path("checkout"), windows=False)[0])
 
 
 if __name__ == "__main__":

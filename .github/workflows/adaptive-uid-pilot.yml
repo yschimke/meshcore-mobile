@@ -22,12 +22,13 @@ jobs:
   parity:
     uses: yschimke/design-parity/.github/workflows/uid-parity-reusable.yml@af2f6a34342d5cfa5db2c00cd66ba46ca6e375eb
     with:
+      java-version: '21'
       export-catalog: true
       pilot-directory: adaptive-uid-pilot
       artifact-prefix: adaptive-uid
       bundle-name: key-screens
       build-command: >-
-        ./gradlew -PadaptiveUidPilot=true
+        python3 scripts/prepare-gradle.py && ./gradlew -PadaptiveUidPilot=true
         :adaptive-uid-pilot:ktfmtCheck
         :adaptive-uid-pilot:test
         :adaptive-uid-pilot:renderPilot

@@ -38,6 +38,20 @@ subprojects {
   }
 }
 
+// CI can provide the pinned Yarn from npm when GitHub release downloads are unavailable.
+if (providers.environmentVariable("USE_SYSTEM_YARN").orNull == "true") {
+  plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
+    extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootEnvSpec> {
+      download.set(false)
+    }
+  }
+  plugins.withType<org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnPlugin> {
+    extensions.configure<org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnRootEnvSpec> {
+      download.set(false)
+    }
+  }
+}
+
 // Wires .githooks/ as the repository's hooks directory. One-time bootstrap:
 // `./gradlew installGitHooks`.
 tasks.register<Exec>("installGitHooks") {

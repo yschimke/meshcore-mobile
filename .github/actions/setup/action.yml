@@ -9,7 +9,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Use the preinstalled Apple Silicon JDK
+      if: runner.os == 'macOS' && runner.arch == 'ARM64'
+      shell: bash
+      run: |
+        "${JAVA_HOME_21_arm64:?}/bin/java" -version
+        echo "JAVA_HOME=$JAVA_HOME_21_arm64" >> "$GITHUB_ENV"
+        echo "$JAVA_HOME_21_arm64/bin" >> "$GITHUB_PATH"
     - uses: actions/setup-java@v6.2.0
+      if: runner.os != 'macOS' || runner.arch != 'ARM64'
       with:
         distribution: temurin
         # Match the runner's cached JDK 21 instead of forcing an exact release-asset download.
