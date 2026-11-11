@@ -79,7 +79,7 @@ cmp-adaptive = "1.3.0"
 # The BOM is the release coordinate for yschimke/rc-players; partial releases leave unchanged
 # modules (such as third-party-rc-embedded-player or rc-widget-wear) at their latest published
 # version inside `rc-players-bom`.
-rc-players = "2.29.0"
+rc-players = "2.33.0"
 
 [libraries]
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
