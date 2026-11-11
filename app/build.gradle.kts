@@ -122,6 +122,7 @@ dependencies {
   implementation(libs.compose.uiToolingPreview)
   // ThemeCatalog providers make every persisted palette x light/dark combination available both
   // as a generated specimen sheet and as a live theme override for any app preview.
+  implementation(platform(libs.compose.preview.daemon.bom))
   implementation(libs.compose.preview.annotations)
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewmodelCompose)
@@ -138,6 +139,7 @@ dependencies {
   implementation(libs.androidx.remote.creation)
   implementation(libs.androidx.remote.creation.compose)
   implementation(libs.androidx.remote.tooling.preview)
+  implementation(platform(libs.rc.players.bom))
   implementation(libs.rc.widget.launcher)
   implementation(libs.androidx.work.runtime)
   implementation(libs.wear.compose.remote.material3)

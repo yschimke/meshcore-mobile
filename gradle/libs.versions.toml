@@ -13,26 +13,18 @@ androidx-core = "1.19.1"
 androidx-lifecycle = "2.11.0"
 androidx-testExt = "1.3.0"
 composeMultiplatform = "1.13.0-beta02"
-composePreviewAnnotations = "3.27.3"
 composePreviewPlugin = "2.89.0"
-# The data connector publishes from yschimke/compose-preview-daemon on that repository's own
-# version line, not compose-ai-tools'. Pinned to what the plugin's daemon BOM resolves
-# (compose-preview-daemon-bom 3.15.2, baked into plugin 2.40.0), so the connector on the
-# debug classpath matches the renderer the plugin runs. A daemon release republishes only the
-# modules that changed, so the connector can trail the BOM: 3.14.1 is still its latest.
-composePreviewDaemonConnector = "3.27.3"
-# The embedded Remote Compose player the connector draws every RemotePreview with. Since
-# compose-preview-daemon 3.x the connector keeps it `compileOnly` and refuses the render
-# (RemoteComposeLinkageException) instead of falling back to the View player, so the consumer
-# must put it on the render classpath, at the version the connector was compiled against.
-# Connector 3.27.0 links against the 2.21+ `RcPlayer` signature (Boolean instead of the
-# `(String) -> Boolean` parameter, RcTypefaceResolver instead of androidx's TypefaceResolver);
-# 2.22.0 is the player built on the same compose-preview-daemon-bom (3.27.0). When this sat at
-# 2.20.1 under connector 3.27.0, every widget preview failed to render (#632 onward). Move it
-# with the connector, in the same compose-ai-tools PR; .github/scripts/check-render-errors.sh
-# fails the render job if they drift apart again.
-# Independent of `rc-player` below: rc-widget-* do not pull this artifact in.
-composePreviewRcEmbeddedPlayer = "2.26.0"
+# The compose-ai-tools release BOM can advance independently on partial releases where the plugin
+# marker itself is unchanged; modules such as preview-discovery resolve versionless through it.
+composeAiTools = "2.89.0"
+# `preview-annotations` and `data-remotecompose-connector` ship from yschimke/compose-preview-daemon
+# on its own 3.x version line, not compose-ai-tools'. Partial releases publish only changed modules
+# and update `compose-preview-daemon-bom` to pin every module at its latest published version, so
+# both modules are declared versionless and resolved through `compose-preview-daemon-bom`.
+composePreviewDaemon = "3.27.3"
+# `compose-preview-ui-builder-bom` from yschimke/compose-ui-builder, constraining the typed-catalog
+# consumer runtime on its own 3.x release line.
+composeUiBuilder = "3.130.0"
 core = "1.7.0"
 kotlin = "2.4.21"
 kotlinx-coroutines = "1.11.0"
@@ -84,7 +76,10 @@ tapmoc = "0.5.0"
 cmp-navigation3 = "1.2.0"
 cmp-icons = "1.7.3"
 cmp-adaptive = "1.3.0"
-rc-player = "2.29.0"
+# The BOM is the release coordinate for yschimke/rc-players; partial releases leave unchanged
+# modules (such as third-party-rc-embedded-player or rc-widget-wear) at their latest published
+# version inside `rc-players-bom`.
+rc-players = "2.29.0"
 
 [libraries]
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
@@ -97,11 +92,13 @@ kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-
 cmp-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidx-navigation3" }
 cmp-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "cmp-navigation3" }
 cmp-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "cmp-adaptive" }
-rc-player-compose = { module = "ee.schimke.composeai:rc-player-compose", version.ref = "rc-player" }
+rc-players-bom = { module = "ee.schimke.composeai:rc-players-bom", version.ref = "rc-players" }
+rc-player-compose = { module = "ee.schimke.composeai:rc-player-compose" }
 # Publishing Remote Compose widgets captured on the device: launcher widgets (rc-widget-launcher)
-# and Glance Wear widgets (rc-widget-wear, which brings androidx.glance.wear).
-rc-widget-launcher = { module = "ee.schimke.composeai:rc-widget-launcher", version.ref = "rc-player" }
-rc-widget-wear = { module = "ee.schimke.composeai:rc-widget-wear", version.ref = "rc-player" }
+# and Glance Wear widgets (rc-widget-wear, which brings androidx.glance.wear). Versionless:
+# resolved through rc-players-bom.
+rc-widget-launcher = { module = "ee.schimke.composeai:rc-widget-launcher" }
+rc-widget-wear = { module = "ee.schimke.composeai:rc-widget-wear" }
 cmp-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3" }
 
 compose-uiTest = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "composeMultiplatform" }
@@ -129,9 +126,16 @@ compose-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fo
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
-compose-preview-annotations = { module = "ee.schimke.composeai:preview-annotations", version.ref = "composePreviewAnnotations" }
-compose-preview-remotecompose-connector = { module = "ee.schimke.composeai:data-remotecompose-connector", version.ref = "composePreviewDaemonConnector" }
-compose-preview-rc-embedded-player = { module = "ee.schimke.composeai:third-party-rc-embedded-player", version.ref = "composePreviewRcEmbeddedPlayer" }
+compose-preview-daemon-bom = { module = "ee.schimke.composeai:compose-preview-daemon-bom", version.ref = "composePreviewDaemon" }
+compose-preview-annotations = { module = "ee.schimke.composeai:preview-annotations" }
+compose-preview-remotecompose-connector = { module = "ee.schimke.composeai:data-remotecompose-connector" }
+# Resolved through rc-players-bom (which pins third-party-rc-embedded-player at its latest
+# published version on partial releases).
+compose-preview-rc-embedded-player = { module = "ee.schimke.composeai:third-party-rc-embedded-player" }
+compose-ai-tools-bom = { module = "ee.schimke.composeai:compose-ai-tools-bom", version.ref = "composeAiTools" }
+compose-preview-discovery = { module = "ee.schimke.composeai:preview-discovery" }
+compose-ui-builder-bom = { module = "ee.schimke.composeai:compose-preview-ui-builder-bom", version.ref = "composeUiBuilder" }
+compose-ui-builder-runtime = { module = "ee.schimke.composeai:compose-preview-ui-builder-runtime" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }

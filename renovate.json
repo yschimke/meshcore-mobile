@@ -17,15 +17,41 @@
       "matchPackageNames": ["/^com\\.squareup\\.wire($|[.:])/"]
     },
     {
-      "description": "compose-ai-tools ships the preview CLI, the ee.schimke.composeai Gradle artifacts (preview-annotations dep + the ee.schimke.composeai.preview plugin marker), and the reusable CI composite actions as a single release. Track it aggressively so CI always runs the latest renderer: group the pinned action refs and the Gradle coords into ONE PR so the CLI/plugin/dependency pins never skew apart, skip the weekly window, and automerge as soon as CI is green — the release moves several times a day and the pin is only useful if it keeps up. Regenerating the published catalog against the new renderer no longer depends on WHO merges: design-artifacts.yml has a push trigger on main covering the pins this PR touches, so a Renovate merge (app token — raises `push`) republishes on its own, and scheduled-merge.yml still dispatches design-artifacts.yml explicitly for the merges it makes itself (GITHUB_TOKEN merges raise no `push` event).",
+      "description": "Published ee.schimke.composeai modules are versionless and resolve through their release-train BOMs. Keep module-level and synthetic source-composite coordinates disabled; the BOM rules below re-enable each train's BOM on its own release line.",
+      "matchPackageNames": ["/^ee\\.schimke\\.composeai:/"],
+      "enabled": false
+    },
+    {
+      "description": "compose-ai-tools ships the preview CLI, the ee.schimke.composeai.preview Gradle plugin, compose-ai-tools-bom and the reusable CI composite actions as a single release. Group them into ONE PR so the CLI/plugin/action pins never skew apart, and skip the weekly window. Non-tools trains (daemon, ui-builder, rc-players) are deliberately NOT matched here so their BOMs update on their own release lines.",
       "matchPackageNames": [
         "yschimke/compose-ai-tools",
-        "/^ee\\.schimke\\.composeai($|[.:])/"
+        "/^ee\\.schimke\\.composeai\\.preview($|[.:])/",
+        "ee.schimke.composeai:compose-ai-tools-bom"
       ],
       "groupName": "compose-ai-tools",
-      "schedule": ["at any time"],
-      "automerge": true,
-      "automergeSchedule": ["at any time"]
+      "enabled": true,
+      "schedule": ["at any time"]
+    },
+    {
+      "description": "Update compose-preview-daemon-bom on its own 3.x release line; preview-annotations and data-remotecompose-connector take their versions from its constraints.",
+      "matchPackageNames": ["ee.schimke.composeai:compose-preview-daemon-bom"],
+      "groupName": "compose-preview-daemon",
+      "enabled": true,
+      "schedule": ["at any time"]
+    },
+    {
+      "description": "Update compose-preview-ui-builder-bom on its own 3.x release line; compose-preview-ui-builder-runtime takes its version from its constraints.",
+      "matchPackageNames": ["ee.schimke.composeai:compose-preview-ui-builder-bom"],
+      "groupName": "compose-ui-builder",
+      "enabled": true,
+      "schedule": ["at any time"]
+    },
+    {
+      "description": "Update rc-players-bom on its own 2.x release line; rc-player-compose, rc-widget-* and third-party-rc-embedded-player take their versions from its constraints.",
+      "matchPackageNames": ["ee.schimke.composeai:rc-players-bom"],
+      "groupName": "rc-players",
+      "enabled": true,
+      "schedule": ["at any time"]
     }
   ]
 }

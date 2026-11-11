@@ -62,12 +62,14 @@ dependencies {
   implementation(libs.androidx.remote.creation)
   implementation(libs.androidx.remote.creation.compose)
   implementation(libs.androidx.remote.tooling.preview)
+  implementation(platform(libs.rc.players.bom))
   implementation(libs.rc.widget.wear)
   // Wear Remote Compose Material 3 components
   implementation(libs.wear.compose.remote.material3)
 
   // Standard Compose + lifecycle
   implementation(libs.compose.runtime)
+  implementation(platform(libs.compose.preview.daemon.bom))
   implementation(libs.compose.preview.annotations)
   implementation(libs.compose.ui)
   implementation(libs.compose.uiToolingPreview)
