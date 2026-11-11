@@ -21,7 +21,7 @@ composeAiTools = "2.89.0"
 # on its own 3.x version line, not compose-ai-tools'. Partial releases publish only changed modules
 # and update `compose-preview-daemon-bom` to pin every module at its latest published version, so
 # both modules are declared versionless and resolved through `compose-preview-daemon-bom`.
-composePreviewDaemon = "3.27.3"
+composePreviewDaemon = "3.27.4"
 # `compose-preview-ui-builder-bom` from yschimke/compose-ui-builder, constraining the typed-catalog
 # consumer runtime on its own 3.x release line.
 composeUiBuilder = "3.130.0"
