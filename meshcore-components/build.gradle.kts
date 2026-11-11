@@ -48,6 +48,7 @@ kotlin {
       // ListDetailPaneScaffold for the wide-window desktop/web layout (Android, JVM and Wasm).
       implementation(libs.compose.adaptive.layout)
       implementation(libs.compose.adaptive.navigation)
+      api(project.dependencies.platform(libs.rc.players.bom))
       api(libs.rc.player.compose)
       // Compose Multiplatform string resources: UI copy resolves from the shared
       // commonMain/composeResources/values*/strings.xml, so the daemon localizes per locale.
@@ -58,7 +59,10 @@ kotlin {
     // Catalog annotations currently publish Android/JVM variants, but no Wasm variant.
     val catalogMain by creating {
       dependsOn(commonMain.get())
-      dependencies { implementation(libs.compose.preview.annotations) }
+      dependencies {
+        implementation(project.dependencies.platform(libs.compose.preview.daemon.bom))
+        implementation(libs.compose.preview.annotations)
+      }
     }
     getByName("desktopMain").dependsOn(catalogMain)
     getByName("desktopTest").dependencies {
