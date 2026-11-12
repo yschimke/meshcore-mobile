@@ -91,7 +91,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/install-preview-cli.py
       - id: apply
-        uses: yschimke/compose-ai-tools/.github/actions/apply@v2.90.0
+        uses: yschimke/compose-ai-tools/.github/actions/apply@v2.90.1
         with:
           # Render the debug variant explicitly. AGP 9.5 turns unit tests off for release
           # variants, and Compose Preview packages Android resources through the variant's
