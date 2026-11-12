@@ -1,5 +1,5 @@
 [versions]
-firebase-bom = "35.1.0"
+firebase-bom = "35.2.0"
 composeAdaptive = "1.3.0"
 # Stock M3 vocabulary pinned to the UID renderer; production keeps its branded M3 pin.
 uidPilotMaterial3 = "1.12.0-alpha03"
