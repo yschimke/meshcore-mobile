@@ -13,10 +13,10 @@ androidx-core = "1.19.1"
 androidx-lifecycle = "2.11.0"
 androidx-testExt = "1.3.0"
 composeMultiplatform = "1.13.0-beta02"
-composePreviewPlugin = "2.89.0"
+composePreviewPlugin = "2.90.0"
 # The compose-ai-tools release BOM can advance independently on partial releases where the plugin
 # marker itself is unchanged; modules such as preview-discovery resolve versionless through it.
-composeAiTools = "2.89.0"
+composeAiTools = "2.90.0"
 # `preview-annotations` and `data-remotecompose-connector` ship from yschimke/compose-preview-daemon
 # on its own 3.x version line, not compose-ai-tools'. Partial releases publish only changed modules
 # and update `compose-preview-daemon-bom` to pin every module at its latest published version, so
