@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.1.12](https://github.com/yschimke/meshcore-mobile/compare/v0.1.11...v0.1.12) (2026-11-14)
+
+
+### Features
+
+* add desktop commands and durable chat history ([#711](https://github.com/yschimke/meshcore-mobile/issues/711)) ([224dbb6](https://github.com/yschimke/meshcore-mobile/commit/224dbb653b8f05646010cf3cbff3035dd82cb1ec))
+
+
+### Bug Fixes
+
+* **deps:** update compose-ai-tools ([#714](https://github.com/yschimke/meshcore-mobile/issues/714)) ([fe12007](https://github.com/yschimke/meshcore-mobile/commit/fe120071cabd09d6fca9eefe7c4f4c50755482f4))
+* **deps:** update compose-ai-tools ([#728](https://github.com/yschimke/meshcore-mobile/issues/728)) ([ccea428](https://github.com/yschimke/meshcore-mobile/commit/ccea428db77ebbf89a7c487446e2eaea8ae32738))
+* **deps:** update compose-ai-tools ([#733](https://github.com/yschimke/meshcore-mobile/issues/733)) ([5a639d8](https://github.com/yschimke/meshcore-mobile/commit/5a639d869ad4e2c8907987e54bb5afa34e55f37c))
+* **deps:** update compose-ai-tools ([#739](https://github.com/yschimke/meshcore-mobile/issues/739)) ([dfc1209](https://github.com/yschimke/meshcore-mobile/commit/dfc120995a282bfd04f3ba47fd633075b843405e))
+* **deps:** update compose-ai-tools ([#748](https://github.com/yschimke/meshcore-mobile/issues/748)) ([9df420d](https://github.com/yschimke/meshcore-mobile/commit/9df420dc95c93761c96058470294ea70d939b80e))
+* **deps:** update dependency com.google.firebase:firebase-bom to v35.2.0 ([#722](https://github.com/yschimke/meshcore-mobile/issues/722)) ([0bace11](https://github.com/yschimke/meshcore-mobile/commit/0bace1155f8d43dd15fe41f14f5314af73e5c63e))
+* **deps:** update dependency com.google.gms:google-services to v4.6.0 ([#723](https://github.com/yschimke/meshcore-mobile/issues/723)) ([f3ccd81](https://github.com/yschimke/meshcore-mobile/commit/f3ccd816ed0ab6cbb5057c3a436b9474f1f45db5))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.27.4 ([#720](https://github.com/yschimke/meshcore-mobile/issues/720)) ([30aa6fa](https://github.com/yschimke/meshcore-mobile/commit/30aa6fa966280e05a002e2c26eb423c07e181bb0))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.27.5 ([#727](https://github.com/yschimke/meshcore-mobile/issues/727)) ([b37ba57](https://github.com/yschimke/meshcore-mobile/commit/b37ba577d0c81b9b9755cf75e942aff0a6544e94))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.27.6 ([#730](https://github.com/yschimke/meshcore-mobile/issues/730)) ([8197f97](https://github.com/yschimke/meshcore-mobile/commit/8197f97f4e6f4e0afa480c303c4bd0e71d86f3af))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.27.7 ([#734](https://github.com/yschimke/meshcore-mobile/issues/734)) ([58750a0](https://github.com/yschimke/meshcore-mobile/commit/58750a0bbf04dd885fe697973bf0f407b102205d))
+* **deps:** update dependency ee.schimke.composeai:rc-players-bom to v2.33.0 ([#721](https://github.com/yschimke/meshcore-mobile/issues/721)) ([af39fd5](https://github.com/yschimke/meshcore-mobile/commit/af39fd552b20427842ca38cd3e42513fb9d8d949))
+* **deps:** update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.13.0 ([#724](https://github.com/yschimke/meshcore-mobile/issues/724)) ([5b183bf](https://github.com/yschimke/meshcore-mobile/commit/5b183bff4d61b0b4e5adcc12455d3e9ac4b4ea42))
+* **deps:** update kotlinx to v0.9.3 ([#743](https://github.com/yschimke/meshcore-mobile/issues/743)) ([9da547c](https://github.com/yschimke/meshcore-mobile/commit/9da547cde403c5fb49c3832363a96ae4882a5904))
+* **deps:** update wire to v7.2.0 ([#718](https://github.com/yschimke/meshcore-mobile/issues/718)) ([62908f1](https://github.com/yschimke/meshcore-mobile/commit/62908f1fdc00440b4d568d08235ec335182a9a85))
+* **deps:** update wire to v7.2.1 ([#735](https://github.com/yschimke/meshcore-mobile/issues/735)) ([b7e1b07](https://github.com/yschimke/meshcore-mobile/commit/b7e1b0735949f3650a5d5c6b112fdb7a62ade33e))
+
+
+### Performance Improvements
+
+* **android:** enable R8 minification and resource shrinking in release builds ([#744](https://github.com/yschimke/meshcore-mobile/issues/744)) ([5a3195d](https://github.com/yschimke/meshcore-mobile/commit/5a3195d5ee1bce238074286b7dc0567b3060ecda))
+
 ## [0.1.11](https://github.com/yschimke/meshcore-mobile/compare/v0.1.10...v0.1.11) (2026-11-08)
 
 
