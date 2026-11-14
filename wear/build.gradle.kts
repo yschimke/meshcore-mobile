@@ -36,7 +36,13 @@ android {
     versionCode = 1
     versionName = "0.1"
   }
-  buildTypes { getByName("release") { isMinifyEnabled = false } }
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = true
+      isShrinkResources = true
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    }
+  }
   testOptions.unitTests { isIncludeAndroidResources = true }
 }
 
