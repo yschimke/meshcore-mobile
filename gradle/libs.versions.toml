@@ -24,7 +24,7 @@ composeAiTools = "2.95.2"
 composePreviewDaemon = "3.28.0"
 # `compose-preview-ui-builder-bom` from yschimke/compose-ui-builder, constraining the typed-catalog
 # consumer runtime on its own 3.x release line.
-composeUiBuilder = "3.130.0"
+composeUiBuilder = "3.131.0"
 core = "1.7.0"
 kotlin = "2.4.21"
 kotlinx-coroutines = "1.11.0"
