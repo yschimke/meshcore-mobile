@@ -74,8 +74,6 @@ class BleScanner {
 
 internal expect fun PeripheralBuilder.applyMeshCoreDefaults(autoConnect: Boolean)
 
-internal expect suspend fun requestLargerMtu(peripheral: Peripheral)
-
 private sealed interface BleTarget {
   fun create(): Peripheral
 
@@ -126,11 +124,6 @@ class BleTransport private constructor(private val target: BleTarget) : Transpor
         }
       }
       p.connect()
-      // Negotiate a larger MTU so MeshCore frames (up to 172 bytes)
-      // fit in a single BLE notification. Without this, the default
-      // ATT MTU of 23 (20-byte payload) splits frames across
-      // multiple notifications and the parser sees garbage.
-      runCatching { requestLargerMtu(p) }
       observerJob =
         scope.launch(start = CoroutineStart.UNDISPATCHED) {
           p.observe(txCharacteristic).collect { bytes -> _incoming.emit(ByteString(bytes)) }

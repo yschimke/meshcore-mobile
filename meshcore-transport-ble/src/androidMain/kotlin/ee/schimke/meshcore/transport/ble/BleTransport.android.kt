@@ -1,29 +1,19 @@
 package ee.schimke.meshcore.transport.ble
 
 import android.bluetooth.le.ScanSettings
-import android.util.Log
-import com.juul.kable.AndroidPeripheral
 import com.juul.kable.ObsoleteKableApi
-import com.juul.kable.Peripheral
 import com.juul.kable.PeripheralBuilder
 import com.juul.kable.ScannerBuilder
 import com.juul.kable.logs.Logging
 
 internal actual fun PeripheralBuilder.applyMeshCoreDefaults(autoConnect: Boolean) {
   if (autoConnect) autoConnectIf { true }
+  // Negotiate a larger MTU so MeshCore frames (up to 172 bytes) fit in a single BLE
+  // notification rather than splitting at the 20-byte ATT MTU 23 payload limit.
+  mtu = 185
   logging {
     level = Logging.Level.Warnings
     identifier = "meshcore-ble"
-  }
-}
-
-internal actual suspend fun requestLargerMtu(peripheral: Peripheral) {
-  val ap = peripheral as? AndroidPeripheral ?: return
-  try {
-    val mtu = ap.requestMtu(185)
-    Log.d("meshcore-ble", "MTU negotiated: $mtu")
-  } catch (e: Exception) {
-    Log.w("meshcore-ble", "MTU request failed: ${e.message}")
   }
 }
 
