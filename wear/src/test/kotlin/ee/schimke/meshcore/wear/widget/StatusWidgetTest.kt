@@ -9,7 +9,7 @@ import ee.schimke.composeai.rcplayer.edit.validateFor
 import ee.schimke.composeai.rcplayer.protocol.RcDocumentCodec
 import ee.schimke.composeai.rcplayer.protocol.RcWireLimits
 import ee.schimke.composeai.rcwidget.RcWearHost
-import ee.schimke.composeai.rcwidget.creation.RcWearBackground
+import ee.schimke.composeai.rcwidget.creation.androidx.RcWearBackground
 import ee.schimke.composeai.rcwidget.wear.RcWearWidgetTaps
 import ee.schimke.composeai.rcwidget.wear.RcWearWidgetTemplate
 import kotlinx.coroutines.runBlocking

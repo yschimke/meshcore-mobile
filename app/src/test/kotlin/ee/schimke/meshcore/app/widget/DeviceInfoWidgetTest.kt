@@ -7,7 +7,7 @@ import ee.schimke.composeai.rcplayer.edit.RcTargetProfiles
 import ee.schimke.composeai.rcplayer.edit.validateFor
 import ee.schimke.composeai.rcplayer.protocol.RcDocumentCodec
 import ee.schimke.composeai.rcplayer.protocol.RcWireLimits
-import ee.schimke.composeai.rcwidget.creation.rcWidgetHostAction
+import ee.schimke.composeai.rcwidget.creation.androidx.rcWidgetHostAction
 import ee.schimke.composeai.rcwidget.launcher.RcWidgetSizing
 import ee.schimke.composeai.rcwidget.launcher.captureLauncherWidget
 import ee.schimke.composeai.rcwidget.launcher.systemThemedWidgetsProfile
