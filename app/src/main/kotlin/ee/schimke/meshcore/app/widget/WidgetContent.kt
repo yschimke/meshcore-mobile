@@ -112,7 +112,7 @@ private fun RemoteDrawScope.drawBorder(
       androidx.compose.remote.creation.compose.state.RemotePaint {
         color = borderColor
         strokeWidth = borderStrokeWidth
-        style = androidx.compose.ui.graphics.PaintingStyle.Stroke
+        style = androidx.compose.remote.creation.compose.state.RemotePaintingStyle.Stroke
       },
     )
   }
@@ -134,7 +134,7 @@ private fun RemoteDrawScope.drawSolidColorShape(
     drawOutline(
       this,
       androidx.compose.remote.creation.compose.state.RemotePaint {
-        style = androidx.compose.ui.graphics.PaintingStyle.Fill
+        style = androidx.compose.remote.creation.compose.state.RemotePaintingStyle.Fill
         color?.let { this.color = it }
       },
     )
