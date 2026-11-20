@@ -157,7 +157,7 @@ private fun CatalogComponentPreview(
 @PreviewWrapper(RemotePreviewWrapper::class)
 @Composable
 fun WearComponentGridPreview() {
-  val action = RemoteAction.Empty
+  val action = RemoteAction.None
 
   RemoteColumn(
     modifier = RemoteModifier.fillMaxSize().background(Color.Black.rc).padding(8.rdp),

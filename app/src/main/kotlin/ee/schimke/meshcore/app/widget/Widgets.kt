@@ -11,8 +11,8 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
-import ee.schimke.composeai.rcwidget.creation.RcWidgetCaptureSize
-import ee.schimke.composeai.rcwidget.creation.rcWidgetHostAction
+import ee.schimke.composeai.rcwidget.creation.androidx.RcWidgetCaptureSize
+import ee.schimke.composeai.rcwidget.creation.androidx.rcWidgetHostAction
 import ee.schimke.composeai.rcwidget.launcher.RcLauncherWidgets
 import ee.schimke.composeai.rcwidget.launcher.RcWidgetSizing
 import ee.schimke.composeai.rcwidget.launcher.captureLauncherWidget

@@ -14,8 +14,8 @@ import androidx.glance.wear.WearWidgetBrush
 import androidx.glance.wear.WearWidgetData
 import androidx.glance.wear.color
 import androidx.glance.wear.core.WearWidgetParams
-import ee.schimke.composeai.rcwidget.creation.RcWearBackground
-import ee.schimke.composeai.rcwidget.creation.rcWidgetHostAction
+import ee.schimke.composeai.rcwidget.creation.androidx.RcWearBackground
+import ee.schimke.composeai.rcwidget.creation.androidx.rcWidgetHostAction
 import ee.schimke.composeai.rcwidget.wear.RcHostFramedWearWidgetDocument
 import ee.schimke.composeai.rcwidget.wear.RcTemplatedWearWidgetData
 import ee.schimke.composeai.rcwidget.wear.RcWearWidgetTemplate
