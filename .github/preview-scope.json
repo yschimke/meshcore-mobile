@@ -1,0 +1,35 @@
+{
+  "//": "Change-scope config for compose-ai-tools/apply. PRs whose changes all live inside modules under scopedRoots render only those modules plus their transitive Gradle dependents; PRs that only touch ignorePaths skip the preview pipelines. Global build files (gradle/libs.versions.toml, root build scripts, CI) fail open to a full render.",
+  "scopedRoots": [
+    "app",
+    "desktop-app",
+    "meshcore-cli",
+    "meshcore-components",
+    "meshcore-core",
+    "meshcore-data",
+    "meshcore-devices-proto",
+    "meshcore-grpc-service",
+    "meshcore-mobile",
+    "meshcore-session",
+    "meshcore-transport-ble",
+    "meshcore-transport-tcp",
+    "meshcore-transport-usb",
+    "meshcore-transport-webserial",
+    "meshcore-tui",
+    "wear",
+    "web-app"
+  ],
+  "ignorePaths": [
+    "docs/**",
+    "**/*.md",
+    "packaging/**",
+    "scripts/**",
+    ".githooks/**",
+    ".idea/**",
+    ".vscode/**",
+    "LICENSE",
+    ".gitignore",
+    ".gitattributes",
+    "renovate.json"
+  ]
+}
