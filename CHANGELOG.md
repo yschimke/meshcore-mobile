@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.1.13](https://github.com/yschimke/meshcore-mobile/compare/v0.1.12...v0.1.13) (2026-11-21)
+
+
+### Bug Fixes
+
+* **deps:** update androidx ([#781](https://github.com/yschimke/meshcore-mobile/issues/781)) ([ebc85e4](https://github.com/yschimke/meshcore-mobile/commit/ebc85e495c3aa064614a0722012f8794fc9a178d))
+* **deps:** update androidx to v1.0.0 ([#774](https://github.com/yschimke/meshcore-mobile/issues/774)) ([8af3832](https://github.com/yschimke/meshcore-mobile/commit/8af3832448f3e703f0db502df9f397c8729d97df))
+* **deps:** update androidx-wear to v1.7.2 ([#782](https://github.com/yschimke/meshcore-mobile/issues/782)) ([7b3fc00](https://github.com/yschimke/meshcore-mobile/commit/7b3fc0085e9611f29991d65e9dcab627114f3aed))
+* **deps:** update compose-ai-tools ([#760](https://github.com/yschimke/meshcore-mobile/issues/760)) ([4b70ed9](https://github.com/yschimke/meshcore-mobile/commit/4b70ed907a6a724c6805983e5370b1720ac6e256))
+* **deps:** update compose-ai-tools ([#762](https://github.com/yschimke/meshcore-mobile/issues/762)) ([be38834](https://github.com/yschimke/meshcore-mobile/commit/be38834f17da48671a00a835b4f5116a77a43c2c))
+* **deps:** update compose-ai-tools ([#765](https://github.com/yschimke/meshcore-mobile/issues/765)) ([e909503](https://github.com/yschimke/meshcore-mobile/commit/e9095032cb1c349959273de07d2f3519244afa9d))
+* **deps:** update compose-ai-tools ([#771](https://github.com/yschimke/meshcore-mobile/issues/771)) ([27ce4b4](https://github.com/yschimke/meshcore-mobile/commit/27ce4b4641aa3b0233d4e72f7586e88cbbc4cec1))
+* **deps:** update compose-ai-tools ([#775](https://github.com/yschimke/meshcore-mobile/issues/775)) ([da03b37](https://github.com/yschimke/meshcore-mobile/commit/da03b37c4ff9cd44b11912f8828dfc6a35e4cae4))
+* **deps:** update compose-ai-tools ([#778](https://github.com/yschimke/meshcore-mobile/issues/778)) ([4265b57](https://github.com/yschimke/meshcore-mobile/commit/4265b5747eac85c60fa8432ef98b9bc25a224d32))
+* **deps:** update compose-ai-tools ([#788](https://github.com/yschimke/meshcore-mobile/issues/788)) ([f056514](https://github.com/yschimke/meshcore-mobile/commit/f056514990da6e24612754f4afbf9b41a309b5f9))
+* **deps:** update compose-multiplatform to v1.13.0-rc01 ([#772](https://github.com/yschimke/meshcore-mobile/issues/772)) ([863e16a](https://github.com/yschimke/meshcore-mobile/commit/863e16a7713755affc53fd9ed346df8938d59083))
+* **deps:** update dependency androidx.compose.ui:ui-text-google-fonts to v1.13.0 ([#784](https://github.com/yschimke/meshcore-mobile/issues/784)) ([9bb03e5](https://github.com/yschimke/meshcore-mobile/commit/9bb03e58d15026699433e638659cb50eedf6798c))
+* **deps:** update dependency com.github.ajalt.clikt:clikt to v5.2.0 ([#757](https://github.com/yschimke/meshcore-mobile/issues/757)) ([f0ffc52](https://github.com/yschimke/meshcore-mobile/commit/f0ffc52aa86a00d490a72947a5acfaa3180ebd5f))
+* **deps:** update dependency com.github.ajalt.clikt:clikt to v5.2.1 ([#768](https://github.com/yschimke/meshcore-mobile/issues/768)) ([18683f2](https://github.com/yschimke/meshcore-mobile/commit/18683f23195986d73976df2e1049bfac05ccf197))
+* **deps:** update dependency com.juul.kable:kable-core to v0.46.0 ([#769](https://github.com/yschimke/meshcore-mobile/issues/769)) ([d334ed6](https://github.com/yschimke/meshcore-mobile/commit/d334ed6a4fd3207bd6f29b3efab2ea330ce82150))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.28.2 ([#789](https://github.com/yschimke/meshcore-mobile/issues/789)) ([eae2ce8](https://github.com/yschimke/meshcore-mobile/commit/eae2ce8934aef329c400002abbfd912d124b785a))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.131.0 ([#766](https://github.com/yschimke/meshcore-mobile/issues/766)) ([90efee1](https://github.com/yschimke/meshcore-mobile/commit/90efee153fb2634aa9409715d74788cf64338512))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.135.0 ([#776](https://github.com/yschimke/meshcore-mobile/issues/776)) ([665fc1d](https://github.com/yschimke/meshcore-mobile/commit/665fc1d73da4854ed3425d63fe1692a00d55b2e7))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.137.0 ([#779](https://github.com/yschimke/meshcore-mobile/issues/779)) ([20ee0d2](https://github.com/yschimke/meshcore-mobile/commit/20ee0d2e39fdf094e2d989f911ec7cebcc3393f4))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.139.0 ([#785](https://github.com/yschimke/meshcore-mobile/issues/785)) ([4c5a396](https://github.com/yschimke/meshcore-mobile/commit/4c5a396d00a795f42e1545d8480b967867534de6))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.141.0 ([#791](https://github.com/yschimke/meshcore-mobile/issues/791)) ([3450f11](https://github.com/yschimke/meshcore-mobile/commit/3450f111dae5fc2027309c7208c0534b8c2e96b6))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.143.0 ([#797](https://github.com/yschimke/meshcore-mobile/issues/797)) ([e31b56d](https://github.com/yschimke/meshcore-mobile/commit/e31b56d7ad47fd6d9a303860105b1cab308329a1))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.144.0 ([#801](https://github.com/yschimke/meshcore-mobile/issues/801)) ([5c684ac](https://github.com/yschimke/meshcore-mobile/commit/5c684ac068ef1c5623c0ad3db69d307fe77d09ce))
+* **deps:** update dependency ee.schimke.composeai:rc-players-bom to v3.10.0 ([#803](https://github.com/yschimke/meshcore-mobile/issues/803)) ([e9319cb](https://github.com/yschimke/meshcore-mobile/commit/e9319cbebf53e771d05fbc2cab82d5eea0bb3689))
+* **deps:** update metro to v1.6.0 ([#763](https://github.com/yschimke/meshcore-mobile/issues/763)) ([7fe108f](https://github.com/yschimke/meshcore-mobile/commit/7fe108f5d81acf98d5a25f7f0ed5adf2621511c3))
+* **deps:** update remote compose ([#783](https://github.com/yschimke/meshcore-mobile/issues/783)) ([55ffbea](https://github.com/yschimke/meshcore-mobile/commit/55ffbeabef83aec4b53c0b09486b488e8932dc4a))
+* **deps:** update wire to v7.2.2 ([#764](https://github.com/yschimke/meshcore-mobile/issues/764)) ([86d1e8f](https://github.com/yschimke/meshcore-mobile/commit/86d1e8f39106f560f56ff42333ec6427c31ebba8))
+
 ## [0.1.12](https://github.com/yschimke/meshcore-mobile/compare/v0.1.11...v0.1.12) (2026-11-16)
 
 
