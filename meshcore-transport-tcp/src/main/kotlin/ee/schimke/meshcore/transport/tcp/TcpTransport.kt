@@ -12,10 +12,12 @@ import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.readAvailable
 import io.ktor.utils.io.writeFully
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -42,8 +44,8 @@ class TcpTransport(private val host: String, private val port: Int) : Transport 
 
   private val decoder = StreamFrameCodec.Decoder()
   private val writeMutex = Mutex()
-  private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
+  private var sessionScope: CoroutineScope? = null
   private var selector: SelectorManager? = null
   private var socket: Socket? = null
   private var readChannel: ByteReadChannel? = null
@@ -54,14 +56,16 @@ class TcpTransport(private val host: String, private val port: Int) : Transport 
     if (_state.value is TransportState.Connected) return
     _state.value = TransportState.Connecting
     try {
-      val sel = SelectorManager(Dispatchers.Default)
+      val sel = SelectorManager(Dispatchers.IO)
       val s = aSocket(sel).tcp().connect(host, port) { noDelay = true }
       selector = sel
       socket = s
       readChannel = s.openReadChannel()
       writeChannel = s.openWriteChannel(autoFlush = true)
       decoder.reset()
-      readerJob = ioScope.launch {
+      val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+      sessionScope = scope
+      readerJob = scope.launch {
         val rc = readChannel ?: return@launch
         val buf = ByteArray(1024)
         try {
@@ -73,6 +77,8 @@ class TcpTransport(private val host: String, private val port: Int) : Transport 
               if (pkt.isRx) _incoming.emit(pkt.payload)
             }
           }
+        } catch (ce: CancellationException) {
+          throw ce
         } catch (t: Throwable) {
           _state.value = TransportState.Error(t)
         } finally {
@@ -82,6 +88,10 @@ class TcpTransport(private val host: String, private val port: Int) : Transport 
         }
       }
       _state.value = TransportState.Connected
+    } catch (ce: CancellationException) {
+      closeQuietly()
+      _state.value = TransportState.Disconnected
+      throw ce
     } catch (t: Throwable) {
       closeQuietly()
       _state.value = TransportState.Error(t)
@@ -101,6 +111,10 @@ class TcpTransport(private val host: String, private val port: Int) : Transport 
   }
 
   private fun closeQuietly() {
+    readerJob?.cancel()
+    readerJob = null
+    sessionScope?.cancel()
+    sessionScope = null
     try {
       socket?.close()
     } catch (_: Throwable) {}
@@ -111,7 +125,5 @@ class TcpTransport(private val host: String, private val port: Int) : Transport 
     selector = null
     readChannel = null
     writeChannel = null
-    readerJob?.cancel()
-    readerJob = null
   }
 }

@@ -155,7 +155,11 @@ class MeshcoreConnectionService : Service() {
         Intent(context, MeshcoreConnectionService::class.java).apply {
           putExtra(EXTRA_DEVICE_LABEL, deviceLabel)
         }
-      context.startForegroundService(intent)
+      try {
+        context.startForegroundService(intent)
+      } catch (e: android.app.ForegroundServiceStartNotAllowedException) {
+        Log.w(TAG, "Foreground service start not allowed from background for $deviceLabel", e)
+      }
     }
 
     fun stop(context: Context) {

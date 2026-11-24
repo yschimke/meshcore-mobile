@@ -1,11 +1,14 @@
 package ee.schimke.meshcore.app.ui.theme
 
 import android.content.Context
+import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.dataStore
 import ee.schimke.meshcore.app.data.proto.AppPreferencesPb
 import ee.schimke.meshcore.app.data.proto.DeviceSectionStatesPb
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import kotlinx.coroutines.flow.Flow
@@ -50,7 +53,11 @@ object AppPreferencesSerializer : Serializer<AppPreferencesPb> {
   override val defaultValue: AppPreferencesPb = AppPreferencesPb()
 
   override suspend fun readFrom(input: InputStream): AppPreferencesPb =
-    AppPreferencesPb.ADAPTER.decode(input)
+    try {
+      AppPreferencesPb.ADAPTER.decode(input)
+    } catch (e: IOException) {
+      throw CorruptionException("Cannot read app preferences proto.", e)
+    }
 
   override suspend fun writeTo(t: AppPreferencesPb, output: OutputStream) {
     AppPreferencesPb.ADAPTER.encode(output, t)
@@ -61,6 +68,7 @@ private val Context.appPrefsDataStore: DataStore<AppPreferencesPb> by
   dataStore(
     fileName = "app_preferences.pb",
     serializer = AppPreferencesSerializer,
+    corruptionHandler = ReplaceFileCorruptionHandler { AppPreferencesPb() },
   )
 
 // --- Repository ---

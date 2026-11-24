@@ -115,10 +115,12 @@ class AppConnectionController(
     retryCount = 0
     inFlight?.cancel()
     inFlight = scope.launch {
-      val resolved = runCatching {
-        transportFactory.resolve(request)
-      }
-        .getOrElse { cause ->
+      val resolved =
+        try {
+          transportFactory.resolve(request)
+        } catch (ce: CancellationException) {
+          throw ce
+        } catch (cause: Throwable) {
           _state.value = ConnectionUiState.Failed(cause = cause, deviceLabel = request.label)
           return@launch
         }
@@ -139,10 +141,12 @@ class AppConnectionController(
       return
     }
     inFlight = scope.launch {
-      val resolved = runCatching {
-        transportFactory.resolve(saved.toConnectionRequest())
-      }
-        .getOrElse { cause ->
+      val resolved =
+        try {
+          transportFactory.resolve(saved.toConnectionRequest())
+        } catch (ce: CancellationException) {
+          throw ce
+        } catch (cause: Throwable) {
           _state.value = ConnectionUiState.Failed(cause = cause, deviceLabel = saved.label)
           return@launch
         }
@@ -159,8 +163,13 @@ class AppConnectionController(
     _state.value = ConnectionUiState.Idle
     currentAttempt = null
     scope.launch {
-      runCatching { manager.disconnect() }
-        .onFailure { Log.d(TAG, "disconnect during cancel failed", it) }
+      try {
+        manager.disconnect()
+      } catch (ce: CancellationException) {
+        throw ce
+      } catch (t: Throwable) {
+        Log.d(TAG, "disconnect during cancel failed", t)
+      }
     }
   }
 
@@ -206,11 +215,25 @@ class AppConnectionController(
         deviceLabel = attempt.label,
       )
     val completed =
-      withTimeoutOrNull(connectTimeoutMs) { runCatching { manager.connect(attempt.transport) } }
+      withTimeoutOrNull(connectTimeoutMs) {
+        try {
+          manager.connect(attempt.transport)
+          Result.success(Unit)
+        } catch (ce: CancellationException) {
+          throw ce
+        } catch (t: Throwable) {
+          Result.failure(t)
+        }
+      }
     when {
       completed == null -> {
-        runCatching { manager.disconnect() }
-          .onFailure { Log.d(TAG, "disconnect after timeout failed", it) }
+        try {
+          manager.disconnect()
+        } catch (ce: CancellationException) {
+          throw ce
+        } catch (t: Throwable) {
+          Log.d(TAG, "disconnect after timeout failed", t)
+        }
         val cause =
           TimeoutException("No response from ${attempt.label} within ${connectTimeoutMs / 1000}s.")
         maybeRetry(attempt, cause)
@@ -250,6 +273,7 @@ class AppConnectionController(
     when {
       cause is CancellationException -> false
       cause is TimeoutException -> true
+      cause is java.io.IOException -> true
       cause.message?.contains("GATT", ignoreCase = true) == true -> true
       cause.message?.contains("BLE", ignoreCase = true) == true -> true
       else -> false
