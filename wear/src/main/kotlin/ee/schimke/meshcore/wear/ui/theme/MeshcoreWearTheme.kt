@@ -230,6 +230,7 @@ fun MeshcoreWearTheme(content: @Composable () -> Unit) {
   MaterialTheme(
     colorScheme = MeshcoreWearColors,
     typography = WearTypography,
+    motionScheme = androidx.wear.compose.material3.MotionScheme.expressive(),
     content = content,
   )
 }

@@ -6,6 +6,7 @@
 package ee.schimke.meshcore.components.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -43,6 +44,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.cd_collapse
@@ -413,6 +415,12 @@ private fun CollapsibleSectionHeader(
   expanded: Boolean,
   onToggle: () -> Unit,
 ) {
+  val rotation by
+    animateFloatAsState(
+      targetValue = if (expanded) 180f else 0f,
+      animationSpec = MaterialTheme.motionScheme.fastSpatialSpec(),
+      label = "sectionChevron",
+    )
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier.fillMaxWidth().clickable(onClick = onToggle).padding(vertical = Dimens.XS),
@@ -424,12 +432,12 @@ private fun CollapsibleSectionHeader(
       modifier = Modifier.weight(1f),
     )
     Icon(
-      imageVector = if (expanded) MeshIcons.ExpandLess else MeshIcons.ExpandMore,
+      imageVector = MeshIcons.ExpandMore,
       contentDescription =
         if (expanded) stringResource(Res.string.cd_collapse)
         else stringResource(Res.string.cd_expand),
       tint = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier.size(20.dp),
+      modifier = Modifier.size(20.dp).graphicsLayer { rotationZ = rotation },
     )
   }
 }
