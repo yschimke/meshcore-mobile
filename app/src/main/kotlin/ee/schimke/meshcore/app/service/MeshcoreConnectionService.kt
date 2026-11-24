@@ -10,9 +10,14 @@ import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.IBinder
 import android.util.Log
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ServiceKey
 import ee.schimke.meshcore.app.MainActivity
-import ee.schimke.meshcore.app.MeshcoreApp
 import ee.schimke.meshcore.app.R
+import ee.schimke.meshcore.app.connection.AppConnectionController
 import ee.schimke.meshcore.app.debug.DebugBridge
 import java.io.FileDescriptor
 import java.io.PrintWriter
@@ -32,7 +37,12 @@ import java.io.PrintWriter
  * - On Android 14+ users can dismiss foreground-service notifications; [onTaskRemoved] and
  *   [deleteIntent] handle that edge-case by also stopping the service.
  */
-class MeshcoreConnectionService : Service() {
+@ContributesIntoMap(AppScope::class, binding<Service>())
+@ServiceKey
+@Inject
+class MeshcoreConnectionService(
+  private val connectionController: AppConnectionController,
+) : Service() {
 
   override fun onCreate() {
     super.onCreate()
@@ -93,8 +103,7 @@ class MeshcoreConnectionService : Service() {
 
   private fun disconnect() {
     Log.d(TAG, "Service stopping — disconnecting BT")
-    val app = (applicationContext as? MeshcoreApp)?.appGraph ?: return
-    app.connectionController.cancel()
+    connectionController.cancel()
     stopSelf()
   }
 

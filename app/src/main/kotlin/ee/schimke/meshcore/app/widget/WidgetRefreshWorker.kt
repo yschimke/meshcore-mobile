@@ -6,7 +6,15 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import ee.schimke.meshcore.app.di.appGraph
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Assisted
+import dev.zacsweers.metro.AssistedFactory
+import dev.zacsweers.metro.AssistedInject
+import dev.zacsweers.metro.ContributesIntoMap
+import ee.schimke.meshcore.app.connection.AppConnectionController
+import ee.schimke.meshcore.app.di.AssistedWorkerFactory
+import ee.schimke.meshcore.app.di.WorkerKey
+import ee.schimke.meshcore.data.repository.MeshcoreRepository
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
@@ -15,18 +23,20 @@ import kotlinx.coroutines.withTimeoutOrNull
  * WorkManager worker that connects to the favorite device in the background, waits for a snapshot
  * update, then disconnects. Triggered by the Connection Status widget's "refresh" tap.
  */
+@AssistedInject
 class WidgetRefreshWorker(
-  appContext: Context,
-  params: WorkerParameters,
-) : CoroutineWorker(appContext, params) {
+  @Assisted context: Context,
+  @Assisted params: WorkerParameters,
+  private val repository: MeshcoreRepository,
+  private val connectionController: AppConnectionController,
+) : CoroutineWorker(context, params) {
 
   override suspend fun doWork(): Result {
-    val app = applicationContext.appGraph()
-    val favorite = app.repository.observeFavorite().first() ?: return Result.failure()
+    val favorite = repository.observeFavorite().first() ?: return Result.failure()
 
     // Only refresh if already connected — never initiate BLE connections
     // from background work (it triggers pairing prompts).
-    if (app.connectionController.connectedDeviceId.value != favorite.id) {
+    if (connectionController.connectedDeviceId.value != favorite.id) {
       return Result.success()
     }
 
@@ -36,6 +46,13 @@ class WidgetRefreshWorker(
     }
 
     return Result.success()
+  }
+
+  @AssistedFactory
+  @WorkerKey(WidgetRefreshWorker::class)
+  @ContributesIntoMap(AppScope::class)
+  fun interface Factory : AssistedWorkerFactory {
+    override fun create(context: Context, params: WorkerParameters): WidgetRefreshWorker
   }
 
   companion object {

@@ -20,6 +20,7 @@ plugins {
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
   alias(libs.plugins.ksp)
+  alias(libs.plugins.metro)
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.playPublisher)
   alias(libs.plugins.tapmoc)
@@ -47,8 +48,8 @@ kotlin { jvmToolchain(21) }
 
 composePreview {
   // Activity heroes + the getting-started app tour launch the real MainActivity,
-  // whose appGraph() casts the Application to AppGraphHolder — so previews must
-  // run with the manifest-declared MeshcoreApp, not Robolectric's default stub.
+  // which is constructor-injected via MetroAppComponentFactory from MeshcoreApp —
+  // so previews must run with the manifest-declared MeshcoreApp, not Robolectric's default stub.
   useConsumerApplication.set(true)
 }
 
@@ -144,6 +145,7 @@ dependencies {
   implementation(platform(libs.rc.players.bom))
   implementation(libs.rc.widget.launcher)
   implementation(libs.androidx.work.runtime)
+  implementation(libs.metrox.android)
   implementation(libs.wear.compose.remote.material3)
   implementation(libs.androidx.appfunctions)
   implementation(libs.aboutlibraries.compose.m3)

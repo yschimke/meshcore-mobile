@@ -9,7 +9,15 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import ee.schimke.meshcore.app.di.appGraph
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Assisted
+import dev.zacsweers.metro.AssistedFactory
+import dev.zacsweers.metro.AssistedInject
+import dev.zacsweers.metro.ContributesIntoMap
+import ee.schimke.meshcore.app.connection.AppConnectionController
+import ee.schimke.meshcore.app.di.AssistedWorkerFactory
+import ee.schimke.meshcore.app.di.WorkerKey
+import ee.schimke.meshcore.data.repository.MeshcoreRepository
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
@@ -25,14 +33,16 @@ private const val DATA_WAIT_TIMEOUT_MS = 15_000L
  * Scheduled via [scheduleIfFavoriteExists] when a favorite device is set. Cancelled via [cancel]
  * when the favorite is cleared.
  */
+@AssistedInject
 class PeriodicRefreshWorker(
-  appContext: Context,
-  params: WorkerParameters,
-) : CoroutineWorker(appContext, params) {
+  @Assisted context: Context,
+  @Assisted params: WorkerParameters,
+  private val repository: MeshcoreRepository,
+  private val connectionController: AppConnectionController,
+) : CoroutineWorker(context, params) {
 
   override suspend fun doWork(): Result {
-    val app = applicationContext.appGraph()
-    val favorite = app.repository.observeFavorite().first()
+    val favorite = repository.observeFavorite().first()
     if (favorite == null) {
       Log.d(TAG, "No favorite device, skipping refresh")
       return Result.success()
@@ -40,7 +50,7 @@ class PeriodicRefreshWorker(
 
     // Only refresh if already connected — never initiate BLE connections
     // from background work (it triggers pairing prompts).
-    if (app.connectionController.connectedDeviceId.value != favorite.id) {
+    if (connectionController.connectedDeviceId.value != favorite.id) {
       Log.d(TAG, "Periodic refresh: not connected to ${favorite.label}, skipping")
       return Result.success()
     }
@@ -52,6 +62,13 @@ class PeriodicRefreshWorker(
 
     Log.d(TAG, "Periodic refresh: done")
     return Result.success()
+  }
+
+  @AssistedFactory
+  @WorkerKey(PeriodicRefreshWorker::class)
+  @ContributesIntoMap(AppScope::class)
+  fun interface Factory : AssistedWorkerFactory {
+    override fun create(context: Context, params: WorkerParameters): PeriodicRefreshWorker
   }
 
   companion object {

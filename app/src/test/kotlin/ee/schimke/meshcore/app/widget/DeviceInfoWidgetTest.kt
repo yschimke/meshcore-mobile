@@ -2,7 +2,6 @@
 
 package ee.schimke.meshcore.app.widget
 
-import android.app.Application
 import ee.schimke.composeai.rcplayer.edit.RcTargetProfiles
 import ee.schimke.composeai.rcplayer.edit.validateFor
 import ee.schimke.composeai.rcplayer.protocol.RcDocumentCodec
@@ -21,7 +20,7 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 // The capture runs on any SDK: only RemoteViews.DrawInstructions needs a widget-hosting one.
-@Config(sdk = [35], application = Application::class)
+@Config(sdk = [35])
 class DeviceInfoWidgetTest {
   private val context = RuntimeEnvironment.getApplication()
 

@@ -1,13 +1,13 @@
 package ee.schimke.meshcore.wear.ui
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.navigation3.SwipeDismissableSceneStrategy
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable data object StatusRoute : NavKey
@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
 @Composable
 fun WearNavigation() {
   val backStack = rememberNavBackStack(StatusRoute)
-  val viewModel: WearViewModel = viewModel()
+  val viewModel: WearViewModel = metroViewModel()
 
   AppScaffold {
     NavDisplay(

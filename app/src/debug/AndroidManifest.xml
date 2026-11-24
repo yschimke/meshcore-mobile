@@ -16,7 +16,7 @@
         <receiver
             android:name=".debug.DebugConnectReceiver"
             android:exported="true"
-            tools:ignore="ExportedReceiver">
+            tools:ignore="ExportedReceiver,Instantiatable">
             <intent-filter>
                 <action android:name="ee.schimke.meshcore.DEBUG_CONNECT" />
             </intent-filter>
@@ -26,7 +26,7 @@
         <receiver
             android:name=".debug.DebugActionReceiver"
             android:exported="true"
-            tools:ignore="ExportedReceiver">
+            tools:ignore="ExportedReceiver,Instantiatable">
             <intent-filter>
                 <action android:name="ee.schimke.meshcore.DEBUG_DISCONNECT" />
                 <action android:name="ee.schimke.meshcore.DEBUG_FORGET" />

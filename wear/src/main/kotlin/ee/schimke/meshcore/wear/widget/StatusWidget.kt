@@ -4,6 +4,7 @@ package ee.schimke.meshcore.wear.widget
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import androidx.compose.remote.creation.compose.state.rc
@@ -14,6 +15,11 @@ import androidx.glance.wear.WearWidgetBrush
 import androidx.glance.wear.WearWidgetData
 import androidx.glance.wear.color
 import androidx.glance.wear.core.WearWidgetParams
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ServiceKey
 import ee.schimke.composeai.rcwidget.creation.androidx.RcWearBackground
 import ee.schimke.composeai.rcwidget.creation.androidx.rcWidgetHostAction
 import ee.schimke.composeai.rcwidget.wear.RcHostFramedWearWidgetDocument
@@ -21,8 +27,8 @@ import ee.schimke.composeai.rcwidget.wear.RcTemplatedWearWidgetData
 import ee.schimke.composeai.rcwidget.wear.RcWearWidgetTemplate
 import ee.schimke.composeai.rcwidget.wear.withTaps
 import ee.schimke.meshcore.grpc.ConnectionState
-import ee.schimke.meshcore.wear.WearGraphHolder
 import ee.schimke.meshcore.wear.WearMainActivity
+import ee.schimke.meshcore.wear.data.WearClient
 import kotlinx.coroutines.withTimeoutOrNull
 
 /** What the status widget shows: the radio as the phone last reported it. */
@@ -40,12 +46,15 @@ internal data class StatusWidgetState(
  * and a squircle's corners alike. A template that can't play as a widget falls back to a
  * host-framed Glance Wear capture of the same content. A tap opens the app.
  */
-class StatusWidget : GlanceWearWidget() {
+@Inject
+class StatusWidget(
+  private val client: WearClient,
+) : GlanceWearWidget() {
   override suspend fun provideWidgetData(
     context: Context,
     params: WearWidgetParams,
   ): WearWidgetData {
-    val state = readState(context)
+    val state = readState()
     val background = RcWearBackground(base = StatusWidgetSurface)
     val template =
       RcTemplatedWearWidgetData(
@@ -73,10 +82,8 @@ class StatusWidget : GlanceWearWidget() {
   }
 
   /** The status from the phone, bounded: a widget draws "not connected" rather than waiting. */
-  private suspend fun readState(context: Context): StatusWidgetState {
-    val graph = (context.applicationContext as? WearGraphHolder)?.wearGraph
-    val client = graph?.meshClient ?: return DISCONNECTED
-    return withTimeoutOrNull(DATA_LAYER_TIMEOUT_MS) {
+  private suspend fun readState(): StatusWidgetState =
+    withTimeoutOrNull(DATA_LAYER_TIMEOUT_MS) {
       runCatching {
         if (client.getConnectionStatus().state != ConnectionState.CONNECTED) {
           return@runCatching RADIO_DISCONNECTED
@@ -93,7 +100,6 @@ class StatusWidget : GlanceWearWidget() {
       }
         .getOrNull()
     } ?: DISCONNECTED
-  }
 
   private fun openApp(context: Context): PendingIntent =
     PendingIntent.getActivity(
@@ -116,6 +122,9 @@ class StatusWidget : GlanceWearWidget() {
 }
 
 @AssociateWithGlanceWearWidget(StatusWidget::class)
-class StatusWidgetService : GlanceWearWidgetService() {
-  override val widget: GlanceWearWidget = StatusWidget()
-}
+@ContributesIntoMap(AppScope::class, binding<Service>())
+@ServiceKey
+@Inject
+class StatusWidgetService(
+  override val widget: StatusWidget,
+) : GlanceWearWidgetService()
