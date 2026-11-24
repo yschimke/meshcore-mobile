@@ -1,5 +1,9 @@
 package ee.schimke.meshcore.app.ui
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +19,7 @@ import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.Usb
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -26,7 +31,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -37,6 +41,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.ui.theme.Dimens
@@ -73,13 +78,13 @@ fun ScannerScreen(
 ) {
   val app = LocalAppGraph.current
   val controller = app.connectionController
-  val uiState by controller.state.collectAsState()
+  val uiState by controller.state.collectAsStateWithLifecycle()
   // observeDevicesWithState() builds a new combined Room Flow per call; remember it so a
   // recomposition (connection state change, etc.) doesn't restart the collector and its queries.
   val savedDevices by
     remember(app.repository) { app.repository.observeDevicesWithState() }
-      .collectAsState(initial = emptyList())
-  val connectedDeviceId by controller.connectedDeviceId.collectAsState()
+      .collectAsStateWithLifecycle(initialValue = emptyList())
+  val connectedDeviceId by controller.connectedDeviceId.collectAsStateWithLifecycle()
   val busy = uiState is ConnectionUiState.Connecting
 
   LaunchedEffect(uiState) {
@@ -146,7 +151,7 @@ fun ScannerScreen(
  * transport-specific content to slot lambdas. The USB and TCP tabs are developer options: without
  * [developerMode] only Saved and BLE are offered.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ScannerBody(
   savedContent: @Composable () -> Unit,
@@ -213,15 +218,26 @@ fun ScannerBody(
           }
         }
       }
-      Column(
-        modifier = Modifier.fillMaxSize().padding(Dimens.ScreenPadding),
-        verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
-      ) {
-        when (tab) {
-          0 -> savedContent()
-          1 -> bleContent()
-          2 -> usbContent()
-          3 -> tcpContent()
+      val motionScheme = MaterialTheme.motionScheme
+      AnimatedContent(
+        targetState = tab,
+        transitionSpec = {
+          fadeIn(motionScheme.fastEffectsSpec()) togetherWith
+            fadeOut(motionScheme.fastEffectsSpec())
+        },
+        label = "scannerTab",
+        modifier = Modifier.fillMaxSize(),
+      ) { activeTab ->
+        Column(
+          modifier = Modifier.fillMaxSize().padding(Dimens.ScreenPadding),
+          verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
+        ) {
+          when (activeTab) {
+            0 -> savedContent()
+            1 -> bleContent()
+            2 -> usbContent()
+            3 -> tcpContent()
+          }
         }
       }
     }

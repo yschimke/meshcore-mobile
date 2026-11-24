@@ -8,6 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation
+import androidx.compose.foundation.text.input.TextFieldLineLimits
+import androidx.compose.foundation.text.input.maxLength
+import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.then
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -16,10 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
@@ -38,8 +39,14 @@ fun TcpConnectPanel(
   defaultHost: String = "192.168.1.10",
   defaultPort: Int = 5000,
 ) {
-  var host by rememberSaveable { mutableStateOf(defaultHost) }
-  var port by rememberSaveable { mutableStateOf(defaultPort.toString()) }
+  val hostState = rememberTextFieldState(initialText = defaultHost)
+  val portState = rememberTextFieldState(initialText = defaultPort.toString())
+  val digitsOnly = InputTransformation {
+    if (!asCharSequence().all { it.isDigit() }) {
+      revertAllChanges()
+    }
+  }
+  val portValue = portState.text.toString().toIntOrNull()
   Card(
     modifier = modifier.fillMaxWidth(),
     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
@@ -59,25 +66,24 @@ fun TcpConnectPanel(
         )
       }
       OutlinedTextField(
-        value = host,
-        onValueChange = { host = it },
+        state = hostState,
         label = { Text("Host") },
         enabled = !busy,
-        singleLine = true,
+        lineLimits = TextFieldLineLimits.SingleLine,
         modifier = Modifier.fillMaxWidth(),
       )
       OutlinedTextField(
-        value = port,
-        onValueChange = { port = it.filter { c -> c.isDigit() }.take(5) },
+        state = portState,
         label = { Text("Port") },
         enabled = !busy,
-        singleLine = true,
+        lineLimits = TextFieldLineLimits.SingleLine,
+        inputTransformation = digitsOnly.then(InputTransformation.maxLength(5)),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = Modifier.fillMaxWidth(),
       )
       Button(
-        enabled = !busy && host.isNotBlank() && port.toIntOrNull() in 1..65535,
-        onClick = { onConnect(host.trim(), port.toInt()) },
+        enabled = !busy && hostState.text.isNotBlank() && portValue in 1..65535,
+        onClick = { onConnect(hostState.text.toString().trim(), portValue!!) },
         modifier = Modifier.fillMaxWidth(),
       ) {
         Text(if (busy) "Connecting…" else "Connect")

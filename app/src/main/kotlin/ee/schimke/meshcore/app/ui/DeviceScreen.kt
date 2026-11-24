@@ -2,12 +2,12 @@ package ee.schimke.meshcore.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.app.ui.theme.SectionStates
@@ -70,7 +70,7 @@ fun DeviceScreen(
   onNavigateToSettings: (ChannelInfo) -> Unit = {},
 ) {
   val controller = LocalAppGraph.current.connectionController
-  val uiState by controller.state.collectAsState()
+  val uiState by controller.state.collectAsStateWithLifecycle()
 
   // Track whether we've seen an active connection attempt so we
   // don't navigate to the scanner on the brief initial Idle before
@@ -156,19 +156,19 @@ private fun ConnectedDevice(
   val controller = app.connectionController
   val repository = app.repository
   val prefs = app.themePreferences
-  val self by client.selfInfo.collectAsState()
-  val battery by client.battery.collectAsState()
-  val radio by client.radio.collectAsState()
-  val contacts by client.contacts.collectAsState()
-  val channels by client.channels.collectAsState()
-  val warnings by controller.warnings.collectAsState()
+  val self by client.selfInfo.collectAsStateWithLifecycle()
+  val battery by client.battery.collectAsStateWithLifecycle()
+  val radio by client.radio.collectAsStateWithLifecycle()
+  val contacts by client.contacts.collectAsStateWithLifecycle()
+  val channels by client.channels.collectAsStateWithLifecycle()
+  val warnings by controller.warnings.collectAsStateWithLifecycle()
   val scope = rememberCoroutineScope()
-  val deviceId by controller.connectedDeviceId.collectAsState()
+  val deviceId by controller.connectedDeviceId.collectAsStateWithLifecycle()
   val sectionStates by
     remember(deviceId) {
         deviceId?.let { prefs.sectionStates(it) } ?: kotlinx.coroutines.flow.flowOf(SectionStates())
       }
-      .collectAsState(initial = SectionStates())
+      .collectAsStateWithLifecycle(initialValue = SectionStates())
 
   // If the client was seeded with cached data, contacts won't be empty
   // even before the fresh fetch — show a "refreshing" indicator instead
@@ -183,7 +183,7 @@ private fun ConnectedDevice(
         deviceId?.let { repository.observeLatestMessage(it) }
           ?: kotlinx.coroutines.flow.flowOf(null)
       }
-      .collectAsState(initial = null)
+      .collectAsStateWithLifecycle(initialValue = null)
 
   val lastMessage = latestEntity?.let { entity ->
     when (entity.kind) {

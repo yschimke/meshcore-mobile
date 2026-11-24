@@ -2,6 +2,7 @@ package ee.schimke.meshcore.components.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
@@ -71,7 +72,9 @@ fun ChatBody(
       )
     },
   ) { padding ->
-    Column(modifier = Modifier.fillMaxSize().padding(padding).imePadding()) {
+    Column(
+      modifier = Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding).imePadding(),
+    ) {
       ChatMessageList(messages = messages, modifier = Modifier.weight(1f), onRetry = onRetry)
       ChatInput(
         value = draft,

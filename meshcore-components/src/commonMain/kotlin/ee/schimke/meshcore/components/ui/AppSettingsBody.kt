@@ -1,6 +1,10 @@
 package ee.schimke.meshcore.components.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -54,7 +59,7 @@ private const val DEVELOPER_HINT_AFTER = 3
  * [DEVELOPER_UNLOCK_TAPS] times calls [onDeveloperModeChange] with `true`; the Developer section's
  * switch turns it back off (hiding the section again).
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun AppSettingsBody(
   versionName: String,
@@ -139,7 +144,16 @@ fun AppSettingsBody(
           },
           modifier = Modifier.clickable { developerExpanded = !developerExpanded },
         )
-        AnimatedVisibility(visible = developerExpanded) {
+        val motionScheme = MaterialTheme.motionScheme
+        AnimatedVisibility(
+          visible = developerExpanded,
+          enter =
+            expandVertically(motionScheme.defaultSpatialSpec()) +
+              fadeIn(motionScheme.fastEffectsSpec()),
+          exit =
+            shrinkVertically(motionScheme.defaultSpatialSpec()) +
+              fadeOut(motionScheme.fastEffectsSpec()),
+        ) {
           ListItem(
             headlineContent = { Text(stringResource(Res.string.app_settings_developer_mode)) },
             supportingContent = {

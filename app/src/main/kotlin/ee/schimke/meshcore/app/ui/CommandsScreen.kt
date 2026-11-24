@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -13,6 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.components.generated.resources.Res
@@ -38,11 +38,11 @@ fun CommandsScreen(
   val app = LocalAppGraph.current
   val controller = app.connectionController
   val repository = app.repository
-  val uiState by controller.state.collectAsState()
-  val deviceId = controller.connectedDeviceId.collectAsState().value
+  val uiState by controller.state.collectAsStateWithLifecycle()
+  val deviceId = controller.connectedDeviceId.collectAsStateWithLifecycle().value
   val client = (uiState as? ConnectionUiState.Connected)?.client
 
-  val selfName = client?.selfInfo?.collectAsState()?.value?.name
+  val selfName = client?.selfInfo?.collectAsStateWithLifecycle()?.value?.name
 
   // Read messages from Room. The Flow is remembered: a new Room Flow per recomposition restarts
   // collectAsState's collector and re-runs the query on every draft keystroke.
@@ -51,7 +51,7 @@ fun CommandsScreen(
         deviceId?.let { repository.observeChannelMessages(it, channelIndex) }
           ?: kotlinx.coroutines.flow.flowOf(emptyList())
       }
-      .collectAsState(initial = emptyList())
+      .collectAsStateWithLifecycle(initialValue = emptyList())
 
   val messages =
     remember(dbMessages, selfName) {

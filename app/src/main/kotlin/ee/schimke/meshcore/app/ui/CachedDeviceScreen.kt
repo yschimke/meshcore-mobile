@@ -1,9 +1,9 @@
 package ee.schimke.meshcore.app.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.warning_cached_data
@@ -27,13 +27,13 @@ fun CachedDeviceScreen(
   // the collectors and re-run the queries.
   val state by
     remember(repository, deviceId) { repository.observeDeviceState(deviceId) }
-      .collectAsState(initial = null)
+      .collectAsStateWithLifecycle(initialValue = null)
   val contacts by
     remember(repository, deviceId) { repository.observeContacts(deviceId) }
-      .collectAsState(initial = emptyList())
+      .collectAsStateWithLifecycle(initialValue = emptyList())
   val channels by
     remember(repository, deviceId) { repository.observeChannels(deviceId) }
-      .collectAsState(initial = emptyList())
+      .collectAsStateWithLifecycle(initialValue = emptyList())
 
   val selfInfo = state?.toSelfInfo()
   val battery = state?.toBattery()

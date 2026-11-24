@@ -130,6 +130,7 @@ fun ChatMessageList(
   }
 }
 
+@OptIn(androidx.compose.material3.ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier, onRetry: (() -> Unit)? = null) {
   val alignment = if (message.isMine) Alignment.CenterEnd else Alignment.CenterStart
@@ -207,9 +208,13 @@ fun ChatBubble(message: ChatMessage, modifier: Modifier = Modifier, onRetry: (()
           )
           if (message.isMine) {
             Text(text = "·", style = MaterialTheme.typography.labelSmall, color = subtleColor)
+            val motionScheme = MaterialTheme.motionScheme
             AnimatedContent(
               targetState = message.status,
-              transitionSpec = { fadeIn() togetherWith fadeOut() },
+              transitionSpec = {
+                fadeIn(motionScheme.fastEffectsSpec()) togetherWith
+                  fadeOut(motionScheme.fastEffectsSpec())
+              },
               label = "status",
             ) { status ->
               val statusText =

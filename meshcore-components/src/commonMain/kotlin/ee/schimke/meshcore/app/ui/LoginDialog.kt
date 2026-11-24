@@ -4,21 +4,20 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedSecureTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.btn_cancel
@@ -45,6 +44,7 @@ sealed class LoginDialogState {
  * Dialog shown when the user taps a room or repeater for the first time. Rooms and repeaters
  * require a password to join — common defaults are an empty string `""` or `"hello"`.
  */
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun LoginDialog(
   contactName: String,
@@ -53,7 +53,7 @@ fun LoginDialog(
   onLogin: (password: String) -> Unit,
   onDismiss: () -> Unit,
 ) {
-  var password by remember(contactName, contactType) { mutableStateOf("") }
+  val passwordState = key(contactName, contactType) { rememberTextFieldState() }
 
   AlertDialog(
     onDismissRequest = { if (state !is LoginDialogState.Authenticating) onDismiss() },
@@ -69,13 +69,10 @@ fun LoginDialog(
           style = MaterialTheme.typography.bodySmall,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        OutlinedTextField(
-          value = password,
-          onValueChange = { password = it },
+        OutlinedSecureTextField(
+          state = passwordState,
           label = { Text(stringResource(Res.string.login_password)) },
           placeholder = { Text(stringResource(Res.string.login_password_hint)) },
-          singleLine = true,
-          visualTransformation = PasswordVisualTransformation(),
           keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
           enabled = state is LoginDialogState.Prompting,
           isError = state is LoginDialogState.Prompting && state.errorMessage != null,
@@ -86,12 +83,15 @@ fun LoginDialog(
           modifier = Modifier.fillMaxWidth(),
         )
         if (state is LoginDialogState.Authenticating) {
-          CircularProgressIndicator(modifier = Modifier.padding(top = 4.dp), strokeWidth = 2.dp)
+          LoadingIndicator(modifier = Modifier.padding(top = 4.dp).size(32.dp))
         }
       }
     },
     confirmButton = {
-      TextButton(onClick = { onLogin(password) }, enabled = state is LoginDialogState.Prompting) {
+      TextButton(
+        onClick = { onLogin(passwordState.text.toString()) },
+        enabled = state is LoginDialogState.Prompting,
+      ) {
         Text(stringResource(Res.string.login_join_btn))
       }
     },
