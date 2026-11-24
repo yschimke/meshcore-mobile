@@ -136,30 +136,29 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
     label: String,
     transport: SavedTransport,
     markConnectedNow: Boolean = true,
-  ) =
-    writeMutex.withLock {
-      val existing = db.deviceDao().getById(id)
-      db
-        .deviceDao()
-        .upsert(
-          DeviceEntity(
-            id = id,
-            label = label,
-            isFavorite = existing?.isFavorite ?: false,
-            lastConnectedAtMs =
-              if (markConnectedNow) System.currentTimeMillis()
-              else (existing?.lastConnectedAtMs ?: 0L),
-            transportType = transport.toType(),
-            bleIdentifier = (transport as? SavedTransport.Ble)?.identifier,
-            bleAdvertName = (transport as? SavedTransport.Ble)?.advertName,
-            tcpHost = (transport as? SavedTransport.Tcp)?.host,
-            tcpPort = (transport as? SavedTransport.Tcp)?.port,
-            usbClassName = (transport as? SavedTransport.Usb)?.className,
-            usbVendorId = (transport as? SavedTransport.Usb)?.vendorId,
-            usbProductId = (transport as? SavedTransport.Usb)?.productId,
-          ),
-        )
-    }
+  ) = writeMutex.withLock {
+    val existing = db.deviceDao().getById(id)
+    db
+      .deviceDao()
+      .upsert(
+        DeviceEntity(
+          id = id,
+          label = label,
+          isFavorite = existing?.isFavorite ?: false,
+          lastConnectedAtMs =
+            if (markConnectedNow) System.currentTimeMillis()
+            else (existing?.lastConnectedAtMs ?: 0L),
+          transportType = transport.toType(),
+          bleIdentifier = (transport as? SavedTransport.Ble)?.identifier,
+          bleAdvertName = (transport as? SavedTransport.Ble)?.advertName,
+          tcpHost = (transport as? SavedTransport.Tcp)?.host,
+          tcpPort = (transport as? SavedTransport.Tcp)?.port,
+          usbClassName = (transport as? SavedTransport.Usb)?.className,
+          usbVendorId = (transport as? SavedTransport.Usb)?.vendorId,
+          usbProductId = (transport as? SavedTransport.Usb)?.productId,
+        ),
+      )
+  }
 
   suspend fun forgetDevice(id: String) {
     db.deviceDao().delete(id) // CASCADE deletes contacts, channels, messages, state
@@ -298,28 +297,27 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
     deviceId: String,
     msg: ReceivedDirectMessage,
     resolvedContactKeyHex: String,
-  ) =
-    writeMutex.withLock {
-      val timestampMs = msg.timestamp.toEpochMilliseconds()
-      if (db.messageDao().countDuplicates(deviceId, MessageKind.DM, timestampMs, msg.text) > 0) {
-        return@withLock
-      }
-      db
-        .messageDao()
-        .insert(
-          MessageEntity(
-            deviceId = deviceId,
-            kind = MessageKind.DM,
-            direction = MessageDirection.RECEIVED,
-            contactPublicKeyHex = resolvedContactKeyHex,
-            text = msg.text,
-            timestampEpochMs = timestampMs,
-            textType = msg.textType.raw.toInt(),
-            snr = msg.snr,
-            pathLength = msg.pathLength,
-          ),
-        )
+  ) = writeMutex.withLock {
+    val timestampMs = msg.timestamp.toEpochMilliseconds()
+    if (db.messageDao().countDuplicates(deviceId, MessageKind.DM, timestampMs, msg.text) > 0) {
+      return@withLock
     }
+    db
+      .messageDao()
+      .insert(
+        MessageEntity(
+          deviceId = deviceId,
+          kind = MessageKind.DM,
+          direction = MessageDirection.RECEIVED,
+          contactPublicKeyHex = resolvedContactKeyHex,
+          text = msg.text,
+          timestampEpochMs = timestampMs,
+          textType = msg.textType.raw.toInt(),
+          snr = msg.snr,
+          pathLength = msg.pathLength,
+        ),
+      )
+  }
 
   suspend fun insertReceivedChannelMessage(deviceId: String, msg: ReceivedChannelMessage) =
     writeMutex.withLock {
