@@ -2,12 +2,12 @@ package ee.schimke.meshcore.app.ui
 
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.components.generated.resources.Res
@@ -32,14 +32,15 @@ fun ChannelChatScreen(
   val app = LocalAppGraph.current
   val controller = app.connectionController
   val repository = app.repository
-  val uiState by controller.state.collectAsState()
-  val deviceId = controller.connectedDeviceId.collectAsState().value
+  val uiState by controller.state.collectAsStateWithLifecycle()
+  val deviceId = controller.connectedDeviceId.collectAsStateWithLifecycle().value
   val client = (uiState as? ConnectionUiState.Connected)?.client
 
-  val channels by client?.channels?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
+  val channels by
+    client?.channels?.collectAsStateWithLifecycle() ?: remember { mutableStateOf(emptyList()) }
   val channel = channels.firstOrNull { it.index == channelIndex }
   val channelName = channel?.name?.ifBlank { null } ?: "Channel $channelIndex"
-  val selfName = client?.selfInfo?.collectAsState()?.value?.name
+  val selfName = client?.selfInfo?.collectAsStateWithLifecycle()?.value?.name
 
   // Read messages from Room. The Flow is remembered: a new Room Flow per recomposition restarts
   // collectAsState's collector and re-runs the query on every draft keystroke.
@@ -48,7 +49,7 @@ fun ChannelChatScreen(
         deviceId?.let { repository.observeChannelMessages(it, channelIndex) }
           ?: kotlinx.coroutines.flow.flowOf(emptyList())
       }
-      .collectAsState(initial = emptyList())
+      .collectAsStateWithLifecycle(initialValue = emptyList())
 
   val messages =
     remember(dbMessages, selfName) {

@@ -58,7 +58,6 @@ dependencies {
   // Wear Compose Material 3 (direct, no Horologist UI)
   implementation(libs.wear.compose.material3)
   implementation(libs.wear.compose.foundation)
-  implementation(libs.wear.compose.navigation)
   implementation(libs.wear.compose.navigation3)
   implementation(libs.androidx.navigation3.runtime)
   implementation(libs.androidx.navigation3.ui)

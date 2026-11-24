@@ -4,12 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -26,7 +44,12 @@ import ee.schimke.meshcore.app.ui.DeviceScreen
 import ee.schimke.meshcore.app.ui.DeviceSettingsScreen
 import ee.schimke.meshcore.app.ui.ScannerScreen
 import ee.schimke.meshcore.app.ui.theme.MeshcoreTheme
+import ee.schimke.meshcore.components.generated.resources.Res
+import ee.schimke.meshcore.components.generated.resources.app_settings_licenses
+import ee.schimke.meshcore.components.generated.resources.cd_back
+import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import kotlinx.coroutines.flow.first
+import org.jetbrains.compose.resources.stringResource
 
 class MainActivity : ComponentActivity() {
   // Runtime BLE permissions are requested from the BLE tab on demand, not here;
@@ -39,14 +62,17 @@ class MainActivity : ComponentActivity() {
   }
 }
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun MeshcoreAppUi() {
   val app = LocalAppGraph.current
-  val developerMode by app.themePreferences.developerMode.collectAsState(initial = false)
+  val developerMode by
+    app.themePreferences.developerMode.collectAsStateWithLifecycle(initialValue = false)
 
   MeshcoreTheme {
     Surface {
       val backStack = rememberNavBackStack(DeviceRoute)
+      val motionScheme = MaterialTheme.motionScheme
 
       // If no favourite device on launch, show the scanner immediately
       LaunchedEffect(Unit) {
@@ -62,6 +88,24 @@ private fun MeshcoreAppUi() {
         // On large screens and foldables the Device lists and the open conversation show side by
         // side; compact windows keep single-pane navigation. See ConversationListDetail.kt.
         sceneStrategies = listOf(rememberConversationSceneStrategy()),
+        transitionSpec = {
+          slideInHorizontally(motionScheme.defaultSpatialSpec()) { it / 6 } +
+            fadeIn(motionScheme.defaultEffectsSpec()) togetherWith
+            slideOutHorizontally(motionScheme.defaultSpatialSpec()) { -it / 12 } +
+              fadeOut(motionScheme.fastEffectsSpec())
+        },
+        popTransitionSpec = {
+          slideInHorizontally(motionScheme.defaultSpatialSpec()) { -it / 12 } +
+            fadeIn(motionScheme.defaultEffectsSpec()) togetherWith
+            slideOutHorizontally(motionScheme.defaultSpatialSpec()) { it / 6 } +
+              fadeOut(motionScheme.fastEffectsSpec())
+        },
+        predictivePopTransitionSpec = {
+          slideInHorizontally(motionScheme.defaultSpatialSpec()) { -it / 12 } +
+            fadeIn(motionScheme.defaultEffectsSpec()) togetherWith
+            scaleOut(motionScheme.defaultSpatialSpec(), targetScale = 0.92f) +
+              fadeOut(motionScheme.fastEffectsSpec())
+        },
         entryProvider =
           entryProvider {
             entry<DeviceRoute>(metadata = DeviceListPaneMetadata) {
@@ -132,7 +176,27 @@ private fun MeshcoreAppUi() {
             }
             entry<LicensesRoute> {
               val libraries by produceLibraries()
-              LibrariesContainer(libraries)
+              Scaffold(
+                topBar = {
+                  TopAppBar(
+                    title = { Text(stringResource(Res.string.app_settings_licenses)) },
+                    navigationIcon = {
+                      IconButton(onClick = { backStack.removeLastOrNull() }) {
+                        Icon(MeshIcons.ArrowBack, stringResource(Res.string.cd_back))
+                      }
+                    },
+                    colors =
+                      TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                      ),
+                  )
+                },
+              ) { padding ->
+                LibrariesContainer(
+                  libraries = libraries,
+                  modifier = Modifier.fillMaxSize().padding(padding),
+                )
+              }
             }
           },
       )

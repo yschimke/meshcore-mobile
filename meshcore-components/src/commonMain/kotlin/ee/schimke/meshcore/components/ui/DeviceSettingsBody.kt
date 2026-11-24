@@ -1,5 +1,9 @@
 package ee.schimke.meshcore.components.ui
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,9 +14,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -64,7 +70,7 @@ sealed interface DeviceSettingsUiState {
  * while discovering, an error message, or the settings rows — currently the buzzer toggle). The
  * `:app` wrapper owns the command transport.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun DeviceSettingsBody(
   state: DeviceSettingsUiState,
@@ -72,6 +78,7 @@ fun DeviceSettingsBody(
   onBack: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
+  val motionScheme = MaterialTheme.motionScheme
   Scaffold(
     modifier = modifier,
     topBar = {
@@ -100,46 +107,56 @@ fun DeviceSettingsBody(
       )
     },
   ) { padding ->
-    Column(modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 16.dp)) {
-      when (state) {
-        is DeviceSettingsUiState.Discovering ->
-          Row(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-          ) {
-            CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
-            Spacer(Modifier.size(12.dp))
+    AnimatedContent(
+      targetState = state,
+      transitionSpec = {
+        fadeIn(motionScheme.fastEffectsSpec()) togetherWith fadeOut(motionScheme.fastEffectsSpec())
+      },
+      contentKey = { it::class },
+      label = "deviceSettingsState",
+      modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 16.dp),
+    ) { targetState ->
+      Column(modifier = Modifier.fillMaxSize()) {
+        when (targetState) {
+          is DeviceSettingsUiState.Discovering ->
+            Row(
+              modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+              horizontalArrangement = Arrangement.Center,
+              verticalAlignment = Alignment.CenterVertically,
+            ) {
+              LoadingIndicator(modifier = Modifier.size(28.dp))
+              Spacer(Modifier.size(12.dp))
+              Text(
+                stringResource(Res.string.settings_discovering),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+              )
+            }
+          is DeviceSettingsUiState.Error ->
             Text(
-              stringResource(Res.string.settings_discovering),
+              text = targetState.message,
               style = MaterialTheme.typography.bodyMedium,
-              color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-          }
-        is DeviceSettingsUiState.Error ->
-          Text(
-            text = state.message,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.error,
-            modifier = Modifier.padding(vertical = 24.dp),
-          )
-        is DeviceSettingsUiState.Ready ->
-          if (!state.hasBuzzer) {
-            Text(
-              text = stringResource(Res.string.settings_none),
-              style = MaterialTheme.typography.bodyMedium,
-              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              color = MaterialTheme.colorScheme.error,
               modifier = Modifier.padding(vertical = 24.dp),
             )
-          } else {
-            Spacer(Modifier.size(8.dp))
-            BuzzerRow(
-              mode = state.buzzerMode,
-              loading = state.buzzerLoading,
-              onToggle = onToggleBuzzer,
-            )
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-          }
+          is DeviceSettingsUiState.Ready ->
+            if (!targetState.hasBuzzer) {
+              Text(
+                text = stringResource(Res.string.settings_none),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(vertical = 24.dp),
+              )
+            } else {
+              Spacer(Modifier.size(8.dp))
+              BuzzerRow(
+                mode = targetState.buzzerMode,
+                loading = targetState.buzzerLoading,
+                onToggle = onToggleBuzzer,
+              )
+              HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            }
+        }
       }
     }
   }

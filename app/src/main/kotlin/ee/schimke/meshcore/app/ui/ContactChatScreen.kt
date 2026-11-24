@@ -3,12 +3,12 @@ package ee.schimke.meshcore.app.ui
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.LocalAppGraph
 import ee.schimke.meshcore.components.generated.resources.Res
@@ -35,11 +35,12 @@ fun ContactChatScreen(
   val app = LocalAppGraph.current
   val controller = app.connectionController
   val repository = app.repository
-  val uiState by controller.state.collectAsState()
-  val deviceId = controller.connectedDeviceId.collectAsState().value
+  val uiState by controller.state.collectAsStateWithLifecycle()
+  val deviceId = controller.connectedDeviceId.collectAsStateWithLifecycle().value
   val client = (uiState as? ConnectionUiState.Connected)?.client
 
-  val contacts by client?.contacts?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
+  val contacts by
+    client?.contacts?.collectAsStateWithLifecycle() ?: remember { mutableStateOf(emptyList()) }
   // toHex() allocates per contact, so only re-run the lookup when the list or key changes, not on
   // every draft keystroke.
   val contact =
@@ -113,7 +114,7 @@ fun ContactChatScreen(
         deviceId?.let { repository.observeDms(it, publicKeyHex) }
           ?: kotlinx.coroutines.flow.flowOf(emptyList())
       }
-      .collectAsState(initial = emptyList())
+      .collectAsStateWithLifecycle(initialValue = emptyList())
 
   val messages =
     remember(dbMessages, contactName) {

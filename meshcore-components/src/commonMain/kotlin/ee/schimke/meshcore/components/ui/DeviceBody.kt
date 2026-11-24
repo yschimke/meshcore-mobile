@@ -1,4 +1,7 @@
-@file:OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+@file:OptIn(
+  androidx.compose.material3.ExperimentalMaterial3Api::class,
+  androidx.compose.material3.ExperimentalMaterial3ExpressiveApi::class,
+)
 
 package ee.schimke.meshcore.components.ui
 
@@ -23,10 +26,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.LinearWavyProgressIndicator
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
@@ -223,15 +226,22 @@ fun DeviceBody(
       val repeaters = contactsByType[ContactType.REPEATER].orEmpty()
       val sensors = contactsByType[ContactType.SENSOR].orEmpty()
 
-      // Subtle progress bar while refreshing with cached data visible
+      // Subtle wavy progress bar while refreshing with cached data visible
+      val motionScheme = MaterialTheme.motionScheme
+      val sectionEnter =
+        expandVertically(motionScheme.defaultSpatialSpec()) + fadeIn(motionScheme.fastEffectsSpec())
+      val sectionExit =
+        shrinkVertically(motionScheme.defaultSpatialSpec()) +
+          fadeOut(motionScheme.fastEffectsSpec())
+
       AnimatedVisibility(
         visible = contactsRefreshing,
-        enter = expandVertically() + fadeIn(),
-        exit = shrinkVertically() + fadeOut(),
+        enter = sectionEnter,
+        exit = sectionExit,
       ) {
-        LinearProgressIndicator(
+        LinearWavyProgressIndicator(
           modifier = Modifier.fillMaxWidth(),
-          color = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
+          color = MaterialTheme.colorScheme.primary.copy(alpha = 0.75f),
           trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
         )
       }
@@ -247,8 +257,8 @@ fun DeviceBody(
       )
       AnimatedVisibility(
         visible = sectionStates.channelsExpanded,
-        enter = expandVertically() + fadeIn(),
-        exit = shrinkVertically() + fadeOut(),
+        enter = sectionEnter,
+        exit = sectionExit,
       ) {
         Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
           if (regularChannels.isEmpty()) {
@@ -276,8 +286,8 @@ fun DeviceBody(
       )
       AnimatedVisibility(
         visible = sectionStates.contactsExpanded,
-        enter = expandVertically() + fadeIn(),
-        exit = shrinkVertically() + fadeOut(),
+        enter = sectionEnter,
+        exit = sectionExit,
       ) {
         Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
           if (contactsLoading) {
@@ -303,8 +313,8 @@ fun DeviceBody(
         )
         AnimatedVisibility(
           visible = sectionStates.roomsExpanded,
-          enter = expandVertically() + fadeIn(),
-          exit = shrinkVertically() + fadeOut(),
+          enter = sectionEnter,
+          exit = sectionExit,
         ) {
           Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
             if (!contactsLoading) {
@@ -336,8 +346,8 @@ fun DeviceBody(
         )
         AnimatedVisibility(
           visible = sectionStates.repeatersExpanded,
-          enter = expandVertically() + fadeIn(),
-          exit = shrinkVertically() + fadeOut(),
+          enter = sectionEnter,
+          exit = sectionExit,
         ) {
           Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
             if (repeaters.isEmpty()) {
@@ -365,8 +375,8 @@ fun DeviceBody(
         )
         AnimatedVisibility(
           visible = sectionStates.sensorsExpanded,
-          enter = expandVertically() + fadeIn(),
-          exit = shrinkVertically() + fadeOut(),
+          enter = sectionEnter,
+          exit = sectionExit,
         ) {
           Column(verticalArrangement = Arrangement.spacedBy(Dimens.CardGap)) {
             sensors.forEach { contact -> ContactRow(contact) }
@@ -386,7 +396,7 @@ private fun LoadingPlaceholder(text: String) {
     contentAlignment = Alignment.Center,
   ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-      CircularProgressIndicator(modifier = Modifier.size(28.dp))
+      LoadingIndicator(modifier = Modifier.size(36.dp))
       Spacer(Modifier.height(8.dp))
       Text(
         text = text,
