@@ -1,5 +1,8 @@
+@file:OptIn(androidx.compose.material3.ExperimentalMaterial3ExpressiveApi::class)
+
 package ee.schimke.meshcore.app.ui
 
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -94,19 +97,32 @@ fun DeviceStatusView(
     },
     containerColor = MaterialTheme.colorScheme.surface,
   ) { padding ->
-    Column(
+    val motionScheme = MaterialTheme.motionScheme
+    androidx.compose.animation.AnimatedContent(
+      targetState = status,
+      transitionSpec = {
+        androidx.compose.animation.fadeIn(motionScheme.fastEffectsSpec()) togetherWith
+          androidx.compose.animation.fadeOut(motionScheme.fastEffectsSpec())
+      },
+      contentKey = { it::class },
+      label = "deviceConnectStatus",
       modifier = Modifier.padding(padding).fillMaxSize().padding(Dimens.ScreenPadding),
-      verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
-    ) {
-      when (status) {
-        is DeviceConnectStatus.Connecting ->
-          ConnectingCard(
-            startedAtMs = status.startedAtMs,
-            timeoutMs = status.timeoutMs,
-            onCancel = onCancel,
-            nowMs = nowMs,
-          )
-        is DeviceConnectStatus.Failed -> FailureCard(cause = status.cause, onRetry = onCancel)
+    ) { targetStatus ->
+      Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(Dimens.CardGap),
+      ) {
+        when (targetStatus) {
+          is DeviceConnectStatus.Connecting ->
+            ConnectingCard(
+              startedAtMs = targetStatus.startedAtMs,
+              timeoutMs = targetStatus.timeoutMs,
+              onCancel = onCancel,
+              nowMs = nowMs,
+            )
+          is DeviceConnectStatus.Failed ->
+            FailureCard(cause = targetStatus.cause, onRetry = onCancel)
+        }
       }
     }
   }
@@ -167,7 +183,7 @@ private fun ConnectingCard(
           )
         }
       }
-      androidx.compose.material3.LinearProgressIndicator(
+      androidx.compose.material3.LinearWavyProgressIndicator(
         progress = { progress },
         modifier = Modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.primary,

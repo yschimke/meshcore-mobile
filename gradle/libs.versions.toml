@@ -99,7 +99,6 @@ rc-player-compose = { module = "ee.schimke.composeai:rc-player-compose" }
 # resolved through rc-players-bom.
 rc-widget-launcher = { module = "ee.schimke.composeai:rc-widget-launcher" }
 rc-widget-wear = { module = "ee.schimke.composeai:rc-widget-wear" }
-cmp-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3" }
 
 compose-uiTest = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "composeMultiplatform" }
 compose-uiTestJunit4 = { module = "org.jetbrains.compose.ui:ui-test-junit4", version.ref = "composeMultiplatform" }

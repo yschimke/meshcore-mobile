@@ -16,12 +16,19 @@ import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.text.style.TextAlign
 import ee.schimke.meshcore.components.generated.resources.Res
 import ee.schimke.meshcore.components.generated.resources.list_detail_placeholder
 import ee.schimke.meshcore.components.ui.theme.Dimens
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -52,10 +59,23 @@ fun MeshcoreListDetail(
   detail: @Composable (ChatDestination) -> Unit,
   modifier: Modifier = Modifier,
 ) {
+  val scope = rememberCoroutineScope()
   ListDetailPaneScaffold(
     directive = navigator.scaffoldDirective,
     scaffoldState = navigator.scaffoldState,
-    modifier = modifier,
+    modifier =
+      modifier.onPreviewKeyEvent { event ->
+        if (
+          event.key == Key.Escape &&
+            event.type == KeyEventType.KeyUp &&
+            navigator.currentDestination?.contentKey != null
+        ) {
+          scope.launch { navigator.closeChat() }
+          true
+        } else {
+          false
+        }
+      },
     listPane = { AnimatedPane { list() } },
     detailPane = {
       AnimatedPane {
