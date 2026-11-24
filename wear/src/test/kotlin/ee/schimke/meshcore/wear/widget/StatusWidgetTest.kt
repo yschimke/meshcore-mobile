@@ -12,6 +12,7 @@ import ee.schimke.composeai.rcwidget.RcWearHost
 import ee.schimke.composeai.rcwidget.creation.androidx.RcWearBackground
 import ee.schimke.composeai.rcwidget.wear.RcWearWidgetTaps
 import ee.schimke.composeai.rcwidget.wear.RcWearWidgetTemplate
+import ee.schimke.meshcore.wear.data.PreviewWearClient
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -68,7 +69,7 @@ class StatusWidgetTest {
       for (host in RcWearHost.All) {
         val params = params(host)
         val content =
-          StatusWidget()
+          StatusWidget(PreviewWearClient)
             .provideWidgetData(context, params)
             .captureRawContent(context, params, false)
         val document = RcDocumentCodec.decode(content.rcDocument, RcWireLimits())

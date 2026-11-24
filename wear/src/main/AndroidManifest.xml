@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
         android:name=".MeshcoreWearApp"
+        android:appComponentFactory="dev.zacsweers.metrox.android.MetroAppComponentFactory"
+        tools:replace="android:appComponentFactory"
         android:icon="@mipmap/ic_launcher"
         android:label="MeshCore"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
@@ -20,7 +23,8 @@
         <activity
             android:name=".WearMainActivity"
             android:exported="true"
-            android:taskAffinity="">
+            android:taskAffinity=""
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,7 +51,8 @@
             android:exported="true"
             android:enabled="@bool/wear_widget_enabled"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER"
-            android:label="MeshCore status">
+            android:label="MeshCore status"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="androidx.glance.wear.action.BIND_WIDGET_PROVIDER" />
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />

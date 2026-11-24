@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
   alias(libs.plugins.kotlinSerialization)
+  alias(libs.plugins.metro)
   alias(libs.plugins.aboutlibraries)
   alias(libs.plugins.composePreview)
   alias(libs.plugins.tapmoc)
@@ -12,10 +13,9 @@ kotlin { jvmToolchain(21) }
 
 composePreview {
   // Same reason :app sets this. The activity preview launches the real
-  // WearMainActivity, whose WearNavigation() resolves a WearViewModel that casts
-  // the Application to WearGraphHolder — so previews must run with the
-  // manifest-declared MeshcoreWearApp, not Robolectric's default stub. Without
-  // it the cast throws and `wear/activity__WearMainActivity` renders no PNG.
+  // WearMainActivity, which is constructor-injected via MetroAppComponentFactory
+  // from MeshcoreWearApp — so previews must run with the manifest-declared
+  // MeshcoreWearApp, not Robolectric's default stub.
   useConsumerApplication.set(true)
 }
 
@@ -83,6 +83,9 @@ dependencies {
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewmodelCompose)
+  implementation(libs.metrox.android)
+  implementation(libs.metrox.viewmodel)
+  implementation(libs.metrox.viewmodel.compose)
   implementation(libs.aboutlibraries.compose.wear.m3)
   implementation(libs.kotlinx.coroutines.android)
 

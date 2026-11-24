@@ -5,18 +5,24 @@ package ee.schimke.meshcore.app.widget
 import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.BroadcastReceiverKey
 import ee.schimke.composeai.rcwidget.creation.androidx.RcWidgetCaptureSize
 import ee.schimke.composeai.rcwidget.creation.androidx.rcWidgetHostAction
 import ee.schimke.composeai.rcwidget.launcher.RcLauncherWidgets
 import ee.schimke.composeai.rcwidget.launcher.RcWidgetSizing
 import ee.schimke.composeai.rcwidget.launcher.captureLauncherWidget
-import ee.schimke.meshcore.app.di.appGraph
+import ee.schimke.meshcore.data.repository.MeshcoreRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
@@ -38,13 +44,12 @@ private fun staleLabel(snap: WidgetSnapshot): String? {
  * Get the current widget snapshot, seeding from Room if the in-memory bridge hasn't been populated
  * yet.
  */
-private suspend fun currentSnapshot(context: Context): WidgetSnapshot {
+private suspend fun currentSnapshot(repository: MeshcoreRepository): WidgetSnapshot {
   val snap = WidgetStateBridge.snapshot.value
   if (snap.batteryMv != null || snap.deviceName != null) return snap
 
-  val app = runCatching { context.appGraph() }.getOrNull() ?: return snap
-  val fav = app.repository.observeFavorite().first() ?: return snap
-  val state = app.repository.getDeviceState(fav.id) ?: return snap
+  val fav = repository.observeFavorite().first() ?: return snap
+  val state = repository.getDeviceState(fav.id) ?: return snap
 
   return snap.copy(
     deviceName = state.selfName,
@@ -125,7 +130,12 @@ internal suspend fun deviceInfoRemoteViews(
   return RcLauncherWidgets.remoteViews(capture.bytes, taps)
 }
 
-class DeviceInfoWidgetReceiver : AppWidgetProvider() {
+@ContributesIntoMap(AppScope::class, binding<BroadcastReceiver>())
+@BroadcastReceiverKey
+@Inject
+class DeviceInfoWidgetReceiver(
+  private val repository: MeshcoreRepository,
+) : AppWidgetProvider() {
   override fun onUpdate(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
     update(context, wm, widgetIds)
   }
@@ -144,7 +154,7 @@ class DeviceInfoWidgetReceiver : AppWidgetProvider() {
     // The receiver is only enabled where the launcher plays Remote Compose (values-v37).
     if (Build.VERSION.SDK_INT < RcLauncherWidgets.MIN_HOST_API) return
     goAsync {
-      val snap = currentSnapshot(context)
+      val snap = currentSnapshot(repository)
       coroutineScope {
         widgetIds.forEach { id ->
           launch {

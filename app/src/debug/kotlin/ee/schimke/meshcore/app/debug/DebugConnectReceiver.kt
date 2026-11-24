@@ -4,7 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import ee.schimke.meshcore.app.MeshcoreApp
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.BroadcastReceiverKey
+import ee.schimke.meshcore.app.connection.AppConnectionController
 import ee.schimke.meshcore.app.widget.goAsync
 import ee.schimke.meshcore.data.repository.SavedDevice
 import ee.schimke.meshcore.data.repository.SavedTransport
@@ -20,19 +25,18 @@ import ee.schimke.meshcore.data.repository.tcpDeviceId
  * Target must be in [DebugAllowlists.bleIdentifiers] or [DebugAllowlists.tcpTargets] (format
  * `host:port`).
  */
-class DebugConnectReceiver : BroadcastReceiver() {
+@ContributesIntoMap(AppScope::class, binding<BroadcastReceiver>())
+@BroadcastReceiverKey
+@Inject
+class DebugConnectReceiver(
+  private val connectionController: AppConnectionController,
+) : BroadcastReceiver() {
 
   override fun onReceive(context: Context, intent: Intent) {
     if (intent.action != ACTION) {
       Log.w(TAG, "ignoring action=${intent.action}")
       return
     }
-    val app =
-      (context.applicationContext as? MeshcoreApp)?.appGraph
-        ?: run {
-          Log.w(TAG, "no MeshcoreApp")
-          return
-        }
 
     val resolved =
       resolve(intent)
@@ -53,7 +57,7 @@ class DebugConnectReceiver : BroadcastReceiver() {
     }
 
     Log.i(TAG, "connect → ${resolved.device.id} (label='${resolved.device.label}')")
-    goAsync { app.connectionController.requestReconnect(resolved.device) }
+    goAsync { connectionController.requestReconnect(resolved.device) }
   }
 
   private data class Resolved(

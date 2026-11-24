@@ -2,13 +2,19 @@
 
 package ee.schimke.meshcore.app.service
 
+import android.app.Service
 import com.google.android.gms.wearable.Wearable
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.android.horologist.datalayer.grpc.server.BaseGrpcDataService
-import ee.schimke.meshcore.app.MeshcoreApp
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ServiceKey
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState
+import ee.schimke.meshcore.core.manager.MeshCoreManager
 import ee.schimke.meshcore.grpc.MeshServiceBridge
 import ee.schimke.meshcore.grpc.MeshcoreGrpcServiceImpl
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +34,12 @@ import kotlinx.coroutines.flow.StateFlow
  * This mirrors [MeshcoreBinderService] — same bridge pattern, different transport (Data Layer
  * instead of Android Binder).
  */
-class MeshcoreWearDataService : BaseGrpcDataService<MeshcoreGrpcServiceImpl>() {
+@ContributesIntoMap(AppScope::class, binding<Service>())
+@ServiceKey
+@Inject
+class MeshcoreWearDataService(
+  private val manager: MeshCoreManager,
+) : BaseGrpcDataService<MeshcoreGrpcServiceImpl>() {
 
   private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -43,14 +54,13 @@ class MeshcoreWearDataService : BaseGrpcDataService<MeshcoreGrpcServiceImpl>() {
   }
 
   override fun buildService(): MeshcoreGrpcServiceImpl {
-    val app = (application as MeshcoreApp).appGraph
     val bridge =
       object : MeshServiceBridge {
         override val managerState: StateFlow<ManagerState>
-          get() = app.manager.state
+          get() = manager.state
 
         override val client: MeshCoreClient?
-          get() = app.manager.client
+          get() = manager.client
       }
     return MeshcoreGrpcServiceImpl(bridge)
   }

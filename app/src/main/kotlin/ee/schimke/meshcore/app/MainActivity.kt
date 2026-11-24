@@ -1,5 +1,6 @@
 package ee.schimke.meshcore.app
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,8 +34,13 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.mikepenz.aboutlibraries.ui.compose.android.produceLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ActivityKey
+import ee.schimke.meshcore.app.di.AppGraph
 import ee.schimke.meshcore.app.di.LocalAppGraph
-import ee.schimke.meshcore.app.di.appGraph
 import ee.schimke.meshcore.app.ui.AppSettingsScreen
 import ee.schimke.meshcore.app.ui.CachedDeviceScreen
 import ee.schimke.meshcore.app.ui.ChannelChatScreen
@@ -51,14 +57,18 @@ import ee.schimke.meshcore.components.ui.icons.MeshIcons
 import kotlinx.coroutines.flow.first
 import org.jetbrains.compose.resources.stringResource
 
-class MainActivity : ComponentActivity() {
+@ContributesIntoMap(AppScope::class, binding<Activity>())
+@ActivityKey
+@Inject
+class MainActivity(
+  private val appGraph: AppGraph,
+) : ComponentActivity() {
   // Runtime BLE permissions are requested from the BLE tab on demand, not here;
   // that way users can deny without crashing the app on launch.
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
-    val graph = appGraph()
-    setContent { CompositionLocalProvider(LocalAppGraph provides graph) { MeshcoreAppUi() } }
+    setContent { CompositionLocalProvider(LocalAppGraph provides appGraph) { MeshcoreAppUi() } }
   }
 }
 

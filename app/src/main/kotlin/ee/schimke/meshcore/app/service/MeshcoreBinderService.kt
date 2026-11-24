@@ -1,11 +1,19 @@
 package ee.schimke.meshcore.app.service
 
+import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import androidx.lifecycle.LifecycleService
-import ee.schimke.meshcore.app.MeshcoreApp
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ServiceKey
+import ee.schimke.meshcore.app.connection.AppConnectionController
 import ee.schimke.meshcore.core.client.MeshCoreClient
 import ee.schimke.meshcore.core.manager.ManagerState
+import ee.schimke.meshcore.core.manager.MeshCoreManager
+import ee.schimke.meshcore.data.repository.MeshcoreRepository
 import ee.schimke.meshcore.grpc.MeshServiceBridge
 import ee.schimke.meshcore.grpc.MeshcoreGrpcServiceImpl
 import ee.schimke.meshcore.grpc.MeshcoreServiceGrpc
@@ -23,7 +31,14 @@ import kotlinx.coroutines.flow.StateFlow
  * transport. Client apps holding the [PERMISSION] (signature-level) can bind and make gRPC calls to
  * query device state, send messages, and subscribe to incoming messages.
  */
-class MeshcoreBinderService : LifecycleService() {
+@ContributesIntoMap(AppScope::class, binding<Service>())
+@ServiceKey
+@Inject
+class MeshcoreBinderService(
+  private val manager: MeshCoreManager,
+  private val connectionController: AppConnectionController,
+  private val repository: MeshcoreRepository,
+) : LifecycleService() {
 
   private var server: Server? = null
   private val binderReceiver = IBinderReceiver()
@@ -31,14 +46,13 @@ class MeshcoreBinderService : LifecycleService() {
   override fun onCreate() {
     super.onCreate()
 
-    val app = (application as MeshcoreApp).appGraph
     val bridge =
       object : MeshServiceBridge {
         override val managerState: StateFlow<ManagerState>
-          get() = app.manager.state
+          get() = manager.state
 
         override val client: MeshCoreClient?
-          get() = app.manager.client
+          get() = manager.client
 
         override suspend fun persistSentDm(
           contactKeyHex: String,
@@ -46,8 +60,8 @@ class MeshcoreBinderService : LifecycleService() {
           timestamp: Instant,
           ackHash: Int?,
         ) {
-          val deviceId = app.connectionController.connectedDeviceId.value ?: return
-          app.repository.insertSentDm(deviceId, contactKeyHex, text, timestamp, ackHash)
+          val deviceId = connectionController.connectedDeviceId.value ?: return
+          repository.insertSentDm(deviceId, contactKeyHex, text, timestamp, ackHash)
         }
       }
 
