@@ -5,9 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import ee.schimke.meshcore.app.di.appGraph
+import ee.schimke.meshcore.app.widget.goAsync
 import ee.schimke.meshcore.data.repository.SavedTransport
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 
 private const val TAG = "MeshPresence"
 private const val MIN_SYNC_INTERVAL_MS = 15 * 60 * 1000L // 15 minutes
@@ -34,22 +35,22 @@ class DevicePresenceReceiver : BroadcastReceiver() {
     // Already connected — nothing to do
     if (controller.connectedDeviceId.value != null) return
 
-    val favorite = runBlocking { app.repository.observeFavorite().first() } ?: return
+    goAsync(Dispatchers.IO) {
+      val favorite = app.repository.observeFavorite().first() ?: return@goAsync
 
-    // Only for BLE favorites
-    if (favorite.transport !is SavedTransport.Ble) return
+      // Only for BLE favorites
+      if (favorite.transport !is SavedTransport.Ble) return@goAsync
 
-    // Check cooldown — don't reconnect if we synced recently
-    val lastSync = runBlocking {
-      app.repository.getDeviceState(favorite.id)?.selfInfoFetchedAtMs ?: 0L
+      // Check cooldown — don't reconnect if we synced recently
+      val lastSync = app.repository.getDeviceState(favorite.id)?.selfInfoFetchedAtMs ?: 0L
+      val elapsed = System.currentTimeMillis() - lastSync
+      if (elapsed < MIN_SYNC_INTERVAL_MS) {
+        Log.d(TAG, "Device appeared but last sync was ${elapsed / 1000}s ago, skipping")
+        return@goAsync
+      }
+
+      Log.d(TAG, "Favorite device appeared after ${elapsed / 1000}s — triggering sync")
+      controller.requestReconnect(favorite)
     }
-    val elapsed = System.currentTimeMillis() - lastSync
-    if (elapsed < MIN_SYNC_INTERVAL_MS) {
-      Log.d(TAG, "Device appeared but last sync was ${elapsed / 1000}s ago, skipping")
-      return
-    }
-
-    Log.d(TAG, "Favorite device appeared after ${elapsed / 1000}s — triggering sync")
-    controller.requestReconnect(favorite)
   }
 }

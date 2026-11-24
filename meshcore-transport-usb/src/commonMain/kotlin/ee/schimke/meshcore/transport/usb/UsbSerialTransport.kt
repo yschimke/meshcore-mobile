@@ -7,8 +7,10 @@ import ee.schimke.meshcore.core.transport.TransportState
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -43,7 +45,7 @@ class UsbSerialTransport(
 
   private val decoder = StreamFrameCodec.Decoder()
   private val writeMutex = Mutex()
-  private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  private var sessionScope: CoroutineScope? = null
   private var readerJob: Job? = null
 
   override suspend fun connect() {
@@ -53,7 +55,9 @@ class UsbSerialTransport(
       port.open()
       port.setBaudRate(baudRate)
       decoder.reset()
-      readerJob = ioScope.launch {
+      val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+      sessionScope = scope
+      readerJob = scope.launch {
         try {
           while (isActive && port.isOpen()) {
             val chunk =
@@ -71,11 +75,17 @@ class UsbSerialTransport(
               if (pkt.isRx) _incoming.emit(pkt.payload)
             }
           }
+        } catch (ce: CancellationException) {
+          throw ce
         } catch (t: Throwable) {
           _state.value = TransportState.Error(t)
         }
       }
       _state.value = TransportState.Connected
+    } catch (ce: CancellationException) {
+      closeQuietly()
+      _state.value = TransportState.Disconnected
+      throw ce
     } catch (t: Throwable) {
       closeQuietly()
       _state.value = TransportState.Error(t)
@@ -97,6 +107,8 @@ class UsbSerialTransport(
   private fun closeQuietly() {
     readerJob?.cancel()
     readerJob = null
+    sessionScope?.cancel()
+    sessionScope = null
     try {
       if (port.isOpen()) port.close()
     } catch (_: Throwable) {}

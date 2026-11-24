@@ -135,75 +135,76 @@ object WidgetStateBridge {
       notifyWidgets(context)
     }
 
-    // Observe events for messages and live pushes
-    val eventsJob = bridgeScope.launch {
-      client.events.collect { ev ->
-        val next =
-          when (ev) {
-            is MeshEvent.DirectMessage ->
-              _snapshot.value.copy(
-                lastMessage = "${ev.message.text}",
-                lastSnr = ev.message.snr,
-              )
-            is MeshEvent.ChannelMessage ->
-              _snapshot.value.copy(
-                lastMessage = "#${ev.message.channelIndex} ${ev.message.body}",
-                lastSnr = ev.message.snr,
-              )
-            else -> _snapshot.value
+    // Run both collectors as structured children so cancelling clientJob stops both cleanly.
+    kotlinx.coroutines.coroutineScope {
+      val stateJob = launch {
+        kotlinx.coroutines.flow
+          .combine(
+            client.selfInfo,
+            client.battery,
+            client.radio,
+            client.contacts,
+          ) { self, bat, radio, contacts ->
+            var s = _snapshot.value.copy(connected = true)
+            if (self != null)
+              s =
+                s.copy(
+                  deviceName = self.name,
+                  pubkeyPrefix = self.publicKey.toHex().take(16),
+                  frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
+                  lastConnectedMs = System.currentTimeMillis(),
+                )
+            if (bat != null)
+              s =
+                s.copy(
+                  batteryMv = bat.millivolts,
+                  batteryPercent = bat.estimatePercent(),
+                  storageUsedKb = bat.storageUsedKb,
+                  storageTotalKb = bat.storageTotalKb,
+                )
+            if (radio != null)
+              s =
+                s.copy(
+                  frequencyMhz = radio.frequencyHz / 1_000_000.0,
+                  bandwidthKhz = radio.bandwidthHz / 1000,
+                  spreadingFactor = radio.spreadingFactor,
+                  codingRate = radio.codingRate,
+                )
+            s = s.copy(contactCount = contacts.size)
+            s
           }
-        if (next != _snapshot.value) {
-          _snapshot.value = next.copy(lastUpdatedMs = System.currentTimeMillis())
-          notifyWidgets(context)
-        }
+          .collect { next ->
+            if (next != _snapshot.value) {
+              _snapshot.value = next.copy(lastUpdatedMs = System.currentTimeMillis())
+              notifyWidgets(context)
+            }
+          }
       }
-    }
-    // Observe StateFlows for data that arrives via fetchAndPersist
-    val stateJob = bridgeScope.launch {
-      kotlinx.coroutines.flow
-        .combine(
-          client.selfInfo,
-          client.battery,
-          client.radio,
-          client.contacts,
-        ) { self, bat, radio, contacts ->
-          var s = _snapshot.value.copy(connected = true)
-          if (self != null)
-            s =
-              s.copy(
-                deviceName = self.name,
-                pubkeyPrefix = self.publicKey.toHex().take(16),
-                frequencyMhz = self.radio.frequencyHz / 1_000_000.0,
-                lastConnectedMs = System.currentTimeMillis(),
-              )
-          if (bat != null)
-            s =
-              s.copy(
-                batteryMv = bat.millivolts,
-                batteryPercent = bat.estimatePercent(),
-                storageUsedKb = bat.storageUsedKb,
-                storageTotalKb = bat.storageTotalKb,
-              )
-          if (radio != null)
-            s =
-              s.copy(
-                frequencyMhz = radio.frequencyHz / 1_000_000.0,
-                bandwidthKhz = radio.bandwidthHz / 1000,
-                spreadingFactor = radio.spreadingFactor,
-                codingRate = radio.codingRate,
-              )
-          s = s.copy(contactCount = contacts.size)
-          s
-        }
-        .collect { next ->
+      try {
+        client.events.collect { ev ->
+          val next =
+            when (ev) {
+              is MeshEvent.DirectMessage ->
+                _snapshot.value.copy(
+                  lastMessage = "${ev.message.text}",
+                  lastSnr = ev.message.snr,
+                )
+              is MeshEvent.ChannelMessage ->
+                _snapshot.value.copy(
+                  lastMessage = "#${ev.message.channelIndex} ${ev.message.body}",
+                  lastSnr = ev.message.snr,
+                )
+              else -> _snapshot.value
+            }
           if (next != _snapshot.value) {
             _snapshot.value = next.copy(lastUpdatedMs = System.currentTimeMillis())
             notifyWidgets(context)
           }
         }
+      } finally {
+        stateJob.cancel()
+      }
     }
-    eventsJob.join()
-    stateJob.cancel()
   }
 
   /** Capture live previews for the widget picker via [AppWidgetManager.setWidgetPreview]. */

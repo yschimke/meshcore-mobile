@@ -14,6 +14,7 @@ import ee.schimke.meshcore.data.repository.toDeviceInfo
 import ee.schimke.meshcore.data.repository.toRadio
 import ee.schimke.meshcore.data.repository.toSelfInfo
 import ee.schimke.meshcore.data.sync.MessagePersister
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -33,6 +34,7 @@ class AndroidConnectionSideEffects(
 ) : ConnectionSideEffects {
 
   @Volatile private var persisterJob: Job? = null
+  @Volatile private var fetchJob: Job? = null
 
   override suspend fun onConnected(
     deviceId: String,
@@ -41,7 +43,7 @@ class AndroidConnectionSideEffects(
     client: MeshCoreClient,
   ) {
     // Seed the live client from Room so the UI shows cached data immediately.
-    runCatching {
+    try {
       val state = repository.getDeviceState(deviceId)
       val contacts = repository.getContacts(deviceId)
       val channels = repository.getChannels(deviceId)
@@ -53,19 +55,23 @@ class AndroidConnectionSideEffects(
         deviceInfo = state?.toDeviceInfo(),
         channels = channels,
       )
+    } catch (ce: CancellationException) {
+      throw ce
+    } catch (t: Throwable) {
+      Log.w(TAG, "seedFromCache failed for $deviceId", t)
+      onWarning("Cached data may be stale")
     }
-      .onFailure {
-        Log.w(TAG, "seedFromCache failed for $deviceId", it)
-        onWarning("Cached data may be stale")
-      }
-    runCatching {
+    try {
       repository.upsertDevice(
         id = deviceId,
         label = client.selfInfo.value?.name ?: label,
         transport = savedTransport,
       )
+    } catch (ce: CancellationException) {
+      throw ce
+    } catch (t: Throwable) {
+      Log.w(TAG, "upsertDevice failed for $deviceId", t)
     }
-      .onFailure { Log.w(TAG, "upsertDevice failed for $deviceId", it) }
 
     MeshcoreConnectionService.start(appContext, label)
 
@@ -87,11 +93,15 @@ class AndroidConnectionSideEffects(
       persister.collect(client.events)
     }
     // Fetch fresh data and persist to Room.
-    scope.launch { fetchAndPersist(deviceId, client) }
+    fetchJob?.cancel()
+    fetchJob = scope.launch { fetchAndPersist(deviceId, client) }
   }
 
   override fun onDisconnected() {
     persisterJob?.cancel()
+    persisterJob = null
+    fetchJob?.cancel()
+    fetchJob = null
     MeshcoreConnectionService.stop(appContext)
   }
 
@@ -113,29 +123,45 @@ class AndroidConnectionSideEffects(
       Log.d(TAG, "fetchAndPersist: persisting selfInfo name='${it.name}'")
       repository.updateSelfInfo(deviceId, it, now)
     }
-    runCatching {
+    try {
       val bat = client.getBatteryAndStorage()
       Log.d(TAG, "fetchAndPersist: battery ${bat.millivolts}mV")
       repository.updateBattery(deviceId, bat, now)
+    } catch (ce: CancellationException) {
+      throw ce
+    } catch (t: Throwable) {
+      Log.w(TAG, "fetchAndPersist: battery fetch failed", t)
     }
-      .onFailure { Log.w(TAG, "fetchAndPersist: battery fetch failed", it) }
-    runCatching {
+    try {
       val radio = client.getRadioSettings()
       Log.d(TAG, "fetchAndPersist: radio ${radio.frequencyHz}Hz")
       repository.updateRadio(deviceId, radio, now)
+    } catch (ce: CancellationException) {
+      throw ce
+    } catch (t: Throwable) {
+      Log.w(TAG, "fetchAndPersist: radio fetch failed", t)
     }
-      .onFailure { Log.w(TAG, "fetchAndPersist: radio fetch failed", it) }
     client.device.value?.let { repository.updateDeviceInfo(deviceId, it, now) }
 
     Log.d(TAG, "fetchAndPersist: fetching contacts")
-    runCatching { client.getContacts() }
-      .onFailure { Log.w(TAG, "fetchAndPersist: contacts fetch failed", it) }
-    repository.replaceContacts(deviceId, client.contacts.value, now)
+    try {
+      client.getContacts()
+      repository.replaceContacts(deviceId, client.contacts.value, now)
+    } catch (ce: CancellationException) {
+      throw ce
+    } catch (t: Throwable) {
+      Log.w(TAG, "fetchAndPersist: contacts fetch failed", t)
+    }
 
     Log.d(TAG, "fetchAndPersist: fetching channels")
-    runCatching { client.getChannels() }
-      .onFailure { Log.w(TAG, "fetchAndPersist: channels fetch failed", it) }
-    repository.replaceChannels(deviceId, client.channels.value, now)
+    try {
+      client.getChannels()
+      repository.replaceChannels(deviceId, client.channels.value, now)
+    } catch (ce: CancellationException) {
+      throw ce
+    } catch (t: Throwable) {
+      Log.w(TAG, "fetchAndPersist: channels fetch failed", t)
+    }
     Log.d(TAG, "fetchAndPersist: done")
   }
 }

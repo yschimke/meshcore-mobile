@@ -14,6 +14,7 @@ import ee.schimke.meshcore.grpc.MeshcoreGrpcServiceImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -52,5 +53,10 @@ class MeshcoreWearDataService : BaseGrpcDataService<MeshcoreGrpcServiceImpl>() {
           get() = app.manager.client
       }
     return MeshcoreGrpcServiceImpl(bridge)
+  }
+
+  override fun onDestroy() {
+    serviceScope.cancel()
+    super.onDestroy()
   }
 }
