@@ -26,6 +26,8 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.io.bytestring.ByteString
 
 /** Reusable transport descriptor (same as the old SavedTransport). */
@@ -60,6 +62,7 @@ fun tcpDeviceId(host: String, port: Int): String = "tcp:$host:$port"
 fun usbDeviceId(className: String, vid: Int, pid: Int): String = "usb:$className:$vid:$pid"
 
 class MeshcoreRepository(private val db: MeshcoreDatabase) {
+  private val writeMutex = Mutex()
 
   // --- Devices ---
 
@@ -103,36 +106,37 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
    * Merge a transport-specific device entry into an existing canonical entry. Moves the transport
    * details and deletes the old entry.
    */
-  suspend fun mergeDevice(fromId: String, intoId: String, transport: SavedTransport) {
-    val into = db.deviceDao().getById(intoId) ?: return
-    // Update the canonical entry with the new transport details
-    db
-      .deviceDao()
-      .upsert(
-        into.copy(
-          transportType = transport.toType(),
-          bleIdentifier = (transport as? SavedTransport.Ble)?.identifier ?: into.bleIdentifier,
-          bleAdvertName = (transport as? SavedTransport.Ble)?.advertName ?: into.bleAdvertName,
-          tcpHost = (transport as? SavedTransport.Tcp)?.host ?: into.tcpHost,
-          tcpPort = (transport as? SavedTransport.Tcp)?.port ?: into.tcpPort,
-          usbClassName = (transport as? SavedTransport.Usb)?.className ?: into.usbClassName,
-          usbVendorId = (transport as? SavedTransport.Usb)?.vendorId ?: into.usbVendorId,
-          usbProductId = (transport as? SavedTransport.Usb)?.productId ?: into.usbProductId,
-          lastConnectedAtMs = System.currentTimeMillis(),
-        ),
-      )
-    // Delete the transport-specific entry (CASCADE removes its state/contacts/etc)
-    if (fromId != intoId) {
-      db.deviceDao().delete(fromId)
+  suspend fun mergeDevice(fromId: String, intoId: String, transport: SavedTransport) =
+    writeMutex.withLock {
+      val into = db.deviceDao().getById(intoId) ?: return@withLock
+      // Update the canonical entry with the new transport details
+      db
+        .deviceDao()
+        .upsert(
+          into.copy(
+            transportType = transport.toType(),
+            bleIdentifier = (transport as? SavedTransport.Ble)?.identifier ?: into.bleIdentifier,
+            bleAdvertName = (transport as? SavedTransport.Ble)?.advertName ?: into.bleAdvertName,
+            tcpHost = (transport as? SavedTransport.Tcp)?.host ?: into.tcpHost,
+            tcpPort = (transport as? SavedTransport.Tcp)?.port ?: into.tcpPort,
+            usbClassName = (transport as? SavedTransport.Usb)?.className ?: into.usbClassName,
+            usbVendorId = (transport as? SavedTransport.Usb)?.vendorId ?: into.usbVendorId,
+            usbProductId = (transport as? SavedTransport.Usb)?.productId ?: into.usbProductId,
+            lastConnectedAtMs = System.currentTimeMillis(),
+          ),
+        )
+      // Delete the transport-specific entry (CASCADE removes its state/contacts/etc)
+      if (fromId != intoId) {
+        db.deviceDao().delete(fromId)
+      }
     }
-  }
 
   suspend fun upsertDevice(
     id: String,
     label: String,
     transport: SavedTransport,
     markConnectedNow: Boolean = true,
-  ) {
+  ) = writeMutex.withLock {
     val existing = db.deviceDao().getById(id)
     db
       .deviceDao()
@@ -172,74 +176,78 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
   fun observeDeviceState(deviceId: String): Flow<DeviceStateEntity?> =
     db.deviceStateDao().observeByDeviceId(deviceId)
 
-  suspend fun updateSelfInfo(deviceId: String, selfInfo: SelfInfo, fetchedAtMs: Long) {
-    val existing =
-      db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
-    db
-      .deviceStateDao()
-      .upsert(
-        existing.copy(
-          selfName = selfInfo.name,
-          selfAdvertType = selfInfo.advertType,
-          selfTxPowerDbm = selfInfo.txPowerDbm,
-          selfMaxPowerDbm = selfInfo.maxPowerDbm,
-          selfPublicKey = selfInfo.publicKey.bytes.toByteArray(),
-          selfLatitude = selfInfo.latitude,
-          selfLongitude = selfInfo.longitude,
-          selfInfoFetchedAtMs = fetchedAtMs,
-        ),
-      )
-    // Also update the device label with the actual name
-    db.deviceDao().getById(deviceId)?.let { device ->
-      db.deviceDao().upsert(device.copy(label = selfInfo.name))
+  suspend fun updateSelfInfo(deviceId: String, selfInfo: SelfInfo, fetchedAtMs: Long) =
+    writeMutex.withLock {
+      val existing =
+        db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
+      db
+        .deviceStateDao()
+        .upsert(
+          existing.copy(
+            selfName = selfInfo.name,
+            selfAdvertType = selfInfo.advertType,
+            selfTxPowerDbm = selfInfo.txPowerDbm,
+            selfMaxPowerDbm = selfInfo.maxPowerDbm,
+            selfPublicKey = selfInfo.publicKey.bytes.toByteArray(),
+            selfLatitude = selfInfo.latitude,
+            selfLongitude = selfInfo.longitude,
+            selfInfoFetchedAtMs = fetchedAtMs,
+          ),
+        )
+      // Also update the device label with the actual name
+      db.deviceDao().getById(deviceId)?.let { device ->
+        db.deviceDao().upsert(device.copy(label = selfInfo.name))
+      }
     }
-  }
 
-  suspend fun updateBattery(deviceId: String, battery: BatteryInfo, fetchedAtMs: Long) {
-    val existing =
-      db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
-    db
-      .deviceStateDao()
-      .upsert(
-        existing.copy(
-          batteryMillivolts = battery.millivolts,
-          storageUsedKb = battery.storageUsedKb,
-          storageTotalKb = battery.storageTotalKb,
-          batteryFetchedAtMs = fetchedAtMs,
-        ),
-      )
-  }
+  suspend fun updateBattery(deviceId: String, battery: BatteryInfo, fetchedAtMs: Long) =
+    writeMutex.withLock {
+      val existing =
+        db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
+      db
+        .deviceStateDao()
+        .upsert(
+          existing.copy(
+            batteryMillivolts = battery.millivolts,
+            storageUsedKb = battery.storageUsedKb,
+            storageTotalKb = battery.storageTotalKb,
+            batteryFetchedAtMs = fetchedAtMs,
+          ),
+        )
+    }
 
-  suspend fun updateRadio(deviceId: String, radio: RadioSettings, fetchedAtMs: Long) {
-    val existing =
-      db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
-    db
-      .deviceStateDao()
-      .upsert(
-        existing.copy(
-          radioFrequencyHz = radio.frequencyHz,
-          radioBandwidthHz = radio.bandwidthHz,
-          radioSpreadingFactor = radio.spreadingFactor,
-          radioCodingRate = radio.codingRate,
-          radioFetchedAtMs = fetchedAtMs,
-        ),
-      )
-  }
+  suspend fun updateRadio(deviceId: String, radio: RadioSettings, fetchedAtMs: Long) =
+    writeMutex.withLock {
+      val existing =
+        db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
+      db
+        .deviceStateDao()
+        .upsert(
+          existing.copy(
+            radioFrequencyHz = radio.frequencyHz,
+            radioBandwidthHz = radio.bandwidthHz,
+            radioSpreadingFactor = radio.spreadingFactor,
+            radioCodingRate = radio.codingRate,
+            radioFetchedAtMs = fetchedAtMs,
+          ),
+        )
+    }
 
-  suspend fun updateDeviceInfo(deviceId: String, deviceInfo: DeviceInfo, fetchedAtMs: Long) {
-    val existing =
-      db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
-    db
-      .deviceStateDao()
-      .upsert(
-        existing.copy(
-          protocolVersion = deviceInfo.protocolVersion,
-          maxContacts = deviceInfo.maxContacts,
-          maxChannels = deviceInfo.maxChannels,
-          deviceInfoFetchedAtMs = fetchedAtMs,
-        ),
-      )
-  }
+  suspend fun updateDeviceInfo(deviceId: String, deviceInfo: DeviceInfo, fetchedAtMs: Long) =
+    writeMutex.withLock {
+      val existing =
+        db.deviceStateDao().getByDeviceId(deviceId) ?: DeviceStateEntity(deviceId = deviceId)
+      db
+        .deviceStateDao()
+        .upsert(
+          existing.copy(
+            protocolVersion = deviceInfo.protocolVersion,
+            maxContacts = deviceInfo.maxContacts,
+            maxChannels = deviceInfo.maxChannels,
+            deviceInfoFetchedAtMs = fetchedAtMs,
+          ),
+        )
+    }
 
   // --- Contacts ---
 
@@ -289,9 +297,11 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
     deviceId: String,
     msg: ReceivedDirectMessage,
     resolvedContactKeyHex: String,
-  ) {
+  ) = writeMutex.withLock {
     val timestampMs = msg.timestamp.toEpochMilliseconds()
-    if (db.messageDao().countDuplicates(deviceId, MessageKind.DM, timestampMs, msg.text) > 0) return
+    if (db.messageDao().countDuplicates(deviceId, MessageKind.DM, timestampMs, msg.text) > 0) {
+      return@withLock
+    }
     db
       .messageDao()
       .insert(
@@ -309,27 +319,31 @@ class MeshcoreRepository(private val db: MeshcoreDatabase) {
       )
   }
 
-  suspend fun insertReceivedChannelMessage(deviceId: String, msg: ReceivedChannelMessage) {
-    val timestampMs = msg.timestamp.toEpochMilliseconds()
-    if (db.messageDao().countDuplicates(deviceId, MessageKind.CHANNEL, timestampMs, msg.text) > 0)
-      return
-    db
-      .messageDao()
-      .insert(
-        MessageEntity(
-          deviceId = deviceId,
-          kind = MessageKind.CHANNEL,
-          direction = MessageDirection.RECEIVED,
-          channelIndex = msg.channelIndex,
-          senderName = msg.sender,
-          text = msg.text,
-          timestampEpochMs = timestampMs,
-          textType = msg.textType.raw.toInt(),
-          snr = msg.snr,
-          pathLength = msg.pathLength,
-        ),
-      )
-  }
+  suspend fun insertReceivedChannelMessage(deviceId: String, msg: ReceivedChannelMessage) =
+    writeMutex.withLock {
+      val timestampMs = msg.timestamp.toEpochMilliseconds()
+      if (
+        db.messageDao().countDuplicates(deviceId, MessageKind.CHANNEL, timestampMs, msg.text) > 0
+      ) {
+        return@withLock
+      }
+      db
+        .messageDao()
+        .insert(
+          MessageEntity(
+            deviceId = deviceId,
+            kind = MessageKind.CHANNEL,
+            direction = MessageDirection.RECEIVED,
+            channelIndex = msg.channelIndex,
+            senderName = msg.sender,
+            text = msg.text,
+            timestampEpochMs = timestampMs,
+            textType = msg.textType.raw.toInt(),
+            snr = msg.snr,
+            pathLength = msg.pathLength,
+          ),
+        )
+    }
 
   suspend fun insertSentDm(
     deviceId: String,

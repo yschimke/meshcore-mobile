@@ -25,7 +25,8 @@ object DevicePresenceManager {
     val cdm = context.getSystemService(CompanionDeviceManager::class.java) ?: return
 
     // Check if already associated
-    val associated = cdm.myAssociations.any { it.deviceMacAddress?.toString() == mac }
+    val associated =
+      cdm.myAssociations.any { it.deviceMacAddress?.toString().equals(mac, ignoreCase = true) }
     if (!associated) {
       Log.d(TAG, "Device $mac not yet associated — skipping presence observation")
       // CompanionDeviceManager requires explicit user-approved association
