@@ -14,9 +14,10 @@ import ee.schimke.meshcore.data.repository.toDeviceInfo
 import ee.schimke.meshcore.data.repository.toRadio
 import ee.schimke.meshcore.data.repository.toSelfInfo
 import ee.schimke.meshcore.data.sync.MessagePersister
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 
 private const val TAG = "MeshConnect"
@@ -55,9 +56,8 @@ class AndroidConnectionSideEffects(
         deviceInfo = state?.toDeviceInfo(),
         channels = channels,
       )
-    } catch (ce: CancellationException) {
-      throw ce
     } catch (t: Throwable) {
+      currentCoroutineContext().ensureActive()
       Log.w(TAG, "seedFromCache failed for $deviceId", t)
       onWarning("Cached data may be stale")
     }
@@ -67,9 +67,8 @@ class AndroidConnectionSideEffects(
         label = client.selfInfo.value?.name ?: label,
         transport = savedTransport,
       )
-    } catch (ce: CancellationException) {
-      throw ce
     } catch (t: Throwable) {
+      currentCoroutineContext().ensureActive()
       Log.w(TAG, "upsertDevice failed for $deviceId", t)
     }
 
@@ -127,18 +126,16 @@ class AndroidConnectionSideEffects(
       val bat = client.getBatteryAndStorage()
       Log.d(TAG, "fetchAndPersist: battery ${bat.millivolts}mV")
       repository.updateBattery(deviceId, bat, now)
-    } catch (ce: CancellationException) {
-      throw ce
     } catch (t: Throwable) {
+      currentCoroutineContext().ensureActive()
       Log.w(TAG, "fetchAndPersist: battery fetch failed", t)
     }
     try {
       val radio = client.getRadioSettings()
       Log.d(TAG, "fetchAndPersist: radio ${radio.frequencyHz}Hz")
       repository.updateRadio(deviceId, radio, now)
-    } catch (ce: CancellationException) {
-      throw ce
     } catch (t: Throwable) {
+      currentCoroutineContext().ensureActive()
       Log.w(TAG, "fetchAndPersist: radio fetch failed", t)
     }
     client.device.value?.let { repository.updateDeviceInfo(deviceId, it, now) }
@@ -147,9 +144,8 @@ class AndroidConnectionSideEffects(
     try {
       client.getContacts()
       repository.replaceContacts(deviceId, client.contacts.value, now)
-    } catch (ce: CancellationException) {
-      throw ce
     } catch (t: Throwable) {
+      currentCoroutineContext().ensureActive()
       Log.w(TAG, "fetchAndPersist: contacts fetch failed", t)
     }
 
@@ -157,9 +153,8 @@ class AndroidConnectionSideEffects(
     try {
       client.getChannels()
       repository.replaceChannels(deviceId, client.channels.value, now)
-    } catch (ce: CancellationException) {
-      throw ce
     } catch (t: Throwable) {
+      currentCoroutineContext().ensureActive()
       Log.w(TAG, "fetchAndPersist: channels fetch failed", t)
     }
     Log.d(TAG, "fetchAndPersist: done")
