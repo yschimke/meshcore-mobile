@@ -1,6 +1,7 @@
 package ee.schimke.meshcore.app.widget
 
 import android.content.Context
+import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -12,16 +13,20 @@ import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesIntoMap
 import ee.schimke.meshcore.app.connection.AppConnectionController
+import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.AssistedWorkerFactory
 import ee.schimke.meshcore.app.di.WorkerKey
 import ee.schimke.meshcore.data.repository.MeshcoreRepository
-import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
 
+private const val TAG = "MeshWidgetRefresh"
+
 /**
- * WorkManager worker that connects to the favorite device in the background, waits for a snapshot
- * update, then disconnects. Triggered by the Connection Status widget's "refresh" tap.
+ * WorkManager worker that polls fresh battery/storage state from the connected favorite device and
+ * persists it so widgets refresh. Triggered by the Connection Status widget's "refresh" tap.
  */
 @AssistedInject
 class WidgetRefreshWorker(
@@ -40,9 +45,17 @@ class WidgetRefreshWorker(
       return Result.success()
     }
 
-    // Wait for fresh data to arrive
+    val client =
+      (connectionController.state.value as? ConnectionUiState.Connected)?.client
+        ?: return Result.success()
     withTimeoutOrNull(15_000) {
-      WidgetStateBridge.snapshot.filter { it.lastUpdatedMs != null }.first()
+      try {
+        val bat = client.getBatteryAndStorage()
+        repository.updateBattery(favorite.id, bat, System.currentTimeMillis())
+      } catch (t: Throwable) {
+        currentCoroutineContext().ensureActive()
+        Log.w(TAG, "Widget refresh: battery fetch failed", t)
+      }
     }
 
     return Result.success()

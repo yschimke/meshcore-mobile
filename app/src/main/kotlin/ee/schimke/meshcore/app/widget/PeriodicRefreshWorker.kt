@@ -15,11 +15,13 @@ import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesIntoMap
 import ee.schimke.meshcore.app.connection.AppConnectionController
+import ee.schimke.meshcore.app.connection.ConnectionUiState
 import ee.schimke.meshcore.app.di.AssistedWorkerFactory
 import ee.schimke.meshcore.app.di.WorkerKey
 import ee.schimke.meshcore.data.repository.MeshcoreRepository
 import java.util.concurrent.TimeUnit
-import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
 
@@ -27,8 +29,9 @@ private const val TAG = "MeshRefresh"
 private const val DATA_WAIT_TIMEOUT_MS = 15_000L
 
 /**
- * Periodic background worker that connects to the favorite device every 15 minutes, fetches fresh
- * device info + contacts + channels, persists to Room, updates widgets, and disconnects.
+ * Periodic background worker that polls fresh battery and storage state from the favorite device
+ * every 15 minutes when already connected, persists to Room, and lets [WidgetStateBridge] update
+ * widgets.
  *
  * Scheduled via [scheduleIfFavoriteExists] when a favorite device is set. Cancelled via [cancel]
  * when the favorite is cleared.
@@ -55,9 +58,17 @@ class PeriodicRefreshWorker(
       return Result.success()
     }
 
-    // Wait for fresh data to arrive
+    val client =
+      (connectionController.state.value as? ConnectionUiState.Connected)?.client
+        ?: return Result.success()
     withTimeoutOrNull(DATA_WAIT_TIMEOUT_MS) {
-      WidgetStateBridge.snapshot.filter { it.lastUpdatedMs != null }.first()
+      try {
+        val bat = client.getBatteryAndStorage()
+        repository.updateBattery(favorite.id, bat, System.currentTimeMillis())
+      } catch (t: Throwable) {
+        currentCoroutineContext().ensureActive()
+        Log.w(TAG, "Periodic refresh: battery fetch failed", t)
+      }
     }
 
     Log.d(TAG, "Periodic refresh: done")
