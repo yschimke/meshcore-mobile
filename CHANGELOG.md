@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.1.14](https://github.com/yschimke/meshcore-mobile/compare/v0.1.13...v0.1.14) (2026-11-28)
+
+
+### Features
+
+* add Wear Expressive motion, animated chevrons, status transitions, and Escape key navigation ([#835](https://github.com/yschimke/meshcore-mobile/issues/835)) ([b5311b0](https://github.com/yschimke/meshcore-mobile/commit/b5311b00f78e81a1d1e1003e7004481b3ab8c0f8))
+* modernize Compose UI, Navigation 3 transitions, and Material 3 Expressive ([#829](https://github.com/yschimke/meshcore-mobile/issues/829)) ([b662910](https://github.com/yschimke/meshcore-mobile/commit/b662910d5b545914a5341bb112c6f18dc2f54d9b))
+
+
+### Bug Fixes
+
+* **deps:** update compose-ai-tools ([#836](https://github.com/yschimke/meshcore-mobile/issues/836)) ([ffc4656](https://github.com/yschimke/meshcore-mobile/commit/ffc46562027a05ff917bc8b295c38fe26c5b39a4))
+* **deps:** update compose-ai-tools ([#843](https://github.com/yschimke/meshcore-mobile/issues/843)) ([b99b544](https://github.com/yschimke/meshcore-mobile/commit/b99b544787074877e3f1422a586491b270e786b6))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.29.0 ([#812](https://github.com/yschimke/meshcore-mobile/issues/812)) ([1b1cf93](https://github.com/yschimke/meshcore-mobile/commit/1b1cf93b5de3a233a5f6f3ad70eedd41a409c2b7))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-daemon-bom to v3.29.1 ([#837](https://github.com/yschimke/meshcore-mobile/issues/837)) ([01100f6](https://github.com/yschimke/meshcore-mobile/commit/01100f6041342e39dd9c33892c948e52f9300f21))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.148.0 ([#813](https://github.com/yschimke/meshcore-mobile/issues/813)) ([9f4a84b](https://github.com/yschimke/meshcore-mobile/commit/9f4a84b563ca72a5176df27795016da0f1574cff))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.149.0 ([#814](https://github.com/yschimke/meshcore-mobile/issues/814)) ([8de631b](https://github.com/yschimke/meshcore-mobile/commit/8de631b5deb28b899780a7d6acb96e12b45587af))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.151.0 ([#816](https://github.com/yschimke/meshcore-mobile/issues/816)) ([ff7dd20](https://github.com/yschimke/meshcore-mobile/commit/ff7dd2020653ec480a4827704cc73f46e3939daf))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.153.0 ([#819](https://github.com/yschimke/meshcore-mobile/issues/819)) ([e7a61c9](https://github.com/yschimke/meshcore-mobile/commit/e7a61c949d4fed02a2fbfb0d543f6ada99a0d410))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.155.0 ([#821](https://github.com/yschimke/meshcore-mobile/issues/821)) ([1dd8754](https://github.com/yschimke/meshcore-mobile/commit/1dd87549da579024995ad5994d010a6fd80b3620))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.156.0 ([#823](https://github.com/yschimke/meshcore-mobile/issues/823)) ([0958693](https://github.com/yschimke/meshcore-mobile/commit/0958693cc252b287982d2468235db0186af229c9))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.157.0 ([#827](https://github.com/yschimke/meshcore-mobile/issues/827)) ([f55b24a](https://github.com/yschimke/meshcore-mobile/commit/f55b24a41ab24ab31dc95ecb3d12578e6c61cf73))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.158.0 ([#832](https://github.com/yschimke/meshcore-mobile/issues/832)) ([6f55305](https://github.com/yschimke/meshcore-mobile/commit/6f553050f8f1f719127dc4c3aba97c5cbfff91ca))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.159.0 ([#844](https://github.com/yschimke/meshcore-mobile/issues/844)) ([3052109](https://github.com/yschimke/meshcore-mobile/commit/3052109e4336bad54a13479cd68364001888ff01))
+* **deps:** update dependency ee.schimke.composeai:compose-preview-ui-builder-bom to v3.160.0 ([#846](https://github.com/yschimke/meshcore-mobile/issues/846)) ([682221c](https://github.com/yschimke/meshcore-mobile/commit/682221c7fdef0bf7e6b315ad75add5dc77977f3b))
+* **deps:** update dependency ee.schimke.composeai:rc-players-bom to v3.12.1 ([#818](https://github.com/yschimke/meshcore-mobile/issues/818)) ([5a7a1c6](https://github.com/yschimke/meshcore-mobile/commit/5a7a1c6293d72d8eda739c862b87fc9c88da28f6))
+* **deps:** update dependency io.ktor:ktor-network to v3.6.2 ([#850](https://github.com/yschimke/meshcore-mobile/issues/850)) ([eafbd35](https://github.com/yschimke/meshcore-mobile/commit/eafbd3546c3d73b9b076b74d9257f65b13d0da5e))
+* **deps:** update dependency org.robolectric:robolectric to v4.18.1 ([#851](https://github.com/yschimke/meshcore-mobile/issues/851)) ([9baf379](https://github.com/yschimke/meshcore-mobile/commit/9baf37969d21d80acb619e17b52c1fec7c75b139))
+* **deps:** update grpc to v1.86.0 ([#828](https://github.com/yschimke/meshcore-mobile/issues/828)) ([a4dc906](https://github.com/yschimke/meshcore-mobile/commit/a4dc906d6fb80a8ebe28915f807464ffcb7744d6))
+* harden coroutine cancellation, lifecycle, and DataStore resilience ([#826](https://github.com/yschimke/meshcore-mobile/issues/826)) ([05d174f](https://github.com/yschimke/meshcore-mobile/commit/05d174fcca3b86dec3f8f9404021efb19f2bbcc5))
+* keep independent refresh fetches running on command timeouts ([#833](https://github.com/yschimke/meshcore-mobile/issues/833)) ([003a849](https://github.com/yschimke/meshcore-mobile/commit/003a849373ce79d6631f8b5ecf21d5c85cd14721))
+* serialize repository writes, poll radio in refresh workers, fix MAC match ([#840](https://github.com/yschimke/meshcore-mobile/issues/840)) ([acbfe00](https://github.com/yschimke/meshcore-mobile/commit/acbfe00b20a01ed068bf851c4c934d38c10efc86))
+
 ## [0.1.13](https://github.com/yschimke/meshcore-mobile/compare/v0.1.12...v0.1.13) (2026-11-22)
 
 
